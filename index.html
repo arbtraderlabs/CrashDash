@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crash Dash - When the Market Breaks, You Don't.</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Papa Parse for CSV parsing - using local copy -->
+    <script src="papaparse.min.js"></script>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="assets/logo.svg" alt="Crash Dash Logo" class="logo">
+                <div class="brand-text">
+                    <h1>CRASH DASH</h1>
+                    <div class="tagline">When the Market Breaks, You Don't.</div>
+                </div>
+            </div>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 Search ticker or company name...">
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+        
+        <!-- STATS CARDS -->
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card">
+                <span class="stat-value" id="totalTickers">-</span>
+                <span class="stat-label">Tickers Tracked</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value" id="totalSignals">-</span>
+                <span class="stat-label">Total Signals</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value" id="purpleCount">-</span>
+                <span class="stat-label">🟣 Purple Combos</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value" id="redCount">-</span>
+                <span class="stat-label">🔴 Ultra Crashes</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value" id="latestScan">-</span>
+                <span class="stat-label">Latest Scan</span>
+            </div>
+        </div>
+
+        <!-- FILTERS -->
+        <div class="filters-section">
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label for="colorFilter">Signal Color</label>
+                    <select id="colorFilter">
+                        <option value="">All Colors</option>
+                        <option value="PURPLE">🟣 Purple (Enhanced Combo)</option>
+                        <option value="RED">🔴 Red (Ultra Crash)</option>
+                        <option value="ORANGE">🟠 Orange (Extreme)</option>
+                        <option value="GREEN">🟢 Green (Deep)</option>
+                        <option value="YELLOW">🟡 Yellow (Crash Zone)</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="sectorFilter">Sector</label>
+                    <select id="sectorFilter">
+                        <option value="">All Sectors</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="industryFilter">Industry</label>
+                    <select id="industryFilter">
+                        <option value="">All Industries</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="dateFilter">Min Signal Date</label>
+                    <input type="date" id="dateFilter">
+                </div>
+                <div class="filter-group" style="display: flex; align-items: flex-end;">
+                    <button class="reset-filters" onclick="resetFilters()">Reset Filters</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIGNALS TABLE -->
+        <div class="signals-table-wrapper">
+            <table class="signals-table">
+                <thead>
+                    <tr>
+                        <th class="sortable" data-sort="ticker">Ticker</th>
+                        <th class="sortable" data-sort="date">Signal Date</th>
+                        <th class="sortable" data-sort="signal_type">Signal Type</th>
+                        <th class="sortable" data-sort="signal_color">Color</th>
+                        <th class="sortable" data-sort="ai_score">AI Score</th>
+                        <th class="sortable" data-sort="drawdown">Drawdown</th>
+                        <th class="sortable" data-sort="current_pnl">Current P&L</th>
+                        <th class="sortable" data-sort="best_rally">Best Rally</th>
+                    </tr>
+                </thead>
+                <tbody id="signalsTableBody">
+                    <tr>
+                        <td colspan="8" class="loading">Loading signals...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- EDUCATION PANEL -->
+        <div class="education-panel">
+            <h2>📚 How to Use Crash Dash</h2>
+            
+            <h3 style="margin-top: 1.5rem; color: var(--split-yellow);">Signal Color Guide</h3>
+            <div class="color-guide">
+                <div class="color-explanation purple">
+                    <h3>🟣 PURPLE - Enhanced Combo</h3>
+                    <p><strong>Strongest Signal:</strong> Crash bottom + accumulation pattern detected. AI has identified both extreme oversold conditions AND institutional accumulation building.</p>
+                    <p><strong>Use Case:</strong> Highest probability reversal candidates.</p>
+                </div>
+                
+                <div class="color-explanation red">
+                    <h3>🔴 RED - Ultra Crash</h3>
+                    <p><strong>95%+ Drawdown:</strong> Catastrophic price decline from all-time high. Extreme oversold (RSI &lt; 30), early cycle position (&lt; 15%).</p>
+                    <p><strong>Use Case:</strong> Maximum risk/reward, but requires strong conviction.</p>
+                </div>
+                
+                <div class="color-explanation orange">
+                    <h3>🟠 ORANGE - Extreme Crash</h3>
+                    <p><strong>90%+ Drawdown:</strong> Severe crash with strong reversal potential. RSI &lt; 35, cycle position &lt; 20%.</p>
+                    <p><strong>Use Case:</strong> High probability setups with significant upside potential.</p>
+                </div>
+                
+                <div class="color-explanation green">
+                    <h3>🟢 GREEN - Deep Crash</h3>
+                    <p><strong>85%+ Drawdown:</strong> AI-validated crash bottom. RSI &lt; 40, cycle position &lt; 25%. Technical score meets threshold.</p>
+                    <p><strong>Use Case:</strong> Balanced risk/reward with technical confirmation.</p>
+                </div>
+                
+                <div class="color-explanation yellow">
+                    <h3>🟡 YELLOW - Crash Zone</h3>
+                    <p><strong>80%+ Drawdown:</strong> Early accumulation phase. RSI &lt; 45, cycle position &lt; 30%. Watch for further confirmation.</p>
+                    <p><strong>Use Case:</strong> Early warning system, monitor for upgrade to higher tier.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem; color: var(--split-yellow);">Key Metrics Explained</h3>
+            <div style="margin-top: 1rem; line-height: 1.8;">
+                <p><strong>AI Technical Score:</strong> Proprietary algorithm scoring crash reversal probability (higher = stronger signal)</p>
+                <p><strong>Drawdown %:</strong> Percentage decline from all-time high to crash bottom</p>
+                <p><strong>Current P&L:</strong> If you bought at signal date, your return today</p>
+                <p><strong>Best Rally:</strong> Historical peak gain achieved from a similar crash signal</p>
+                <p><strong>Cycle Position:</strong> Where in the price cycle (0 = bottom, 1 = top)</p>
+                <p><strong>Win Rate:</strong> Percentage of past signals that went positive</p>
+            </div>
+
+            <h3 style="margin-top: 2rem; color: var(--split-yellow);">Risk Flags</h3>
+            <div style="margin-top: 1rem; line-height: 1.8;">
+                <p><strong>HAS_REVERSE_SPLIT:</strong> Company has done reverse stock split (consolidation) - often a red flag</p>
+                <p><strong>EXTREME_DRAWDOWN:</strong> Currently down 80%+ from ATH - high risk, high reward</p>
+                <p><strong>PENNY_STOCK:</strong> Trading under $0.01 - extreme volatility expected</p>
+                <p><strong>FREQUENT_CRASHES:</strong> More than 5 crash signals detected - unstable company</p>
+            </div>
+
+            <h3 style="margin-top: 2rem; color: var(--split-yellow);">Important Disclaimer</h3>
+            <div style="margin-top: 1rem; line-height: 1.8; opacity: 0.8;">
+                <p><strong>⚠️ This is NOT financial advice.</strong> Crash Dash is a research tool providing historical signal analysis. All investments carry risk. Past performance does not guarantee future results. Always conduct your own due diligence and consult with a qualified financial advisor before making investment decisions.</p>
+                <p style="margin-top: 0.5rem;"><strong>Data Source:</strong> London Stock Exchange (LSE) AIM market. Signals generated using proprietary AI crash detection algorithm analyzing 20+ years of historical data.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 Crash Dash. All rights reserved. | Data updated: <span id="lastUpdate">-</span></p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">⚡ When the Market Breaks, You Don't.</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script src="app.js"></script>
+</body>
+</html>
