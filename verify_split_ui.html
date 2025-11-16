@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Split Warning Verification - 88E.L</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #1a1a1a; color: #fff; }
+        .success { background: #1a4a1a; border: 2px solid #44ff44; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .fail { background: #4a1a1a; border: 2px solid #ff4444; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        pre { background: #000; padding: 10px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Split Warning UI Verification</h1>
+    <div id="results">Testing...</div>
+    
+    <script>
+        async function verify() {
+            const results = [];
+            
+            // Test 1: Check if app.js has split warning code
+            const appJs = await fetch('/app.js').then(r => r.text());
+            const hasWarningIcon = appJs.includes('split-warning-icon');
+            results.push({
+                test: 'app.js contains split-warning-icon',
+                pass: hasWarningIcon,
+                details: hasWarningIcon ? '✅ Found' : '❌ Missing'
+            });
+            
+            // Test 2: Check if styles.css has split warning styles
+            const css = await fetch('/styles.css').then(r => r.text());
+            const hasStyles = css.includes('.split-warning-icon') && css.includes('pulse-warning');
+            results.push({
+                test: 'styles.css has split warning animations',
+                pass: hasStyles,
+                details: hasStyles ? '✅ Found' : '❌ Missing'
+            });
+            
+            // Test 3: Check if prices have £ removed
+            const hasNoPound = !appJs.includes('£${fmtPrice(currentPriceVal)}');
+            const hasPence = appJs.includes('${fmtPrice(currentPriceVal)}p');
+            results.push({
+                test: '£ signs removed, p suffix added',
+                pass: hasNoPound && hasPence,
+                details: (hasNoPound && hasPence) ? '✅ Correct (shows as pence)' : '❌ Still showing £'
+            });
+            
+            // Test 4: Check if market cap has £ removed
+            const marketCapFixed = !appJs.includes('£${(marketCap / 1000000000)');
+            results.push({
+                test: 'Market cap £ signs removed',
+                pass: marketCapFixed,
+                details: marketCapFixed ? '✅ Fixed' : '❌ Still has £'
+            });
+            
+            // Test 5: Check if split risk section exists
+            const hasSplitSection = appJs.includes('Split Risk Assessment');
+            results.push({
+                test: 'Split Risk Assessment section exists',
+                pass: hasSplitSection,
+                details: hasSplitSection ? '✅ Found' : '❌ Missing'
+            });
+            
+            // Display results
+            const allPass = results.every(r => r.pass);
+            const html = `
+                <div class="${allPass ? 'success' : 'fail'}">
+                    <h2>${allPass ? '✅ ALL TESTS PASSED!' : '⚠️ SOME TESTS FAILED'}</h2>
+                    <p>${allPass ? 'Split warnings are ready to use!' : 'Some features are missing'}</p>
+                </div>
+                ${results.map(r => `
+                    <div class="${r.pass ? 'success' : 'fail'}">
+                        <strong>${r.test}:</strong> ${r.details}
+                    </div>
+                `).join('')}
+                <div class="success" style="margin-top: 30px;">
+                    <h3>🎯 Next Steps:</h3>
+                    <ol>
+                        <li>Open <a href="http://localhost:8000" style="color: #44ff44;">http://localhost:8000</a></li>
+                        <li>Search for <strong>88E.L</strong></li>
+                        <li>You should see a pulsing ⚠️ icon next to the ticker</li>
+                        <li>Hover over the ⚠️ to see the warning tooltip</li>
+                        <li>Click the row to expand - you'll see the "Split Risk Assessment" section</li>
+                        <li>All prices should show as "1.025p" not "£1.0250"</li>
+                    </ol>
+                </div>
+            `;
+            document.getElementById('results').innerHTML = html;
+        }
+        
+        verify();
+    </script>
+</body>
+</html>

@@ -460,6 +460,88 @@ header {
   font-weight: 600;
 }
 
+/* Split Warning Icon & Tooltip */
+.split-warning-icon {
+  display: inline-block;
+  margin-left: 0.3rem;
+  cursor: help;
+  font-size: 1rem;
+  position: relative;
+  animation: pulse-warning 2s ease-in-out infinite;
+}
+
+@keyframes pulse-warning {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.split-warning-icon:hover {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 8px rgba(255, 221, 85, 0.8));
+}
+
+/* Split Risk Section */
+.split-risk-section {
+  background: linear-gradient(135deg, rgba(255, 221, 85, 0.1), rgba(255, 51, 85, 0.05));
+  border: 2px solid var(--split-yellow);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+}
+
+.split-risk-alert {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.split-warning-box,
+.split-recommendation-box {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.split-warning-box {
+  background: rgba(255, 51, 85, 0.1);
+  border-left: 4px solid var(--crash-red);
+  color: #990000;
+}
+
+.split-recommendation-box {
+  background: rgba(255, 221, 85, 0.15);
+  border-left: 4px solid var(--split-yellow);
+  color: #996600;
+}
+
+.risk-badge-high {
+  background: var(--crash-red);
+  color: var(--white);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.risk-badge-medium {
+  background: var(--split-yellow);
+  color: #000;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.risk-badge-none {
+  background: var(--recovery-green);
+  color: var(--white);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
 /* ============================================
    EDUCATION PANEL
    ============================================ */

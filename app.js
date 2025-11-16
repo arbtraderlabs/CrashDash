@@ -298,9 +298,14 @@ function renderSignalsTable() {
         const currentPnl = metadata.latest_signal?.current_pnl_pct || 0;
         const bestRally = metadata.best_rally_pct || 0;
         
+        // Check for split warnings
+        const splitRisk = metadata.split_risk || {};
+        const hasSplit = splitRisk.split_detected || false;
+        const splitWarningIcon = hasSplit ? `<span class="split-warning-icon" title="${splitRisk.warning || 'Split detected'} - ${splitRisk.recommendation || 'Verify data independently'}">⚠️</span>` : '';
+        
         tr.innerHTML = `
             <td class="ticker-cell">
-                ${signal.Ticker}
+                ${signal.Ticker} ${splitWarningIcon}
                 <span class="company-name">${tickerInfo.name || ''}</span>
             </td>
             <td>${signal.Date}</td>
@@ -387,7 +392,7 @@ function createExpandableRow(signal, metadata, tickerInfo) {
                         </div>
                         <div class="metadata-item">
                             <span class="metadata-label">Current Price:</span>
-                            <span class="metadata-value">£${fmtPrice(currentPriceVal)}</span>
+                            <span class="metadata-value">${fmtPrice(currentPriceVal)}p</span>
                         </div>
                     </div>
                     
@@ -396,11 +401,11 @@ function createExpandableRow(signal, metadata, tickerInfo) {
                         <h4>📊 Price Action</h4>
                         <div class="metadata-item">
                             <span class="metadata-label">All-Time High:</span>
-                            <span class="metadata-value">£${fmtPrice(athVal)} (${basics.ath_date || '-'})</span>
+                            <span class="metadata-value">${fmtPrice(athVal)}p (${basics.ath_date || '-'})</span>
                         </div>
                         <div class="metadata-item">
                             <span class="metadata-label">All-Time Low:</span>
-                            <span class="metadata-value">£${fmtPrice(atlVal)} (${basics.atl_date || '-'})</span>
+                            <span class="metadata-value">${fmtPrice(atlVal)}p (${basics.atl_date || '-'})</span>
                         </div>
                         <div class="metadata-item">
                             <span class="metadata-label">Current Drawdown:</span>
@@ -421,7 +426,7 @@ function createExpandableRow(signal, metadata, tickerInfo) {
                         </div>
                         <div class="metadata-item">
                             <span class="metadata-label">Entry Price:</span>
-                            <span class="metadata-value">£${fmtPrice(latestEntryVal)}</span>
+                            <span class="metadata-value">${fmtPrice(latestEntryVal)}p</span>
                         </div>
                         <div class="metadata-item">
                             <span class="metadata-label">RSI:</span>
@@ -452,11 +457,11 @@ function createExpandableRow(signal, metadata, tickerInfo) {
                         </div>
                         <div class="metadata-item">
                             <span class="metadata-label">Entry Price:</span>
-                            <span class="metadata-value">£${fmtPrice(bestEntryVal)}</span>
+                            <span class="metadata-value">${fmtPrice(bestEntryVal)}p</span>
                         </div>
                         <div class="metadata-item">
                             <span class="metadata-label">Peak Price:</span>
-                            <span class="metadata-value">£${fmtPrice(bestPeakVal)}</span>
+                            <span class="metadata-value">${fmtPrice(bestPeakVal)}p</span>
                         </div>
                         <div class="metadata-item">
                             <span class="metadata-label">Rally:</span>
@@ -496,6 +501,41 @@ function createExpandableRow(signal, metadata, tickerInfo) {
                             <span class="metadata-value positive">+${stats.worst_rally_pct?.toFixed(1) || 0}%</span>
                         </div>
                     </div>
+                    
+                    <!-- Split Risk Assessment (if detected) -->
+                    ${metadata.split_risk?.split_detected ? `
+                    <div class="metadata-section split-risk-section">
+                        <h4>⚠️ Split Risk Assessment</h4>
+                        <div class="split-risk-alert">
+                            <div class="metadata-item">
+                                <span class="metadata-label">Split Date:</span>
+                                <span class="metadata-value">${metadata.split_risk.split_date}</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">Split Type:</span>
+                                <span class="metadata-value">${metadata.split_risk.split_type} (${metadata.split_risk.split_description})</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">Days From Split:</span>
+                                <span class="metadata-value">${metadata.split_risk.days_from_split} days</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">Risk Level:</span>
+                                <span class="metadata-value risk-badge-${metadata.split_risk.risk_level.toLowerCase()}">${metadata.split_risk.risk_level}</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">Data Confidence:</span>
+                                <span class="metadata-value">${metadata.split_risk.confidence}</span>
+                            </div>
+                            <div class="split-warning-box">
+                                <strong>⚠️ Warning:</strong> ${metadata.split_risk.warning}
+                            </div>
+                            <div class="split-recommendation-box">
+                                <strong>💡 Recommendation:</strong> ${metadata.split_risk.recommendation}
+                            </div>
+                        </div>
+                    </div>
+                    ` : ''}
                     
                     <!-- Risk Flags & Splits -->
                     <div class="metadata-section">
@@ -736,8 +776,8 @@ function resetFilters() {
 
 function formatMarketCap(marketCap) {
     if (!marketCap) return 'N/A';
-    if (marketCap >= 1000000000) return `£${(marketCap / 1000000000).toFixed(2)}B`;
-    if (marketCap >= 1000000) return `£${(marketCap / 1000000).toFixed(2)}M`;
-    if (marketCap >= 1000) return `£${(marketCap / 1000).toFixed(2)}K`;
-    return `£${marketCap}`;
+    if (marketCap >= 1000000000) return `${(marketCap / 1000000000).toFixed(2)}B`;
+    if (marketCap >= 1000000) return `${(marketCap / 1000000).toFixed(2)}M`;
+    if (marketCap >= 1000) return `${(marketCap / 1000).toFixed(2)}K`;
+    return `${marketCap}`;
 }
