@@ -14,6 +14,62 @@ let currentSort = { column: 'date', direction: 'desc' };
 console.log('Global variables initialized');
 
 // ============================================
+// PENCE-AWARE HELPERS
+// ============================================
+
+// Return true if ticker appears to be an LSE ticker (.L)
+function isLseTicker(ticker) {
+    if (!ticker) return false;
+    return String(ticker).toUpperCase().endsWith('.L');
+}
+
+// Safely coerce to number or undefined
+function toNumber(v) {
+    if (v === undefined || v === null) return undefined;
+    const n = Number(v);
+    return Number.isFinite(n) ? n : undefined;
+}
+
+// Get a price-like field from an object, preferring *_pence when ticker is LSE
+// Returns a GBP float (or undefined)
+function getPriceFieldForTicker(ticker, obj, fieldName) {
+    if (!obj) return undefined;
+    const lse = isLseTicker(ticker);
+    const penceField = `${fieldName}_pence`;
+    if (lse && obj[penceField] !== undefined && obj[penceField] !== null) {
+        const p = toNumber(obj[penceField]);
+        if (p !== undefined) return p / 100.0;
+    }
+    const raw = toNumber(obj[fieldName]);
+    return raw;
+}
+
+// Market cap candidate selection: prefer market_cap_pence or companyInfo current_market_cap_pence
+function getMarketCapCandidate(ticker, metadata, tickerInfo) {
+    const companyInfo = metadata?.company_info || {};
+    // Prefer ticker-level market cap pence
+    if (tickerInfo && tickerInfo.market_cap_pence !== undefined && tickerInfo.market_cap_pence !== null) {
+        const p = toNumber(tickerInfo.market_cap_pence);
+        if (p !== undefined) return p / 100.0;
+    }
+    // then company-level current market cap pence
+    if (companyInfo && companyInfo.current_market_cap_pence !== undefined && companyInfo.current_market_cap_pence !== null) {
+        const p = toNumber(companyInfo.current_market_cap_pence);
+        if (p !== undefined) return p / 100.0;
+    }
+    // fallback to already-GPB market cap fields
+    if (companyInfo && companyInfo.current_market_cap !== undefined && companyInfo.current_market_cap !== null) {
+        const n = toNumber(companyInfo.current_market_cap);
+        if (n !== undefined) return n;
+    }
+    if (tickerInfo && tickerInfo.market_cap !== undefined && tickerInfo.market_cap !== null) {
+        const n = toNumber(tickerInfo.market_cap);
+        if (n !== undefined) return n;
+    }
+    return undefined;
+}
+
+// ============================================
 // INITIALIZATION
 // ============================================
 
@@ -22,7 +78,32 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Papa Parse available:', typeof Papa !== 'undefined');
     loadAllData();
     setupEventListeners();
+    setupMobileScrollHint();
 });
+
+// Auto-hide mobile scroll hint after first user interaction
+function setupMobileScrollHint() {
+    try {
+        const wrapper = document.getElementById('signalsWrapper');
+        const hint = document.getElementById('mobileScrollHint');
+        if (!wrapper || !hint) return;
+
+        const hideHint = () => {
+            hint.style.display = 'none';
+            wrapper.removeEventListener('scroll', hideHint);
+            wrapper.removeEventListener('touchstart', hideHint);
+        };
+
+        // If user scrolls or touches, hide the hint
+        wrapper.addEventListener('scroll', hideHint, { passive: true });
+        wrapper.addEventListener('touchstart', hideHint, { passive: true });
+
+        // Also hide after 6 seconds automatically
+        setTimeout(() => { hint.style.display = 'none'; }, 6000);
+    } catch (e) {
+        console.warn('Mobile scroll hint setup failed', e);
+    }
+}
 
 // ============================================
 // DATA LOADING
@@ -99,12 +180,50 @@ async function loadAllData() {
 }
 
 // ============================================
+// LOAD FULL TICKER DETAILS
+// ============================================
+
+async function loadTickerDetails(ticker) {
+    // Check if we already have full details
+    if (allMetadata[ticker] && allMetadata[ticker]._fullDetailsLoaded) {
+        return allMetadata[ticker];
+    }
+    
+    try {
+        const cacheBuster = '?v=' + Date.now();
+        const response = await fetch(`data/tickers/${ticker}.json` + cacheBuster);
+        
+        if (!response.ok) {
+            console.warn(`Could not load details for ${ticker}`);
+            return allMetadata[ticker] || {};
+        }
+        
+        const fullDetails = await response.json();
+        fullDetails._fullDetailsLoaded = true;
+        
+        // Merge with existing summary metadata
+        allMetadata[ticker] = { ...allMetadata[ticker], ...fullDetails };
+        
+        return allMetadata[ticker];
+    } catch (error) {
+        console.error(`Error loading ticker details for ${ticker}:`, error);
+        return allMetadata[ticker] || {};
+    }
+}
+
+// ============================================
 // UPDATE STATS CARDS
 // ============================================
 
 function updateStats() {
-    document.getElementById('totalTickers').textContent = dashboardStats.total_tickers || 0;
+    // Total tickers tracked (from ticker lookup - all LSE AIM tickers)
+    const totalTracked = Object.keys(tickerLookup).length || 600;
+    document.getElementById('totalTickers').textContent = totalTracked > 600 ? totalTracked : '600+';
+    
+    // Crash signals generated
     document.getElementById('totalSignals').textContent = dashboardStats.total_signals || 0;
+    
+    // Purple combos
     document.getElementById('purpleCount').textContent = dashboardStats.signal_colors?.PURPLE || 0;
     document.getElementById('redCount').textContent = dashboardStats.signal_colors?.RED || 0;
     document.getElementById('latestScan').textContent = dashboardStats.latest_scan_date || '-';
@@ -220,6 +339,24 @@ function createExpandableRow(signal, metadata, tickerInfo) {
     const splits = metadata.splits || [];
     const riskFlags = metadata.risk_flags || [];
     
+    // LSE ticker info
+    const lseTicker = basics.lse_ticker || metadata.lse_ticker || signal.Ticker.replace('.L', '');
+    const exchange = basics.exchange || metadata.exchange || 'LSE';
+    const market = basics.market || metadata.market || 'AIM';
+
+    // Use pence-aware helpers to get prices and market cap in GBP floats
+    const currentPriceVal = getPriceFieldForTicker(signal?.Ticker || lseTicker, basics, 'current_price');
+    const athVal = getPriceFieldForTicker(signal?.Ticker || lseTicker, basics, 'ath');
+    const atlVal = getPriceFieldForTicker(signal?.Ticker || lseTicker, basics, 'atl');
+    const latestEntryVal = getPriceFieldForTicker(signal?.Ticker || lseTicker, latestSignal, 'price');
+    const bestEntryVal = getPriceFieldForTicker(signal?.Ticker || lseTicker, bestSignal, 'entry_price');
+    const bestPeakVal = getPriceFieldForTicker(signal?.Ticker || lseTicker, bestSignal, 'peak_price');
+
+    const marketCapCandidate = getMarketCapCandidate(signal?.Ticker || lseTicker, metadata, tickerInfo);
+    const formattedMarketCap = formatMarketCap(marketCapCandidate);
+
+    const fmtPrice = (v) => (v !== undefined && v !== null && !isNaN(v)) ? Number(v).toFixed(4) : '-';
+    
     tr.innerHTML = `
         <td colspan="8">
             <div class="expandable-content">
@@ -233,16 +370,24 @@ function createExpandableRow(signal, metadata, tickerInfo) {
                             <span class="metadata-value">${companyInfo.name || 'Unknown'}</span>
                         </div>
                         <div class="metadata-item">
+                            <span class="metadata-label">LSE Ticker:</span>
+                            <span class="metadata-value"><strong>${lseTicker}</strong></span>
+                        </div>
+                        <div class="metadata-item">
+                            <span class="metadata-label">Exchange:</span>
+                            <span class="metadata-value">${exchange} (${market})</span>
+                        </div>
+                        <div class="metadata-item">
                             <span class="metadata-label">Industry:</span>
                             <span class="metadata-value">${companyInfo.industry || 'Unknown'}</span>
                         </div>
                         <div class="metadata-item">
                             <span class="metadata-label">Market Cap:</span>
-                            <span class="metadata-value">${formatMarketCap(companyInfo.current_market_cap)}</span>
+                            <span class="metadata-value">${formattedMarketCap}</span>
                         </div>
                         <div class="metadata-item">
                             <span class="metadata-label">Current Price:</span>
-                            <span class="metadata-value">£${basics.current_price?.toFixed(4) || '-'}</span>
+                            <span class="metadata-value">£${fmtPrice(currentPriceVal)}</span>
                         </div>
                     </div>
                     
@@ -251,11 +396,11 @@ function createExpandableRow(signal, metadata, tickerInfo) {
                         <h4>📊 Price Action</h4>
                         <div class="metadata-item">
                             <span class="metadata-label">All-Time High:</span>
-                            <span class="metadata-value">£${basics.ath?.toFixed(4) || '-'} (${basics.ath_date || '-'})</span>
+                            <span class="metadata-value">£${fmtPrice(athVal)} (${basics.ath_date || '-'})</span>
                         </div>
                         <div class="metadata-item">
                             <span class="metadata-label">All-Time Low:</span>
-                            <span class="metadata-value">£${basics.atl?.toFixed(4) || '-'} (${basics.atl_date || '-'})</span>
+                            <span class="metadata-value">£${fmtPrice(atlVal)} (${basics.atl_date || '-'})</span>
                         </div>
                         <div class="metadata-item">
                             <span class="metadata-label">Current Drawdown:</span>
@@ -276,7 +421,7 @@ function createExpandableRow(signal, metadata, tickerInfo) {
                         </div>
                         <div class="metadata-item">
                             <span class="metadata-label">Entry Price:</span>
-                            <span class="metadata-value">£${latestSignal.price?.toFixed(4) || '-'}</span>
+                            <span class="metadata-value">£${fmtPrice(latestEntryVal)}</span>
                         </div>
                         <div class="metadata-item">
                             <span class="metadata-label">RSI:</span>
@@ -307,11 +452,11 @@ function createExpandableRow(signal, metadata, tickerInfo) {
                         </div>
                         <div class="metadata-item">
                             <span class="metadata-label">Entry Price:</span>
-                            <span class="metadata-value">£${bestSignal.entry_price?.toFixed(4) || '-'}</span>
+                            <span class="metadata-value">£${fmtPrice(bestEntryVal)}</span>
                         </div>
                         <div class="metadata-item">
                             <span class="metadata-label">Peak Price:</span>
-                            <span class="metadata-value">£${bestSignal.peak_price?.toFixed(4) || '-'}</span>
+                            <span class="metadata-value">£${fmtPrice(bestPeakVal)}</span>
                         </div>
                         <div class="metadata-item">
                             <span class="metadata-label">Rally:</span>
@@ -384,7 +529,7 @@ function createExpandableRow(signal, metadata, tickerInfo) {
 // TOGGLE EXPANDABLE ROW
 // ============================================
 
-function toggleExpandableRow(index) {
+async function toggleExpandableRow(index) {
     const expandableRows = document.querySelectorAll('.expandable-row');
     const targetRow = Array.from(expandableRows).find(row => {
         const prevRow = row.previousElementSibling;
@@ -392,6 +537,33 @@ function toggleExpandableRow(index) {
     });
     
     if (targetRow) {
+        // Get the ticker for this row
+        const ticker = targetRow.dataset.expandIndex;
+        
+        // If opening (not already active), load full details first
+        if (!targetRow.classList.contains('active')) {
+            // Show loading state
+            const contentDiv = targetRow.querySelector('.expandable-content');
+            const originalContent = contentDiv.innerHTML;
+            contentDiv.innerHTML = '<div style="padding: 20px; text-align: center;">⏳ Loading ticker details...</div>';
+            
+            // Load full details
+            const fullMetadata = await loadTickerDetails(ticker);
+            
+            // Re-render the expandable content with full details
+            const signal = allSignals.find(s => s.Ticker === ticker);
+            const tickerInfo = tickerLookup[ticker] || {};
+            
+            if (signal && fullMetadata) {
+                // Rebuild the expanded content
+                const newExpandRow = createExpandableRow(signal, fullMetadata, tickerInfo);
+                targetRow.innerHTML = newExpandRow.innerHTML;
+            } else {
+                // Restore original content if loading failed
+                contentDiv.innerHTML = originalContent;
+            }
+        }
+        
         // Close all other rows
         expandableRows.forEach(row => {
             if (row !== targetRow) {

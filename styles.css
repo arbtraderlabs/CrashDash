@@ -265,15 +265,56 @@ header {
    SIGNALS TABLE
    ============================================ */
 
+.mobile-scroll-hint {
+  display: none;
+  background: var(--electric-blue);
+  color: var(--white);
+  padding: 0.5rem;
+  text-align: center;
+  border-radius: var(--border-radius);
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
 .signals-table-wrapper {
   background: var(--white);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  position: relative;
+}
+
+/* Scrollbar styling for better visibility */
+.signals-table-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+
+.signals-table-wrapper::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.signals-table-wrapper::-webkit-scrollbar-thumb {
+  background: var(--electric-blue);
+  border-radius: 4px;
+}
+
+.signals-table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #0066cc;
 }
 
 .signals-table {
   width: 100%;
+  min-width: 800px; /* Ensure table doesn't collapse on mobile */
   border-collapse: collapse;
 }
 
@@ -520,13 +561,38 @@ header {
     grid-template-columns: 1fr;
   }
   
+  /* Show mobile scroll hint */
+  .mobile-scroll-hint {
+    display: block;
+  }
+  
+  /* Make table container scrollable on mobile */
+  .signals-table-wrapper {
+    width: 100%;
+    overflow-x: auto; /* allow both auto/scroll depending on UA */
+    -webkit-overflow-scrolling: touch;
+    /* Force scrollbar to be visible on mobile */
+    scrollbar-width: thin;
+  }
+  
   .signals-table {
     font-size: 0.85rem;
+    /* Ensure table is wider than viewport to trigger scroll */
+    min-width: 880px; /* slightly smaller to be friendlier on narrow phones */
+    width: max-content; /* allow content to define width so swiping works reliably */
   }
   
   .signals-table th,
   .signals-table td {
     padding: 0.75rem 0.5rem;
+    /* Prevent text wrapping */
+    white-space: nowrap;
+  }
+  
+  /* Ticker cell can wrap to show company name */
+  .ticker-cell {
+    white-space: normal;
+    min-width: 100px;
   }
 }
 
