@@ -226,8 +226,18 @@ function updateStats() {
     // Purple combos
     document.getElementById('purpleCount').textContent = dashboardStats.signal_colors?.PURPLE || 0;
     document.getElementById('redCount').textContent = dashboardStats.signal_colors?.RED || 0;
-    document.getElementById('latestScan').textContent = dashboardStats.latest_scan_date || '-';
-    document.getElementById('lastUpdate').textContent = dashboardStats.generated || '-';
+    
+    // Format last updated with date and time split
+    const lastUpdated = dashboardStats.last_updated || dashboardStats.generated || '-';
+    if (lastUpdated !== '-') {
+        // Parse: "2025-11-16 23:32:29 UTC"
+        const parts = lastUpdated.split(' ');
+        const date = parts[0]; // "2025-11-16"
+        const time = parts.slice(1).join(' '); // "23:32:29 UTC"
+        document.getElementById('lastUpdate').innerHTML = `<span class="date">${date}</span><span class="time">${time}</span>`;
+    } else {
+        document.getElementById('lastUpdate').textContent = '-';
+    }
 }
 
 // ============================================
@@ -303,6 +313,17 @@ function renderSignalsTable() {
         const hasSplit = splitRisk.split_detected || false;
         const splitTooltip = hasSplit ? `Split ${splitRisk.days_from_split}d ago - Click for details` : '';
         const splitWarningIcon = hasSplit ? `<span class="split-warning-icon" data-tooltip="${splitTooltip}">⚠️</span>` : '';
+        
+        // Debug logging
+        if (signal.Ticker === '88E.L') {
+            console.log('88E.L Debug:', {
+                ticker: signal.Ticker,
+                metadata: metadata,
+                splitRisk: splitRisk,
+                hasSplit: hasSplit,
+                split_detected_value: splitRisk.split_detected
+            });
+        }
         
         tr.innerHTML = `
             <td class="ticker-cell">
@@ -503,41 +524,6 @@ function createExpandableRow(signal, metadata, tickerInfo) {
                         </div>
                     </div>
                     
-                    <!-- Split Risk Assessment (if detected) -->
-                    ${metadata.split_risk?.split_detected ? `
-                    <div class="metadata-section split-risk-section">
-                        <h4>⚠️ Split Risk Assessment</h4>
-                        <div class="split-risk-alert">
-                            <div class="metadata-item">
-                                <span class="metadata-label">Split Date:</span>
-                                <span class="metadata-value">${metadata.split_risk.split_date}</span>
-                            </div>
-                            <div class="metadata-item">
-                                <span class="metadata-label">Split Type:</span>
-                                <span class="metadata-value">${metadata.split_risk.split_type} (${metadata.split_risk.split_description})</span>
-                            </div>
-                            <div class="metadata-item">
-                                <span class="metadata-label">Days From Split:</span>
-                                <span class="metadata-value">${metadata.split_risk.days_from_split} days</span>
-                            </div>
-                            <div class="metadata-item">
-                                <span class="metadata-label">Risk Level:</span>
-                                <span class="metadata-value risk-badge-${metadata.split_risk.risk_level.toLowerCase()}">${metadata.split_risk.risk_level}</span>
-                            </div>
-                            <div class="metadata-item">
-                                <span class="metadata-label">Data Confidence:</span>
-                                <span class="metadata-value">${metadata.split_risk.confidence}</span>
-                            </div>
-                            <div class="split-warning-box">
-                                <strong>⚠️ Warning:</strong> ${metadata.split_risk.warning}
-                            </div>
-                            <div class="split-recommendation-box">
-                                <strong>💡 Recommendation:</strong> ${metadata.split_risk.recommendation}
-                            </div>
-                        </div>
-                    </div>
-                    ` : ''}
-                    
                     <!-- Risk Flags & Splits -->
                     <div class="metadata-section">
                         <h4>⚠️ Risk Factors</h4>
@@ -557,6 +543,30 @@ function createExpandableRow(signal, metadata, tickerInfo) {
                             `).join('')}
                         ` : ''}
                     </div>
+                    
+                    <!-- Split Risk Assessment (if detected) - MOVED TO BOTTOM -->
+                    ${metadata.split_risk?.split_detected ? `
+                    <div class="metadata-section split-risk-section">
+                        <h4>⚠️ Split Risk</h4>
+                        <div class="split-risk-summary">
+                            <span class="metadata-label">Split:</span>
+                            <span class="metadata-value">${metadata.split_risk.split_date} (${metadata.split_risk.days_from_split}d away)</span>
+                            <span class="metadata-value risk-badge-${metadata.split_risk.risk_level.toLowerCase()}">${metadata.split_risk.risk_level}</span>
+                        </div>
+                        
+                        <!-- Collapsible Warning -->
+                        <div class="split-collapsible">
+                            <div class="split-collapsible-header" onclick="this.parentElement.classList.toggle('expanded')">
+                                <span>⚠️ Details</span>
+                                <span class="expand-icon">▼</span>
+                            </div>
+                            <div class="split-collapsible-content">
+                                <strong>Warning:</strong> ${metadata.split_risk.warning}<br><br>
+                                <strong>Recommendation:</strong> ${metadata.split_risk.recommendation}
+                            </div>
+                        </div>
+                    </div>
+                    ` : ''}
                     
                 </div>
             </div>

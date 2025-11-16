@@ -151,6 +151,28 @@ header {
   display: block;
 }
 
+/* Special styling for Last Updated timestamp */
+#lastUpdate {
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+#lastUpdate .date {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--navy);
+}
+
+#lastUpdate .time {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--gray);
+  margin-top: 0.25rem;
+}
+
 .stat-label {
   font-size: 0.9rem;
   color: var(--gray);
@@ -518,7 +540,9 @@ header {
   padding: 0.5rem 0.8rem;
   border-radius: 6px;
   font-size: 0.75rem;
-  white-space: nowrap;
+  white-space: normal;
+  max-width: 200px;
+  text-align: center;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -526,7 +550,6 @@ header {
   border: 1px solid var(--split-yellow);
   font-weight: 600;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  min-width: max-content;
 }
 
 .split-warning-icon:hover::after {
@@ -552,39 +575,76 @@ header {
   opacity: 1;
 }
 
-/* Split Risk Section */
+/* Split Risk Section - Compact */
 .split-risk-section {
-  background: linear-gradient(135deg, rgba(255, 221, 85, 0.1), rgba(255, 51, 85, 0.05));
-  border: 2px solid var(--split-yellow);
-  border-radius: var(--border-radius);
-  padding: 1rem;
-}
-
-.split-risk-alert {
-  background: rgba(255, 255, 255, 0.8);
-  padding: 1rem;
+  background: linear-gradient(135deg, rgba(255, 221, 85, 0.08), rgba(255, 51, 85, 0.03));
+  border: 1px solid var(--split-yellow);
   border-radius: 6px;
+  padding: 0.6rem;
+  font-size: 0.8rem;
 }
 
-.split-warning-box,
-.split-recommendation-box {
-  margin-top: 1rem;
-  padding: 0.8rem;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  line-height: 1.5;
+.split-risk-section h4 {
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
 }
 
-.split-warning-box {
-  background: rgba(255, 51, 85, 0.1);
-  border-left: 4px solid var(--crash-red);
-  color: #990000;
+.split-risk-summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.4rem;
+  font-size: 0.75rem;
 }
 
-.split-recommendation-box {
-  background: rgba(255, 221, 85, 0.15);
-  border-left: 4px solid var(--split-yellow);
-  color: #996600;
+/* Collapsible sections - Compact */
+.split-collapsible {
+  margin-top: 0.3rem;
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.split-collapsible-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0.6rem;
+  background: rgba(255, 221, 85, 0.1);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.75rem;
+  transition: background 0.2s ease;
+  user-select: none;
+}
+
+.split-collapsible-header:hover {
+  background: rgba(255, 221, 85, 0.2);
+}
+
+.expand-icon {
+  transition: transform 0.3s ease;
+  font-size: 0.65rem;
+}
+
+.split-collapsible.expanded .expand-icon {
+  transform: rotate(180deg);
+}
+
+.split-collapsible-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 0.6rem;
+  font-size: 0.7rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+.split-collapsible.expanded .split-collapsible-content {
+  max-height: 500px;
+  padding: 0.6rem;
 }
 
 .risk-badge-high {
