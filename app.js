@@ -301,7 +301,7 @@ function renderSignalsTable() {
         // Check for split warnings
         const splitRisk = metadata.split_risk || {};
         const hasSplit = splitRisk.split_detected || false;
-        const splitTooltip = hasSplit ? `Split detected ${splitRisk.days_from_split} days from signal (${splitRisk.split_date}) - Click to see details` : '';
+        const splitTooltip = hasSplit ? `Split ${splitRisk.days_from_split}d ago - Click for details` : '';
         const splitWarningIcon = hasSplit ? `<span class="split-warning-icon" data-tooltip="${splitTooltip}">⚠️</span>` : '';
         
         tr.innerHTML = `
