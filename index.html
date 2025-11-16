@@ -47,8 +47,8 @@
                 <span class="stat-label">🔴 Ultra Crashes</span>
             </div>
             <div class="stat-card">
-                <span class="stat-value" id="latestScan">-</span>
-                <span class="stat-label">Latest Scan</span>
+                <span class="stat-value" id="lastUpdate">-</span>
+                <span class="stat-label">Last Updated</span>
             </div>
         </div>
 
@@ -151,20 +151,21 @@
 
             <h3 style="margin-top: 2rem; color: var(--split-yellow);">Key Metrics Explained</h3>
             <div style="margin-top: 1rem; line-height: 1.8;">
-                <p><strong>AI Technical Score:</strong> Proprietary algorithm scoring crash reversal probability (higher = stronger signal)</p>
+                <p><strong>AI Technical Score:</strong> Multi-factor scoring system (0-21 points) combining RSI extremes, volume spikes, momentum capitulation, cycle positioning, and price compression. Higher scores indicate stronger technical reversal setup.</p>
                 <p><strong>Drawdown %:</strong> Percentage decline from all-time high to crash bottom</p>
                 <p><strong>Current P&L:</strong> If you bought at signal date, your return today</p>
                 <p><strong>Best Rally:</strong> Historical peak gain achieved from a similar crash signal</p>
-                <p><strong>Cycle Position:</strong> Where in the price cycle (0 = bottom, 1 = top)</p>
+                <p><strong>Cycle Position:</strong> Where price sits within 50-day range (0% = at bottom, 100% = at top). Lower values indicate oversold conditions.</p>
                 <p><strong>Win Rate:</strong> Percentage of past signals that went positive</p>
             </div>
 
             <h3 style="margin-top: 2rem; color: var(--split-yellow);">Risk Flags</h3>
             <div style="margin-top: 1rem; line-height: 1.8;">
-                <p><strong>HAS_REVERSE_SPLIT:</strong> Company has done reverse stock split (consolidation) - often a red flag</p>
+                <p><strong>SIGNAL_NEAR_SPLIT:</strong> Signal occurred within 5 days of stock split - price data may be unreliable</p>
+                <p><strong>HAS_REVERSE_SPLIT:</strong> Company has done reverse split (share consolidation) - typically indicates prolonged decline and potential dilution risk</p>
                 <p><strong>EXTREME_DRAWDOWN:</strong> Currently down 80%+ from ATH - high risk, high reward</p>
-                <p><strong>PENNY_STOCK:</strong> Trading under $0.01 - extreme volatility expected</p>
-                <p><strong>FREQUENT_CRASHES:</strong> More than 5 crash signals detected - unstable company</p>
+                <p><strong>PENNY_STOCK:</strong> Trading under 1p - extreme volatility and liquidity risks</p>
+                <p><strong>FREQUENT_CRASHES:</strong> More than 5 crash signals detected - pattern of instability</p>
             </div>
 
             <h3 style="margin-top: 2rem; color: var(--split-yellow);">Important Disclaimer</h3>
