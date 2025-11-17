@@ -10,6 +10,8 @@ let allMetadata = {};
 let tickerLookup = {};
 let dashboardStats = {};
 let currentSort = { column: 'date', direction: 'desc' };
+let dateFilter = 'all'; // 'all', '1m', '3m', '6m', '1y', 'custom'
+let customDateRange = { start: null, end: null };
 
 console.log('Global variables initialized');
 
@@ -21,6 +23,12 @@ console.log('Global variables initialized');
 function isLseTicker(ticker) {
     if (!ticker) return false;
     return String(ticker).toUpperCase().endsWith('.L');
+}
+
+// Clean ticker for display (remove .L suffix)
+function cleanTickerDisplay(ticker) {
+    if (!ticker) return '';
+    return String(ticker).replace(/\.L$/i, '');
 }
 
 // Safely coerce to number or undefined
@@ -304,39 +312,61 @@ function renderSignalsTable() {
         tr.dataset.index = index;
         tr.onclick = () => toggleExpandableRow(index);
         
-        // Calculate current P&L from metadata
-        const currentPnl = metadata.latest_signal?.current_pnl_pct || 0;
+        // Calculate current P&L from signal (not metadata)
+        const triggerPrice = parseFloat(signal.Price);
+        const currentPrice = metadata.current_price || triggerPrice;
+        const currentPnl = ((currentPrice - triggerPrice) / triggerPrice) * 100;
         const bestRally = metadata.best_rally_pct || 0;
         
-        // Check for split warnings
+        // Check for split warnings - ONLY show for signals affected by the split
         const splitRisk = metadata.split_risk || {};
         const hasSplit = splitRisk.split_detected || false;
-        const splitTooltip = hasSplit ? `Split ${splitRisk.days_from_split}d ago - Click for details` : '';
-        const splitWarningIcon = hasSplit ? `<span class="split-warning-icon" data-tooltip="${splitTooltip}">⚠️</span>` : '';
+        const signalDateObj = new Date(signal.Date);
+        const splitDate = hasSplit && splitRisk.split_date ? new Date(splitRisk.split_date) : null;
         
-        // Debug logging
-        if (signal.Ticker === '88E.L') {
-            console.log('88E.L Debug:', {
-                ticker: signal.Ticker,
-                metadata: metadata,
-                splitRisk: splitRisk,
-                hasSplit: hasSplit,
-                split_detected_value: splitRisk.split_detected
-            });
+        // Only show warning if signal is AFTER split (within risk window)
+        const isAffectedBySplit = hasSplit && splitDate && signalDateObj >= splitDate;
+        const splitTooltip = isAffectedBySplit ? `Split ${splitRisk.days_from_split}d ago - Click for details` : '';
+        const splitWarningIcon = isAffectedBySplit ? `<span class="split-warning-icon" data-tooltip="${splitTooltip}">⚠️</span>` : '';
+        
+        // Clean up signal type text - handle all combo variations
+        let shortSignalType = signal.Signal_Type
+            .replace('CRASH ZONE BOTTOM', 'Crash Zone')
+            .replace('EXTREME CRASH BOTTOM', 'Extreme Crash')
+            .replace('ULTRA CRASH BOTTOM', 'Ultra Crash')
+            .replace('DEEP CRASH BOTTOM', 'Deep Crash')
+            .replace('ACCUMULATION ZONE', 'Accumulation')
+            .replace('PRE-ACCUMULATION', 'Pre-Accumulation');
+        
+        // Handle all combo variations (do this AFTER basic replacements)
+        if (shortSignalType.includes('COMBO')) {
+            shortSignalType = shortSignalType
+                .replace(/ENHANCED.*COMBO/i, 'Enhanced Combo')
+                .replace(/CRASH.*COMBO/i, 'Crash Combo')
+                .replace(/COMBO/i, 'Combo');
         }
+        
+        const drawdown = parseFloat(signal.Drawdown_Pct).toFixed(0);
         
         tr.innerHTML = `
             <td class="ticker-cell">
-                ${signal.Ticker} ${splitWarningIcon}
+                ${cleanTickerDisplay(signal.Ticker)} ${splitWarningIcon}
                 <span class="company-name">${tickerInfo.name || ''}</span>
             </td>
             <td>${signal.Date}</td>
-            <td>${signal.Signal_Type}</td>
-            <td><span class="signal-badge signal-${signal.Signal_Color}">${signal.Signal_Color}</span></td>
+            <td>
+                <span class="signal-badge signal-${signal.Signal_Color}">
+                    ${shortSignalType} (${drawdown}%)
+                </span>
+            </td>
             <td>${parseFloat(signal.AI_Technical_Score).toFixed(1)}</td>
-            <td class="negative">${parseFloat(signal.Drawdown_Pct).toFixed(1)}%</td>
-            <td class="${currentPnl >= 0 ? 'positive' : 'negative'}">
-                ${currentPnl >= 0 ? '+' : ''}${currentPnl.toFixed(1)}%
+            <td class="price-pnl-cell">
+                <div class="price-pnl-container">
+                    <span class="trigger-price">${parseFloat(signal.Price).toFixed(2)}p</span>
+                    <span class="pnl-badge ${currentPnl >= 0 ? 'positive' : 'negative'}">
+                        ${currentPnl >= 0 ? '+' : ''}${currentPnl.toFixed(1)}%
+                    </span>
+                </div>
             </td>
             <td class="positive">+${bestRally.toFixed(1)}%</td>
         `;
@@ -447,7 +477,7 @@ function createExpandableRow(signal, metadata, tickerInfo) {
                             <span class="metadata-value">${latestSignal.date || '-'}</span>
                         </div>
                         <div class="metadata-item">
-                            <span class="metadata-label">Entry Price:</span>
+                            <span class="metadata-label">Trigger Price:</span>
                             <span class="metadata-value">${fmtPrice(latestEntryVal)}p</span>
                         </div>
                         <div class="metadata-item">
@@ -478,7 +508,7 @@ function createExpandableRow(signal, metadata, tickerInfo) {
                             <span class="metadata-value">${bestSignal.signal_date || '-'}</span>
                         </div>
                         <div class="metadata-item">
-                            <span class="metadata-label">Entry Price:</span>
+                            <span class="metadata-label">Trigger Price:</span>
                             <span class="metadata-value">${fmtPrice(bestEntryVal)}p</span>
                         </div>
                         <div class="metadata-item">
@@ -636,7 +666,6 @@ function filterSignals() {
     const colorFilter = document.getElementById('colorFilter').value;
     const sectorFilter = document.getElementById('sectorFilter').value;
     const industryFilter = document.getElementById('industryFilter').value;
-    const dateFilter = document.getElementById('dateFilter').value;
     
     return allSignals.filter(signal => {
         // Search filter
@@ -655,7 +684,38 @@ function filterSignals() {
         const industryMatch = !industryFilter || tickerInfo.industry === industryFilter;
         
         // Date filter
-        const dateMatch = !dateFilter || signal.Date >= dateFilter;
+        let dateMatch = true;
+        if (dateFilter !== 'all') {
+            const signalDate = new Date(signal.Date);
+            const today = new Date();
+            
+            if (dateFilter === 'custom') {
+                if (customDateRange.start) {
+                    dateMatch = dateMatch && signalDate >= new Date(customDateRange.start);
+                }
+                if (customDateRange.end) {
+                    dateMatch = dateMatch && signalDate <= new Date(customDateRange.end);
+                }
+            } else {
+                // Calculate cutoff date based on filter
+                let cutoffDate = new Date(today);
+                switch(dateFilter) {
+                    case '1m':
+                        cutoffDate.setMonth(cutoffDate.getMonth() - 1);
+                        break;
+                    case '3m':
+                        cutoffDate.setMonth(cutoffDate.getMonth() - 3);
+                        break;
+                    case '6m':
+                        cutoffDate.setMonth(cutoffDate.getMonth() - 6);
+                        break;
+                    case '1y':
+                        cutoffDate.setFullYear(cutoffDate.getFullYear() - 1);
+                        break;
+                }
+                dateMatch = signalDate >= cutoffDate;
+            }
+        }
         
         return searchMatch && colorMatch && sectorMatch && industryMatch && dateMatch;
     });
@@ -681,25 +741,23 @@ function sortSignals(signals) {
                 bVal = new Date(b.Date);
                 break;
             case 'signal_type':
-                aVal = a.Signal_Type;
-                bVal = b.Signal_Type;
-                break;
-            case 'signal_color':
+                // Sort by color priority first, then signal type
                 const colorOrder = { PURPLE: 5, RED: 4, ORANGE: 3, GREEN: 2, YELLOW: 1 };
-                aVal = colorOrder[a.Signal_Color] || 0;
-                bVal = colorOrder[b.Signal_Color] || 0;
+                aVal = (colorOrder[a.Signal_Color] || 0) * 1000 + (a.Signal_Type || '').localeCompare(b.Signal_Type || '');
+                bVal = (colorOrder[b.Signal_Color] || 0) * 1000;
                 break;
             case 'ai_score':
                 aVal = parseFloat(a.AI_Technical_Score) || 0;
                 bVal = parseFloat(b.AI_Technical_Score) || 0;
                 break;
-            case 'drawdown':
-                aVal = parseFloat(a.Drawdown_Pct) || 0;
-                bVal = parseFloat(b.Drawdown_Pct) || 0;
-                break;
             case 'current_pnl':
-                aVal = allMetadata[a.Ticker]?.latest_signal?.current_pnl_pct || 0;
-                bVal = allMetadata[b.Ticker]?.latest_signal?.current_pnl_pct || 0;
+                // Calculate P&L from trigger price vs current price
+                const aTrigger = parseFloat(a.Price);
+                const bTrigger = parseFloat(b.Price);
+                const aCurrent = allMetadata[a.Ticker]?.current_price || aTrigger;
+                const bCurrent = allMetadata[b.Ticker]?.current_price || bTrigger;
+                aVal = ((aCurrent - aTrigger) / aTrigger) * 100;
+                bVal = ((bCurrent - bTrigger) / bTrigger) * 100;
                 break;
             case 'best_rally':
                 aVal = allMetadata[a.Ticker]?.best_rally_pct || 0;
@@ -733,7 +791,7 @@ function setupEventListeners() {
     }
     
     // Filter dropdowns
-    ['colorFilter', 'sectorFilter', 'industryFilter', 'dateFilter'].forEach(id => {
+    ['colorFilter', 'sectorFilter', 'industryFilter'].forEach(id => {
         const element = document.getElementById(id);
         if (element) {
             element.addEventListener('change', () => {
@@ -743,6 +801,36 @@ function setupEventListeners() {
             console.error(`${id} element not found`);
         }
     });
+    
+    // Date range filter dropdown
+    const dateRangeFilter = document.getElementById('dateRangeFilter');
+    if (dateRangeFilter) {
+        dateRangeFilter.addEventListener('change', () => {
+            dateFilter = dateRangeFilter.value;
+            
+            // Show/hide custom date inputs
+            const customInputs = document.getElementById('customDateInputs');
+            if (customInputs) {
+                customInputs.style.display = dateFilter === 'custom' ? 'flex' : 'none';
+            }
+            
+            renderSignalsTable();
+        });
+    }
+    
+    // Custom date range inputs
+    const startDateInput = document.getElementById('startDate');
+    const endDateInput = document.getElementById('endDate');
+    if (startDateInput && endDateInput) {
+        startDateInput.addEventListener('change', () => {
+            customDateRange.start = startDateInput.value;
+            if (dateFilter === 'custom') renderSignalsTable();
+        });
+        endDateInput.addEventListener('change', () => {
+            customDateRange.end = endDateInput.value;
+            if (dateFilter === 'custom') renderSignalsTable();
+        });
+    }
     
     // Table sorting
     const sortableHeaders = document.querySelectorAll('.signals-table th.sortable');
@@ -781,7 +869,21 @@ function resetFilters() {
     document.getElementById('colorFilter').value = '';
     document.getElementById('sectorFilter').value = '';
     document.getElementById('industryFilter').value = '';
-    document.getElementById('dateFilter').value = '';
+    
+    // Reset date filter to 'all'
+    dateFilter = 'all';
+    customDateRange = { start: null, end: null };
+    const dateRangeFilter = document.getElementById('dateRangeFilter');
+    if (dateRangeFilter) dateRangeFilter.value = 'all';
+    
+    const customInputs = document.getElementById('customDateInputs');
+    if (customInputs) customInputs.style.display = 'none';
+    
+    const startDate = document.getElementById('startDate');
+    const endDate = document.getElementById('endDate');
+    if (startDate) startDate.value = '';
+    if (endDate) endDate.value = '';
+    
     renderSignalsTable();
 }
 

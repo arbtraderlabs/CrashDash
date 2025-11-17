@@ -79,12 +79,27 @@
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label for="dateFilter">Min Signal Date</label>
-                    <input type="date" id="dateFilter">
+                    <label for="dateRangeFilter">📅 Signals From</label>
+                    <select id="dateRangeFilter">
+                        <option value="all">All Time</option>
+                        <option value="1m">Last 1 Month</option>
+                        <option value="3m">Last 3 Months</option>
+                        <option value="6m">Last 6 Months</option>
+                        <option value="1y">Last 1 Year</option>
+                        <option value="custom">Custom Range...</option>
+                    </select>
                 </div>
                 <div class="filter-group" style="display: flex; align-items: flex-end;">
                     <button class="reset-filters" onclick="resetFilters()">Reset Filters</button>
                 </div>
+            </div>
+            
+            <!-- CUSTOM DATE RANGE (Hidden by default) -->
+            <div id="customDateInputs" class="custom-date-inputs" style="display: none;">
+                <label>Custom Date Range:</label>
+                <input type="date" id="startDate" placeholder="Start Date">
+                <span>→</span>
+                <input type="date" id="endDate" placeholder="End Date">
             </div>
         </div>
 
@@ -97,16 +112,14 @@
                         <th class="sortable" data-sort="ticker">Ticker</th>
                         <th class="sortable" data-sort="date">Signal Date</th>
                         <th class="sortable" data-sort="signal_type">Signal Type</th>
-                        <th class="sortable" data-sort="signal_color">Color</th>
                         <th class="sortable" data-sort="ai_score">AI Score</th>
-                        <th class="sortable" data-sort="drawdown">Drawdown</th>
-                        <th class="sortable" data-sort="current_pnl">Current P&L</th>
+                        <th class="sortable" data-sort="current_pnl">Entry → P&L</th>
                         <th class="sortable" data-sort="best_rally">Best Rally</th>
                     </tr>
                 </thead>
                 <tbody id="signalsTableBody">
                     <tr>
-                        <td colspan="8" class="loading">Loading signals...</td>
+                        <td colspan="6" class="loading">Loading signals...</td>
                     </tr>
                 </tbody>
             </table>
