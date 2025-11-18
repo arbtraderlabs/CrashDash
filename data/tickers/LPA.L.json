@@ -28,7 +28,10 @@
     "rsi": 6.2,
     "cycle_position": 0.0003,
     "holding_period_days": 122,
-    "current_pnl_pct": 7627.27
+    "current_pnl_pct": 7627.27,
+    "split_affected": true,
+    "split_warning": "\u26a0\ufe0f",
+    "warning_message": "Signal near stock split on 2025-07-16 (1:20)"
   },
   "best_historical_signal": {
     "signal_date": "2025-07-18",
@@ -39,7 +42,12 @@
     "peak_date": "2025-08-04",
     "rally_pct": 10445.45,
     "days_to_peak": 17,
-    "ai_score": 15.0
+    "ai_score": 15.0,
+    "split_affected": true,
+    "split_warning": "\u26a0\ufe0f",
+    "split_date": "2025-07-16",
+    "split_ratio": "1:20",
+    "warning_message": "Signal on 2025-07-18 coincides with stock split on 2025-07-16 (1:20) - performance likely artificial"
   },
   "stats": {
     "total_signals": 1,
@@ -57,17 +65,24 @@
     }
   ],
   "split_risk": {
-    "split_detected": false,
-    "risk_level": "NONE",
-    "confidence": "HIGH"
+    "split_detected": true,
+    "split_date": "2025-07-16",
+    "split_ratio": "1:20",
+    "days_from_split": 2,
+    "split_type": "REVERSE_SPLIT",
+    "risk_level": "HIGH",
+    "confidence": "LOW",
+    "warning": "Signal occurred near stock split on 2025-07-16 (1:20) - price data may be affected by corporate action",
+    "recommendation": "VERIFY price data independently before trading - P&L calculations may be inaccurate near corporate actions"
   },
   "data_quality": {
-    "price_reliability": "RELIABLE",
-    "pnl_reliability": "RELIABLE",
-    "overall_confidence": "HIGH"
+    "price_reliability": "SUSPECT",
+    "pnl_reliability": "SUSPECT",
+    "overall_confidence": "LOW"
   },
   "risk_flags": [
+    "SIGNAL_NEAR_SPLIT",
     "HAS_REVERSE_SPLIT"
   ],
-  "last_updated": "2025-11-18 20:36:32 UTC"
+  "last_updated": "2025-11-18 21:00:40 UTC"
 }

@@ -28,7 +28,10 @@
     "rsi": 23.1,
     "cycle_position": 0.125,
     "holding_period_days": 49,
-    "current_pnl_pct": -16.67
+    "current_pnl_pct": -16.67,
+    "split_affected": true,
+    "split_warning": "\u26a0\ufe0f",
+    "warning_message": "Signal near stock split on 2025-10-02 (1:20)"
   },
   "best_historical_signal": {
     "signal_date": "2022-11-21",
@@ -57,19 +60,26 @@
     }
   ],
   "split_risk": {
-    "split_detected": false,
-    "risk_level": "NONE",
-    "confidence": "HIGH"
+    "split_detected": true,
+    "split_date": "2025-10-02",
+    "split_ratio": "1:20",
+    "days_from_split": 2,
+    "split_type": "REVERSE_SPLIT",
+    "risk_level": "HIGH",
+    "confidence": "LOW",
+    "warning": "Signal occurred near stock split on 2025-10-02 (1:20) - price data may be affected by corporate action",
+    "recommendation": "VERIFY price data independently before trading - P&L calculations may be inaccurate near corporate actions"
   },
   "data_quality": {
-    "price_reliability": "RELIABLE",
-    "pnl_reliability": "RELIABLE",
-    "overall_confidence": "HIGH"
+    "price_reliability": "SUSPECT",
+    "pnl_reliability": "SUSPECT",
+    "overall_confidence": "LOW"
   },
   "risk_flags": [
+    "SIGNAL_NEAR_SPLIT",
     "HAS_REVERSE_SPLIT",
     "EXTREME_DRAWDOWN",
     "FREQUENT_CRASHES"
   ],
-  "last_updated": "2025-11-18 20:36:23 UTC"
+  "last_updated": "2025-11-18 21:00:31 UTC"
 }
