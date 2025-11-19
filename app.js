@@ -293,6 +293,11 @@ function updateViewModeUI() {
     const fullHeader = document.getElementById('tableHeader');
     const compressedHeader = document.getElementById('compressedHeader');
     
+    if (!icon || !text || !hint || !fullHeader || !compressedHeader) {
+        console.warn('View mode UI elements not found, skipping update');
+        return;
+    }
+    
     if (viewMode === 'compressed') {
         icon.textContent = '📋';
         text.textContent = 'Switch to Full View';
@@ -368,19 +373,30 @@ function renderSignalsTable() {
 }
 
 function renderCompressedMode(signals, tbody) {
-    // Group signals by ticker
-    groupedSignals = groupSignalsByTicker(signals);
-    const tickers = Object.keys(groupedSignals).sort();
-    
-    console.log('Compressed mode: rendering', tickers.length, 'tickers');
-    
-    tbody.innerHTML = '';
-    
-    tickers.forEach(ticker => {
-        const group = groupedSignals[ticker];
-        const latest = group.latest;
-        const metadata = allMetadata[ticker] || {};
-        const tickerInfo = tickerLookup[ticker] || {};
+    try {
+        // Group signals by ticker
+        groupedSignals = groupSignalsByTicker(signals);
+        const tickers = Object.keys(groupedSignals).sort();
+        
+        console.log('Compressed mode: rendering', tickers.length, 'tickers');
+        
+        if (tickers.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6" class="no-results">No grouped signals found</td></tr>';
+            return;
+        }
+        
+        tbody.innerHTML = '';
+        
+        tickers.forEach(ticker => {
+            try {
+                const group = groupedSignals[ticker];
+                if (!group || !group.latest) {
+                    console.warn('Invalid group for ticker:', ticker);
+                    return;
+                }
+                const latest = group.latest;
+                const metadata = allMetadata[ticker] || {};
+                const tickerInfo = tickerLookup[ticker] || {};
         
         // Calculate latest P&L
         const triggerPrice = parseFloat(latest.Price);
