@@ -488,6 +488,32 @@ function renderCompressedMode(signals, tbody) {
         
         // Create signal badges (up to 4, then +N more) from ALL signals (latest + history)
         const allTickerSignals = [latest, ...group.history];
+        
+        // Get latest signal's compact info
+        const latestDrawdown = parseFloat(latest.Drawdown_Pct) || 0;
+        let latestShortType = latest.Signal_Type
+            .replace('EXTREME CRASH BOTTOM', 'Extreme')
+            .replace('ULTRA CRASH BOTTOM', 'Ultra')
+            .replace('DEEP CRASH BOTTOM', 'Deep')
+            .replace('CRASH ZONE BOTTOM', 'Crash Zone')
+            .replace('ACCUMULATION ZONE', 'Accumulation')
+            .replace('PRE-ACCUMULATION', 'Pre-Accum');
+        
+        if (latestShortType.includes('COMBO')) {
+            latestShortType = latestShortType
+                .replace(/ENHANCED.*COMBO/i, 'Combo')
+                .replace(/CRASH.*COMBO/i, 'Combo')
+                .replace(/COMBO/i, 'Combo');
+        }
+        
+        const latestColorEmoji = {
+            'PURPLE': '🟣',
+            'RED': '🔴',
+            'ORANGE': '🟠',
+            'GREEN': '🟢',
+            'YELLOW': '🟡'
+        }[latest.Signal_Color] || '';
+        
         const signalBadges = allTickerSignals.slice(0, 4).map(sig => {
             const colorEmoji = {
                 'PURPLE': '🟣',
@@ -507,7 +533,16 @@ function renderCompressedMode(signals, tbody) {
                 ${cleanTickerDisplay(ticker)}
                 <span class="company-name">${tickerInfo.name || ''}</span>
             </td>
-            <td style="white-space: nowrap;">${signalBadges}${remaining}</td>
+            <td style="white-space: nowrap;">
+                <span class="signal-badge signal-${latest.Signal_Color}">
+                    ${latestColorEmoji} ${latestShortType}
+                    <span class="drawdown-badge">${latestDrawdown.toFixed(0)}%</span>
+                </span>
+                <div class="entry-pnl-mini">
+                    £${triggerPrice.toFixed(2)} → <span class="${currentPnl >= 0 ? 'positive' : 'negative'}">${currentPnl >= 0 ? '+' : ''}${currentPnl.toFixed(1)}%</span>
+                </div>
+                <div style="margin-top: 4px;">${signalBadges}${remaining}</div>
+            </td>
             <td>${latest.Date}</td>
             <td>${bestScore.toFixed(1)}</td>
             <td class="${currentPnl >= 0 ? 'positive' : 'negative'}">
@@ -556,17 +591,17 @@ function createHistoryRow(signal, metadata, tickerInfo, ticker) {
     const bestRally = metadata.best_rally_pct || 0;
     
     let shortSignalType = signal.Signal_Type
+        .replace('EXTREME CRASH BOTTOM', 'Extreme')
+        .replace('ULTRA CRASH BOTTOM', 'Ultra')
+        .replace('DEEP CRASH BOTTOM', 'Deep')
         .replace('CRASH ZONE BOTTOM', 'Crash Zone')
-        .replace('EXTREME CRASH BOTTOM', 'Extreme Crash')
-        .replace('ULTRA CRASH BOTTOM', 'Ultra Crash')
-        .replace('DEEP CRASH BOTTOM', 'Deep Crash')
         .replace('ACCUMULATION ZONE', 'Accumulation')
-        .replace('PRE-ACCUMULATION', 'Pre-Accumulation');
+        .replace('PRE-ACCUMULATION', 'Pre-Accum');
     
     if (shortSignalType.includes('COMBO')) {
         shortSignalType = shortSignalType
-            .replace(/ENHANCED.*COMBO/i, 'Enhanced Combo')
-            .replace(/CRASH.*COMBO/i, 'Crash Combo')
+            .replace(/ENHANCED.*COMBO/i, 'Combo')
+            .replace(/CRASH.*COMBO/i, 'Combo')
             .replace(/COMBO/i, 'Combo');
     }
     
