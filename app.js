@@ -475,6 +475,9 @@ function renderCompressedMode(signals, tbody) {
         // Best score across all signals
         const bestScore = Math.max(...[latest, ...group.history].map(s => parseFloat(s.AI_Technical_Score)));
         
+        // Best rally from metadata
+        const bestRally = metadata.best_rally_pct || 0;
+        
         // Parent row
         const parentRow = document.createElement('tr');
         parentRow.className = 'ticker-parent-row';
@@ -510,8 +513,14 @@ function renderCompressedMode(signals, tbody) {
             <td style="white-space: nowrap;">${signalBadges}${remaining}</td>
             <td>${latest.Date}</td>
             <td>${bestScore.toFixed(1)}</td>
-            <td class="${currentPnl >= 0 ? 'positive' : 'negative'}">
-                ${currentPnl >= 0 ? '+' : ''}${currentPnl.toFixed(1)}%
+            <td>
+                <div style="font-size: 0.8rem; color: var(--gray); line-height: 1.3;">${triggerPrice.toFixed(2)}p</div>
+                <div class="${currentPnl >= 0 ? 'positive' : 'negative'}" style="font-weight: 700; font-size: 0.95rem; line-height: 1.4;">
+                    ${currentPnl >= 0 ? '+' : ''}${currentPnl.toFixed(1)}%
+                </div>
+                <div style="font-size: 0.7rem; color: var(--gray); opacity: 0.7; margin-top: 2px;">
+                    Best rally ${bestRally.toFixed(0)}%
+                </div>
             </td>
         `;
         
