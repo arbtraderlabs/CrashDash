@@ -12,6 +12,9 @@ let dashboardStats = {};
 let currentSort = { column: 'date', direction: 'desc' };
 let dateFilter = 'all'; // 'all', '1m', '3m', '6m', '1y', 'custom'
 let customDateRange = { start: null, end: null };
+let viewMode = localStorage.getItem('viewMode') || 'compressed'; // 'compressed' or 'full'
+let groupedSignals = {}; // Grouped by ticker for compressed mode
+let expandedTickers = new Set(); // Track which tickers are expanded
 
 console.log('Global variables initialized');
 
@@ -84,6 +87,7 @@ function getMarketCapCandidate(ticker, metadata, tickerInfo) {
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM Content Loaded - starting initialization');
     console.log('Papa Parse available:', typeof Papa !== 'undefined');
+    updateViewModeUI(); // Initialize view mode toggle state
     loadAllData();
     setupEventListeners();
     setupMobileScrollHint();
@@ -272,6 +276,65 @@ function populateFilterDropdowns(sectors, industries) {
 }
 
 // ============================================
+// VIEW MODE TOGGLE & GROUPING
+// ============================================
+
+function toggleViewMode() {
+    viewMode = viewMode === 'compressed' ? 'full' : 'compressed';
+    localStorage.setItem('viewMode', viewMode);
+    updateViewModeUI();
+    renderSignalsTable();
+}
+
+function updateViewModeUI() {
+    const icon = document.getElementById('viewModeIcon');
+    const text = document.getElementById('viewModeText');
+    const hint = document.querySelector('.view-mode-hint');
+    const fullHeader = document.getElementById('tableHeader');
+    const compressedHeader = document.getElementById('compressedHeader');
+    
+    if (viewMode === 'compressed') {
+        icon.textContent = '📋';
+        text.textContent = 'Switch to Full View';
+        hint.textContent = 'Compressed view shows one row per ticker. Click ticker to expand history.';
+        fullHeader.style.display = 'none';
+        compressedHeader.style.display = '';
+    } else {
+        icon.textContent = '📊';
+        text.textContent = 'Switch to Compressed View';
+        hint.textContent = 'Full view shows all signals individually.';
+        fullHeader.style.display = '';
+        compressedHeader.style.display = 'none';
+    }
+}
+
+function groupSignalsByTicker(signals) {
+    const grouped = {};
+    
+    signals.forEach(signal => {
+        const ticker = signal.Ticker;
+        if (!grouped[ticker]) {
+            grouped[ticker] = {
+                ticker: ticker,
+                latest: null,
+                history: [],
+                count: 0
+            };
+        }
+        
+        // First signal is latest (assuming signals are sorted newest first)
+        if (!grouped[ticker].latest) {
+            grouped[ticker].latest = signal;
+        } else {
+            grouped[ticker].history.push(signal);
+        }
+        grouped[ticker].count++;
+    });
+    
+    return grouped;
+}
+
+// ============================================
 // RENDER SIGNALS TABLE
 // ============================================
 
@@ -291,14 +354,175 @@ function renderSignalsTable() {
     // Apply sorting
     filteredSignals = sortSignals(filteredSignals);
     
-    // Limit to latest 100 signals for performance
-    const displaySignals = filteredSignals.slice(0, 100);
-    console.log('Displaying:', displaySignals.length, 'signals');
-    
-    if (displaySignals.length === 0) {
+    if (filteredSignals.length === 0) {
         tbody.innerHTML = '<tr><td colspan="8" class="no-results">No signals found matching your filters</td></tr>';
         return;
     }
+    
+    // Delegate to mode-specific renderer
+    if (viewMode === 'compressed') {
+        renderCompressedMode(filteredSignals, tbody);
+    } else {
+        renderFullMode(filteredSignals, tbody);
+    }
+}
+
+function renderCompressedMode(signals, tbody) {
+    // Group signals by ticker
+    groupedSignals = groupSignalsByTicker(signals);
+    const tickers = Object.keys(groupedSignals).sort();
+    
+    console.log('Compressed mode: rendering', tickers.length, 'tickers');
+    
+    tbody.innerHTML = '';
+    
+    tickers.forEach(ticker => {
+        const group = groupedSignals[ticker];
+        const latest = group.latest;
+        const metadata = allMetadata[ticker] || {};
+        const tickerInfo = tickerLookup[ticker] || {};
+        
+        // Calculate latest P&L
+        const triggerPrice = parseFloat(latest.Price);
+        const currentPrice = metadata.current_price || triggerPrice;
+        const currentPnl = ((currentPrice - triggerPrice) / triggerPrice) * 100;
+        
+        // Color priority: PURPLE > RED > ORANGE > GREEN > YELLOW
+        const colorPriority = { 'PURPLE': 5, 'RED': 4, 'ORANGE': 3, 'GREEN': 2, 'YELLOW': 1 };
+        const topColor = [latest, ...group.history]
+            .sort((a, b) => (colorPriority[b.Signal_Color] || 0) - (colorPriority[a.Signal_Color] || 0))[0].Signal_Color;
+        
+        // Best score across all signals
+        const bestScore = Math.max(...[latest, ...group.history].map(s => parseFloat(s.AI_Technical_Score)));
+        
+        // Parent row
+        const parentRow = document.createElement('tr');
+        parentRow.className = 'ticker-parent-row';
+        if (expandedTickers.has(ticker)) {
+            parentRow.classList.add('expanded');
+        }
+        parentRow.dataset.ticker = ticker;
+        parentRow.onclick = () => toggleTickerExpansion(ticker);
+        
+        const expandIcon = expandedTickers.has(ticker) ? '▶' : '▶';
+        const colorEmoji = {
+            'PURPLE': '🟣',
+            'RED': '🔴',
+            'ORANGE': '🟠',
+            'GREEN': '🟢',
+            'YELLOW': '🟡'
+        }[topColor] || '';
+        
+        parentRow.innerHTML = `
+            <td class="ticker-cell">
+                <span class="expand-indicator">${expandIcon}</span>
+                ${cleanTickerDisplay(ticker)}
+                <span class="company-name">${tickerInfo.name || ''}</span>
+            </td>
+            <td><span class="signal-badge">${group.count}</span></td>
+            <td>${latest.Date}</td>
+            <td><span class="signal-badge signal-${topColor}">${colorEmoji} ${topColor}</span></td>
+            <td>${bestScore.toFixed(1)}</td>
+            <td class="${currentPnl >= 0 ? 'positive' : 'negative'}">
+                ${currentPnl >= 0 ? '+' : ''}${currentPnl.toFixed(1)}%
+            </td>
+        `;
+        
+        tbody.appendChild(parentRow);
+        
+        // History rows (hidden by default)
+        [...group.history].forEach((signal, idx) => {
+            const historyRow = createHistoryRow(signal, metadata, tickerInfo, ticker);
+            tbody.appendChild(historyRow);
+        });
+        
+        // Also add latest signal as history row
+        const latestHistoryRow = createHistoryRow(latest, metadata, tickerInfo, ticker);
+        tbody.appendChild(latestHistoryRow);
+    });
+}
+
+function createHistoryRow(signal, metadata, tickerInfo, ticker) {
+    const tr = document.createElement('tr');
+    tr.className = 'ticker-history-row';
+    tr.dataset.ticker = ticker;
+    if (expandedTickers.has(ticker)) {
+        tr.classList.add('visible');
+    }
+    tr.onclick = () => toggleExpandableRow(signal, metadata, tickerInfo);
+    
+    const triggerPrice = parseFloat(signal.Price);
+    const currentPrice = metadata.current_price || triggerPrice;
+    const currentPnl = ((currentPrice - triggerPrice) / triggerPrice) * 100;
+    const bestRally = metadata.best_rally_pct || 0;
+    
+    let shortSignalType = signal.Signal_Type
+        .replace('CRASH ZONE BOTTOM', 'Crash Zone')
+        .replace('EXTREME CRASH BOTTOM', 'Extreme Crash')
+        .replace('ULTRA CRASH BOTTOM', 'Ultra Crash')
+        .replace('DEEP CRASH BOTTOM', 'Deep Crash')
+        .replace('ACCUMULATION ZONE', 'Accumulation')
+        .replace('PRE-ACCUMULATION', 'Pre-Accumulation');
+    
+    if (shortSignalType.includes('COMBO')) {
+        shortSignalType = shortSignalType
+            .replace(/ENHANCED.*COMBO/i, 'Enhanced Combo')
+            .replace(/CRASH.*COMBO/i, 'Crash Combo')
+            .replace(/COMBO/i, 'Combo');
+    }
+    
+    const drawdown = parseFloat(signal.Drawdown_Pct).toFixed(0);
+    
+    tr.innerHTML = `
+        <td style="padding-left: 2rem;">→ ${signal.Date}</td>
+        <td>
+            <span class="signal-badge signal-${signal.Signal_Color}">
+                ${shortSignalType} (${drawdown}%)
+            </span>
+        </td>
+        <td>${parseFloat(signal.AI_Technical_Score).toFixed(1)}</td>
+        <td class="price-pnl-cell">
+            <div class="price-pnl-container">
+                <span class="trigger-price">${parseFloat(signal.Price).toFixed(2)}p</span>
+                <span class="pnl-badge ${currentPnl >= 0 ? 'positive' : 'negative'}">
+                    ${currentPnl >= 0 ? '+' : ''}${currentPnl.toFixed(1)}%
+                </span>
+            </div>
+        </td>
+        <td class="positive">+${bestRally.toFixed(1)}%</td>
+        <td></td>
+    `;
+    
+    return tr;
+}
+
+function toggleTickerExpansion(ticker) {
+    if (expandedTickers.has(ticker)) {
+        expandedTickers.delete(ticker);
+    } else {
+        expandedTickers.add(ticker);
+    }
+    
+    // Update UI
+    const parentRow = document.querySelector(`tr.ticker-parent-row[data-ticker="${ticker}"]`);
+    const historyRows = document.querySelectorAll(`tr.ticker-history-row[data-ticker="${ticker}"]`);
+    const indicator = parentRow?.querySelector('.expand-indicator');
+    
+    if (expandedTickers.has(ticker)) {
+        parentRow?.classList.add('expanded');
+        historyRows.forEach(row => row.classList.add('visible'));
+        if (indicator) indicator.textContent = '▼';
+    } else {
+        parentRow?.classList.remove('expanded');
+        historyRows.forEach(row => row.classList.remove('visible'));
+        if (indicator) indicator.textContent = '▶';
+    }
+}
+
+function renderFullMode(signals, tbody) {
+    // Limit to latest 100 signals for performance
+    const displaySignals = signals.slice(0, 100);
+    console.log('Full mode: displaying', displaySignals.length, 'signals');
     
     tbody.innerHTML = '';
     

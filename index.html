@@ -16,6 +16,7 @@
                 <img src="assets/logo.svg" alt="Crash Dash Logo" class="logo">
                 <div class="brand-text">
                     <h1>CRASH DASH</h1>
+                    <p class="tagline-primary">Your source for mispriced fear and asymmetric opportunity.</p>
                     <div class="tagline">When the Market Breaks, You Don't.</div>
                 </div>
             </div>
@@ -50,6 +51,15 @@
                 <span class="stat-value" id="lastUpdate">-</span>
                 <span class="stat-label">Last Updated</span>
             </div>
+        </div>
+
+        <!-- VIEW MODE TOGGLE -->
+        <div class="view-mode-section">
+            <button id="viewModeToggle" class="view-mode-toggle" onclick="toggleViewMode()">
+                <span id="viewModeIcon">📋</span>
+                <span id="viewModeText">Switch to Full View</span>
+            </button>
+            <p class="view-mode-hint">Compressed view shows one row per ticker. Click ticker to expand history.</p>
         </div>
 
         <!-- FILTERS -->
@@ -108,13 +118,21 @@
         <div class="signals-table-wrapper" id="signalsWrapper" style="touch-action: pan-x; -ms-touch-action: pan-x; overscroll-behavior-x: contain;">
             <table class="signals-table">
                 <thead>
-                    <tr>
+                    <tr id="tableHeader">
                         <th class="sortable" data-sort="ticker">Ticker</th>
                         <th class="sortable" data-sort="date">Signal Date</th>
                         <th class="sortable" data-sort="signal_type">Signal Type</th>
                         <th class="sortable" data-sort="ai_score">AI Score</th>
                         <th class="sortable" data-sort="current_pnl">Entry → P&L</th>
                         <th class="sortable" data-sort="best_rally">Best Rally</th>
+                    </tr>
+                    <tr id="compressedHeader" style="display: none;">
+                        <th class="sortable" data-sort="ticker">Ticker</th>
+                        <th class="sortable" data-sort="signal_count">Signals</th>
+                        <th class="sortable" data-sort="latest_date">Latest Signal</th>
+                        <th class="sortable" data-sort="latest_color">Top Color</th>
+                        <th class="sortable" data-sort="latest_score">Best Score</th>
+                        <th class="sortable" data-sort="latest_pnl">Latest P&L</th>
                     </tr>
                 </thead>
                 <tbody id="signalsTableBody">

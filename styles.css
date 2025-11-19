@@ -88,6 +88,14 @@ header {
   margin-top: 0.25rem;
 }
 
+.tagline-primary {
+  font-size: 1rem;
+  color: var(--split-yellow);
+  font-style: italic;
+  margin: 0.3rem 0 0.1rem 0;
+  font-weight: 500;
+}
+
 .search-box {
   flex: 1;
   max-width: 400px;
@@ -179,6 +187,51 @@ header {
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-top: 0.5rem;
+}
+
+/* ============================================
+   VIEW MODE TOGGLE
+   ============================================ */
+
+.view-mode-section {
+  background: var(--white);
+  padding: 1rem 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.view-mode-toggle {
+  background: var(--electric-blue);
+  color: var(--white);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.view-mode-toggle:hover {
+  background: var(--navy);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.view-mode-hint {
+  font-size: 0.9rem;
+  color: var(--gray);
+  font-style: italic;
+  margin: 0;
 }
 
 /* ============================================
@@ -496,6 +549,51 @@ header {
 
 .signals-table tbody tr:hover {
   background: rgba(10, 132, 255, 0.05);
+}
+
+/* Compressed mode parent row */
+.ticker-parent-row {
+  background: linear-gradient(to right, rgba(10, 132, 255, 0.03), transparent);
+  font-weight: 600;
+  border-left: 4px solid var(--electric-blue);
+}
+
+.ticker-parent-row:hover {
+  background: rgba(10, 132, 255, 0.1);
+}
+
+.ticker-parent-row.expanded {
+  background: rgba(10, 132, 255, 0.08);
+  border-left-color: var(--recovery-green);
+}
+
+/* Compressed mode history rows */
+.ticker-history-row {
+  background: #F9FAFB;
+  font-size: 0.9rem;
+  display: none;
+  border-left: 4px solid transparent;
+  padding-left: 2rem;
+}
+
+.ticker-history-row.visible {
+  display: table-row;
+}
+
+.ticker-history-row:hover {
+  background: rgba(10, 132, 255, 0.05);
+}
+
+/* Expand/collapse indicator */
+.expand-indicator {
+  display: inline-block;
+  margin-right: 0.5rem;
+  transition: transform 0.3s ease;
+  font-size: 0.8rem;
+}
+
+.expanded .expand-indicator {
+  transform: rotate(90deg);
 }
 
 .signals-table td {
