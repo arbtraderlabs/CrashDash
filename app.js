@@ -294,27 +294,30 @@ function toggleViewMode() {
 }
 
 function updateViewModeUI() {
-    const icon = document.getElementById('viewModeIcon');
-    const text = document.getElementById('viewModeText');
-    const hint = document.querySelector('.view-mode-hint');
+    const slider = document.getElementById('toggleSlider');
+    const compactLabel = document.getElementById('compactLabel');
+    const detailLabel = document.getElementById('detailLabel');
+    const hint = document.getElementById('viewModeHint');
     const fullHeader = document.getElementById('tableHeader');
     const compressedHeader = document.getElementById('compressedHeader');
     
-    if (!icon || !text || !hint || !fullHeader || !compressedHeader) {
+    if (!slider || !compactLabel || !detailLabel || !hint || !fullHeader || !compressedHeader) {
         console.warn('View mode UI elements not found, skipping update');
         return;
     }
     
     if (viewMode === 'compressed') {
-        icon.textContent = '📋';
-        text.textContent = 'Switch to Full View';
-        hint.textContent = 'Compressed view shows one row per ticker. Click ticker to expand history.';
+        slider.classList.remove('active');
+        compactLabel.classList.add('active');
+        detailLabel.classList.remove('active');
+        hint.textContent = 'Compact view shows one row per ticker. Click ticker to expand history.';
         fullHeader.style.display = 'none';
         compressedHeader.style.display = '';
     } else {
-        icon.textContent = '📊';
-        text.textContent = 'Switch to Compressed View';
-        hint.textContent = 'Full view shows all signals individually.';
+        slider.classList.add('active');
+        compactLabel.classList.remove('active');
+        detailLabel.classList.add('active');
+        hint.textContent = 'Detail view shows all signals individually.';
         fullHeader.style.display = '';
         compressedHeader.style.display = 'none';
     }

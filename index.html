@@ -55,11 +55,15 @@
 
         <!-- VIEW MODE TOGGLE -->
         <div class="view-mode-section">
-            <button id="viewModeToggle" class="view-mode-toggle" onclick="toggleViewMode()">
-                <span id="viewModeIcon">📋</span>
-                <span id="viewModeText">Switch to Full View</span>
-            </button>
-            <p class="view-mode-hint">Compressed view shows one row per ticker. Click ticker to expand history.</p>
+            <label class="view-toggle-label">View Mode:</label>
+            <div class="toggle-switch" onclick="toggleViewMode()">
+                <div class="toggle-track">
+                    <div id="toggleSlider" class="toggle-slider"></div>
+                </div>
+                <span class="toggle-option toggle-compact" id="compactLabel">Compact</span>
+                <span class="toggle-option toggle-detail" id="detailLabel">Detail</span>
+            </div>
+            <p class="view-mode-hint" id="viewModeHint">Compact view shows one row per ticker. Click ticker to expand history.</p>
         </div>
 
         <!-- FILTERS -->
