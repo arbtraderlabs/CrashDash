@@ -1077,8 +1077,6 @@ function setupEventListeners() {
         });
     }
     
-    }
-    
     // Table sorting - attach to both headers (make global for re-use)
     window.attachSortListeners = function() {
         const sortableHeaders = document.querySelectorAll('.signals-table th.sortable');
@@ -1159,4 +1157,7 @@ function formatMarketCap(marketCap) {
     if (marketCap >= 1000000) return `${(marketCap / 1000000).toFixed(2)}M`;
     if (marketCap >= 1000) return `${(marketCap / 1000).toFixed(2)}K`;
     return `${marketCap}`;
+}
+
+}
 }
