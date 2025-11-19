@@ -393,14 +393,56 @@ function renderCompressedMode(signals, tbody) {
         // Group signals by ticker
         groupedSignals = groupSignalsByTicker(signals);
         
-        // Sort tickers by their latest signal date (newest first)
+        // Sort tickers based on currentSort settings
+        const { column, direction } = currentSort;
         const tickers = Object.keys(groupedSignals).sort((a, b) => {
-            const dateA = new Date(groupedSignals[a].latest.Date);
-            const dateB = new Date(groupedSignals[b].latest.Date);
-            return dateB - dateA; // Descending (newest first)
+            const groupA = groupedSignals[a];
+            const groupB = groupedSignals[b];
+            let aVal, bVal;
+            
+            switch (column) {
+                case 'ticker':
+                    // Sort by ticker name alphabetically
+                    aVal = a;
+                    bVal = b;
+                    break;
+                case 'date':
+                    // Sort by latest signal date (default)
+                    aVal = new Date(groupA.latest.Date);
+                    bVal = new Date(groupB.latest.Date);
+                    break;
+                case 'ai_score':
+                    // Sort by best AI score across all signals
+                    aVal = Math.max(...[groupA.latest, ...groupA.history].map(s => parseFloat(s.AI_Technical_Score) || 0));
+                    bVal = Math.max(...[groupB.latest, ...groupB.history].map(s => parseFloat(s.AI_Technical_Score) || 0));
+                    break;
+                case 'current_pnl':
+                    // Sort by latest signal P&L
+                    const aTrigger = parseFloat(groupA.latest.Price);
+                    const bTrigger = parseFloat(groupB.latest.Price);
+                    const aCurrent = allMetadata[a]?.current_price || aTrigger;
+                    const bCurrent = allMetadata[b]?.current_price || bTrigger;
+                    aVal = ((aCurrent - aTrigger) / aTrigger) * 100;
+                    bVal = ((bCurrent - bTrigger) / bTrigger) * 100;
+                    break;
+                default:
+                    // Fallback to date
+                    aVal = new Date(groupA.latest.Date);
+                    bVal = new Date(groupB.latest.Date);
+            }
+            
+            // Compare values
+            if (typeof aVal === 'string') {
+                const comparison = aVal.localeCompare(bVal);
+                return direction === 'asc' ? comparison : -comparison;
+            } else {
+                if (aVal < bVal) return direction === 'asc' ? -1 : 1;
+                if (aVal > bVal) return direction === 'asc' ? 1 : -1;
+                return 0;
+            }
         });
         
-        console.log('Compressed mode: rendering', tickers.length, 'tickers, sorted by latest date');
+        console.log('Compressed mode: rendering', tickers.length, 'tickers, sorted by', column, direction);
         
         if (tickers.length === 0) {
             tbody.innerHTML = '<tr><td colspan="6" class="no-results">No grouped signals found</td></tr>';
