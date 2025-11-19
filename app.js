@@ -284,6 +284,13 @@ function toggleViewMode() {
     localStorage.setItem('viewMode', viewMode);
     updateViewModeUI();
     renderSignalsTable();
+    
+    // Re-attach sort listeners after table re-render
+    setTimeout(() => {
+        if (window.attachSortListeners) {
+            window.attachSortListeners();
+        }
+    }, 100);
 }
 
 function updateViewModeUI() {
@@ -421,13 +428,21 @@ function renderCompressedMode(signals, tbody) {
         parentRow.onclick = () => toggleTickerExpansion(ticker);
         
         const expandIcon = expandedTickers.has(ticker) ? '▼' : '▶';
-        const colorEmoji = {
-            'PURPLE': '🟣',
-            'RED': '🔴',
-            'ORANGE': '🟠',
-            'GREEN': '🟢',
-            'YELLOW': '🟡'
-        }[topColor] || '';
+        
+        // Create signal badges (up to 4, then +N more)
+        const signalBadges = group.history.slice(0, 4).map(sig => {
+            const colorEmoji = {
+                'PURPLE': '🟣',
+                'RED': '🔴',
+                'ORANGE': '🟠',
+                'GREEN': '🟢',
+                'YELLOW': '🟡'
+            }[sig.Signal_Color] || '';
+            const signalName = (sig.Signal_Type || 'UNKNOWN').replace(' BOTTOM', '').replace('ULTRA CRASH', 'ULTRA').replace('DEEP CRASH', 'DEEP').replace('CRASH ZONE', 'CRASH');
+            return `<span class="signal-badge signal-${sig.Signal_Color}" title="${sig.Signal_Type}">${colorEmoji}</span>`;
+        }).join(' ');
+        
+        const remaining = group.count > 4 ? `<span class="more-signals">+${group.count - 4}</span>` : '';
         
         parentRow.innerHTML = `
             <td class="ticker-cell">
@@ -435,9 +450,8 @@ function renderCompressedMode(signals, tbody) {
                 ${cleanTickerDisplay(ticker)}
                 <span class="company-name">${tickerInfo.name || ''}</span>
             </td>
-            <td><span class="signal-badge">${group.count}</span></td>
+            <td style="white-space: nowrap;">${signalBadges}${remaining}</td>
             <td>${latest.Date}</td>
-            <td><span class="signal-badge signal-${topColor}">${colorEmoji} ${topColor}</span></td>
             <td>${bestScore.toFixed(1)}</td>
             <td class="${currentPnl >= 0 ? 'positive' : 'negative'}">
                 ${currentPnl >= 0 ? '+' : ''}${currentPnl.toFixed(1)}%
@@ -1063,30 +1077,51 @@ function setupEventListeners() {
         });
     }
     
-    // Table sorting
-    const sortableHeaders = document.querySelectorAll('.signals-table th.sortable');
-    console.log('Found', sortableHeaders.length, 'sortable headers');
-    sortableHeaders.forEach(th => {
-        th.addEventListener('click', () => {
-            const sortColumn = th.dataset.sort;
+    }
+    
+    // Table sorting - attach to both headers (make global for re-use)
+    window.attachSortListeners = function() {
+        const sortableHeaders = document.querySelectorAll('.signals-table th.sortable');
+        console.log('Attaching sort listeners to', sortableHeaders.length, 'headers');
+        sortableHeaders.forEach(th => {
+            // Remove old listener if exists
+            const newTh = th.cloneNode(true);
+            th.parentNode.replaceChild(newTh, th);
             
-            // Toggle direction if same column
-            if (currentSort.column === sortColumn) {
-                currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
-            } else {
-                currentSort.column = sortColumn;
-                currentSort.direction = 'desc';
-            }
-            
-            // Update UI
-            document.querySelectorAll('.signals-table th').forEach(header => {
-                header.classList.remove('sort-asc', 'sort-desc');
+            newTh.addEventListener('click', () => {
+                const sortColumn = newTh.dataset.sort;
+                console.log('Sorting by:', sortColumn);
+                
+                // Map compressed column names to full mode equivalents
+                const columnMap = {
+                    'latest_date': 'date',
+                    'latest_color': 'signal_type',
+                    'latest_score': 'ai_score',
+                    'latest_pnl': 'current_pnl',
+                    'signal_count': 'ticker'
+                };
+                const mappedColumn = columnMap[sortColumn] || sortColumn;
+                
+                // Toggle direction if same column
+                if (currentSort.column === mappedColumn) {
+                    currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+                } else {
+                    currentSort.column = mappedColumn;
+                    currentSort.direction = 'desc';
+                }
+                
+                // Update UI
+                document.querySelectorAll('.signals-table th').forEach(header => {
+                    header.classList.remove('sort-asc', 'sort-desc');
+                });
+                newTh.classList.add(`sort-${currentSort.direction}`);
+                
+                renderSignalsTable();
             });
-            th.classList.add(`sort-${currentSort.direction}`);
-            
-            renderSignalsTable();
         });
-    });
+    };
+    
+    attachSortListeners();
     
     console.log('Event listeners setup complete');
 }
