@@ -518,14 +518,19 @@ function renderCompressedMode(signals, tbody) {
         tbody.appendChild(parentRow);
         
         // History rows (hidden by default)
-        [...group.history].forEach((signal, idx) => {
+        // Sort all signals (latest + history) by current sort direction
+        const allSignals = [latest, ...group.history];
+        const sortedHistory = allSignals.sort((a, b) => {
+            const dateA = new Date(a.Date);
+            const dateB = new Date(b.Date);
+            // Always sort history by date, respecting current direction
+            return currentSort.direction === 'desc' ? dateB - dateA : dateA - dateB;
+        });
+        
+        sortedHistory.forEach((signal, idx) => {
             const historyRow = createHistoryRow(signal, metadata, tickerInfo, ticker);
             tbody.appendChild(historyRow);
         });
-        
-        // Also add latest signal as history row
-        const latestHistoryRow = createHistoryRow(latest, metadata, tickerInfo, ticker);
-        tbody.appendChild(latestHistoryRow);
             } catch (error) {
                 console.error('Error rendering ticker:', ticker, error);
             }
