@@ -404,7 +404,7 @@ function renderCompressedMode(signals, tbody) {
         parentRow.dataset.ticker = ticker;
         parentRow.onclick = () => toggleTickerExpansion(ticker);
         
-        const expandIcon = expandedTickers.has(ticker) ? '▶' : '▶';
+        const expandIcon = expandedTickers.has(ticker) ? '▼' : '▶';
         const colorEmoji = {
             'PURPLE': '🟣',
             'RED': '🔴',
@@ -474,23 +474,14 @@ function createHistoryRow(signal, metadata, tickerInfo, ticker) {
     const drawdown = parseFloat(signal.Drawdown_Pct).toFixed(0);
     
     tr.innerHTML = `
-        <td style="padding-left: 2rem;">→ ${signal.Date}</td>
-        <td>
-            <span class="signal-badge signal-${signal.Signal_Color}">
-                ${shortSignalType} (${drawdown}%)
-            </span>
-        </td>
+        <td style="padding-left: 2rem;">→ ${cleanTickerDisplay(ticker)}</td>
+        <td><span class="signal-badge signal-${signal.Signal_Color}">${shortSignalType}</span></td>
+        <td>${signal.Date}</td>
+        <td>${drawdown}%</td>
         <td>${parseFloat(signal.AI_Technical_Score).toFixed(1)}</td>
-        <td class="price-pnl-cell">
-            <div class="price-pnl-container">
-                <span class="trigger-price">${parseFloat(signal.Price).toFixed(2)}p</span>
-                <span class="pnl-badge ${currentPnl >= 0 ? 'positive' : 'negative'}">
-                    ${currentPnl >= 0 ? '+' : ''}${currentPnl.toFixed(1)}%
-                </span>
-            </div>
+        <td class="${currentPnl >= 0 ? 'positive' : 'negative'}">
+            ${currentPnl >= 0 ? '+' : ''}${currentPnl.toFixed(1)}%
         </td>
-        <td class="positive">+${bestRally.toFixed(1)}%</td>
-        <td></td>
     `;
     
     return tr;
