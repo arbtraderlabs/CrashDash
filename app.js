@@ -389,9 +389,15 @@ function renderCompressedMode(signals, tbody) {
     try {
         // Group signals by ticker
         groupedSignals = groupSignalsByTicker(signals);
-        const tickers = Object.keys(groupedSignals).sort();
         
-        console.log('Compressed mode: rendering', tickers.length, 'tickers');
+        // Sort tickers by their latest signal date (newest first)
+        const tickers = Object.keys(groupedSignals).sort((a, b) => {
+            const dateA = new Date(groupedSignals[a].latest.Date);
+            const dateB = new Date(groupedSignals[b].latest.Date);
+            return dateB - dateA; // Descending (newest first)
+        });
+        
+        console.log('Compressed mode: rendering', tickers.length, 'tickers, sorted by latest date');
         
         if (tickers.length === 0) {
             tbody.innerHTML = '<tr><td colspan="6" class="no-results">No grouped signals found</td></tr>';
