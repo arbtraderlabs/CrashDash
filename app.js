@@ -518,8 +518,9 @@ function renderCompressedMode(signals, tbody) {
                 <div class="${currentPnl >= 0 ? 'positive' : 'negative'}" style="font-weight: 700; font-size: 0.95rem; line-height: 1.4;">
                     ${currentPnl >= 0 ? '+' : ''}${currentPnl.toFixed(1)}%
                 </div>
-                <div style="font-size: 0.7rem; color: var(--gray); opacity: 0.7; margin-top: 2px;">
-                    Best rally ${bestRally.toFixed(0)}%
+                <div style="font-size: 0.75rem; margin-top: 2px;">
+                    <span style="color: var(--gray); opacity: 0.7;">Best rally</span>
+                    <span style="color: var(--rally-green); font-weight: 600; margin-left: 4px;">${bestRally.toFixed(0)}%</span>
                 </div>
             </td>
         `;
