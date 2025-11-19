@@ -508,6 +508,7 @@ function renderCompressedMode(signals, tbody) {
             <td class="ticker-cell">
                 <span class="expand-indicator">${expandIcon}</span>
                 ${cleanTickerDisplay(ticker)}
+                <span style="font-size: 0.7rem; color: var(--gray); margin-left: 4px; font-weight: 500;">LSE (AIM)</span>
                 <span class="company-name">${tickerInfo.name || ''}</span>
             </td>
             <td style="white-space: nowrap;">${signalBadges}${remaining}</td>
@@ -591,7 +592,7 @@ function createHistoryRow(signal, metadata, tickerInfo, ticker) {
     const drawdownPct = parseFloat(signal.Drawdown_Pct) || 0;
     
     tr.innerHTML = `
-        <td style="padding-left: 2rem;">→ ${cleanTickerDisplay(ticker)}</td>
+        <td style="padding-left: 2rem;">→ ${cleanTickerDisplay(ticker)} <span style="font-size: 0.7rem; color: var(--gray); margin-left: 4px; font-weight: 500;">LSE (AIM)</span></td>
         <td>
             <span class="signal-badge signal-${signal.Signal_Color}">${colorEmoji} ${shortSignalType} (${drawdownPct.toFixed(0)}%)</span>
         </td>
