@@ -559,7 +559,7 @@ function createHistoryRow(signal, metadata, tickerInfo, ticker) {
         .replace('EXTREME CRASH BOTTOM', 'Extreme')
         .replace('ULTRA CRASH BOTTOM', 'Ultra')
         .replace('DEEP CRASH BOTTOM', 'Deep')
-        .replace('CRASH ZONE BOTTOM', 'Crash Zone')
+        .replace('CRASH ZONE BOTTOM', 'Crash')
         .replace('ACCUMULATION ZONE', 'Accumulation')
         .replace('PRE-ACCUMULATION', 'Pre-Accum');
     
@@ -587,8 +587,11 @@ function createHistoryRow(signal, metadata, tickerInfo, ticker) {
         </td>
         <td>${signal.Date}</td>
         <td>${parseFloat(signal.AI_Technical_Score).toFixed(1)}</td>
-        <td class="${currentPnl >= 0 ? 'positive' : 'negative'}">
-            ${currentPnl >= 0 ? '+' : ''}${currentPnl.toFixed(1)}%
+        <td>
+            <div style="font-size: 0.85rem; color: var(--gray); margin-bottom: 2px;">${triggerPrice.toFixed(2)}p</div>
+            <div class="${currentPnl >= 0 ? 'positive' : 'negative'}" style="font-weight: 600;">
+                ${currentPnl >= 0 ? '+' : ''}${currentPnl.toFixed(1)}%
+            </div>
         </td>
     `;
     
