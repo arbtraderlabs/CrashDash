@@ -441,8 +441,9 @@ function renderCompressedMode(signals, tbody) {
         
         const expandIcon = expandedTickers.has(ticker) ? '▼' : '▶';
         
-        // Create signal badges (up to 4, then +N more)
-        const signalBadges = group.history.slice(0, 4).map(sig => {
+        // Create signal badges (up to 4, then +N more) from ALL signals (latest + history)
+        const allTickerSignals = [latest, ...group.history];
+        const signalBadges = allTickerSignals.slice(0, 4).map(sig => {
             const colorEmoji = {
                 'PURPLE': '🟣',
                 'RED': '🔴',
@@ -450,7 +451,6 @@ function renderCompressedMode(signals, tbody) {
                 'GREEN': '🟢',
                 'YELLOW': '🟡'
             }[sig.Signal_Color] || '';
-            const signalName = (sig.Signal_Type || 'UNKNOWN').replace(' BOTTOM', '').replace('ULTRA CRASH', 'ULTRA').replace('DEEP CRASH', 'DEEP').replace('CRASH ZONE', 'CRASH');
             return `<span class="signal-badge signal-${sig.Signal_Color}" title="${sig.Signal_Type}">${colorEmoji}</span>`;
         }).join(' ');
         
