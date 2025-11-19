@@ -334,13 +334,18 @@ function groupSignalsByTicker(signals) {
             };
         }
         
-        // First signal is latest (assuming signals are sorted newest first)
+        // First signal is latest (signals should already be sorted newest first)
         if (!grouped[ticker].latest) {
             grouped[ticker].latest = signal;
         } else {
             grouped[ticker].history.push(signal);
         }
         grouped[ticker].count++;
+    });
+    
+    // Sort history arrays by date (newest first) for each ticker
+    Object.values(grouped).forEach(group => {
+        group.history.sort((a, b) => new Date(b.Date) - new Date(a.Date));
     });
     
     return grouped;
@@ -363,8 +368,9 @@ function renderSignalsTable() {
     let filteredSignals = filterSignals();
     console.log('After filtering:', filteredSignals.length, 'signals');
     
-    // Apply sorting
+    // Apply sorting FIRST (before grouping)
     filteredSignals = sortSignals(filteredSignals);
+    console.log('After sorting:', filteredSignals.length, 'signals, sort:', currentSort);
     
     if (filteredSignals.length === 0) {
         tbody.innerHTML = '<tr><td colspan="8" class="no-results">No signals found matching your filters</td></tr>';
@@ -469,7 +475,14 @@ function renderCompressedMode(signals, tbody) {
         // Also add latest signal as history row
         const latestHistoryRow = createHistoryRow(latest, metadata, tickerInfo, ticker);
         tbody.appendChild(latestHistoryRow);
-    });
+            } catch (error) {
+                console.error('Error rendering ticker:', ticker, error);
+            }
+        });
+    } catch (error) {
+        console.error('Error in compressed mode rendering:', error);
+        tbody.innerHTML = '<tr><td colspan="5" class="no-results">Error loading signals</td></tr>';
+    }
 }
 
 function createHistoryRow(signal, metadata, tickerInfo, ticker) {
@@ -501,13 +514,23 @@ function createHistoryRow(signal, metadata, tickerInfo, ticker) {
             .replace(/COMBO/i, 'Combo');
     }
     
-    const drawdown = parseFloat(signal.Drawdown_Pct).toFixed(0);
+    const colorEmoji = {
+        'PURPLE': '🟣',
+        'RED': '🔴',
+        'ORANGE': '🟠',
+        'GREEN': '🟢',
+        'YELLOW': '🟡'
+    }[signal.Signal_Color] || '';
+    
+    const drawdownPct = parseFloat(signal.Drawdown_Pct) || 0;
     
     tr.innerHTML = `
         <td style="padding-left: 2rem;">→ ${cleanTickerDisplay(ticker)}</td>
-        <td><span class="signal-badge signal-${signal.Signal_Color}">${shortSignalType}</span></td>
+        <td>
+            <span class="signal-badge signal-${signal.Signal_Color}">${colorEmoji} ${shortSignalType}</span>
+            <span class="drawdown-badge">${drawdownPct.toFixed(0)}%</span>
+        </td>
         <td>${signal.Date}</td>
-        <td>${drawdown}%</td>
         <td>${parseFloat(signal.AI_Technical_Score).toFixed(1)}</td>
         <td class="${currentPnl >= 0 ? 'positive' : 'negative'}">
             ${currentPnl >= 0 ? '+' : ''}${currentPnl.toFixed(1)}%
@@ -962,7 +985,10 @@ function filterSignals() {
             }
         }
         
-        return searchMatch && colorMatch && sectorMatch && industryMatch && dateMatch;
+        // Exclude signals with missing critical data
+        const hasValidData = signal.Ticker && signal.Date && signal.Signal_Color;
+        
+        return hasValidData && searchMatch && colorMatch && sectorMatch && industryMatch && dateMatch;
     });
 }
 
@@ -1157,7 +1183,4 @@ function formatMarketCap(marketCap) {
     if (marketCap >= 1000000) return `${(marketCap / 1000000).toFixed(2)}M`;
     if (marketCap >= 1000) return `${(marketCap / 1000).toFixed(2)}K`;
     return `${marketCap}`;
-}
-
-}
 }
