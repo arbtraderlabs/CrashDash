@@ -1210,7 +1210,7 @@ function setupEventListeners() {
                     'latest_color': 'signal_type',
                     'latest_score': 'ai_score',
                     'latest_pnl': 'current_pnl',
-                    'signal_count': 'ticker'
+                    'signal_count': 'date'  // Sort by latest signal date (most recent first)
                 };
                 const mappedColumn = columnMap[sortColumn] || sortColumn;
                 
