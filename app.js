@@ -87,6 +87,16 @@ function getMarketCapCandidate(ticker, metadata, tickerInfo) {
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM Content Loaded - starting initialization');
     console.log('Papa Parse available:', typeof Papa !== 'undefined');
+    
+    // Auto-detect mobile and set compact view
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+    if (isMobile && !localStorage.getItem('viewMode')) {
+        // Only auto-set if user hasn't manually chosen a view
+        viewMode = 'compressed';
+        localStorage.setItem('viewMode', 'compressed');
+        console.log('📱 Mobile device detected - auto-enabled Compact view');
+    }
+    
     updateViewModeUI(); // Initialize view mode toggle state
     loadAllData();
     setupEventListeners();
@@ -513,8 +523,8 @@ function renderCompressedMode(signals, tbody) {
             </td>
             <td style="white-space: nowrap;">
                 <div style="margin-bottom: 4px;">${signalBadges}${remaining}</div>
-                <div style="font-size: 0.75rem; color: var(--gray); font-weight: 500;">
-                    📅 ${latest.Date}
+                <div style="font-size: 0.75rem; color: var(--dark-gray); font-weight: 600;">
+                    ${latest.Date}
                 </div>
             </td>
             <td>${latestScore.toFixed(1)}</td>
@@ -598,9 +608,13 @@ function createHistoryRow(signal, metadata, tickerInfo, ticker) {
     tr.innerHTML = `
         <td style="padding-left: 2rem;">→ ${cleanTickerDisplay(ticker)} <span style="font-size: 0.7rem; color: var(--gray); margin-left: 4px; font-weight: 500;">LSE (AIM)</span></td>
         <td>
-            <span class="signal-badge signal-${signal.Signal_Color}">${colorEmoji} ${shortSignalType} (${drawdownPct.toFixed(0)}%)</span>
+            <div style="margin-bottom: 4px;">
+                <span class="signal-badge signal-${signal.Signal_Color}">${colorEmoji} ${shortSignalType} (${drawdownPct.toFixed(0)}%)</span>
+            </div>
+            <div style="font-size: 0.75rem; color: var(--dark-gray); font-weight: 600;">
+                ${signal.Date}
+            </div>
         </td>
-        <td>${signal.Date}</td>
         <td>${parseFloat(signal.AI_Technical_Score).toFixed(1)}</td>
         <td>
             <div style="font-size: 0.85rem; color: var(--gray); margin-bottom: 2px;">${triggerPrice.toFixed(2)}p</div>
