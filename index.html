@@ -66,6 +66,21 @@
             <p class="view-mode-hint" id="viewModeHint">Compact view shows one row per ticker. Click ticker to expand history.</p>
         </div>
 
+        <!-- SMARTREPORT AI TEASER -->
+        <div class="ai-teaser-section">
+            <button class="ai-teaser-button" disabled>
+                <span class="ai-icon">⚡</span>
+                <div class="ai-teaser-content">
+                    <div class="ai-teaser-title">SmartReport AI</div>
+                    <div class="ai-teaser-subtitle">Coming Soon</div>
+                </div>
+                <span class="ai-badge">V4</span>
+            </button>
+            <div class="ai-teaser-hint">
+                Your future cheat-code: Raw chaos → clean, trade-ready insights. Ultra-fast. Zero noise. 🚀
+            </div>
+        </div>
+
         <!-- FILTERS -->
         <div class="filters-section">
             <div class="filters-grid">
@@ -97,7 +112,7 @@
                     <select id="dateRangeFilter">
                         <option value="all">All Time</option>
                         <option value="1m">Last 1 Month</option>
-                        <option value="3m">Last 3 Months</option>
+                        <option value="3m" selected>Last 3 Months</option>
                         <option value="6m">Last 6 Months</option>
                         <option value="1y">Last 1 Year</option>
                         <option value="custom">Custom Range...</option>
@@ -133,9 +148,8 @@
                     <tr id="compressedHeader" style="display: none;">
                         <th class="sortable" data-sort="ticker">Ticker</th>
                         <th class="sortable" data-sort="signal_count">Signals</th>
-                        <th class="sortable" data-sort="latest_date">Latest Signal</th>
                         <th class="sortable" data-sort="latest_score">AI Score ⚡</th>
-                        <th class="sortable" data-sort="latest_pnl">Latest P&L</th>
+                        <th class="sortable" data-sort="latest_pnl">Entry → P&L</th>
                     </tr>
                 </thead>
                 <tbody id="signalsTableBody">

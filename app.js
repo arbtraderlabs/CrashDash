@@ -10,7 +10,7 @@ let allMetadata = {};
 let tickerLookup = {};
 let dashboardStats = {};
 let currentSort = { column: 'date', direction: 'desc' };
-let dateFilter = 'all'; // 'all', '1m', '3m', '6m', '1y', 'custom'
+let dateFilter = '3m'; // 'all', '1m', '3m', '6m', '1y', 'custom' - default 3 months
 let customDateRange = { start: null, end: null };
 let viewMode = localStorage.getItem('viewMode') || 'compressed'; // 'compressed' or 'full'
 let groupedSignals = {}; // Grouped by ticker for compressed mode
@@ -472,8 +472,8 @@ function renderCompressedMode(signals, tbody) {
         const topColor = [latest, ...group.history]
             .sort((a, b) => (colorPriority[b.Signal_Color] || 0) - (colorPriority[a.Signal_Color] || 0))[0].Signal_Color;
         
-        // Best score across all signals
-        const bestScore = Math.max(...[latest, ...group.history].map(s => parseFloat(s.AI_Technical_Score)));
+        // Latest signal's AI score (not max)
+        const latestScore = parseFloat(latest.AI_Technical_Score);
         
         // Best rally from metadata
         const bestRally = metadata.best_rally_pct || 0;
@@ -511,9 +511,13 @@ function renderCompressedMode(signals, tbody) {
                 <span style="font-size: 0.7rem; color: var(--gray); margin-left: 4px; font-weight: 500;">LSE (AIM)</span>
                 <span class="company-name">${tickerInfo.name || ''}</span>
             </td>
-            <td style="white-space: nowrap;">${signalBadges}${remaining}</td>
-            <td>${latest.Date}</td>
-            <td>${bestScore.toFixed(1)}</td>
+            <td style="white-space: nowrap;">
+                <div style="margin-bottom: 4px;">${signalBadges}${remaining}</div>
+                <div style="font-size: 0.75rem; color: var(--gray); font-weight: 500;">
+                    📅 ${latest.Date}
+                </div>
+            </td>
+            <td>${latestScore.toFixed(1)}</td>
             <td>
                 <div style="font-size: 0.8rem; color: var(--gray); line-height: 1.3;">${triggerPrice.toFixed(2)}p</div>
                 <div class="${currentPnl >= 0 ? 'positive' : 'negative'}" style="font-weight: 700; font-size: 0.95rem; line-height: 1.4;">
