@@ -53,21 +53,6 @@
             </div>
         </div>
 
-        <!-- SMARTREPORT AI TEASER -->
-        <div class="ai-teaser-section">
-            <button class="ai-teaser-button" disabled>
-                <span class="ai-icon">⚡</span>
-                <div class="ai-teaser-content">
-                    <div class="ai-teaser-title">SmartReport AI</div>
-                    <div class="ai-teaser-subtitle">Coming Soon</div>
-                </div>
-                <span class="ai-badge">V4</span>
-            </button>
-            <div class="ai-teaser-hint">
-                Your future cheat-code: Raw chaos → clean, trade-ready insights. Ultra-fast. Zero noise. 🚀
-            </div>
-        </div>
-
         <!-- FILTERS -->
         <div class="filters-section">
             <div class="filters-grid">
@@ -76,7 +61,7 @@
                     <select id="colorFilter">
                         <option value="">All Colors</option>
                         <option value="PURPLE">🟣 Purple (Enhanced Combo)</option>
-                        <option value="RED">🔴 Red (Ultra Crash)</option>
+                <span class="ai-badge">Powered by Engine V4</span>ed (Ultra Crash)</option>
                         <option value="ORANGE">🟠 Orange (Extreme)</option>
                         <option value="GREEN">🟢 Green (Deep)</option>
                         <option value="YELLOW">🟡 Yellow (Crash Zone)</option>
@@ -119,17 +104,31 @@
             </div>
         </div>
 
-        <!-- VIEW MODE TOGGLE (moved here for better UX) -->
-        <div class="view-mode-section">
-            <label class="view-toggle-label">View Mode:</label>
-            <div class="toggle-switch" onclick="toggleViewMode()">
-                <div class="toggle-track">
-                    <div id="toggleSlider" class="toggle-slider"></div>
+        <!-- VIEW MODE TOGGLE + SMARTREPORT AI (side by side) -->
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin: 1rem 2rem; flex-wrap: wrap;">
+            <div class="view-mode-section" style="margin: 0; flex: 1; min-width: 300px;">
+                <label class="view-toggle-label">View Mode:</label>
+                <div class="toggle-switch" onclick="toggleViewMode()">
+                    <div class="toggle-track">
+                        <div id="toggleSlider" class="toggle-slider"></div>
+                    </div>
+                    <span class="toggle-option toggle-compact" id="compactLabel">Compact</span>
+                    <span class="toggle-option toggle-detail" id="detailLabel">Detail</span>
                 </div>
-                <span class="toggle-option toggle-compact" id="compactLabel">Compact</span>
-                <span class="toggle-option toggle-detail" id="detailLabel">Detail</span>
+                <p class="view-mode-hint" id="viewModeHint">Compact view shows one row per ticker. Click ticker to expand history.</p>
             </div>
-            <p class="view-mode-hint" id="viewModeHint">Compact view shows one row per ticker. Click ticker to expand history.</p>
+            
+            <!-- SMARTREPORT AI TEASER (compact, right side) -->
+            <div class="ai-teaser-section" style="margin: 0;">
+                <button class="ai-teaser-button" disabled>
+                    <span class="ai-icon">⚡</span>
+                    <div class="ai-teaser-content">
+                        <div class="ai-teaser-title">SmartReport AI</div>
+                        <div class="ai-teaser-subtitle">Coming Soon</div>
+                    </div>
+                    <span class="ai-badge">Powered by Engine V4</span>
+                </button>
+            </div>
         </div>
 
         <!-- SIGNALS TABLE -->
