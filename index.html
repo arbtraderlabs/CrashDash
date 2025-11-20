@@ -53,19 +53,6 @@
             </div>
         </div>
 
-        <!-- VIEW MODE TOGGLE -->
-        <div class="view-mode-section">
-            <label class="view-toggle-label">View Mode:</label>
-            <div class="toggle-switch" onclick="toggleViewMode()">
-                <div class="toggle-track">
-                    <div id="toggleSlider" class="toggle-slider"></div>
-                </div>
-                <span class="toggle-option toggle-compact" id="compactLabel">Compact</span>
-                <span class="toggle-option toggle-detail" id="detailLabel">Detail</span>
-            </div>
-            <p class="view-mode-hint" id="viewModeHint">Compact view shows one row per ticker. Click ticker to expand history.</p>
-        </div>
-
         <!-- SMARTREPORT AI TEASER -->
         <div class="ai-teaser-section">
             <button class="ai-teaser-button" disabled>
@@ -130,6 +117,19 @@
                 <span>→</span>
                 <input type="date" id="endDate" placeholder="End Date">
             </div>
+        </div>
+
+        <!-- VIEW MODE TOGGLE (moved here for better UX) -->
+        <div class="view-mode-section">
+            <label class="view-toggle-label">View Mode:</label>
+            <div class="toggle-switch" onclick="toggleViewMode()">
+                <div class="toggle-track">
+                    <div id="toggleSlider" class="toggle-slider"></div>
+                </div>
+                <span class="toggle-option toggle-compact" id="compactLabel">Compact</span>
+                <span class="toggle-option toggle-detail" id="detailLabel">Detail</span>
+            </div>
+            <p class="view-mode-hint" id="viewModeHint">Compact view shows one row per ticker. Click ticker to expand history.</p>
         </div>
 
         <!-- SIGNALS TABLE -->

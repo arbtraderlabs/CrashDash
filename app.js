@@ -605,19 +605,20 @@ function createHistoryRow(signal, metadata, tickerInfo, ticker) {
     
     const drawdownPct = parseFloat(signal.Drawdown_Pct) || 0;
     
+    tr.classList.add('expanded-history-row');
     tr.innerHTML = `
-        <td style="padding-left: 2rem;">→ ${cleanTickerDisplay(ticker)} <span style="font-size: 0.7rem; color: var(--gray); margin-left: 4px; font-weight: 500;">LSE (AIM)</span></td>
+        <td style="padding-left: 2.5rem;"><span style="color: var(--gray); font-weight: 500; font-size: 0.95rem;">↳</span> <span style="color: var(--navy); opacity: 0.85; font-weight: 600;">${cleanTickerDisplay(ticker)}</span> <span style="font-size: 0.7rem; color: var(--gray); margin-left: 4px; font-weight: 400; opacity: 0.7;">LSE (AIM)</span></td>
         <td>
             <div style="margin-bottom: 4px;">
                 <span class="signal-badge signal-${signal.Signal_Color}">${colorEmoji} ${shortSignalType} (${drawdownPct.toFixed(0)}%)</span>
             </div>
-            <div style="font-size: 0.75rem; color: var(--dark-gray); font-weight: 600;">
+            <div style="font-size: 0.75rem; color: var(--gray); font-weight: 500; opacity: 0.8;">
                 ${signal.Date}
             </div>
         </td>
-        <td>${parseFloat(signal.AI_Technical_Score).toFixed(1)}</td>
+        <td style="color: var(--navy); opacity: 0.85;">${parseFloat(signal.AI_Technical_Score).toFixed(1)}</td>
         <td>
-            <div style="font-size: 0.85rem; color: var(--gray); margin-bottom: 2px;">${triggerPrice.toFixed(2)}p</div>
+            <div style="font-size: 0.85rem; color: var(--gray); margin-bottom: 2px; opacity: 0.85;">${triggerPrice.toFixed(2)}p</div>
             <div class="${currentPnl >= 0 ? 'positive' : 'negative'}" style="font-weight: 600;">
                 ${currentPnl >= 0 ? '+' : ''}${currentPnl.toFixed(1)}%
             </div>

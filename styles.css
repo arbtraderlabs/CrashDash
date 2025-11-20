@@ -197,7 +197,11 @@ header {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin: 1.5rem 2rem 1rem 2rem;
+  margin: 1rem 2rem 1rem 2rem;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, rgba(255, 140, 66, 0.08), rgba(255, 179, 71, 0.08));
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--orange-extreme);
   flex-wrap: wrap;
 }
 
@@ -742,6 +746,24 @@ header {
   display: none;
   border-left: 4px solid transparent;
   padding-left: 2rem;
+}
+
+/* Expanded history rows - distinct darker background with subtle border */
+.expanded-history-row {
+  background: linear-gradient(to right, rgba(71, 85, 105, 0.06), rgba(71, 85, 105, 0.03)) !important;
+  border-left: 3px solid rgba(10, 132, 255, 0.3) !important;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.expanded-history-row:hover {
+  background: linear-gradient(to right, rgba(71, 85, 105, 0.1), rgba(71, 85, 105, 0.05)) !important;
+  border-left-color: rgba(10, 132, 255, 0.5) !important;
+}
+
+.expanded-history-row td {
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
 }
 
 .ticker-history-row.visible {
