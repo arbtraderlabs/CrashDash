@@ -22,6 +22,33 @@ console.log('Global variables initialized');
 // PENCE-AWARE HELPERS
 // ============================================
 
+// Parse Signal_Type to extract base severity and modifiers
+function parseSignalType(signalType) {
+    if (!signalType) return { baseSeverity: 'UNKNOWN', baseColor: 'YELLOW', isEnhanced: false };
+    
+    const upper = signalType.toUpperCase();
+    const isEnhanced = upper.includes('ENHANCED');
+    
+    let baseSeverity = 'CRASH ZONE';
+    let baseColor = 'YELLOW';
+    
+    if (upper.includes('ULTRA')) {
+        baseSeverity = 'ULTRA';
+        baseColor = 'RED';
+    } else if (upper.includes('EXTREME')) {
+        baseSeverity = 'EXTREME';
+        baseColor = 'ORANGE';
+    } else if (upper.includes('DEEP')) {
+        baseSeverity = 'DEEP';
+        baseColor = 'GREEN';
+    } else if (upper.includes('CRASH ZONE') || upper.includes('CRASH')) {
+        baseSeverity = 'CRASH ZONE';
+        baseColor = 'YELLOW';
+    }
+    
+    return { baseSeverity, baseColor, isEnhanced };
+}
+
 // Return true if ticker appears to be an LSE ticker (.L)
 function isLseTicker(ticker) {
     if (!ticker) return false;
@@ -256,9 +283,19 @@ function updateStats() {
         const parts = lastUpdated.split(' ');
         const date = parts[0]; // "2025-11-16"
         const time = parts.slice(1).join(' '); // "23:32:29 UTC"
-        document.getElementById('lastUpdate').innerHTML = `<span class="date">${date}</span><span class="time">${time}</span>`;
+        const displayText = `<span class="date">${date}</span><span class="time">${time}</span>`;
+        
+        const lastUpdateEl = document.getElementById('lastUpdate');
+        const footerLastUpdateEl = document.getElementById('footerLastUpdate');
+        
+        if (lastUpdateEl) lastUpdateEl.innerHTML = displayText;
+        if (footerLastUpdateEl) footerLastUpdateEl.textContent = date;
     } else {
-        document.getElementById('lastUpdate').textContent = '-';
+        const lastUpdateEl = document.getElementById('lastUpdate');
+        const footerLastUpdateEl = document.getElementById('footerLastUpdate');
+        
+        if (lastUpdateEl) lastUpdateEl.textContent = '-';
+        if (footerLastUpdateEl) footerLastUpdateEl.textContent = '-';
     }
 }
 
@@ -502,14 +539,16 @@ function renderCompressedMode(signals, tbody) {
         // Create signal badges (up to 4, then +N more) from ALL signals (latest + history)
         const allTickerSignals = [latest, ...group.history];
         const signalBadges = allTickerSignals.slice(0, 4).map(sig => {
-            const colorEmoji = {
-                'PURPLE': '🟣',
+            const parsed = parseSignalType(sig.Signal_Type);
+            const baseEmoji = {
                 'RED': '🔴',
                 'ORANGE': '🟠',
                 'GREEN': '🟢',
                 'YELLOW': '🟡'
-            }[sig.Signal_Color] || '';
-            return `<span class="signal-badge signal-${sig.Signal_Color}" title="${sig.Signal_Type}">${colorEmoji}</span>`;
+            }[parsed.baseColor] || '🟡';
+            
+            const enhancedRing = parsed.isEnhanced ? '<span class="enhanced-ring">🟣</span>' : '';
+            return `<span class="signal-badge-compact signal-${parsed.baseColor}${parsed.isEnhanced ? ' enhanced' : ''}" title="${sig.Signal_Type}">${enhancedRing}${baseEmoji}</span>`;
         }).join(' ');
         
         const remaining = group.count > 4 ? `<span class="more-signals">+${group.count - 4}</span>` : '';
@@ -580,29 +619,28 @@ function createHistoryRow(signal, metadata, tickerInfo, ticker) {
     const currentPnl = ((currentPrice - triggerPrice) / triggerPrice) * 100;
     const bestRally = metadata.best_rally_pct || 0;
     
-    let shortSignalType = signal.Signal_Type
-        .replace('EXTREME CRASH BOTTOM', 'Extreme')
-        .replace('ULTRA CRASH BOTTOM', 'Ultra')
-        .replace('DEEP CRASH BOTTOM', 'Deep')
-        .replace('CRASH ZONE BOTTOM', 'Crash')
-        .replace('ACCUMULATION ZONE', 'Accumulation')
-        .replace('PRE-ACCUMULATION', 'Pre-Accum');
+    const parsed = parseSignalType(signal.Signal_Type);
     
-    if (shortSignalType.includes('COMBO')) {
-        shortSignalType = shortSignalType
-            .replace(/ENHANCED.*COMBO/i, 'Combo')
-            .replace(/CRASH.*COMBO/i, 'Combo')
-            .replace(/COMBO/i, 'Combo');
+    let shortSignalType = parsed.baseSeverity
+        .replace('EXTREME', 'Extreme')
+        .replace('ULTRA', 'Ultra')
+        .replace('DEEP', 'Deep')
+        .replace('CRASH ZONE', 'Crash');
+    
+    if (signal.Signal_Type.toUpperCase().includes('COMBO')) {
+        shortSignalType += ' Combo';
+    } else if (signal.Signal_Type.toUpperCase().includes('BOTTOM')) {
+        shortSignalType += ' Bottom';
     }
     
-    const colorEmoji = {
-        'PURPLE': '🟣',
+    const baseEmoji = {
         'RED': '🔴',
         'ORANGE': '🟠',
         'GREEN': '🟢',
         'YELLOW': '🟡'
-    }[signal.Signal_Color] || '';
+    }[parsed.baseColor] || '🟡';
     
+    const enhancedBadge = parsed.isEnhanced ? '<span class="enhanced-pill">⚡ ENHANCED</span>' : '';
     const drawdownPct = parseFloat(signal.Drawdown_Pct) || 0;
     
     tr.classList.add('expanded-history-row');
@@ -610,7 +648,8 @@ function createHistoryRow(signal, metadata, tickerInfo, ticker) {
         <td style="padding-left: 2.5rem;"><span style="color: var(--gray); font-weight: 500; font-size: 0.95rem;">↳</span> <span style="color: var(--navy); opacity: 0.85; font-weight: 600;">${cleanTickerDisplay(ticker)}</span> <span style="font-size: 0.7rem; color: var(--gray); margin-left: 4px; font-weight: 400; opacity: 0.7;">LSE (AIM)</span></td>
         <td>
             <div style="margin-bottom: 4px;">
-                <span class="signal-badge signal-${signal.Signal_Color}">${colorEmoji} ${shortSignalType} (${drawdownPct.toFixed(0)}%)</span>
+                <span class="signal-badge signal-${parsed.baseColor}">${baseEmoji} ${shortSignalType} (${drawdownPct.toFixed(0)}%)</span>
+                ${enhancedBadge}
             </div>
             <div style="font-size: 0.75rem; color: var(--gray); font-weight: 500; opacity: 0.8;">
                 ${signal.Date}
@@ -685,23 +724,22 @@ function renderFullMode(signals, tbody) {
         const splitTooltip = isAffectedBySplit ? `Split ${splitRisk.days_from_split}d ago - Click for details` : '';
         const splitWarningIcon = isAffectedBySplit ? `<span class="split-warning-icon" data-tooltip="${splitTooltip}">⚠️</span>` : '';
         
-        // Clean up signal type text - handle all combo variations
-        let shortSignalType = signal.Signal_Type
-            .replace('CRASH ZONE BOTTOM', 'Crash Zone')
-            .replace('EXTREME CRASH BOTTOM', 'Extreme Crash')
-            .replace('ULTRA CRASH BOTTOM', 'Ultra Crash')
-            .replace('DEEP CRASH BOTTOM', 'Deep Crash')
-            .replace('ACCUMULATION ZONE', 'Accumulation')
-            .replace('PRE-ACCUMULATION', 'Pre-Accumulation');
+        // Parse signal type to extract base severity and enhanced status
+        const parsed = parseSignalType(signal.Signal_Type);
         
-        // Handle all combo variations (do this AFTER basic replacements)
-        if (shortSignalType.includes('COMBO')) {
-            shortSignalType = shortSignalType
-                .replace(/ENHANCED.*COMBO/i, 'Enhanced Combo')
-                .replace(/CRASH.*COMBO/i, 'Crash Combo')
-                .replace(/COMBO/i, 'Combo');
+        let shortSignalType = parsed.baseSeverity
+            .replace('CRASH ZONE', 'Crash Zone')
+            .replace('EXTREME', 'Extreme Crash')
+            .replace('ULTRA', 'Ultra Crash')
+            .replace('DEEP', 'Deep Crash');
+        
+        if (signal.Signal_Type.toUpperCase().includes('COMBO')) {
+            shortSignalType += ' Combo';
+        } else if (signal.Signal_Type.toUpperCase().includes('BOTTOM')) {
+            shortSignalType += ' Bottom';
         }
         
+        const enhancedBadge = parsed.isEnhanced ? '<span class="enhanced-pill">⚡ ENHANCED</span>' : '';
         const drawdown = parseFloat(signal.Drawdown_Pct).toFixed(0);
         
         tr.innerHTML = `
@@ -711,9 +749,10 @@ function renderFullMode(signals, tbody) {
             </td>
             <td>${signal.Date}</td>
             <td>
-                <span class="signal-badge signal-${signal.Signal_Color}">
+                <span class="signal-badge signal-${parsed.baseColor}">
                     ${shortSignalType} (${drawdown}%)
                 </span>
+                ${enhancedBadge}
             </td>
             <td>${parseFloat(signal.AI_Technical_Score).toFixed(1)}</td>
             <td class="price-pnl-cell">
@@ -1022,6 +1061,7 @@ function filterSignals() {
     const colorFilter = document.getElementById('colorFilter').value;
     const sectorFilter = document.getElementById('sectorFilter').value;
     const industryFilter = document.getElementById('industryFilter').value;
+    const marketCapFilter = document.getElementById('marketCapFilter').value;
     
     return allSignals.filter(signal => {
         // Search filter
@@ -1038,6 +1078,36 @@ function filterSignals() {
         
         // Industry filter
         const industryMatch = !industryFilter || tickerInfo.industry === industryFilter;
+        
+        // Market Cap filter
+        let marketCapMatch = true;
+        if (marketCapFilter) {
+            const metadata = allMetadata[signal.Ticker];
+            const marketCap = getMarketCapCandidate(signal.Ticker, metadata, tickerInfo);
+            
+            if (marketCap !== undefined) {
+                const capMillions = marketCap / 1_000_000;
+                
+                if (marketCapFilter === '0-1') {
+                    marketCapMatch = capMillions < 1;
+                } else if (marketCapFilter === '1-5') {
+                    marketCapMatch = capMillions >= 1 && capMillions < 5;
+                } else if (marketCapFilter === '5-20') {
+                    marketCapMatch = capMillions >= 5 && capMillions < 20;
+                } else if (marketCapFilter === '20-50') {
+                    marketCapMatch = capMillions >= 20 && capMillions < 50;
+                } else if (marketCapFilter === '50-100') {
+                    marketCapMatch = capMillions >= 50 && capMillions < 100;
+                } else if (marketCapFilter === '100-250') {
+                    marketCapMatch = capMillions >= 100 && capMillions < 250;
+                } else if (marketCapFilter === '250+') {
+                    marketCapMatch = capMillions >= 250;
+                }
+            } else {
+                // If no market cap data, exclude from filtered results
+                marketCapMatch = false;
+            }
+        }
         
         // Date filter
         let dateMatch = true;
@@ -1076,7 +1146,7 @@ function filterSignals() {
         // Exclude signals with missing critical data
         const hasValidData = signal.Ticker && signal.Date && signal.Signal_Color;
         
-        return hasValidData && searchMatch && colorMatch && sectorMatch && industryMatch && dateMatch;
+        return hasValidData && searchMatch && colorMatch && sectorMatch && industryMatch && marketCapMatch && dateMatch;
     });
 }
 
@@ -1150,7 +1220,7 @@ function setupEventListeners() {
     }
     
     // Filter dropdowns
-    ['colorFilter', 'sectorFilter', 'industryFilter'].forEach(id => {
+    ['colorFilter', 'sectorFilter', 'industryFilter', 'marketCapFilter'].forEach(id => {
         const element = document.getElementById(id);
         if (element) {
             element.addEventListener('change', () => {
@@ -1247,6 +1317,7 @@ function resetFilters() {
     document.getElementById('colorFilter').value = '';
     document.getElementById('sectorFilter').value = '';
     document.getElementById('industryFilter').value = '';
+    document.getElementById('marketCapFilter').value = '';
     
     // Reset date filter to 'all'
     dateFilter = 'all';

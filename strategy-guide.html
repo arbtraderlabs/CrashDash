@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategy Guide - CrashDash Educational Framework</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .guide-hero {
+            background: linear-gradient(135deg, #11CC77 0%, #4ADE80 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        .guide-hero::before {
+            content: '📚';
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.08;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse-book 4s ease-in-out infinite;
+        }
+        @keyframes pulse-book {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.08; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.12; }
+        }
+        .guide-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        .guide-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        .guide-hero p {
+            position: relative;
+            z-index: 1;
+        }
+        .guide-section {
+            margin-bottom: 3rem;
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .guide-section::after {
+            content: attr(data-watermark);
+            position: absolute;
+            font-size: 10rem;
+            opacity: 0.02;
+            right: -1rem;
+            bottom: -2rem;
+            transform: rotate(-12deg);
+            pointer-events: none;
+        }
+        .guide-section:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        .guide-section h2 {
+            color: var(--navy);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .guide-section h2::before {
+            content: attr(data-emoji);
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--rally-green), #4ADE80);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 12px rgba(17, 204, 119, 0.3);
+        }
+        .guide-section h3 {
+            color: var(--dark-gray);
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem 0;
+        }
+        .guide-section p, .guide-section ul {
+            line-height: 1.8;
+            color: var(--gray);
+            font-size: 1.05rem;
+        }
+        .rainbow-lane {
+            background: var(--light-bg);
+            border-left: 6px solid var(--rally-green);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+        .rainbow-lane.yellow { border-left-color: #FFDD55; }
+        .rainbow-lane.orange { border-left-color: #FF8C42; }
+        .rainbow-lane.red { border-left-color: #FF3355; }
+        .rainbow-lane h4 {
+            margin-top: 0;
+            font-size: 1.2rem;
+        }
+        .warning-box {
+            background: linear-gradient(135deg, rgba(255, 51, 85, 0.1), rgba(255, 140, 66, 0.1));
+            border: 2px solid var(--crash-red);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        .warning-box strong {
+            color: var(--crash-red);
+        }
+        .tip-box {
+            background: linear-gradient(135deg, rgba(17, 204, 119, 0.1), rgba(74, 222, 128, 0.1));
+            border-left: 4px solid var(--rally-green);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--navy), var(--dark-gray));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: transform 0.2s;
+        }
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+        .step-number {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background: var(--rally-green);
+            color: var(--white);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 36px;
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- HERO SECTION -->
+    <div class="guide-hero">
+        <h1>📚 CrashDash Strategy Guide</h1>
+        <p>Learn how to use CrashDash as an educational research framework</p>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="guide-content">
+        <a href="index.html" class="back-button">← Back to Dashboard</a>
+
+        <div class="warning-box">
+            <p><strong>⚠️ EDUCATIONAL CONTENT ONLY</strong></p>
+            <p>This guide teaches you how to <strong>study and learn from market patterns</strong>. It is NOT financial advice. All trading decisions, risk management, and position sizing are your responsibility. Always consult a qualified financial advisor before investing.</p>
+        </div>
+
+        <!-- STEP 1: RAINBOW LANES -->
+        <div class="guide-section" data-emoji="🎨" data-watermark="🌈">
+            <h2 data-emoji="🎨"><span class="step-number">1</span> Pick Your Educational Focus (Rainbow Lanes)</h2>
+            <p>CrashDash uses color-coded severity levels to help you understand different types of crash patterns. Think of these as "risk lanes" for learning purposes:</p>
+
+            <div class="rainbow-lane yellow" style="background: linear-gradient(135deg, rgba(255, 221, 85, 0.08), rgba(255, 233, 153, 0.08)); border-left-width: 8px; box-shadow: 0 2px 8px rgba(255, 221, 85, 0.2);">
+                <h4 style="display: flex; align-items: center; gap: 0.75rem;"><span style="font-size: 2rem;">🟡</span> YELLOW LANE – Crash Zone (80%+ Drawdown)</h4>
+                <p><strong>Learning Focus:</strong> Early accumulation phase patterns</p>
+                <ul>
+                    <li>RSI < 45, cycle position < 30%</li>
+                    <li>Study for early warning system patterns</li>
+                    <li>Watch for evolution into higher severity tiers</li>
+                </ul>
+            </div>
+
+            <div class="rainbow-lane" style="background: linear-gradient(135deg, rgba(17, 204, 119, 0.05), rgba(74, 222, 128, 0.05)); border-left-width: 8px; box-shadow: 0 2px 8px rgba(17, 204, 119, 0.15);">
+                <h4 style="display: flex; align-items: center; gap: 0.75rem;"><span style="font-size: 2rem;">🟢</span> GREEN LANE – Deep Crash (85%+ Drawdown)</h4>
+                <p><strong>Learning Focus:</strong> Balanced educational examples with technical confirmation</p>
+                <ul>
+                    <li>RSI < 40, cycle position < 25%</li>
+                    <li>Good starting point for beginners learning crash patterns</li>
+                    <li>Study these to understand moderate-risk setups</li>
+                </ul>
+            </div>
+
+            <div class="rainbow-lane orange" style="background: linear-gradient(135deg, rgba(255, 140, 66, 0.08), rgba(255, 179, 71, 0.08)); border-left-width: 8px; box-shadow: 0 2px 8px rgba(255, 140, 66, 0.2);">
+                <h4 style="display: flex; align-items: center; gap: 0.75rem;"><span style="font-size: 2rem;">🟠</span> ORANGE LANE – Extreme Crash (90%+ Drawdown)</h4>
+                <p><strong>Learning Focus:</strong> Severe crash reversal patterns</p>
+                <ul>
+                    <li>RSI < 35, cycle position < 20%</li>
+                    <li>Higher volatility examples—study these to understand significant upside potential vs. risk</li>
+                    <li>Educational examples of high-probability setups</li>
+                </ul>
+            </div>
+
+            <div class="rainbow-lane red" style="background: linear-gradient(135deg, rgba(255, 51, 85, 0.08), rgba(255, 107, 136, 0.08)); border-left-width: 8px; box-shadow: 0 2px 8px rgba(255, 51, 85, 0.2);">
+                <h4 style="display: flex; align-items: center; gap: 0.75rem;"><span style="font-size: 2rem;">🔴</span> RED LANE – Ultra Crash (95%+ Drawdown)</h4>
+                <p><strong>Learning Focus:</strong> Catastrophic crash patterns</p>
+                <ul>
+                    <li>RSI < 30, cycle position < 15%</li>
+                    <li>Study these for maximum risk/reward educational scenarios</li>
+                    <li>Only for learning about extreme volatility situations</li>
+                </ul>
+            </div>
+
+            <div class="rainbow-lane" style="border-left-color: #9D4EDD; background: linear-gradient(135deg, rgba(157, 78, 221, 0.08), rgba(199, 125, 255, 0.08)); border-left-width: 8px; box-shadow: 0 2px 8px rgba(157, 78, 221, 0.2);">
+                <h4 style="display: flex; align-items: center; gap: 0.75rem;"><span style="font-size: 2rem;">🟣</span> PURPLE – Enhanced Combo Signals</h4>
+                <p><strong>Learning Focus:</strong> Crash + Accumulation patterns combined</p>
+                <ul>
+                    <li>Shows base severity color + purple "ENHANCED" indicator</li>
+                    <li>AI detected both extreme oversold conditions AND institutional accumulation</li>
+                    <li>Study these to understand the strongest educational reversal candidates</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <p><strong>💡 Learning Tip:</strong> You can focus your studies by choosing a "lane":</p>
+                <ul style="margin-bottom: 0;">
+                    <li>"I'm studying Yellow/Green patterns" (more conservative learning)</li>
+                    <li>"I'll research Orange/Red when I understand extreme volatility better"</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- STEP 2: TIME COMMITMENT -->
+        <div class="guide-section" data-emoji="⏱️" style="border-left: 6px solid #FF8C42;" data-watermark="⏰">
+            <h2 data-emoji="⏱️" style="color: #FF8C42;"><span class="step-number" style="background: #FF8C42;">2</span> Time Commitment – Minutes, Not Hours</h2>
+            <p>CrashDash is designed to save you research time. Here's a typical learning routine:</p>
+            
+            <h3>Daily Educational Routine (20-30 minutes):</h3>
+            <ol style="line-height: 2;">
+                <li><strong>Open CrashDash</strong> – Once per day (morning or evening)</li>
+                <li><strong>Filter by your focus lane</strong> – Look at signals in your chosen color category</li>
+                <li><strong>Shortlist 1-5 tickers</strong> – Pick the most interesting educational examples</li>
+                <li><strong>Research each one:</strong>
+                    <ul>
+                        <li>Read RNS news & announcements</li>
+                        <li>Review basic fundamentals</li>
+                        <li>Study recent price action patterns</li>
+                        <li>Check sector context</li>
+                    </ul>
+                </li>
+                <li><strong>Decide:</strong> Add to watchlist for further study / Pass / Archive for comparison</li>
+            </ol>
+
+            <div class="tip-box">
+                <p><strong>💡 Key Point:</strong> Total time is often <strong>under 30 minutes</strong>. No need to manually scan 600 charts. CrashDash filters the noise so you can focus on learning from the best educational examples.</p>
+            </div>
+        </div>
+
+        <!-- STEP 3: BEGINNER LEARNING RULES -->
+        <div class="guide-section" data-emoji="📖" style="border-left: 6px solid #9D4EDD;" data-watermark="🎓">
+            <h2 data-emoji="📖" style="color: #9D4EDD;"><span class="step-number" style="background: #9D4EDD;">3</span> Learning Guidelines for Beginners</h2>
+            <p>If you're new to studying crash patterns, follow these educational principles:</p>
+
+            <h3>📖 Study Before Action</h3>
+            <ul>
+                <li><strong>Don't rush into trades</strong> – Use CrashDash to build your watchlist and study patterns first</li>
+                <li><strong>Paper trade first</strong> – Track signals on paper to learn how they behave before risking real capital</li>
+                <li><strong>Start small</strong> – If you do trade, use position sizes that won't cause emotional decisions</li>
+            </ul>
+
+            <h3>🧪 Learn From Variety</h3>
+            <ul>
+                <li><strong>Don't focus on just one signal</strong> – Study multiple examples to understand pattern diversity</li>
+                <li><strong>Compare outcomes</strong> – Track which patterns worked vs. didn't work to refine your understanding</li>
+                <li><strong>Understand failure</strong> – Not all crash signals recover—learn to identify warning signs</li>
+            </ul>
+
+            <h3>🎯 Educational Expectations</h3>
+            <ul>
+                <li><strong>Some patterns move quickly</strong> – Recovery might happen in days</li>
+                <li><strong>Some take time</strong> – Months or even years to fully develop</li>
+                <li><strong>Some fail entirely</strong> – This is normal and part of market reality</li>
+            </ul>
+
+            <div class="warning-box">
+                <p><strong>⚠️ Critical Learning Point:</strong></p>
+                <p>Accept that some educational examples will never play out as expected—and that's completely normal. The goal is to study patterns and probabilities, not find certainties.</p>
+            </div>
+        </div>
+
+        <!-- STEP 4: MANAGING EXPECTATIONS -->
+        <div class="guide-section" data-emoji="🎯" style="border-left: 6px solid #FFDD55;" data-watermark="💡">
+            <h2 data-emoji="🎯" style="color: #FF8C42;"><span class="step-number" style="background: #FFDD55; color: var(--navy);">4</span> Educational Expectations & Reality</h2>
+            
+            <h3>What CrashDash Does:</h3>
+            <ul>
+                <li>✅ Helps you find educational crash & recovery patterns faster</li>
+                <li>✅ Provides structured scoring and filtering for research efficiency</li>
+                <li>✅ Combines multiple data sources (price, volume, news, fundamentals) in one view</li>
+                <li>✅ Shows you historical context so you can learn from past examples</li>
+            </ul>
+
+            <h3>What CrashDash Does NOT Do:</h3>
+            <ul>
+                <li>❌ Guarantee profits or outcomes</li>
+                <li>❌ Tell you when to buy or sell (that's your decision)</li>
+                <li>❌ Replace your own research and due diligence</li>
+                <li>❌ Predict the future with certainty</li>
+            </ul>
+
+            <div class="tip-box">
+                <p><strong>💡 Think of CrashDash as:</strong></p>
+                <p>A research assistant that does the boring scanning work, so you can spend your time on the interesting part—learning about market behavior and making informed decisions.</p>
+            </div>
+
+            <h3>Timeline Reality Check:</h3>
+            <p>CrashDash focuses on crash & recovery educational stories, which means:</p>
+            <ul>
+                <li><strong>Days:</strong> Some patterns show quick reversals (study momentum shifts)</li>
+                <li><strong>Weeks to Months:</strong> Most quality setups take time to develop (study patience)</li>
+                <li><strong>Years:</strong> Some deep value plays are multi-year stories (study conviction)</li>
+                <li><strong>Never:</strong> Some simply fail and teach you what to avoid next time</li>
+            </ul>
+
+            <p><strong>The aim:</strong> Find better educational stories earlier, not guarantee an ending.</p>
+        </div>
+
+        <!-- STEP 5: KEY METRICS TO STUDY -->
+        <div class="guide-section" data-emoji="📊" style="border-left: 6px solid var(--rally-green);" data-watermark="📈">
+            <h2 data-emoji="📊"><span class="step-number">5</span> Key Metrics to Study</h2>
+            
+            <h3>AI Technical Score (0-21 points)</h3>
+            <p>Multi-factor scoring system that helps you learn about:</p>
+            <ul>
+                <li>RSI extremes (how oversold?)</li>
+                <li>Volume spikes (capitulation signals?)</li>
+                <li>Momentum shifts (trend exhaustion?)</li>
+                <li>Cycle positioning (where in the range?)</li>
+                <li>Price compression patterns (coiling for move?)</li>
+            </ul>
+            <p><strong>Higher scores = Stronger technical reversal setup</strong> (for educational study)</p>
+
+            <h3>Drawdown Percentage</h3>
+            <p>How far the price has fallen from all-time high. Study this to understand:</p>
+            <ul>
+                <li>Severity of the crash</li>
+                <li>Potential upside if recovery occurs</li>
+                <li>Risk level (deeper drawdowns = more volatility)</li>
+            </ul>
+
+            <h3>Current P&L</h3>
+            <p>If you had entered at signal date, what would your educational return be today?</p>
+            <ul>
+                <li>Helps you track signal effectiveness over time</li>
+                <li>Understand which patterns tend to work vs. fail</li>
+                <li>Learn from both winners and losers</li>
+            </ul>
+
+            <h3>Best Historical Rally</h3>
+            <p>Peak gain achieved from similar past signals on this ticker. Study this to:</p>
+            <ul>
+                <li>Understand upside potential</li>
+                <li>See if ticker has history of violent recoveries</li>
+                <li>Compare current setup to historical patterns</li>
+            </ul>
+        </div>
+
+        <!-- REAL-WORLD EXAMPLE -->
+        <div class="guide-section" style="background: linear-gradient(135deg, rgba(157, 78, 221, 0.05), rgba(74, 222, 128, 0.05)); border: 2px solid var(--rally-green);">
+            <h2>📊 Real-World Example: WSBN.L (Wishbone Gold)</h2>
+            
+            <div style="background: linear-gradient(135deg, rgba(17, 204, 119, 0.05), rgba(157, 78, 221, 0.05)); padding: 2rem; border-radius: 12px; margin: 1.5rem 0; border: 2px dashed rgba(157, 78, 221, 0.3);">
+                <div style="background: var(--white); padding: 3rem; border-radius: 8px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <div style="font-size: 5rem; margin-bottom: 1rem;">📈</div>
+                    <p style="color: var(--gray); font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem;">WSBN.L Chart Example</p>
+                    <p style="color: var(--gray); font-size: 0.9rem; opacity: 0.7;">Textbook crash-to-recovery pattern: £0.09 → £2.00 (+2,122%)</p>
+                    <p style="color: var(--gray); font-size: 0.8rem; margin-top: 1rem; font-style: italic; opacity: 0.6;">Chart visualization coming soon</p>
+                </div>
+            </div>
+
+            <h3>📉 The Setup (Educational Case Study)</h3>
+            <p>Wishbone Gold (WSBN.L) demonstrates an ideal crash signal pattern that CrashDash is designed to identify:</p>
+
+            <div class="tip-box" style="margin: 1.5rem 0;">
+                <h4 style="margin-top: 0; color: var(--navy);">📅 Timeline of Events:</h4>
+                <ul style="margin-bottom: 0;">
+                    <li><strong>July 2024:</strong> Early crash signals detected (yellow zones - 80%+ crash)</li>
+                    <li><strong>Mid-March 2025:</strong> 🟠 <strong>ORANGE signal</strong> highlighted at absolute bottom (~£0.09)</li>
+                    <li><strong>Purple accumulation zones:</strong> Multiple instances of price consolidation with volume building</li>
+                    <li><strong>August 2025:</strong> Rally to £2.00+ = <strong>2,122% gain</strong> from bottom</li>
+                </ul>
+            </div>
+
+            <h3>🎯 What Made This Setup "Ideal"?</h3>
+            <ol style="line-height: 2;">
+                <li><strong>Catastrophic Crash</strong> – Price dropped from highs to near-zero (massive drawdown)</li>
+                <li><strong>Multiple Signal Levels</strong> – Yellow → Orange progression showed increasing severity</li>
+                <li><strong>Accumulation Evidence</strong> – Purple spots indicated smart money quietly building positions</li>
+                <li><strong>Bottom Consolidation</strong> – Price stabilized and "went flat" instead of continuing to fall</li>
+                <li><strong>Volume Pattern Change</strong> – Capitulation volume followed by quiet accumulation</li>
+            </ol>
+
+            <div class="warning-box" style="margin: 2rem 0;">
+                <p><strong>⚠️ Critical Reality Check:</strong></p>
+                <p><strong>Not all signals guarantee huge runs like this.</strong></p>
+                <ul>
+                    <li>WSBN is an <strong>exceptional example</strong>, not the norm</li>
+                    <li>Many crash signals recover modestly (20-50%)</li>
+                    <li>Some take years to play out</li>
+                    <li>Some never recover at all</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>However, the principle remains true:</strong></p>
+                <p style="font-size: 1.1rem; font-weight: 600; color: var(--rally-green); margin-top: 0.5rem;">"Money is always made at the bottom of markets."</p>
+            </div>
+
+            <h3>💡 What CrashDash Helps You Identify</h3>
+            <p>This example shows what the engine is looking for:</p>
+            <ul>
+                <li>✅ <strong>Extreme oversold conditions</strong> (orange/red severity levels)</li>
+                <li>✅ <strong>Consolidation after panic</strong> (price stops falling, goes sideways)</li>
+                <li>✅ <strong>Accumulation patterns</strong> (purple enhanced signals = smart money building)</li>
+                <li>✅ <strong>Early positioning</strong> (signals triggered months before the rally)</li>
+            </ul>
+
+            <div class="tip-box">
+                <p><strong>💡 Learning Takeaway:</strong></p>
+                <p>CrashDash flagged WSBN at £0.09 in March 2025 with an <strong>🟠 ORANGE signal</strong>. The rally to £2.00 took 5 months.</p>
+                <p>Most people would never look at a chart like this—it's too scary, too boring, too "dead." That's exactly when the opportunity exists.</p>
+                <p><strong>CrashDash helps you study these setups systematically, so you don't have to manually scan 600+ tickers looking for them.</strong></p>
+            </div>
+
+            <h3>🎓 Study Questions for This Example:</h3>
+            <ol style="line-height: 2;">
+                <li>Why did the orange signal appear in March vs. earlier crash zones?</li>
+                <li>What role did the purple accumulation patterns play?</li>
+                <li>How long would you have had to hold to see the full move?</li>
+                <li>What risk management would have been appropriate at £0.09?</li>
+                <li>Would you have had the patience to wait 5 months?</li>
+            </ol>
+
+            <p style="margin-top: 2rem; padding: 1.5rem; background: rgba(255, 221, 85, 0.1); border-left: 4px solid #FFDD55; border-radius: 8px;">
+                <strong>Remember:</strong> This is ONE example used for educational purposes. Your job is to study many setups, understand the patterns, and develop your own judgment about which ones are worth pursuing. CrashDash gives you the shortlist—you provide the research and conviction.
+            </p>
+        </div>
+
+        <!-- FOOTER NAV -->
+        <div style="margin-top: 4rem; padding-top: 2rem; border-top: 2px solid var(--light-bg); text-align: center;">
+            <p style="margin-bottom: 1rem; color: var(--gray);">Continue Learning:</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="about.html" class="back-button" style="margin: 0;">📖 About</a>
+                <a href="faq.html" class="back-button" style="margin: 0;">❓ FAQ</a>
+                <a href="roadmap.html" class="back-button" style="margin: 0;">🧭 Roadmap</a>
+                <a href="index.html" class="back-button" style="margin: 0;">← Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer style="margin-top: 4rem;">
+        <p>&copy; 2025 CrashDash. Educational purposes only. Not financial advice.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">⚡ When the Market Breaks, You Learn.</p>
+        <div style="margin-top: 1rem;">
+            <a href="https://forms.gle/C5GChwRu8wYshbS69" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">✉️ Contact Us</a>
+        </div>
+    </footer>
+</body>
+</html>

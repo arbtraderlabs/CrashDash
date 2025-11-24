@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - CrashDash Questions Answered</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .faq-hero {
+            background: linear-gradient(135deg, #FF8C42 0%, #FFB347 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        .faq-hero::before {
+            content: '💡';
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.08;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            animation: float-glow 6s ease-in-out infinite;
+        }
+        @keyframes float-glow {
+            0%, 100% { transform: translate(-50%, -50%) rotate(-15deg) scale(1); opacity: 0.08; }
+            50% { transform: translate(-50%, -48%) rotate(-12deg) scale(1.05); opacity: 0.12; }
+        }
+        .faq-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        .faq-hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+        .faq-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        .faq-item {
+            background: var(--white);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-left: 6px solid var(--rally-green);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .faq-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        .faq-item::before {
+            content: attr(data-emoji);
+            position: absolute;
+            font-size: 8rem;
+            opacity: 0.03;
+            right: -1rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .faq-item h3 {
+            color: var(--navy);
+            font-size: 1.4rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .faq-item h3 .emoji-icon {
+            display: inline-block;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--rally-green), #4ADE80);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 12px rgba(17, 204, 119, 0.3);
+        }
+        .faq-item p, .faq-item ul {
+            line-height: 1.8;
+            color: var(--gray);
+            font-size: 1.05rem;
+        }
+        .disclaimer-highlight {
+            background: linear-gradient(135deg, rgba(255, 51, 85, 0.1), rgba(255, 140, 66, 0.1));
+            border: 2px solid var(--crash-red);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        .disclaimer-highlight strong {
+            color: var(--crash-red);
+        }
+        .back-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--navy), var(--dark-gray));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: transform 0.2s;
+        }
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- HERO SECTION -->
+    <div class="faq-hero">
+        <h1>❓ Frequently Asked Questions</h1>
+        <p>Everything you need to know about CrashDash</p>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="faq-content">
+        <a href="index.html" class="back-button">← Back to Dashboard</a>
+
+        <div class="faq-item" data-emoji="🎯">
+            <h3><span class="emoji-icon">🎯</span> What is CrashDash in one sentence?</h3>
+            <p>CrashDash is an educational once-a-day stock scanner that helps you learn about crashed or beaten-up tickers that might be setting up for recovery patterns.</p>
+        </div>
+
+        <div class="faq-item" data-emoji="🎓" style="border-left-color: #FF8C42;">
+            <h3><span class="emoji-icon" style="background: linear-gradient(135deg, #FF8C42, #FFB347);">🎓</span> Is this for beginners or advanced traders?</h3>
+            <p><strong>Both.</strong></p>
+            <ul>
+                <li><strong>Beginners</strong> get a simple, color-based, once-a-day dashboard to learn from—instead of 100 confusing indicators</li>
+                <li><strong>Experienced traders</strong> get structured crash/recovery educational examples without manual scanning</li>
+            </ul>
+            <p>You still need to learn the basics of risk management, position sizing, and not going "all in" on speculative ideas.</p>
+        </div>
+
+        <div class="faq-item" data-emoji="📊" style="border-left-color: #9D4EDD;">
+            <h3><span class="emoji-icon" style="background: linear-gradient(135deg, #9D4EDD, #C77DFF);">📊</span> Is this a day trading tool?</h3>
+            <p><strong>No</strong>—and it's not meant to be.</p>
+            <p>CrashDash is the opposite of day trading:</p>
+            <ul>
+                <li>No tick-by-tick scalping</li>
+                <li>No "buy now, sell in 5 minutes" style</li>
+                <li>No sitting in front of charts all day</li>
+            </ul>
+            <p>You scan once per day, study your favorite educational setups, and then walk away.</p>
+        </div>
+
+        <div class="faq-item" data-emoji="⏰" style="border-left-color: #FFDD55;">
+            <h3><span class="emoji-icon" style="background: linear-gradient(135deg, #FFDD55, #FFE999); color: var(--navy);">⏰</span> How often should I check CrashDash?</h3>
+            <p>Most people will be fine checking it:</p>
+            <ul>
+                <li><strong>Once per day</strong> (ideal for learning patterns)</li>
+                <li><strong>A few times per week</strong> if you're more relaxed about research</li>
+            </ul>
+            <p>You don't get bonus points for staring at it. The whole point is to <strong>save you time</strong>, not consume it.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>❓ Are these signals financial advice?</h3>
+            <div class="disclaimer-highlight">
+                <p><strong>NO. Absolutely not.</strong></p>
+                <p>CrashDash:</p>
+                <ul>
+                    <li>Does <strong>NOT</strong> tell you what to buy or sell</li>
+                    <li>Does <strong>NOT</strong> guarantee profit</li>
+                    <li>Does <strong>NOT</strong> replace your own research</li>
+                    <li>Is <strong>NOT</strong> operated by financial advisors</li>
+                </ul>
+                <p>It highlights potential educational opportunities based on logic and rules built over years of studying markets—especially crashed, ignored, or hated stocks.</p>
+                <p><strong>What you do with that information is 100% your responsibility.</strong> Always consult a qualified financial advisor before making investment decisions.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <h3>❓ What markets does CrashDash cover?</h3>
+            <p>Currently focused on:</p>
+            <ul>
+                <li><strong>London Stock Exchange (LSE)</strong></li>
+                <li>Main Market</li>
+                <li>AIM (Alternative Investment Market)</li>
+                <li>Low-cap and high-volatility names</li>
+            </ul>
+            <p>Future versions may expand to other markets based on user interest and data availability.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>❓ What do the color codes mean?</h3>
+            <p>CrashDash uses a color system to help you quickly understand signal severity:</p>
+            <ul>
+                <li><strong>🟡 Yellow (Crash Zone)</strong> – 80%+ drawdown, early accumulation phase</li>
+                <li><strong>🟢 Green (Deep Crash)</strong> – 85%+ drawdown, balanced risk/reward for learning</li>
+                <li><strong>🟠 Orange (Extreme Crash)</strong> – 90%+ drawdown, higher volatility patterns</li>
+                <li><strong>🔴 Red (Ultra Crash)</strong> – 95%+ drawdown, catastrophic falls (study with caution)</li>
+                <li><strong>🟣 Purple (Enhanced Combo)</strong> – Crash + Accumulation detected together (strongest educational signals)</li>
+            </ul>
+            <p>Think of it like choosing your educational risk lane:</p>
+            <ul>
+                <li>Newer / cautious learners might focus on 🟡🟢</li>
+                <li>More experienced researchers might study 🟠🔴 knowing they represent extreme scenarios</li>
+            </ul>
+        </div>
+
+        <div class="faq-item">
+            <h3>❓ Are these signals only for "high-risk gamblers"?</h3>
+            <p><strong>No.</strong></p>
+            <p>The logic behind the engine is based on:</p>
+            <ul>
+                <li>Market cycle analysis</li>
+                <li>Crash and recovery pattern recognition</li>
+                <li>Consolidation behavior studies</li>
+                <li>Real-world experience studying charts over years</li>
+            </ul>
+            <p><strong>But how you use the signals is up to you.</strong> You can:</p>
+            <ul>
+                <li>Take smaller positions for learning</li>
+                <li>Spread research across multiple ideas</li>
+                <li>Use them as a <strong>watchlist builder</strong> instead of instant entry signals</li>
+                <li>Paper trade first to understand pattern behavior</li>
+            </ul>
+            <p>The signals are educational tools for anyone who respects risk and doesn't expect certainty.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>❓ Do I need to watch the screen all day after entering a trade?</h3>
+            <p><strong>No.</strong></p>
+            <p>CrashDash is built around the idea that you <em>don't</em> have to:</p>
+            <ul>
+                <li>Scan once a day</li>
+                <li>Study setups based on your risk tolerance</li>
+                <li>Set alerts / stops / mental price levels</li>
+                <li>Let the educational pattern play out over days to weeks (or longer)</li>
+            </ul>
+            <p>If you want to stare at every tick, this probably isn't your tool.<br>
+            If you want to learn about patterns around real life, it is.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>❓ Is this free? Will it stay free?</h3>
+            <p>Right now, CrashDash is in <strong>beta</strong> and available for research/educational purposes.</p>
+            <p>Future plans might include:</p>
+            <ul>
+                <li>A <strong>free tier</strong> for basic research</li>
+                <li>A <strong>low-cost tier</strong> for advanced features (premium filters, alerts, historical backtesting)</li>
+            </ul>
+            <p>The goal will always be: <strong>fair, transparent, and not scammy.</strong></p>
+        </div>
+
+        <div class="faq-item">
+            <h3>❓ What's a "Crash Signal" exactly?</h3>
+            <p>A <strong>Crash Signal</strong> is a stock that has:</p>
+            <ol>
+                <li><strong>Dropped hard</strong> (significant price crash from all-time high)</li>
+                <li><strong>Started to calm down</strong> or "go flat" (consolidation phase)</li>
+                <li><strong>Shows potential signs</strong> that selling pressure might be slowing or done</li>
+            </ol>
+            <p>CrashDash tries to flag this educational moment—<strong>after the panic, but before any serious recovery</strong> (if it happens at all).</p>
+            <p>Think of it as studying the "boredom zone" where nobody is paying attention anymore.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>❓ Why are crashed stocks interesting for learning?</h3>
+            <p>Crash signals are educational because:</p>
+            <ul>
+                <li>Most people are too scared to look at them (opportunity in fear)</li>
+                <li>The crowd has often moved on to the next hype ticker</li>
+                <li>If recovery happens, moves can be large compared to tiny intraday scalps</li>
+            </ul>
+            <p><strong>BUT:</strong></p>
+            <ul>
+                <li>They are still high risk</li>
+                <li>Recovery can take days, months, or years</li>
+                <li>Some never recover at all</li>
+            </ul>
+            <p>That's why <strong>Risk Management > Hype</strong>, always.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>❓ How should beginners think about these signals?</h3>
+            <p>If you're new:</p>
+            <ul>
+                <li><strong>Don't see a Crash Signal as "BUY NOW"</strong></li>
+                <li>See it as: <em>"Here's a stock worth researching—something unusual has happened."</em></li>
+            </ul>
+            <p><strong>Use CrashDash as:</strong></p>
+            <ul>
+                <li>A shortlist builder</li>
+                <li>A time saver</li>
+                <li>A starting point for deeper educational research</li>
+            </ul>
+            <p>Not a "press button, get rich" machine.</p>
+        </div>
+
+        <!-- FOOTER NAV -->
+        <div style="margin-top: 4rem; padding-top: 2rem; border-top: 2px solid var(--light-bg); text-align: center;">
+            <p style="margin-bottom: 1rem; color: var(--gray);">Learn More:</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="about.html" class="back-button" style="margin: 0;">📖 About</a>
+                <a href="strategy-guide.html" class="back-button" style="margin: 0;">📚 Strategy Guide</a>
+                <a href="roadmap.html" class="back-button" style="margin: 0;">🧭 Roadmap</a>
+                <a href="index.html" class="back-button" style="margin: 0;">← Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer style="margin-top: 4rem;">
+        <p>&copy; 2025 CrashDash. Educational purposes only. Not financial advice.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">⚡ When the Market Breaks, You Learn.</p>
+        <div style="margin-top: 1rem;">
+            <a href="https://forms.gle/C5GChwRu8wYshbS69" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">✉️ Contact Us</a>
+        </div>
+    </footer>
+</body>
+</html>

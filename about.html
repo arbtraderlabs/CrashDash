@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About CrashDash - Educational Stock Research Tool</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .about-hero {
+            background: linear-gradient(135deg, #1a1f3a 0%, #2d3561 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        .about-hero::before {
+            content: '🧠';
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.05;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .about-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        .about-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        .about-section {
+            margin-bottom: 3rem;
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 6px solid var(--rally-green);
+            position: relative;
+            overflow: hidden;
+        }
+        .about-section::after {
+            content: attr(data-watermark);
+            position: absolute;
+            font-size: 12rem;
+            opacity: 0.02;
+            right: -2rem;
+            bottom: -3rem;
+            transform: rotate(-15deg);
+            pointer-events: none;
+        }
+        .about-section:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        .about-section h2 {
+            color: var(--navy);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 0;
+        }
+        .about-section h2::before {
+            content: attr(data-emoji);
+            display: inline-block;
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--rally-green), #4ADE80);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 4px 12px rgba(17, 204, 119, 0.3);
+        }
+        .about-section h3 {
+            color: var(--dark-gray);
+            font-size: 1.4rem;
+            margin: 2rem 0 1rem 0;
+        }
+        .about-section p, .about-section ul {
+            line-height: 1.8;
+            color: var(--gray);
+            font-size: 1.05rem;
+        }
+        .about-section ul {
+            margin-left: 2rem;
+        }
+        .about-section li {
+            margin-bottom: 0.75rem;
+        }
+        .disclaimer-box {
+            background: linear-gradient(135deg, rgba(255, 51, 85, 0.1), rgba(255, 140, 66, 0.1));
+            border: 2px solid var(--crash-red);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+        .disclaimer-box h3 {
+            color: var(--crash-red);
+            margin-top: 0;
+        }
+        .evolution-timeline {
+            background: linear-gradient(135deg, rgba(17, 204, 119, 0.05), rgba(74, 222, 128, 0.05));
+            padding: 2rem;
+            border-radius: 16px;
+            margin: 2rem 0;
+            border: 2px solid rgba(17, 204, 119, 0.2);
+            box-shadow: 0 4px 12px rgba(17, 204, 119, 0.1);
+        }
+        .evolution-timeline .version {
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            padding-left: 2rem;
+            border-left: 6px solid var(--rally-green);
+            background: var(--white);
+            border-radius: 12px;
+            transition: transform 0.3s;
+        }
+        .evolution-timeline .version:hover {
+            transform: translateX(8px);
+        }
+        .evolution-timeline .version strong {
+            color: var(--navy);
+            font-size: 1.2rem;
+        }
+        .quote-box {
+            background: var(--light-bg);
+            border-left: 4px solid var(--rally-green);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--navy), var(--dark-gray));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: transform 0.2s;
+        }
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- HERO SECTION -->
+    <div class="about-hero">
+        <h1>About CrashDash</h1>
+        <p>An educational research tool for people who want to learn about market crashes, recoveries, and asymmetric opportunities—without staring at charts all day.</p>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="about-content">
+        <a href="index.html" class="back-button">← Back to Dashboard</a>
+
+        <!-- WHAT IS CRASHDASH -->
+        <div class="about-section" data-watermark="🧠">
+            <h2 data-emoji="🧠">What Is CrashDash?</h2>
+            <p>CrashDash is an educational stock research scanner built for people who don't want to manually sift through hundreds of charts every day.</p>
+            <p>It helps you learn about crashed, unloved, and forgotten stocks that might be setting up for recovery—the kind of price movements most people only notice after they've already happened.</p>
+            <p><strong>The concept is simple:</strong></p>
+            <ul>
+                <li>Check it once a day</li>
+                <li>Review the most interesting educational setups in a few minutes</li>
+                <li>Get back to your life, job, family, or whatever you actually care about</li>
+            </ul>
+            <p>No trading room.<br>
+            No 10 screens.<br>
+            No fake Instagram lifestyle.</p>
+            <p>Just educational research signals you can study to improve your understanding of market behavior.</p>
+        </div>
+
+        <!-- WHO BUILT THIS -->
+        <div class="about-section" style="border-left-color: #FF8C42;" data-watermark="👨‍💻">
+            <h2 data-emoji="🧍" style="color: #FF8C42;">Who Built This (And Why)</h2>
+            <p>CrashDash was built by someone who:</p>
+            <ul>
+                <li>Used to scan stocks manually after work</li>
+                <li>Found it impossible to keep up while working full-time</li>
+                <li>Hated the idea of day trading all day for tiny gains</li>
+                <li>Wanted to focus on bigger educational patterns over days, weeks, or even years</li>
+            </ul>
+            <p><strong>The idea was simple:</strong></p>
+            <div class="quote-box">
+                "If the best educational opportunities are the quiet ones nobody talks about, there must be a way to scan for them automatically."
+            </div>
+            <p>So over several years, the rules, patterns, and ideas from manual scanning were turned into an engine—and that engine became CrashDash.</p>
+            <p>This is a <strong>research and education tool</strong>, not a "get rich quick" scheme. It's designed to help you learn about market patterns, not to tell you what to trade.</p>
+        </div>
+
+        <!-- WHY NOT DAY TRADING -->
+        <div class="about-section" style="border-left-color: #9D4EDD;" data-watermark="📉">
+            <h2 data-emoji="📉" style="color: #9D4EDD;">Why Not Day Trading?</h2>
+            <p>Let's be honest:</p>
+            <ul>
+                <li>Real day trading is a grind, not a lifestyle flex</li>
+                <li>Professionals sit through stress, noise, and micro-moves all day</li>
+                <li>Most Instagram "traders" sell a lifestyle, not results</li>
+            </ul>
+            <p><strong>CrashDash is built for people who:</strong></p>
+            <ul>
+                <li>Don't want to trade 20 times a day</li>
+                <li>Don't want to quit their job to sit in front of charts</li>
+                <li>Prefer one quick educational scan, a few good research ideas, then back to normal life</li>
+            </ul>
+            <p>We focus on learning about crashes, consolidations, and recovery potential—not scalping pennies all day.</p>
+        </div>
+
+        <!-- EVOLUTION -->
+        <div class="about-section" style="border-left-color: #FFDD55;" data-watermark="📈">
+            <h2 data-emoji="📈" style="color: #FF8C42;">The CrashDash Evolution (v1 → v4)</h2>
+            <p>CrashDash didn't appear overnight:</p>
+            <div class="evolution-timeline">
+                <div class="version">
+                    <strong>v1</strong> – Manual rules turned into basic scripts. Ugly but useful.
+                </div>
+                <div class="version">
+                    <strong>v2</strong> – Cleaner signals, better filters for educational purposes.
+                </div>
+                <div class="version">
+                    <strong>v3</strong> – Crash detection + scoring across lots of tickers.
+                </div>
+                <div class="version">
+                    <strong>v4 (Now)</strong> – A full research engine combining:
+                    <ul style="margin-top: 0.5rem;">
+                        <li>Price & volume crash patterns</li>
+                        <li>Consolidation behavior analysis</li>
+                        <li>RNS / news event tracking</li>
+                        <li>Fundamentals & sector context</li>
+                        <li>Social & sentiment data (where available)</li>
+                        <li>Corporate actions like splits/halts</li>
+                    </ul>
+                </div>
+            </div>
+            <p>It's still improving. The goal is always the same:</p>
+            <p><strong>Less time staring at charts, more time learning about informed decision-making patterns.</strong></p>
+        </div>
+
+        <!-- RISK & REALITY -->
+        <div class="about-section" style="border-left-color: #FF3355;" data-watermark="⚠️">
+            <h2 data-emoji="⚠️" style="color: #FF3355;">Risk, Reality & Who This Is For</h2>
+            
+            <div class="disclaimer-box">
+                <h3>🚨 CRITICAL DISCLAIMER</h3>
+                <p><strong>CrashDash is NOT financial advice.</strong></p>
+                <p>This tool is for <strong>educational and informational purposes only</strong>. We do not:</p>
+                <ul>
+                    <li>Tell you what to buy or sell</li>
+                    <li>Guarantee any profits or outcomes</li>
+                    <li>Act as financial advisors or investment professionals</li>
+                    <li>Recommend specific trading actions</li>
+                </ul>
+                <p><strong>All investment decisions are yours alone.</strong> You are responsible for your own research, risk management, and trading choices.</p>
+                <p>Signals shown are educational examples based on historical patterns. Past performance does not indicate future results. Markets are volatile and unpredictable—always consult with a qualified financial advisor before making investment decisions.</p>
+            </div>
+
+            <p>As Warren Buffett famously said:</p>
+            <div class="quote-box">
+                "Be greedy when others are fearful, and fearful when others are greedy."
+            </div>
+            <p>That idea <em>inspired</em> CrashDash—but it only really works on specific types of crashes and setups. That's what the engine tries to help you <strong>learn about and identify</strong>.</p>
+
+            <h3>CrashDash is for you if:</h3>
+            <ul>
+                <li>You accept that risk is real and markets can be unpredictable</li>
+                <li>You want to learn about longer-term patterns (days to years)</li>
+                <li>You can handle educational examples involving drawdowns without panicking</li>
+                <li>You want help finding research ideas faster, not being told what to do</li>
+            </ul>
+            <p>The signals are simple enough for beginners to understand,<br>
+            but serious enough that experienced traders can still find educational value.</p>
+        </div>
+
+        <!-- FOOTER NAV -->
+        <div style="margin-top: 4rem; padding-top: 2rem; border-top: 2px solid var(--light-bg); text-align: center;">
+            <p style="margin-bottom: 1rem; color: var(--gray);">Learn More:</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="strategy-guide.html" class="back-button" style="margin: 0;">📚 Strategy Guide</a>
+                <a href="faq.html" class="back-button" style="margin: 0;">❓ FAQ</a>
+                <a href="roadmap.html" class="back-button" style="margin: 0;">🧭 Roadmap</a>
+                <a href="index.html" class="back-button" style="margin: 0;">← Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer style="margin-top: 4rem;">
+        <p>&copy; 2025 CrashDash. Educational purposes only. Not financial advice.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">⚡ When the Market Breaks, You Learn.</p>
+        <div style="margin-top: 1rem;">
+            <a href="https://forms.gle/C5GChwRu8wYshbS69" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">✉️ Contact Us</a>
+        </div>
+    </footer>
+</body>
+</html>

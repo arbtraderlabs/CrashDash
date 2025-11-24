@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap - CrashDash Vision & Progress</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .roadmap-hero {
+            background: linear-gradient(135deg, #1a1f3a 0%, #2d3561 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        .roadmap-hero::before {
+            content: '🧭';
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.05;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .roadmap-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        .roadmap-hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .roadmap-tagline {
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            padding: 1rem 2rem;
+            background: rgba(17, 204, 119, 0.2);
+            border-radius: 12px;
+            display: inline-block;
+        }
+        .roadmap-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        .timeline-section {
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        .timeline-section::before {
+            content: '';
+            position: absolute;
+            left: 40px;
+            top: 60px;
+            bottom: -30px;
+            width: 4px;
+            background: linear-gradient(180deg, var(--rally-green), var(--navy));
+            border-radius: 4px;
+        }
+        .phase-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            margin-left: 80px;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .phase-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        .phase-icon {
+            position: absolute;
+            left: -60px;
+            top: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--rally-green), #4ADE80);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 12px rgba(17, 204, 119, 0.3);
+            z-index: 1;
+        }
+        .phase-icon.in-progress {
+            background: linear-gradient(135deg, #FF8C42, #FFB347);
+            box-shadow: 0 4px 12px rgba(255, 140, 66, 0.3);
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        .phase-icon.future {
+            background: linear-gradient(135deg, #9D4EDD, #C77DFF);
+            box-shadow: 0 4px 12px rgba(157, 78, 221, 0.3);
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 4px 12px rgba(255, 140, 66, 0.3); }
+            50% { box-shadow: 0 8px 24px rgba(255, 140, 66, 0.6); }
+        }
+        .phase-card h2 {
+            color: var(--navy);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .phase-status {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .status-complete {
+            background: rgba(17, 204, 119, 0.15);
+            color: var(--rally-green);
+        }
+        .status-progress {
+            background: rgba(255, 140, 66, 0.15);
+            color: #FF8C42;
+        }
+        .status-future {
+            background: rgba(157, 78, 221, 0.15);
+            color: #9D4EDD;
+        }
+        .phase-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .phase-card li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--light-bg);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: var(--gray);
+        }
+        .phase-card li:last-child {
+            border-bottom: none;
+        }
+        .phase-card li::before {
+            content: '✓';
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: var(--rally-green);
+            color: var(--white);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            margin-right: 0.75rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        .phase-card.in-progress li::before {
+            content: '⏳';
+            background: #FF8C42;
+        }
+        .phase-card.future li::before {
+            content: '📍';
+            background: #9D4EDD;
+        }
+        .goal-box {
+            background: linear-gradient(135deg, rgba(17, 204, 119, 0.1), rgba(74, 222, 128, 0.1));
+            border-left: 4px solid var(--rally-green);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--navy);
+        }
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .audience-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .audience-card:hover {
+            transform: translateY(-4px);
+        }
+        .audience-card .emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .audience-card h3 {
+            color: var(--navy);
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+        }
+        .audience-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .vision-statement {
+            background: linear-gradient(135deg, #1a1f3a, #2d3561);
+            color: var(--white);
+            padding: 3rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 3rem 0;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        .vision-statement h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+        .vision-statement p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--navy), var(--dark-gray));
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: transform 0.2s;
+        }
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .phase-card {
+                margin-left: 40px;
+            }
+            .phase-icon {
+                left: -50px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+            .timeline-section::before {
+                left: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HERO SECTION -->
+    <div class="roadmap-hero">
+        <h1>🧭 CrashDash Roadmap</h1>
+        <p>Building the smartest crash-recovery research tool for people with real lives</p>
+        <div class="roadmap-tagline">
+            📊 Check once a day · 🔍 Find crash-recovery ideas · ⚡ Get back to life
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="roadmap-content">
+        <a href="index.html" class="back-button">← Back to Dashboard</a>
+
+        <!-- TIMELINE -->
+        <div class="timeline-section">
+            
+            <!-- PHASE 1: v1 -->
+            <div class="phase-card">
+                <div class="phase-icon">🔧</div>
+                <h2>v1 - The Beginning</h2>
+                <span class="phase-status status-complete">✅ COMPLETE</span>
+                
+                <p style="color: var(--gray); margin-bottom: 1.5rem; font-size: 1.05rem;">
+                    <strong>A few months ago:</strong> Started as a simple script on a laptop
+                </p>
+                
+                <ul>
+                    <li>Manual script to find stocks that crashed hard</li>
+                    <li>No website, no fancy UI—just personal research tool</li>
+                    <li>Proved the concept: "Can I systematically find these setups?"</li>
+                    <li>Ran locally, helped scan faster than manually checking charts</li>
+                </ul>
+            </div>
+
+            <!-- PHASE 2: v2 -->
+            <div class="phase-card">
+                <div class="phase-icon">🌐</div>
+                <h2>v2 - First Website</h2>
+                <span class="phase-status status-complete">✅ COMPLETE</span>
+                
+                <p style="color: var(--gray); margin-bottom: 1.5rem; font-size: 1.05rem;">
+                    <strong>Proof of concept:</strong> Made it accessible beyond just one laptop
+                </p>
+                
+                <ul>
+                    <li>Script automated to run by itself daily</li>
+                    <li>Basic web page showing list of crash setups</li>
+                    <li>Proof that "this can work for normal people, not just me"</li>
+                    <li>Simple but functional—friends started using it</li>
+                </ul>
+            </div>
+
+            <!-- PHASE 3: v3 LIVE -->
+            <div class="phase-card in-progress">
+                <div class="phase-icon in-progress">🚀</div>
+                <h2>v3 - Live & Growing</h2>
+                <span class="phase-status status-progress">🔴 LIVE NOW</span>
+                
+                <p style="color: var(--gray); margin-bottom: 1.5rem; font-size: 1.05rem;">
+                    <strong>Current state:</strong> Full-featured educational research platform
+                </p>
+                
+                <ul>
+                    <li>Daily crash signals on live website</li>
+                    <li>Focus on UK markets (AIM + LSE Main, expanding coverage)</li>
+                    <li>Color-coded severity system (🟡 Yellow → 🟢 Green → 🟠 Orange → 🔴 Red → 🟣 Purple)</li>
+                    <li>Built for people with jobs, families, and real lives</li>
+                    <li>Once-a-day workflow: Open → Scan → Research → Close</li>
+                    <li>Educational content, strategy guides, FAQs</li>
+                </ul>
+
+                <div class="goal-box">
+                    <strong>🎯 Current Goal:</strong> Make UK crash-recovery signals the most accessible, educational, and time-efficient resource available
+                </div>
+            </div>
+
+            <!-- PHASE 4: v4 IN PROGRESS -->
+            <div class="phase-card in-progress">
+                <div class="phase-icon in-progress">🧠</div>
+                <h2>v4 - Smart Context Layer</h2>
+                <span class="phase-status status-progress">⏳ IN PROGRESS</span>
+                
+                <p style="color: var(--gray); margin-bottom: 1.5rem; font-size: 1.05rem;">
+                    <strong>Next evolution:</strong> Adding intelligent context to every signal
+                </p>
+                
+                <ul>
+                    <li>Signal snapshot cards showing recent news, company info, key events</li>
+                    <li>Automatic detection of "weird events" (splits, halts, suspensions)</li>
+                    <li>Quick answer to: "Is this worth my time to research more?"</li>
+                    <li>Smart Report AI (optional): Plain English explanations of any signal</li>
+                    <li>Enhanced filtering by sector, industry, market cap</li>
+                    <li>Historical performance tracking for pattern learning</li>
+                </ul>
+
+                <div class="goal-box">
+                    <strong>🎯 Goal:</strong> Go from "here's a signal" → "here's a signal + all the context you need to decide in 60 seconds"
+                </div>
+            </div>
+
+            <!-- PHASE 5: FUTURE GROWTH -->
+            <div class="phase-card future">
+                <div class="phase-icon future">🌍</div>
+                <h2>Future - Global Expansion</h2>
+                <span class="phase-status status-future">📍 PLANNED</span>
+                
+                <p style="color: var(--gray); margin-bottom: 1.5rem; font-size: 1.05rem;">
+                    <strong>Growing smart, not fast:</strong> Finish UK properly, then expand
+                </p>
+                
+                <ul>
+                    <li>Complete UK market coverage (AIM + Main + small caps)</li>
+                    <li>European markets (Germany, France, Nordics)</li>
+                    <li>US markets (NASDAQ, NYSE small/mid caps)</li>
+                    <li>Crypto crash-recovery signals (only if genuine edge exists)</li>
+                    <li>Mobile app for iOS/Android</li>
+                    <li>API access for advanced users & researchers</li>
+                </ul>
+
+                <div class="goal-box">
+                    <strong>🎯 Philosophy:</strong> Slow and smart > Fast and broken. We only expand when quality is proven.
+                </div>
+            </div>
+
+        </div>
+
+        <!-- WHO THIS IS FOR -->
+        <div style="margin-top: 4rem;">
+            <h2 style="text-align: center; color: var(--navy); font-size: 2.5rem; margin-bottom: 2rem;">👥 Who This Is For</h2>
+            
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <span class="emoji">💼</span>
+                    <h3>Busy Professionals</h3>
+                    <p>You have a job, family, and real responsibilities. You want better opportunities without watching screens all day.</p>
+                </div>
+                
+                <div class="audience-card">
+                    <span class="emoji">📈</span>
+                    <h3>Swing Traders</h3>
+                    <p>You're interested in recovery plays over days, weeks, or months—not tick-by-tick scalping.</p>
+                </div>
+                
+                <div class="audience-card">
+                    <span class="emoji">🎓</span>
+                    <h3>Market Learners</h3>
+                    <p>You want to study crash-recovery patterns systematically instead of randomly stumbling onto them.</p>
+                </div>
+                
+                <div class="audience-card">
+                    <span class="emoji">🔍</span>
+                    <h3>Research-Focused</h3>
+                    <p>You prefer finding quiet, ignored opportunities before the crowd notices—not chasing hype.</p>
+                </div>
+                
+                <div class="audience-card">
+                    <span class="emoji">🧘</span>
+                    <h3>Calm Investors</h3>
+                    <p>You're comfortable holding through volatility and waiting for the thesis to play out over time.</p>
+                </div>
+                
+                <div class="audience-card">
+                    <span class="emoji">⚖️</span>
+                    <h3>Risk-Aware Traders</h3>
+                    <p>You understand that not all signals work, but you want better odds through systematic research.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VISION STATEMENT -->
+        <div class="vision-statement">
+            <h2>🎯 Our Vision</h2>
+            <p>
+                <strong>Make crash-recovery research accessible to everyone.</strong>
+            </p>
+            <p style="margin-top: 1.5rem;">
+                Not just for hedge funds with Bloomberg terminals.<br>
+                Not just for people who can quit their job to trade.<br>
+                Not just for the "insiders."
+            </p>
+            <p style="margin-top: 1.5rem; font-size: 1.3rem; font-weight: 700;">
+                For normal people who want asymmetric opportunities<br>without sacrificing their real life.
+            </p>
+        </div>
+
+        <!-- TRANSPARENCY NOTE -->
+        <div style="background: rgba(17, 204, 119, 0.05); border: 2px solid var(--rally-green); border-radius: 12px; padding: 2rem; margin: 3rem 0;">
+            <h3 style="color: var(--navy); margin-top: 0;">💚 Why We Share This Roadmap</h3>
+            <p style="color: var(--gray); line-height: 1.8; font-size: 1.05rem;">
+                We believe in <strong>transparency</strong>. You deserve to know where we're going, what we're building, and why.
+            </p>
+            <p style="color: var(--gray); line-height: 1.8; font-size: 1.05rem; margin-top: 1rem;">
+                This isn't a "pump and dump" tool. It's not a get-rich-quick scheme. It's a serious research platform being built by people who actually use it themselves.
+            </p>
+            <p style="color: var(--gray); line-height: 1.8; font-size: 1.05rem; margin-top: 1rem;">
+                <strong>For potential investors:</strong> We're building something real, methodically, with a clear vision. We're not rushing. We're doing it right.
+            </p>
+            <p style="color: var(--gray); line-height: 1.8; font-size: 1.05rem; margin-top: 1rem;">
+                <strong>For users:</strong> Your time is valuable. We respect that. That's why every feature is designed to <em>save</em> you time, not waste it.
+            </p>
+        </div>
+
+        <!-- FOOTER NAV -->
+        <div style="margin-top: 4rem; padding-top: 2rem; border-top: 2px solid var(--light-bg); text-align: center;">
+            <p style="margin-bottom: 1rem; color: var(--gray);">Learn More:</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="about.html" class="back-button" style="margin: 0;">📖 About</a>
+                <a href="strategy-guide.html" class="back-button" style="margin: 0;">📚 Strategy Guide</a>
+                <a href="faq.html" class="back-button" style="margin: 0;">❓ FAQ</a>
+                <a href="index.html" class="back-button" style="margin: 0;">← Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer style="margin-top: 4rem;">
+        <p>&copy; 2025 CrashDash. Educational purposes only. Not financial advice.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">⚡ Building the future of crash-recovery research.</p>
+        <div style="margin-top: 1rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+            <a href="about.html" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">About</a>
+            <a href="strategy-guide.html" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">Strategy Guide</a>
+            <a href="faq.html" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">FAQ</a>
+            <a href="roadmap.html" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">Roadmap</a>
+            <a href="https://forms.gle/C5GChwRu8wYshbS69" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">✉️ Contact Us</a>
+        </div>
+    </footer>
+</body>
+</html>

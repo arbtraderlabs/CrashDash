@@ -20,6 +20,12 @@
                     <div class="tagline">When the Market Breaks, You Don't.</div>
                 </div>
             </div>
+            <nav style="display: flex; gap: 1rem; align-items: center; margin-left: auto;">
+                <a href="about.html" style="color: var(--white); text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border-radius: 8px; transition: background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">📖 About</a>
+                <a href="strategy-guide.html" style="color: var(--white); text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border-radius: 8px; transition: background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">📚 Strategy</a>
+                <a href="faq.html" style="color: var(--white); text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border-radius: 8px; transition: background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">❓ FAQ</a>
+                <a href="roadmap.html" style="color: var(--white); text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border-radius: 8px; transition: background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">🧭 Roadmap</a>
+            </nav>
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="🔍 Search ticker or company name...">
             </div>
@@ -29,57 +35,84 @@
     <!-- MAIN CONTAINER -->
     <div class="container">
         
-        <!-- STATS CARDS -->
-        <div class="stats-grid" id="statsGrid">
-            <div class="stat-card">
-                <span class="stat-value" id="totalTickers">600+</span>
-                <span class="stat-label">LSE AIM Tickers Tracked</span>
+        <!-- STATS CARDS - COMPACT -->
+        <div class="stats-grid-compact" id="statsGrid">
+            <div class="stat-card-mini">
+                <span class="stat-icon">📊</span>
+                <div class="stat-content">
+                    <span class="stat-value-mini" id="totalTickers">600+</span>
+                    <span class="stat-label-mini">Tickers</span>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-value" id="totalSignals">-</span>
-                <span class="stat-label">Crash Signals Generated</span>
+            <div class="stat-card-mini">
+                <span class="stat-icon">🎯</span>
+                <div class="stat-content">
+                    <span class="stat-value-mini" id="totalSignals">-</span>
+                    <span class="stat-label-mini">Signals</span>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-value" id="purpleCount">-</span>
-                <span class="stat-label">🟣 Purple Combos</span>
+            <div class="stat-card-mini highlight-purple">
+                <span class="stat-icon">🟣</span>
+                <div class="stat-content">
+                    <span class="stat-value-mini" id="purpleCount">-</span>
+                    <span class="stat-label-mini">Enhanced</span>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-value" id="redCount">-</span>
-                <span class="stat-label">🔴 Ultra Crashes</span>
+            <div class="stat-card-mini highlight-red">
+                <span class="stat-icon">🔴</span>
+                <div class="stat-content">
+                    <span class="stat-value-mini" id="redCount">-</span>
+                    <span class="stat-label-mini">Ultra</span>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-value" id="lastUpdate">-</span>
-                <span class="stat-label">Last Updated</span>
+            <div class="stat-card-mini">
+                <span class="stat-icon">⏰</span>
+                <div class="stat-content">
+                    <span class="stat-value-mini" id="lastUpdate">-</span>
+                </div>
             </div>
         </div>
 
         <!-- FILTERS -->
-        <div class="filters-section">
-            <div class="filters-grid">
-                <div class="filter-group">
+        <div class="filters-section-compact">
+            <div class="filters-inline">
+                <div class="filter-compact">
                     <label for="colorFilter">Signal Color</label>
                     <select id="colorFilter">
                         <option value="">All Colors</option>
-                        <option value="PURPLE">🟣 Purple (Enhanced Combo)</option>
-                <span class="ai-badge">Powered by Engine V4</span>ed (Ultra Crash)</option>
+                        <option value="PURPLE">🟣 Purple (Enhanced)</option>
+                        <option value="RED">🔴 Red (Ultra)</option>
                         <option value="ORANGE">🟠 Orange (Extreme)</option>
                         <option value="GREEN">🟢 Green (Deep)</option>
-                        <option value="YELLOW">🟡 Yellow (Crash Zone)</option>
+                        <option value="YELLOW">🟡 Yellow (Crash)</option>
                     </select>
                 </div>
-                <div class="filter-group">
+                <div class="filter-compact">
                     <label for="sectorFilter">Sector</label>
                     <select id="sectorFilter">
                         <option value="">All Sectors</option>
                     </select>
                 </div>
-                <div class="filter-group">
+                <div class="filter-compact">
                     <label for="industryFilter">Industry</label>
                     <select id="industryFilter">
                         <option value="">All Industries</option>
                     </select>
                 </div>
-                <div class="filter-group">
+                <div class="filter-compact">
+                    <label for="marketCapFilter">💰 Market Cap</label>
+                    <select id="marketCapFilter">
+                        <option value="">All Sizes</option>
+                        <option value="0-1">< £1M (Nano)</option>
+                        <option value="1-5">£1M - £5M</option>
+                        <option value="5-20">£5M - £20M</option>
+                        <option value="20-50">£20M - £50M</option>
+                        <option value="50-100">£50M - £100M</option>
+                        <option value="100-250">£100M - £250M</option>
+                        <option value="250+">£250M+</option>
+                    </select>
+                </div>
+                <div class="filter-compact">
                     <label for="dateRangeFilter">📅 Signals From</label>
                     <select id="dateRangeFilter">
                         <option value="all">All Time</option>
@@ -87,12 +120,10 @@
                         <option value="3m" selected>Last 3 Months</option>
                         <option value="6m">Last 6 Months</option>
                         <option value="1y">Last 1 Year</option>
-                        <option value="custom">Custom Range...</option>
+                        <option value="custom">Custom...</option>
                     </select>
                 </div>
-                <div class="filter-group" style="display: flex; align-items: flex-end;">
-                    <button class="reset-filters" onclick="resetFilters()">Reset Filters</button>
-                </div>
+                <button class="reset-filters-compact" onclick="resetFilters()">Reset Filters</button>
             </div>
             
             <!-- CUSTOM DATE RANGE (Hidden by default) -->
@@ -226,8 +257,15 @@
 
     <!-- FOOTER -->
     <footer>
-        <p>&copy; 2025 Crash Dash. All rights reserved. | Data updated: <span id="lastUpdate">-</span></p>
-        <p style="margin-top: 0.5rem; font-size: 0.8rem;">⚡ When the Market Breaks, You Don't.</p>
+        <p>&copy; 2025 Crash Dash. Educational purposes only. Not financial advice. | Data updated: <span id="footerLastUpdate">-</span></p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">⚡ When the Market Breaks, You Learn.</p>
+        <div style="margin-top: 1rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+            <a href="about.html" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">About</a>
+            <a href="strategy-guide.html" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">Strategy Guide</a>
+            <a href="faq.html" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">FAQ</a>
+            <a href="roadmap.html" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">Roadmap</a>
+            <a href="https://forms.gle/C5GChwRu8wYshbS69" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">✉️ Contact Us</a>
+        </div>
     </footer>
 
     <!-- JAVASCRIPT -->
