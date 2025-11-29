@@ -316,6 +316,11 @@ function updateStats() {
 function populateFilterDropdowns(sectors) {
     const sectorSelect = document.getElementById('sectorFilter');
     
+    if (!sectorSelect) {
+        console.error('sectorFilter element not found in DOM');
+        return;
+    }
+    
     sectors.forEach(sector => {
         const option = document.createElement('option');
         option.value = sector;
