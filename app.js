@@ -910,6 +910,10 @@ function createExpandableRow(signal, metadata, tickerInfo) {
                             <span class="metadata-value">${exchange} (${market})</span>
                         </div>
                         <div class="metadata-item">
+                            <span class="metadata-label">Sector:</span>
+                            <span class="metadata-value">${companyInfo.sector || 'Unknown'}</span>
+                        </div>
+                        <div class="metadata-item">
                             <span class="metadata-label">Industry:</span>
                             <span class="metadata-value">${companyInfo.industry || 'Unknown'}</span>
                         </div>
@@ -1568,6 +1572,10 @@ async function showCompanyModal(ticker) {
                             <div class="metadata-item">
                                 <span class="metadata-label">Market:</span>
                                 <span class="metadata-value">${market}</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">Sector:</span>
+                                <span class="metadata-value">${companyInfo.sector || 'Unknown'}</span>
                             </div>
                             <div class="metadata-item">
                                 <span class="metadata-label">Industry:</span>
