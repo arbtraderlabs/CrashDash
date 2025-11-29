@@ -14,23 +14,66 @@
         <div class="header-content">
             <div class="logo-section">
                 <img src="assets/logo.svg" alt="Crash Dash Logo" class="logo">
-                <div class="brand-text">
-                    <h1>CRASH DASH</h1>
-                    <p class="tagline-primary">Your source for mispriced fear and asymmetric opportunity.</p>
-                    <div class="tagline">When the Market Breaks, You Don't.</div>
-                </div>
             </div>
-            <nav style="display: flex; gap: 1rem; align-items: center; margin-left: auto;">
-                <a href="about.html" style="color: var(--white); text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border-radius: 8px; transition: background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">📖 About</a>
-                <a href="strategy-guide.html" style="color: var(--white); text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border-radius: 8px; transition: background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">📚 Strategy</a>
-                <a href="faq.html" style="color: var(--white); text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border-radius: 8px; transition: background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">❓ FAQ</a>
-                <a href="roadmap.html" style="color: var(--white); text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border-radius: 8px; transition: background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">🧭 Roadmap</a>
-            </nav>
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="🔍 Search ticker or company name...">
             </div>
+            <div class="header-last-update" style="display: flex; align-items: center; gap: 0.3rem; flex-shrink: 0;">
+                <div style="display: flex; flex-direction: column; align-items: flex-end;">
+                    <span id="headerLastUpdate" style="font-size: 0.7rem; font-weight: 600; color: var(--white); line-height: 1.2;">-</span>
+                    <span id="headerLastUpdateTime" style="font-size: 0.55rem; color: rgba(255,255,255,0.8); line-height: 1;">-</span>
+                    <span style="font-size: 0.55rem; font-style: italic; color: rgba(255,255,255,0.6); line-height: 1;">Last refresh</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- NAVIGATION AND FILTERS -->
+        <div class="nav-and-filters">
+            <nav class="nav-tabs">
+                <a href="about.html">📖 About</a>
+                <a href="strategy-guide.html">📚 Strategy</a>
+                <a href="faq.html">❓ FAQ</a>
+                <a href="roadmap.html">🧭 Roadmap</a>
+                <a href="https://x.com/CrashDashAI" target="_blank" class="x-link" title="Follow us on X">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="display: inline-block; vertical-align: middle;">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+            </nav>
+            <div class="header-filters">
+                <a href="#how-to-use" class="how-to-use-btn">💡 How to Use</a>
+                
+                <button id="openFiltersBtn" class="filters-popup-button">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em" style="fill: currentColor;">
+                        <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
+                    </svg>
+                    <span>Filters</span>
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" height="0.9em" width="0.9em" style="fill: currentColor; opacity: 0.7; margin-left: 0.2rem;" onclick="event.stopPropagation(); resetFilters();" id="resetIconBtn" title="Reset Filters" style="display: none;">
+                        <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
+                    </svg>
+                </button>
+                
+                <!-- VIEW MODE TOGGLE -->
+                <div class="view-mode-compact">
+                    <label class="view-toggle-label-compact">View:</label>
+                    <div class="toggle-switch-compact" onclick="toggleViewMode()">
+                        <div class="toggle-track-compact">
+                            <div id="toggleSlider" class="toggle-slider-compact"></div>
+                        </div>
+                        <span class="toggle-icon" id="compactIcon">▤</span>
+                        <span class="toggle-icon" id="detailIcon">☰</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
+
+    <!-- HERO SECTION (Desktop Only) -->
+    <div class="hero-section">
+        <h1>CRASH DASH</h1>
+        <p class="hero-tagline">Your source for mispriced fear and asymmetric opportunity.</p>
+        <p class="hero-subtitle">When the Market Breaks, You Don't.</p>
+    </div>
 
     <!-- MAIN CONTAINER -->
     <div class="container">
@@ -73,89 +116,14 @@
             </div>
         </div>
 
-        <!-- FILTERS -->
-        <div class="filters-section-compact">
-            <div class="filters-inline">
-                <div class="filter-compact">
-                    <label for="colorFilter">Signal Color</label>
-                    <select id="colorFilter">
-                        <option value="">All Colors</option>
-                        <option value="PURPLE">🟣 Purple (Enhanced)</option>
-                        <option value="RED">🔴 Red (Ultra)</option>
-                        <option value="ORANGE">🟠 Orange (Extreme)</option>
-                        <option value="GREEN">🟢 Green (Deep)</option>
-                        <option value="YELLOW">🟡 Yellow (Crash)</option>
-                    </select>
-                </div>
-                <div class="filter-compact">
-                    <label for="sectorFilter">Sector</label>
-                    <select id="sectorFilter">
-                        <option value="">All Sectors</option>
-                    </select>
-                </div>
-                <div class="filter-compact">
-                    <label for="industryFilter">Industry</label>
-                    <select id="industryFilter">
-                        <option value="">All Industries</option>
-                    </select>
-                </div>
-                <div class="filter-compact">
-                    <label for="marketCapFilter">💰 Market Cap</label>
-                    <select id="marketCapFilter">
-                        <option value="">All Sizes</option>
-                        <option value="0-1">< £1M (Nano)</option>
-                        <option value="1-5">£1M - £5M</option>
-                        <option value="5-20">£5M - £20M</option>
-                        <option value="20-50">£20M - £50M</option>
-                        <option value="50-100">£50M - £100M</option>
-                        <option value="100-250">£100M - £250M</option>
-                        <option value="250+">£250M+</option>
-                    </select>
-                </div>
-                <div class="filter-compact">
-                    <label for="dateRangeFilter">📅 Signals From</label>
-                    <select id="dateRangeFilter">
-                        <option value="all">All Time</option>
-                        <option value="1m">Last 1 Month</option>
-                        <option value="3m" selected>Last 3 Months</option>
-                        <option value="6m">Last 6 Months</option>
-                        <option value="1y">Last 1 Year</option>
-                        <option value="custom">Custom...</option>
-                    </select>
-                </div>
-                <button class="reset-filters-compact" onclick="resetFilters()">Reset Filters</button>
-            </div>
-            
-            <!-- CUSTOM DATE RANGE (Hidden by default) -->
-            <div id="customDateInputs" class="custom-date-inputs" style="display: none;">
-                <label>Custom Date Range:</label>
-                <input type="date" id="startDate" placeholder="Start Date">
-                <span>→</span>
-                <input type="date" id="endDate" placeholder="End Date">
-            </div>
-        </div>
-
-        <!-- VIEW MODE TOGGLE + SMARTREPORT AI (side by side) -->
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin: 1rem 2rem; flex-wrap: wrap;">
-            <div class="view-mode-section" style="margin: 0; flex: 1; min-width: 300px;">
-                <label class="view-toggle-label">View Mode:</label>
-                <div class="toggle-switch" onclick="toggleViewMode()">
-                    <div class="toggle-track">
-                        <div id="toggleSlider" class="toggle-slider"></div>
-                    </div>
-                    <span class="toggle-option toggle-compact" id="compactLabel">Compact</span>
-                    <span class="toggle-option toggle-detail" id="detailLabel">Detail</span>
-                </div>
-                <p class="view-mode-hint" id="viewModeHint">Compact view shows one row per ticker. Click ticker to expand history.</p>
-            </div>
-            
-            <!-- SMARTREPORT AI TEASER (compact, right side) -->
-            <div class="ai-teaser-section" style="margin: 0;">
+        <!-- SMARTREPORT AI TEASER -->
+        <div style="display: flex; justify-content: center; margin: 1.5rem 2rem;">
+            <div class="ai-teaser-wrapper">
                 <button class="ai-teaser-button" disabled>
                     <span class="ai-icon">⚡</span>
                     <div class="ai-teaser-content">
                         <div class="ai-teaser-title">SmartReport AI</div>
-                        <div class="ai-teaser-subtitle">Coming Soon</div>
+                        <div class="ai-teaser-subtitle">COMING SOON</div>
                     </div>
                     <span class="ai-badge">Powered by Engine V4</span>
                 </button>
@@ -163,7 +131,6 @@
         </div>
 
         <!-- SIGNALS TABLE -->
-        <div class="mobile-scroll-hint" id="mobileScrollHint">👈 Swipe left/right to see all columns 👉</div>
         <div class="signals-table-wrapper" id="signalsWrapper" style="touch-action: pan-x; -ms-touch-action: pan-x; overscroll-behavior-x: contain;">
             <table class="signals-table">
                 <thead>
@@ -171,14 +138,14 @@
                         <th class="sortable" data-sort="ticker">Ticker</th>
                         <th class="sortable" data-sort="date">Signal Date</th>
                         <th class="sortable" data-sort="signal_type">Signal Type</th>
-                        <th class="sortable" data-sort="ai_score">AI Score ⚡</th>
+                        <th class="sortable" data-sort="ai_score"><span class="desktop-text">AI Score</span> ⚡</th>
                         <th class="sortable" data-sort="current_pnl">Entry → P&L</th>
                         <th class="sortable" data-sort="best_rally">Best Rally</th>
                     </tr>
                     <tr id="compressedHeader" style="display: none;">
                         <th class="sortable" data-sort="ticker">Ticker</th>
                         <th class="sortable" data-sort="signal_count">Signals</th>
-                        <th class="sortable" data-sort="latest_score">AI Score ⚡</th>
+                        <th class="sortable" data-sort="latest_score"><span class="desktop-text">AI Score</span> ⚡</th>
                         <th class="sortable" data-sort="latest_pnl">Entry → P&L</th>
                     </tr>
                 </thead>
@@ -191,79 +158,149 @@
         </div>
 
         <!-- EDUCATION PANEL -->
-        <div class="education-panel">
-            <h2>📚 How to Use Crash Dash</h2>
+        <div class="education-panel" id="how-to-use">
+            <h2 class="responsive-text">📚 How to Use CrashDash</h2>
             
-            <h3 style="margin-top: 1.5rem; color: var(--split-yellow);">Signal Color Guide</h3>
+            <h3 class="responsive-text" style="margin-top: 1.5rem; color: var(--split-yellow);">Signal Color Guide</h3>
             <div class="color-guide">
                 <div class="color-explanation purple">
-                    <h3>🟣 PURPLE - Enhanced Combo</h3>
-                    <p><strong>Strongest Signal:</strong> Crash bottom + accumulation pattern detected. AI has identified both extreme oversold conditions AND institutional accumulation building.</p>
-                    <p><strong>Use Case:</strong> Highest probability reversal candidates.</p>
+                    <h3 class="responsive-text">🟣 PURPLE – Enhanced Combo</h3>
+                    <p class="responsive-text"><strong>What it means:</strong> Our strongest type of setup. A major crash followed by signs of quiet buying and price stabilisation.</p>
+                    <p class="responsive-text"><strong>How to use it:</strong> Shortlist for your highest-conviction recovery ideas. Still high risk, but the most "stacked" conditions.</p>
                 </div>
                 
                 <div class="color-explanation red">
-                    <h3>🔴 RED - Ultra Crash</h3>
-                    <p><strong>95%+ Drawdown:</strong> Catastrophic price decline from all-time high. Extreme oversold (RSI &lt; 30), early cycle position (&lt; 15%).</p>
-                    <p><strong>Use Case:</strong> Maximum risk/reward, but requires strong conviction.</p>
+                    <h3 class="responsive-text">🔴 RED – Ultra Crash</h3>
+                    <p class="responsive-text"><strong>What it means:</strong> Brutal, wash-out style move. The stock has been hammered and is sitting in extreme crash territory.</p>
+                    <p class="responsive-text"><strong>How to use it:</strong> For traders who like maximum risk / maximum reward. Only makes sense if you truly understand the story and can handle heavy volatility.</p>
                 </div>
                 
                 <div class="color-explanation orange">
-                    <h3>🟠 ORANGE - Extreme Crash</h3>
-                    <p><strong>90%+ Drawdown:</strong> Severe crash with strong reversal potential. RSI &lt; 35, cycle position &lt; 20%.</p>
-                    <p><strong>Use Case:</strong> High probability setups with significant upside potential.</p>
+                    <h3 class="responsive-text">🟠 ORANGE – Extreme Crash</h3>
+                    <p class="responsive-text"><strong>What it means:</strong> Severe damage, but with signs that the selling pressure may be fading.</p>
+                    <p class="responsive-text"><strong>How to use it:</strong> Good for aggressive recovery hunters looking for big upside, while accepting that the trend may still be fragile.</p>
                 </div>
                 
                 <div class="color-explanation green">
-                    <h3>🟢 GREEN - Deep Crash</h3>
-                    <p><strong>85%+ Drawdown:</strong> AI-validated crash bottom. RSI &lt; 40, cycle position &lt; 25%. Technical score meets threshold.</p>
-                    <p><strong>Use Case:</strong> Balanced risk/reward with technical confirmation.</p>
+                    <h3 class="responsive-text">🟢 GREEN – Deep Crash</h3>
+                    <p class="responsive-text"><strong>What it means:</strong> A deep sell-off with improving technical conditions and a more "controlled" crash profile.</p>
+                    <p class="responsive-text"><strong>How to use it:</strong> A balanced risk/reward zone. Often a sweet spot for people who want recovery potential without chasing the most extreme names.</p>
                 </div>
                 
                 <div class="color-explanation yellow">
-                    <h3>🟡 YELLOW - Crash Zone</h3>
-                    <p><strong>80%+ Drawdown:</strong> Early accumulation phase. RSI &lt; 45, cycle position &lt; 30%. Watch for further confirmation.</p>
-                    <p><strong>Use Case:</strong> Early warning system, monitor for upgrade to higher tier.</p>
+                    <h3 class="responsive-text">🟡 YELLOW – Crash Zone</h3>
+                    <p class="responsive-text"><strong>What it means:</strong> The stock has entered a meaningful drawdown and is on our radar, but conditions are still developing.</p>
+                    <p class="responsive-text"><strong>How to use it:</strong> Treat these as early warning / watchlist candidates. Many will later get upgraded to Green, Orange, Red, or Purple if conditions strengthen.</p>
                 </div>
             </div>
 
-            <h3 style="margin-top: 2rem; color: var(--split-yellow);">Key Metrics Explained</h3>
+            <h3 class="responsive-text" style="margin-top: 2rem; color: var(--split-yellow);">🚀 Key Metrics (Simple & Powerful)</h3>
             <div style="margin-top: 1rem; line-height: 1.8;">
-                <p><strong>AI Technical Score:</strong> Multi-factor scoring system (0-21 points) combining RSI extremes, volume spikes, momentum capitulation, cycle positioning, and price compression. Higher scores indicate stronger technical reversal setup.</p>
-                <p><strong>Drawdown %:</strong> Percentage decline from all-time high to crash bottom</p>
-                <p><strong>Current P&L:</strong> If you bought at signal date, your return today</p>
-                <p><strong>Best Rally:</strong> Historical peak gain achieved from a similar crash signal</p>
-                <p><strong>Cycle Position:</strong> Where price sits within 50-day range (0% = at bottom, 100% = at top). Lower values indicate oversold conditions.</p>
-                <p><strong>Win Rate:</strong> Percentage of past signals that went positive</p>
+                <p class="responsive-text"><strong>⚡ AI Technical Score:</strong> A blended strength score that highlights oversold zones, momentum exhaustion, and recovery potential. Higher = stronger reversal setup.</p>
+                <p class="responsive-text"><strong>📉 Drawdown %:</strong> How far the stock has fallen from its peak to its lowest point.</p>
+                <p class="responsive-text"><strong>💰 Current P&L:</strong> Your return (%) if you bought at the moment the crash signal appeared.</p>
+                <p class="responsive-text"><strong>📈 Best Rally:</strong> The strongest bounce seen after similar crash-type conditions in the past.</p>
+                <p class="responsive-text"><strong>🔄 Cycle Position:</strong> Where the price sits inside its short-term range. 0% = bottom of the range, 100% = top of the range. Lower values often indicate pressure → potential recovery zones.</p>
+                <p class="responsive-text"><strong>🟢 Win Rate:</strong> How often similar setups historically turned positive.</p>
             </div>
 
-            <h3 style="margin-top: 2rem; color: var(--split-yellow);">Risk Flags</h3>
+            <h3 class="responsive-text" style="margin-top: 2rem; color: var(--split-yellow);">⚠️ Risk Flags (What to Watch Out For)</h3>
             <div style="margin-top: 1rem; line-height: 1.8;">
-                <p><strong>SIGNAL_NEAR_SPLIT:</strong> Signal occurred within 5 days of stock split - price data may be unreliable</p>
-                <p><strong>HAS_REVERSE_SPLIT:</strong> Company has done reverse split (share consolidation) - typically indicates prolonged decline and potential dilution risk</p>
-                <p><strong>EXTREME_DRAWDOWN:</strong> Currently down 80%+ from ATH - high risk, high reward</p>
-                <p><strong>PENNY_STOCK:</strong> Trading under 1p - extreme volatility and liquidity risks</p>
-                <p><strong>FREQUENT_CRASHES:</strong> More than 5 crash signals detected - pattern of instability</p>
+                <p class="responsive-text"><strong>🧩 Near Corporate Action:</strong> Signal triggered around a stock split or similar event — price behaviour can be distorted.</p>
+                <p class="responsive-text"><strong>🪓 Reverse Split History:</strong> Company has consolidated shares. Often associated with long-term decline or dilution risks.</p>
+                <p class="responsive-text"><strong>🩹 Deep Drawdown (80%+):</strong> Ultra-high risk territory. Big rebounds possible — but equally big downside.</p>
+                <p class="responsive-text"><strong>🪙 Penny Stock Zone:</strong> Trading under 1p. Low liquidity, wild swings, unpredictable spreads.</p>
+                <p class="responsive-text"><strong>🔁 Frequent Crashes:</strong> Multiple crash-type events detected — may indicate instability or broken trend structure.</p>
             </div>
 
-            <h3 style="margin-top: 2rem; color: var(--split-yellow);">Important Disclaimer</h3>
+            <h3 class="responsive-text" style="margin-top: 2rem; color: var(--split-yellow);">Important Disclaimer</h3>
             <div style="margin-top: 1rem; line-height: 1.8; opacity: 0.8;">
-                <p><strong>⚠️ This is NOT financial advice.</strong> Crash Dash is a research tool providing historical signal analysis. All investments carry risk. Past performance does not guarantee future results. Always conduct your own due diligence and consult with a qualified financial advisor before making investment decisions.</p>
-                <p style="margin-top: 0.5rem;"><strong>Data Source:</strong> London Stock Exchange (LSE) AIM market. Signals generated using proprietary AI crash detection algorithm analyzing 20+ years of historical data.</p>
+                <p class="responsive-text"><strong>⚠️ CrashDash is a research and education tool, not a financial advisor.</strong> Nothing on this site constitutes investment, tax, or legal advice. All investments carry risk, and you can lose money. Past performance and historical patterns do not guarantee future results. Always do your own research and, where appropriate, consult a qualified financial professional before acting on any information.</p>
+            </div>
+
+            <h3 class="responsive-text" style="margin-top: 1.5rem; color: var(--split-yellow);">Data & Signals</h3>
+            <div style="margin-top: 1rem; line-height: 1.8; opacity: 0.8;">
+                <p class="responsive-text"><strong>📊 CrashDash currently focuses on London-listed equities</strong> (including the LSE AIM market) and other selected markets. Signals are generated by our internal pattern-detection models using long-range historical market data. Data and analytics are provided "as is" with no guarantee of accuracy, completeness, or timeliness.</p>
             </div>
         </div>
 
     </div>
 
+    <!-- FILTERS POPUP MODAL -->
+    <div id="filtersModal" class="filters-modal" style="display: none;">
+        <div class="filters-modal-overlay" onclick="closeFiltersModal()"></div>
+        <div class="filters-modal-content">
+            <div class="filters-modal-header">
+                <h2>Filters</h2>
+                <button class="filters-modal-close" onclick="closeFiltersModal()">&times;</button>
+            </div>
+            <div class="filters-modal-body">
+                <div class="filter-group">
+                    <label for="colorFilter">Signal Type</label>
+                    <select id="colorFilter" onchange="updateFilterCount()">
+                        <option value="">All Colors</option>
+                        <option value="PURPLE">🟣 Purple (Enhanced)</option>
+                        <option value="RED">🔴 Red (Ultra)</option>
+                        <option value="ORANGE">🟠 Orange (Extreme)</option>
+                        <option value="GREEN">🟢 Green (Deep)</option>
+                        <option value="YELLOW">🟡 Yellow (Crash)</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="sectorFilter">Sector</label>
+                    <select id="sectorFilter" onchange="updateFilterCount()">
+                        <option value="">All Sectors</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="marketCapFilter">Market Cap</label>
+                    <select id="marketCapFilter" onchange="updateFilterCount()">
+                        <option value="">All Sizes</option>
+                        <option value="0-1">< £1M (Nano)</option>
+                        <option value="1-5">£1M - £5M</option>
+                        <option value="5-20">£5M - £20M</option>
+                        <option value="20-50">£20M - £50M</option>
+                        <option value="50-100">£50M - £100M</option>
+                        <option value="100-250">£100M - £250M</option>
+                        <option value="250+">£250M+</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="dateRangeFilter">Signal Date</label>
+                    <select id="dateRangeFilter" onchange="handleDateRangeChange(); updateFilterCount();">
+                        <option value="all">All</option>
+                        <option value="1m">1M</option>
+                        <option value="3m" selected>3M</option>
+                        <option value="6m">6M</option>
+                        <option value="1y">1Y</option>
+                        <option value="custom">Custom</option>
+                    </select>
+                </div>
+                <div id="customDateInputs" class="custom-date-inputs" style="display: none;">
+                    <input type="date" id="startDate" placeholder="Start Date" onchange="updateFilterCount()">
+                    <span>→</span>
+                    <input type="date" id="endDate" placeholder="End Date" onchange="updateFilterCount()">
+                </div>
+            </div>
+            <div class="filters-modal-footer">
+                <button class="btn-secondary" onclick="resetFilters()">Reset All</button>
+                <button class="btn-primary" onclick="applyFilters()">Apply Filters</button>
+            </div>
+        </div>
+    </div>
+
     <!-- FOOTER -->
-    <footer>
-        <p>&copy; 2025 Crash Dash. Educational purposes only. Not financial advice. | Data updated: <span id="footerLastUpdate">-</span></p>
+        <!-- FOOTER -->
+    <footer style="margin-top: 4rem;">
+        <p>&copy; 2025 CrashDash. Educational purposes only. Not financial advice.</p>
         <p style="margin-top: 0.5rem; font-size: 0.8rem;">⚡ When the Market Breaks, You Learn.</p>
-        <div style="margin-top: 1rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-            <a href="about.html" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">About</a>
-            <a href="strategy-guide.html" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">Strategy Guide</a>
-            <a href="faq.html" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">FAQ</a>
-            <a href="roadmap.html" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">Roadmap</a>
+        <div style="margin-top: 1rem; display: flex; gap: 1.5rem; justify-content: center; align-items: center;">
+            <a href="https://x.com/CrashDashAI" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem;" title="Follow us on X">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                Follow on X
+            </a>
             <a href="https://forms.gle/C5GChwRu8wYshbS69" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">✉️ Contact Us</a>
         </div>
     </footer>

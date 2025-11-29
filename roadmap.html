@@ -70,7 +70,6 @@
             border-radius: 16px;
             box-shadow: 0 4px 16px rgba(0,0,0,0.08);
             margin-bottom: 2rem;
-            margin-left: 80px;
             position: relative;
             transition: transform 0.3s, box-shadow 0.3s;
         }
@@ -79,19 +78,17 @@
             box-shadow: 0 8px 24px rgba(0,0,0,0.12);
         }
         .phase-icon {
-            position: absolute;
-            left: -60px;
-            top: 30px;
-            width: 60px;
-            height: 60px;
+            display: inline-flex;
+            width: 50px;
+            height: 50px;
             background: linear-gradient(135deg, var(--rally-green), #4ADE80);
             border-radius: 50%;
-            display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 1.5rem;
             box-shadow: 0 4px 12px rgba(17, 204, 119, 0.3);
-            z-index: 1;
+            margin-right: 1rem;
+            flex-shrink: 0;
         }
         .phase-icon.in-progress {
             background: linear-gradient(135deg, #FF8C42, #FFB347);
@@ -108,8 +105,10 @@
         }
         .phase-card h2 {
             color: var(--navy);
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 4vw, 2rem);
             margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
         }
         .phase-status {
             display: inline-block;
@@ -177,15 +176,10 @@
             font-weight: 600;
             color: var(--navy);
         }
-        .audience-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
+                .audience-grid {\n            display: grid;\n            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));\n            gap: 1.5rem;\n            margin: 2rem 0;\n        }
         .audience-card {
             background: var(--white);
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             text-align: center;
@@ -194,19 +188,15 @@
         .audience-card:hover {
             transform: translateY(-4px);
         }
-        .audience-card .emoji {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
         .audience-card h3 {
             color: var(--navy);
             margin-bottom: 0.75rem;
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            margin-top: 0;
         }
         .audience-card p {
             color: var(--gray);
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
             line-height: 1.6;
         }
         .vision-statement {
@@ -243,42 +233,65 @@
             transform: translateY(-2px);
         }
         @media (max-width: 768px) {
-            .phase-card {
-                margin-left: 40px;
-            }
             .phase-icon {
-                left: -50px;
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
-            }
-            .timeline-section::before {
-                left: 25px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="assets/logo.svg" alt="Crash Dash Logo" class="logo">
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Search ticker or company name..." onclick="window.location.href='index.html'">
+            </div>
+            <div class="header-last-update" style="display: flex; align-items: center; gap: 0.3rem; flex-shrink: 0;">
+                <a href="index.html" style="color: var(--white); text-decoration: none; font-size: 0.9rem; font-weight: 700;">← Dashboard</a>
+            </div>
+        </div>
+        
+        <!-- NAVIGATION AND FILTERS -->
+        <div class="nav-and-filters">
+            <nav class="nav-tabs">
+                <a href="about.html">📖 About</a>
+                <a href="strategy-guide.html">📚 Strategy</a>
+                <a href="faq.html">❓ FAQ</a>
+                <a href="roadmap.html" style="background: rgba(255, 255, 255, 0.2);">🧭 Roadmap</a>
+                <a href="https://x.com/CrashDashAI" target="_blank" class="x-link" title="Follow us on X">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="display: inline-block; vertical-align: middle;">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Sticky Page Title (shows on scroll) -->
+    <div class="sticky-page-title" id="stickyTitle">🧭 Roadmap</div>
+
     <!-- HERO SECTION -->
     <div class="roadmap-hero">
-        <h1>🧭 CrashDash Roadmap</h1>
-        <p>Building the smartest crash-recovery research tool for people with real lives</p>
-        <div class="roadmap-tagline">
+        <h1 class="responsive-text">🧭 CrashDash Roadmap</h1>
+        <p class="responsive-text">Building the smartest crash-recovery research tool for people with real lives</p>
+        <div class="roadmap-tagline responsive-text">
             📊 Check once a day · 🔍 Find crash-recovery ideas · ⚡ Get back to life
         </div>
     </div>
 
     <!-- MAIN CONTENT -->
     <div class="roadmap-content">
-        <a href="index.html" class="back-button">← Back to Dashboard</a>
-
         <!-- TIMELINE -->
         <div class="timeline-section">
             
             <!-- PHASE 1: v1 -->
             <div class="phase-card">
-                <div class="phase-icon">🔧</div>
-                <h2>v1 - The Beginning</h2>
+                <h2><div class="phase-icon">🔧</div>v1 - The Beginning</h2>
                 <span class="phase-status status-complete">✅ COMPLETE</span>
                 
                 <p style="color: var(--gray); margin-bottom: 1.5rem; font-size: 1.05rem;">
@@ -295,8 +308,7 @@
 
             <!-- PHASE 2: v2 -->
             <div class="phase-card">
-                <div class="phase-icon">🌐</div>
-                <h2>v2 - First Website</h2>
+                <h2><div class="phase-icon">🌐</div>v2 - First Website</h2>
                 <span class="phase-status status-complete">✅ COMPLETE</span>
                 
                 <p style="color: var(--gray); margin-bottom: 1.5rem; font-size: 1.05rem;">
@@ -313,8 +325,7 @@
 
             <!-- PHASE 3: v3 LIVE -->
             <div class="phase-card in-progress">
-                <div class="phase-icon in-progress">🚀</div>
-                <h2>v3 - Live & Growing</h2>
+                <h2><div class="phase-icon in-progress">🚀</div>v3 - Live & Growing</h2>
                 <span class="phase-status status-progress">🔴 LIVE NOW</span>
                 
                 <p style="color: var(--gray); margin-bottom: 1.5rem; font-size: 1.05rem;">
@@ -337,8 +348,7 @@
 
             <!-- PHASE 4: v4 IN PROGRESS -->
             <div class="phase-card in-progress">
-                <div class="phase-icon in-progress">🧠</div>
-                <h2>v4 - Smart Context Layer</h2>
+                <h2><div class="phase-icon in-progress">🧠</div>v4 - Smart Context Layer</h2>
                 <span class="phase-status status-progress">⏳ IN PROGRESS</span>
                 
                 <p style="color: var(--gray); margin-bottom: 1.5rem; font-size: 1.05rem;">
@@ -361,8 +371,7 @@
 
             <!-- PHASE 5: FUTURE GROWTH -->
             <div class="phase-card future">
-                <div class="phase-icon future">🌍</div>
-                <h2>Future - Global Expansion</h2>
+                <h2><div class="phase-icon future">🌍</div>Future - Global Expansion</h2>
                 <span class="phase-status status-future">📍 PLANNED</span>
                 
                 <p style="color: var(--gray); margin-bottom: 1.5rem; font-size: 1.05rem;">
@@ -391,38 +400,32 @@
             
             <div class="audience-grid">
                 <div class="audience-card">
-                    <span class="emoji">💼</span>
-                    <h3>Busy Professionals</h3>
+                    <h3>💼 Busy Professionals</h3>
                     <p>You have a job, family, and real responsibilities. You want better opportunities without watching screens all day.</p>
                 </div>
                 
                 <div class="audience-card">
-                    <span class="emoji">📈</span>
-                    <h3>Swing Traders</h3>
+                    <h3>📈 Swing Traders</h3>
                     <p>You're interested in recovery plays over days, weeks, or months—not tick-by-tick scalping.</p>
                 </div>
                 
                 <div class="audience-card">
-                    <span class="emoji">🎓</span>
-                    <h3>Market Learners</h3>
+                    <h3>🎓 Market Learners</h3>
                     <p>You want to study crash-recovery patterns systematically instead of randomly stumbling onto them.</p>
                 </div>
                 
                 <div class="audience-card">
-                    <span class="emoji">🔍</span>
-                    <h3>Research-Focused</h3>
+                    <h3>🔍 Research-Focused</h3>
                     <p>You prefer finding quiet, ignored opportunities before the crowd notices—not chasing hype.</p>
                 </div>
                 
                 <div class="audience-card">
-                    <span class="emoji">🧘</span>
-                    <h3>Calm Investors</h3>
+                    <h3>🧘 Calm Investors</h3>
                     <p>You're comfortable holding through volatility and waiting for the thesis to play out over time.</p>
                 </div>
                 
                 <div class="audience-card">
-                    <span class="emoji">⚖️</span>
-                    <h3>Risk-Aware Traders</h3>
+                    <h3>⚖️ Risk-Aware Traders</h3>
                     <p>You understand that not all signals work, but you want better odds through systematic research.</p>
                 </div>
             </div>
@@ -446,31 +449,21 @@
 
         <!-- TRANSPARENCY NOTE -->
         <div style="background: rgba(17, 204, 119, 0.05); border: 2px solid var(--rally-green); border-radius: 12px; padding: 2rem; margin: 3rem 0;">
-            <h3 style="color: var(--navy); margin-top: 0;">💚 Why We Share This Roadmap</h3>
-            <p style="color: var(--gray); line-height: 1.8; font-size: 1.05rem;">
+            <h3 style="color: var(--navy); margin-top: 0; font-size: clamp(1.1rem, 3vw, 1.4rem);">💚 Why We Share This Roadmap</h3>
+            <p style="color: var(--gray); line-height: 1.8; font-size: clamp(0.9rem, 2vw, 1.05rem);">
                 We believe in <strong>transparency</strong>. You deserve to know where we're going, what we're building, and why.
             </p>
-            <p style="color: var(--gray); line-height: 1.8; font-size: 1.05rem; margin-top: 1rem;">
+            <p style="color: var(--gray); line-height: 1.8; font-size: clamp(0.9rem, 2vw, 1.05rem); margin-top: 1rem;">
                 This isn't a "pump and dump" tool. It's not a get-rich-quick scheme. It's a serious research platform being built by people who actually use it themselves.
             </p>
-            <p style="color: var(--gray); line-height: 1.8; font-size: 1.05rem; margin-top: 1rem;">
+            <p style="color: var(--gray); line-height: 1.8; font-size: clamp(0.9rem, 2vw, 1.05rem); margin-top: 1rem;">
                 <strong>For potential investors:</strong> We're building something real, methodically, with a clear vision. We're not rushing. We're doing it right.
             </p>
-            <p style="color: var(--gray); line-height: 1.8; font-size: 1.05rem; margin-top: 1rem;">
+            <p style="color: var(--gray); line-height: 1.8; font-size: clamp(0.9rem, 2vw, 1.05rem); margin-top: 1rem;">
                 <strong>For users:</strong> Your time is valuable. We respect that. That's why every feature is designed to <em>save</em> you time, not waste it.
             </p>
         </div>
 
-        <!-- FOOTER NAV -->
-        <div style="margin-top: 4rem; padding-top: 2rem; border-top: 2px solid var(--light-bg); text-align: center;">
-            <p style="margin-bottom: 1rem; color: var(--gray);">Learn More:</p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="about.html" class="back-button" style="margin: 0;">📖 About</a>
-                <a href="strategy-guide.html" class="back-button" style="margin: 0;">📚 Strategy Guide</a>
-                <a href="faq.html" class="back-button" style="margin: 0;">❓ FAQ</a>
-                <a href="index.html" class="back-button" style="margin: 0;">← Dashboard</a>
-            </div>
-        </div>
     </div>
 
     <!-- FOOTER -->
@@ -478,6 +471,12 @@
         <p>&copy; 2025 CrashDash. Educational purposes only. Not financial advice.</p>
         <p style="margin-top: 0.5rem; font-size: 0.8rem;">⚡ Building the future of crash-recovery research.</p>
         <div style="margin-top: 1rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+            <a href="https://x.com/CrashDashAI" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem;" title="Follow us on X">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                Follow on X
+            </a>
             <a href="about.html" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">About</a>
             <a href="strategy-guide.html" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">Strategy Guide</a>
             <a href="faq.html" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">FAQ</a>
@@ -485,5 +484,17 @@
             <a href="https://forms.gle/C5GChwRu8wYshbS69" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">✉️ Contact Us</a>
         </div>
     </footer>
+
+    <script>
+        // Show/hide sticky page title on scroll
+        window.addEventListener('scroll', function() {
+            const stickyTitle = document.getElementById('stickyTitle');
+            if (window.scrollY > 300) {
+                stickyTitle.classList.add('visible');
+            } else {
+                stickyTitle.classList.remove('visible');
+            }
+        });
+    </script>
 </body>
 </html>
