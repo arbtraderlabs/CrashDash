@@ -614,7 +614,6 @@ function renderCompressedMode(signals, tbody) {
                     ${latest.Date}
                 </div>
             </td>
-            <td>${latestScore.toFixed(1)}</td>
             <td>
                 <div style="display: flex; gap: 0.4rem; align-items: baseline; margin-bottom: 2px;">
                     <div>
@@ -635,6 +634,7 @@ function renderCompressedMode(signals, tbody) {
                     <span style="color: #0D8C4D; font-weight: 600; margin-left: 4px;">${bestRally.toFixed(0)}%</span>
                 </div>
             </td>
+            <td>${latestScore.toFixed(1)}</td>
         `;
         
         tbody.appendChild(parentRow);
@@ -824,7 +824,6 @@ function renderFullMode(signals, tbody) {
                 </span>
                 ${enhancedBadge}
             </td>
-            <td>${parseFloat(signal.AI_Technical_Score).toFixed(1)}</td>
             <td class="price-pnl-cell">
                 <div class="price-pnl-container">
                     <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 0.25rem;">
@@ -844,6 +843,7 @@ function renderFullMode(signals, tbody) {
                 </div>
             </td>
             <td class="positive">+${bestRally.toFixed(1)}%</td>
+            <td>${parseFloat(signal.AI_Technical_Score).toFixed(1)}</td>
         `;
         
         tbody.appendChild(tr);
