@@ -180,7 +180,7 @@ async function loadAllData() {
         const lookupData = await lookupResponse.json();
         tickerLookup = lookupData.tickers;
         console.log('Ticker lookup loaded:', Object.keys(tickerLookup).length, 'tickers');
-        populateFilterDropdowns(lookupData.sectors, lookupData.industries);
+        populateFilterDropdowns(lookupData.sectors);
         
         // Load metadata index
         console.log('Loading metadata index...');
@@ -282,19 +282,29 @@ function updateStats() {
         // Parse: "2025-11-16 23:32:29 UTC"
         const parts = lastUpdated.split(' ');
         const date = parts[0]; // "2025-11-16"
-        const time = parts.slice(1).join(' '); // "23:32:29 UTC"
-        const displayText = `<span class="date">${date}</span><span class="time">${time}</span>`;
+        const time = parts[1] || ''; // "23:32:29"
+        const displayText = `<span class="date">${date}</span><span class="time">${time} ${parts[2] || ''}</span>`;
         
         const lastUpdateEl = document.getElementById('lastUpdate');
+        const headerLastUpdateEl = document.getElementById('headerLastUpdate');
+        const headerLastUpdateTimeEl = document.getElementById('headerLastUpdateTime');
         const footerLastUpdateEl = document.getElementById('footerLastUpdate');
         
         if (lastUpdateEl) lastUpdateEl.innerHTML = displayText;
+        if (headerLastUpdateEl) headerLastUpdateEl.textContent = date;
+        if (headerLastUpdateTimeEl) headerLastUpdateTimeEl.textContent = time;
         if (footerLastUpdateEl) footerLastUpdateEl.textContent = date;
     } else {
         const lastUpdateEl = document.getElementById('lastUpdate');
+        const headerLastUpdateEl = document.getElementById('headerLastUpdate');
+        const headerLastUpdateTimeEl = document.getElementById('headerLastUpdateTime');
         const footerLastUpdateEl = document.getElementById('footerLastUpdate');
         
         if (lastUpdateEl) lastUpdateEl.textContent = '-';
+        if (headerLastUpdateEl) headerLastUpdateEl.textContent = '-';
+        if (headerLastUpdateTimeEl) headerLastUpdateTimeEl.textContent = '-';
+        if (footerLastUpdateEl) footerLastUpdateEl.textContent = '-';
+        if (headerLastUpdateEl) headerLastUpdateEl.textContent = '-';
         if (footerLastUpdateEl) footerLastUpdateEl.textContent = '-';
     }
 }
@@ -303,22 +313,14 @@ function updateStats() {
 // POPULATE FILTER DROPDOWNS
 // ============================================
 
-function populateFilterDropdowns(sectors, industries) {
+function populateFilterDropdowns(sectors) {
     const sectorSelect = document.getElementById('sectorFilter');
-    const industrySelect = document.getElementById('industryFilter');
     
     sectors.forEach(sector => {
         const option = document.createElement('option');
         option.value = sector;
         option.textContent = sector;
         sectorSelect.appendChild(option);
-    });
-    
-    industries.forEach(industry => {
-        const option = document.createElement('option');
-        option.value = industry;
-        option.textContent = industry;
-        industrySelect.appendChild(option);
     });
 }
 
@@ -342,29 +344,34 @@ function toggleViewMode() {
 
 function updateViewModeUI() {
     const slider = document.getElementById('toggleSlider');
-    const compactLabel = document.getElementById('compactLabel');
-    const detailLabel = document.getElementById('detailLabel');
-    const hint = document.getElementById('viewModeHint');
+    const compactIcon = document.getElementById('compactIcon');
+    const detailIcon = document.getElementById('detailIcon');
     const fullHeader = document.getElementById('tableHeader');
     const compressedHeader = document.getElementById('compressedHeader');
     
-    if (!slider || !compactLabel || !detailLabel || !hint || !fullHeader || !compressedHeader) {
+    if (!slider || !fullHeader || !compressedHeader) {
         console.warn('View mode UI elements not found, skipping update');
         return;
     }
     
     if (viewMode === 'compressed') {
         slider.classList.remove('active');
-        compactLabel.classList.add('active');
-        detailLabel.classList.remove('active');
-        hint.textContent = 'Compact view shows one row per ticker. Click ticker to expand history.';
+        if (compactIcon) {
+            compactIcon.classList.add('active');
+        }
+        if (detailIcon) {
+            detailIcon.classList.remove('active');
+        }
         fullHeader.style.display = 'none';
         compressedHeader.style.display = '';
     } else {
         slider.classList.add('active');
-        compactLabel.classList.remove('active');
-        detailLabel.classList.add('active');
-        hint.textContent = 'Detail view shows all signals individually.';
+        if (compactIcon) {
+            compactIcon.classList.remove('active');
+        }
+        if (detailIcon) {
+            detailIcon.classList.add('active');
+        }
         fullHeader.style.display = '';
         compressedHeader.style.display = 'none';
     }
@@ -553,12 +560,48 @@ function renderCompressedMode(signals, tbody) {
         
         const remaining = group.count > 4 ? `<span class="more-signals">+${group.count - 4}</span>` : '';
         
+        // Get market cap
+        const marketCapDisplay = tickerInfo.market_cap ? formatMarketCap(tickerInfo.market_cap) : 'N/A';
+        
+        // Get exchange/market/risk from metadata or tickerInfo
+        const exchange = (metadata?.company_info?.exchange || metadata?.basics?.exchange || 'LSE');
+        const market = (metadata?.company_info?.market || metadata?.basics?.market || 'AIM');
+        const riskTier = (metadata?.company_info?.risk_tier || metadata?.basics?.risk_tier || 'High Risk');
+        
+        // Check for split warnings - check if latest signal is affected by split
+        const splitRisk = metadata.split_risk || {};
+        const hasSplit = splitRisk.split_detected || false;
+        const latestSignalDate = new Date(latest.Date);
+        const splitDate = hasSplit && splitRisk.split_date ? new Date(splitRisk.split_date) : null;
+        const isAffectedBySplit = hasSplit && splitDate && latestSignalDate >= splitDate;
+        const splitWarningClass = isAffectedBySplit ? 'split-warning' : '';
+        
+        // Debug for split detection
+        if (hasSplit) {
+            console.log(`Split detected for ${ticker}:`, {
+                latestSignalDate: latest.Date,
+                splitDate: splitRisk.split_date,
+                isAffectedBySplit,
+                splitWarningClass
+            });
+        }
+        
         parentRow.innerHTML = `
             <td class="ticker-cell">
                 <span class="expand-indicator">${expandIcon}</span>
-                ${cleanTickerDisplay(ticker)}
-                <span style="font-size: 0.7rem; color: var(--gray); margin-left: 4px; font-weight: 500;">LSE (AIM)</span>
-                <span class="company-name">${tickerInfo.name || ''}</span>
+                <div style="display: flex; align-items: center; gap: 0.4rem;">
+                    <div style="font-weight: 700; font-size: 0.95rem;">${cleanTickerDisplay(ticker)}</div>
+                    <button class="info-button ${splitWarningClass}" onclick="event.stopPropagation(); showCompanyModal('${ticker}')" title="${isAffectedBySplit ? 'Company Profile ⚠️ Split Risk' : 'Company Profile'}">
+                        <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="company-name" style="margin: 2px 0;">${tickerInfo.name || ''}</div>
+                <div class="ticker-meta" style="font-size: 0.65rem; color: var(--gray); line-height: 1.3; margin-top: 3px;">
+                    <div>${exchange} · ${market}</div>
+                    <div style="font-weight: 600; color: var(--dark-gray);">Cap: ${marketCapDisplay}</div>
+                </div>
             </td>
             <td style="white-space: nowrap;">
                 <div style="margin-bottom: 4px;">${signalBadges}${remaining}</div>
@@ -568,13 +611,23 @@ function renderCompressedMode(signals, tbody) {
             </td>
             <td>${latestScore.toFixed(1)}</td>
             <td>
-                <div style="font-size: 0.8rem; color: var(--gray); line-height: 1.3;">${triggerPrice.toFixed(2)}p</div>
+                <div style="display: flex; gap: 0.4rem; align-items: baseline; margin-bottom: 2px;">
+                    <div>
+                        <span style="font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.3px; color: var(--gray); font-weight: 600; display: block;">Entry</span>
+                        <span style="font-size: 0.85rem; color: var(--dark-gray); font-weight: 700;">${triggerPrice.toFixed(2)}p</span>
+                    </div>
+                    <span style="color: var(--electric-blue); font-size: 0.75rem;">→</span>
+                    <div>
+                        <span style="font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.3px; color: var(--gray); font-weight: 500; opacity: 0.8; display: block;">Last</span>
+                        <span style="font-size: 0.65rem; color: rgba(44, 62, 80, 0.7); font-weight: 600;">${metadata?.company_info?.current_close_price?.toFixed(2) || currentPrice.toFixed(2)}p</span>
+                    </div>
+                </div>
                 <div class="${currentPnl >= 0 ? 'positive' : 'negative'}" style="font-weight: 700; font-size: 0.95rem; line-height: 1.4;">
                     ${currentPnl >= 0 ? '+' : ''}${currentPnl.toFixed(1)}%
                 </div>
-                <div style="font-size: 0.75rem; margin-top: 2px;">
-                    <span style="color: var(--gray); opacity: 0.7;">Best rally</span>
-                    <span style="color: var(--rally-green); font-weight: 600; margin-left: 4px;">${bestRally.toFixed(0)}%</span>
+                <div style="font-size: 0.7rem; margin-top: 2px;">
+                    <span style="color: var(--gray); opacity: 0.6; font-size: 0.65rem;">Best rally</span>
+                    <span style="color: #0D8C4D; font-weight: 600; margin-left: 4px;">${bestRally.toFixed(0)}%</span>
                 </div>
             </td>
         `;
@@ -742,10 +795,22 @@ function renderFullMode(signals, tbody) {
         const enhancedBadge = parsed.isEnhanced ? '<span class="enhanced-pill">⚡ ENHANCED</span>' : '';
         const drawdown = parseFloat(signal.Drawdown_Pct).toFixed(0);
         
+        // Get market cap
+        const marketCapDisplay = tickerInfo.market_cap ? formatMarketCap(tickerInfo.market_cap) : 'N/A';
+        
+        // Get exchange/market/risk from metadata or tickerInfo
+        const exchange = (metadata?.company_info?.exchange || metadata?.basics?.exchange || 'LSE');
+        const market = (metadata?.company_info?.market || metadata?.basics?.market || 'AIM');
+        const riskTier = (metadata?.company_info?.risk_tier || metadata?.basics?.risk_tier || 'High Risk');
+        
         tr.innerHTML = `
             <td class="ticker-cell">
-                ${cleanTickerDisplay(signal.Ticker)} ${splitWarningIcon}
-                <span class="company-name">${tickerInfo.name || ''}</span>
+                <div style="font-weight: 700; font-size: 0.95rem;">${cleanTickerDisplay(signal.Ticker)} ${splitWarningIcon}</div>
+                <div class="company-name" style="margin: 2px 0;">${tickerInfo.name || ''}</div>
+                <div class="ticker-meta" style="font-size: 0.65rem; color: var(--gray); line-height: 1.3; margin-top: 3px;">
+                    <div>${exchange} · ${market}</div>
+                    <div style="font-weight: 600; color: var(--dark-gray);">Cap: ${marketCapDisplay}</div>
+                </div>
             </td>
             <td>${signal.Date}</td>
             <td>
@@ -757,7 +822,17 @@ function renderFullMode(signals, tbody) {
             <td>${parseFloat(signal.AI_Technical_Score).toFixed(1)}</td>
             <td class="price-pnl-cell">
                 <div class="price-pnl-container">
-                    <span class="trigger-price">${parseFloat(signal.Price).toFixed(2)}p</span>
+                    <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 0.25rem;">
+                        <div style="display: flex; flex-direction: column; align-items: flex-start;">
+                            <span style="font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray); font-weight: 600;">Entry</span>
+                            <span class="trigger-price" style="font-size: 1rem; font-weight: 800; color: var(--dark-gray);">${parseFloat(signal.Price).toFixed(2)}p</span>
+                        </div>
+                        <span style="color: var(--electric-blue); font-size: 0.9rem; margin: 0 0.1rem;">→</span>
+                        <div style="display: flex; flex-direction: column; align-items: flex-start;">
+                            <span style="font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray); font-weight: 500; opacity: 0.8;">Last</span>
+                            <span class="trigger-price" style="font-size: 0.7rem; font-weight: 600; color: rgba(44, 62, 80, 0.7);">${metadata?.company_info?.current_close_price?.toFixed(2) || currentPrice.toFixed(2)}p</span>
+                        </div>
+                    </div>
                     <span class="pnl-badge ${currentPnl >= 0 ? 'positive' : 'negative'}">
                         ${currentPnl >= 0 ? '+' : ''}${currentPnl.toFixed(1)}%
                     </span>
@@ -1060,7 +1135,6 @@ function filterSignals() {
     const searchTerm = document.getElementById('searchInput').value.toLowerCase();
     const colorFilter = document.getElementById('colorFilter').value;
     const sectorFilter = document.getElementById('sectorFilter').value;
-    const industryFilter = document.getElementById('industryFilter').value;
     const marketCapFilter = document.getElementById('marketCapFilter').value;
     
     return allSignals.filter(signal => {
@@ -1075,9 +1149,6 @@ function filterSignals() {
         
         // Sector filter
         const sectorMatch = !sectorFilter || tickerInfo.sector === sectorFilter;
-        
-        // Industry filter
-        const industryMatch = !industryFilter || tickerInfo.industry === industryFilter;
         
         // Market Cap filter
         let marketCapMatch = true;
@@ -1146,7 +1217,7 @@ function filterSignals() {
         // Exclude signals with missing critical data
         const hasValidData = signal.Ticker && signal.Date && signal.Signal_Color;
         
-        return hasValidData && searchMatch && colorMatch && sectorMatch && industryMatch && marketCapMatch && dateMatch;
+        return hasValidData && searchMatch && colorMatch && sectorMatch && marketCapMatch && dateMatch;
     });
 }
 
@@ -1220,7 +1291,7 @@ function setupEventListeners() {
     }
     
     // Filter dropdowns
-    ['colorFilter', 'sectorFilter', 'industryFilter', 'marketCapFilter'].forEach(id => {
+    ['colorFilter', 'sectorFilter', 'marketCapFilter'].forEach(id => {
         const element = document.getElementById(id);
         if (element) {
             element.addEventListener('change', () => {
@@ -1316,7 +1387,6 @@ function resetFilters() {
     document.getElementById('searchInput').value = '';
     document.getElementById('colorFilter').value = '';
     document.getElementById('sectorFilter').value = '';
-    document.getElementById('industryFilter').value = '';
     document.getElementById('marketCapFilter').value = '';
     
     // Reset date filter to 'all'
@@ -1342,4 +1412,298 @@ function formatMarketCap(marketCap) {
     if (marketCap >= 1000000) return `${(marketCap / 1000000).toFixed(2)}M`;
     if (marketCap >= 1000) return `${(marketCap / 1000).toFixed(2)}K`;
     return `${marketCap}`;
+}
+
+// ============================================
+// FILTERS MODAL FUNCTIONS
+// ============================================
+
+function openFiltersModal() {
+    const modal = document.getElementById('filtersModal');
+    if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeFiltersModal() {
+    const modal = document.getElementById('filtersModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+}
+
+function applyFilters() {
+    closeFiltersModal();
+    renderSignalsTable();
+}
+
+function updateFilterCount() {
+    let count = 0;
+    
+    const colorFilter = document.getElementById('colorFilter').value;
+    const sectorFilter = document.getElementById('sectorFilter').value;
+    const marketCapFilter = document.getElementById('marketCapFilter').value;
+    const dateRangeFilter = document.getElementById('dateRangeFilter').value;
+    
+    if (colorFilter) count++;
+    if (sectorFilter) count++;
+    if (marketCapFilter) count++;
+    if (dateRangeFilter && dateRangeFilter !== 'all') count++;
+    
+    const resetIconBtn = document.getElementById('resetIconBtn');
+    
+    if (count > 0) {
+        if (resetIconBtn) resetIconBtn.style.display = 'inline-block';
+    } else {
+        if (resetIconBtn) resetIconBtn.style.display = 'none';
+    }
+}
+
+// Initialize modal event listeners
+document.addEventListener('DOMContentLoaded', () => {
+    const openBtn = document.getElementById('openFiltersBtn');
+    if (openBtn) {
+        openBtn.addEventListener('click', openFiltersModal);
+    }
+    
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeFiltersModal();
+            closeCompanyModal();
+        }
+    });
+    
+    // Initial filter count update
+    updateFilterCount();
+});
+
+// ============================================
+// COMPANY PROFILE MODAL
+// ============================================
+
+async function showCompanyModal(ticker) {
+    // Show loading modal first
+    const loadingHTML = `
+        <div class="company-modal-overlay" id="companyModalOverlay" onclick="closeCompanyModal()">
+            <div class="company-modal-content" onclick="event.stopPropagation()">
+                <div style="padding: 40px; text-align: center; color: var(--white);">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">⏳</div>
+                    <div>Loading ${cleanTickerDisplay(ticker)} details...</div>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', loadingHTML);
+    document.body.style.overflow = 'hidden';
+    
+    // Load full metadata
+    const metadata = await loadTickerDetails(ticker);
+    const tickerInfo = tickerLookup[ticker];
+    
+    if (!metadata) {
+        closeCompanyModal();
+        console.error('No metadata for', ticker);
+        return;
+    }
+    
+    const companyInfo = metadata.company_info || {};
+    const basics = metadata.basics || {};
+    const latestSignal = metadata.latest_signal || {};
+    const bestSignal = metadata.best_historical_signal || {};
+    const stats = metadata.stats || {};
+    const riskFlags = metadata.risk_flags || [];
+    
+    // LSE ticker info - basics.ticker, company_info has exchange/market/industry
+    const lseTicker = basics.ticker ? basics.ticker.replace('.L', '') : ticker.replace('.L', '');
+    const exchange = companyInfo.exchange || 'LSE';
+    const market = companyInfo.market || 'AIM';
+
+    // Use pence-aware helpers to get prices and market cap in GBP floats
+    const currentPriceVal = getPriceFieldForTicker(ticker, basics, 'current_price');
+    const athVal = getPriceFieldForTicker(ticker, basics, 'ath');
+    const atlVal = getPriceFieldForTicker(ticker, basics, 'atl');
+    const latestEntryVal = getPriceFieldForTicker(ticker, latestSignal, 'price');
+    const bestEntryVal = getPriceFieldForTicker(ticker, bestSignal, 'entry_price');
+    const bestPeakVal = getPriceFieldForTicker(ticker, bestSignal, 'peak_price');
+
+    const marketCapCandidate = getMarketCapCandidate(ticker, metadata, tickerInfo);
+    const formattedMarketCap = formatMarketCap(marketCapCandidate);
+
+    const fmtPrice = (v) => (v !== undefined && v !== null && !isNaN(v)) ? Number(v).toFixed(4) : '-';
+    
+    // Close loading modal and show full modal
+    closeCompanyModal();
+    
+    const modalHTML = `
+        <div class="company-modal-overlay" id="companyModalOverlay" onclick="closeCompanyModal()">
+            <div class="company-modal-content" onclick="event.stopPropagation()">
+                <div class="company-modal-header">
+                    <div>
+                        <h2>${cleanTickerDisplay(ticker)}</h2>
+                        <p style="color: var(--gray); margin: 0.25rem 0 0 0;">${companyInfo.name || 'Unknown'}</p>
+                    </div>
+                    <button class="modal-close-btn" onclick="closeCompanyModal()">&times;</button>
+                </div>
+                <div class="company-modal-body">
+                    <div class="metadata-grid">
+                        <!-- Company Info -->
+                        <div class="metadata-section">
+                            <h4>🏢 Company Information</h4>
+                            <div class="metadata-item">
+                                <span class="metadata-label">LSE Ticker:</span>
+                                <span class="metadata-value"><strong>${lseTicker}</strong></span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">Exchange:</span>
+                                <span class="metadata-value">${exchange}</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">Market:</span>
+                                <span class="metadata-value">${market}</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">Industry:</span>
+                                <span class="metadata-value">${companyInfo.industry || 'Unknown'}</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">Market Cap:</span>
+                                <span class="metadata-value">${formattedMarketCap}</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">Current Price:</span>
+                                <span class="metadata-value">${fmtPrice(currentPriceVal)}p</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Price Action -->
+                        <div class="metadata-section">
+                            <h4>📊 Price Action</h4>
+                            <div class="metadata-item">
+                                <span class="metadata-label">All-Time High:</span>
+                                <span class="metadata-value">${fmtPrice(athVal)}p (${basics.ath_date || '-'})</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">All-Time Low:</span>
+                                <span class="metadata-value">${fmtPrice(atlVal)}p (${basics.atl_date || '-'})</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Latest Signal -->
+                        <div class="metadata-section">
+                            <h4>🎯 Latest Signal</h4>
+                            <div class="metadata-item">
+                                <span class="metadata-label">Signal Date:</span>
+                                <span class="metadata-value">${latestSignal.date || '-'}</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">Signal Type:</span>
+                                <span class="metadata-value">${latestSignal.signal_type || '-'}</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">Entry Price:</span>
+                                <span class="metadata-value">${fmtPrice(latestEntryVal)}p</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">AI Score:</span>
+                                <span class="metadata-value">${latestSignal.ai_score?.toFixed(1) || '-'}</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">Current P&L:</span>
+                                <span class="metadata-value ${latestSignal.current_pnl_pct >= 0 ? 'positive' : 'negative'}">
+                                    ${latestSignal.current_pnl_pct >= 0 ? '+' : ''}${latestSignal.current_pnl_pct?.toFixed(1) || 0}%
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <!-- Historical Performance -->
+                        <div class="metadata-section">
+                            <h4>📈 Historical Performance</h4>
+                            <div class="metadata-item">
+                                <span class="metadata-label">Total Signals:</span>
+                                <span class="metadata-value">${stats.total_signals || 0}</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">Win Rate:</span>
+                                <span class="metadata-value positive">${stats.win_rate_pct?.toFixed(0) || 0}%</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">Best Rally:</span>
+                                <span class="metadata-value positive">+${stats.best_rally_pct?.toFixed(0) || 0}%</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">Avg Rally:</span>
+                                <span class="metadata-value">${stats.avg_rally_pct?.toFixed(0) || 0}%</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">Best Signal Date:</span>
+                                <span class="metadata-value">${bestSignal.signal_date || '-'}</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">Peak Rally:</span>
+                                <span class="metadata-value positive">+${bestSignal.rally_pct?.toFixed(1) || 0}% (${bestSignal.days_to_peak || 0} days)</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Risk Flags & Splits -->
+                        <div class="metadata-section">
+                            <h4>⚠️ Risk Factors</h4>
+                            ${riskFlags.length > 0 ? `
+                                <div class="risk-flags">
+                                    ${riskFlags.map(flag => `<span class="risk-flag">${flag}</span>`).join('')}
+                                </div>
+                            ` : '<p style="color: var(--recovery-green); font-weight: 600; margin: 0;">✓ No major risk flags detected</p>'}
+                            
+                            ${metadata.splits && metadata.splits.length > 0 ? `
+                                <h4 style="margin-top: 1rem; color: var(--white); font-size: 0.9rem; border-bottom: 1px solid rgba(10, 132, 255, 0.3); padding-bottom: 0.3rem;">🔀 Stock Splits</h4>
+                                ${metadata.splits.map(split => `
+                                    <div class="metadata-item">
+                                        <span class="metadata-label">${split.date}:</span>
+                                        <span class="metadata-value">${split.ratio} (${split.ratio_value}x)</span>
+                                    </div>
+                                `).join('')}
+                            ` : ''}
+                        </div>
+                        
+                        <!-- Split Risk Assessment (if detected) -->
+                        ${metadata.split_risk?.split_detected ? `
+                        <div class="metadata-section split-risk-section">
+                            <h4>⚠️ Split Risk</h4>
+                            <div class="split-risk-summary">
+                                <span class="metadata-label">Split:</span>
+                                <span class="metadata-value">${metadata.split_risk.split_date} (${metadata.split_risk.days_from_split}d away)</span>
+                                <span class="metadata-value risk-badge-${metadata.split_risk.risk_level.toLowerCase()}">${metadata.split_risk.risk_level}</span>
+                            </div>
+                            
+                            <!-- Collapsible Warning -->
+                            <div class="split-collapsible">
+                                <div class="split-collapsible-header" onclick="this.parentElement.classList.toggle('expanded')">
+                                    <span>⚠️ Details</span>
+                                    <span class="expand-icon">▼</span>
+                                </div>
+                                <div class="split-collapsible-content">
+                                    <strong>Warning:</strong> ${metadata.split_risk.warning}<br><br>
+                                    <strong>Recommendation:</strong> ${metadata.split_risk.recommendation}
+                                </div>
+                            </div>
+                        </div>
+                        ` : ''}
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    document.body.style.overflow = 'hidden';
+}
+
+function closeCompanyModal() {
+    const modal = document.getElementById('companyModalOverlay');
+    if (modal) {
+        modal.remove();
+        document.body.style.overflow = '';
+    }
 }

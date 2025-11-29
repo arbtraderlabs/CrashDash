@@ -165,16 +165,48 @@
     </style>
 </head>
 <body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="assets/logo.svg" alt="Crash Dash Logo" class="logo">
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="🔍 Search ticker or company name..." onclick="window.location.href='index.html'">
+            </div>
+            <div class="header-last-update" style="display: flex; align-items: center; gap: 0.3rem; flex-shrink: 0;">
+                <a href="index.html" style="color: var(--white); text-decoration: none; font-size: 0.9rem; font-weight: 700;">← Dashboard</a>
+            </div>
+        </div>
+        
+        <!-- NAVIGATION AND FILTERS -->
+        <div class="nav-and-filters">
+            <nav class="nav-tabs">
+                <a href="about.html" style="background: rgba(255, 255, 255, 0.2);">📖 About</a>
+                <a href="strategy-guide.html">📚 Strategy</a>
+                <a href="faq.html">❓ FAQ</a>
+                <a href="roadmap.html">🧭 Roadmap</a>
+                <a href="https://x.com/CrashDashAI" target="_blank" class="x-link" title="Follow us on X">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="display: inline-block; vertical-align: middle;">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Sticky Page Title (shows on scroll) -->
+    <div class="sticky-page-title" id="stickyTitle">📖 About CrashDash</div>
+
     <!-- HERO SECTION -->
+        <!-- HERO SECTION -->
     <div class="about-hero">
-        <h1>About CrashDash</h1>
-        <p>An educational research tool for people who want to learn about market crashes, recoveries, and asymmetric opportunities—without staring at charts all day.</p>
+        <h1 class="responsive-text">📖 About CrashDash</h1>
+        <p class="responsive-text">The educational crash-recovery research tool for people with real lives</p>
     </div>
 
     <!-- MAIN CONTENT -->
     <div class="about-content">
-        <a href="index.html" class="back-button">← Back to Dashboard</a>
-
         <!-- WHAT IS CRASHDASH -->
         <div class="about-section" data-watermark="🧠">
             <h2 data-emoji="🧠">What Is CrashDash?</h2>
@@ -293,25 +325,33 @@
             but serious enough that experienced traders can still find educational value.</p>
         </div>
 
-        <!-- FOOTER NAV -->
-        <div style="margin-top: 4rem; padding-top: 2rem; border-top: 2px solid var(--light-bg); text-align: center;">
-            <p style="margin-bottom: 1rem; color: var(--gray);">Learn More:</p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="strategy-guide.html" class="back-button" style="margin: 0;">📚 Strategy Guide</a>
-                <a href="faq.html" class="back-button" style="margin: 0;">❓ FAQ</a>
-                <a href="roadmap.html" class="back-button" style="margin: 0;">🧭 Roadmap</a>
-                <a href="index.html" class="back-button" style="margin: 0;">← Dashboard</a>
-            </div>
-        </div>
     </div>
 
     <!-- FOOTER -->
     <footer style="margin-top: 4rem;">
         <p>&copy; 2025 CrashDash. Educational purposes only. Not financial advice.</p>
         <p style="margin-top: 0.5rem; font-size: 0.8rem;">⚡ When the Market Breaks, You Learn.</p>
-        <div style="margin-top: 1rem;">
+        <div style="margin-top: 1rem; display: flex; gap: 1.5rem; justify-content: center; align-items: center;">
+            <a href="https://x.com/CrashDashAI" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem;" title="Follow us on X">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                Follow on X
+            </a>
             <a href="https://forms.gle/C5GChwRu8wYshbS69" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">✉️ Contact Us</a>
         </div>
     </footer>
+
+    <script>
+        // Show/hide sticky page title on scroll
+        window.addEventListener('scroll', function() {
+            const stickyTitle = document.getElementById('stickyTitle');
+            if (window.scrollY > 300) {
+                stickyTitle.classList.add('visible');
+            } else {
+                stickyTitle.classList.remove('visible');
+            }
+        });
+    </script>
 </body>
 </html>
