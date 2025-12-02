@@ -618,7 +618,7 @@ function renderCompressedMode(signals, tbody) {
                 <div style="display: flex; gap: 0.4rem; align-items: baseline; margin-bottom: 2px;">
                     <div>
                         <span style="font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.3px; color: var(--gray); font-weight: 600; display: block;">Entry</span>
-                        <span style="font-size: 0.85rem; color: var(--dark-gray); font-weight: 700;">${triggerPrice.toFixed(2)}p</span>
+                        <span style="font-size: 0.95rem; color: var(--dark-gray); font-weight: 700;">${triggerPrice.toFixed(2)}p</span>
                     </div>
                     <span style="color: var(--electric-blue); font-size: 0.75rem;">→</span>
                     <div>
@@ -626,12 +626,13 @@ function renderCompressedMode(signals, tbody) {
                         <span style="font-size: 0.65rem; color: rgba(44, 62, 80, 0.7); font-weight: 600;">${metadata?.company_info?.current_close_price?.toFixed(2) || currentPrice.toFixed(2)}p</span>
                     </div>
                 </div>
-                <div class="${currentPnl >= 0 ? 'positive' : 'negative'}" style="font-weight: 700; font-size: 0.95rem; line-height: 1.4;">
-                    ${currentPnl >= 0 ? '+' : ''}${currentPnl.toFixed(1)}%
+                <div class="${currentPnl >= 0 ? 'positive' : 'negative'}" style="font-weight: 700; font-size: 0.8rem; line-height: 1.4; display: flex; align-items: baseline;">
+                    <span style="font-size: 0.65rem; color: var(--gray); font-weight: 500; opacity: 0.7; min-width: 32px;">P&L</span>
+                    <span>${currentPnl >= 0 ? '+' : ''}${currentPnl.toFixed(1)}%</span>
                 </div>
-                <div style="font-size: 0.7rem; margin-top: 2px;">
-                    <span style="color: var(--gray); opacity: 0.6; font-size: 0.65rem;">Best rally</span>
-                    <span style="color: #0D8C4D; font-weight: 600; margin-left: 4px;">${bestRally.toFixed(0)}%</span>
+                <div style="font-size: 0.7rem; margin-top: 2px; display: flex; align-items: baseline;">
+                    <span style="color: var(--gray); opacity: 0.6; font-size: 0.65rem; min-width: 32px;">Best</span>
+                    <span style="color: #0D8C4D; font-weight: 600;">${bestRally.toFixed(0)}%</span>
                 </div>
             </td>
             <td>${latestScore.toFixed(1)}</td>
@@ -713,17 +714,13 @@ function createHistoryRow(signal, metadata, tickerInfo, ticker) {
                 ${signal.Date}
             </div>
         </td>
-        <td style="color: var(--navy); opacity: 0.85;">${parseFloat(signal.AI_Technical_Score).toFixed(1)}</td>
         <td>
             <div style="font-size: 0.85rem; color: var(--gray); margin-bottom: 2px; opacity: 0.85;">${triggerPrice.toFixed(2)}p</div>
             <div class="${currentPnl >= 0 ? 'positive' : 'negative'}" style="font-weight: 600;">
                 ${currentPnl >= 0 ? '+' : ''}${currentPnl.toFixed(1)}%
             </div>
-            <div style="font-size: 0.7rem; margin-top: 3px;">
-                <span style="color: var(--gray); opacity: 0.6; font-size: 0.65rem;">Cycle</span>
-                <span style="color: var(--electric-blue); font-weight: 600; margin-left: 4px;">${((signal.Cycle_Position || 0) * 100).toFixed(0)}%</span>
-            </div>
         </td>
+        <td style="color: var(--navy); opacity: 0.85;">${parseFloat(signal.AI_Technical_Score).toFixed(1)}</td>
     `;
     
     return tr;
@@ -1650,6 +1647,10 @@ async function showCompanyModal(ticker) {
                             <div class="metadata-item">
                                 <span class="metadata-label">AI Score:</span>
                                 <span class="metadata-value">${latestSignal.ai_score?.toFixed(1) || '-'}</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">Cycle Position:</span>
+                                <span class="metadata-value">${((latestSignal.cycle_position || 0) * 100).toFixed(0)}%</span>
                             </div>
                             <div class="metadata-item">
                                 <span class="metadata-label">Current P&L:</span>
