@@ -597,7 +597,7 @@ function renderCompressedMode(signals, tbody) {
                 <div style="display: flex; align-items: center; gap: 0.4rem;">
                     <div style="font-weight: 700; font-size: 0.95rem;">${cleanTickerDisplay(ticker)}</div>
                     <button class="info-button ${splitWarningClass}" onclick="event.stopPropagation(); showCompanyModal('${ticker}')" title="${isAffectedBySplit ? 'Company Profile ⚠️ Split Risk' : 'Company Profile'}">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
                         </svg>
                     </button>
@@ -1558,6 +1558,30 @@ async function showCompanyModal(ticker) {
                 </div>
                 <div class="company-modal-body">
                     <div class="metadata-grid">
+                        <!-- Split Risk Assessment (if detected) - MOVED TO TOP -->
+                        ${metadata.split_risk?.split_detected ? `
+                        <div class="metadata-section split-risk-section">
+                            <h4>⚠️ Split Risk</h4>
+                            <div class="split-risk-summary">
+                                <span class="metadata-label">Split:</span>
+                                <span class="metadata-value">${metadata.split_risk.split_date} (${metadata.split_risk.days_from_split}d away)</span>
+                                <span class="metadata-value risk-badge-${metadata.split_risk.risk_level.toLowerCase()}">${metadata.split_risk.risk_level}</span>
+                            </div>
+                            
+                            <!-- Collapsible Warning -->
+                            <div class="split-collapsible">
+                                <div class="split-collapsible-header" onclick="this.parentElement.classList.toggle('expanded')">
+                                    <span>⚠️ Details</span>
+                                    <span class="expand-icon">▼</span>
+                                </div>
+                                <div class="split-collapsible-content">
+                                    <strong>Warning:</strong> ${metadata.split_risk.warning}<br><br>
+                                    <strong>Recommendation:</strong> ${metadata.split_risk.recommendation}
+                                </div>
+                            </div>
+                        </div>
+                        ` : ''}
+                        
                         <!-- Company Info -->
                         <div class="metadata-section">
                             <h4>🏢 Company Information</h4>
@@ -1679,30 +1703,6 @@ async function showCompanyModal(ticker) {
                                 `).join('')}
                             ` : ''}
                         </div>
-                        
-                        <!-- Split Risk Assessment (if detected) -->
-                        ${metadata.split_risk?.split_detected ? `
-                        <div class="metadata-section split-risk-section">
-                            <h4>⚠️ Split Risk</h4>
-                            <div class="split-risk-summary">
-                                <span class="metadata-label">Split:</span>
-                                <span class="metadata-value">${metadata.split_risk.split_date} (${metadata.split_risk.days_from_split}d away)</span>
-                                <span class="metadata-value risk-badge-${metadata.split_risk.risk_level.toLowerCase()}">${metadata.split_risk.risk_level}</span>
-                            </div>
-                            
-                            <!-- Collapsible Warning -->
-                            <div class="split-collapsible">
-                                <div class="split-collapsible-header" onclick="this.parentElement.classList.toggle('expanded')">
-                                    <span>⚠️ Details</span>
-                                    <span class="expand-icon">▼</span>
-                                </div>
-                                <div class="split-collapsible-content">
-                                    <strong>Warning:</strong> ${metadata.split_risk.warning}<br><br>
-                                    <strong>Recommendation:</strong> ${metadata.split_risk.recommendation}
-                                </div>
-                            </div>
-                        </div>
-                        ` : ''}
                     </div>
                 </div>
             </div>
