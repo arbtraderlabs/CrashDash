@@ -73,8 +73,8 @@ header {
 /* Modern search box (desktop + mobile safe) */
 .search-box {
   position: relative;
-  flex: 1 1 520px; /* allow it to grow but keep reasonable base width */
-  max-width: 720px;
+  flex: 1 1 640px; /* wider base so input has more room */
+  max-width: 920px;
   min-width: 180px;
   margin: 0 1rem;
 }
@@ -82,7 +82,7 @@ header {
 .search-box input {
   width: 100%;
   padding: 0.6rem 1rem;
-  padding-left: 3.2rem; /* space for icon */
+  padding-left: 3.2rem; /* keep desktop padding modest; mobile will increase */
   border-radius: 999px;
   border: none;
   background: var(--white);
@@ -104,11 +104,11 @@ header {
 .search-box::before {
   content: "";
   position: absolute;
-  left: 14px;
+  left: 12px; /* modest left offset for desktop */
   top: 50%;
   transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
+  width: 26px;
+  height: 26px;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2394A3B8'><path d='M10.5 3a7.5 7.5 0 105.303 12.803l4.197 4.197a1 1 0 001.414-1.414l-4.197-4.197A7.5 7.5 0 0010.5 3zm0 2a5.5 5.5 0 110 11 5.5 5.5 0 010-11z'/></svg>");
   background-repeat: no-repeat;
   background-size: contain;
@@ -118,8 +118,49 @@ header {
 
 @media (max-width: 768px) {
   .search-box { flex: 0 1 60%; margin: 0 0.6rem; max-width: none; }
-  .search-box::before { left: 10px; width: 18px; height: 18px; }
+  /* increase input left padding on tablet/narrow so the icon doesn't overlap text */
+  .search-box input { padding-left: 5.6rem; }
+  .search-box::before { left: 24px; width: 22px; height: 22px; }
   .header-content { gap: 0.5rem; }
+}
+
+/* Keep header items on one line on small viewports, allow search to grow while preserving hamburger/time */
+@media (max-width: 640px) {
+  .header-content {
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .logo-section { flex: 0 0 auto; margin-right: 6px; }
+
+  .search-box {
+    flex: 1 1 80%; /* even wider search box on mobile */
+    min-width: 140px;
+    margin: 0 0.6rem;
+  }
+
+  .header-last-update {
+    flex: 0 0 auto;
+    margin-left: 6px; /* nudge time a bit to the right */
+    order: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .hamburger-menu {
+    flex: 0 0 40px; /* slightly smaller fixed size to make more room for search */
+    margin-left: 6px;
+    order: 3;
+  }
+
+  /* ensure search placeholder doesn't overflow header controls */
+  .search-box input { font-size: 0.95rem; padding-left: 5.6rem; }
+
+  /* keep the decorative magnifier/hourglass visible on mobile (padding increased to avoid overlap) */
+  /* Hide the pseudo-element icon on mobile so the placeholder '⏳ Search' is the sole indicator */
+  .search-box::before { display: none !important; }
 }
 
 /* Desktop-optimized layout (1200px+) */
@@ -730,6 +771,10 @@ header {
 @media (max-width: 480px) {
   .sticky-page-title { top: 60px; }
 }
+
+/* Decorative hourglass is visible everywhere (no desktop-only hiding) */
+
+/* Note: phase-card pseudo-elements remain unchanged so hourglass shows on mobile as well */
 
 .sticky-page-title.visible {
   opacity: 1;
