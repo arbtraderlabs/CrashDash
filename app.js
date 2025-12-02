@@ -597,7 +597,7 @@ function renderCompressedMode(signals, tbody) {
                 <div style="display: flex; align-items: center; gap: 0.4rem;">
                     <div style="font-weight: 700; font-size: 0.95rem;">${cleanTickerDisplay(ticker)}</div>
                     <button class="info-button ${splitWarningClass}" onclick="event.stopPropagation(); showCompanyModal('${ticker}')" title="${isAffectedBySplit ? 'Company Profile ⚠️ Split Risk' : 'Company Profile'}">
-                        <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
                         </svg>
                     </button>
