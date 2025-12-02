@@ -119,6 +119,49 @@
         .back-button:hover {
             transform: translateY(-2px);
         }
+
+        /* SEO-Optimized FAQ Section Styles */
+        .faq {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .faq h1 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--navy);
+        }
+        .faq details {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .faq details:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
+        }
+        .faq summary {
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .faq summary::-webkit-details-marker {
+            display: none;
+        }
+        .faq p {
+            margin: 0.5rem 0 0 0;
+            color: var(--gray);
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
@@ -167,7 +210,6 @@
             <h3><span class="emoji-icon">🎯</span> What is CrashDash in one sentence?</h3>
             <p>CrashDash is an educational once-a-day stock scanner that helps you learn about crashed or beaten-up tickers that might be setting up for recovery patterns.</p>
         </div>
-
         <div class="faq-item" data-emoji="🎓" style="border-left-color: #FF8C42;">
             <h3><span class="emoji-icon" style="background: linear-gradient(135deg, #FF8C42, #FFB347);">🎓</span> Is this for beginners or advanced traders?</h3>
             <p><strong>Both.</strong></p>
@@ -177,7 +219,6 @@
             </ul>
             <p>You still need to learn the basics of risk management, position sizing, and not going "all in" on speculative ideas.</p>
         </div>
-
         <div class="faq-item" data-emoji="📊" style="border-left-color: #9D4EDD;">
             <h3><span class="emoji-icon" style="background: linear-gradient(135deg, #9D4EDD, #C77DFF);">📊</span> Is this a day trading tool?</h3>
             <p><strong>No</strong>—and it's not meant to be.</p>
@@ -189,7 +230,6 @@
             </ul>
             <p>You scan once per day, study your favorite educational setups, and then walk away.</p>
         </div>
-
         <div class="faq-item" data-emoji="⏰" style="border-left-color: #FFDD55;">
             <h3><span class="emoji-icon" style="background: linear-gradient(135deg, #FFDD55, #FFE999); color: var(--navy);">⏰</span> How often should I check CrashDash?</h3>
             <p>Most people will be fine checking it:</p>
@@ -199,7 +239,6 @@
             </ul>
             <p>You don't get bonus points for staring at it. The whole point is to <strong>save you time</strong>, not consume it.</p>
         </div>
-
         <div class="faq-item">
             <h3>❓ Are these signals financial advice?</h3>
             <div class="disclaimer-highlight">
@@ -215,7 +254,6 @@
                 <p><strong>What you do with that information is 100% your responsibility.</strong> Always consult a qualified financial advisor before making investment decisions.</p>
             </div>
         </div>
-
         <div class="faq-item">
             <h3>❓ What markets does CrashDash cover?</h3>
             <p>Currently focused on:</p>
@@ -227,7 +265,6 @@
             </ul>
             <p>Future versions may expand to other markets based on user interest and data availability.</p>
         </div>
-
         <div class="faq-item">
             <h3>❓ What do the color codes mean?</h3>
             <p>CrashDash uses a color system to help you quickly understand signal severity:</p>
@@ -244,7 +281,6 @@
                 <li>More experienced researchers might study 🟠🔴 knowing they represent extreme scenarios</li>
             </ul>
         </div>
-
         <div class="faq-item">
             <h3>❓ Are these signals only for "high-risk gamblers"?</h3>
             <p><strong>No.</strong></p>
@@ -264,7 +300,6 @@
             </ul>
             <p>The signals are educational tools for anyone who respects risk and doesn't expect certainty.</p>
         </div>
-
         <div class="faq-item">
             <h3>❓ Do I need to watch the screen all day after entering a trade?</h3>
             <p><strong>No.</strong></p>
@@ -278,7 +313,6 @@
             <p>If you want to stare at every tick, this probably isn't your tool.<br>
             If you want to learn about patterns around real life, it is.</p>
         </div>
-
         <div class="faq-item">
             <h3>❓ Is this free? Will it stay free?</h3>
             <p>Right now, CrashDash is in <strong>beta</strong> and available for research/educational purposes.</p>
@@ -289,7 +323,6 @@
             </ul>
             <p>The goal will always be: <strong>fair, transparent, and not scammy.</strong></p>
         </div>
-
         <div class="faq-item">
             <h3>❓ What's a "Crash Signal" exactly?</h3>
             <p>A <strong>Crash Signal</strong> is a stock that has:</p>
@@ -301,7 +334,6 @@
             <p>CrashDash tries to flag this educational moment—<strong>after the panic, but before any serious recovery</strong> (if it happens at all).</p>
             <p>Think of it as studying the "boredom zone" where nobody is paying attention anymore.</p>
         </div>
-
         <div class="faq-item">
             <h3>❓ Why are crashed stocks interesting for learning?</h3>
             <p>Crash signals are educational because:</p>
@@ -318,7 +350,6 @@
             </ul>
             <p>That's why <strong>Risk Management > Hype</strong>, always.</p>
         </div>
-
         <div class="faq-item">
             <h3>❓ How should beginners think about these signals?</h3>
             <p>If you're new:</p>
@@ -334,7 +365,6 @@
             </ul>
             <p>Not a "press button, get rich" machine.</p>
         </div>
-
     </div>
 
     <!-- FOOTER -->
@@ -351,6 +381,128 @@
             <a href="https://forms.gle/C5GChwRu8wYshbS69" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">✉️ Contact Us</a>
         </div>
     </footer>
+
+    <!-- FAQ SEO Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is CrashDash?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CrashDash is a crash-recovery research platform. It scans markets once a day and highlights stocks that have suffered big drawdowns and may be setting up for a potential recovery."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is CrashDash for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CrashDash is designed for people with jobs, families, and real lives — swing traders, investors and learners who want to study crash-recovery setups without sitting in front of screens all day."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How often are daily crash signals updated?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CrashDash runs a daily scan and refreshes crash signals once per day. The idea is a simple workflow: open the site, review the latest daily crash signals, do your research, then get back to your life."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which markets does CrashDash cover right now?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Right now CrashDash focuses on London-listed equities, including the LSE AIM market and selected main-market names. Coverage will grow gradually as the platform matures."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a crash-recovery signal?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A crash-recovery signal is a stock that has experienced a large price drop, is in a deep drawdown zone, and shows early signs that selling pressure may be slowing or stabilising. It’s not a guarantee of a bounce, but a starting point for deeper research."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are daily crash signals and how do they work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Daily crash signals are the shortlist that CrashDash creates after scanning the market once per day. The models look for large drawdowns, washed-out price action and potential recovery conditions, then surface the most interesting candidates for you to study."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I know when a stock is crashing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A stock is usually considered to be crashing when the price falls sharply in a short period, breaks through previous support levels and trades far below recent ranges. CrashDash helps you spot these conditions early by tracking large drawdowns and extreme moves automatically."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What signals a stock market crash?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Market crashes are typically driven by a mix of factors: rapid price declines across many sectors, surging volatility, heavy selling volume and negative macro or news shocks. No single indicator can predict a crash, but clusters of stress signals often appear before and during major moves."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What indicators tell you a stock is dropping?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Common signs include a series of lower highs and lower lows, heavy red candles, sustained selling volume, and breaks below key support areas. CrashDash focuses on these types of moves when it looks for crash-style opportunities."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the most important predictor of a market crash?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "There is no single perfect predictor. Crashes are usually the result of stretched valuations, crowded positioning, leverage, and a sudden change in sentiment or fundamentals. CrashDash doesn’t try to predict market-wide crashes — it focuses on individual crash-recovery setups."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How should I use CrashDash in my daily routine?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most users follow a once-a-day routine: Open CrashDash → scan the daily crash signals → pick a few names to research in more detail → decide if any fit your strategy and risk tolerance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use CrashDash for day trading?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CrashDash is not designed for intraday scalping. It’s built for swing trading and crash-recovery research over days, weeks or months, not minute-by-minute trading decisions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is CrashDash financial advice?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. CrashDash is a research and education tool. Nothing on the site is investment, tax or legal advice. Always do your own research and consult a qualified financial professional where appropriate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the risks of trading crash-recovery signals?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Crash-recovery setups are high risk. Stocks that have fallen a long way can keep falling, go sideways for months or never recover. Liquidity, news events and sentiment can all change quickly. You should only trade with money you can afford to lose and always manage risk carefully."
+          }
+        }
+      ]
+    }
+    </script>
 
     <script>
         // Show/hide sticky page title on scroll
