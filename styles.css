@@ -315,7 +315,7 @@ header {
   padding: 1.2rem 1.5rem;
   color: var(--white);
   text-decoration: none;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 500;
   transition: all 0.2s ease;
   border-left: 3px solid transparent;
@@ -473,7 +473,7 @@ header {
   left: 2px;
   width: 16px;
   height: 16px;
-  background: var(--white);
+  background: var(--electric-blue);
   border-radius: 50%;
   transition: all 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -3032,3 +3032,131 @@ footer p {
 .company-modal-body .metadata-grid > .metadata-section:last-child {
   margin-bottom: 1.5rem;
 }
+
+/* ============================================
+   ONBOARDING DRAWER
+   ============================================ */
+
+.onboarding-drawer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 16px 16px 0 0;
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2000;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.onboarding-drawer.active {
+  transform: translateY(0);
+}
+
+.onboarding-content {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  position: relative;
+}
+
+.onboarding-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: var(--gray);
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.onboarding-close:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--navy);
+}
+
+.onboarding-content h2 {
+  color: var(--navy);
+  font-size: 1.8rem;
+  margin: 0 0 1.5rem 0;
+  font-weight: 700;
+}
+
+.onboarding-content .guide-section-title {
+  color: var(--electric-blue);
+  font-size: 1.4rem;
+  margin: 2rem 0 1rem 0;
+  font-weight: 700;
+  border-bottom: 2px solid var(--electric-blue);
+  padding-bottom: 0.5rem;
+}
+
+.onboarding-content .guide-section-title:first-of-type {
+  margin-top: 1rem;
+}
+
+.onboarding-content .step {
+  background: linear-gradient(135deg, #f8f9fa, #ffffff);
+  border-left: 4px solid var(--electric-blue);
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--charcoal);
+}
+
+.onboarding-content .step strong {
+  color: var(--navy);
+  font-size: 1.1rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.onboarding-content .primary-cta {
+  width: 100%;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--electric-blue), #0066cc);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(10, 132, 255, 0.3);
+}
+
+.onboarding-content .primary-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(10, 132, 255, 0.4);
+}
+
+@media (max-width: 768px) {
+  .onboarding-content {
+    padding: 1.5rem 1rem;
+  }
+  
+  .onboarding-content h2 {
+    font-size: 1.5rem;
+    margin-right: 40px;
+  }
+  
+  .onboarding-content .step {
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+}
+

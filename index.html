@@ -42,6 +42,7 @@
                     <button class="mobile-nav-close" onclick="toggleMobileNav()">&times;</button>
                 </div>
                 <nav class="mobile-nav-links">
+                    <a href="#" onclick="event.preventDefault(); closeOnboardingDrawer(); toggleMobileNav(); setTimeout(openOnboardingDrawer, 300);">🚀 New Here? Start Here →</a>
                     <a href="about.html">📖 About</a>
                     <a href="strategy-guide.html">📚 Strategy</a>
                     <a href="faq.html">❓ FAQ</a>
@@ -70,7 +71,7 @@
                 </a>
             </nav>
             <div class="header-filters">
-                <a href="#how-to-use" class="how-to-use-btn">💡 How to Use</a>
+                <button class="how-to-use-btn" onclick="openOnboardingDrawer()">🚀 New Here? Start Here →</button>
                 
                 <button id="openFiltersBtn" class="filters-popup-button">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em" style="fill: currentColor;">
@@ -338,6 +339,97 @@
             <a href="https://forms.gle/C5GChwRu8wYshbS69" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">✉️ Contact Us</a>
         </div>
     </footer>
+
+    <!-- ONBOARDING DRAWER -->
+    <div class="onboarding-drawer" id="onboardingDrawer" role="dialog" aria-labelledby="onboarding-title" aria-hidden="true">
+        <div class="onboarding-content">
+            <button class="onboarding-close" onclick="closeOnboardingDrawer()" aria-label="Close onboarding">&times;</button>
+            
+            <h2 id="onboarding-title">📚 How to Use CrashDash</h2>
+
+            <h3 class="guide-section-title">🎨 Signal Color Guide</h3>
+
+            <div class="step">
+                <strong>🟣 PURPLE – Enhanced Combo</strong><br>
+                <em>What it means:</em> Our strongest type of setup. A major crash followed by signs of quiet buying and price stabilisation.<br><br>
+                <em>How to use it:</em> Shortlist for your highest-conviction recovery ideas. Still high risk, but the most "stacked" conditions.
+            </div>
+
+            <div class="step">
+                <strong>🔴 RED – Ultra Crash</strong><br>
+                <em>What it means:</em> Brutal, wash-out style move. The stock has been hammered and is sitting in extreme crash territory.<br><br>
+                <em>How to use it:</em> For traders who like maximum risk / maximum reward. Only makes sense if you truly understand the story and can handle heavy volatility.
+            </div>
+
+            <div class="step">
+                <strong>🟠 ORANGE – Extreme Crash</strong><br>
+                <em>What it means:</em> Severe damage, but with signs that the selling pressure may be fading.<br><br>
+                <em>How to use it:</em> Good for aggressive recovery hunters looking for big upside, while accepting that the trend may still be fragile.
+            </div>
+
+            <div class="step">
+                <strong>🟢 GREEN – Deep Crash</strong><br>
+                <em>What it means:</em> A deep sell-off with improving technical conditions and a more "controlled" crash profile.<br><br>
+                <em>How to use it:</em> A balanced risk/reward zone. Often a sweet spot for people who want recovery potential without chasing the most extreme names.
+            </div>
+
+            <div class="step">
+                <strong>🟡 YELLOW – Crash Zone</strong><br>
+                <em>What it means:</em> The stock has entered a meaningful drawdown and is on our radar, but conditions are still developing.<br><br>
+                <em>How to use it:</em> Treat these as early warning / watchlist candidates. Many will later get upgraded to Green, Orange, Red, or Purple if conditions strengthen.
+            </div>
+
+            <h3 class="guide-section-title">🚀 Key Metrics (Simple & Powerful)</h3>
+
+            <div class="step">
+                <strong>⚡ AI Technical Score:</strong> A blended strength score that highlights oversold zones, momentum exhaustion, and recovery potential. Higher = stronger reversal setup.
+            </div>
+
+            <div class="step">
+                <strong>📉 Drawdown %:</strong> How far the stock has fallen from its peak to its lowest point.
+            </div>
+
+            <div class="step">
+                <strong>💰 Current P&L:</strong> Your return (%) if you bought at the moment the crash signal appeared.
+            </div>
+
+            <div class="step">
+                <strong>📈 Best Rally:</strong> The strongest bounce seen after similar crash-type conditions in the past.
+            </div>
+
+            <div class="step">
+                <strong>🔄 Cycle Position:</strong> Where the price sits inside its short-term range. 0% = bottom of the range, 100% = top of the range. Lower values often indicate pressure → potential recovery zones.
+            </div>
+
+            <div class="step">
+                <strong>🟢 Win Rate:</strong> How often similar setups historically turned positive.
+            </div>
+
+            <h3 class="guide-section-title">⚠️ Risk Flags (What to Watch Out For)</h3>
+
+            <div class="step">
+                <strong>🧩 Near Corporate Action:</strong> Signal triggered around a stock split or similar event — price behaviour can be distorted.
+            </div>
+
+            <div class="step">
+                <strong>🪓 Reverse Split History:</strong> Company has consolidated shares. Often associated with long-term decline or dilution risks.
+            </div>
+
+            <div class="step">
+                <strong>🩹 Deep Drawdown (80%+):</strong> Ultra-high risk territory. Big rebounds possible — but equally big downside.
+            </div>
+
+            <div class="step">
+                <strong>🪙 Penny Stock Zone:</strong> Trading under 1p. Low liquidity, wild swings, unpredictable spreads.
+            </div>
+
+            <div class="step">
+                <strong>🔁 Frequent Crashes:</strong> Multiple crash-type events detected — may indicate instability or broken trend structure.
+            </div>
+
+            <button class="primary-cta" onclick="closeOnboardingDrawer()">✅ Got It! Let's Go</button>
+        </div>
+    </div>
 
     <!-- JAVASCRIPT -->
     <script src="app.js"></script>
