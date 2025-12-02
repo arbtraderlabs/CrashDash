@@ -8,6 +8,7 @@
   --electric-blue: #0A84FF;
   --navy: #0B1B33;
   --navy-2: #0F2838; /* slightly different navy for page background */
+  --mobile-header-blue: #062034; /* darker blue for mobile header */
   --crash-red: #FF3355;
   --recovery-green: #11CC77;
   --split-yellow: #FFDD55;
@@ -169,25 +170,9 @@ header {
 }
 
 .tagline-primary {
-  font-size: 1rem;
-  color: var(--split-yellow);
-  font-style: italic;
-  margin: 0.3rem 0 0.1rem 0;
-  font-weight: 500;
-}
-
-.search-box {
-  flex: 1;
-  max-width: 400px;
-  min-width: 250px;
-}
-
-.search-box input {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 2px solid var(--electric-blue);
-  border-radius: var(--border-radius);
-  font-size: 1rem;
+  font-size: 2.6rem;
+  cursor: pointer;
+  padding: 0;
   background: var(--white);
   transition: var(--transition);
 }
@@ -257,10 +242,10 @@ header {
   position: absolute;
   top: 0;
   right: 0;
-  width: 320px;
+  width: 380px; /* widened per user request */
   height: 100%;
-  background: #1e2329;
-  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(180deg, #14171a 0%, #0f1316 100%);
+  box-shadow: -8px 0 40px rgba(2, 6, 23, 0.7);
   transform: translateX(100%);
   transition: transform 0.3s ease;
   overflow-y: auto;
@@ -274,16 +259,14 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem;
-  border-bottom: 1px solid rgba(10, 132, 255, 0.3);
+  padding: 1rem 1.25rem;
+  border-bottom: none;
+  background: var(--mobile-header-blue); /* darker mobile header blue */
 }
 
-.mobile-nav-header h3 {
-  margin: 0;
-  color: var(--white);
-  font-size: 2.6rem;
-  font-weight: 700;
-}
+.mobile-nav-logo { display:flex; align-items:center; gap:0.6rem; }
+.mobile-logo { display: none; }
+.mobile-brand { display: block; color: var(--white); font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; }
 
 .mobile-nav-close {
   background: transparent;
@@ -306,6 +289,14 @@ header {
   transform: rotate(90deg);
 }
 
+.mobile-nav-content .mobile-nav-links a {
+  /* Use a uniform, compact font-size similar to CoinMarketCap */
+  font-size: 1.1rem !important;
+  line-height: 1.2 !important;
+  padding: 0.9rem 1.2rem !important;
+  font-weight: 700 !important;
+}
+
 .mobile-nav-links {
   display: flex;
   flex-direction: column;
@@ -313,23 +304,66 @@ header {
 }
 
 .mobile-nav-links a {
-  padding: 1.4rem 1.75rem;
+  padding: 0.9rem 1.2rem;
   color: var(--white);
   text-decoration: none;
-  font-size: 2.2rem;
-  font-weight: 600;
+  font-size: 1.1rem;
+  font-weight: 700;
   letter-spacing: 0.2px;
-  transition: all 0.2s ease;
+  transition: transform 0.18s cubic-bezier(.2,.9,.2,1), box-shadow 0.18s ease, background 0.18s ease;
   border-left: 3px solid transparent;
   text-align: left;
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0.45rem 0.55rem; /* spacing so items feel like cards */
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));
+  box-shadow: 0 4px 10px rgba(2,6,23,0.45), inset 0 -1px 0 rgba(255,255,255,0.02);
 }
 
 .mobile-nav-links a:hover {
-  background: rgba(10, 132, 255, 0.1);
-  border-left-color: var(--electric-blue);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(2,6,23,0.6);
+  background: linear-gradient(180deg, rgba(10,132,255,0.05), rgba(0,0,0,0.04));
+  border-left-color: rgba(10,132,255,0.14);
   color: var(--electric-blue);
 }
+
+/* separators and chevron like CMC */
+.mobile-nav-links a + a { border-top: 1px solid rgba(255,255,255,0.02); }
+.mobile-nav-links a::after { content: '›'; position: absolute; right: 20px; color: rgba(255,255,255,0.55); font-size: 0.95rem; }
+
+/* hide inline emoji icons in mobile overlay */
+.mobile-nav-content .icon { display: none !important; }
+.mobile-nav-content svg { display: none !important; } /* hide inline svg icons inside mobile overlay (Follow on X icon etc) */
+
+/* contact button style */
+.mobile-nav-links .contact-button {
+  display: block;
+  margin: 0.9rem 0.9rem 1.25rem 0.9rem;
+  padding: 0.6rem 0.9rem;
+  background: linear-gradient(180deg, #0A84FF, #0066CC);
+  color: #fff;
+  text-align: center;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 8px 18px rgba(10,132,255,0.28), inset 0 -2px 0 rgba(255,255,255,0.06);
+}
+.mobile-nav-links .contact-button:hover { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(10,132,255,0.36); }
+
+/* ensure menu labels remain one line and readable */
+.mobile-nav-links .label { display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 1.1rem; }
+
+/* make first mobile link smaller (teaser) */
+.mobile-nav-links a:first-child { padding: 0.8rem 1.4rem; }
+.mobile-nav-links a:first-child .label { font-size: 1.1rem; font-weight: 700; color: rgba(255,255,255,0.95); }
 
 /* ============================================
    NAVIGATION AND FILTERS BAR
@@ -2713,6 +2747,8 @@ footer p {
   }
   
   .metadata-grid {
+    display: grid;
+    gap: 0.5rem;
   }
 }
 

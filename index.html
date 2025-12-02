@@ -38,21 +38,27 @@
         <div class="mobile-nav-overlay" id="mobileNavOverlay" onclick="toggleMobileNav()">
             <div class="mobile-nav-content" onclick="event.stopPropagation()">
                 <div class="mobile-nav-header">
-                    <h3>Menu</h3>
+                    <div class="mobile-nav-logo">
+                        <span class="mobile-brand">CrashDash</span>
+                    </div>
                     <button class="mobile-nav-close" onclick="toggleMobileNav()">&times;</button>
                 </div>
                 <nav class="mobile-nav-links">
-                    <a href="#" onclick="event.preventDefault(); closeOnboardingDrawer(); toggleMobileNav(); setTimeout(openOnboardingDrawer, 300);">🚀 New Here? Start Here →</a>
-                    <a href="about.html">📖 About</a>
-                    <a href="strategy-guide.html">📚 Strategy</a>
-                    <a href="faq.html">❓ FAQ</a>
-                    <a href="roadmap.html">🧭 Roadmap</a>
+                    <a href="#" onclick="event.preventDefault(); closeOnboardingDrawer(); toggleMobileNav(); setTimeout(openOnboardingDrawer, 300);">
+                        <span class="icon">🚀</span><span class="label">New Here? Start Here</span>
+                    </a>
+                    <a href="about.html"><span class="icon">📖</span><span class="label">About</span></a>
+                    <a href="strategy-guide.html"><span class="icon">📚</span><span class="label">Strategy</span></a>
+                    <a href="faq.html"><span class="icon">❓</span><span class="label">FAQ</span></a>
+                    <a href="roadmap.html"><span class="icon">🧭</span><span class="label">Roadmap</span></a>
                     <a href="https://x.com/CrashDashAI" target="_blank">
                         <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;">
                             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                         </svg>
-                        Follow on X
+                        <span class="label">Follow on X</span>
                     </a>
+                    <!-- Contact button (mobile) -->
+                    <a href="https://forms.gle/C5GChwRu8wYshbS69" target="_blank" rel="noopener" class="contact-button">Contact Us</a>
                 </nav>
             </div>
         </div>
