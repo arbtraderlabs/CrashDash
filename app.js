@@ -629,9 +629,15 @@ function renderCompressedMode(signals, tbody) {
                 <div class="${currentPnl >= 0 ? 'positive' : 'negative'}" style="font-weight: 700; font-size: 0.95rem; line-height: 1.4;">
                     ${currentPnl >= 0 ? '+' : ''}${currentPnl.toFixed(1)}%
                 </div>
-                <div style="font-size: 0.7rem; margin-top: 2px;">
-                    <span style="color: var(--gray); opacity: 0.6; font-size: 0.65rem;">Best rally</span>
-                    <span style="color: #0D8C4D; font-weight: 600; margin-left: 4px;">${bestRally.toFixed(0)}%</span>
+                <div style="font-size: 0.7rem; margin-top: 2px; display: flex; gap: 8px;">
+                    <div>
+                        <span style="color: var(--gray); opacity: 0.6; font-size: 0.65rem;">Best rally</span>
+                        <span style="color: #0D8C4D; font-weight: 600; margin-left: 4px;">${bestRally.toFixed(0)}%</span>
+                    </div>
+                    <div>
+                        <span style="color: var(--gray); opacity: 0.6; font-size: 0.65rem;">Cycle</span>
+                        <span style="color: var(--electric-blue); font-weight: 600; margin-left: 4px;">${((latest.Cycle_Position || 0) * 100).toFixed(0)}%</span>
+                    </div>
                 </div>
             </td>
             <td>${latestScore.toFixed(1)}</td>
