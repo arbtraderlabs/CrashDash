@@ -719,6 +719,10 @@ function createHistoryRow(signal, metadata, tickerInfo, ticker) {
             <div class="${currentPnl >= 0 ? 'positive' : 'negative'}" style="font-weight: 600;">
                 ${currentPnl >= 0 ? '+' : ''}${currentPnl.toFixed(1)}%
             </div>
+            <div style="font-size: 0.7rem; margin-top: 3px;">
+                <span style="color: var(--gray); opacity: 0.6; font-size: 0.65rem;">Cycle</span>
+                <span style="color: var(--electric-blue); font-weight: 600; margin-left: 4px;">${((signal.Cycle_Position || 0) * 100).toFixed(0)}%</span>
+            </div>
         </td>
     `;
     
