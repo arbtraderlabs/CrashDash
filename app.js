@@ -10,7 +10,7 @@ let allMetadata = {};
 let tickerLookup = {};
 let dashboardStats = {};
 let currentSort = { column: 'date', direction: 'desc' };
-let dateFilter = '3m'; // 'all', '1m', '3m', '6m', '1y', 'custom' - default 3 months
+let dateFilter = '1m'; // 'all', '1m', '3m', '6m', '1y', 'custom' - default 1 month
 let customDateRange = { start: null, end: null };
 let viewMode = localStorage.getItem('viewMode') || 'compressed'; // 'compressed' or 'full'
 let groupedSignals = {}; // Grouped by ticker for compressed mode
@@ -1744,3 +1744,39 @@ function toggleMobileNav() {
         document.body.style.overflow = '';
     }
 }
+
+// ============================================
+// ONBOARDING DRAWER
+// ============================================
+
+function openOnboardingDrawer() {
+    const drawer = document.getElementById('onboardingDrawer');
+    drawer.classList.add('active');
+    drawer.setAttribute('aria-hidden', 'false');
+    
+    // Smooth scroll to bottom
+    setTimeout(() => {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        });
+    }, 100);
+}
+
+function closeOnboardingDrawer() {
+    const drawer = document.getElementById('onboardingDrawer');
+    drawer.classList.remove('active');
+    drawer.setAttribute('aria-hidden', 'true');
+}
+
+// Close drawer when clicking outside on mobile
+document.addEventListener('click', function(event) {
+    const drawer = document.getElementById('onboardingDrawer');
+    const isClickInside = drawer && drawer.contains(event.target);
+    const isTriggerButton = event.target.closest('.how-to-use-btn');
+    
+    if (drawer.classList.contains('active') && !isClickInside && !isTriggerButton) {
+        closeOnboardingDrawer();
+    }
+});
+
