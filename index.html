@@ -25,6 +25,35 @@
                     <span style="font-size: 0.55rem; font-style: italic; color: rgba(255,255,255,0.6); line-height: 1;">Last refresh</span>
                 </div>
             </div>
+            
+            <!-- Hamburger Menu (Mobile Only) -->
+            <button class="hamburger-menu" id="hamburgerMenu" onclick="toggleMobileNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        
+        <!-- Mobile Navigation Overlay -->
+        <div class="mobile-nav-overlay" id="mobileNavOverlay" onclick="toggleMobileNav()">
+            <div class="mobile-nav-content" onclick="event.stopPropagation()">
+                <div class="mobile-nav-header">
+                    <h3>Menu</h3>
+                    <button class="mobile-nav-close" onclick="toggleMobileNav()">&times;</button>
+                </div>
+                <nav class="mobile-nav-links">
+                    <a href="about.html">📖 About</a>
+                    <a href="strategy-guide.html">📚 Strategy</a>
+                    <a href="faq.html">❓ FAQ</a>
+                    <a href="roadmap.html">🧭 Roadmap</a>
+                    <a href="https://x.com/CrashDashAI" target="_blank">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                        Follow on X
+                    </a>
+                </nav>
+            </div>
         </div>
         
         <!-- NAVIGATION AND FILTERS -->

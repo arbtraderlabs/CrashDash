@@ -1720,3 +1720,22 @@ function closeCompanyModal() {
         document.body.style.overflow = '';
     }
 }
+
+// ============================================
+// MOBILE NAVIGATION
+// ============================================
+
+function toggleMobileNav() {
+    const overlay = document.getElementById('mobileNavOverlay');
+    const hamburger = document.getElementById('hamburgerMenu');
+    
+    overlay.classList.toggle('active');
+    hamburger.classList.toggle('active');
+    
+    // Prevent body scroll when menu is open
+    if (overlay.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = '';
+    }
+}
