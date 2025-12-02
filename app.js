@@ -1780,3 +1780,31 @@ document.addEventListener('click', function(event) {
     }
 });
 
+// Scroll-to-top button behavior
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollBtns = Array.from(document.querySelectorAll('.scroll-top-btn'));
+    if (!scrollBtns.length) return;
+
+    // Attach click handler to all scroll buttons
+    scrollBtns.forEach(btn => btn.addEventListener('click', scrollToTop));
+
+    // Show floating button(s) after scrolling down a bit
+    window.addEventListener('scroll', function() {
+        const shouldShow = window.scrollY > 300;
+        scrollBtns.forEach(btn => {
+            // inline variant should always be visible (it has class 'inline')
+            if (btn.classList.contains('inline')) return;
+
+            if (shouldShow) {
+                btn.classList.add('visible');
+            } else {
+                btn.classList.remove('visible');
+            }
+        });
+    });
+});
+

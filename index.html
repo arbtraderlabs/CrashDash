@@ -168,14 +168,14 @@
                         <th class="sortable" data-sort="ticker">Ticker</th>
                         <th class="sortable" data-sort="date">Signal Date</th>
                         <th class="sortable" data-sort="signal_type">Signal Type</th>
-                        <th class="sortable" data-sort="current_pnl">Returns</th>
+                        <th class="sortable" data-sort="current_pnl">Summary</th>
                         <th class="sortable" data-sort="best_rally">Best Rally</th>
                         <th class="sortable" data-sort="ai_score"><span class="desktop-text">AI Score</span> ⚡</th>
                     </tr>
                     <tr id="compressedHeader" style="display: none;">
                         <th class="sortable" data-sort="ticker">Ticker</th>
                         <th class="sortable" data-sort="signal_count">Buy Alerts</th>
-                        <th class="sortable" data-sort="latest_pnl">Returns</th>
+                        <th class="sortable" data-sort="latest_pnl">Summary</th>
                         <th class="sortable" data-sort="latest_score"><span class="desktop-text">AI Score</span> ⚡</th>
                     </tr>
                 </thead>
@@ -191,7 +191,7 @@
 
     <!-- DISCLAIMER SECTION -->
     <div style="max-width: 1400px; margin: 3rem auto 0 auto; padding: 0 2rem;">
-        <div style="background: linear-gradient(135deg, #2c3e50, #34495e); border-radius: 12px; padding: 2rem; border-left: 4px solid var(--split-yellow);">
+        <div style="background: var(--navy); border-radius: 12px; padding: 2rem; border-left: 4px solid var(--split-yellow);">
             <h3 style="color: var(--split-yellow); font-size: 1.3rem; margin: 0 0 1rem 0; font-weight: 700;">⚠️ Important Disclaimer</h3>
             <p style="color: rgba(255, 255, 255, 0.9); line-height: 1.8; margin-bottom: 0.8rem;">
                 <strong style="color: var(--white);">⚠️ CrashDash is a research and education tool, not a financial advisor.</strong> Nothing on this site constitutes investment, tax, or legal advice. All investments carry risk, and you can lose money. Past performance and historical patterns do not guarantee future results. Always do your own research and, where appropriate, consult a qualified financial professional before acting on any information.
@@ -203,7 +203,22 @@
             </p>
         </div>
     </div>
+    
+    <!-- Scroll to top button (inline under disclaimer) -->
+    <div style="text-align: center; margin-top: 0.75rem;">
+        <button id="scrollTopBtn" class="scroll-top-btn inline" aria-label="Scroll to top">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="transform: translateY(-1px);">
+                <path d="M7 15.5l5-5 5 5 1-1-6-6-6 6 1 1zM7 9.5l5-5 5 5 1-1-6-6-6 6 1 1z"/>
+            </svg>
+        </button>
+    </div>
 
+    <!-- Floating scroll-to-top (appears after scroll) -->
+    <button id="scrollTopFloat" class="scroll-top-btn" aria-label="Scroll to top" style="display:none;">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M7 15.5l5-5 5 5 1-1-6-6-6 6 1 1zM7 9.5l5-5 5 5 1-1-6-6-6 6 1 1z"/>
+        </svg>
+    </button>
     <!-- FILTERS POPUP MODAL -->
     <div id="filtersModal" class="filters-modal" style="display: none;">
         <div class="filters-modal-overlay" onclick="closeFiltersModal()"></div>
@@ -247,8 +262,8 @@
                     <label for="dateRangeFilter">Signal Date</label>
                     <select id="dateRangeFilter" onchange="handleDateRangeChange(); updateFilterCount();">
                         <option value="all">All</option>
-                        <option value="1m">1M</option>
-                        <option value="3m" selected>3M</option>
+                        <option value="1m" selected>1M</option>
+                        <option value="3m">3M</option>
                         <option value="6m">6M</option>
                         <option value="1y">1Y</option>
                         <option value="custom">Custom</option>
