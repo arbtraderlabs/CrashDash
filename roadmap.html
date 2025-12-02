@@ -133,11 +133,12 @@
         .phase-card ul {
             list-style: none;
             padding: 0;
+            margin-left: -1rem;
         }
         .phase-card li {
             padding: 0.75rem 0;
             border-bottom: 1px solid var(--light-bg);
-            font-size: 1.05rem;
+            font-size: clamp(0.75rem, 2vw, 0.95rem);
             line-height: 1.6;
             color: var(--gray);
         }
@@ -154,7 +155,7 @@
             border-radius: 50%;
             text-align: center;
             line-height: 24px;
-            margin-right: 0.75rem;
+            margin-right: 0.25rem;
             font-size: 0.8rem;
             font-weight: 700;
         }
@@ -176,7 +177,12 @@
             font-weight: 600;
             color: var(--navy);
         }
-                .audience-grid {\n            display: grid;\n            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));\n            gap: 1.5rem;\n            margin: 2rem 0;\n        }
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
         .audience-card {
             background: var(--white);
             padding: 1.5rem;
@@ -196,8 +202,8 @@
         }
         .audience-card p {
             color: var(--gray);
-            font-size: clamp(0.85rem, 2vw, 0.95rem);
-            line-height: 1.6;
+            font-size: clamp(0.8rem, 2vw, 0.88rem);
+            line-height: 1.5;
         }
         .vision-statement {
             background: linear-gradient(135deg, #1a1f3a, #2d3561);
@@ -238,6 +244,35 @@
                 height: 40px;
                 font-size: 1.2rem;
             }
+            .nav-tabs {
+                display: none;
+            }
+            .nav-tabs.mobile-menu-open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--navy);
+                padding: 1rem;
+                z-index: 1000;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            }
+            .mobile-menu-toggle {
+                display: flex !important;
+            }
+        }
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
@@ -245,6 +280,13 @@
     <!-- HEADER -->
     <header>
         <div class="header-content">
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu" title="Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
             <div class="logo-section">
                 <img src="assets/logo.svg" alt="Crash Dash Logo" class="logo">
             </div>
@@ -257,11 +299,11 @@
         </div>
         
         <!-- NAVIGATION AND FILTERS -->
-        <div class="nav-and-filters">
-            <nav class="nav-tabs">
-                <a href="about.html">📖 About</a>
-                <a href="strategy-guide.html">📚 Strategy</a>
-                <a href="faq.html">❓ FAQ</a>
+        <div class="nav-and-filters" style="position: relative;">
+            <nav class="nav-tabs" id="navTabs">
+                <a href="about.html" title="Learn about CrashDash">📖 About</a>
+                <a href="strategy-guide.html" title="Strategy guide for crash-recovery trading">📚 Strategy</a>
+                <a href="faq.html" title="Frequently asked questions">❓ FAQ</a>
                 <a href="roadmap.html" style="background: rgba(255, 255, 255, 0.2);">🧭 Roadmap</a>
                 <a href="https://x.com/CrashDashAI" target="_blank" class="x-link" title="Follow us on X">
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="display: inline-block; vertical-align: middle;">
@@ -291,104 +333,101 @@
             
             <!-- PHASE 1: v1 -->
             <div class="phase-card">
-                <h2><div class="phase-icon">🔧</div>v1 - The Beginning</h2>
+                <h2><div class="phase-icon">🔧</div>v1 – The Beginning</h2>
                 <span class="phase-status status-complete">✅ COMPLETE</span>
                 
-                <p style="color: var(--gray); margin-bottom: 1.5rem; font-size: 1.05rem;">
-                    <strong>A few months ago:</strong> Started as a simple script on a laptop
-                </p>
-                
                 <ul>
-                    <li>Manual script to find stocks that crashed hard</li>
-                    <li>No website, no fancy UI—just personal research tool</li>
-                    <li>Proved the concept: "Can I systematically find these setups?"</li>
-                    <li>Ran locally, helped scan faster than manually checking charts</li>
+                    <li>Started life as a simple crash scanner on a laptop</li>
+                    <li>One small script to find stocks that had crashed hard</li>
+                    <li>No website, no UI — just a personal research tool</li>
+                    <li>Answered the question: "Can I systematically find these setups?"</li>
+                    <li>Ran locally and instantly beat manual chart-hunting</li>
                 </ul>
             </div>
 
             <!-- PHASE 2: v2 -->
             <div class="phase-card">
-                <h2><div class="phase-icon">🌐</div>v2 - First Website</h2>
+                <h2><div class="phase-icon">🌐</div>v2 – First Website</h2>
                 <span class="phase-status status-complete">✅ COMPLETE</span>
                 
-                <p style="color: var(--gray); margin-bottom: 1.5rem; font-size: 1.05rem;">
-                    <strong>Proof of concept:</strong> Made it accessible beyond just one laptop
-                </p>
-                
                 <ul>
-                    <li>Script automated to run by itself daily</li>
-                    <li>Basic web page showing list of crash setups</li>
-                    <li>Proof that "this can work for normal people, not just me"</li>
-                    <li>Simple but functional—friends started using it</li>
+                    <li>From private tool → something others could actually use</li>
+                    <li>Automated the scan to run once a day</li>
+                    <li>Simple web page listing crash-style setups</li>
+                    <li>Proved it can work for normal people, not just a nerd with a script</li>
+                    <li>Friends started using it and asking for more structure</li>
                 </ul>
             </div>
 
             <!-- PHASE 3: v3 LIVE -->
             <div class="phase-card in-progress">
-                <h2><div class="phase-icon in-progress">🚀</div>v3 - Live & Growing</h2>
+                <h2><div class="phase-icon in-progress">🚀</div>v3 – Live & Growing</h2>
                 <span class="phase-status status-progress">🔴 LIVE NOW</span>
                 
                 <p style="color: var(--gray); margin-bottom: 1.5rem; font-size: 1.05rem;">
-                    <strong>Current state:</strong> Full-featured educational research platform
+                    <strong>Today's version:</strong> a focused crash-recovery research platform.
                 </p>
                 
                 <ul>
-                    <li>Daily crash signals on live website</li>
-                    <li>Focus on UK markets (AIM + LSE Main, expanding coverage)</li>
-                    <li>Color-coded severity system (🟡 Yellow → 🟢 Green → 🟠 Orange → 🔴 Red → 🟣 Purple)</li>
+                    <li>Daily crash shortlists on the live site</li>
+                    <li>Primary focus: UK markets (AIM + LSE Main, expanding over time)</li>
+                    <li>Color-coded severity system:<br>🟡 Yellow → 🟢 Green → 🟠 Orange → 🔴 Red → 🟣 Purple</li>
                     <li>Built for people with jobs, families, and real lives</li>
-                    <li>Once-a-day workflow: Open → Scan → Research → Close</li>
-                    <li>Educational content, strategy guides, FAQs</li>
+                    <li>Once-a-day flow: Open → Scan → Research → Close</li>
+                    <li>Educational content, strategy notes, FAQs to help you learn as you go</li>
                 </ul>
 
                 <div class="goal-box">
-                    <strong>🎯 Current Goal:</strong> Make UK crash-recovery signals the most accessible, educational, and time-efficient resource available
+                    <strong>🎯 Current Goal:</strong> Make UK crash-recovery research the most accessible, educational and time-efficient resource available.
                 </div>
             </div>
 
             <!-- PHASE 4: v4 IN PROGRESS -->
             <div class="phase-card in-progress">
-                <h2><div class="phase-icon in-progress">🧠</div>v4 - Smart Context Layer</h2>
+                <h2><div class="phase-icon in-progress">🧠</div>v4 – Smart Context Layer</h2>
                 <span class="phase-status status-progress">⏳ IN PROGRESS</span>
                 
                 <p style="color: var(--gray); margin-bottom: 1.5rem; font-size: 1.05rem;">
-                    <strong>Next evolution:</strong> Adding intelligent context to every signal
+                    <strong>Next step:</strong> not just "here's a signal" — but "here's why it matters."
                 </p>
                 
                 <ul>
-                    <li>Signal snapshot cards showing recent news, company info, key events</li>
-                    <li>Automatic detection of "weird events" (splits, halts, suspensions)</li>
-                    <li>Quick answer to: "Is this worth my time to research more?"</li>
-                    <li>Smart Report AI (optional): Plain English explanations of any signal</li>
-                    <li>Enhanced filtering by sector, industry, market cap</li>
-                    <li>Historical performance tracking for pattern learning</li>
+                    <li>Signal snapshot cards with recent price action & key context</li>
+                    <li>Automatic detection of unusual events (splits, halts, suspensions, etc.)</li>
+                    <li>Quick answer to: "Is this worth my time to dig into?"</li>
+                    <li>Optional Smart Report AI: plain-English breakdown of any signal</li>
+                    <li>Richer filtering (sector, industry, market cap and more)</li>
+                    <li>Historical pattern tracking to help you learn over time</li>
                 </ul>
 
                 <div class="goal-box">
-                    <strong>🎯 Goal:</strong> Go from "here's a signal" → "here's a signal + all the context you need to decide in 60 seconds"
+                    <strong>🎯 Goal:</strong> Go from "here's a signal" →<br>
+                    to "here's a signal + the context you need to decide in 60 seconds."
                 </div>
             </div>
 
             <!-- PHASE 5: FUTURE GROWTH -->
             <div class="phase-card future">
-                <h2><div class="phase-icon future">🌍</div>Future - Global Expansion</h2>
+                <h2><div class="phase-icon future">🌍</div>Future – Global Expansion</h2>
                 <span class="phase-status status-future">📍 PLANNED</span>
                 
                 <p style="color: var(--gray); margin-bottom: 1.5rem; font-size: 1.05rem;">
-                    <strong>Growing smart, not fast:</strong> Finish UK properly, then expand
+                    <strong>Grow smart, not fast.</strong> Finish the UK properly, then widen the map.
                 </p>
                 
                 <ul>
-                    <li>Complete UK market coverage (AIM + Main + small caps)</li>
-                    <li>European markets (Germany, France, Nordics)</li>
-                    <li>US markets (NASDAQ, NYSE small/mid caps)</li>
-                    <li>Crypto crash-recovery signals (only if genuine edge exists)</li>
-                    <li>Mobile app for iOS/Android</li>
-                    <li>API access for advanced users & researchers</li>
+                    <li>Full UK coverage (AIM + Main + small caps)</li>
+                    <li>Gradual expansion into Europe (Germany, France, Nordics)</li>
+                    <li>Selective US coverage (NASDAQ / NYSE small & mid caps)</li>
+                    <li>Possible crypto crash-recovery analytics (only if there's a real edge)</li>
+                    <li>Mobile app for iOS / Android</li>
+                    <li>API access for advanced users and researchers</li>
                 </ul>
 
                 <div class="goal-box">
-                    <strong>🎯 Philosophy:</strong> Slow and smart > Fast and broken. We only expand when quality is proven.
+                    <strong>🎯 Philosophy:</strong><br>
+                    👉 Slow and smart > Fast and broken.<br>
+                    We only expand when the quality is proven.
                 </div>
             </div>
 
@@ -401,32 +440,32 @@
             <div class="audience-grid">
                 <div class="audience-card">
                     <h3>💼 Busy Professionals</h3>
-                    <p>You have a job, family, and real responsibilities. You want better opportunities without watching screens all day.</p>
+                    <p>You've got a job, family, real responsibilities.<br>You want stronger opportunities without staring at charts all day.</p>
                 </div>
                 
                 <div class="audience-card">
                     <h3>📈 Swing Traders</h3>
-                    <p>You're interested in recovery plays over days, weeks, or months—not tick-by-tick scalping.</p>
+                    <p>You care about moves over days, weeks, or months —<br>not tick-by-tick scalping and burnout.</p>
                 </div>
                 
                 <div class="audience-card">
                     <h3>🎓 Market Learners</h3>
-                    <p>You want to study crash-recovery patterns systematically instead of randomly stumbling onto them.</p>
+                    <p>You want to understand crash-recovery behaviour<br>instead of randomly stumbling onto ideas.</p>
                 </div>
                 
                 <div class="audience-card">
-                    <h3>🔍 Research-Focused</h3>
-                    <p>You prefer finding quiet, ignored opportunities before the crowd notices—not chasing hype.</p>
+                    <h3>🔍 Research-Focused Hunters</h3>
+                    <p>You'd rather find quiet, ignored setups<br>than chase whatever's trending on social media.</p>
                 </div>
                 
                 <div class="audience-card">
                     <h3>🧘 Calm Investors</h3>
-                    <p>You're comfortable holding through volatility and waiting for the thesis to play out over time.</p>
+                    <p>You're okay with volatility and prefer to let a thesis play out<br>rather than panic-sell every dip.</p>
                 </div>
                 
                 <div class="audience-card">
                     <h3>⚖️ Risk-Aware Traders</h3>
-                    <p>You understand that not all signals work, but you want better odds through systematic research.</p>
+                    <p>You know nothing works 100% of the time,<br>but you want better odds through structured research.</p>
                 </div>
             </div>
         </div>
@@ -438,12 +477,12 @@
                 <strong>Make crash-recovery research accessible to everyone.</strong>
             </p>
             <p style="margin-top: 1.5rem;">
-                Not just for hedge funds with Bloomberg terminals.<br>
-                Not just for people who can quit their job to trade.<br>
-                Not just for the "insiders."
+                Not just hedge funds with terminals<br>
+                Not just people who can quit their job to trade<br>
+                Not just the "insiders"
             </p>
             <p style="margin-top: 1.5rem; font-size: 1.3rem; font-weight: 700;">
-                For normal people who want asymmetric opportunities<br>without sacrificing their real life.
+                For normal people who want asymmetric opportunities<br>without sacrificing their actual life.
             </p>
         </div>
 
@@ -454,13 +493,14 @@
                 We believe in <strong>transparency</strong>. You deserve to know where we're going, what we're building, and why.
             </p>
             <p style="color: var(--gray); line-height: 1.8; font-size: clamp(0.9rem, 2vw, 1.05rem); margin-top: 1rem;">
-                This isn't a "pump and dump" tool. It's not a get-rich-quick scheme. It's a serious research platform being built by people who actually use it themselves.
+                This is not a pump-and-dump gadget or a get-rich-quick funnel.<br>
+                It's a serious, methodical research platform built by people who actually use it.
             </p>
             <p style="color: var(--gray); line-height: 1.8; font-size: clamp(0.9rem, 2vw, 1.05rem); margin-top: 1rem;">
-                <strong>For potential investors:</strong> We're building something real, methodically, with a clear vision. We're not rushing. We're doing it right.
+                <strong>For potential investors:</strong> we're building something real, step by step, with a clear long-term vision.
             </p>
             <p style="color: var(--gray); line-height: 1.8; font-size: clamp(0.9rem, 2vw, 1.05rem); margin-top: 1rem;">
-                <strong>For users:</strong> Your time is valuable. We respect that. That's why every feature is designed to <em>save</em> you time, not waste it.
+                <strong>For users:</strong> your time is scarce. Every feature is designed to save you time, not waste it.
             </p>
         </div>
 
@@ -493,6 +533,21 @@
                 stickyTitle.classList.add('visible');
             } else {
                 stickyTitle.classList.remove('visible');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navTabs = document.getElementById('navTabs');
+            navTabs.classList.toggle('mobile-menu-open');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navTabs = document.getElementById('navTabs');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            if (!navTabs.contains(event.target) && !menuToggle.contains(event.target)) {
+                navTabs.classList.remove('mobile-menu-open');
             }
         });
     </script>
