@@ -209,6 +209,7 @@ header {
   cursor: pointer;
   padding: 8px;
   z-index: 1001;
+  flex-shrink: 0;
 }
 
 .hamburger-menu span {
@@ -257,7 +258,7 @@ header {
   right: 0;
   width: 280px;
   height: 100%;
-  background: linear-gradient(135deg, var(--deep-black), var(--charcoal));
+  background: #1e2329;
   box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5);
   transform: translateX(100%);
   transition: transform 0.3s ease;
@@ -311,13 +312,15 @@ header {
 }
 
 .mobile-nav-links a {
-  padding: 1rem 1.5rem;
+  padding: 1.2rem 1.5rem;
   color: var(--white);
   text-decoration: none;
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.3rem;
+  font-weight: 500;
   transition: all 0.2s ease;
   border-left: 3px solid transparent;
+  text-align: left;
+  display: block;
 }
 
 .mobile-nav-links a:hover {
@@ -2407,6 +2410,7 @@ header {
     gap: 0.5rem;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: nowrap;
   }
   
   /* Show small logo on left */
@@ -2428,14 +2432,15 @@ header {
   /* Search in middle */
   .search-box {
     order: -1;
-    flex: 1;
-    max-width: 100%;
+    flex: 0 1 auto;
+    max-width: 50%;
+    min-width: 120px;
     margin: 0;
   }
   
   .search-box input {
     padding: 0.4rem 0.6rem;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
   
   /* Show compact nav below header */
@@ -2452,11 +2457,6 @@ header {
     padding: 0.25rem 0.35rem !important;
     flex: 1;
     text-align: center;
-  }
-  
-  /* Wrap header content to put nav on second row */
-  .header-content {
-    flex-wrap: wrap;
   }
   
   /* Move last update stat to header on mobile */
