@@ -949,8 +949,8 @@ function createExpandableRow(signal, metadata, tickerInfo) {
 
     // Use pence-aware helpers to get prices and market cap in GBP floats
     const currentPriceVal = getPriceFieldForTicker(signal?.Ticker || lseTicker, basics, 'current_price');
-    const athVal = getPriceFieldForTicker(signal?.Ticker || lseTicker, basics, 'ath');
-    const atlVal = getPriceFieldForTicker(signal?.Ticker || lseTicker, basics, 'atl');
+    const athVal = getPriceFieldForTicker(signal?.Ticker || lseTicker, basics, 'week_52_high');
+    const atlVal = getPriceFieldForTicker(signal?.Ticker || lseTicker, basics, 'week_52_low');
     const latestEntryVal = getPriceFieldForTicker(signal?.Ticker || lseTicker, latestSignal, 'price');
     const bestEntryVal = getPriceFieldForTicker(signal?.Ticker || lseTicker, bestSignal, 'entry_price');
     const bestPeakVal = getPriceFieldForTicker(signal?.Ticker || lseTicker, bestSignal, 'peak_price');
@@ -1002,12 +1002,12 @@ function createExpandableRow(signal, metadata, tickerInfo) {
                     <div class="metadata-section">
                         <h4>📊 Price Action</h4>
                         <div class="metadata-item">
-                            <span class="metadata-label">All-Time High:</span>
-                            <span class="metadata-value">${fmtPrice(athVal)}p (${basics.ath_date || '-'})</span>
+                            <span class="metadata-label">52-Week High:</span>
+                            <span class="metadata-value">${fmtPrice(athVal)}p (${basics.week_52_high_date || '-'})</span>
                         </div>
                         <div class="metadata-item">
-                            <span class="metadata-label">All-Time Low:</span>
-                            <span class="metadata-value">${fmtPrice(atlVal)}p (${basics.atl_date || '-'})</span>
+                            <span class="metadata-label">52-Week Low:</span>
+                            <span class="metadata-value">${fmtPrice(atlVal)}p (${basics.week_52_low_date || '-'})</span>
                         </div>
                         <div class="metadata-item">
                             <span class="metadata-label">Current Drawdown:</span>
@@ -1603,8 +1603,8 @@ async function showCompanyModal(ticker) {
 
     // Use pence-aware helpers to get prices and market cap in GBP floats
     const currentPriceVal = getPriceFieldForTicker(ticker, basics, 'current_price');
-    const athVal = getPriceFieldForTicker(ticker, basics, 'ath');
-    const atlVal = getPriceFieldForTicker(ticker, basics, 'atl');
+    const athVal = getPriceFieldForTicker(ticker, basics, 'week_52_high');
+    const atlVal = getPriceFieldForTicker(ticker, basics, 'week_52_low');
     const latestEntryVal = getPriceFieldForTicker(ticker, latestSignal, 'price');
     const bestEntryVal = getPriceFieldForTicker(ticker, bestSignal, 'entry_price');
     const bestPeakVal = getPriceFieldForTicker(ticker, bestSignal, 'peak_price');
@@ -1690,12 +1690,12 @@ async function showCompanyModal(ticker) {
                         <div class="metadata-section">
                             <h4>📊 Price Action</h4>
                             <div class="metadata-item">
-                                <span class="metadata-label">All-Time High:</span>
-                                <span class="metadata-value">${fmtPrice(athVal)}p (${basics.ath_date || '-'})</span>
+                                <span class="metadata-label">52-Week High:</span>
+                                <span class="metadata-value">${fmtPrice(athVal)}p (${basics.week_52_high_date || '-'})</span>
                             </div>
                             <div class="metadata-item">
-                                <span class="metadata-label">All-Time Low:</span>
-                                <span class="metadata-value">${fmtPrice(atlVal)}p (${basics.atl_date || '-'})</span>
+                                <span class="metadata-label">52-Week Low:</span>
+                                <span class="metadata-value">${fmtPrice(atlVal)}p (${basics.week_52_low_date || '-'})</span>
                             </div>
                         </div>
                         
