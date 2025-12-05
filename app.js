@@ -650,10 +650,20 @@ function renderCompressedMode(signals, tbody) {
             return currentSort.direction === 'desc' ? dateB - dateA : dateA - dateB;
         });
         
-        sortedHistory.forEach((signal, idx) => {
+        // Show first 5 signals initially
+        const initialDisplayCount = 5;
+        const hasMore = sortedHistory.length > initialDisplayCount;
+        
+        sortedHistory.slice(0, initialDisplayCount).forEach((signal, idx) => {
             const historyRow = createHistoryRow(signal, metadata, tickerInfo, ticker);
             tbody.appendChild(historyRow);
         });
+        
+        // Add "Show more" button if there are additional signals
+        if (hasMore) {
+            const showMoreRow = createShowMoreRow(ticker, sortedHistory, metadata, tickerInfo, initialDisplayCount);
+            tbody.appendChild(showMoreRow);
+        }
             } catch (error) {
                 console.error('Error rendering ticker:', ticker, error);
             }
@@ -724,6 +734,66 @@ function createHistoryRow(signal, metadata, tickerInfo, ticker) {
     `;
     
     return tr;
+}
+
+function createShowMoreRow(ticker, allSignals, metadata, tickerInfo, currentlyShown) {
+    const remaining = allSignals.length - currentlyShown;
+    const tr = document.createElement('tr');
+    tr.className = 'show-more-row ticker-history-row'; // Inherit history row class for visibility
+    tr.dataset.ticker = ticker;
+    
+    // Show/hide based on expanded state
+    if (expandedTickers.has(ticker)) {
+        tr.classList.add('visible');
+    }
+    
+    tr.innerHTML = `
+        <td colspan="4" style="padding: 0.6rem 2.5rem; text-align: center; border: none;">
+            <button class="show-more-signals-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <circle cx="5" cy="12" r="1.5"/>
+                    <circle cx="12" cy="12" r="1.5"/>
+                    <circle cx="19" cy="12" r="1.5"/>
+                </svg>
+                <span style="font-size: 0.72rem; font-weight: 600; letter-spacing: 0.3px;">
+                    Load ${remaining} more
+                </span>
+            </button>
+        </td>
+    `;
+    
+    // Add click handler directly to the button
+    const btn = tr.querySelector('.show-more-signals-btn');
+    btn.onclick = (e) => {
+        e.stopPropagation();
+        showAllSignals(ticker);
+    };
+    
+    // Store the remaining signals data for later
+    tr.dataset.allSignals = JSON.stringify(allSignals.slice(currentlyShown));
+    tr.dataset.metadata = JSON.stringify(metadata);
+    tr.dataset.tickerInfo = JSON.stringify(tickerInfo);
+    
+    return tr;
+}
+
+function showAllSignals(ticker) {
+    const showMoreRow = document.querySelector(`.show-more-row[data-ticker="${ticker}"]`);
+    if (!showMoreRow) return;
+    
+    const remainingSignals = JSON.parse(showMoreRow.dataset.allSignals);
+    const metadata = JSON.parse(showMoreRow.dataset.metadata);
+    const tickerInfo = JSON.parse(showMoreRow.dataset.tickerInfo);
+    
+    // Insert remaining history rows before the show-more button
+    const tbody = showMoreRow.parentElement;
+    remainingSignals.forEach(signal => {
+        const historyRow = createHistoryRow(signal, metadata, tickerInfo, ticker);
+        tbody.insertBefore(historyRow, showMoreRow);
+    });
+    
+    // Remove the show-more row
+    showMoreRow.remove();
 }
 
 function toggleTickerExpansion(ticker) {
