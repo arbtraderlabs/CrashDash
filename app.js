@@ -1002,12 +1002,20 @@ function createExpandableRow(signal, metadata, tickerInfo) {
                     <div class="metadata-section">
                         <h4>📊 Price Action</h4>
                         <div class="metadata-item">
-                            <span class="metadata-label">52-Week High:</span>
-                            <span class="metadata-value">${fmtPrice(athVal)}p (${basics.week_52_high_date || '-'})</span>
+                            <span class="metadata-label">52 Week High</span>
+                            <span class="metadata-value">${fmtPrice(athVal)}p</span>
                         </div>
                         <div class="metadata-item">
-                            <span class="metadata-label">52-Week Low:</span>
-                            <span class="metadata-value">${fmtPrice(atlVal)}p (${basics.week_52_low_date || '-'})</span>
+                            <span class="metadata-label">52 Week High Date</span>
+                            <span class="metadata-value">${basics.week_52_high_date ? new Date(basics.week_52_high_date).toLocaleDateString('en-GB', {day: '2-digit', month: 'short', year: 'numeric'}).replace(/ /g, '-') : '-'}</span>
+                        </div>
+                        <div class="metadata-item">
+                            <span class="metadata-label">52 Week Low</span>
+                            <span class="metadata-value">${fmtPrice(atlVal)}p</span>
+                        </div>
+                        <div class="metadata-item">
+                            <span class="metadata-label">52 Week Low Date</span>
+                            <span class="metadata-value">${basics.week_52_low_date ? new Date(basics.week_52_low_date).toLocaleDateString('en-GB', {day: '2-digit', month: 'short', year: 'numeric'}).replace(/ /g, '-') : '-'}</span>
                         </div>
                         <div class="metadata-item">
                             <span class="metadata-label">Current Drawdown:</span>
@@ -1690,12 +1698,20 @@ async function showCompanyModal(ticker) {
                         <div class="metadata-section">
                             <h4>📊 Price Action</h4>
                             <div class="metadata-item">
-                                <span class="metadata-label">52-Week High:</span>
-                                <span class="metadata-value">${fmtPrice(athVal)}p (${basics.week_52_high_date || '-'})</span>
+                                <span class="metadata-label">52 Week High</span>
+                                <span class="metadata-value">${fmtPrice(athVal)}p</span>
                             </div>
                             <div class="metadata-item">
-                                <span class="metadata-label">52-Week Low:</span>
-                                <span class="metadata-value">${fmtPrice(atlVal)}p (${basics.week_52_low_date || '-'})</span>
+                                <span class="metadata-label">52 Week High Date</span>
+                                <span class="metadata-value">${basics.week_52_high_date ? new Date(basics.week_52_high_date).toLocaleDateString('en-GB', {day: '2-digit', month: 'short', year: 'numeric'}).replace(/ /g, '-') : '-'}</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">52 Week Low</span>
+                                <span class="metadata-value">${fmtPrice(atlVal)}p</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">52 Week Low Date</span>
+                                <span class="metadata-value">${basics.week_52_low_date ? new Date(basics.week_52_low_date).toLocaleDateString('en-GB', {day: '2-digit', month: 'short', year: 'numeric'}).replace(/ /g, '-') : '-'}</span>
                             </div>
                         </div>
                         
