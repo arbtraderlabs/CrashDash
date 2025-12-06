@@ -981,6 +981,10 @@ function createExpandableRow(signal, metadata, tickerInfo) {
                             <span class="metadata-value">${exchange} (${market})</span>
                         </div>
                         <div class="metadata-item">
+                            <span class="metadata-label">Currency:</span>
+                            <span class="metadata-value">${companyInfo.currency || 'GBP'}</span>
+                        </div>
+                        <div class="metadata-item">
                             <span class="metadata-label">Sector:</span>
                             <span class="metadata-value">${companyInfo.sector || 'Unknown'}</span>
                         </div>
@@ -1677,6 +1681,10 @@ async function showCompanyModal(ticker) {
                                 <span class="metadata-value">${market}</span>
                             </div>
                             <div class="metadata-item">
+                                <span class="metadata-label">Currency:</span>
+                                <span class="metadata-value">${companyInfo.currency || 'GBP'}</span>
+                            </div>
+                            <div class="metadata-item">
                                 <span class="metadata-label">Sector:</span>
                                 <span class="metadata-value">${companyInfo.sector || 'Unknown'}</span>
                             </div>
@@ -1737,6 +1745,10 @@ async function showCompanyModal(ticker) {
                             <div class="metadata-item">
                                 <span class="metadata-label">Cycle Position:</span>
                                 <span class="metadata-value">${((latestSignal.cycle_position || 0) * 100).toFixed(0)}%</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">Holding Period:</span>
+                                <span class="metadata-value">${latestSignal.holding_period_days || 0} days</span>
                             </div>
                             <div class="metadata-item">
                                 <span class="metadata-label">Current P&L:</span>
