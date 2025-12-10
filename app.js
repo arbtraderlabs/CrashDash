@@ -712,9 +712,14 @@ function createHistoryRow(signal, metadata, tickerInfo, ticker) {
     const enhancedBadge = parsed.isEnhanced ? '<span class="enhanced-pill">⚡ ENHANCED</span>' : '';
     const drawdownPct = parseFloat(signal.Drawdown_Pct) || 0;
     
+    // Get market label from signal data
+    const exchange = signal.Exchange || 'LSE';
+    const market = signal.Market || 'AIM';
+    const marketLabel = market === 'MAIN' ? `${exchange}` : `${exchange} (${market})`;
+    
     tr.classList.add('expanded-history-row');
     tr.innerHTML = `
-        <td style="padding-left: 2.5rem;"><span style="color: var(--gray); font-weight: 500; font-size: 0.95rem;">↳</span> <span style="color: var(--navy); opacity: 0.85; font-weight: 600;">${cleanTickerDisplay(ticker)}</span> <span style="font-size: 0.7rem; color: var(--gray); margin-left: 4px; font-weight: 400; opacity: 0.7;">LSE (AIM)</span></td>
+        <td style="padding-left: 2.5rem;"><span style="color: var(--gray); font-weight: 500; font-size: 0.95rem;">↳</span> <span style="color: var(--navy); opacity: 0.85; font-weight: 600;">${cleanTickerDisplay(ticker)}</span> <span style="font-size: 0.7rem; color: var(--gray); margin-left: 4px; font-weight: 400; opacity: 0.7;">${marketLabel}</span></td>
         <td>
             <div style="margin-bottom: 4px;">
                 <span class="signal-badge signal-${parsed.baseColor}">${baseEmoji} ${shortSignalType} (${drawdownPct.toFixed(0)}%)</span>
