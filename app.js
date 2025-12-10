@@ -1227,6 +1227,7 @@ function filterSignals() {
     const searchTerm = document.getElementById('searchInput').value.toLowerCase();
     const colorFilter = document.getElementById('colorFilter').value;
     const sectorFilter = document.getElementById('sectorFilter').value;
+    const marketFilter = document.getElementById('marketFilter').value;
     const marketCapFilter = document.getElementById('marketCapFilter').value;
     
     return allSignals.filter(signal => {
@@ -1241,6 +1242,15 @@ function filterSignals() {
         
         // Sector filter
         const sectorMatch = !sectorFilter || tickerInfo.sector === sectorFilter;
+        
+        // Market filter
+        let marketMatch = true;
+        if (marketFilter) {
+            const exchange = signal.Exchange || '';
+            const market = signal.Market || '';
+            const marketKey = `${exchange}-${market}`;
+            marketMatch = marketKey === marketFilter;
+        }
         
         // Market Cap filter
         let marketCapMatch = true;
@@ -1309,7 +1319,7 @@ function filterSignals() {
         // Exclude signals with missing critical data
         const hasValidData = signal.Ticker && signal.Date && signal.Signal_Color;
         
-        return hasValidData && searchMatch && colorMatch && sectorMatch && marketCapMatch && dateMatch;
+        return hasValidData && searchMatch && colorMatch && sectorMatch && marketMatch && marketCapMatch && dateMatch;
     });
 }
 
@@ -1383,7 +1393,7 @@ function setupEventListeners() {
     }
     
     // Filter dropdowns
-    ['colorFilter', 'sectorFilter', 'marketCapFilter'].forEach(id => {
+    ['colorFilter', 'sectorFilter', 'marketFilter', 'marketCapFilter'].forEach(id => {
         const element = document.getElementById(id);
         if (element) {
             element.addEventListener('change', () => {
@@ -1479,6 +1489,7 @@ function resetFilters() {
     document.getElementById('searchInput').value = '';
     document.getElementById('colorFilter').value = '';
     document.getElementById('sectorFilter').value = '';
+    document.getElementById('marketFilter').value = '';
     document.getElementById('marketCapFilter').value = '';
     
     // Reset date filter to 'all'
@@ -1536,11 +1547,13 @@ function updateFilterCount() {
     
     const colorFilter = document.getElementById('colorFilter').value;
     const sectorFilter = document.getElementById('sectorFilter').value;
+    const marketFilter = document.getElementById('marketFilter').value;
     const marketCapFilter = document.getElementById('marketCapFilter').value;
     const dateRangeFilter = document.getElementById('dateRangeFilter').value;
     
     if (colorFilter) count++;
     if (sectorFilter) count++;
+    if (marketFilter) count++;
     if (marketCapFilter) count++;
     if (dateRangeFilter && dateRangeFilter !== 'all') count++;
     
