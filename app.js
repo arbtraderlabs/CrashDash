@@ -573,6 +573,9 @@ function renderCompressedMode(signals, tbody) {
         const market = latest.Market || 'AIM';
         const riskTier = (metadata?.company_info?.risk_tier || metadata?.basics?.risk_tier || 'High Risk');
         
+        // Add market identification for styling
+        parentRow.setAttribute('data-market', `${exchange}-${market}`);
+        
         // Check for split warnings - check if latest signal is affected by split
         const splitRisk = metadata.split_risk || {};
         const hasSplit = splitRisk.split_detected || false;
@@ -883,6 +886,9 @@ function renderFullMode(signals, tbody) {
         const exchange = signal.Exchange || 'LSE';
         const market = signal.Market || 'AIM';
         const riskTier = (metadata?.company_info?.risk_tier || metadata?.basics?.risk_tier || 'High Risk');
+        
+        // Add market identification for styling
+        tr.setAttribute('data-market', `${exchange}-${market}`);
         
         tr.innerHTML = `
             <td class="ticker-cell">

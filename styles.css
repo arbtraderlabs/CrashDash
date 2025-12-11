@@ -21,6 +21,19 @@
   --gray: #8E9AAF;
   --dark-gray: #2C3E50;
   
+  /* Market Differentiation Colors - Subtle Background Tints */
+  --lse-main-bg: rgba(10, 132, 255, 0.02);        /* Cool blue - premium/established */
+  --lse-main-hover: rgba(10, 132, 255, 0.06);
+  --lse-main-border: rgba(10, 132, 255, 0.15);
+  
+  --lse-aim-bg: rgba(139, 92, 246, 0.02);         /* Soft purple - growth/innovation */
+  --lse-aim-hover: rgba(139, 92, 246, 0.06);
+  --lse-aim-border: rgba(139, 92, 246, 0.15);
+  
+  --aquis-bg: rgba(16, 185, 129, 0.02);           /* Mint green - alternative/fresh */
+  --aquis-hover: rgba(16, 185, 129, 0.06);
+  --aquis-border: rgba(16, 185, 129, 0.15);
+  
   /* UI Elements */
   --shadow: 0 4px 6px rgba(11, 27, 51, 0.1);
   --shadow-lg: 0 10px 25px rgba(11, 27, 51, 0.15);
@@ -2117,6 +2130,34 @@ header {
 
 .signals-table tbody tr:hover {
   background: rgba(10, 132, 255, 0.05);
+}
+
+/* Market-Specific Row Styling */
+.signals-table tbody tr[data-market="LSE-MAIN"] {
+  background: var(--lse-main-bg);
+  border-left: 3px solid var(--lse-main-border);
+}
+
+.signals-table tbody tr[data-market="LSE-MAIN"]:hover {
+  background: var(--lse-main-hover);
+}
+
+.signals-table tbody tr[data-market="LSE-AIM"] {
+  background: var(--lse-aim-bg);
+  border-left: 3px solid var(--lse-aim-border);
+}
+
+.signals-table tbody tr[data-market="LSE-AIM"]:hover {
+  background: var(--lse-aim-hover);
+}
+
+.signals-table tbody tr[data-market="AQUIS-MAIN"] {
+  background: var(--aquis-bg);
+  border-left: 3px solid var(--aquis-border);
+}
+
+.signals-table tbody tr[data-market="AQUIS-MAIN"]:hover {
+  background: var(--aquis-hover);
 }
 
 /* Compressed mode parent row */
