@@ -568,9 +568,9 @@ function renderCompressedMode(signals, tbody) {
         // Get market cap
         const marketCapDisplay = tickerInfo.market_cap ? formatMarketCap(tickerInfo.market_cap) : 'N/A';
         
-        // Get exchange/market/risk from metadata or tickerInfo
-        const exchange = (metadata?.company_info?.exchange || metadata?.basics?.exchange || 'LSE');
-        const market = (metadata?.company_info?.market || metadata?.basics?.market || 'AIM');
+        // Get exchange/market from latest signal data (the source of truth from CSV)
+        const exchange = latest.Exchange || 'LSE';
+        const market = latest.Market || 'AIM';
         const riskTier = (metadata?.company_info?.risk_tier || metadata?.basics?.risk_tier || 'High Risk');
         
         // Check for split warnings - check if latest signal is affected by split
@@ -879,9 +879,9 @@ function renderFullMode(signals, tbody) {
         // Get market cap
         const marketCapDisplay = tickerInfo.market_cap ? formatMarketCap(tickerInfo.market_cap) : 'N/A';
         
-        // Get exchange/market/risk from metadata or tickerInfo
-        const exchange = (metadata?.company_info?.exchange || metadata?.basics?.exchange || 'LSE');
-        const market = (metadata?.company_info?.market || metadata?.basics?.market || 'AIM');
+        // Get exchange/market from signal data (the source of truth from CSV)
+        const exchange = signal.Exchange || 'LSE';
+        const market = signal.Market || 'AIM';
         const riskTier = (metadata?.company_info?.risk_tier || metadata?.basics?.risk_tier || 'High Risk');
         
         tr.innerHTML = `
