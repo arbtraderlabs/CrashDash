@@ -575,7 +575,7 @@ function renderCompressedMode(signals, tbody) {
         
         // Create clean market badge with full names
         const marketBadgeClass = market === 'MAIN' ? 'lse-main' : (exchange === 'AQUIS' ? 'aquis' : 'lse-aim');
-        const marketBadgeText = exchange === 'AQUIS' ? 'AQUIS MAIN' : (market === 'MAIN' ? 'LSE MAIN' : 'LSE AIM');
+        const marketBadgeText = exchange === 'AQUIS' ? 'AQUIS' : (market === 'MAIN' ? 'LSE MAIN' : 'LSE AIM');
         const marketBadge = `<span class="market-badge ${marketBadgeClass}">${marketBadgeText}</span>`;
         
         // Check for split warnings - check if latest signal is affected by split
@@ -891,7 +891,7 @@ function renderFullMode(signals, tbody) {
         
         // Create clean market badge
         const marketBadgeClass = market === 'MAIN' ? 'lse-main' : (exchange === 'AQUIS' ? 'aquis' : 'lse-aim');
-        const marketBadgeText = market === 'MAIN' ? (exchange === 'LSE' ? 'MAIN' : 'AQX') : 'AIM';
+        const marketBadgeText = exchange === 'AQUIS' ? 'AQUIS' : (market === 'MAIN' ? 'LSE MAIN' : 'LSE AIM');
         const marketBadge = `<span class="market-badge ${marketBadgeClass}">${marketBadgeText}</span>`;
         
         tr.innerHTML = `
