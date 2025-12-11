@@ -573,9 +573,9 @@ function renderCompressedMode(signals, tbody) {
         const market = latest.Market || 'AIM';
         const riskTier = (metadata?.company_info?.risk_tier || metadata?.basics?.risk_tier || 'High Risk');
         
-        // Create clean market badge
+        // Create clean market badge with full names
         const marketBadgeClass = market === 'MAIN' ? 'lse-main' : (exchange === 'AQUIS' ? 'aquis' : 'lse-aim');
-        const marketBadgeText = market === 'MAIN' ? (exchange === 'LSE' ? 'MAIN' : 'AQX') : 'AIM';
+        const marketBadgeText = exchange === 'AQUIS' ? 'AQUIS MAIN' : (market === 'MAIN' ? 'LSE MAIN' : 'LSE AIM');
         const marketBadge = `<span class="market-badge ${marketBadgeClass}">${marketBadgeText}</span>`;
         
         // Check for split warnings - check if latest signal is affected by split
@@ -600,7 +600,7 @@ function renderCompressedMode(signals, tbody) {
             <td class="ticker-cell">
                 <span class="expand-indicator">${expandIcon}</span>
                 <div style="display: flex; align-items: center; gap: 0.4rem;">
-                    <div style="font-weight: 700; font-size: 0.95rem;">${cleanTickerDisplay(ticker)}${marketBadge}</div>
+                    <div style="font-weight: 700; font-size: 0.95rem;">${cleanTickerDisplay(ticker)}</div>
                     <button class="info-button ${splitWarningClass}" onclick="event.stopPropagation(); showCompanyModal('${ticker}')" title="${isAffectedBySplit ? 'Company Profile ⚠️ Split Risk' : 'Company Profile'}">
                         <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
@@ -609,8 +609,8 @@ function renderCompressedMode(signals, tbody) {
                 </div>
                 <div class="company-name" style="margin: 2px 0;">${tickerInfo.name || ''}</div>
                 <div class="ticker-meta" style="font-size: 0.65rem; color: var(--gray); line-height: 1.3; margin-top: 3px;">
-                    <div>${exchange} · ${market}</div>
                     <div style="font-weight: 600; color: var(--dark-gray);">Cap: ${marketCapDisplay}</div>
+                    <div style="margin-top: 2px;">${marketBadge}</div>
                 </div>
             </td>
             <td style="white-space: nowrap;">
@@ -896,10 +896,10 @@ function renderFullMode(signals, tbody) {
         
         tr.innerHTML = `
             <td class="ticker-cell">
-                <div style="font-weight: 700; font-size: 0.95rem;">${cleanTickerDisplay(signal.Ticker)}${marketBadge} ${splitWarningIcon}</div>
+                <div style="font-weight: 700; font-size: 0.95rem;">${cleanTickerDisplay(signal.Ticker)} ${splitWarningIcon}</div>
                 <div class="company-name" style="margin: 2px 0;">${tickerInfo.name || ''}</div>
                 <div class="ticker-meta" style="font-size: 0.65rem; color: var(--gray); line-height: 1.3; margin-top: 3px;">
-                    <div>${exchange} · ${market}</div>
+                    <div>${marketBadge}</div>
                     <div style="font-weight: 600; color: var(--dark-gray);">Cap: ${marketCapDisplay}</div>
                 </div>
             </td>
