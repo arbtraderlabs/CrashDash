@@ -3685,17 +3685,30 @@ footer p {
   z-index: 900;
   display: none;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: hidden;
+  max-width: 100%;
 }
 
 .signals-table-sticky-header.visible {
   display: block;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .signals-table-sticky-header table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
 .signals-table-sticky-header th {
@@ -3707,6 +3720,8 @@ footer p {
   font-size: 0.85rem;
   background: var(--navy);
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   border-bottom: 2px solid;
   border-image: linear-gradient(90deg, var(--electric-blue) 0%, var(--purple-combo) 100%) 1;
 }

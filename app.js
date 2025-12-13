@@ -2795,10 +2795,21 @@ document.addEventListener('DOMContentLoaded', function() {
 // ============================================
 // STICKY TABLE HEADER (Fixed Clone - CMC Style)
 // ============================================
-document.addEventListener('DOMContentLoaded', function() {
+function initStickyTableHeader() {
     const originalTable = document.querySelector('.signals-table');
     const originalThead = originalTable?.querySelector('thead');
-    if (!originalTable || !originalThead) return;
+    if (!originalTable || !originalThead) {
+        console.log('Sticky header: waiting for table...');
+        return;
+    }
+
+    // Check if already initialized
+    if (document.querySelector('.signals-table-sticky-header')) {
+        console.log('Sticky header: already initialized');
+        return;
+    }
+
+    console.log('Sticky header: initializing...');
 
     // Create sticky header container
     const stickyContainer = document.createElement('div');
@@ -2822,12 +2833,20 @@ document.addEventListener('DOMContentLoaded', function() {
         if (originalTheadRect.bottom <= 0 && tableRect.bottom > 100) {
             stickyContainer.classList.add('visible');
             
-            // Match widths of columns
+            // Match widths of columns from the wrapper to handle overflow
+            const originalWrapper = document.querySelector('.signals-table-wrapper');
+            if (originalWrapper) {
+                stickyContainer.style.width = originalWrapper.offsetWidth + 'px';
+                stickyContainer.style.left = originalWrapper.getBoundingClientRect().left + 'px';
+            }
+            
+            // Match widths of individual columns
             const originalThs = originalThead.querySelectorAll('th');
             const clonedThs = clonedThead.querySelectorAll('th');
             originalThs.forEach((th, index) => {
                 if (clonedThs[index]) {
                     clonedThs[index].style.width = th.offsetWidth + 'px';
+                    clonedThs[index].style.minWidth = th.offsetWidth + 'px';
                 }
             });
         } else {
@@ -2838,7 +2857,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check on scroll
     window.addEventListener('scroll', checkSticky, { passive: true });
     window.addEventListener('resize', checkSticky, { passive: true });
-    // Initial check
-    checkSticky();
-});
+    
+    console.log('Sticky header: initialized successfully');
+    
+    // Initial check after a brief delay
+    setTimeout(checkSticky, 100);
+}
+
+// Try to initialize after DOM loads
+document.addEventListener('DOMContentLoaded', initStickyTableHeader);
+
+// Also try after a delay in case table loads late
+setTimeout(initStickyTableHeader, 1000);
+setTimeout(initStickyTableHeader, 2000);
 
