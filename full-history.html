@@ -7,6 +7,69 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📉</text></svg>">
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <style>
+        /* Mobile responsive table styles - horizontal scroll */
+        @media (max-width: 768px) {
+            .signals-table-wrapper {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                width: 100%;
+            }
+            
+            .signals-table {
+                font-size: 0.85rem;
+                min-width: 750px;
+                display: table;
+            }
+            
+            .signals-table th,
+            .signals-table td {
+                padding: 0.6rem 0.5rem;
+                white-space: nowrap;
+            }
+            
+            /* Signal Type - hide text on mobile */
+            .signals-table td:nth-child(4) .signal-type-text {
+                display: none;
+            }
+            
+            /* Enhanced ring animation */
+            @keyframes pulse-glow {
+                0%, 100% {
+                    opacity: 0.3;
+                    transform: translate(-50%, -50%) scale(1);
+                }
+                50% {
+                    opacity: 0.6;
+                    transform: translate(-50%, -50%) scale(1.15);
+                }
+            }
+            
+            .enhanced-ring {
+                animation: pulse-glow 2s ease-in-out infinite;
+            }
+            
+            /* Hide desktop text on mobile */
+            .desktop-text {
+                display: none;
+            }
+            
+            /* Pagination controls - smaller on mobile */
+            #paginationControls {
+                flex-direction: column;
+                gap: 0.5rem !important;
+            }
+            
+            #paginationControls button {
+                padding: 0.4rem 0.8rem !important;
+                font-size: 0.8rem !important;
+            }
+            
+            #paginationControls > div {
+                font-size: 0.75rem !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -24,10 +87,31 @@
                 <input type="text" id="searchInput" placeholder="Search tickers..." autocomplete="off">
             </div>
             
-            <div class="time-display" id="lastRefresh">
-                <span id="refreshDate"></span>
-                <span id="refreshTime"></span>
-                <span id="refreshLabel">Last refresh</span>
+            <div class="header-last-update" style="display: flex; align-items: center; gap: 0.3rem; flex-shrink: 0;">
+                <a href="index.html" style="color: var(--white); text-decoration: none; font-size: 0.9rem; font-weight: 700;">← Dashboard</a>
+            </div>
+        </div>
+        
+        <!-- NAVIGATION -->
+        <div class="nav-and-filters">
+            <nav class="nav-tabs">
+                <a href="about.html">📖 About</a>
+                <a href="strategy-guide.html">📚 Strategy</a>
+                <a href="faq.html">❓ FAQ</a>
+                <a href="roadmap.html">🧭 Roadmap</a>
+                <a href="https://x.com/CrashDashAI" target="_blank" class="x-link" title="Follow us on X">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="display: inline-block; vertical-align: middle;">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+            </nav>
+            <div class="header-filters">
+                <button id="openFiltersBtn" class="filters-popup-button" onclick="openFiltersModal()">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em" style="fill: currentColor;">
+                        <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
+                    </svg>
+                    <span>Filters</span>
+                </button>
             </div>
         </div>
     </header>
@@ -44,18 +128,12 @@
             <table class="signals-table">
                 <thead>
                     <tr id="tableHeader">
-                        <th class="sortable" data-sort="ticker">Ticker</th>
-                        <th class="sortable" data-sort="date">Signal Date</th>
-                        <th class="sortable" data-sort="signal_type">Signal Type</th>
-                        <th class="sortable" data-sort="current_pnl">Summary</th>
-                        <th class="sortable" data-sort="best_rally">Best Rally</th>
-                        <th class="sortable" data-sort="ai_score"><span class="desktop-text">AI Score</span> ⚡</th>
-                    </tr>
-                    <tr id="compressedHeader" style="display: none;">
-                        <th class="sortable" data-sort="ticker">Ticker</th>
-                        <th class="sortable" data-sort="signal_count">Buy Alerts</th>
-                        <th class="sortable" data-sort="latest_pnl">Summary</th>
-                        <th class="sortable" data-sort="latest_score"><span class="desktop-text">AI Score</span> ⚡</th>
+                        <th class="sortable" data-sort="ticker" style="cursor: pointer;">Ticker ↕</th>
+                        <th class="sortable" data-sort="exchange" style="cursor: pointer;">Exchange ↕</th>
+                        <th class="sortable" data-sort="date" style="cursor: pointer;">Signal Date ↕</th>
+                        <th class="sortable" data-sort="signal_type" style="cursor: pointer;">Signal Type ↕</th>
+                        <th class="sortable" data-sort="current_pnl" style="cursor: pointer;">Summary ↕</th>
+                        <th class="sortable" data-sort="ai_score" style="cursor: pointer;"><span class="desktop-text">AI Score</span> ⚡ ↕</th>
                     </tr>
                 </thead>
                 <tbody id="signalsTableBody">
@@ -76,31 +154,63 @@
         </div>
     </div>
 
+    <!-- Filters Modal -->
+    <div id="filtersModal" class="filters-modal" style="display: none;">
+        <div class="filters-modal-overlay" onclick="closeFiltersModal()"></div>
+        <div class="filters-modal-content">
+            <div class="filters-modal-header">
+                <h2>Filters</h2>
+                <button class="filters-modal-close" onclick="closeFiltersModal()">&times;</button>
+            </div>
+            <div class="filters-modal-body">
+                <div class="filter-group">
+                    <label for="colorFilter">Signal Type</label>
+                    <select id="colorFilter">
+                        <option value="">All Colors</option>
+                        <option value="PURPLE">🟣 Purple (Enhanced)</option>
+                        <option value="RED">🔴 Red (Ultra)</option>
+                        <option value="ORANGE">🟠 Orange (Extreme)</option>
+                        <option value="GREEN">🟢 Green (Deep)</option>
+                        <option value="YELLOW">🟡 Yellow (Crash)</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="marketFilter">Market</label>
+                    <select id="marketFilter">
+                        <option value="">All Markets</option>
+                        <option value="LSE-MAIN">🔵 LSE MAIN</option>
+                        <option value="LSE-AIM">🟣 LSE AIM</option>
+                        <option value="AQUIS-MAIN">🟢 AQUIS</option>
+                    </select>
+                </div>
+            </div>
+            <div class="filters-modal-footer">
+                <button class="btn-secondary" onclick="resetFilters()">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em" style="fill: currentColor; margin-right: 0.5rem;">
+                        <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
+                    </svg>
+                    Reset
+                </button>
+                <button class="btn-primary" onclick="applyFilters()">Apply</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
-    <footer style="text-align: center; padding: 2rem; color: #6B7280; margin-top: 4rem;">
-        <p>&copy; 2025 CrashDash. Data refreshed every 4 hours during market hours.</p>
-        <p style="font-size: 0.85rem; margin-top: 0.5rem;">
-            <a href="index.html" style="color: #0A84FF; text-decoration: none;">← Back to Dashboard</a>
-        </p>
+    <footer style="margin-top: 4rem;">
+        <p>&copy; 2025 CrashDash. Educational purposes only. Not financial advice.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">⚡ When the Market Breaks, You Learn.</p>
+        <div style="margin-top: 1rem; display: flex; gap: 1.5rem; justify-content: center; align-items: center;">
+            <a href="https://x.com/CrashDashAI" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem;" title="Follow us on X">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                Follow on X
+            </a>
+            <a href="https://forms.gle/C5GChwRu8wYshbS69" target="_blank" style="color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.85rem;">✉️ Contact Us</a>
+        </div>
     </footer>
 
-    <!-- Hidden elements for app.js compatibility -->
-    <div id="toggleSlider" style="display: none;"></div>
-    <div id="compactIcon" style="display: none;"></div>
-    <div id="detailIcon" style="display: none;"></div>
-    <input id="searchInput" type="hidden">
-    <input id="colorFilter" type="hidden">
-    <select id="sectorFilter" style="display: none;"></select>
-    <select id="marketFilter" style="display: none;"></select>
-    <select id="marketCapFilter" style="display: none;"></select>
-    <input id="minAiScore" type="hidden" value="0">
-    <div id="filterCount" style="display: none;"></div>
-
-    <script src="app.js"></script>
-    <script>
-        // Force full mode for this page
-        viewMode = 'full';
-        updateViewModeUI();
-    </script>
+    <script src="full-history.js"></script>
 </body>
 </html>
