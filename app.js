@@ -2879,7 +2879,15 @@ function initStickyTableHeader() {
             // Match container positioning
             // Use the actual table position for perfect alignment
             const tablePosition = originalTable.getBoundingClientRect();
-            stickyContainer.style.width = tablePosition.width + 'px';
+            
+            // On mobile, constrain to viewport width to prevent overflow
+            if (isMobile) {
+                const maxWidth = window.innerWidth - tablePosition.left;
+                stickyContainer.style.width = Math.min(tablePosition.width, maxWidth) + 'px';
+            } else {
+                stickyContainer.style.width = tablePosition.width + 'px';
+            }
+            
             stickyContainer.style.left = tablePosition.left + 'px';
             stickyContainer.style.right = 'auto';
             
