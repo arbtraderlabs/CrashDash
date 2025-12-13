@@ -2267,7 +2267,7 @@ async function loadPriceChart(ticker) {
         const layout = {
             xaxis: {
                 type: 'date',
-                rangeselector: isMobile ? { visible: false } : {
+                rangeselector: {
                     buttons: [
                         { 
                             count: 3, 
@@ -2298,13 +2298,15 @@ async function loadPriceChart(ticker) {
                             label: 'All'
                         }
                     ],
-                    x: 0,
-                    y: 1.02,
-                    xanchor: 'left',
-                    yanchor: 'bottom',
+                    x: isMobile ? 0.5 : 0,
+                    y: isMobile ? 1.12 : 1.02,
+                    xanchor: isMobile ? 'center' : 'left',
+                    yanchor: isMobile ? 'top' : 'bottom',
                     bgcolor: 'rgba(255,255,255,0.1)',
                     activecolor: 'rgba(10, 132, 255, 0.5)',
-                    font: { color: 'white', size: 12 }
+                    font: { color: 'white', size: isMobile ? 9 : 12 },
+                    borderwidth: isMobile ? 1 : 0,
+                    bordercolor: 'rgba(255,255,255,0.2)'
                 },
                 rangeslider: { visible: false },
                 gridcolor: 'rgba(255,255,255,0.1)',
@@ -2312,7 +2314,8 @@ async function loadPriceChart(ticker) {
                 tickangle: isMobile ? -45 : 0,
                 tickfont: { size: isMobile ? 9 : 11 },
                 nticks: isMobile ? 6 : 10,
-                automargin: true
+                automargin: true,
+                tickformat: isMobile ? '%m-%y' : null
             },
             yaxis: {
                 title: isMobile ? '£' : 'Price (£)',
