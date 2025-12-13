@@ -2877,21 +2877,11 @@ function initStickyTableHeader() {
             stickyContainer.classList.add('visible');
             
             // Match container positioning
-            const originalWrapper = document.querySelector('.signals-table-wrapper');
-            if (originalWrapper) {
-                const wrapperRect = originalWrapper.getBoundingClientRect();
-                
-                if (isMobile) {
-                    // On mobile: full width from left edge to match table
-                    stickyContainer.style.left = '0';
-                    stickyContainer.style.width = '100vw';
-                } else {
-                    // Desktop: match wrapper position
-                    stickyContainer.style.width = wrapperRect.width + 'px';
-                    stickyContainer.style.left = wrapperRect.left + 'px';
-                }
-                stickyContainer.style.right = 'auto';
-            }
+            // Use the actual table position for perfect alignment
+            const tablePosition = originalTable.getBoundingClientRect();
+            stickyContainer.style.width = tablePosition.width + 'px';
+            stickyContainer.style.left = tablePosition.left + 'px';
+            stickyContainer.style.right = 'auto';
             
             // Match widths of individual columns precisely
             const originalThs = originalThead.querySelectorAll('th');
