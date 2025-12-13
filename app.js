@@ -2836,8 +2836,12 @@ function initStickyTableHeader() {
         const tableRect = originalTable.getBoundingClientRect();
         const originalTheadRect = originalThead.getBoundingClientRect();
         
+        // Responsive threshold: mobile (90px header) vs desktop (145px header)
+        const isMobile = window.innerWidth <= 768;
+        const threshold = isMobile ? 95 : 150;
+        
         // Show sticky when original header scrolls past top (earlier detection)
-        if (originalTheadRect.top <= 150 && tableRect.bottom > 200) {
+        if (originalTheadRect.top <= threshold && tableRect.bottom > 200) {
             stickyContainer.classList.add('visible');
             
             // Match container positioning
