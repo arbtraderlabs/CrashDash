@@ -375,8 +375,17 @@ function updateViewModeUI() {
     const fullHeader = document.getElementById('tableHeader');
     const compressedHeader = document.getElementById('compressedHeader');
     
-    if (!slider || !fullHeader || !compressedHeader) {
-        console.warn('View mode UI elements not found, skipping update');
+    // If on full-history page (no toggle elements), force full mode
+    if (!slider || !compressedHeader) {
+        if (fullHeader) {
+            fullHeader.style.display = '';
+        }
+        viewMode = 'full';
+        return;
+    }
+    
+    if (!fullHeader) {
+        console.warn('Table header not found');
         return;
     }
     
