@@ -2415,43 +2415,64 @@ async function loadPriceChart(ticker) {
         
         // Listen for range selector/zoom changes to rescale y-axis
         chartDiv.on('plotly_relayout', function(eventData) {
-            // Reset autorange first to prevent axis issues when switching timeframes
-            if (eventData['xaxis.range[0]'] || eventData['xaxis.range'] || eventData['xaxis.autorange']) {
-                // Only respond to x-axis range changes (not y-axis changes we make ourselves)
-                if ((eventData['xaxis.range[0]'] || eventData['xaxis.range']) && !eventData['yaxis.range']) {
+            // Only respond to x-axis range changes (not y-axis changes we make ourselves)
+            if ((eventData['xaxis.range[0]'] || eventData['xaxis.range']) && !eventData['yaxis.range']) {
+                // Force axis reset FIRST before any calculations
+                Plotly.relayout(chartDiv, {
+                    'yaxis.autorange': true
+                }).then(() => {
                     const xRange = eventData['xaxis.range'] || [eventData['xaxis.range[0]'], eventData['xaxis.range[1]']];
                     
-                    // Find visible data indices
-                    const startIdx = chartData.dates.findIndex(d => d >= xRange[0]);
-                    const endIdx = chartData.dates.findIndex(d => d > xRange[1]);
-                
-                    if (startIdx >= 0) {
-                        const visibleHigh = chartData.high.slice(startIdx, endIdx > 0 ? endIdx : undefined);
-                        const visibleLow = chartData.low.slice(startIdx, endIdx > 0 ? endIdx : undefined);
+                    // Find visible data indices with proper handling for "All" timeframe
+                    let startIdx = 0;
+                    let endIdx = chartData.dates.length;
+                    
+                    // Find actual start index
+                    for (let i = 0; i < chartData.dates.length; i++) {
+                        if (chartData.dates[i] >= xRange[0]) {
+                            startIdx = i;
+                            break;
+                        }
+                    }
+                    
+                    // Find actual end index
+                    for (let i = startIdx; i < chartData.dates.length; i++) {
+                        if (chartData.dates[i] > xRange[1]) {
+                            endIdx = i;
+                            break;
+                        }
+                    }
+                    
+                    // Ensure we have valid range
+                    if (startIdx >= 0 && endIdx > startIdx) {
+                        const visibleHigh = chartData.high.slice(startIdx, endIdx);
+                        const visibleLow = chartData.low.slice(startIdx, endIdx);
                         
                         if (visibleHigh.length > 0 && visibleLow.length > 0) {
                             // Include signal positions in range calculation using dynamic offset
                             const visibleSignalLows = [];
                             chartData.signals.forEach(sig => {
                                 const dateIdx = chartData.dates.indexOf(sig.date);
-                                if (dateIdx >= startIdx && (endIdx < 0 || dateIdx < endIdx)) {
+                                if (dateIdx >= startIdx && dateIdx < endIdx) {
                                     const pos = calculateSignalPosition(dateIdx);
                                     if (pos !== null) visibleSignalLows.push(pos);
                                 }
                             });
                             
-                            const yMin = Math.min(...visibleLow, ...visibleSignalLows);
+                            const yMin = visibleSignalLows.length > 0 ? 
+                                Math.min(...visibleLow, ...visibleSignalLows) : 
+                                Math.min(...visibleLow);
                             const yMax = Math.max(...visibleHigh);
                             const padding = (yMax - yMin) * 0.05; // 5% padding
                             
-                            // Reset and recalculate y-axis range
+                            // Now set the calculated range
                             Plotly.relayout(chartDiv, {
                                 'yaxis.autorange': false,
                                 'yaxis.range': [yMin - padding, yMax + padding]
                             });
                         }
                     }
-                }
+                });
             }
         });
         
@@ -2857,17 +2878,9 @@ function initStickyTableHeader() {
             const originalWrapper = document.querySelector('.signals-table-wrapper');
             if (originalWrapper) {
                 const wrapperRect = originalWrapper.getBoundingClientRect();
-                
-                // On mobile, use viewport-based positioning
-                if (isMobile) {
-                    stickyContainer.style.left = '0';
-                    stickyContainer.style.right = '0';
-                    stickyContainer.style.width = '100vw';
-                } else {
-                    stickyContainer.style.width = wrapperRect.width + 'px';
-                    stickyContainer.style.left = wrapperRect.left + 'px';
-                    stickyContainer.style.right = 'auto';
-                }
+                stickyContainer.style.width = wrapperRect.width + 'px';
+                stickyContainer.style.left = wrapperRect.left + 'px';
+                stickyContainer.style.right = 'auto';
             }
             
             // Match widths of individual columns precisely
