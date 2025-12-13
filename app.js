@@ -2880,8 +2880,16 @@ function initStickyTableHeader() {
             const originalWrapper = document.querySelector('.signals-table-wrapper');
             if (originalWrapper) {
                 const wrapperRect = originalWrapper.getBoundingClientRect();
-                stickyContainer.style.width = wrapperRect.width + 'px';
-                stickyContainer.style.left = wrapperRect.left + 'px';
+                
+                if (isMobile) {
+                    // On mobile: full width from left edge to match table
+                    stickyContainer.style.left = '0';
+                    stickyContainer.style.width = '100vw';
+                } else {
+                    // Desktop: match wrapper position
+                    stickyContainer.style.width = wrapperRect.width + 'px';
+                    stickyContainer.style.left = wrapperRect.left + 'px';
+                }
                 stickyContainer.style.right = 'auto';
             }
             
