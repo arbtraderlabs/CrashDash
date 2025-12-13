@@ -2079,10 +2079,6 @@ header {
 .signals-table thead {
   background: var(--navy);
   color: var(--white);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .signals-table th {
@@ -2096,7 +2092,10 @@ header {
   user-select: none;
   transition: var(--transition);
   background: var(--navy);
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .signals-table th:hover {
@@ -3682,27 +3681,14 @@ footer p {
    ============================================ */
 
 /* Enhanced sticky header with smooth animation */
-.signals-table thead.is-stuck {
+.signals-table th.is-stuck {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  animation: slideDown 0.3s ease;
 }
 
-@keyframes slideDown {
-  from {
-    transform: translateY(-10px);
-    opacity: 0.8;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Add subtle gradient border when stuck for visual separation */
-.signals-table thead.is-stuck::after {
+.signals-table th.is-stuck::after {
   content: '';
   position: absolute;
-  bottom: -2px;
+  bottom: 0;
   left: 0;
   right: 0;
   height: 2px;

@@ -2796,29 +2796,30 @@ document.addEventListener('DOMContentLoaded', function() {
 // STICKY TABLE HEADER DETECTION (CMC Style)
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
-    const tableHeader = document.querySelector('.signals-table thead');
-    if (!tableHeader) return;
+    const tableHeaders = document.querySelectorAll('.signals-table th');
+    if (!tableHeaders.length) return;
 
-    // Create an Intersection Observer to detect when header is stuck
-    const observer = new IntersectionObserver(
-        ([entry]) => {
-            // When header is NOT intersecting its natural position, it's stuck at top
-            if (!entry.isIntersecting) {
-                tableHeader.classList.add('is-stuck');
+    // Detect when user scrolls to add sticky effect
+    let lastScrollY = window.scrollY;
+    const checkSticky = () => {
+        const table = document.querySelector('.signals-table');
+        if (!table) return;
+        
+        const tableRect = table.getBoundingClientRect();
+        const isStuck = tableRect.top <= 0 && tableRect.bottom > 50;
+        
+        tableHeaders.forEach(th => {
+            if (isStuck) {
+                th.classList.add('is-stuck');
             } else {
-                tableHeader.classList.remove('is-stuck');
+                th.classList.remove('is-stuck');
             }
-        },
-        {
-            threshold: [1],
-            rootMargin: '-1px 0px 0px 0px' // Trigger slightly before actual stick
-        }
-    );
+        });
+    };
 
-    // Observe the table wrapper to detect when scrolling
-    const tableWrapper = document.querySelector('.signals-table-wrapper');
-    if (tableWrapper) {
-        observer.observe(tableWrapper);
-    }
+    // Check on scroll
+    window.addEventListener('scroll', checkSticky, { passive: true });
+    // Initial check
+    checkSticky();
 });
 
