@@ -103,6 +103,12 @@
                         <th class="sortable" data-sort="best_rally">Best Rally</th>
                         <th class="sortable" data-sort="ai_score"><span class="desktop-text">AI Score</span> ⚡</th>
                     </tr>
+                    <tr id="compressedHeader" style="display: none;">
+                        <th class="sortable" data-sort="ticker">Ticker</th>
+                        <th class="sortable" data-sort="signal_count">Buy Alerts</th>
+                        <th class="sortable" data-sort="latest_pnl">Summary</th>
+                        <th class="sortable" data-sort="latest_score"><span class="desktop-text">AI Score</span> ⚡</th>
+                    </tr>
                 </thead>
                 <tbody id="signalsTableBody">
                     <!-- Signals loaded via JavaScript -->
@@ -130,6 +136,16 @@
         </p>
     </footer>
 
+    <!-- Hidden elements for app.js compatibility -->
+    <div id="toggleSlider" style="display: none;"></div>
+    <div id="compactIcon" style="display: none;"></div>
+    <div id="detailIcon" style="display: none;"></div>
+
     <script src="app.js"></script>
+    <script>
+        // Force full mode for this page
+        viewMode = 'full';
+        updateViewModeUI();
+    </script>
 </body>
 </html>
