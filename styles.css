@@ -2088,17 +2088,38 @@ header {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-size: 0.85rem;
-  cursor: default;
+  cursor: pointer;
   user-select: none;
   transition: var(--transition);
 }
 
+.signals-table th:hover {
+  background: rgba(10, 132, 255, 0.2);
+}
 
+
+
+.signals-table th.sortable::after {
+  content: ' ⇅';
+  opacity: 0.5;
+}
+
+.signals-table th.sort-asc::after {
+  content: ' ▲';
+  opacity: 1;
+  color: var(--electric-blue);
+}
+
+.signals-table th.sort-desc::after {
+  content: ' ▼';
+  opacity: 1;
+  color: var(--electric-blue);
+}
 
 .signals-table tbody tr {
   border-bottom: 1px solid #E5E7EB;
   transition: var(--transition);
-  cursor: default;
+  cursor: pointer;
 }
 
 .signals-table tbody tr:hover {
