@@ -2836,31 +2836,33 @@ function initStickyTableHeader() {
         const tableRect = originalTable.getBoundingClientRect();
         const originalTheadRect = originalThead.getBoundingClientRect();
         
-        console.log('Sticky check:', {
-            theadBottom: originalTheadRect.bottom,
-            tableBottom: tableRect.bottom,
-            shouldShow: originalTheadRect.bottom <= 0 && tableRect.bottom > 100
-        });
-        
-        // Show sticky when original header scrolls past top
-        if (originalTheadRect.bottom <= 0 && tableRect.bottom > 100) {
-            console.log('Showing sticky header');
+        // Show sticky when original header scrolls past top (earlier detection)
+        if (originalTheadRect.top <= 150 && tableRect.bottom > 200) {
             stickyContainer.classList.add('visible');
             
-            // Match widths of columns from the wrapper to handle overflow
+            // Match container positioning
             const originalWrapper = document.querySelector('.signals-table-wrapper');
             if (originalWrapper) {
-                stickyContainer.style.width = originalWrapper.offsetWidth + 'px';
-                stickyContainer.style.left = originalWrapper.getBoundingClientRect().left + 'px';
+                const wrapperRect = originalWrapper.getBoundingClientRect();
+                stickyContainer.style.width = wrapperRect.width + 'px';
+                stickyContainer.style.left = wrapperRect.left + 'px';
+                stickyContainer.style.right = 'auto';
             }
             
-            // Match widths of individual columns
+            // Match widths of individual columns precisely
             const originalThs = originalThead.querySelectorAll('th');
             const clonedThs = clonedThead.querySelectorAll('th');
+            
+            // Set table to match original table width
+            const originalTableWidth = originalTable.offsetWidth;
+            clonedTable.style.width = originalTableWidth + 'px';
+            
             originalThs.forEach((th, index) => {
                 if (clonedThs[index]) {
-                    clonedThs[index].style.width = th.offsetWidth + 'px';
-                    clonedThs[index].style.minWidth = th.offsetWidth + 'px';
+                    const computedWidth = th.getBoundingClientRect().width;
+                    clonedThs[index].style.width = computedWidth + 'px';
+                    clonedThs[index].style.minWidth = computedWidth + 'px';
+                    clonedThs[index].style.maxWidth = computedWidth + 'px';
                 }
             });
         } else {
