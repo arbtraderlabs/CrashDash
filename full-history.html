@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Signal History - CrashDash</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📉</text></svg>">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <h1 class="logo">
+                        📉 <span class="logo-text">CRASH<span class="logo-dash">DASH</span></span>
+                    </h1>
+                </a>
+            </div>
+            
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search tickers..." autocomplete="off">
+            </div>
+            
+            <div class="time-display" id="lastRefresh">
+                <span id="refreshDate"></span>
+                <span id="refreshTime"></span>
+                <span id="refreshLabel">Last refresh</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="page-header">
+            <h2>📊 Full Signal History</h2>
+            <p class="page-description">Complete list of all crash signals with detailed metrics</p>
+        </div>
+
+        <!-- Filters -->
+        <div class="filter-controls">
+            <button class="btn btn-primary" id="filterButton">
+                🔍 Filters <span class="filter-count" id="filterCount" style="display: none;">0</span>
+            </button>
+        </div>
+
+        <!-- Filter Panel -->
+        <div class="filter-panel" id="filterPanel" style="display: none;">
+            <div class="filter-sections">
+                <!-- Market Filter -->
+                <div class="filter-section">
+                    <h3>📍 Market</h3>
+                    <div class="filter-checkboxes" id="marketFilters"></div>
+                </div>
+
+                <!-- AI Score Filter -->
+                <div class="filter-section">
+                    <h3>⚡ AI Score</h3>
+                    <div class="filter-checkboxes" id="aiScoreFilters">
+                        <label><input type="checkbox" value="10" data-filter="ai-score"> 10.0 (Perfect)</label>
+                        <label><input type="checkbox" value="9" data-filter="ai-score"> 9.0+</label>
+                        <label><input type="checkbox" value="8" data-filter="ai-score"> 8.0+</label>
+                        <label><input type="checkbox" value="7" data-filter="ai-score"> 7.0+</label>
+                    </div>
+                </div>
+
+                <!-- P&L Filter -->
+                <div class="filter-section">
+                    <h3>💰 Current P&L</h3>
+                    <div class="filter-checkboxes" id="pnlFilters">
+                        <label><input type="checkbox" value="positive" data-filter="pnl"> Positive</label>
+                        <label><input type="checkbox" value="negative" data-filter="pnl"> Negative</label>
+                    </div>
+                </div>
+
+                <!-- Best Rally Filter -->
+                <div class="filter-section">
+                    <h3>🚀 Best Rally</h3>
+                    <div class="filter-checkboxes" id="rallyFilters">
+                        <label><input type="checkbox" value="100" data-filter="rally"> 100%+</label>
+                        <label><input type="checkbox" value="50" data-filter="rally"> 50%+</label>
+                        <label><input type="checkbox" value="20" data-filter="rally"> 20%+</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-actions">
+                <button class="btn btn-secondary" id="clearFilters">Clear All</button>
+                <button class="btn btn-primary" id="applyFilters">Apply Filters</button>
+            </div>
+        </div>
+
+        <!-- Full History Table -->
+        <div class="signals-table-wrapper" id="signalsWrapper">
+            <table class="signals-table">
+                <thead>
+                    <tr id="tableHeader">
+                        <th class="sortable" data-sort="ticker">Ticker</th>
+                        <th class="sortable" data-sort="date">Signal Date</th>
+                        <th class="sortable" data-sort="signal_type">Signal Type</th>
+                        <th class="sortable" data-sort="current_pnl">Summary</th>
+                        <th class="sortable" data-sort="best_rally">Best Rally</th>
+                        <th class="sortable" data-sort="ai_score"><span class="desktop-text">AI Score</span> ⚡</th>
+                    </tr>
+                </thead>
+                <tbody id="signalsTableBody">
+                    <!-- Signals loaded via JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Loading State -->
+        <div class="loading-state" id="loadingState">
+            <div class="spinner"></div>
+            <p>Loading signal history...</p>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <p>No signals found matching your filters.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 2rem; color: #6B7280; margin-top: 4rem;">
+        <p>&copy; 2025 CrashDash. Data refreshed every 4 hours during market hours.</p>
+        <p style="font-size: 0.85rem; margin-top: 0.5rem;">
+            <a href="index.html" style="color: #0A84FF; text-decoration: none;">← Back to Dashboard</a>
+        </p>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        // Initialize full history page in full mode
+        window.addEventListener('DOMContentLoaded', () => {
+            // Force full mode for this page
+            window.isFullHistoryPage = true;
+            
+            // Load signals data
+            loadSignalsData();
+        });
+    </script>
+</body>
+</html>
