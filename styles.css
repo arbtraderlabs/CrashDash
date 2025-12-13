@@ -3677,7 +3677,7 @@ footer p {
 
 .signals-table-sticky-header {
   position: fixed;
-  top: 0;
+  top: 145px;
   left: 0;
   right: 0;
   background: var(--navy);
@@ -3689,6 +3689,12 @@ footer p {
   overflow-y: hidden;
   max-width: 100%;
   pointer-events: auto;
+}
+
+@media (max-width: 768px) {
+  .signals-table-sticky-header {
+    top: 120px;
+  }
 }
 
 .signals-table-sticky-header.visible {
