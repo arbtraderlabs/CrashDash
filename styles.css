@@ -2718,9 +2718,20 @@ header {
     overflow: visible;
   }
   
+  /* Ticker column - fixed width like CoinMarketCap */
+  .signals-table th:first-child,
+  .signals-table td:first-child {
+    width: 120px !important;
+    min-width: 120px !important;
+    max-width: 120px !important;
+  }
+  
   /* Ticker cell wraps text */
   .ticker-cell {
     white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.3;
   }
   
   /* Remove specific column width constraints */
