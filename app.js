@@ -14,7 +14,6 @@ let dateFilter = '1m'; // 'all', '1m', '3m', '6m', '1y', 'custom' - default 1 mo
 let customDateRange = { start: null, end: null };
 let viewMode = localStorage.getItem('viewMode') || 'compressed'; // 'compressed' or 'full'
 let groupedSignals = {}; // Grouped by ticker for compressed mode
-let expandedTickers = new Set(); // Track which tickers are expanded
 
 console.log('Global variables initialized');
 
@@ -562,13 +561,9 @@ function renderCompressedMode(signals, tbody) {
         // Parent row
         const parentRow = document.createElement('tr');
         parentRow.className = 'ticker-parent-row';
-        if (expandedTickers.has(ticker)) {
-            parentRow.classList.add('expanded');
-        }
         parentRow.dataset.ticker = ticker;
-        parentRow.onclick = () => toggleTickerExpansion(ticker);
-        
-        const expandIcon = expandedTickers.has(ticker) ? '▼' : '▶';
+        parentRow.style.cursor = 'pointer';
+        parentRow.onclick = () => showSignalTimeline(ticker);
         
         // Create signal badges (up to 4, then +N more) from ALL signals (latest + history)
         const allTickerSignals = [latest, ...group.history];
@@ -584,8 +579,6 @@ function renderCompressedMode(signals, tbody) {
             const enhancedRing = parsed.isEnhanced ? '<span class="enhanced-ring">🟣</span>' : '';
             return `<span class="signal-badge-compact signal-${parsed.baseColor}${parsed.isEnhanced ? ' enhanced' : ''}" title="${sig.Signal_Type}">${enhancedRing}${baseEmoji}</span>`;
         }).join(' ');
-        
-        const remaining = group.count > 4 ? `<span class="more-signals">+${group.count - 4}</span>` : '';
         
         // Get market cap
         const marketCapDisplay = tickerInfo.market_cap ? formatMarketCap(tickerInfo.market_cap) : 'N/A';
@@ -622,7 +615,6 @@ function renderCompressedMode(signals, tbody) {
         
         parentRow.innerHTML = `
             <td class="ticker-cell">
-                <span class="expand-indicator">${expandIcon}</span>
                 <div style="display: flex; align-items: center; gap: 0.4rem;">
                     <div style="font-weight: 700; font-size: 0.95rem;">${cleanTickerDisplay(ticker)}</div>
                     <button class="info-button ${splitWarningClass}" onclick="event.stopPropagation(); showCompanyModal('${ticker}')" title="${isAffectedBySplit ? 'Company Profile ⚠️ Split Risk' : 'Company Profile'}">
@@ -638,7 +630,7 @@ function renderCompressedMode(signals, tbody) {
                 </div>
             </td>
             <td style="white-space: nowrap;">
-                <div style="margin-bottom: 4px;">${signalBadges}${remaining}</div>
+                <div style="margin-bottom: 4px;">${signalBadges}</div>
                 <div style="font-size: 0.75rem; color: var(--dark-gray); font-weight: 600;">
                     ${latest.Date}
                 </div>
@@ -668,31 +660,6 @@ function renderCompressedMode(signals, tbody) {
         `;
         
         tbody.appendChild(parentRow);
-        
-        // History rows (hidden by default)
-        // Sort all signals (latest + history) by current sort direction
-        const allSignals = [latest, ...group.history];
-        const sortedHistory = allSignals.sort((a, b) => {
-            const dateA = new Date(a.Date);
-            const dateB = new Date(b.Date);
-            // Always sort history by date, respecting current direction
-            return currentSort.direction === 'desc' ? dateB - dateA : dateA - dateB;
-        });
-        
-        // Show first 5 signals initially
-        const initialDisplayCount = 5;
-        const hasMore = sortedHistory.length > initialDisplayCount;
-        
-        sortedHistory.slice(0, initialDisplayCount).forEach((signal, idx) => {
-            const historyRow = createHistoryRow(signal, metadata, tickerInfo, ticker);
-            tbody.appendChild(historyRow);
-        });
-        
-        // Add "Show more" button if there are additional signals
-        if (hasMore) {
-            const showMoreRow = createShowMoreRow(ticker, sortedHistory, metadata, tickerInfo, initialDisplayCount);
-            tbody.appendChild(showMoreRow);
-        }
             } catch (error) {
                 console.error('Error rendering ticker:', ticker, error);
             }
@@ -703,263 +670,10 @@ function renderCompressedMode(signals, tbody) {
     }
 }
 
-function createHistoryRow(signal, metadata, tickerInfo, ticker) {
-    const tr = document.createElement('tr');
-    tr.className = 'ticker-history-row';
-    tr.dataset.ticker = ticker;
-    if (expandedTickers.has(ticker)) {
-        tr.classList.add('visible');
-    }
-    tr.onclick = () => toggleExpandableRow(signal, metadata, tickerInfo);
-    
-    const triggerPrice = parseFloat(signal.Price);
-    const currentPrice = metadata.current_price || triggerPrice;
-    const currentPnl = ((currentPrice - triggerPrice) / triggerPrice) * 100;
-    const bestRally = metadata.best_rally_pct || 0;
-    
-    const parsed = parseSignalType(signal.Signal_Type);
-    
-    let shortSignalType = parsed.baseSeverity
-        .replace('EXTREME', 'Extreme')
-        .replace('ULTRA', 'Ultra')
-        .replace('DEEP', 'Deep')
-        .replace('CRASH ZONE', 'Crash');
-    
-    if (signal.Signal_Type.toUpperCase().includes('COMBO')) {
-        shortSignalType += ' Combo';
-    } else if (signal.Signal_Type.toUpperCase().includes('BOTTOM')) {
-        shortSignalType += ' Bottom';
-    }
-    
-    const baseEmoji = {
-        'RED': '🔴',
-        'ORANGE': '🟠',
-        'GREEN': '🟢',
-        'YELLOW': '🟡'
-    }[parsed.baseColor] || '🟡';
-    
-    const enhancedBadge = parsed.isEnhanced ? '<span class="enhanced-pill">⚡ ENHANCED</span>' : '';
-    const drawdownPct = parseFloat(signal.Drawdown_Pct) || 0;
-    
-    // Get market label from signal data
-    const exchange = signal.Exchange || 'LSE';
-    const market = signal.Market || 'AIM';
-    const marketLabel = market === 'MAIN' ? `${exchange}` : `${exchange} (${market})`;
-    
-    // Get enriched data from metadata.all_historical_signals
-    let enriched = null;
-    if (metadata.all_historical_signals && Array.isArray(metadata.all_historical_signals)) {
-        enriched = metadata.all_historical_signals.find(s => s.signal_date === signal.Date);
-        if (enriched) {
-            console.log(`✓ Found enriched data for ${ticker} ${signal.Date}:`, enriched);
-        }
-    }
-    
-    // Build enriched badges
-    let enrichedBadges = '';
-    if (enriched) {
-        // Rally State badge (show text)
-        const rallyStateColors = {
-            'accumulating': '#6b7280',
-            'rallying': '#22c55e',
-            'peaked': '#ef4444',
-            'pulling_back': '#3b82f6'
-        };
-        const rallyStateLabels = {
-            'accumulating': 'Accumulating',
-            'rallying': 'Rallying',
-            'peaked': 'Peaked',
-            'pulling_back': 'Pulling Back'
-        };
-        if (enriched.rally_state) {
-            const bgColor = rallyStateColors[enriched.rally_state] || '#6b7280';
-            const label = rallyStateLabels[enriched.rally_state] || enriched.rally_state;
-            enrichedBadges += `<span class="enriched-badge" style="background: ${bgColor}; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.65rem; font-weight: 600; margin-left: 6px;">${label}</span>`;
-        }
-        
-        // Lock-in badge (icon only with tooltip)
-        if (enriched.lock_in_reached) {
-            const lockInDate = enriched.lock_in_date ? ` on ${new Date(enriched.lock_in_date).toLocaleDateString('en-GB')}` : '';
-            enrichedBadges += `<span class="enriched-badge" title="Lock-in (15%) achieved${lockInDate}" style="background: #dcfce7; color: #166534; padding: 2px 8px; border-radius: 12px; font-size: 0.65rem; font-weight: 600; margin-left: 6px; cursor: help;">✓</span>`;
-        }
-        
-        // Rally Count warning (>= 2 cycles, icon only with tooltip)
-        if (enriched.Rally_Count >= 2) {
-            enrichedBadges += `<span class="enriched-badge" title="${enriched.Rally_Count} Rally Cycles - Potential pump & dump pattern" style="background: #fef3c7; color: #92400e; padding: 2px 8px; border-radius: 12px; font-size: 0.65rem; font-weight: 600; margin-left: 6px; cursor: help;">⚠</span>`;
-        }
-        
-        // Split warning (icon only with tooltip)
-        if (enriched.split_affected) {
-            enrichedBadges += `<span class="enriched-badge" title="Signal affected by stock split - Review with caution" style="background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.65rem; font-weight: 700; margin-left: 6px; cursor: help;">⚠</span>`;
-        }
-    }
-    
-    tr.classList.add('expanded-history-row');
-    tr.style.backgroundColor = 'rgba(15, 23, 42, 0.03)';
-    tr.innerHTML = `
-        <td style="padding-left: 2.5rem;"><span style="color: var(--gray); font-weight: 500; font-size: 0.95rem;">↳</span></td>
-        <td>
-            <div style="margin-bottom: 4px;">
-                <span class="signal-badge signal-${parsed.baseColor}" title="${shortSignalType} (${drawdownPct.toFixed(0)}%) - ${signal.Date}" style="cursor: help;">${baseEmoji}</span>
-                ${enhancedBadge}
-                ${enrichedBadges}
-            </div>
-            <div style="font-size: 0.75rem; color: var(--gray); font-weight: 500; opacity: 0.8;">
-                ${signal.Date}
-            </div>
-        </td>
-        <td>
-            <div style="font-size: 0.85rem; color: var(--gray); margin-bottom: 2px; opacity: 0.85;">${triggerPrice.toFixed(2)}p</div>
-            <div class="${currentPnl >= 0 ? 'positive' : 'negative'}" style="font-weight: 600;">
-                ${currentPnl >= 0 ? '+' : ''}${currentPnl.toFixed(1)}%
-            </div>
-        </td>
-        <td>
-            <div style="color: var(--navy); opacity: 0.85; margin-bottom: 4px;">${parseFloat(signal.AI_Technical_Score).toFixed(1)}</div>
-            ${metadata.all_historical_signals && metadata.all_historical_signals.length > 0 ? `
-                <button class="rally-details-btn" onclick="event.stopPropagation(); showSignalTimeline('${ticker}'); return false;" 
-                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 4px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3); transition: all 0.2s;">
-                    <span style="font-size: 0.9rem;">📊</span> Rally Details
-                </button>
-            ` : ''}
-        </td>
-    `;
-    
-    return tr;
-}
-
-function createShowMoreRow(ticker, allSignals, metadata, tickerInfo, currentlyShown) {
-    const remaining = allSignals.length - currentlyShown;
-    const tr = document.createElement('tr');
-    tr.className = 'show-more-row ticker-history-row'; // Inherit history row class for visibility
-    tr.dataset.ticker = ticker;
-    
-    // Show/hide based on expanded state
-    if (expandedTickers.has(ticker)) {
-        tr.classList.add('visible');
-    }
-    
-    tr.innerHTML = `
-        <td colspan="4" style="padding: 0.6rem 2.5rem; text-align: center; border: none;">
-            <button class="show-more-signals-btn">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                    <circle cx="5" cy="12" r="1.5"/>
-                    <circle cx="12" cy="12" r="1.5"/>
-                    <circle cx="19" cy="12" r="1.5"/>
-                </svg>
-                <span style="font-size: 0.72rem; font-weight: 600; letter-spacing: 0.3px;">
-                    Load ${remaining} more
-                </span>
-            </button>
-        </td>
-    `;
-    
-    // Add click handler directly to the button
-    const btn = tr.querySelector('.show-more-signals-btn');
-    btn.onclick = (e) => {
-        e.stopPropagation();
-        showAllSignals(ticker);
-    };
-    
-    // Store the remaining signals data for later
-    tr.dataset.allSignals = JSON.stringify(allSignals.slice(currentlyShown));
-    tr.dataset.metadata = JSON.stringify(metadata);
-    tr.dataset.tickerInfo = JSON.stringify(tickerInfo);
-    
-    return tr;
-}
-
-function showAllSignals(ticker) {
-    const showMoreRow = document.querySelector(`.show-more-row[data-ticker="${ticker}"]`);
-    if (!showMoreRow) return;
-    
-    const remainingSignals = JSON.parse(showMoreRow.dataset.allSignals);
-    const metadata = JSON.parse(showMoreRow.dataset.metadata);
-    const tickerInfo = JSON.parse(showMoreRow.dataset.tickerInfo);
-    
-    // Insert remaining history rows before the show-more button
-    const tbody = showMoreRow.parentElement;
-    remainingSignals.forEach(signal => {
-        const historyRow = createHistoryRow(signal, metadata, tickerInfo, ticker);
-        tbody.insertBefore(historyRow, showMoreRow);
-    });
-    
-    // Remove the show-more row
-    showMoreRow.remove();
-}
-
-async function toggleTickerExpansion(ticker) {
-    if (expandedTickers.has(ticker)) {
-        expandedTickers.delete(ticker);
-    } else {
-        expandedTickers.add(ticker);
-        
-        // Load full metadata with all_historical_signals when expanding for the first time
-        if (!allMetadata[ticker]?._fullDetailsLoaded) {
-            console.log(`Loading full metadata for ${ticker}...`);
-            await loadTickerDetails(ticker);
-            
-            // Re-render history rows with enriched data
-            const tbody = document.querySelector('tbody');
-            const allTickerSignals = allSignals.filter(s => s.Ticker === ticker);
-            const metadata = allMetadata[ticker] || {};
-            const tickerInfo = tickerLookup[ticker] || {};
-            
-            // Remove existing history rows
-            document.querySelectorAll(`tr.ticker-history-row[data-ticker="${ticker}"], tr.show-more-row[data-ticker="${ticker}"]`).forEach(row => row.remove());
-            
-            // Get parent row to insert after it
-            const parentRow = document.querySelector(`tr.ticker-parent-row[data-ticker="${ticker}"]`);
-            
-            // Sort signals by date (newest first)
-            const sortedSignals = allTickerSignals.sort((a, b) => {
-                const dateA = new Date(a.Date);
-                const dateB = new Date(b.Date);
-                return dateB - dateA; // desc - newest first
-            });
-            
-            // Show first 5 signals initially
-            const initialDisplayCount = 5;
-            const hasMore = sortedSignals.length > initialDisplayCount;
-            
-            // Insert rows in order (newest first appears right after parent row)
-            let insertAfterRow = parentRow;
-            sortedSignals.slice(0, initialDisplayCount).forEach((signal) => {
-                const historyRow = createHistoryRow(signal, metadata, tickerInfo, ticker);
-                insertAfter(historyRow, insertAfterRow);
-                insertAfterRow = historyRow; // Next row inserts after this one
-            });
-            
-            // Add "Show more" button if there are additional signals
-            if (hasMore) {
-                const showMoreRow = createShowMoreRow(ticker, sortedSignals, metadata, tickerInfo, initialDisplayCount);
-                const lastHistoryRow = document.querySelector(`tr.ticker-history-row[data-ticker="${ticker}"]:last-of-type`);
-                if (lastHistoryRow) {
-                    insertAfter(showMoreRow, lastHistoryRow);
-                }
-            }
-        }
-    }
-    
-    // Update UI
-    const parentRow = document.querySelector(`tr.ticker-parent-row[data-ticker="${ticker}"]`);
-    const historyRows = document.querySelectorAll(`tr.ticker-history-row[data-ticker="${ticker}"]`);
-    const indicator = parentRow?.querySelector('.expand-indicator');
-    
-    if (expandedTickers.has(ticker)) {
-        parentRow?.classList.add('expanded');
-        historyRows.forEach(row => row.classList.add('visible'));
-        if (indicator) indicator.textContent = '▼';
-    } else {
-        parentRow?.classList.remove('expanded');
-        historyRows.forEach(row => row.classList.remove('visible'));
-        if (indicator) indicator.textContent = '▶';
-    }
-}
-
-function insertAfter(newNode, referenceNode) {
-    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
-}
+// ============================================
+// DEPRECATED: Expansion/History Row Functions Removed
+// All signal details now shown in Rally Timeline modal
+// ============================================
 
 function renderFullMode(signals, tbody) {
     // Limit to latest 100 signals for performance
@@ -1902,7 +1616,28 @@ async function showCompanyModal(ticker) {
                             </div>
                             <div class="metadata-item">
                                 <span class="metadata-label">AI Score:</span>
-                                <span class="metadata-value">${latestSignal.ai_score?.toFixed(1) || '-'}</span>
+                                <span class="metadata-value">
+                                    ${latestSignal.ai_score?.toFixed(1) || '-'}
+                                    <button 
+                                        onclick="loadAIReport('${ticker}')"
+                                        style="
+                                            margin-left: 8px;
+                                            padding: 4px 10px;
+                                            background: rgba(10, 132, 255, 0.15);
+                                            color: var(--primary);
+                                            border: 1px solid var(--primary);
+                                            border-radius: 6px;
+                                            cursor: pointer;
+                                            font-size: 0.85rem;
+                                            font-weight: 500;
+                                            transition: all 0.2s ease;
+                                        "
+                                        onmouseover="this.style.background='var(--primary)'; this.style.color='white'"
+                                        onmouseout="this.style.background='rgba(10, 132, 255, 0.15)'; this.style.color='var(--primary)'"
+                                    >
+                                        📊 View Report
+                                    </button>
+                                </span>
                             </div>
                             <div class="metadata-item">
                                 <span class="metadata-label">Cycle Position:</span>
@@ -2039,11 +1774,11 @@ async function showSignalTimeline(ticker) {
         </h2>
         
         <!-- 5-Year Price Chart -->
-        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(10, 132, 255, 0.2);">
+        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem; border: 1px solid rgba(10, 132, 255, 0.2);">
             <h3 style="color: white; margin: 0 0 1rem 0; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
                 📈 ${cleanTickerDisplay(ticker)} - 5 Year Price History
             </h3>
-            <div id="priceChart" style="width: 100%; height: 500px;"></div>
+            <div id="priceChart" style="width: 100%; height: 400px; min-height: 300px;"></div>
         </div>
         
         <!-- Current Rally Analysis Card -->
@@ -2369,14 +2104,44 @@ async function loadPriceChart(ticker) {
             }
         });
         
-        // Add signal traces
+        // Helper function to calculate signal position with local context-aware offset
+        const calculateSignalPosition = (dateIdx) => {
+            if (dateIdx < 0 || dateIdx >= chartData.dates.length) return null;
+            try {
+                // Calculate local price range (30 days window around signal for context)
+                const windowStart = Math.max(0, dateIdx - 15);
+                const windowEnd = Math.min(chartData.dates.length, dateIdx + 15);
+                const localLows = chartData.low.slice(windowStart, windowEnd);
+                const localHighs = chartData.high.slice(windowStart, windowEnd);
+                
+                if (localLows.length === 0 || localHighs.length === 0) return null;
+                
+                const localRange = Math.max(...localHighs) - Math.min(...localLows);
+                
+                // Use 5% of local range as offset (adapts to current price level)
+                const localOffset = localRange * 0.05;
+                return chartData.low[dateIdx] - localOffset;
+            } catch (error) {
+                console.warn('Error calculating signal position:', error);
+                return null;
+            }
+        };
+        
+        // Add signal traces - position below candles with dynamic offset per signal
         Object.entries(signalsByColor).forEach(([color, group]) => {
             if (group.signals.length > 0) {
+                // Map each signal to below the low price with context-aware offset
+                const yPositions = group.signals.map(s => {
+                    const dateIdx = chartData.dates.indexOf(s.date);
+                    const pos = calculateSignalPosition(dateIdx);
+                    return pos !== null ? pos : s.price; // Fallback to signal price if not found
+                });
+                
                 traces.push({
                     type: 'scatter',
                     mode: 'markers',
                     x: group.signals.map(s => s.date),
-                    y: group.signals.map(s => s.price),
+                    y: yPositions,
                     name: group.name,
                     marker: {
                         symbol: 'triangle-up',
@@ -2384,8 +2149,8 @@ async function loadPriceChart(ticker) {
                         color: group.color,
                         line: { width: 1.5, color: 'rgba(255,255,255,0.9)' }
                     },
-                    text: group.signals.map(s => s.comment),
-                    hovertemplate: '<b>%{text}</b><br>Date: %{x}<br>Price: £%{y:.4f}<extra></extra>'
+                    customdata: group.signals.map(s => [s.price, s.comment]),
+                    hovertemplate: '<b>%{customdata[1]}</b><br>Date: %{x}<br>Signal Price: £%{customdata[0]:.4f}<extra></extra>'
                 });
             }
         });
@@ -2456,9 +2221,14 @@ async function loadPriceChart(ticker) {
                 y: -0.25,
                 xanchor: 'center',
                 x: 0.5,
-                font: { color: 'white' }
+                font: { color: 'white', size: window.innerWidth < 768 ? 10 : 12 }
             },
-            margin: { l: 60, r: 30, t: 20, b: 80 }
+            margin: { 
+                l: window.innerWidth < 768 ? 40 : 60, 
+                r: window.innerWidth < 768 ? 20 : 30, 
+                t: 20, 
+                b: window.innerWidth < 768 ? 60 : 80 
+            }
         };
         
         // Plot configuration
@@ -2472,7 +2242,9 @@ async function loadPriceChart(ticker) {
                 filename: `${ticker}_chart`,
                 height: 800,
                 width: 1400
-            }
+            },
+            // Better mobile support
+            autosizable: true
         };
         
         // Render the chart with 1-year default view (from last data point)
@@ -2487,15 +2259,25 @@ async function loadPriceChart(ticker) {
         ];
         
         Plotly.newPlot(chartDiv, traces, layout, config).then(() => {
-            // Calculate y-axis range for the visible 1-year data
+            // Calculate y-axis range for the visible 1-year data INCLUDING signal positions
             const startIdx = chartData.dates.findIndex(d => d >= layout.xaxis.range[0]);
             const endIdx = chartData.dates.findIndex(d => d > layout.xaxis.range[1]);
             const visibleHigh = chartData.high.slice(startIdx, endIdx > 0 ? endIdx : undefined);
             const visibleLow = chartData.low.slice(startIdx, endIdx > 0 ? endIdx : undefined);
             
-            const yMin = Math.min(...visibleLow);
+            // Calculate signal positions for visible range using dynamic offset
+            const visibleSignalLows = [];
+            chartData.signals.forEach(sig => {
+                const dateIdx = chartData.dates.indexOf(sig.date);
+                if (dateIdx >= startIdx && (endIdx < 0 || dateIdx < endIdx)) {
+                    const pos = calculateSignalPosition(dateIdx);
+                    if (pos !== null) visibleSignalLows.push(pos);
+                }
+            });
+            
+            const yMin = Math.min(...visibleLow, ...visibleSignalLows);
             const yMax = Math.max(...visibleHigh);
-            const padding = (yMax - yMin) * 0.1; // 10% padding
+            const padding = (yMax - yMin) * 0.05; // 5% padding
             
             Plotly.relayout(chartDiv, {
                 'yaxis.range': [yMin - padding, yMax + padding],
@@ -2518,9 +2300,19 @@ async function loadPriceChart(ticker) {
                     const visibleLow = chartData.low.slice(startIdx, endIdx > 0 ? endIdx : undefined);
                     
                     if (visibleHigh.length > 0 && visibleLow.length > 0) {
-                        const yMin = Math.min(...visibleLow);
+                        // Include signal positions in range calculation using dynamic offset
+                        const visibleSignalLows = [];
+                        chartData.signals.forEach(sig => {
+                            const dateIdx = chartData.dates.indexOf(sig.date);
+                            if (dateIdx >= startIdx && (endIdx < 0 || dateIdx < endIdx)) {
+                                const pos = calculateSignalPosition(dateIdx);
+                                if (pos !== null) visibleSignalLows.push(pos);
+                            }
+                        });
+                        
+                        const yMin = Math.min(...visibleLow, ...visibleSignalLows);
                         const yMax = Math.max(...visibleHigh);
-                        const padding = (yMax - yMin) * 0.1; // 10% padding
+                        const padding = (yMax - yMin) * 0.05; // 5% padding
                         
                         Plotly.relayout(chartDiv, {
                             'yaxis.range': [yMin - padding, yMax + padding]
@@ -2585,6 +2377,80 @@ function closeOnboardingDrawer() {
     const drawer = document.getElementById('onboardingDrawer');
     drawer.classList.remove('active');
     drawer.setAttribute('aria-hidden', 'true');
+}
+
+// AI Report Loading Function
+function loadAIReport(ticker) {
+    // Create modal overlay
+    const modalHTML = `
+        <div class="modal" id="aiReportModal" style="display: flex; align-items: center; justify-content: center;">
+            <div class="modal-content" style="
+                max-width: 600px;
+                width: 90%;
+                padding: 3rem 2rem;
+                text-align: center;
+                background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+            ">
+                <div style="margin-bottom: 2rem;">
+                    <div class="spinner" style="
+                        margin: 0 auto 1.5rem;
+                        width: 60px;
+                        height: 60px;
+                        border: 4px solid rgba(10, 132, 255, 0.2);
+                        border-top-color: var(--primary);
+                        border-radius: 50%;
+                        animation: spin 1s linear infinite;
+                    "></div>
+                    <h3 style="color: white; font-size: 1.5rem; margin-bottom: 0.5rem;">
+                        🤖 Generating AI Report
+                    </h3>
+                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 1rem;">
+                        Analyzing ${ticker} with V4 Engine...
+                    </p>
+                </div>
+                <button 
+                    onclick="closeAIReportModal()"
+                    style="
+                        padding: 0.75rem 2rem;
+                        background: rgba(10, 132, 255, 0.3);
+                        color: rgba(10, 132, 255, 1);
+                        border: 2px solid var(--primary);
+                        border-radius: 8px;
+                        cursor: pointer;
+                        font-size: 0.95rem;
+                        font-weight: 600;
+                        transition: all 0.2s ease;
+                    "
+                    onmouseover="this.style.background='var(--primary)'; this.style.color='white'"
+                    onmouseout="this.style.background='rgba(10, 132, 255, 0.3)'; this.style.color='rgba(10, 132, 255, 1)'"
+                >
+                    Close
+                </button>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    
+    // Add CSS animation for spinner if not already present
+    if (!document.getElementById('spinnerStyle')) {
+        const style = document.createElement('style');
+        style.id = 'spinnerStyle';
+        style.textContent = `
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+}
+
+function closeAIReportModal() {
+    const modal = document.getElementById('aiReportModal');
+    if (modal) {
+        modal.remove();
+    }
 }
 
 // Close drawer when clicking outside on mobile
