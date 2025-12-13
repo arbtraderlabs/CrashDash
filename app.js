@@ -2298,15 +2298,16 @@ async function loadPriceChart(ticker) {
                             label: 'All'
                         }
                     ],
-                    x: isMobile ? 0.5 : 0,
-                    y: isMobile ? 1.12 : 1.02,
-                    xanchor: isMobile ? 'center' : 'left',
+                    x: isMobile ? 0 : 0,
+                    y: isMobile ? 1.18 : 1.02,
+                    xanchor: 'left',
                     yanchor: isMobile ? 'top' : 'bottom',
-                    bgcolor: 'rgba(255,255,255,0.1)',
-                    activecolor: 'rgba(10, 132, 255, 0.5)',
+                    bgcolor: 'rgba(10, 20, 40, 0.85)',
+                    activecolor: 'rgba(10, 132, 255, 0.7)',
                     font: { color: 'white', size: isMobile ? 9 : 12 },
-                    borderwidth: isMobile ? 1 : 0,
-                    bordercolor: 'rgba(255,255,255,0.2)'
+                    borderwidth: 1,
+                    bordercolor: 'rgba(255,255,255,0.3)',
+                    pad: { t: isMobile ? 2 : 5, b: isMobile ? 2 : 5 }
                 },
                 rangeslider: { visible: false },
                 gridcolor: 'rgba(255,255,255,0.1)',
@@ -2350,7 +2351,7 @@ async function loadPriceChart(ticker) {
             margin: { 
                 l: isMobile ? 45 : 60, 
                 r: isMobile ? 10 : 30, 
-                t: isMobile ? 40 : 20, 
+                t: isMobile ? 65 : 20, 
                 b: isMobile ? 80 : 80 
             },
             autosize: true
