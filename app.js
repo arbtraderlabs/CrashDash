@@ -2793,32 +2793,51 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ============================================
-// STICKY TABLE HEADER DETECTION (CMC Style)
+// STICKY TABLE HEADER (Fixed Clone - CMC Style)
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
-    const tableHeaders = document.querySelectorAll('.signals-table th');
-    if (!tableHeaders.length) return;
+    const originalTable = document.querySelector('.signals-table');
+    const originalThead = originalTable?.querySelector('thead');
+    if (!originalTable || !originalThead) return;
 
-    // Detect when user scrolls to add sticky effect
-    let lastScrollY = window.scrollY;
+    // Create sticky header container
+    const stickyContainer = document.createElement('div');
+    stickyContainer.className = 'signals-table-sticky-header';
+    
+    // Clone the table structure with just the header
+    const clonedTable = document.createElement('table');
+    clonedTable.className = 'signals-table';
+    const clonedThead = originalThead.cloneNode(true);
+    clonedTable.appendChild(clonedThead);
+    stickyContainer.appendChild(clonedTable);
+    
+    document.body.appendChild(stickyContainer);
+
+    // Show/hide sticky header based on scroll position
     const checkSticky = () => {
-        const table = document.querySelector('.signals-table');
-        if (!table) return;
+        const tableRect = originalTable.getBoundingClientRect();
+        const originalTheadRect = originalThead.getBoundingClientRect();
         
-        const tableRect = table.getBoundingClientRect();
-        const isStuck = tableRect.top <= 0 && tableRect.bottom > 50;
-        
-        tableHeaders.forEach(th => {
-            if (isStuck) {
-                th.classList.add('is-stuck');
-            } else {
-                th.classList.remove('is-stuck');
-            }
-        });
+        // Show sticky when original header scrolls past top
+        if (originalTheadRect.bottom <= 0 && tableRect.bottom > 100) {
+            stickyContainer.classList.add('visible');
+            
+            // Match widths of columns
+            const originalThs = originalThead.querySelectorAll('th');
+            const clonedThs = clonedThead.querySelectorAll('th');
+            originalThs.forEach((th, index) => {
+                if (clonedThs[index]) {
+                    clonedThs[index].style.width = th.offsetWidth + 'px';
+                }
+            });
+        } else {
+            stickyContainer.classList.remove('visible');
+        }
     };
 
     // Check on scroll
     window.addEventListener('scroll', checkSticky, { passive: true });
+    window.addEventListener('resize', checkSticky, { passive: true });
     // Initial check
     checkSticky();
 });

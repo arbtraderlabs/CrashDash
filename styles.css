@@ -2091,11 +2091,6 @@ header {
   cursor: pointer;
   user-select: none;
   transition: var(--transition);
-  background: var(--navy);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .signals-table th:hover {
@@ -3677,21 +3672,41 @@ footer p {
 }
 
 /* ============================================
-   STICKY TABLE HEADER ENHANCEMENTS (CMC Style)
+   STICKY TABLE HEADER (Fixed Position - CMC Style)
    ============================================ */
 
-/* Enhanced sticky header with smooth animation */
-.signals-table th.is-stuck {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-}
-
-.signals-table th.is-stuck::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
+.signals-table-sticky-header {
+  position: fixed;
+  top: 0;
   left: 0;
   right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--electric-blue) 0%, var(--purple-combo) 100%);
-  opacity: 0.8;
+  background: var(--navy);
+  color: var(--white);
+  z-index: 900;
+  display: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.signals-table-sticky-header.visible {
+  display: block;
+}
+
+.signals-table-sticky-header table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.signals-table-sticky-header th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.85rem;
+  background: var(--navy);
+  white-space: nowrap;
+  border-bottom: 2px solid;
+  border-image: linear-gradient(90deg, var(--electric-blue) 0%, var(--purple-combo) 100%) 1;
 }
