@@ -2299,7 +2299,7 @@ async function loadPriceChart(ticker) {
                         }
                     ],
                     x: isMobile ? 0.5 : 0,
-                    y: isMobile ? -0.22 : 1.02,
+                    y: isMobile ? -0.30 : 1.02,
                     xanchor: isMobile ? 'center' : 'left',
                     yanchor: 'bottom',
                     bgcolor: 'rgba(10, 20, 40, 0.85)',
@@ -2342,10 +2342,10 @@ async function loadPriceChart(ticker) {
             legend: {
                 orientation: 'h',
                 yanchor: isMobile ? 'top' : 'bottom',
-                y: isMobile ? -0.35 : -0.25,
+                y: isMobile ? -0.45 : -0.25,
                 xanchor: 'center',
                 x: 0.5,
-                font: { color: 'white', size: isMobile ? 8 : 12 },
+                font: { color: 'white', size: isMobile ? 10 : 12 },
                 tracegroupgap: isMobile ? 5 : 10
             },
             margin: { 
