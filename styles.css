@@ -2079,6 +2079,10 @@ header {
 .signals-table thead {
   background: var(--navy);
   color: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .signals-table th {
@@ -2091,6 +2095,8 @@ header {
   cursor: pointer;
   user-select: none;
   transition: var(--transition);
+  background: var(--navy);
+  position: relative;
 }
 
 .signals-table th:hover {
@@ -3669,4 +3675,37 @@ footer p {
   .legendtext {
     font-size: 8px !important;
   }
+}
+
+/* ============================================
+   STICKY TABLE HEADER ENHANCEMENTS (CMC Style)
+   ============================================ */
+
+/* Enhanced sticky header with smooth animation */
+.signals-table thead.is-stuck {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-10px);
+    opacity: 0.8;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Add subtle gradient border when stuck for visual separation */
+.signals-table thead.is-stuck::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--electric-blue) 0%, var(--purple-combo) 100%);
+  opacity: 0.8;
 }
