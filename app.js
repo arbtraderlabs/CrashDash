@@ -2854,10 +2854,19 @@ function initStickyTableHeader() {
     const stickyContainer = document.createElement('div');
     stickyContainer.className = 'signals-table-sticky-header';
     
-    // Clone the table structure with just the header
+    // Clone the table structure with just the VISIBLE header row
     const clonedTable = document.createElement('table');
     clonedTable.className = 'signals-table';
-    const clonedThead = originalThead.cloneNode(true);
+    const clonedThead = document.createElement('thead');
+    
+    // Find and clone only the visible header row
+    const visibleHeaderRow = Array.from(originalThead.querySelectorAll('tr'))
+        .find(row => row.style.display !== 'none');
+    
+    if (visibleHeaderRow) {
+        clonedThead.appendChild(visibleHeaderRow.cloneNode(true));
+    }
+    
     clonedTable.appendChild(clonedThead);
     stickyContainer.appendChild(clonedTable);
     
