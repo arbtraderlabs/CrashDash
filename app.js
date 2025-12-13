@@ -2857,15 +2857,17 @@ function initStickyTableHeader() {
             const originalWrapper = document.querySelector('.signals-table-wrapper');
             if (originalWrapper) {
                 const wrapperRect = originalWrapper.getBoundingClientRect();
-                stickyContainer.style.width = wrapperRect.width + 'px';
                 
-                // On mobile, ensure left position accounts for any offset
+                // On mobile, use viewport-based positioning
                 if (isMobile) {
-                    stickyContainer.style.left = Math.max(0, wrapperRect.left) + 'px';
+                    stickyContainer.style.left = '0';
+                    stickyContainer.style.right = '0';
+                    stickyContainer.style.width = '100vw';
                 } else {
+                    stickyContainer.style.width = wrapperRect.width + 'px';
                     stickyContainer.style.left = wrapperRect.left + 'px';
+                    stickyContainer.style.right = 'auto';
                 }
-                stickyContainer.style.right = 'auto';
             }
             
             // Match widths of individual columns precisely
