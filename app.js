@@ -201,16 +201,39 @@ async function loadAllData() {
             console.warn('Metadata index has no tickers array');
         }
         
-        // Load signals CSV
-        console.log('Loading signals CSV...');
-        console.log('About to call Papa.parse...');
+        // Load signals CSV (now enriched with 49 fields - all original + 28 enriched)
+        console.log('Loading enriched signals CSV...');
         Papa.parse('data/signals.csv' + cacheBuster, {
             download: true,
             header: true,
             complete: (results) => {
                 console.log('Signals CSV loaded:', results.data.length, 'rows');
-                allSignals = results.data.filter(row => row.Ticker); // Remove empty rows
+                
+                // Filter signals (columns already in correct format)
+                allSignals = results.data.filter(row => row.Ticker);
+                
+                // Build enrichment lookup: "TICKER_DATE" -> enriched data
+                window.enrichmentLookup = {};
+                allSignals.forEach(signal => {
+                    const ticker = signal.Ticker;
+                    const date = signal.Date;
+                    if (ticker && date) {
+                        const key = `${ticker}_${date}`;
+                        window.enrichmentLookup[key] = {
+                            rally_state: signal.rally_state,
+                            Rally_Count: parseInt(signal.Rally_Count) || 0,
+                            lock_in_reached: (signal.lock_in_reached === 'True' || signal.lock_in_reached === true || signal.lock_in_reached === 'true'),
+                            lock_in_date: signal.lock_in_date,
+                            distance_from_high_pct: parseFloat(signal.distance_from_high_pct) || 0,
+                            split_affected: (signal.split_affected === 'True' || signal.split_affected === true || signal.split_affected === 'true'),
+                            best_rally_pct: parseFloat(signal.best_rally_pct) || 0,
+                            age_days: parseInt(signal.age_days) || 0
+                        };
+                    }
+                });
+                
                 console.log('Filtered signals:', allSignals.length);
+                console.log('Enrichment lookup:', Object.keys(window.enrichmentLookup).length, 'entries');
                 renderSignalsTable();
             },
             error: (error) => {
@@ -219,7 +242,6 @@ async function loadAllData() {
                     '<tr><td colspan="8" class="no-results">Error loading signals data</td></tr>';
             }
         });
-        console.log('Papa.parse called (async, will complete later)');
         
     } catch (error) {
         console.error('Error loading data:', error);
@@ -724,13 +746,63 @@ function createHistoryRow(signal, metadata, tickerInfo, ticker) {
     const market = signal.Market || 'AIM';
     const marketLabel = market === 'MAIN' ? `${exchange}` : `${exchange} (${market})`;
     
+    // Get enriched data from metadata.all_historical_signals
+    let enriched = null;
+    if (metadata.all_historical_signals && Array.isArray(metadata.all_historical_signals)) {
+        enriched = metadata.all_historical_signals.find(s => s.signal_date === signal.Date);
+        if (enriched) {
+            console.log(`✓ Found enriched data for ${ticker} ${signal.Date}:`, enriched);
+        }
+    }
+    
+    // Build enriched badges
+    let enrichedBadges = '';
+    if (enriched) {
+        // Rally State badge (show text)
+        const rallyStateColors = {
+            'accumulating': '#6b7280',
+            'rallying': '#22c55e',
+            'peaked': '#ef4444',
+            'pulling_back': '#3b82f6'
+        };
+        const rallyStateLabels = {
+            'accumulating': 'Accumulating',
+            'rallying': 'Rallying',
+            'peaked': 'Peaked',
+            'pulling_back': 'Pulling Back'
+        };
+        if (enriched.rally_state) {
+            const bgColor = rallyStateColors[enriched.rally_state] || '#6b7280';
+            const label = rallyStateLabels[enriched.rally_state] || enriched.rally_state;
+            enrichedBadges += `<span class="enriched-badge" style="background: ${bgColor}; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.65rem; font-weight: 600; margin-left: 6px;">${label}</span>`;
+        }
+        
+        // Lock-in badge (icon only with tooltip)
+        if (enriched.lock_in_reached) {
+            const lockInDate = enriched.lock_in_date ? ` on ${new Date(enriched.lock_in_date).toLocaleDateString('en-GB')}` : '';
+            enrichedBadges += `<span class="enriched-badge" title="Lock-in (15%) achieved${lockInDate}" style="background: #dcfce7; color: #166534; padding: 2px 8px; border-radius: 12px; font-size: 0.65rem; font-weight: 600; margin-left: 6px; cursor: help;">✓</span>`;
+        }
+        
+        // Rally Count warning (>= 2 cycles, icon only with tooltip)
+        if (enriched.Rally_Count >= 2) {
+            enrichedBadges += `<span class="enriched-badge" title="${enriched.Rally_Count} Rally Cycles - Potential pump & dump pattern" style="background: #fef3c7; color: #92400e; padding: 2px 8px; border-radius: 12px; font-size: 0.65rem; font-weight: 600; margin-left: 6px; cursor: help;">⚠</span>`;
+        }
+        
+        // Split warning (icon only with tooltip)
+        if (enriched.split_affected) {
+            enrichedBadges += `<span class="enriched-badge" title="Signal affected by stock split - Review with caution" style="background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.65rem; font-weight: 700; margin-left: 6px; cursor: help;">⚠</span>`;
+        }
+    }
+    
     tr.classList.add('expanded-history-row');
+    tr.style.backgroundColor = 'rgba(15, 23, 42, 0.03)';
     tr.innerHTML = `
-        <td style="padding-left: 2.5rem;"><span style="color: var(--gray); font-weight: 500; font-size: 0.95rem;">↳</span> <span style="color: var(--navy); opacity: 0.85; font-weight: 600;">${cleanTickerDisplay(ticker)}</span> <span style="font-size: 0.7rem; color: var(--gray); margin-left: 4px; font-weight: 400; opacity: 0.7;">${marketLabel}</span></td>
+        <td style="padding-left: 2.5rem;"><span style="color: var(--gray); font-weight: 500; font-size: 0.95rem;">↳</span></td>
         <td>
             <div style="margin-bottom: 4px;">
-                <span class="signal-badge signal-${parsed.baseColor}">${baseEmoji} ${shortSignalType} (${drawdownPct.toFixed(0)}%)</span>
+                <span class="signal-badge signal-${parsed.baseColor}" title="${shortSignalType} (${drawdownPct.toFixed(0)}%) - ${signal.Date}" style="cursor: help;">${baseEmoji}</span>
                 ${enhancedBadge}
+                ${enrichedBadges}
             </div>
             <div style="font-size: 0.75rem; color: var(--gray); font-weight: 500; opacity: 0.8;">
                 ${signal.Date}
@@ -742,7 +814,15 @@ function createHistoryRow(signal, metadata, tickerInfo, ticker) {
                 ${currentPnl >= 0 ? '+' : ''}${currentPnl.toFixed(1)}%
             </div>
         </td>
-        <td style="color: var(--navy); opacity: 0.85;">${parseFloat(signal.AI_Technical_Score).toFixed(1)}</td>
+        <td>
+            <div style="color: var(--navy); opacity: 0.85; margin-bottom: 4px;">${parseFloat(signal.AI_Technical_Score).toFixed(1)}</div>
+            ${metadata.all_historical_signals && metadata.all_historical_signals.length > 0 ? `
+                <button class="rally-details-btn" onclick="event.stopPropagation(); showSignalTimeline('${ticker}'); return false;" 
+                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 4px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3); transition: all 0.2s;">
+                    <span style="font-size: 0.9rem;">📊</span> Rally Details
+                </button>
+            ` : ''}
+        </td>
     `;
     
     return tr;
@@ -808,11 +888,57 @@ function showAllSignals(ticker) {
     showMoreRow.remove();
 }
 
-function toggleTickerExpansion(ticker) {
+async function toggleTickerExpansion(ticker) {
     if (expandedTickers.has(ticker)) {
         expandedTickers.delete(ticker);
     } else {
         expandedTickers.add(ticker);
+        
+        // Load full metadata with all_historical_signals when expanding for the first time
+        if (!allMetadata[ticker]?._fullDetailsLoaded) {
+            console.log(`Loading full metadata for ${ticker}...`);
+            await loadTickerDetails(ticker);
+            
+            // Re-render history rows with enriched data
+            const tbody = document.querySelector('tbody');
+            const allTickerSignals = allSignals.filter(s => s.Ticker === ticker);
+            const metadata = allMetadata[ticker] || {};
+            const tickerInfo = tickerLookup[ticker] || {};
+            
+            // Remove existing history rows
+            document.querySelectorAll(`tr.ticker-history-row[data-ticker="${ticker}"], tr.show-more-row[data-ticker="${ticker}"]`).forEach(row => row.remove());
+            
+            // Get parent row to insert after it
+            const parentRow = document.querySelector(`tr.ticker-parent-row[data-ticker="${ticker}"]`);
+            
+            // Sort signals by date (newest first)
+            const sortedSignals = allTickerSignals.sort((a, b) => {
+                const dateA = new Date(a.Date);
+                const dateB = new Date(b.Date);
+                return dateB - dateA; // desc - newest first
+            });
+            
+            // Show first 5 signals initially
+            const initialDisplayCount = 5;
+            const hasMore = sortedSignals.length > initialDisplayCount;
+            
+            // Insert rows in order (newest first appears right after parent row)
+            let insertAfterRow = parentRow;
+            sortedSignals.slice(0, initialDisplayCount).forEach((signal) => {
+                const historyRow = createHistoryRow(signal, metadata, tickerInfo, ticker);
+                insertAfter(historyRow, insertAfterRow);
+                insertAfterRow = historyRow; // Next row inserts after this one
+            });
+            
+            // Add "Show more" button if there are additional signals
+            if (hasMore) {
+                const showMoreRow = createShowMoreRow(ticker, sortedSignals, metadata, tickerInfo, initialDisplayCount);
+                const lastHistoryRow = document.querySelector(`tr.ticker-history-row[data-ticker="${ticker}"]:last-of-type`);
+                if (lastHistoryRow) {
+                    insertAfter(showMoreRow, lastHistoryRow);
+                }
+            }
+        }
     }
     
     // Update UI
@@ -829,6 +955,10 @@ function toggleTickerExpansion(ticker) {
         historyRows.forEach(row => row.classList.remove('visible'));
         if (indicator) indicator.textContent = '▶';
     }
+}
+
+function insertAfter(newNode, referenceNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
 function renderFullMode(signals, tbody) {
@@ -1853,6 +1983,564 @@ function closeCompanyModal() {
     if (modal) {
         modal.remove();
         document.body.style.overflow = '';
+    }
+}
+
+// ============================================
+// SIGNAL TIMELINE MODAL
+// ============================================
+
+async function showSignalTimeline(ticker) {
+    console.log(`showSignalTimeline called for ${ticker}`);
+    
+    try {
+        // Reset display count for this ticker
+        signalDisplayCount[ticker] = 10;
+        
+        // Load full metadata if not already loaded
+        let metadata = allMetadata[ticker];
+        if (!metadata || !metadata.all_historical_signals) {
+            console.log(`Loading full metadata for Rally Details: ${ticker}`);
+            metadata = await loadTickerDetails(ticker);
+        }
+        
+        if (!metadata || !metadata.all_historical_signals) {
+            console.warn(`No signal history found for ${ticker}`);
+            alert(`No rally history available for ${ticker}`);
+            return;
+        }
+        
+        console.log(`Metadata loaded for ${ticker}, signals:`, metadata.all_historical_signals.length);
+        
+        const modal = document.getElementById('signalTimelineModal');
+        const content = document.getElementById('signalTimelineContent');
+        
+        if (!modal || !content) {
+            console.error('Modal elements not found!');
+            return;
+        }
+        
+        const latestSignal = metadata.latest_signal || {};
+        const allSignals = metadata.all_historical_signals || [];
+        
+        // Rally State colors and labels
+        const rallyStateColors = {
+        'accumulating': { bg: '#6b7280', text: 'Accumulating' },
+        'rallying': { bg: '#22c55e', text: 'Rallying' },
+        'peaked': { bg: '#ef4444', text: 'Peaked' },
+        'pulling_back': { bg: '#3b82f6', text: 'Pulling Back' }
+        };
+        
+        const currentState = latestSignal.rally_state ? rallyStateColors[latestSignal.rally_state] : null;
+        
+        content.innerHTML = `
+        <h2 style="color: white; margin: 0 0 1.5rem 0; font-size: 1.5rem;">
+            ${cleanTickerDisplay(ticker)} - Rally Timeline
+        </h2>
+        
+        <!-- 5-Year Price Chart -->
+        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(10, 132, 255, 0.2);">
+            <h3 style="color: white; margin: 0 0 1rem 0; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
+                📈 ${cleanTickerDisplay(ticker)} - 5 Year Price History
+            </h3>
+            <div id="priceChart" style="width: 100%; height: 500px;"></div>
+        </div>
+        
+        <!-- Current Rally Analysis Card -->
+        <div style="background: linear-gradient(135deg, var(--navy), #1A3A52); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; color: white; border: 1px solid rgba(10, 132, 255, 0.3);">
+            <h3 style="margin: 0 0 1rem 0; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
+                📊 Current Rally Analysis
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                ${currentState ? `
+                    <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.75rem;">
+                        <div style="color: rgba(255,255,255,0.7); font-size: 0.75rem; margin-bottom: 4px;">Rally State</div>
+                        <div style="color: white; font-size: 1.1rem; font-weight: 700;">${currentState.text}</div>
+                    </div>
+                ` : ''}
+                ${latestSignal.Rally_Count !== undefined ? `
+                    <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.75rem;">
+                        <div style="color: rgba(255,255,255,0.7); font-size: 0.75rem; margin-bottom: 4px;">Rally Cycles</div>
+                        <div style="color: white; font-size: 1.1rem; font-weight: 700;">${latestSignal.Rally_Count} ${latestSignal.Rally_Count >= 2 ? '⚠️' : ''}</div>
+                    </div>
+                ` : ''}
+                ${latestSignal.lock_in_reached ? `
+                    <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.75rem;">
+                        <div style="color: rgba(255,255,255,0.7); font-size: 0.75rem; margin-bottom: 4px;">Lock-in Status</div>
+                        <div style="color: white; font-size: 1.1rem; font-weight: 700;">✓ Achieved</div>
+                        ${latestSignal.lock_in_date ? `<div style="color: rgba(255,255,255,0.6); font-size: 0.7rem;">${new Date(latestSignal.lock_in_date).toLocaleDateString('en-GB')}</div>` : ''}
+                    </div>
+                ` : ''}
+                ${latestSignal.distance_from_high_pct !== undefined ? `
+                    <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.75rem;">
+                        <div style="color: rgba(255,255,255,0.7); font-size: 0.75rem; margin-bottom: 4px;">From Peak</div>
+                        <div style="color: white; font-size: 1.1rem; font-weight: 700;">${latestSignal.distance_from_high_pct.toFixed(2)}%</div>
+                    </div>
+                ` : ''}
+                ${latestSignal.best_rally_pct !== undefined ? `
+                    <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.75rem;">
+                        <div style="color: rgba(255,255,255,0.7); font-size: 0.75rem; margin-bottom: 4px;">Best Rally</div>
+                        <div style="color: white; font-size: 1.1rem; font-weight: 700;">+${latestSignal.best_rally_pct.toFixed(2)}%</div>
+                    </div>
+                ` : ''}
+            </div>
+        </div>
+        
+        <!-- Signal History Timeline -->
+        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(10, 132, 255, 0.2);">
+            <h3 style="color: white; margin: 0 0 1rem 0; font-size: 1rem;">
+                📈 Signal History (${allSignals.length} signal${allSignals.length !== 1 ? 's' : ''})
+            </h3>
+            <div id="signalHistoryContainer" style="display: flex; flex-direction: column; gap: 12px;">
+                ${allSignals.slice(0, 10).map(sig => {
+                    const signalState = sig.rally_state ? rallyStateColors[sig.rally_state] : null;
+                    const signalColorEmoji = {
+                        'RED': '🔴',
+                        'ORANGE': '🟠',
+                        'GREEN': '🟢',
+                        'YELLOW': '🟡',
+                        'PURPLE': '🟣'
+                    }[sig.signal_color] || '🟡';
+                    
+                    // Format date as DD/MM/YYYY to match table
+                    const dateObj = new Date(sig.signal_date);
+                    const formattedDate = `${String(dateObj.getDate()).padStart(2, '0')}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${dateObj.getFullYear()}`;
+                    
+                    return `
+                        <div style="background: rgba(255,255,255,0.08); border-radius: 8px; padding: 1rem; border-left: 4px solid ${signalState ? signalState.bg : '#6b7280'};">
+                            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                                <div>
+                                    <div style="font-weight: 700; color: white; margin-bottom: 4px;">
+                                        ${signalColorEmoji} ${formattedDate}
+                                    </div>
+                                    <div style="font-size: 0.75rem; color: rgba(255,255,255,0.7);">${sig.signal_type}</div>
+                                </div>
+                                ${signalState ? `
+                                    <span style="background: ${signalState.bg}; color: white; padding: 3px 8px; border-radius: 6px; font-size: 0.7rem; font-weight: 600;">
+                                        ${signalState.text}
+                                    </span>
+                                ` : ''}
+                            </div>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; font-size: 0.8rem;">
+                                <div>
+                                    <span style="color: rgba(255,255,255,0.6);">Entry:</span>
+                                    <span style="font-weight: 600; color: white;">${(sig.entry_price * 100).toFixed(2)}p</span>
+                                </div>
+                                <div>
+                                    <span style="color: rgba(255,255,255,0.6);">Return:</span>
+                                    <span style="font-weight: 600;" class="${sig.current_return_pct >= 0 ? 'positive' : 'negative'}">
+                                        ${sig.current_return_pct >= 0 ? '+' : ''}${sig.current_return_pct.toFixed(1)}%
+                                    </span>
+                                </div>
+                                <div>
+                                    <span style="color: rgba(255,255,255,0.6);">Best:</span>
+                                    <span style="font-weight: 600; color: #22c55e;">+${sig.best_rally_pct.toFixed(1)}%</span>
+                                </div>
+                                <div>
+                                    <span style="color: rgba(255,255,255,0.6);">Age:</span>
+                                    <span style="font-weight: 600; color: white;">${sig.age_days}d</span>
+                                </div>
+                            </div>
+                            <div style="margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap;">
+                                ${sig.lock_in_reached ? '<span style="background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600;">✓ Lock-in</span>' : ''}
+                                ${sig.Rally_Count >= 2 ? `<span style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; border: 1px solid #fbbf24; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600;">⚠ ${sig.Rally_Count} Cycles</span>` : ''}
+                            </div>
+                        </div>
+                    `;
+                }).join('')}
+            </div>
+            ${allSignals.length > 10 ? `
+                <div style="text-align: center; padding: 1rem 0;">
+                    <button onclick="loadMoreSignals('${ticker}')" 
+                            onmouseover="this.style.background='var(--primary)'; this.style.color='white'" 
+                            onmouseout="this.style.background='rgba(10, 132, 255, 0.3)'; this.style.color='rgba(10, 132, 255, 1)'"
+                            style="background: rgba(10, 132, 255, 0.3); color: rgba(10, 132, 255, 1); border: 2px solid var(--primary); padding: 0.75rem 2rem; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; font-size: 0.95rem;">
+                        Load More (${allSignals.length - 10} remaining)
+                    </button>
+                    <div style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-top: 0.5rem;">
+                        Showing 10 of ${allSignals.length} signals
+                    </div>
+                </div>
+            ` : ''}
+        </div>
+        
+        ${latestSignal.Rally_Count >= 2 ? `
+            <div style="background: rgba(251, 191, 36, 0.15); border-left: 4px solid #fbbf24; border-radius: 8px; padding: 1rem; margin-top: 1rem; border: 1px solid rgba(251, 191, 36, 0.3);">
+                <h4 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+                    ⚠️ Risk Warning
+                </h4>
+                <p style="color: rgba(255,255,255,0.9); margin: 0; font-size: 0.85rem;">
+                    Multiple rally cycles detected (${latestSignal.Rally_Count} cycles). This pattern may indicate pump-and-dump behavior or high volatility. Exercise caution.
+                </p>
+            </div>
+        ` : ''}
+    `;
+        
+        console.log('Displaying modal...');
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        
+        // Load and render price chart
+        loadPriceChart(ticker);
+    } catch (error) {
+        console.error('Error in showSignalTimeline:', error);
+        alert('Error loading rally details: ' + error.message);
+    }
+}
+
+function closeSignalTimeline() {
+    const modal = document.getElementById('signalTimelineModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+}
+
+// Track how many signals are currently displayed per ticker
+const signalDisplayCount = {};
+
+function loadMoreSignals(ticker) {
+    const metadata = allMetadata[ticker];
+    if (!metadata || !metadata.all_historical_signals) return;
+    
+    const allSignals = metadata.all_historical_signals;
+    const currentCount = signalDisplayCount[ticker] || 10;
+    const newCount = Math.min(currentCount + 10, allSignals.length);
+    signalDisplayCount[ticker] = newCount;
+    
+    // Rally State colors
+    const rallyStateColors = {
+        'accumulating': { bg: '#6b7280', text: 'Accumulating' },
+        'rallying': { bg: '#22c55e', text: 'Rallying' },
+        'peaked': { bg: '#ef4444', text: 'Peaked' },
+        'pulling_back': { bg: '#3b82f6', text: 'Pulling Back' }
+    };
+    
+    // Render signals from index 10 to newCount
+    const container = document.getElementById('signalHistoryContainer');
+    const signalsToAdd = allSignals.slice(currentCount, newCount);
+    
+    signalsToAdd.forEach(sig => {
+        const signalState = sig.rally_state ? rallyStateColors[sig.rally_state] : null;
+        const signalColorEmoji = {
+            'RED': '🔴',
+            'ORANGE': '🟠',
+            'GREEN': '🟢',
+            'YELLOW': '🟡',
+            'PURPLE': '🟣'
+        }[sig.signal_color] || '🟡';
+        
+        const dateObj = new Date(sig.signal_date);
+        const formattedDate = `${String(dateObj.getDate()).padStart(2, '0')}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${dateObj.getFullYear()}`;
+        
+        const cardHTML = `
+            <div style="background: rgba(255,255,255,0.08); border-radius: 8px; padding: 1rem; border-left: 4px solid ${signalState ? signalState.bg : '#6b7280'};">
+                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                    <div>
+                        <div style="font-weight: 700; color: white; margin-bottom: 4px;">
+                            ${signalColorEmoji} ${formattedDate}
+                        </div>
+                        <div style="font-size: 0.75rem; color: rgba(255,255,255,0.7);">${sig.signal_type}</div>
+                    </div>
+                    ${signalState ? `
+                        <span style="background: ${signalState.bg}; color: white; padding: 3px 8px; border-radius: 6px; font-size: 0.7rem; font-weight: 600;">
+                            ${signalState.text}
+                        </span>
+                    ` : ''}
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; font-size: 0.8rem;">
+                    <div>
+                        <span style="color: rgba(255,255,255,0.6);">Entry:</span>
+                        <span style="font-weight: 600; color: white;">${(sig.entry_price * 100).toFixed(2)}p</span>
+                    </div>
+                    <div>
+                        <span style="color: rgba(255,255,255,0.6);">Return:</span>
+                        <span style="font-weight: 600;" class="${sig.current_return_pct >= 0 ? 'positive' : 'negative'}">
+                            ${sig.current_return_pct >= 0 ? '+' : ''}${sig.current_return_pct.toFixed(1)}%
+                        </span>
+                    </div>
+                    <div>
+                        <span style="color: rgba(255,255,255,0.6);">Best:</span>
+                        <span style="font-weight: 600; color: #22c55e;">+${sig.best_rally_pct.toFixed(1)}%</span>
+                    </div>
+                    <div>
+                        <span style="color: rgba(255,255,255,0.6);">Age:</span>
+                        <span style="font-weight: 600; color: white;">${sig.age_days}d</span>
+                    </div>
+                </div>
+                <div style="margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap;">
+                    ${sig.lock_in_reached ? '<span style="background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600;">✓ Lock-in</span>' : ''}
+                    ${sig.Rally_Count >= 2 ? `<span style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; border: 1px solid #fbbf24; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600;">⚠ ${sig.Rally_Count} Cycles</span>` : ''}
+                </div>
+            </div>
+        `;
+        
+        container.insertAdjacentHTML('beforeend', cardHTML);
+    });
+    
+    // Update or remove the "Load More" button
+    const loadMoreButton = container.nextElementSibling;
+    if (loadMoreButton) {
+        if (newCount >= allSignals.length) {
+            // All loaded, remove button
+            loadMoreButton.remove();
+        } else {
+            // Update button text
+            loadMoreButton.innerHTML = `
+                <button onclick="loadMoreSignals('${ticker}')" 
+                        onmouseover="this.style.background='var(--primary)'; this.style.color='white'" 
+                        onmouseout="this.style.background='rgba(10, 132, 255, 0.3)'; this.style.color='rgba(10, 132, 255, 1)'"
+                        style="background: rgba(10, 132, 255, 0.3); color: rgba(10, 132, 255, 1); border: 2px solid var(--primary); padding: 0.75rem 2rem; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; font-size: 0.95rem;">
+                    Load More (${allSignals.length - newCount} remaining)
+                </button>
+                <div style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-top: 0.5rem;">
+                    Showing ${newCount} of ${allSignals.length} signals
+                </div>
+            `;
+        }
+    }
+}
+
+// Close modal on outside click
+window.onclick = function(event) {
+    const modal = document.getElementById('signalTimelineModal');
+    if (event.target === modal) {
+        closeSignalTimeline();
+    }
+};
+
+// ============================================
+// PRICE CHART FUNCTIONS
+// ============================================
+
+async function loadPriceChart(ticker) {
+    console.log(`Loading price chart for ${ticker}`);
+    
+    const chartDiv = document.getElementById('priceChart');
+    if (!chartDiv) {
+        console.warn('Chart div not found');
+        return;
+    }
+    
+    // Clear loading message immediately
+    chartDiv.innerHTML = '';
+    
+    try {
+        // Fetch chart data
+        const response = await fetch(`data/charts/${ticker}.json`);
+        if (!response.ok) {
+            throw new Error(`Chart data not found (${response.status})`);
+        }
+        
+        const chartData = await response.json();
+        console.log(`Chart data loaded for ${ticker}:`, chartData.dates.length, 'bars');
+        
+        // Prepare traces
+        const traces = [];
+        
+        // 1. Candlestick trace for OHLC
+        traces.push({
+            type: 'candlestick',
+            x: chartData.dates,
+            open: chartData.open,
+            high: chartData.high,
+            low: chartData.low,
+            close: chartData.close,
+            name: cleanTickerDisplay(ticker),
+            increasing: { line: { color: '#22c55e' } },
+            decreasing: { line: { color: '#ef4444' } },
+            hovertext: chartData.dates.map((d, i) => 
+                `Date: ${d}<br>Open: £${chartData.open[i].toFixed(4)}<br>High: £${chartData.high[i].toFixed(4)}<br>Low: £${chartData.low[i].toFixed(4)}<br>Close: £${chartData.close[i].toFixed(4)}`
+            ),
+            hoverinfo: 'text'
+        });
+        
+        // 2. Signal markers (grouped by color)
+        const signalsByColor = {
+            'RED': { signals: [], name: 'Ultra Crash', color: '#ef4444', symbol: 'triangle-up' },
+            'ORANGE': { signals: [], name: 'Extreme Crash', color: '#f97316', symbol: 'triangle-up' },
+            'GREEN': { signals: [], name: 'Deep Crash', color: '#22c55e', symbol: 'triangle-up' },
+            'YELLOW': { signals: [], name: 'Crash Zone', color: '#eab308', symbol: 'triangle-up' },
+            'PURPLE': { signals: [], name: 'Enhanced', color: '#a855f7', symbol: 'triangle-up' }
+        };
+        
+        chartData.signals.forEach(sig => {
+            const color = sig.color || 'YELLOW';
+            if (signalsByColor[color]) {
+                signalsByColor[color].signals.push(sig);
+            }
+        });
+        
+        // Add signal traces
+        Object.entries(signalsByColor).forEach(([color, group]) => {
+            if (group.signals.length > 0) {
+                traces.push({
+                    type: 'scatter',
+                    mode: 'markers',
+                    x: group.signals.map(s => s.date),
+                    y: group.signals.map(s => s.price),
+                    name: group.name,
+                    marker: {
+                        symbol: 'triangle-up',
+                        size: 14,
+                        color: group.color,
+                        line: { width: 1.5, color: 'rgba(255,255,255,0.9)' }
+                    },
+                    text: group.signals.map(s => s.comment),
+                    hovertemplate: '<b>%{text}</b><br>Date: %{x}<br>Price: £%{y:.4f}<extra></extra>'
+                });
+            }
+        });
+        
+        // Layout configuration
+        const layout = {
+            xaxis: {
+                type: 'date',
+                rangeselector: {
+                    buttons: [
+                        { 
+                            count: 3, 
+                            label: '3m', 
+                            step: 'month', 
+                            stepmode: 'backward'
+                        },
+                        { 
+                            count: 6, 
+                            label: '6m', 
+                            step: 'month', 
+                            stepmode: 'backward'
+                        },
+                        { 
+                            count: 1, 
+                            label: '1y', 
+                            step: 'year', 
+                            stepmode: 'backward'
+                        },
+                        { 
+                            count: 2, 
+                            label: '2y', 
+                            step: 'year', 
+                            stepmode: 'backward'
+                        },
+                        { 
+                            step: 'all', 
+                            label: 'All'
+                        }
+                    ],
+                    bgcolor: 'rgba(255,255,255,0.1)',
+                    activecolor: 'rgba(10, 132, 255, 0.5)',
+                    font: { color: 'white' }
+                },
+                rangeslider: { visible: false },
+                gridcolor: 'rgba(255,255,255,0.1)',
+                color: 'rgba(255,255,255,0.7)'
+            },
+            yaxis: {
+                title: 'Price (£)',
+                gridcolor: 'rgba(255,255,255,0.1)',
+                color: 'rgba(255,255,255,0.7)'
+            },
+            hovermode: 'closest',
+            hoverlabel: {
+                bgcolor: 'rgba(0, 0, 0, 0.8)',
+                bordercolor: 'rgba(255, 255, 255, 0.3)',
+                font: { 
+                    color: 'white',
+                    size: 12,
+                    family: 'Arial, sans-serif'
+                }
+            },
+            plot_bgcolor: 'rgba(0,0,0,0.2)',
+            paper_bgcolor: 'transparent',
+            legend: {
+                orientation: 'h',
+                yanchor: 'bottom',
+                y: -0.25,
+                xanchor: 'center',
+                x: 0.5,
+                font: { color: 'white' }
+            },
+            margin: { l: 60, r: 30, t: 20, b: 80 }
+        };
+        
+        // Plot configuration
+        const config = {
+            responsive: true,
+            displayModeBar: true,
+            displaylogo: false,
+            modeBarButtonsToRemove: ['lasso2d', 'select2d'],
+            toImageButtonOptions: {
+                format: 'png',
+                filename: `${ticker}_chart`,
+                height: 800,
+                width: 1400
+            }
+        };
+        
+        // Render the chart with 1-year default view (from last data point)
+        const lastDate = new Date(chartData.dates[chartData.dates.length - 1]);
+        const oneYearAgo = new Date(lastDate);
+        oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+        
+        // Set initial x-axis range to 1 year from last data point
+        layout.xaxis.range = [
+            oneYearAgo.toISOString().split('T')[0], 
+            chartData.dates[chartData.dates.length - 1]
+        ];
+        
+        Plotly.newPlot(chartDiv, traces, layout, config).then(() => {
+            // Calculate y-axis range for the visible 1-year data
+            const startIdx = chartData.dates.findIndex(d => d >= layout.xaxis.range[0]);
+            const endIdx = chartData.dates.findIndex(d => d > layout.xaxis.range[1]);
+            const visibleHigh = chartData.high.slice(startIdx, endIdx > 0 ? endIdx : undefined);
+            const visibleLow = chartData.low.slice(startIdx, endIdx > 0 ? endIdx : undefined);
+            
+            const yMin = Math.min(...visibleLow);
+            const yMax = Math.max(...visibleHigh);
+            const padding = (yMax - yMin) * 0.1; // 10% padding
+            
+            Plotly.relayout(chartDiv, {
+                'yaxis.range': [yMin - padding, yMax + padding],
+                'yaxis.autorange': false
+            });
+        });
+        
+        // Listen for range selector/zoom changes to rescale y-axis
+        chartDiv.on('plotly_relayout', function(eventData) {
+            // Only respond to x-axis range changes (not y-axis changes we make ourselves)
+            if ((eventData['xaxis.range[0]'] || eventData['xaxis.range']) && !eventData['yaxis.range']) {
+                const xRange = eventData['xaxis.range'] || [eventData['xaxis.range[0]'], eventData['xaxis.range[1]']];
+                
+                // Find visible data indices
+                const startIdx = chartData.dates.findIndex(d => d >= xRange[0]);
+                const endIdx = chartData.dates.findIndex(d => d > xRange[1]);
+                
+                if (startIdx >= 0) {
+                    const visibleHigh = chartData.high.slice(startIdx, endIdx > 0 ? endIdx : undefined);
+                    const visibleLow = chartData.low.slice(startIdx, endIdx > 0 ? endIdx : undefined);
+                    
+                    if (visibleHigh.length > 0 && visibleLow.length > 0) {
+                        const yMin = Math.min(...visibleLow);
+                        const yMax = Math.max(...visibleHigh);
+                        const padding = (yMax - yMin) * 0.1; // 10% padding
+                        
+                        Plotly.relayout(chartDiv, {
+                            'yaxis.range': [yMin - padding, yMax + padding]
+                        });
+                    }
+                }
+            }
+        });
+        
+        console.log(`✓ Chart rendered: ${chartData.dates.length} bars, 1-year view (${layout.xaxis.range[0]} to ${layout.xaxis.range[1]})`);
+        
+    } catch (error) {
+        console.error('Error loading price chart:', error);
+        chartDiv.innerHTML = `
+            <div style="color: rgba(255,255,255,0.7); text-align: center; padding: 2rem;">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">📊</div>
+                <div>Chart data not available</div>
+                <div style="font-size: 0.8rem; opacity: 0.6; margin-top: 0.5rem;">${error.message}</div>
+            </div>
+        `;
     }
 }
 
