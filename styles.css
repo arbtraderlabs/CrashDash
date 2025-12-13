@@ -3679,7 +3679,7 @@ footer p {
   position: fixed;
   top: 145px;
   left: 0;
-  right: 0;
+  right: auto;
   background: var(--navy);
   color: var(--white);
   z-index: 999;
@@ -3687,13 +3687,16 @@ footer p {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   overflow-x: auto;
   overflow-y: hidden;
-  max-width: 100%;
   pointer-events: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 @media (max-width: 768px) {
   .signals-table-sticky-header {
-    top: 120px;
+    top: 115px;
+    left: 0 !important;
+    width: 100% !important;
+    right: 0 !important;
   }
 }
 
