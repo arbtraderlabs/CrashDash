@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="styles.css">
     <!-- Papa Parse for CSV parsing - using local copy -->
     <script src="papaparse.min.js"></script>
+    <!-- Plotly for interactive charts -->
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 </head>
 <body>
     <!-- HEADER -->
@@ -45,7 +47,7 @@
                 </div>
                 <nav class="mobile-nav-links">
                     <a href="#" onclick="event.preventDefault(); closeOnboardingDrawer(); toggleMobileNav(); setTimeout(openOnboardingDrawer, 300);">
-                        <span class="icon">🚀</span><span class="label">New Here? Start Here</span>
+                        <span class="icon">🚀</span><span class="label">Start Here →</span>
                     </a>
                     <a href="about.html"><span class="icon">📖</span><span class="label">About</span></a>
                     <a href="strategy-guide.html"><span class="icon">📚</span><span class="label">Strategy</span></a>
@@ -77,7 +79,7 @@
                 </a>
             </nav>
             <div class="header-filters">
-                <button class="how-to-use-btn" onclick="openOnboardingDrawer()">🚀 New Here? Start Here →</button>
+                <button class="how-to-use-btn" onclick="openOnboardingDrawer()">🚀 Start Here →</button>
                 
                 <button id="openFiltersBtn" class="filters-popup-button">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em" style="fill: currentColor;">
@@ -414,6 +416,14 @@
             </div>
 
             <button class="primary-cta" onclick="closeOnboardingDrawer()">✅ Got It! Let's Go</button>
+        </div>
+    </div>
+
+    <!-- SIGNAL TIMELINE MODAL -->
+    <div id="signalTimelineModal" class="modal">
+        <div class="modal-content" style="max-width: 1200px; width: 95%; max-height: 90vh; overflow-y: auto;">
+            <span class="close" onclick="closeSignalTimeline()">&times;</span>
+            <div id="signalTimelineContent"></div>
         </div>
     </div>
 
