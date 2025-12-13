@@ -656,7 +656,32 @@ function renderCompressedMode(signals, tbody) {
                     <span style="color: #0D8C4D; font-weight: 600;">${bestRally.toFixed(0)}%</span>
                 </div>
             </td>
-            <td>${latestScore.toFixed(1)}</td>
+            <td>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="font-size: 1rem; font-weight: 600;">${latestScore.toFixed(1)}</span>
+                    <button 
+                        onclick="event.stopPropagation(); loadAIReport('${ticker}')"
+                        title="View AI Report"
+                        style="
+                            padding: 6px 8px;
+                            background: linear-gradient(135deg, rgba(10, 132, 255, 0.15), rgba(10, 132, 255, 0.25));
+                            color: var(--primary);
+                            border: 1px solid rgba(10, 132, 255, 0.4);
+                            border-radius: 6px;
+                            cursor: pointer;
+                            font-size: 1rem;
+                            transition: all 0.2s ease;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        "
+                        onmouseover="this.style.background='var(--primary)'; this.style.transform='scale(1.1)'"
+                        onmouseout="this.style.background='linear-gradient(135deg, rgba(10, 132, 255, 0.15), rgba(10, 132, 255, 0.25))'; this.style.transform='scale(1)'"
+                    >
+                        📊
+                    </button>
+                </div>
+            </td>
         `;
         
         tbody.appendChild(parentRow);
@@ -777,7 +802,32 @@ function renderFullMode(signals, tbody) {
                 </div>
             </td>
             <td class="positive">+${bestRally.toFixed(1)}%</td>
-            <td>${parseFloat(signal.AI_Technical_Score).toFixed(1)}</td>
+            <td>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="font-size: 1rem; font-weight: 600;">${parseFloat(signal.AI_Technical_Score).toFixed(1)}</span>
+                    <button 
+                        onclick="event.stopPropagation(); loadAIReport('${signal.Ticker}')"
+                        title="View AI Report"
+                        style="
+                            padding: 6px 8px;
+                            background: linear-gradient(135deg, rgba(10, 132, 255, 0.15), rgba(10, 132, 255, 0.25));
+                            color: var(--primary);
+                            border: 1px solid rgba(10, 132, 255, 0.4);
+                            border-radius: 6px;
+                            cursor: pointer;
+                            font-size: 1rem;
+                            transition: all 0.2s ease;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        "
+                        onmouseover="this.style.background='var(--primary)'; this.style.transform='scale(1.1)'"
+                        onmouseout="this.style.background='linear-gradient(135deg, rgba(10, 132, 255, 0.15), rgba(10, 132, 255, 0.25))'; this.style.transform='scale(1)'"
+                    >
+                        📊
+                    </button>
+                </div>
+            </td>
         `;
         
         tbody.appendChild(tr);
@@ -2156,6 +2206,7 @@ async function loadPriceChart(ticker) {
         });
         
         // Layout configuration
+        const isMobile = window.innerWidth < 768;
         const layout = {
             xaxis: {
                 type: 'date',
@@ -2190,9 +2241,13 @@ async function loadPriceChart(ticker) {
                             label: 'All'
                         }
                     ],
+                    x: isMobile ? 0 : 0,
+                    y: isMobile ? 1.15 : 1.02,
+                    xanchor: 'left',
+                    yanchor: isMobile ? 'top' : 'bottom',
                     bgcolor: 'rgba(255,255,255,0.1)',
                     activecolor: 'rgba(10, 132, 255, 0.5)',
-                    font: { color: 'white' }
+                    font: { color: 'white', size: isMobile ? 10 : 12 }
                 },
                 rangeslider: { visible: false },
                 gridcolor: 'rgba(255,255,255,0.1)',
@@ -2224,10 +2279,10 @@ async function loadPriceChart(ticker) {
                 font: { color: 'white', size: window.innerWidth < 768 ? 10 : 12 }
             },
             margin: { 
-                l: window.innerWidth < 768 ? 40 : 60, 
-                r: window.innerWidth < 768 ? 20 : 30, 
-                t: 20, 
-                b: window.innerWidth < 768 ? 60 : 80 
+                l: isMobile ? 40 : 60, 
+                r: isMobile ? 20 : 30, 
+                t: isMobile ? 50 : 20, 
+                b: isMobile ? 60 : 80 
             }
         };
         
@@ -2237,6 +2292,8 @@ async function loadPriceChart(ticker) {
             displayModeBar: true,
             displaylogo: false,
             modeBarButtonsToRemove: ['lasso2d', 'select2d'],
+            modeBarButtonsToAdd: [],
+            modeBarPosition: isMobile ? 'top' : 'top',
             toImageButtonOptions: {
                 format: 'png',
                 filename: `${ticker}_chart`,
