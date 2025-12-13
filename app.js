@@ -466,6 +466,13 @@ function renderSignalsTable() {
     } else {
         renderFullMode(filteredSignals, tbody);
     }
+    
+    // Initialize sticky header after table is rendered
+    setTimeout(() => {
+        if (typeof initStickyTableHeader === 'function') {
+            initStickyTableHeader();
+        }
+    }, 100);
 }
 
 function renderCompressedMode(signals, tbody) {
