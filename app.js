@@ -669,18 +669,33 @@ function renderCompressedMode(signals, tbody) {
                         border-radius: 8px;
                         box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
                         cursor: pointer;
-                        transition: all 0.3s ease;
+                        transition: all 0.2s ease;
                     "
                     onclick="event.stopPropagation(); loadAIReport('${ticker}')"
-                    title="AI Analysis Report"
-                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(102, 126, 234, 0.5)'"
-                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(102, 126, 234, 0.3)'"
+                    title="AI Analysis Report - Score: ${latestScore.toFixed(1)}"
+                    onmouseover="this.style.transform='translateY(-3px) scale(1.1)'; this.style.boxShadow='0 8px 24px rgba(102, 126, 234, 0.8), 0 0 20px rgba(118, 75, 162, 0.6)'; this.style.filter='brightness(1.15)'"
+                    onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 2px 8px rgba(102, 126, 234, 0.3)'; this.style.filter='brightness(1)'"
                     >
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="position: relative; z-index: 1;">
                             <path d="M9 3v18M15 3v18M3 9h18M3 15h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
                             <circle cx="9" cy="9" r="2" fill="#fbbf24"/>
                             <circle cx="15" cy="15" r="2" fill="#10b981"/>
                         </svg>
+                        <!-- Score badge in top-right corner -->
+                        <div style="
+                            position: absolute;
+                            top: -4px;
+                            right: -4px;
+                            background: white;
+                            color: #667eea;
+                            font-size: 0.65rem;
+                            font-weight: 800;
+                            padding: 1px 4px;
+                            border-radius: 4px;
+                            line-height: 1;
+                            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+                            z-index: 2;
+                        ">${latestScore.toFixed(1)}</div>
                         <div style="
                             position: absolute;
                             inset: -2px;
@@ -689,10 +704,6 @@ function renderCompressedMode(signals, tbody) {
                             animation: pulse 2s ease-in-out infinite;
                             z-index: 0;
                         "></div>
-                    </div>
-                    <div style="display: flex; flex-direction: column; gap: 1px;">
-                        <span style="font-size: 1.1rem; font-weight: 700; color: #667eea; line-height: 1;">${latestScore.toFixed(1)}</span>
-                        <span style="font-size: 0.6rem; color: var(--gray); opacity: 0.7; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1;">AI Score</span>
                     </div>
                 </div>
             </td>
@@ -829,18 +840,33 @@ function renderFullMode(signals, tbody) {
                         border-radius: 8px;
                         box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
                         cursor: pointer;
-                        transition: all 0.3s ease;
+                        transition: all 0.2s ease;
                     "
                     onclick="event.stopPropagation(); loadAIReport('${signal.Ticker}')"
-                    title="AI Analysis Report"
-                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(102, 126, 234, 0.5)'"
-                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(102, 126, 234, 0.3)'"
+                    title="AI Analysis Report - Score: ${latestScore.toFixed(1)}"
+                    onmouseover="this.style.transform='translateY(-3px) scale(1.1)'; this.style.boxShadow='0 8px 24px rgba(102, 126, 234, 0.8), 0 0 20px rgba(118, 75, 162, 0.6)'; this.style.filter='brightness(1.15)'"
+                    onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 2px 8px rgba(102, 126, 234, 0.3)'; this.style.filter='brightness(1)'"
                     >
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="position: relative; z-index: 1;">
                             <path d="M9 3v18M15 3v18M3 9h18M3 15h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
                             <circle cx="9" cy="9" r="2" fill="#fbbf24"/>
                             <circle cx="15" cy="15" r="2" fill="#10b981"/>
                         </svg>
+                        <!-- Score badge in top-right corner -->
+                        <div style="
+                            position: absolute;
+                            top: -4px;
+                            right: -4px;
+                            background: white;
+                            color: #667eea;
+                            font-size: 0.65rem;
+                            font-weight: 800;
+                            padding: 1px 4px;
+                            border-radius: 4px;
+                            line-height: 1;
+                            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+                            z-index: 2;
+                        ">${parseFloat(signal.AI_Technical_Score).toFixed(1)}</div>
                         <div style="
                             position: absolute;
                             inset: -2px;
@@ -849,10 +875,6 @@ function renderFullMode(signals, tbody) {
                             animation: pulse 2s ease-in-out infinite;
                             z-index: 0;
                         "></div>
-                    </div>
-                    <div style="display: flex; flex-direction: column; gap: 1px;">
-                        <span style="font-size: 1.1rem; font-weight: 700; color: #667eea; line-height: 1;">${parseFloat(signal.AI_Technical_Score).toFixed(1)}</span>
-                        <span style="font-size: 0.6rem; color: var(--gray); opacity: 0.7; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1;">AI Score</span>
                     </div>
                 </div>
             </td>
@@ -2238,7 +2260,7 @@ async function loadPriceChart(ticker) {
         const layout = {
             xaxis: {
                 type: 'date',
-                rangeselector: {
+                rangeselector: isMobile ? { visible: false } : {
                     buttons: [
                         { 
                             count: 3, 
@@ -2269,22 +2291,30 @@ async function loadPriceChart(ticker) {
                             label: 'All'
                         }
                     ],
-                    x: isMobile ? 0 : 0,
-                    y: isMobile ? 1.15 : 1.02,
+                    x: 0,
+                    y: 1.02,
                     xanchor: 'left',
-                    yanchor: isMobile ? 'top' : 'bottom',
+                    yanchor: 'bottom',
                     bgcolor: 'rgba(255,255,255,0.1)',
                     activecolor: 'rgba(10, 132, 255, 0.5)',
-                    font: { color: 'white', size: isMobile ? 10 : 12 }
+                    font: { color: 'white', size: 12 }
                 },
                 rangeslider: { visible: false },
                 gridcolor: 'rgba(255,255,255,0.1)',
-                color: 'rgba(255,255,255,0.7)'
+                color: 'rgba(255,255,255,0.7)',
+                tickangle: isMobile ? -45 : 0,
+                tickfont: { size: isMobile ? 9 : 11 },
+                nticks: isMobile ? 6 : 10,
+                automargin: true
             },
             yaxis: {
-                title: 'Price (£)',
+                title: isMobile ? '£' : 'Price (£)',
                 gridcolor: 'rgba(255,255,255,0.1)',
-                color: 'rgba(255,255,255,0.7)'
+                color: 'rgba(255,255,255,0.7)',
+                tickfont: { size: isMobile ? 9 : 11 },
+                titlefont: { size: isMobile ? 10 : 12 },
+                automargin: true,
+                tickformat: isMobile ? '.2f' : '.4f'
             },
             hovermode: 'closest',
             hoverlabel: {
@@ -2300,18 +2330,20 @@ async function loadPriceChart(ticker) {
             paper_bgcolor: 'transparent',
             legend: {
                 orientation: 'h',
-                yanchor: 'bottom',
-                y: -0.25,
+                yanchor: isMobile ? 'top' : 'bottom',
+                y: isMobile ? -0.15 : -0.25,
                 xanchor: 'center',
                 x: 0.5,
-                font: { color: 'white', size: window.innerWidth < 768 ? 10 : 12 }
+                font: { color: 'white', size: isMobile ? 8 : 12 },
+                tracegroupgap: isMobile ? 5 : 10
             },
             margin: { 
-                l: isMobile ? 40 : 60, 
-                r: isMobile ? 20 : 30, 
-                t: isMobile ? 50 : 20, 
-                b: isMobile ? 60 : 80 
-            }
+                l: isMobile ? 45 : 60, 
+                r: isMobile ? 10 : 30, 
+                t: isMobile ? 40 : 20, 
+                b: isMobile ? 80 : 80 
+            },
+            autosize: true
         };
         
         // Plot configuration
@@ -2319,9 +2351,9 @@ async function loadPriceChart(ticker) {
             responsive: true,
             displayModeBar: true,
             displaylogo: false,
-            modeBarButtonsToRemove: ['lasso2d', 'select2d'],
+            modeBarButtonsToRemove: isMobile ? ['lasso2d', 'select2d', 'autoScale2d'] : ['lasso2d', 'select2d'],
             modeBarButtonsToAdd: [],
-            modeBarPosition: isMobile ? 'top' : 'top',
+            modeBarPosition: 'top',
             toImageButtonOptions: {
                 format: 'png',
                 filename: `${ticker}_chart`,
@@ -2472,62 +2504,14 @@ function loadAIReport(ticker) {
             <div class="modal-content" style="
                 max-width: 650px;
                 width: 90%;
-                padding: 3rem 2rem;
+                padding: 2rem;
                 text-align: center;
                 background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+                position: relative;
             ">
                 <div style="margin-bottom: 2rem;">
-                    <div style="
-                        position: relative;
-                        margin: 0 auto 1.5rem;
-                        width: 80px;
-                        height: 80px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                    ">
-                        <div style="
-                            position: absolute;
-                            width: 100%;
-                            height: 100%;
-                            border-radius: 50%;
-                            border: 3px solid transparent;
-                            border-top-color: #667eea;
-                            border-right-color: #764ba2;
-                            animation: spin 1s linear infinite;
-                        "></div>
-                        <div style="
-                            position: absolute;
-                            width: 70%;
-                            height: 70%;
-                            border-radius: 50%;
-                            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                            animation: pulse 2s ease-in-out infinite;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                        ">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                                <path d="M9 3v18M15 3v18M3 9h18M3 15h18" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                                <circle cx="9" cy="9" r="1.5" fill="#fbbf24">
-                                    <animate attributeName="r" values="1.5;2;1.5" dur="1.5s" repeatCount="indefinite"/>
-                                </circle>
-                                <circle cx="15" cy="15" r="1.5" fill="#10b981">
-                                    <animate attributeName="r" values="1.5;2;1.5" dur="1.5s" repeatCount="indefinite" begin="0.75s"/>
-                                </circle>
-                            </svg>
-                        </div>
-                        <div style="
-                            position: absolute;
-                            width: 120%;
-                            height: 120%;
-                            border-radius: 50%;
-                            background: radial-gradient(circle, rgba(102, 126, 234, 0.3) 0%, transparent 70%);
-                            animation: pulse 2s ease-in-out infinite;
-                        "></div>
-                    </div>
                     <h3 style="color: white; font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">
-                        ⚡ Generating AI Report
+                        ⚡ AI Smart Report
                     </h3>
                     <p style="color: rgba(255, 255, 255, 0.7); font-size: 1rem; margin-bottom: 1rem;">
                         Analyzing <strong style="color: #667eea;">${ticker}</strong> with Engine V4
@@ -2538,15 +2522,43 @@ function loadAIReport(ticker) {
                         background: rgba(0, 0, 0, 0.3);
                         border: 1px solid rgba(102, 126, 234, 0.3);
                         border-radius: 12px;
-                        padding: 1.2rem;
+                        padding: 2rem 1rem 1.2rem 1rem;
                         margin: 1.5rem 0;
-                        min-height: 70px;
+                        min-height: 80px;
                         display: flex;
                         align-items: center;
                         justify-content: flex-start;
                         text-align: left;
                         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                        position: relative;
                     ">
+                        <!-- Working indicator inside dialog top-left -->
+                        <div style="
+                            position: absolute;
+                            top: 0.6rem;
+                            left: 1rem;
+                            display: flex;
+                            align-items: center;
+                            gap: 6px;
+                            z-index: 10;
+                        ">
+                            <div style="
+                                width: 6px;
+                                height: 6px;
+                                background: #667eea;
+                                border-radius: 50%;
+                                animation: pulse 1s ease-in-out infinite;
+                                box-shadow: 0 0 6px rgba(102, 126, 234, 0.6);
+                            "></div>
+                            <span style="
+                                color: rgba(255, 255, 255, 0.6);
+                                font-size: 0.65rem;
+                                font-weight: 600;
+                                text-transform: uppercase;
+                                letter-spacing: 0.8px;
+                                white-space: nowrap;
+                            ">Working...</span>
+                        </div>
                         <div style="
                             position: relative;
                             width: 36px;
@@ -2583,7 +2595,7 @@ function loadAIReport(ticker) {
                                 </svg>
                             </div>
                         </div>
-                        <div style="flex: 1;">
+                        <div style="flex: 1; min-width: 0;">
                             <span id="aiProgressText" style="
                                 color: rgba(255, 255, 255, 0.95);
                                 font-size: 0.92rem;
@@ -2591,6 +2603,8 @@ function loadAIReport(ticker) {
                                 letter-spacing: 0.3px;
                                 line-height: 1.5;
                                 display: block;
+                                word-wrap: break-word;
+                                overflow-wrap: break-word;
                             ">Initializing neural network...</span>
                         </div>
                     </div>
@@ -2627,6 +2641,48 @@ function loadAIReport(ticker) {
             @keyframes spin {
                 0% { transform: rotate(0deg); }
                 100% { transform: rotate(360deg); }
+            }
+            
+            /* Mobile responsive adjustments for AI progress dialog */
+            @media (max-width: 600px) {
+                #aiReportModal .modal-content {
+                    padding: 1.5rem 1rem !important;
+                    width: 95% !important;
+                }
+                
+                #aiReportModal h3 {
+                    font-size: 1.2rem !important;
+                }
+                
+                #aiReportModal p {
+                    font-size: 0.85rem !important;
+                }
+                
+                #aiProgressDialog {
+                    padding: 1.8rem 0.75rem 1rem 0.75rem !important;
+                    min-height: 75px !important;
+                }
+                
+                #aiProgressText {
+                    font-size: 0.75rem !important;
+                    letter-spacing: 0.2px !important;
+                    line-height: 1.4 !important;
+                }
+            }
+            
+            @media (max-width: 400px) {
+                #aiReportModal h3 {
+                    font-size: 1rem !important;
+                }
+                
+                #aiReportModal p {
+                    font-size: 0.75rem !important;
+                }
+                
+                #aiProgressText {
+                    font-size: 0.7rem !important;
+                    letter-spacing: 0.1px !important;
+                }
             }
         `;
         document.head.appendChild(style);

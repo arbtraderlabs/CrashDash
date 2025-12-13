@@ -3463,3 +3463,210 @@ footer p {
   }
 }
 
+
+/* ============================================
+   SIGNAL TIMELINE MODAL
+   ============================================ */
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, var(--navy), #1A3A52);
+  border-radius: 16px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  position: relative;
+  padding: 2rem;
+}
+
+.modal .close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 2.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 1;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.modal .close:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.modal-content {
+  background: linear-gradient(135deg, var(--navy), #1A3A52);
+  border-radius: 16px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  position: relative;
+  padding: 2rem;
+}
+.modal .close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 2.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 1;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+.modal .close:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+/* Mobile responsive modal */
+@media (max-width: 768px) {
+  .modal {
+    padding: 0.5rem;
+  }
+  
+  .modal-content {
+    padding: 1rem;
+    max-width: 100%;
+    width: 100%;
+    max-height: 95vh;
+    border-radius: 12px;
+  }
+  
+  .modal .close {
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 2rem;
+  }
+  
+  /* Make Plotly chart responsive on mobile */
+  #priceChart {
+    height: 350px !important;
+    min-height: 300px !important;
+    position: relative;
+    overflow: visible !important;
+  }
+  
+  /* Adjust chart container for mobile */
+  #priceChart > div {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  /* Fix Plotly modebar positioning - prevent overlap */
+  #priceChart .modebar-container {
+    position: absolute !important;
+    top: 5px !important;
+    right: 5px !important;
+    z-index: 1001 !important;
+  }
+  
+  /* Ensure chart has padding for toolbar */
+  #priceChart > div > div.plotly {
+    padding-top: 0 !important;
+  }
+  
+  /* Style Plotly toolbar buttons for mobile */
+  .modebar {
+    background: rgba(10, 20, 40, 0.85) !important;
+    padding: 4px 6px !important;
+    border-radius: 6px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+  }
+  
+  .modebar-btn {
+    width: 28px !important;
+    height: 28px !important;
+    margin: 2px !important;
+  }
+  
+  .modebar-btn svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+  
+  /* Add tooltips for mobile toolbar icons */
+  .modebar-btn[data-title]:hover::after {
+    content: attr(data-title);
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    white-space: nowrap;
+    z-index: 1002;
+  }
+  
+  /* X-axis optimization */
+  .xtick text {
+    font-size: 9px !important;
+  }
+  
+  .ytick text {
+    font-size: 9px !important;
+  }
+  
+  /* Legend optimization for mobile */
+  .legend {
+    font-size: 8px !important;
+  }
+  
+  .legendtext {
+    font-size: 8px !important;
+  }
+}
