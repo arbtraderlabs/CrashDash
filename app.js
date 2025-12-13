@@ -2836,8 +2836,15 @@ function initStickyTableHeader() {
         const tableRect = originalTable.getBoundingClientRect();
         const originalTheadRect = originalThead.getBoundingClientRect();
         
+        console.log('Sticky check:', {
+            theadBottom: originalTheadRect.bottom,
+            tableBottom: tableRect.bottom,
+            shouldShow: originalTheadRect.bottom <= 0 && tableRect.bottom > 100
+        });
+        
         // Show sticky when original header scrolls past top
         if (originalTheadRect.bottom <= 0 && tableRect.bottom > 100) {
+            console.log('Showing sticky header');
             stickyContainer.classList.add('visible');
             
             // Match widths of columns from the wrapper to handle overflow
