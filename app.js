@@ -2537,27 +2537,62 @@ function loadAIReport(ticker) {
                     <div id="aiProgressDialog" style="
                         background: rgba(0, 0, 0, 0.3);
                         border: 1px solid rgba(102, 126, 234, 0.3);
-                        border-radius: 8px;
-                        padding: 1rem;
+                        border-radius: 12px;
+                        padding: 1.2rem;
                         margin: 1.5rem 0;
-                        min-height: 60px;
+                        min-height: 70px;
                         display: flex;
                         align-items: center;
                         justify-content: flex-start;
                         text-align: left;
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
                     ">
-                        <span style="
-                            color: #667eea;
-                            font-size: 1.2rem;
-                            margin-right: 12px;
-                            animation: pulse 1s ease-in-out infinite;
-                        ">▸</span>
-                        <span id="aiProgressText" style="
-                            color: rgba(255, 255, 255, 0.9);
-                            font-size: 0.9rem;
-                            font-family: 'Courier New', monospace;
-                            letter-spacing: 0.5px;
-                        ">Initializing neural network...</span>
+                        <div style="
+                            position: relative;
+                            width: 36px;
+                            height: 36px;
+                            margin-right: 14px;
+                            flex-shrink: 0;
+                        ">
+                            <div style="
+                                position: absolute;
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 50%;
+                                border: 2px solid transparent;
+                                border-top-color: #667eea;
+                                border-right-color: #764ba2;
+                                animation: spin 1s linear infinite;
+                            "></div>
+                            <div style="
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                                width: 20px;
+                                height: 20px;
+                                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                                border-radius: 50%;
+                                animation: pulse 1.5s ease-in-out infinite;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            ">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                                    <path d="M9 3v18M15 3v18M3 9h18M3 15h18" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div style="flex: 1;">
+                            <span id="aiProgressText" style="
+                                color: rgba(255, 255, 255, 0.95);
+                                font-size: 0.92rem;
+                                font-family: 'Courier New', monospace;
+                                letter-spacing: 0.3px;
+                                line-height: 1.5;
+                                display: block;
+                            ">Initializing neural network...</span>
+                        </div>
                     </div>
                 </div>
                 <button 
@@ -2633,6 +2668,20 @@ function loadAIReport(ticker) {
     
     // Store interval ID for cleanup
     window.aiProgressInterval = progressInterval;
+    
+    // After 10 seconds, show final "waiting for agent" message and keep modal open
+    setTimeout(() => {
+        clearInterval(progressInterval);
+        progressText.textContent = 'Awaiting V4 Engine Agent response............';
+        
+        // Add animated dots
+        let dotCount = 0;
+        window.aiProgressInterval = setInterval(() => {
+            dotCount = (dotCount + 1) % 4;
+            const dots = '.'.repeat(dotCount);
+            progressText.textContent = `Awaiting V4 Engine Agent response${dots.padEnd(12, '.')}`;
+        }, 500);
+    }, 10000); // 10 seconds
 }
 
 function closeAIReportModal() {
