@@ -2878,8 +2878,16 @@ function initStickyTableHeader() {
             const originalWrapper = document.querySelector('.signals-table-wrapper');
             if (originalWrapper) {
                 const wrapperRect = originalWrapper.getBoundingClientRect();
-                stickyContainer.style.width = wrapperRect.width + 'px';
-                stickyContainer.style.left = wrapperRect.left + 'px';
+                
+                // On mobile, use full available width and position from edge
+                if (isMobile) {
+                    const bodyPaddingLeft = parseFloat(getComputedStyle(document.body).paddingLeft) || 0;
+                    stickyContainer.style.width = (window.innerWidth - bodyPaddingLeft * 2) + 'px';
+                    stickyContainer.style.left = bodyPaddingLeft + 'px';
+                } else {
+                    stickyContainer.style.width = wrapperRect.width + 'px';
+                    stickyContainer.style.left = wrapperRect.left + 'px';
+                }
                 stickyContainer.style.right = 'auto';
             }
             
