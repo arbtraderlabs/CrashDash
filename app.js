@@ -657,29 +657,43 @@ function renderCompressedMode(signals, tbody) {
                 </div>
             </td>
             <td>
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <span style="font-size: 1rem; font-weight: 600;">${latestScore.toFixed(1)}</span>
-                    <button 
-                        onclick="event.stopPropagation(); loadAIReport('${ticker}')"
-                        title="View AI Report"
-                        style="
-                            padding: 6px 8px;
-                            background: linear-gradient(135deg, rgba(10, 132, 255, 0.15), rgba(10, 132, 255, 0.25));
-                            color: var(--primary);
-                            border: 1px solid rgba(10, 132, 255, 0.4);
-                            border-radius: 6px;
-                            cursor: pointer;
-                            font-size: 1rem;
-                            transition: all 0.2s ease;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                        "
-                        onmouseover="this.style.background='var(--primary)'; this.style.transform='scale(1.1)'"
-                        onmouseout="this.style.background='linear-gradient(135deg, rgba(10, 132, 255, 0.15), rgba(10, 132, 255, 0.25))'; this.style.transform='scale(1)'"
+                <div style="display: flex; align-items: center; gap: 6px; justify-content: flex-start;">
+                    <div style="
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 32px;
+                        height: 32px;
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        border-radius: 8px;
+                        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                    "
+                    onclick="event.stopPropagation(); loadAIReport('${ticker}')"
+                    title="AI Analysis Report"
+                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(102, 126, 234, 0.5)'"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(102, 126, 234, 0.3)'"
                     >
-                        📊
-                    </button>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="position: relative; z-index: 1;">
+                            <path d="M9 3v18M15 3v18M3 9h18M3 15h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                            <circle cx="9" cy="9" r="2" fill="#fbbf24"/>
+                            <circle cx="15" cy="15" r="2" fill="#10b981"/>
+                        </svg>
+                        <div style="
+                            position: absolute;
+                            inset: -2px;
+                            border-radius: 8px;
+                            background: linear-gradient(135deg, rgba(102, 126, 234, 0.4), rgba(118, 75, 162, 0.4));
+                            animation: pulse 2s ease-in-out infinite;
+                            z-index: 0;
+                        "></div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1px;">
+                        <span style="font-size: 1.1rem; font-weight: 700; color: #667eea; line-height: 1;">${latestScore.toFixed(1)}</span>
+                        <span style="font-size: 0.6rem; color: var(--gray); opacity: 0.7; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1;">AI Score</span>
+                    </div>
                 </div>
             </td>
         `;
@@ -803,29 +817,43 @@ function renderFullMode(signals, tbody) {
             </td>
             <td class="positive">+${bestRally.toFixed(1)}%</td>
             <td>
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <span style="font-size: 1rem; font-weight: 600;">${parseFloat(signal.AI_Technical_Score).toFixed(1)}</span>
-                    <button 
-                        onclick="event.stopPropagation(); loadAIReport('${signal.Ticker}')"
-                        title="View AI Report"
-                        style="
-                            padding: 6px 8px;
-                            background: linear-gradient(135deg, rgba(10, 132, 255, 0.15), rgba(10, 132, 255, 0.25));
-                            color: var(--primary);
-                            border: 1px solid rgba(10, 132, 255, 0.4);
-                            border-radius: 6px;
-                            cursor: pointer;
-                            font-size: 1rem;
-                            transition: all 0.2s ease;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                        "
-                        onmouseover="this.style.background='var(--primary)'; this.style.transform='scale(1.1)'"
-                        onmouseout="this.style.background='linear-gradient(135deg, rgba(10, 132, 255, 0.15), rgba(10, 132, 255, 0.25))'; this.style.transform='scale(1)'"
+                <div style="display: flex; align-items: center; gap: 6px; justify-content: flex-start;">
+                    <div style="
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 32px;
+                        height: 32px;
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        border-radius: 8px;
+                        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                    "
+                    onclick="event.stopPropagation(); loadAIReport('${signal.Ticker}')"
+                    title="AI Analysis Report"
+                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(102, 126, 234, 0.5)'"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(102, 126, 234, 0.3)'"
                     >
-                        📊
-                    </button>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="position: relative; z-index: 1;">
+                            <path d="M9 3v18M15 3v18M3 9h18M3 15h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                            <circle cx="9" cy="9" r="2" fill="#fbbf24"/>
+                            <circle cx="15" cy="15" r="2" fill="#10b981"/>
+                        </svg>
+                        <div style="
+                            position: absolute;
+                            inset: -2px;
+                            border-radius: 8px;
+                            background: linear-gradient(135deg, rgba(102, 126, 234, 0.4), rgba(118, 75, 162, 0.4));
+                            animation: pulse 2s ease-in-out infinite;
+                            z-index: 0;
+                        "></div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1px;">
+                        <span style="font-size: 1.1rem; font-weight: 700; color: #667eea; line-height: 1;">${parseFloat(signal.AI_Technical_Score).toFixed(1)}</span>
+                        <span style="font-size: 0.6rem; color: var(--gray); opacity: 0.7; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1;">AI Score</span>
+                    </div>
                 </div>
             </td>
         `;
@@ -2442,28 +2470,95 @@ function loadAIReport(ticker) {
     const modalHTML = `
         <div class="modal" id="aiReportModal" style="display: flex; align-items: center; justify-content: center;">
             <div class="modal-content" style="
-                max-width: 600px;
+                max-width: 650px;
                 width: 90%;
                 padding: 3rem 2rem;
                 text-align: center;
                 background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
             ">
                 <div style="margin-bottom: 2rem;">
-                    <div class="spinner" style="
+                    <div style="
+                        position: relative;
                         margin: 0 auto 1.5rem;
-                        width: 60px;
-                        height: 60px;
-                        border: 4px solid rgba(10, 132, 255, 0.2);
-                        border-top-color: var(--primary);
-                        border-radius: 50%;
-                        animation: spin 1s linear infinite;
-                    "></div>
-                    <h3 style="color: white; font-size: 1.5rem; margin-bottom: 0.5rem;">
-                        🤖 Generating AI Report
+                        width: 80px;
+                        height: 80px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    ">
+                        <div style="
+                            position: absolute;
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 50%;
+                            border: 3px solid transparent;
+                            border-top-color: #667eea;
+                            border-right-color: #764ba2;
+                            animation: spin 1s linear infinite;
+                        "></div>
+                        <div style="
+                            position: absolute;
+                            width: 70%;
+                            height: 70%;
+                            border-radius: 50%;
+                            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                            animation: pulse 2s ease-in-out infinite;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        ">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                                <path d="M9 3v18M15 3v18M3 9h18M3 15h18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                <circle cx="9" cy="9" r="1.5" fill="#fbbf24">
+                                    <animate attributeName="r" values="1.5;2;1.5" dur="1.5s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="15" cy="15" r="1.5" fill="#10b981">
+                                    <animate attributeName="r" values="1.5;2;1.5" dur="1.5s" repeatCount="indefinite" begin="0.75s"/>
+                                </circle>
+                            </svg>
+                        </div>
+                        <div style="
+                            position: absolute;
+                            width: 120%;
+                            height: 120%;
+                            border-radius: 50%;
+                            background: radial-gradient(circle, rgba(102, 126, 234, 0.3) 0%, transparent 70%);
+                            animation: pulse 2s ease-in-out infinite;
+                        "></div>
+                    </div>
+                    <h3 style="color: white; font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">
+                        ⚡ Generating AI Report
                     </h3>
-                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 1rem;">
-                        Analyzing ${ticker} with V4 Engine...
+                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 1rem; margin-bottom: 1rem;">
+                        Analyzing <strong style="color: #667eea;">${ticker}</strong> with Engine V4
                     </p>
+                    
+                    <!-- Progress Dialog Box -->
+                    <div id="aiProgressDialog" style="
+                        background: rgba(0, 0, 0, 0.3);
+                        border: 1px solid rgba(102, 126, 234, 0.3);
+                        border-radius: 8px;
+                        padding: 1rem;
+                        margin: 1.5rem 0;
+                        min-height: 60px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        text-align: left;
+                    ">
+                        <span style="
+                            color: #667eea;
+                            font-size: 1.2rem;
+                            margin-right: 12px;
+                            animation: pulse 1s ease-in-out infinite;
+                        ">▸</span>
+                        <span id="aiProgressText" style="
+                            color: rgba(255, 255, 255, 0.9);
+                            font-size: 0.9rem;
+                            font-family: 'Courier New', monospace;
+                            letter-spacing: 0.5px;
+                        ">Initializing neural network...</span>
+                    </div>
                 </div>
                 <button 
                     onclick="closeAIReportModal()"
@@ -2501,9 +2596,52 @@ function loadAIReport(ticker) {
         `;
         document.head.appendChild(style);
     }
+    
+    // Start progress animation
+    const progressMessages = [
+        'Initializing neural network...',
+        `Loading historical ticker data for ${ticker}...`,
+        'Establishing secure data pipeline...',
+        'Fetching real-time market indicators...',
+        'Gathering sentiment intelligence from multiple sources...',
+        'Parsing OHLC candlestick patterns...',
+        'Analyzing volume spike anomalies...',
+        'Computing RSI momentum trajectories...',
+        'Cross-referencing sector correlations...',
+        'Detecting key support & resistance levels...',
+        'Evaluating momentum divergence signals...',
+        'Synthesizing multi-timeframe technical signals...',
+        'Calculating risk-adjusted performance metrics...',
+        'Running Monte Carlo probability simulations...',
+        'Applying deep learning pattern recognition models...',
+        'Compiling comprehensive analytical report...',
+        'Finalizing AI-powered predictions...'
+    ];
+    
+    let messageIndex = 0;
+    const progressText = document.getElementById('aiProgressText');
+    
+    const progressInterval = setInterval(() => {
+        if (messageIndex < progressMessages.length) {
+            progressText.textContent = progressMessages[messageIndex];
+            messageIndex++;
+        } else {
+            // Loop back to beginning
+            messageIndex = 0;
+        }
+    }, 1400); // Change message every 1.4 seconds
+    
+    // Store interval ID for cleanup
+    window.aiProgressInterval = progressInterval;
 }
 
 function closeAIReportModal() {
+    // Clear progress interval
+    if (window.aiProgressInterval) {
+        clearInterval(window.aiProgressInterval);
+        window.aiProgressInterval = null;
+    }
+    
     const modal = document.getElementById('aiReportModal');
     if (modal) {
         modal.remove();
