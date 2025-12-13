@@ -2415,36 +2415,41 @@ async function loadPriceChart(ticker) {
         
         // Listen for range selector/zoom changes to rescale y-axis
         chartDiv.on('plotly_relayout', function(eventData) {
-            // Only respond to x-axis range changes (not y-axis changes we make ourselves)
-            if ((eventData['xaxis.range[0]'] || eventData['xaxis.range']) && !eventData['yaxis.range']) {
-                const xRange = eventData['xaxis.range'] || [eventData['xaxis.range[0]'], eventData['xaxis.range[1]']];
-                
-                // Find visible data indices
-                const startIdx = chartData.dates.findIndex(d => d >= xRange[0]);
-                const endIdx = chartData.dates.findIndex(d => d > xRange[1]);
-                
-                if (startIdx >= 0) {
-                    const visibleHigh = chartData.high.slice(startIdx, endIdx > 0 ? endIdx : undefined);
-                    const visibleLow = chartData.low.slice(startIdx, endIdx > 0 ? endIdx : undefined);
+            // Reset autorange first to prevent axis issues when switching timeframes
+            if (eventData['xaxis.range[0]'] || eventData['xaxis.range'] || eventData['xaxis.autorange']) {
+                // Only respond to x-axis range changes (not y-axis changes we make ourselves)
+                if ((eventData['xaxis.range[0]'] || eventData['xaxis.range']) && !eventData['yaxis.range']) {
+                    const xRange = eventData['xaxis.range'] || [eventData['xaxis.range[0]'], eventData['xaxis.range[1]']];
                     
-                    if (visibleHigh.length > 0 && visibleLow.length > 0) {
-                        // Include signal positions in range calculation using dynamic offset
-                        const visibleSignalLows = [];
-                        chartData.signals.forEach(sig => {
-                            const dateIdx = chartData.dates.indexOf(sig.date);
-                            if (dateIdx >= startIdx && (endIdx < 0 || dateIdx < endIdx)) {
-                                const pos = calculateSignalPosition(dateIdx);
-                                if (pos !== null) visibleSignalLows.push(pos);
-                            }
-                        });
+                    // Find visible data indices
+                    const startIdx = chartData.dates.findIndex(d => d >= xRange[0]);
+                    const endIdx = chartData.dates.findIndex(d => d > xRange[1]);
+                
+                    if (startIdx >= 0) {
+                        const visibleHigh = chartData.high.slice(startIdx, endIdx > 0 ? endIdx : undefined);
+                        const visibleLow = chartData.low.slice(startIdx, endIdx > 0 ? endIdx : undefined);
                         
-                        const yMin = Math.min(...visibleLow, ...visibleSignalLows);
-                        const yMax = Math.max(...visibleHigh);
-                        const padding = (yMax - yMin) * 0.05; // 5% padding
-                        
-                        Plotly.relayout(chartDiv, {
-                            'yaxis.range': [yMin - padding, yMax + padding]
-                        });
+                        if (visibleHigh.length > 0 && visibleLow.length > 0) {
+                            // Include signal positions in range calculation using dynamic offset
+                            const visibleSignalLows = [];
+                            chartData.signals.forEach(sig => {
+                                const dateIdx = chartData.dates.indexOf(sig.date);
+                                if (dateIdx >= startIdx && (endIdx < 0 || dateIdx < endIdx)) {
+                                    const pos = calculateSignalPosition(dateIdx);
+                                    if (pos !== null) visibleSignalLows.push(pos);
+                                }
+                            });
+                            
+                            const yMin = Math.min(...visibleLow, ...visibleSignalLows);
+                            const yMax = Math.max(...visibleHigh);
+                            const padding = (yMax - yMin) * 0.05; // 5% padding
+                            
+                            // Reset and recalculate y-axis range
+                            Plotly.relayout(chartDiv, {
+                                'yaxis.autorange': false,
+                                'yaxis.range': [yMin - padding, yMax + padding]
+                            });
+                        }
                     }
                 }
             }
@@ -2853,7 +2858,13 @@ function initStickyTableHeader() {
             if (originalWrapper) {
                 const wrapperRect = originalWrapper.getBoundingClientRect();
                 stickyContainer.style.width = wrapperRect.width + 'px';
-                stickyContainer.style.left = wrapperRect.left + 'px';
+                
+                // On mobile, ensure left position accounts for any offset
+                if (isMobile) {
+                    stickyContainer.style.left = Math.max(0, wrapperRect.left) + 'px';
+                } else {
+                    stickyContainer.style.left = wrapperRect.left + 'px';
+                }
                 stickyContainer.style.right = 'auto';
             }
             
