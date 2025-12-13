@@ -288,14 +288,18 @@ async function loadTickerDetails(ticker) {
 function updateStats() {
     // Total tickers tracked (from ticker lookup - all LSE AIM tickers)
     const totalTracked = Object.keys(tickerLookup).length || 600;
-    document.getElementById('totalTickers').textContent = totalTracked > 600 ? totalTracked : '600+';
+    const totalTickersEl = document.getElementById('totalTickers');
+    if (totalTickersEl) totalTickersEl.textContent = totalTracked > 600 ? totalTracked : '600+';
     
     // Crash signals generated
-    document.getElementById('totalSignals').textContent = dashboardStats.total_signals || 0;
+    const totalSignalsEl = document.getElementById('totalSignals');
+    if (totalSignalsEl) totalSignalsEl.textContent = dashboardStats.total_signals || 0;
     
     // Purple combos
-    document.getElementById('purpleCount').textContent = dashboardStats.signal_colors?.PURPLE || 0;
-    document.getElementById('redCount').textContent = dashboardStats.signal_colors?.RED || 0;
+    const purpleCountEl = document.getElementById('purpleCount');
+    if (purpleCountEl) purpleCountEl.textContent = dashboardStats.signal_colors?.PURPLE || 0;
+    const redCountEl = document.getElementById('redCount');
+    if (redCountEl) redCountEl.textContent = dashboardStats.signal_colors?.RED || 0;
     
     // Format last updated with date and time split
     const lastUpdated = dashboardStats.last_updated || dashboardStats.generated || '-';
