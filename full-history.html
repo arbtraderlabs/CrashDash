@@ -39,59 +39,6 @@
             <p class="page-description">Complete list of all crash signals with detailed metrics</p>
         </div>
 
-        <!-- Filters -->
-        <div class="filter-controls">
-            <button class="btn btn-primary" id="filterButton">
-                🔍 Filters <span class="filter-count" id="filterCount" style="display: none;">0</span>
-            </button>
-        </div>
-
-        <!-- Filter Panel -->
-        <div class="filter-panel" id="filterPanel" style="display: none;">
-            <div class="filter-sections">
-                <!-- Market Filter -->
-                <div class="filter-section">
-                    <h3>📍 Market</h3>
-                    <div class="filter-checkboxes" id="marketFilters"></div>
-                </div>
-
-                <!-- AI Score Filter -->
-                <div class="filter-section">
-                    <h3>⚡ AI Score</h3>
-                    <div class="filter-checkboxes" id="aiScoreFilters">
-                        <label><input type="checkbox" value="10" data-filter="ai-score"> 10.0 (Perfect)</label>
-                        <label><input type="checkbox" value="9" data-filter="ai-score"> 9.0+</label>
-                        <label><input type="checkbox" value="8" data-filter="ai-score"> 8.0+</label>
-                        <label><input type="checkbox" value="7" data-filter="ai-score"> 7.0+</label>
-                    </div>
-                </div>
-
-                <!-- P&L Filter -->
-                <div class="filter-section">
-                    <h3>💰 Current P&L</h3>
-                    <div class="filter-checkboxes" id="pnlFilters">
-                        <label><input type="checkbox" value="positive" data-filter="pnl"> Positive</label>
-                        <label><input type="checkbox" value="negative" data-filter="pnl"> Negative</label>
-                    </div>
-                </div>
-
-                <!-- Best Rally Filter -->
-                <div class="filter-section">
-                    <h3>🚀 Best Rally</h3>
-                    <div class="filter-checkboxes" id="rallyFilters">
-                        <label><input type="checkbox" value="100" data-filter="rally"> 100%+</label>
-                        <label><input type="checkbox" value="50" data-filter="rally"> 50%+</label>
-                        <label><input type="checkbox" value="20" data-filter="rally"> 20%+</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="filter-actions">
-                <button class="btn btn-secondary" id="clearFilters">Clear All</button>
-                <button class="btn btn-primary" id="applyFilters">Apply Filters</button>
-            </div>
-        </div>
-
         <!-- Full History Table -->
         <div class="signals-table-wrapper" id="signalsWrapper">
             <table class="signals-table">
@@ -141,6 +88,13 @@
     <div id="toggleSlider" style="display: none;"></div>
     <div id="compactIcon" style="display: none;"></div>
     <div id="detailIcon" style="display: none;"></div>
+    <input id="searchInput" type="hidden">
+    <input id="colorFilter" type="hidden">
+    <select id="sectorFilter" style="display: none;"></select>
+    <select id="marketFilter" style="display: none;"></select>
+    <select id="marketCapFilter" style="display: none;"></select>
+    <input id="minAiScore" type="hidden" value="0">
+    <div id="filterCount" style="display: none;"></div>
 
     <script src="app.js"></script>
     <script>
