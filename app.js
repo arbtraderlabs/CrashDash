@@ -578,7 +578,21 @@ function renderCompressedMode(signals, tbody) {
                 </div>
             </td>
             <td style="white-space: nowrap;">
-                <div style="margin-bottom: 4px;">${signalBadges}</div>
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px;">
+                    <div>${signalBadges}</div>
+                    
+                    <!-- Chart icon button -->
+                    <button 
+                        class="chart-icon-button" 
+                        onclick="event.stopPropagation(); showSignalTimeline('${ticker}')"
+                        title="View Price Chart"
+                    >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                    </button>
+                </div>
+                
                 <div style="font-size: 0.75rem; color: var(--dark-gray); font-weight: 600;">
                     ${latest.Date}
                 </div>

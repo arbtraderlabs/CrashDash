@@ -1891,6 +1891,60 @@ header {
   line-height: 1;
 }
 
+/* Chart pulse indicator - pulsing blue dot */
+.chart-pulse-indicator {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 8px;
+  height: 8px;
+  background: var(--electric-blue);
+  border-radius: 50%;
+  animation: pulse-chart 2s ease-in-out infinite;
+  box-shadow: 0 0 0 0 rgba(10, 132, 255, 0.7);
+  z-index: 10;
+}
+
+@keyframes pulse-chart {
+  0% {
+    box-shadow: 0 0 0 0 rgba(10, 132, 255, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(10, 132, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(10, 132, 255, 0);
+  }
+}
+
+/* Chart icon button */
+.chart-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: rgba(10, 132, 255, 0.1);
+  border: 1px solid rgba(10, 132, 255, 0.3);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--electric-blue);
+  margin: 4px 0;
+  padding: 0;
+}
+
+.chart-icon-button:hover {
+  background: rgba(10, 132, 255, 0.2);
+  border-color: var(--electric-blue);
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(10, 132, 255, 0.3);
+}
+
+.chart-icon-button:active {
+  transform: scale(0.95);
+}
+
 /* Enhanced modifier pill */
 .enhanced-pill {
   display: inline-block;
