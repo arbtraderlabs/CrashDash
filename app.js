@@ -1353,6 +1353,12 @@ async function showSignalTimeline(ticker) {
         
         const latestSignal = metadata.latest_signal || {};
         const allSignals = metadata.all_historical_signals || [];
+        // Ensure newest signals appear first (newest at top)
+        try {
+            allSignals.sort((a, b) => new Date(b.signal_date) - new Date(a.signal_date));
+        } catch (e) {
+            console.warn('Failed to sort rally timeline signals:', e);
+        }
         
         // Rally State colors and labels
         const rallyStateColors = {
@@ -1533,6 +1539,12 @@ function loadMoreSignals(ticker) {
     if (!metadata || !metadata.all_historical_signals) return;
     
     const allSignals = metadata.all_historical_signals;
+    // Keep same newest-first ordering when loading more signals
+    try {
+        allSignals.sort((a, b) => new Date(b.signal_date) - new Date(a.signal_date));
+    } catch (e) {
+        console.warn('Failed to sort signals in loadMoreSignals:', e);
+    }
     const currentCount = signalDisplayCount[ticker] || 10;
     const newCount = Math.min(currentCount + 10, allSignals.length);
     signalDisplayCount[ticker] = newCount;
