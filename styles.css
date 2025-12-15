@@ -75,6 +75,12 @@ header {
   gap: 1rem;
 }
 
+/* Buy alerts header microcopy */
+.table-header-micro {
+  color: var(--gray);
+  font-size: 0.77rem;
+}
+
 /* Modern search box (desktop + mobile safe) */
 .search-box {
   position: relative;
@@ -1873,6 +1879,11 @@ header {
   position: relative;
 }
 
+/* Make compact badges look like status indicators (not buttons) */
+.signal-badge-compact {
+  cursor: default;
+}
+
 .signal-badge-compact.enhanced {
   box-shadow: 0 0 0 2px rgba(157, 78, 221, 0.4);
   animation: pulse-purple 2s ease-in-out infinite;
@@ -1890,6 +1901,31 @@ header {
   font-size: 0.7rem;
   line-height: 1;
 }
+
+/* Buy alerts header microcopy */
+.table-header-micro {
+  color: var(--white);
+  font-size: 0.77rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.how-it-works-button {
+  background: transparent;
+  border: 0;
+  color: var(--navy);
+  font-weight: 700;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.how-it-works-button:hover {
+  background: rgba(10,132,255,0.06);
+}
+
+/* removed .view-all styles (button removed) */
 
 /* Chart pulse indicator - pulsing blue dot */
 .chart-pulse-indicator {
@@ -2145,6 +2181,10 @@ header {
   cursor: pointer;
   user-select: none;
   transition: var(--transition);
+  /* Ensure header labels stay on a single line and don't wrap */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .signals-table th:hover {
