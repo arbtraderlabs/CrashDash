@@ -2021,13 +2021,7 @@ function openOnboardingDrawer() {
     drawer.classList.add('active');
     drawer.setAttribute('aria-hidden', 'false');
     
-    // Smooth scroll to bottom
-    setTimeout(() => {
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: 'smooth'
-        });
-    }, 100);
+    // Auto-scroll disabled per user preference
 }
 
 function closeOnboardingDrawer() {
