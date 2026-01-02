@@ -2066,15 +2066,17 @@ async function loadAIReport(ticker) {
                         margin: 1.5rem 0;
                         min-height: 80px;
                         display: flex;
-                        flex-direction: column;
                         align-items: center;
-                        justify-content: center;
-                        text-align: center;
+                        justify-content: flex-start;
+                        text-align: left;
                         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
                         position: relative;
                     ">
                         <!-- Working indicator -->
                         <div style="
+                            position: absolute;
+                            top: 0.6rem;
+                            left: 1rem;
                             display: flex;
                             align-items: center;
                             gap: 6px;
@@ -2101,11 +2103,11 @@ async function loadAIReport(ticker) {
                                 white-space: nowrap;
                             ">Working...</span>
                         </div>
-                        <!-- Spinner container -->
                         <div style="
                             position: relative;
                             width: 36px;
                             height: 36px;
+                            margin-right: 14px;
                             flex-shrink: 0;
                         ">
                             <div style="
@@ -2138,7 +2140,7 @@ async function loadAIReport(ticker) {
                             </div>
                         </div>
                         <!-- Progress text -->
-                        <div style="width: 100%; margin-top: 1rem;">
+                        <div style="flex: 1; min-width: 0;">
                             <span id="aiProgressText" style="
                                 color: rgba(255, 255, 255, 0.95);
                                 font-size: 0.92rem;
