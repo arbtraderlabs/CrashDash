@@ -1353,12 +1353,6 @@ async function showSignalTimeline(ticker) {
         
         const latestSignal = metadata.latest_signal || {};
         const allSignals = metadata.all_historical_signals || [];
-        // Ensure newest signals appear first (newest at top)
-        try {
-            allSignals.sort((a, b) => new Date(b.signal_date) - new Date(a.signal_date));
-        } catch (e) {
-            console.warn('Failed to sort rally timeline signals:', e);
-        }
         
         // Rally State colors and labels
         const rallyStateColors = {
@@ -1539,12 +1533,6 @@ function loadMoreSignals(ticker) {
     if (!metadata || !metadata.all_historical_signals) return;
     
     const allSignals = metadata.all_historical_signals;
-    // Keep same newest-first ordering when loading more signals
-    try {
-        allSignals.sort((a, b) => new Date(b.signal_date) - new Date(a.signal_date));
-    } catch (e) {
-        console.warn('Failed to sort signals in loadMoreSignals:', e);
-    }
     const currentCount = signalDisplayCount[ticker] || 10;
     const newCount = Math.min(currentCount + 10, allSignals.length);
     signalDisplayCount[ticker] = newCount;
@@ -2021,7 +2009,13 @@ function openOnboardingDrawer() {
     drawer.classList.add('active');
     drawer.setAttribute('aria-hidden', 'false');
     
-    // Auto-scroll disabled per user preference
+    // Smooth scroll to bottom
+    setTimeout(() => {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        });
+    }, 100);
 }
 
 function closeOnboardingDrawer() {
@@ -2031,17 +2025,29 @@ function closeOnboardingDrawer() {
 }
 
 // AI Report Loading Function
-function loadAIReport(ticker) {
-    // Create modal overlay
+async function loadAIReport(ticker) {
+    const isMobile = window.innerWidth < 768;
+    const reportPath = `data/apex_reports/${ticker}_profile.html`;
+    
+    // Create modal overlay with loader
     const modalHTML = `
-        <div class="modal" id="aiReportModal" style="display: flex; align-items: center; justify-content: center;">
-            <div class="modal-content" style="
+        <div class="modal" id="aiReportModal" style="
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        ">
+            <!-- Loader Container (shown first) -->
+            <div id="apexLoaderContainer" class="modal-content" style="
                 max-width: 650px;
                 width: 90%;
                 padding: 2rem;
                 text-align: center;
                 background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
                 position: relative;
+                border-radius: 16px;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             ">
                 <div style="margin-bottom: 2rem;">
                     <h3 style="color: white; font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">
@@ -2066,7 +2072,7 @@ function loadAIReport(ticker) {
                         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
                         position: relative;
                     ">
-                        <!-- Working indicator inside dialog top-left -->
+                        <!-- Working indicator -->
                         <div style="
                             position: absolute;
                             top: 0.6rem;
@@ -2143,52 +2149,89 @@ function loadAIReport(ticker) {
                         </div>
                     </div>
                 </div>
-                <button 
-                    onclick="closeAIReportModal()"
+            </div>
+            
+            <!-- Report Container (shown after loader) -->
+            <div id="apexReportContainer" style="
+                max-width: ${isMobile ? '100%' : '95vw'};
+                width: ${isMobile ? '100%' : '95%'};
+                max-height: 95vh;
+                background: white;
+                border-radius: ${isMobile ? '0' : '20px'};
+                overflow: hidden;
+                position: relative;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                opacity: 0;
+                transform: scale(0.9);
+                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                pointer-events: none;
+            ">
+                <button onclick="closeAIReportModal()" style="
+                    position: absolute;
+                    top: ${isMobile ? '10px' : '15px'};
+                    right: ${isMobile ? '10px' : '15px'};
+                    z-index: 10000;
+                    background: rgba(0,0,0,0.7);
+                    color: white;
+                    border: none;
+                    border-radius: 50%;
+                    width: ${isMobile ? '36px' : '40px'};
+                    height: ${isMobile ? '36px' : '40px'};
+                    cursor: pointer;
+                    font-size: ${isMobile ? '18px' : '20px'};
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: all 0.2s ease;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+                " onmouseover="this.style.background='rgba(239,68,68,0.9)'; this.style.transform='scale(1.1)'" 
+                   onmouseout="this.style.background='rgba(0,0,0,0.7)'; this.style.transform='scale(1)'">✕</button>
+                <iframe 
+                    id="apexReportIframe"
+                    src="${reportPath}"
                     style="
-                        padding: 0.75rem 2rem;
-                        background: rgba(10, 132, 255, 0.3);
-                        color: rgba(10, 132, 255, 1);
-                        border: 2px solid var(--primary);
-                        border-radius: 8px;
-                        cursor: pointer;
-                        font-size: 0.95rem;
-                        font-weight: 600;
-                        transition: all 0.2s ease;
+                        width: 100%; 
+                        height: 95vh; 
+                        border: none;
+                        display: block;
                     "
-                    onmouseover="this.style.background='var(--primary)'; this.style.color='white'"
-                    onmouseout="this.style.background='rgba(10, 132, 255, 0.3)'; this.style.color='rgba(10, 132, 255, 1)'"
-                >
-                    Close
-                </button>
+                    onload="window.apexIframeLoaded = true"
+                ></iframe>
             </div>
         </div>
     `;
     
     document.body.insertAdjacentHTML('beforeend', modalHTML);
+    document.body.style.overflow = 'hidden';
     
-    // Add CSS animation for spinner if not already present
-    if (!document.getElementById('spinnerStyle')) {
+    // Add CSS animations if not already present
+    if (!document.getElementById('apexModalStyles')) {
         const style = document.createElement('style');
-        style.id = 'spinnerStyle';
+        style.id = 'apexModalStyles';
         style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            
             @keyframes spin {
                 0% { transform: rotate(0deg); }
                 100% { transform: rotate(360deg); }
             }
             
-            /* Mobile responsive adjustments for AI progress dialog */
-            @media (max-width: 600px) {
-                #aiReportModal .modal-content {
+            /* Mobile responsive adjustments */
+            @media (max-width: 768px) {
+                #apexLoaderContainer {
                     padding: 1.5rem 1rem !important;
                     width: 95% !important;
+                    margin: 0 auto;
                 }
                 
-                #aiReportModal h3 {
+                #apexLoaderContainer h3 {
                     font-size: 1.2rem !important;
                 }
                 
-                #aiReportModal p {
+                #apexLoaderContainer p {
                     font-size: 0.85rem !important;
                 }
                 
@@ -2202,14 +2245,19 @@ function loadAIReport(ticker) {
                     letter-spacing: 0.2px !important;
                     line-height: 1.4 !important;
                 }
+                
+                #apexReportContainer {
+                    border-radius: 0 !important;
+                    max-width: 100% !important;
+                }
             }
             
             @media (max-width: 400px) {
-                #aiReportModal h3 {
+                #apexLoaderContainer h3 {
                     font-size: 1rem !important;
                 }
                 
-                #aiReportModal p {
+                #apexLoaderContainer p {
                     font-size: 0.75rem !important;
                 }
                 
@@ -2240,7 +2288,7 @@ function loadAIReport(ticker) {
         'Running Monte Carlo probability simulations...',
         'Applying deep learning pattern recognition models...',
         'Compiling comprehensive analytical report...',
-        'Finalizing AI-powered predictions...'
+        'Report ready - preparing visualization...'
     ];
     
     let messageIndex = 0;
@@ -2251,27 +2299,32 @@ function loadAIReport(ticker) {
             progressText.textContent = progressMessages[messageIndex];
             messageIndex++;
         } else {
-            // Loop back to beginning
-            messageIndex = 0;
+            clearInterval(progressInterval);
         }
-    }, 1400); // Change message every 1.4 seconds
+    }, 300); // Faster transitions (300ms each)
     
     // Store interval ID for cleanup
     window.aiProgressInterval = progressInterval;
     
-    // After 10 seconds, show final "waiting for agent" message and keep modal open
+    // After 5 seconds, transition to iframe
     setTimeout(() => {
         clearInterval(progressInterval);
-        progressText.textContent = 'Awaiting V4 Engine Agent response............';
         
-        // Add animated dots
-        let dotCount = 0;
-        window.aiProgressInterval = setInterval(() => {
-            dotCount = (dotCount + 1) % 4;
-            const dots = '.'.repeat(dotCount);
-            progressText.textContent = `Awaiting V4 Engine Agent response${dots.padEnd(12, '.')}`;
+        const loaderContainer = document.getElementById('apexLoaderContainer');
+        const reportContainer = document.getElementById('apexReportContainer');
+        
+        // Fade out loader with scale animation
+        loaderContainer.style.opacity = '0';
+        loaderContainer.style.transform = 'scale(0.9)';
+        
+        // After fade out, show report with beautiful entrance
+        setTimeout(() => {
+            loaderContainer.style.display = 'none';
+            reportContainer.style.opacity = '1';
+            reportContainer.style.transform = 'scale(1)';
+            reportContainer.style.pointerEvents = 'auto';
         }, 500);
-    }, 10000); // 10 seconds
+    }, 5000); // 5 seconds
 }
 
 function closeAIReportModal() {
@@ -2283,8 +2336,27 @@ function closeAIReportModal() {
     
     const modal = document.getElementById('aiReportModal');
     if (modal) {
-        modal.remove();
+        // Add fade out animation
+        modal.style.animation = 'fadeOut 0.3s ease';
+        setTimeout(() => {
+            modal.remove();
+            document.body.style.overflow = '';
+        }, 300);
     }
+    
+    // Add fadeOut keyframe if not present
+    if (!document.getElementById('fadeOutAnimation')) {
+        const style = document.createElement('style');
+        style.id = 'fadeOutAnimation';
+        style.textContent = `
+            @keyframes fadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+}
 }
 
 // Close drawer when clicking outside on mobile
