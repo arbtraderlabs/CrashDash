@@ -2066,18 +2066,20 @@ async function loadAIReport(ticker) {
                         margin: 1.5rem 0;
                         min-height: 80px;
                         display: flex;
+                        flex-direction: column;
                         align-items: center;
-                        justify-content: flex-start;
-                        text-align: left;
+                        justify-content: center;
+                        text-align: center;
                         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
                         position: relative;
                     ">
                         <!-- Working indicator -->
                         <div style="
-                            position: absolute;
-                            top: 0.6rem;
-                            left: 1rem;
                             display: flex;
+                            align-items: center;
+                            gap: 6px;
+                            z-index: 10;
+                            margin-bottom: 0.5rem;
                             align-items: center;
                             gap: 6px;
                             z-index: 10;
@@ -2099,11 +2101,11 @@ async function loadAIReport(ticker) {
                                 white-space: nowrap;
                             ">Working...</span>
                         </div>
+                        <!-- Spinner container -->
                         <div style="
                             position: relative;
                             width: 36px;
                             height: 36px;
-                            margin-right: 14px;
                             flex-shrink: 0;
                         ">
                             <div style="
@@ -2135,7 +2137,8 @@ async function loadAIReport(ticker) {
                                 </svg>
                             </div>
                         </div>
-                        <div style="flex: 1; min-width: 0;">
+                        <!-- Progress text -->
+                        <div style="width: 100%; margin-top: 1rem;">
                             <span id="aiProgressText" style="
                                 color: rgba(255, 255, 255, 0.95);
                                 font-size: 0.92rem;
@@ -2306,7 +2309,7 @@ async function loadAIReport(ticker) {
     // Store interval ID for cleanup
     window.aiProgressInterval = progressInterval;
     
-    // After 5 seconds, transition to iframe
+    // After 3 seconds, transition to iframe
     setTimeout(() => {
         clearInterval(progressInterval);
         
@@ -2324,7 +2327,7 @@ async function loadAIReport(ticker) {
             reportContainer.style.transform = 'scale(1)';
             reportContainer.style.pointerEvents = 'auto';
         }, 500);
-    }, 5000); // 5 seconds
+    }, 3000); // 3 seconds
 }
 
 function closeAIReportModal() {
