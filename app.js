@@ -2198,7 +2198,6 @@ async function loadAIReport(ticker) {
                         border: none;
                         display: block;
                     "
-                    onload="window.apexIframeLoaded = true"
                 ></iframe>
             </div>
         </div>
@@ -2309,12 +2308,15 @@ async function loadAIReport(ticker) {
     // Store interval ID for cleanup
     window.aiProgressInterval = progressInterval;
     
-    // After 3 seconds, transition to iframe
-    setTimeout(() => {
+    // Get iframe element
+    const iframe = document.getElementById('apexReportIframe');
+    const loaderContainer = document.getElementById('apexLoaderContainer');
+    const reportContainer = document.getElementById('apexReportContainer');
+    const progressText = document.getElementById('aiProgressText');
+    
+    // Handle successful iframe load
+    iframe.onload = () => {
         clearInterval(progressInterval);
-        
-        const loaderContainer = document.getElementById('apexLoaderContainer');
-        const reportContainer = document.getElementById('apexReportContainer');
         
         // Fade out loader with scale animation
         loaderContainer.style.opacity = '0';
@@ -2327,7 +2329,27 @@ async function loadAIReport(ticker) {
             reportContainer.style.transform = 'scale(1)';
             reportContainer.style.pointerEvents = 'auto';
         }, 500);
-    }, 3000); // 3 seconds
+    };
+    
+    // Handle iframe load error (missing report) - keep spinner running
+    iframe.onerror = () => {
+        // Switch to "connecting" message and keep spinner active
+        clearInterval(progressInterval);
+        
+        // Cycle through connecting messages indefinitely
+        const connectingMessages = [
+            'Connecting to APEX intelligence...',
+            'Loading APEX engine...',
+            'Fetching profile data...',
+            'Preparing analysis...'
+        ];
+        
+        let connectIndex = 0;
+        window.aiProgressInterval = setInterval(() => {
+            progressText.textContent = connectingMessages[connectIndex % connectingMessages.length];
+            connectIndex++;
+        }, 1000); // Change message every 1 second
+    };
 }
 
 function closeAIReportModal() {
