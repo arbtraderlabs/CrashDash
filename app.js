@@ -2049,11 +2049,28 @@ async function loadAIReport(ticker) {
                 box-shadow: 0 20px 60px rgba(0,0,0,0.3);
                 transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             ">
-                <div style="margin-bottom: 2rem;">
-                    <h3 style="color: white; font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">
-                        ⚡ AI Smart Report
-                    </h3>
-                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 1rem; margin-bottom: 1rem;">
+                <div style="margin-bottom: 2rem; position: relative;">
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 0.5rem;">
+                        <h3 style="color: white; font-size: 1.5rem; margin: 0; font-weight: 700;">
+                            ⚡ AI Smart Report
+                        </h3>
+                        <!-- APEX Score Display -->
+                        <div id="apexScoreDisplay" style="
+                            background: rgba(255, 255, 255, 0.15);
+                            border: 1px solid rgba(102, 126, 234, 0.4);
+                            border-radius: 12px;
+                            padding: 0.5rem 1rem;
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                            min-width: 80px;
+                            justify-content: center;
+                        ">
+                            <span style="font-size: 1.3rem;">△</span>
+                            <span id="apexScore" style="color: rgba(255, 255, 255, 0.9); font-size: 1rem; font-weight: 600;">--</span>
+                        </div>
+                    </div>
+                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 1rem; margin: 0.5rem 0 1rem 0;">
                         Analyzing <strong style="color: #667eea;">${ticker}</strong> with Engine V4
                     </p>
                     
@@ -2352,6 +2369,36 @@ async function loadAIReport(ticker) {
             connectIndex++;
         }, 1000); // Change message every 1 second
     };
+    
+    // Fetch APEX JSON to get the score
+    const jsonPath = `data/apex_reports/${ticker}_apex_profile.json`;
+    fetch(jsonPath)
+        .then(response => {
+            if (!response.ok) throw new Error('JSON not found');
+            return response.json();
+        })
+        .then(data => {
+            // Extract APEX score from JSON
+            const apexScore = data.top_card?.apex_score_100;
+            const scoreDisplay = document.getElementById('apexScore');
+            
+            if (apexScore !== null && apexScore !== undefined) {
+                scoreDisplay.textContent = apexScore;
+                // Change color based on score
+                if (apexScore >= 70) {
+                    scoreDisplay.style.color = '#10b981'; // Green
+                } else if (apexScore >= 50) {
+                    scoreDisplay.style.color = '#f59e0b'; // Orange
+                } else {
+                    scoreDisplay.style.color = '#ef4444'; // Red
+                }
+            }
+        })
+        .catch(error => {
+            // JSON not found - just show the icon
+            const scoreDisplay = document.getElementById('apexScoreDisplay');
+            scoreDisplay.innerHTML = '<span style="font-size: 1.3rem;">△</span>';
+        });
 }
 
 function closeAIReportModal() {
