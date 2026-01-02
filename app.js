@@ -740,8 +740,8 @@ function filterSignals() {
                     marketCapMatch = capMillions >= 250;
                 }
             } else {
-                // If no market cap data, exclude from filtered results
-                marketCapMatch = false;
+                // If no market cap data, include in results (don't filter out)
+                marketCapMatch = true;
             }
         }
         
@@ -2331,7 +2331,6 @@ async function loadAIReport(ticker) {
     const iframe = document.getElementById('apexReportIframe');
     const loaderContainer = document.getElementById('apexLoaderContainer');
     const reportContainer = document.getElementById('apexReportContainer');
-    const progressText = document.getElementById('aiProgressText');
     
     // Handle successful iframe load
     iframe.onload = () => {
