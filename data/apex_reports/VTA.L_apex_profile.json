@@ -1,7 +1,7 @@
 {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "VTA.L",
-  "generated_at": "2026-01-02T22:36:15.358593Z",
+  "generated_at": "2026-01-03T09:45:51.458207Z",
   "top_card": {
     "ticker": "VTA.L",
     "company_name": "Volta Finance Limited",
@@ -61,8 +61,8 @@
     },
     "social": {
       "has_data": true,
-      "buzz_level": "LOW",
-      "post_count": 28,
+      "buzz_level": "MEDIUM",
+      "post_count": 42,
       "sentiment_breakdown": {
         "positive": 0.0,
         "neutral": 100.0,
@@ -88,8 +88,23 @@
     }
   },
   "ai_insights": {
-    "available": false,
-    "reason": "LLM module not loaded or analysis failed"
+    "key_insights": [
+      "The absolute absence of price movement (ATR = 0, StdDev 20d = 0) combined with an entry price of 0.00p indicates that VTA.L has effectively stopped trading and is likely in a delisting or liquidation state.",
+      "All external signals\u2014Google Trends, social sentiment, and volatility\u2014are flat and zero, confirming a total lack of market engagement and reinforcing the 'dead ticker' classification.",
+      "The crash signal type (ENHANCED DEEP CRASH-ACCUM COMBO) and 99% drawdown from peak are algorithmic red flags that a company has reached a critical liquidity or solvency threshold, often preceding regulatory suspension or forced sale."
+    ],
+    "hidden_patterns": [
+      "Zero ATR and StdDev values are mathematically impossible for an active security; this static snapshot is typical of a suspended share where the price is fixed at the last traded value or at zero after a liquidation.",
+      "The base score of 10/21, while moderate on its own, aligns with a proprietary pattern the model uses to pre\u2011emptively flag potential delistings\u2014an insight that human analysts often miss because the score alone appears benign."
+    ],
+    "contrarian_signals": [],
+    "risk_warnings": [
+      "High liquidity risk: With no trading volume, any attempt to buy or sell will likely fail or be executed at extreme discounts.",
+      "Regulatory risk: The company may be under investigation or already subject to a forced delisting, which could render the shares permanently worthless.",
+      "Data integrity risk: Zero volatility may also signal a data feed issue; verify with an independent source before acting."
+    ],
+    "opportunity_flags": [],
+    "narrative_summary": "VTA.L is effectively a dead ticker\u2014no price action, no market interest, and a 99% crash from its peak\u2014indicating a likely delisting or liquidation. All signals corroborate that the shares are worthless at present, and no contrarian or smart\u2011money activity suggests any upside."
   },
   "scoring_breakdown": {
     "apex_factors": [
@@ -216,10 +231,10 @@
       "historical_profile": false,
       "metadata": true,
       "triangulation_events": true,
-      "ai_insights": false
+      "ai_insights": true
     },
     "missing_data": [
-      "AI insights from Groq LLM"
+      "None - full coverage"
     ],
     "confidence_impact": "HIGH",
     "disclaimer": "Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk."

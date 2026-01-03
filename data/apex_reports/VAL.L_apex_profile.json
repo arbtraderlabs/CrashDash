@@ -1,7 +1,7 @@
 {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "VAL.L",
-  "generated_at": "2026-01-02T22:36:07.337213Z",
+  "generated_at": "2026-01-03T09:46:13.920158Z",
   "top_card": {
     "ticker": "VAL.L",
     "company_name": "ValiRx plc",
@@ -59,7 +59,7 @@
     "social": {
       "has_data": true,
       "buzz_level": "HIGH",
-      "post_count": 125,
+      "post_count": 250,
       "sentiment_breakdown": {
         "positive": 0.0,
         "neutral": 100.0,
@@ -68,11 +68,11 @@
     },
     "trends": {
       "has_data": true,
-      "current_interest": 60,
-      "momentum_score": 1663.33,
-      "trend_direction": "UP",
-      "intelligence_signal": "RETAIL_FOMO_PEAK",
-      "activity_level": "HIGH"
+      "current_interest": 0,
+      "momentum_score": -20.77,
+      "trend_direction": "DOWN",
+      "intelligence_signal": "DEAD_TICKER",
+      "activity_level": "DEAD"
     },
     "volatility": {
       "atr_normalized": null,
@@ -85,8 +85,30 @@
     }
   },
   "ai_insights": {
-    "available": false,
-    "reason": "LLM module not loaded or analysis failed"
+    "key_insights": [
+      "All data streams (price, sentiment, Google Trends, RNS) are flat or zero, indicating the ticker is effectively inactive or has been delisted.",
+      "The crash signal shows an 87.1% drawdown from a peak, yet the entry price is listed as 0.00p, implying the stock never traded or has been forced to zero.",
+      "ATR and 20\u2011day StdDev are 0, confirming no recent price movement \u2013 a classic symptom of a dead or suspended security."
+    ],
+    "hidden_patterns": [
+      "The alignment of a \u2018dead_ticker\u2019 Google Trends signal with zero social sentiment and no RNS suggests a coordinated shutdown or regulatory intervention rather than a natural market correction.",
+      "The deep crash bottom score (12/21) combined with a 0.00p entry price reveals a potential reverse\u2011split or liquidation event that was never completed, leaving the shares effectively worthless.",
+      "The absence of any volatility metrics (ATR, StdDev) is a red flag for a company that has ceased trading; such static metrics often precede a formal delisting announcement."
+    ],
+    "contrarian_signals": [
+      "If the company is undergoing a reverse split or a fresh listing (common for AIM \u2018dead\u2019 tickers), the current zero price could be reset to a nominal value, creating a speculative upside for early movers.",
+      "Some distressed AIM firms are acquired or merged; the lack of any RNS could mean a pending takeover that would revive the ticker under a new name."
+    ],
+    "risk_warnings": [
+      "Delisting or suspension risk \u2013 the ticker likely no longer trades on the AIM, making any position effectively worthless.",
+      "Liquidity risk \u2013 with zero price and no market activity, there is no buyer or seller, so any attempt to trade would be impossible or result in a 0\u2011value exit.",
+      "Fraud/Regulatory risk \u2013 the abrupt disappearance of data and the 0.00p entry price raise the possibility of insider manipulation or a failed corporate action."
+    ],
+    "opportunity_flags": [
+      "Monitor the LSE press releases for a formal delisting notice or a reverse\u2011split announcement; early notification could allow a short\u2011sale or a quick exit before the ticker becomes fully inactive.",
+      "If the company is acquired, look for a new ticker; early investors in the original shares may receive a claim on the acquisition proceeds."
+    ],
+    "narrative_summary": "VAL.L shows every indicator of a dead or suspended ticker: zero price, no volatility, no social or regulatory activity, and a Google Trends signal of \u2018dead_ticker\u2019. The 87.1% crash bottom score is likely the result of a forced liquidation or failed corporate action. While the data offers no straightforward trading signal, the only actionable path is to monitor for a reverse\u2011split or acquisition announcement; otherwise the position carries delisting, liquidity, and potential fraud risks."
   },
   "scoring_breakdown": {
     "apex_factors": [
@@ -164,8 +186,8 @@
   },
   "exhaustion": {
     "regime": "CONFIRMED",
-    "run_multiple": 0.6,
-    "current_run_pct": 52.22,
+    "run_multiple": 0.72,
+    "current_run_pct": 62.22,
     "avg_historical_run_pct": 86.67
   },
   "history_snapshot": {
@@ -176,7 +198,7 @@
     "new_rns_titles": []
   },
   "commentary": {
-    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows CONFIRMED timing with 55/100 APEX score. Historical data shows 1 rallies averaging 87% upside. Current position: +52.2%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
+    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows CONFIRMED timing with 55/100 APEX score. Historical data shows 1 rallies averaging 87% upside. Current position: +62.2%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
     "bull_case": [
       "Limited upside case without catalysts"
     ],
@@ -193,10 +215,10 @@
       "historical_profile": false,
       "metadata": true,
       "triangulation_events": true,
-      "ai_insights": false
+      "ai_insights": true
     },
     "missing_data": [
-      "AI insights from Groq LLM"
+      "None - full coverage"
     ],
     "confidence_impact": "HIGH",
     "disclaimer": "Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk."
