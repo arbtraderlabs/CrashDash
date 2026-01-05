@@ -1,12 +1,12 @@
 {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "VAL.L",
-  "generated_at": "2026-01-05T14:06:20.980292Z",
+  "generated_at": "2026-01-05T17:04:22.107579Z",
   "top_card": {
     "ticker": "VAL.L",
     "company_name": "ValiRx plc",
     "sector": "Healthcare",
-    "market_cap_gbp": 2710932,
+    "market_cap_gbp": null,
     "days_active": 0,
     "apex_score_100": 55,
     "confidence_score_100": 60,
@@ -86,26 +86,25 @@
   },
   "ai_insights": {
     "key_insights": [
-      "All monitored channels (Google Trends, social media, RNS, volatility) report zero activity, a textbook pattern for a ticker that is either suspended or has been delisted.",
-      "The crash signal indicates an 87.1\u202f% drawdown from peak, yet the entry price is listed as 0.00p and ATR/StdDev are 0.0000, meaning the shares are effectively worthless or not traded at all.",
-      "The base score of 12/21 is misleading: the algorithm treats the lack of data as a moderate risk, but the combination of zero price and zero volatility reveals a high probability of permanent insolvency or liquidation."
+      "All activity indicators (price, volume, volatility, social chatter, Google Trends, RNS) are zero or negative, signalling a *complete absence of market participation* rather than a normal distressed scenario.",
+      "The crash signal reports an 87.1\u202f% drawdown from peak yet lists an entry price of 0.00\u202fp \u2013 a contradictory data point that strongly suggests either a *data glitch* or that the stock has already fallen to zero and is effectively inactive.",
+      "The base score of 12/21 is relatively high for a stock flagged as a deep crash bottom, implying that the underlying scoring engine may be weighting factors (e.g., sector exposure, historical volatility) that are not reflected in the raw market data."
     ],
     "hidden_patterns": [
-      "The perfect alignment of zero Google Trends interest (0/100), zero social posts, and zero volatility is a rare signature of a 'dead ticker', often preceding a formal delisting or liquidation notice.",
-      "The discrepancy between the high drawdown figure and the 0.00p entry price suggests that the price data may have been truncated or that the company\u2019s shares have been written down to zero in a bankruptcy filing."
+      "Zero volatility (ATR\u202f=\u202f0.0000, StdDev\u202f=\u202f0.0000) coupled with zero trading volume is a classic signature of a *delisted or suspended* ticker that is still technically listed but not actively traded.",
+      "The simultaneous absence of RNS announcements, catalysts, and social sentiment, combined with a Google Trends signal of DEAD_TICKER, indicates a *latent liquidation or corporate restructuring* event that has not yet been publicly disclosed."
     ],
     "contrarian_signals": [
-      "If a reverse split or a restructuring package were announced, the nominal 0.00p could jump to a tradable price. However, no such catalysts are currently present, making this a speculative contrarian play."
+      "Despite the absence of observable market activity, the base score remains above 10, suggesting that the proprietary model perceives some residual value (e.g., a pending takeover, asset sale, or a hidden cash reserve) that conventional metrics overlook."
     ],
     "risk_warnings": [
-      "High likelihood of permanent delisting or liquidation; the stock is effectively a void security.",
-      "Zero ATR and StdDev mean the security is not tradable; any attempt to buy/sell would likely be rejected by the exchange.",
-      "Regulatory risk: trades on a ticker that has been removed from the AIM may be voided or subject to penalties."
+      "Liquidity risk: With zero volume and zero volatility, any trade would be executed at a price far from the market, potentially resulting in a wash sale or forced liquidation at an arbitrarily low price.",
+      "Data integrity risk: The entry price of 0.00\u202fp and contradictory crash metrics raise the possibility of a database or API error, meaning the stock might be a phantom ticker or a placeholder for a corporate action that hasn't been processed."
     ],
     "opportunity_flags": [
-      "No actionable investment opportunity detected; the data points to a dead ticker with no catalysts."
+      "Potential for a *reverse takeover* or *reverse IPO* if the shell company is being used as a vehicle for a larger entity. Investors should verify pending corporate filings or court proceedings for liquidation to identify any hidden asset value."
     ],
-    "narrative_summary": "VAL.L displays every indicator of a dead or delisted security: zero trading activity, zero volatility, no corporate announcements, and a Google Trends signal of a dead ticker. The 87.1\u202f% drawdown and 0.00p price reinforce the conclusion that the shares are effectively worthless, leaving no realistic investment or contrarian opportunity."
+    "narrative_summary": "VAL.L is effectively a dead ticker: zero trading activity, zero sentiment, and a Google Trends signal of DEAD_TICKER point to imminent delisting or liquidation. The contradictory entry price of 0.00\u202fp and a relatively high base score hint at a possible data glitch or an undisclosed corporate event such as a reverse takeover. Until official filings confirm the company\u2019s status, the stock poses severe liquidity and data integrity risks, and any investment should be treated as speculative or opportunistic for a potential reverse IPO scenario."
   },
   "scoring_breakdown": {
     "apex_factors": [
