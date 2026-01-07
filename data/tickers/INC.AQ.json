@@ -7,24 +7,24 @@
     "market": "MAIN",
     "currency": "GBP",
     "risk_tier": "Higher Risk",
-    "current_market_cap": 3003824,
-    "current_close_price": 2.475
+    "current_market_cap": null,
+    "current_close_price": 2.42
   },
   "basics": {
     "ticker": "INC.AQ",
-    "current_price": 2.475,
+    "current_price": 2.42,
     "ath": 32.0,
-    "atl": 0.03,
+    "atl": 0.0225,
     "ath_date": "2024-07-16",
-    "atl_date": "2025-12-15",
+    "atl_date": "2025-10-31",
     "week_52_high": 12.25,
-    "week_52_low": 0.03,
+    "week_52_low": 0.0225,
     "week_52_high_date": "2025-03-27",
-    "week_52_low_date": "2025-12-15",
-    "drawdown_from_ath_pct": 92.27,
+    "week_52_low_date": "2025-10-31",
+    "drawdown_from_ath_pct": 92.44,
     "data_start": "2020-03-02",
-    "data_end": "2026-01-05",
-    "total_bars": 1465
+    "data_end": "2026-01-07",
+    "total_bars": 1470
   },
   "latest_signal": {
     "date": "2025-10-31",
@@ -36,8 +36,8 @@
     "ai_score": 9.0,
     "rsi": 40.0,
     "cycle_position": 0.0,
-    "holding_period_days": 66,
-    "current_pnl_pct": 10900.0,
+    "holding_period_days": 68,
+    "current_pnl_pct": 10655.56,
     "rally_state": "pulling_back",
     "distance_from_high_pct": -28.0,
     "Rally_Count": 1,
@@ -45,7 +45,10 @@
     "last_high_date": "2025-12-10",
     "lock_in_reached": true,
     "lock_in_date": "2025-11-14",
-    "best_rally_pct": 16566.67
+    "best_rally_pct": 16566.67,
+    "split_affected": true,
+    "split_warning": "\u26a0\ufe0f",
+    "warning_message": "Signal near stock split on 2025-10-28 (1:20)"
   },
   "best_historical_signal": {
     "signal_date": "2024-12-03",
@@ -484,9 +487,9 @@
   },
   "splits": [
     {
-      "date": "2025-12-03",
+      "date": "2025-10-28",
       "ratio": "1:20",
-      "ratio_value": 107.14
+      "ratio_value": 100.0
     },
     {
       "date": "2025-12-09",
@@ -497,22 +500,34 @@
       "date": "2025-12-15",
       "ratio": "1:20",
       "ratio_value": 83.34
+    },
+    {
+      "date": "2026-01-06",
+      "ratio": "1:20",
+      "ratio_value": 105.32
     }
   ],
   "split_risk": {
-    "split_detected": false,
-    "risk_level": "NONE",
-    "confidence": "HIGH"
+    "split_detected": true,
+    "split_date": "2025-10-28",
+    "split_ratio": "1:20",
+    "days_from_split": 3,
+    "split_type": "REVERSE_SPLIT",
+    "risk_level": "HIGH",
+    "confidence": "LOW",
+    "warning": "Signal occurred near stock split on 2025-10-28 (1:20) - price data may be affected by corporate action",
+    "recommendation": "VERIFY price data independently before trading - P&L calculations may be inaccurate near corporate actions"
   },
   "data_quality": {
-    "price_reliability": "RELIABLE",
-    "pnl_reliability": "RELIABLE",
-    "overall_confidence": "HIGH"
+    "price_reliability": "SUSPECT",
+    "pnl_reliability": "SUSPECT",
+    "overall_confidence": "LOW"
   },
   "risk_flags": [
+    "SIGNAL_NEAR_SPLIT",
     "HAS_REVERSE_SPLIT",
     "EXTREME_DRAWDOWN",
     "FREQUENT_CRASHES"
   ],
-  "last_updated": "2026-01-06 22:47:53 UTC"
+  "last_updated": "2026-01-07 10:14:24 UTC"
 }
