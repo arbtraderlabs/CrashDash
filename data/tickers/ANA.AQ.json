@@ -7,24 +7,24 @@
     "market": "MAIN",
     "currency": "GBP",
     "risk_tier": "Higher Risk",
-    "current_market_cap": 236453060,
-    "current_close_price": 0.055
+    "current_market_cap": null,
+    "current_close_price": 0.099
   },
   "basics": {
     "ticker": "ANA.AQ",
-    "current_price": 0.055,
-    "ath": 1.8,
-    "atl": 0.015,
-    "ath_date": "2021-03-11",
-    "atl_date": "2025-12-19",
-    "week_52_high": 0.528,
-    "week_52_low": 0.015,
-    "week_52_high_date": "2024-12-31",
-    "week_52_low_date": "2025-12-19",
-    "drawdown_from_ath_pct": 96.94,
-    "data_start": "2020-01-02",
+    "current_price": 0.099,
+    "ath": 0.3,
+    "atl": 0.005,
+    "ath_date": "2025-10-13",
+    "atl_date": "2025-11-24",
+    "week_52_high": 0.3,
+    "week_52_low": 0.005,
+    "week_52_high_date": "2025-10-13",
+    "week_52_low_date": "2025-11-24",
+    "drawdown_from_ath_pct": 67.0,
+    "data_start": "2025-10-13",
     "data_end": "2025-12-19",
-    "total_bars": 1508
+    "total_bars": 41
   },
   "latest_signal": {
     "date": "2025-11-25",
@@ -37,26 +37,34 @@
     "rsi": 0.0,
     "cycle_position": 0.0541,
     "holding_period_days": 24,
-    "current_pnl_pct": 83.33,
-    "rally_state": "pulling_back",
-    "distance_from_high_pct": -51.33,
+    "current_pnl_pct": 230.0,
+    "rally_state": "rallying",
+    "distance_from_high_pct": -12.39,
     "Rally_Count": 1,
-    "days_since_last_high": 27,
-    "last_high_date": "2025-12-12",
+    "days_since_last_high": 42,
+    "last_high_date": "2025-11-27",
     "lock_in_reached": true,
-    "lock_in_date": "2025-12-03",
-    "best_rally_pct": 276.67
+    "lock_in_date": "2025-11-27",
+    "best_rally_pct": 276.67,
+    "split_affected": true,
+    "split_warning": "\u26a0\ufe0f",
+    "warning_message": "Signal near stock split on 2025-11-24 (1:10)"
   },
   "best_historical_signal": {
     "signal_date": "2025-11-25",
     "signal_type": "EXTREME CRASH BOTTOM",
     "signal_color": "ORANGE",
     "entry_price": 0.03,
-    "peak_price": 0.137,
+    "peak_price": 0.1369,
     "peak_date": "2025-11-27",
-    "rally_pct": 356.67,
+    "rally_pct": 356.33,
     "days_to_peak": 2,
-    "ai_score": 14.0
+    "ai_score": 14.0,
+    "split_warning": "\u26a0\ufe0f",
+    "warning_message": "All signals split-affected - showing best: 1:10 split on 2025-11-24",
+    "split_affected": true,
+    "split_date": "2025-11-24",
+    "split_ratio": "1:10"
   },
   "all_historical_signals": [
     {
@@ -65,14 +73,14 @@
       "signal_type": "EXTREME CRASH BOTTOM",
       "signal_color": "ORANGE",
       "entry_price": 0.03,
-      "current_price": 0.055,
-      "current_return_pct": 83.33,
+      "current_price": 0.099,
+      "current_return_pct": 230.0,
       "best_rally_pct": 276.67,
-      "best_rally_date": "2025-12-03",
-      "rally_state": "pulling_back",
+      "best_rally_date": "2025-11-27",
+      "rally_state": "rallying",
       "Rally_Count": 1,
-      "distance_from_high_pct": -51.33,
-      "days_since_last_high": 27,
+      "distance_from_high_pct": -12.39,
+      "days_since_last_high": 42,
       "lock_in_reached": true,
       "age_days": 44,
       "status": "active"
@@ -81,24 +89,37 @@
   "stats": {
     "total_signals": 1,
     "win_rate_pct": 100.0,
-    "avg_rally_pct": 356.67,
-    "median_rally_pct": 356.67,
-    "best_rally_pct": 356.67,
-    "worst_rally_pct": 356.67
+    "avg_rally_pct": 356.33,
+    "median_rally_pct": 356.33,
+    "best_rally_pct": 356.33,
+    "worst_rally_pct": 356.33
   },
-  "splits": [],
+  "splits": [
+    {
+      "date": "2025-11-24",
+      "ratio": "1:10",
+      "ratio_value": 9.25
+    }
+  ],
   "split_risk": {
-    "split_detected": false,
-    "risk_level": "NONE",
-    "confidence": "HIGH"
+    "split_detected": true,
+    "split_date": "2025-11-24",
+    "split_ratio": "1:10",
+    "days_from_split": 1,
+    "split_type": "REVERSE_SPLIT",
+    "risk_level": "HIGH",
+    "confidence": "LOW",
+    "warning": "Signal occurred near stock split on 2025-11-24 (1:10) - price data may be affected by corporate action",
+    "recommendation": "VERIFY price data independently before trading - P&L calculations may be inaccurate near corporate actions"
   },
   "data_quality": {
-    "price_reliability": "RELIABLE",
-    "pnl_reliability": "RELIABLE",
-    "overall_confidence": "HIGH"
+    "price_reliability": "SUSPECT",
+    "pnl_reliability": "SUSPECT",
+    "overall_confidence": "LOW"
   },
   "risk_flags": [
-    "EXTREME_DRAWDOWN"
+    "SIGNAL_NEAR_SPLIT",
+    "HAS_REVERSE_SPLIT"
   ],
-  "last_updated": "2026-01-08 17:03:36 UTC"
+  "last_updated": "2026-01-08 20:03:35 UTC"
 }
