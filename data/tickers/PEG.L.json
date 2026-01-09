@@ -7,28 +7,28 @@
     "market": "AIM",
     "currency": "GBP",
     "risk_tier": "High Risk",
-    "current_market_cap": 5918759,
-    "current_close_price": 9.75
+    "current_market_cap": 6191913,
+    "current_close_price": 10.2
   },
   "basics": {
     "ticker": "PEG.L",
-    "current_price": 9.75,
+    "current_price": 10.2,
     "ath": 20.0,
-    "atl": 2.125,
+    "atl": 0.081,
     "ath_date": "2021-01-07",
-    "atl_date": "2023-12-06",
+    "atl_date": "2025-09-01",
     "week_52_high": 11.45,
-    "week_52_low": 5.5,
+    "week_52_low": 0.081,
     "week_52_high_date": "2025-12-02",
-    "week_52_low_date": "2025-01-30",
-    "drawdown_from_ath_pct": 51.25,
+    "week_52_low_date": "2025-09-01",
+    "drawdown_from_ath_pct": 49.0,
     "data_start": "2020-01-02",
-    "data_end": "2025-12-10",
-    "total_bars": 1502
+    "data_end": "2026-01-09",
+    "total_bars": 1521
   },
   "latest_signal": {
     "date": "2025-09-01",
-    "scan_date": "2025-11-18",
+    "scan_date": "2026-01-09",
     "signal_type": "ULTRA CRASH BOTTOM",
     "signal_color": "RED",
     "price": 0.085,
@@ -36,8 +36,19 @@
     "ai_score": 15.0,
     "rsi": 2.8,
     "cycle_position": 0.0005,
-    "holding_period_days": 100,
-    "current_pnl_pct": 11370.59
+    "holding_period_days": 130,
+    "current_pnl_pct": 11900.0,
+    "rally_state": "peaked",
+    "distance_from_high_pct": -2.86,
+    "Rally_Count": 1,
+    "days_since_last_high": 17,
+    "last_high_date": "2025-12-23",
+    "lock_in_reached": true,
+    "lock_in_date": "2025-12-23",
+    "best_rally_pct": 12252.94,
+    "split_affected": true,
+    "split_warning": "\u26a0\ufe0f",
+    "warning_message": "Signal near stock split on 2025-09-01 (1:20)"
   },
   "best_historical_signal": {
     "signal_date": "2025-09-01",
@@ -48,8 +59,33 @@
     "peak_date": "2025-12-02",
     "rally_pct": 13370.59,
     "days_to_peak": 92,
-    "ai_score": 15.0
+    "ai_score": 15.0,
+    "split_warning": "\u26a0\ufe0f",
+    "warning_message": "All signals split-affected - showing best: 1:20 split on 2025-09-01",
+    "split_affected": true,
+    "split_date": "2025-09-01",
+    "split_ratio": "1:20"
   },
+  "all_historical_signals": [
+    {
+      "signal_id": "PEG.L_2025-09-01",
+      "signal_date": "2025-09-01",
+      "signal_type": "ULTRA CRASH BOTTOM",
+      "signal_color": "RED",
+      "entry_price": 0.085,
+      "current_price": 10.2,
+      "current_return_pct": 11900.0,
+      "best_rally_pct": 12252.94,
+      "best_rally_date": "2025-12-23",
+      "rally_state": "peaked",
+      "Rally_Count": 1,
+      "distance_from_high_pct": -2.86,
+      "days_since_last_high": 17,
+      "lock_in_reached": true,
+      "age_days": 130,
+      "status": "historical"
+    }
+  ],
   "stats": {
     "total_signals": 1,
     "win_rate_pct": 100.0,
@@ -58,17 +94,32 @@
     "best_rally_pct": 13370.59,
     "worst_rally_pct": 13370.59
   },
-  "splits": [],
+  "splits": [
+    {
+      "date": "2025-09-01",
+      "ratio": "1:20",
+      "ratio_value": 100.0
+    }
+  ],
   "split_risk": {
-    "split_detected": false,
-    "risk_level": "NONE",
-    "confidence": "HIGH"
+    "split_detected": true,
+    "split_date": "2025-09-01",
+    "split_ratio": "1:20",
+    "days_from_split": 0,
+    "split_type": "REVERSE_SPLIT",
+    "risk_level": "HIGH",
+    "confidence": "LOW",
+    "warning": "Signal occurred near stock split on 2025-09-01 (1:20) - price data may be affected by corporate action",
+    "recommendation": "VERIFY price data independently before trading - P&L calculations may be inaccurate near corporate actions"
   },
   "data_quality": {
-    "price_reliability": "RELIABLE",
-    "pnl_reliability": "RELIABLE",
-    "overall_confidence": "HIGH"
+    "price_reliability": "SUSPECT",
+    "pnl_reliability": "SUSPECT",
+    "overall_confidence": "LOW"
   },
-  "risk_flags": [],
-  "last_updated": "2025-12-10 23:03:09 UTC"
+  "risk_flags": [
+    "SIGNAL_NEAR_SPLIT",
+    "HAS_REVERSE_SPLIT"
+  ],
+  "last_updated": "2026-01-09 14:07:26 UTC"
 }
