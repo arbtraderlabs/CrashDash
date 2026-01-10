@@ -1,15 +1,15 @@
 {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "LLPC.L",
-  "generated_at": "2026-01-09T10:03:06.743519Z",
+  "generated_at": "2026-01-09T23:10:11.416373Z",
   "top_card": {
     "ticker": "LLPC.L",
-    "company_name": "Lloyds Banking Group PLC",
-    "sector": "nan",
-    "market_cap_gbp": 1059136630,
+    "company_name": "Unknown",
+    "sector": "Unknown",
+    "market_cap_gbp": null,
     "days_active": 0,
     "apex_score_100": 46,
-    "confidence_score_100": 55,
+    "confidence_score_100": 35,
     "ai_final_score_25": null,
     "ai_strength": null,
     "timing_regime": "EARLY_BUILD",
@@ -22,7 +22,7 @@
       "Timing regime: EARLY_BUILD",
       "Historical profile: 0 rallies, 2% best run"
     ],
-    "main_risk": "Confidence 55/100 - full data loaded",
+    "main_risk": "Confidence 35/100 - full data loaded",
     "watch_next": [
       "RNS catalysts (funding/operational updates)",
       "Volume expansion confirmation",
@@ -81,29 +81,8 @@
     }
   },
   "ai_insights": {
-    "key_insights": [
-      "The 99% drawdown and 0.00p entry price indicate a near\u2011total collapse, likely due to suspension or delisting.",
-      "Zero ATR and 20\u2011day StdDev confirm no price movement \u2013 the security is effectively inactive.",
-      "Google Trends reports a \"dead ticker\" but +470% momentum, a paradoxical spike that hints at speculative or short\u2011seller interest rather than genuine investor demand."
-    ],
-    "hidden_patterns": [
-      "Zero price coupled with zero volatility is a classic signature of a suspended or delisted AIM listing.",
-      "The base risk score (11/21) remains moderate despite the extreme crash, suggesting the scoring model under\u2011weights recent price collapse in the absence of new fundamentals."
-    ],
-    "contrarian_signals": [
-      "The sudden surge in Google search interest (+470%) amid a dead ticker could foreshadow a short\u2011squeeze or a pending takeover announcement that would temporarily lift the price.",
-      "A base score lower than expected for a 99% drawdown may signal that the algorithm has not fully incorporated the latest liquidity shock."
-    ],
-    "risk_warnings": [
-      "Extremely low liquidity \u2013 no price or volatility data means trades are impossible or subject to extreme spreads.",
-      "Regulatory and delisting risk: the ticker is flagged as dead with no recent RNS, increasing the likelihood of permanent removal from the market.",
-      "Lack of transparency: no social or corporate disclosures raise the possibility of undisclosed liabilities or fraudulent activity."
-    ],
-    "opportunity_flags": [
-      "If the company is being acquired, the price could jump to the acquisition premium; the current dead state could be a temporary pre\u2011deal lull.",
-      "A regulatory reversal or re\u2011listing could trigger a sharp rebound, especially if short sellers are forced to cover."
-    ],
-    "narrative_summary": "LLPC.L is effectively a dead security with zero price, zero volatility, and no recent disclosures, yet a sharp spike in search interest suggests speculative attention. The profile signals extreme liquidity and regulatory risk, making it a high\u2011risk play that may only become viable if a corporate event (takeover or delisting reversal) occurs."
+    "available": false,
+    "reason": "LLM module not loaded or analysis failed"
   },
   "scoring_breakdown": {
     "apex_factors": [
@@ -135,7 +114,7 @@
     },
     "upside_score": {
       "points": 2,
-      "best_rally_pct": 2.05,
+      "best_rally_pct": 2.38,
       "reason": "Best rally of 2% gives 2/20 points"
     },
     "penalties": {
@@ -150,7 +129,7 @@
         "tag": "MED",
         "evidence": [
           "timing_regime=EARLY_BUILD",
-          "current_return_pct=2.0%"
+          "current_return_pct=2.4%"
         ]
       },
       {
@@ -168,6 +147,13 @@
         "evidence": [
           "analysis_mode=HISTORICAL_ONLY",
           "confidence_capped_at_65"
+        ]
+      },
+      {
+        "reason": "Stale signal - not for active trading",
+        "tag": "HIGH",
+        "evidence": [
+          "status=historical"
         ]
       }
     ]
@@ -189,9 +175,9 @@
   },
   "exhaustion": {
     "regime": "EARLY_BUILD",
-    "run_multiple": 0.14,
-    "current_run_pct": 2.05,
-    "avg_historical_run_pct": 2.05
+    "run_multiple": 0.16,
+    "current_run_pct": 2.38,
+    "avg_historical_run_pct": 2.38
   },
   "history_snapshot": {
     "previous_report_date": null,
@@ -201,7 +187,7 @@
     "new_rns_titles": []
   },
   "commentary": {
-    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows EARLY_BUILD timing with 46/100 APEX score. Historical data shows 0 rallies averaging 2% upside. Current position: +2.0%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
+    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows EARLY_BUILD timing with 46/100 APEX score. Historical data shows 0 rallies averaging 2% upside. Current position: +2.4%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
     "bull_case": [
       "Early regime often offers best risk/reward"
     ],
@@ -209,19 +195,20 @@
       "Monitor for breakdown signals"
     ],
     "timing_translation": "Early accumulation phase. Watch for confirmation before committing size.",
-    "confidence_explained": "Confidence 55/100 reflects full data quality with triangulation loaded."
+    "confidence_explained": "Confidence 35/100 reflects full data quality with triangulation loaded."
   },
   "data_quality": {
     "sources_present": {
       "snapshot_json": false,
       "daily_enrichment_row": true,
       "historical_profile": false,
-      "metadata": true,
+      "metadata": false,
       "triangulation_events": true,
-      "ai_insights": true
+      "ai_insights": false
     },
     "missing_data": [
-      "None - full coverage"
+      "AI insights from Groq LLM",
+      "Company metadata profile"
     ],
     "confidence_impact": "HIGH",
     "disclaimer": "Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk."

@@ -1,28 +1,28 @@
 {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "VAST.L",
-  "generated_at": "2026-01-06T17:45:49.696746Z",
+  "generated_at": "2026-01-09T22:59:49.543625Z",
   "top_card": {
     "ticker": "VAST.L",
-    "company_name": "Vast Resources plc",
-    "sector": "Basic Materials",
+    "company_name": "Unknown",
+    "sector": "Unknown",
     "market_cap_gbp": null,
     "days_active": 0,
-    "apex_score_100": 41,
-    "confidence_score_100": 35,
+    "apex_score_100": 29,
+    "confidence_score_100": 30,
     "ai_final_score_25": null,
     "ai_strength": null,
     "timing_regime": "BROKEN",
     "action": "AVOID",
-    "thesis_one_liner": "AVOID - BROKEN timing with 41/100 opportunity score"
+    "thesis_one_liner": "AVOID - BROKEN timing with 29/100 opportunity score"
   },
   "decision_summary": {
     "why_it_matters": [
-      "APEX 41/100 indicates moderate opportunity quality",
+      "APEX 29/100 indicates moderate opportunity quality",
       "Timing regime: BROKEN",
       "Historical profile: 0 rallies, 9% best run"
     ],
-    "main_risk": "Confidence 35/100 - full data loaded",
+    "main_risk": "Confidence 30/100 - full data loaded",
     "watch_next": [
       "RNS catalysts (funding/operational updates)",
       "Volume expansion confirmation",
@@ -61,7 +61,7 @@
     "social": {
       "has_data": true,
       "buzz_level": "HIGH",
-      "post_count": 404,
+      "post_count": 529,
       "sentiment_breakdown": {
         "positive": 0.0,
         "neutral": 100.0,
@@ -96,7 +96,8 @@
       "Drawdown reversion potential: +17 (Drawdown_Pct=83.1%)",
       "Volume confirmation: +6 (Relative_Volume=1.6)",
       "Pattern reliability: +0 (Rally_Count=0.0)",
-      "Upside history: +2 (best_rally_pct=9%)"
+      "Upside history: +2 (best_rally_pct=9%)",
+      "Round-trip collapse: -12 (lock_in_reached=True, current_return=-98.9%)"
     ],
     "technical_score": {
       "points": 16,
@@ -124,12 +125,22 @@
       "reason": "Best rally of 9% gives 2/20 points"
     },
     "penalties": {
-      "total": 0,
-      "items": []
+      "total": -12,
+      "items": [
+        "Round-trip collapse: -12 (lock_in_reached=True, current_return=-98.9%)"
+      ]
     }
   },
   "reasons_buy_sell": {
-    "reasons_to_buy": [],
+    "reasons_to_buy": [
+      {
+        "reason": "Proven winner - previously hit lock-in target",
+        "tag": "MED",
+        "evidence": [
+          "lock_in_reached=True"
+        ]
+      }
+    ],
     "reasons_to_sell": [
       {
         "reason": "Triangulation not loaded (RNS/social/trends missing)",
@@ -145,6 +156,14 @@
         "evidence": [
           "current_return_pct=-98.9%",
           "timing_regime=BROKEN"
+        ]
+      },
+      {
+        "reason": "Round-trip collapse - pump and dump pattern",
+        "tag": "HIGH",
+        "evidence": [
+          "lock_in_reached=True",
+          "current_return_pct=-98.9%"
         ]
       }
     ]
@@ -178,7 +197,7 @@
     "new_rns_titles": []
   },
   "commentary": {
-    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows BROKEN timing with 41/100 APEX score. Historical data shows 0 rallies averaging 9% upside. Current position: -98.9%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
+    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows BROKEN timing with 29/100 APEX score. Historical data shows 0 rallies averaging 9% upside. Current position: -98.9%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
     "bull_case": [
       "Limited upside case without catalysts"
     ],
@@ -186,19 +205,20 @@
       "Deep drawdown (-98.9%) suggests broken thesis"
     ],
     "timing_translation": "Thesis invalidated. Avoid or exit.",
-    "confidence_explained": "Confidence 35/100 reflects full data quality with triangulation loaded."
+    "confidence_explained": "Confidence 30/100 reflects full data quality with triangulation loaded."
   },
   "data_quality": {
     "sources_present": {
       "snapshot_json": false,
       "daily_enrichment_row": true,
       "historical_profile": false,
-      "metadata": true,
+      "metadata": false,
       "triangulation_events": true,
       "ai_insights": false
     },
     "missing_data": [
-      "AI insights from Groq LLM"
+      "AI insights from Groq LLM",
+      "Company metadata profile"
     ],
     "confidence_impact": "HIGH",
     "disclaimer": "Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk."
