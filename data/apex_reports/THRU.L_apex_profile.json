@@ -1,7 +1,7 @@
 {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "THRU.L",
-  "generated_at": "2026-01-09T22:48:45.088569Z",
+  "generated_at": "2026-01-10T17:59:45.132888Z",
   "top_card": {
     "ticker": "THRU.L",
     "company_name": "Unknown",
@@ -62,7 +62,7 @@
     "social": {
       "has_data": true,
       "buzz_level": "HIGH",
-      "post_count": 625,
+      "post_count": 750,
       "sentiment_breakdown": {
         "positive": 0.0,
         "neutral": 100.0,
@@ -88,8 +88,27 @@
     }
   },
   "ai_insights": {
-    "available": false,
-    "reason": "LLM module not loaded or analysis failed"
+    "key_insights": [
+      "All quantitative fields (ATR, StdDev, volume, social posts) are zero, indicating the security is either inactive, suspended, or data is missing.",
+      "Google Trends flags the ticker as \"Dead_ticker\" yet shows a +333% momentum spike, a classic sign of a mis\u2011classified or newly relisted penny stock.",
+      "The crash signal reports a 93.7% drawdown from peak with an entry price of 0.00p, implying the share has collapsed to zero or is in a liquidation state."
+    ],
+    "hidden_patterns": [
+      "Contradiction between a dead\u2011ticker label and a strong positive momentum suggests either a data error or an imminent relisting/short\u2011squeeze attempt.",
+      "Zero volatility metrics across 20 days paired with a massive drawdown point to a trading halt rather than normal market behavior."
+    ],
+    "contrarian_signals": [
+      "A dead\u2011ticker with rising momentum could indicate a hidden short\u2011squeeze or reverse split; however, the absence of liquidity makes this a high\u2011risk contrarian play."
+    ],
+    "risk_warnings": [
+      "High probability of delisting or permanent suspension; zero volume and zero volatility eliminate tradability.",
+      "No recent RNS or catalysts \u2013 the company may be in bankruptcy or undergoing fraud investigation.",
+      "Data gaps (ATR, StdDev = 0) raise the risk of a reporting or exchange error; the price may be a placeholder rather than an actual market value."
+    ],
+    "opportunity_flags": [
+      "Potential upside exists only if a relisting, reverse split, or fresh corporate announcement materializes; until then, the security is effectively worthless."
+    ],
+    "narrative_summary": "THRU.L appears to be a dead or suspended penny stock with no market activity, zero liquidity, and no corporate disclosures. A brief spike in Google Trends momentum is the only hint of a possible relisting or short\u2011squeeze, but the lack of price movement and data integrity makes it a highly speculative, high\u2011risk proposition."
   },
   "scoring_breakdown": {
     "apex_factors": [
@@ -196,10 +215,9 @@
       "historical_profile": false,
       "metadata": false,
       "triangulation_events": true,
-      "ai_insights": false
+      "ai_insights": true
     },
     "missing_data": [
-      "AI insights from Groq LLM",
       "Company metadata profile"
     ],
     "confidence_impact": "HIGH",

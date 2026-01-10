@@ -1,7 +1,7 @@
 {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "API.L",
-  "generated_at": "2026-01-09T23:10:11.385930Z",
+  "generated_at": "2026-01-10T18:01:25.578391Z",
   "top_card": {
     "ticker": "API.L",
     "company_name": "Unknown",
@@ -61,7 +61,7 @@
     "social": {
       "has_data": true,
       "buzz_level": "HIGH",
-      "post_count": 625,
+      "post_count": 750,
       "sentiment_breakdown": {
         "positive": 0.0,
         "neutral": 100.0,
@@ -87,8 +87,28 @@
     }
   },
   "ai_insights": {
-    "available": false,
-    "reason": "LLM module not loaded or analysis failed"
+    "key_insights": [
+      "The data is internally inconsistent: a 96.7% drawdown is reported yet the entry price is listed as 0.00p, implying the share is effectively worthless or not trading.",
+      "Zero volatility (ATR\u202f=\u202f0, StdDev\u202f=\u202f0) coupled with no social sentiment or RNS events signals that the ticker is likely inactive or has been delisted, yet Google Trends shows a +76% momentum spike.",
+      "The Google Trends signal \u2018DEAD_TICKER \u2013 UP\u2019 indicates a sudden surge in search interest that is not reflected in actual market activity, suggesting a potential hidden catalyst (e.g., acquisition, relisting, or regulatory change) that has not yet been publicly disclosed."
+    ],
+    "hidden_patterns": [
+      "The coexistence of a dead\u2011ticker status with a positive momentum trend is a classic indicator used by some market\u2011watch algorithms to flag potential relisting or takeover scenarios.",
+      "A zero\u2011interest Google Trends score (0/100) but a +76% momentum suggests a very short\u2011lived spike\u2014often the result of automated search bots or a rumor\u2011driven event that has not yet reached mainstream awareness."
+    ],
+    "contrarian_signals": [
+      "While all other data streams (price, sentiment, RNS) show zero activity, Google Trends\u2019 upward momentum contradicts the narrative of a dead ticker, implying that the market may be poised for a sudden reversal if a catalyst emerges."
+    ],
+    "risk_warnings": [
+      "Zero price and zero volatility strongly indicate that the share is either delisted or a shell entity; trading risk is effectively null.",
+      "Absence of RNS or catalysts means there is no transparent source of information\u2014heightening the risk of fraud or a mis\u2011listed ticker.",
+      "The mismatch between Google Trends momentum and lack of market activity could be a sign of manipulation or a false signal rather than genuine investor interest."
+    ],
+    "opportunity_flags": [
+      "If a corporate action (e.g., acquisition, relisting, or regulatory approval) is announced, the price could spike dramatically\u2014potentially creating a short\u2011squeeze or a quick turnaround for long positions.",
+      "Monitoring for any sudden RNS or press releases within the next 24\u201348\u202fhours could allow a trader to position ahead of a possible price rebound."
+    ],
+    "narrative_summary": "API.L appears to be a non\u2011trading, potentially delisted ticker with no current price or volatility. Yet an unexpected Google Trends momentum spike hints at a looming, undisclosed catalyst\u2014likely a corporate action or relisting. Until an official RNS or regulatory filing confirms activity, the stock should be treated as a high\u2011risk, high\u2011reward speculative play."
   },
   "scoring_breakdown": {
     "apex_factors": [
@@ -195,10 +215,9 @@
       "historical_profile": false,
       "metadata": false,
       "triangulation_events": true,
-      "ai_insights": false
+      "ai_insights": true
     },
     "missing_data": [
-      "AI insights from Groq LLM",
       "Company metadata profile"
     ],
     "confidence_impact": "HIGH",
