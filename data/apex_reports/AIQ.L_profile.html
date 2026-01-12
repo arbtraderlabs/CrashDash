@@ -215,19 +215,19 @@
         <!-- Header Card -->
         <div class="header-card">
             <div class="ticker-badge">AIQ.L</div>
-            <div class="company-name">Unknown</div>
+            <div class="company-name">AIQ Limited</div>
             <div class="company-meta">
                 <div class="meta-item">
                     <span class="meta-icon">■</span>
-                    <span><strong>Sector:</strong> Unknown</span>
+                    <span><strong>Sector:</strong> Technology</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">£</span>
-                    <span><strong>Market Cap:</strong> £0</span>
+                    <span><strong>Market Cap:</strong> £2,266,625</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 0 days</span>
+                    <span><strong>Days Active:</strong> 707 days</span>
                 </div>
             </div>
         </div>
@@ -258,6 +258,9 @@
             </div>
         </div>
 
+        <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
+        
+
         <!-- Decision Summary -->
         <div class="card">
             <div class="card-title">
@@ -276,9 +279,17 @@
             </div>
         </div>
 
-        <!-- Scoring Breakdown -->
+        <!-- ==================== TECHNICAL DETAILS (COLLAPSIBLE) ==================== -->
+        
         <div class="card">
-            <div class="card-title">
+          <details style="cursor:pointer;">
+            <summary style="font-weight:800; font-size:16px; list-style:none; padding: 10px; background: #f9fafb; border-radius: 8px;">
+              🔧 Technical Analysis & Scoring Details
+            </summary>
+            <div style="margin-top:14px;">
+              
+            <!-- Scoring Breakdown -->
+            <div class="card-title" style="margin-top: 20px;">
                 <span class="card-icon">▣</span>
                 APEX Score Breakdown
             </div>
@@ -290,7 +301,36 @@
 <div class="factor-item"><span class="factor-icon">◆</span><span><strong>Good upside</strong><br><small>Historical best: +100% • Score: 8/20 points</small></span></div>
 
             </div>
+            
+            <div style="margin-top: 40px;"></div>
+            
+            <!-- Exhaustion Metrics -->
+            <div class="card-title">
+                <span class="card-icon">📈</span>
+                Rally Cycle Position
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Current Position</div>
+                    <div style="font-size: 32px; font-weight: 800;">17%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
+                    <div style="font-size: 32px; font-weight: 800;">100%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
+                    <div style="font-size: 32px; font-weight: 800;">0.2x</div>
+                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
+                </div>
+            </div>
+        
+            </div>
+          </details>
         </div>
+        
 
         <!-- Reasons Buy/Sell -->
         <div class="cards-grid">
@@ -388,73 +428,6 @@
             </div>
         </div>
 
-        <!-- Exhaustion Metrics -->
-        <div class="card">
-            <div class="card-title">
-                <span class="card-icon">📈</span>
-                Where Are We in the Rally Cycle?
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 20px;">
-                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
-                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">You're Up</div>
-                    <div style="font-size: 32px; font-weight: 800;">17%</div>
-                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
-                </div>
-                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
-                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
-                    <div style="font-size: 32px; font-weight: 800;">100%</div>
-                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
-                </div>
-                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
-                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
-                    <div style="font-size: 32px; font-weight: 800;">0.2x</div>
-                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
-                </div>
-            </div>
-            <div style="padding: 15px; background: #f9fafb; border-radius: 8px;">
-                <div style="font-size: 13px; font-weight: 600; color: #666; margin-bottom: 10px;">Rally Progress Bar</div>
-                <div style="width: 100%; height: 24px; background: #e5e7eb; border-radius: 12px; overflow: hidden; position: relative;">
-                    <div style="height: 100%; background: linear-gradient(90deg, #10b981 0%, #f59e0b 70%, #ef4444 100%); width: 17.0%; transition: width 0.5s ease;"></div>
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 11px; font-weight: 700; color: #333;">
-                        17% of typical rally
-                    </div>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px; color: #666;">
-                    <span>🟢 Entry</span>
-                    <span>🟡 Average Target</span>
-                    <span>🔴 Overextended</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- AI Insights -->
-        
-
-        <!-- Latest RNS News -->
-        <div class="card">
-            <div class="card-title">
-                <span class="card-icon">📰</span>
-                Latest Company News (RNS)
-            </div>
-            <div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Loan Agreement</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div><div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Interim Results</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div><div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Loan Agreement</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div><div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Strategic partnership with Centslink</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div><div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Result of AGM</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div>
-            <div style="margin-top: 15px; padding: 12px; background: #f0f9ff; border-radius: 6px;"><strong>Key Themes:</strong> drilling</div>
-        </div>
-
         <!-- Commentary -->
         <div class="card">
             <div class="card-title">
@@ -497,16 +470,1803 @@
                 <strong>Impact:</strong> HIGH
             </div>
             <div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">AI insights from Groq LLM</div></div></div>
-<div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">Company metadata profile</div></div></div>
 
             <div style="margin-top: 15px; font-size: 13px; color: #666;">
                 Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk.
             </div>
         </div>
 
+        <!-- ==================== TOP 5 RECENT RNS NEWS ==================== -->
+        
+        <div class="card" style="border-top: 3px solid #3b82f6;">
+            <div class="card-title" style="margin-bottom: 20px;">
+                <span class="card-icon">📰</span>
+                Top 5 Recent RNS Announcements
+            </div>
+            <div style="margin-top: 15px;">
+                
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Loan Agreement</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 75/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Loan Agreement | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">5th Jul 2024</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:41 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">75/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Loan Agreement</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Dwight Mighty</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+5 Jul 2024 07:41
+RNS Number : 3098V
+AIQ Limited
+05 July 2024
+5 July 2024
+AIQ Limited
+("AIQ" or the "Company")
+Loan Agreement
+AIQ (LSE: AIQ) advises that it has entered into an agreement with Li Chun Chung, an Executive Director of the Company, for an interest-free, unsecured loan of USD100,000 (the "Loan Agreement"). The monies will be used by the Company for working capital purposes.
+Mr. Chung has informed the Company that he does not intend to request any repayment of the loan, which is re-payable upon demand, before 31 March 2025.
+The Loan Agreement is deemed to be related party transaction by virtue of Mr. Chung being an Executive Director. Harry Chathli and Dwight Mighty, being Independent Non-Executive Chairman and Non-Executive Director of the Company respectively, consider that the terms of the Loan Agreement is fair and reasonable insofar as the Company's shareholders are concerned.
+Enquiries
+AIQ Limited
+c/o +44 (0)20 4
+582 3500
+Harry Chathli, Chairman
+Guild Financial Advisory Limited (Financial Adviser)
++44 (0)
+7973839767
+Ross Andrews
+Gracechurch Group (Financial PR)
++44 (0)20 4582 3500
+Claire Norbury
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+AGRGLGDRGSGDGSU
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #10b98140;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📈</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Interim Results</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • BULLISH</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    FINANCIAL RESULTS: Financial results released | ✅ BULLISH: Positive results typically drive price increases. Check guidance for future expectations.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">29th Jul 2022</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #10b981;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #10b981;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">FINANCIAL RESULTS: Financial results released</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #10b981; font-weight: 600;">✅ BULLISH: Positive results typically drive price increases. Check guidance for future expectations.</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #10b981; font-weight: 600;">🟢 LOW RISK: Positive signals, minimal concerns</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📈 IMPROVING: Company demonstrating strength and growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">International Accounting</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">100%, 100%, 100%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+29 Jul 2022 07:00
+RNS Number : 1670U
+AIQ Limited
+29 July 2022
+THIS ANNOUNCEMENT CONTAINS INSIDE INFORMATION FOR THE PURPOSES OF ARTICLE 7 OF EU REGULATION 596/2014, WHICH IS PART OF UK LAW BY VIRTUE OF THE EUROPEAN UNION (WITHDRAWAL) ACT 2018.
+29 July 2022
+For Immediate Release
+AIQ Limited
+("AIQ" or the "Company" or, together with Alchemist Codes and Alcodes International, the "Group")
+Interim Results
+The Board of AIQ (LSE: AIQ) announces the Company's unaudited consolidated interim results for the six months ended 30 April 2022.
+Summary
+·
+Progressed delivery of a contract to supply a decentralised finance ("DeFi") exchange ("DEX") to a customer based in Australia, which was completed post period
+·
+Awarded a contract to supply a non-fungible token ("NFT") marketplace for education applications in Hong Kong
+·
+Revenue for the six months ended 30 April 2022 increased to £361k (H1 2021: £12k)
+·
+Net loss for the period was reduced to £202k (H1 2021: £915k loss)
+·
+Cash and cash equivalents of £852k at 30 April 2022 (31 October 2021: £581k), having r
+aised £500k through the issue of unsecured convertible loan notes
+Graham Duncan, Chairman of AIQ, said:
+"
+We delivered a strong increase in revenue for the first half of our 2022 financial year, albeit from a very low base and still a relatively small amount, and, thanks to the action we took last year to substantially cut costs, we reduced our losses significantly. During the period, we focused on delivering the DeFi DEX project and seeking to win new business, which resulted in us securing a contract to supply an NFT platform for educational applications. However, it is still early days for the new strategy. The Board continues to closely monitor the progress of the Group and evaluate opportunities for generating value for shareholders."
+Enquiries
+AIQ Limited
+c/o +44 (0)20 7618 9100
+Graham Duncan, Chairman
+Luther Pendragon (Media Relations)
+Claire Norbury
++44 (0)20 7618 9100
+Operational Review
+During the first half of the 2022 financial year, the Group focused on the delivery of a contract, secured at the end of the previous year, to supply a DeFi DEX to a customer based in Australia. For the project, the Group performs the role of project manager and subcontracts the technical delivery (such that the net benefit to the Group is the margin earned on the contract). The majority of the project was delivered during the first half, with completion occurring since period end.
+Also during the period the Group was awarded a contract to supply an NFT platform designed to enable art schools and education centres in Hong Kong to assist their students in publishing NFTs and developing their creative talent under Web3 technology. The Group will oversee and manage the project, with the development of the marketplace being provided by Accubits Technologies Inc., a full-service software provider, and digiXnode Technology Ltd., which specialises in blockchain development. Work on the platform is underway and the beta version is expected to be ready for testing in the coming months.
+Financial Review
+Revenue for the six months to 30 April 2022 was £361k compared with £12k for the first half of the previous year. The revenue was predominantly based on the delivery of the DeFi DEX contract (£331k), with £10k from the NFT contract and a £19k contribution from IT projects in Hong Kong.
+The Group recognised a gross profit of £115k compared with a gross loss of £197k for the first six months of the previous year. This was as a result of the higher revenue.
+Administrative expenses were reduced to £392k (H1 2021: £573k) reflecting a reduction in personnel costs of £43k, Directors' fees of £28k, and consultancy and other overhead savings of £110k.
+In Malaysia, the Group was able to sublet around half of its office space during the period, which has been substantially increased post period, thereby serving to further reduce the Group's outgoings.
+The Group recognised a net gain on foreign exchange of £70k compared with a net loss of £138k for the same period of the prior year.
+The lower expenses combined with the higher revenue enabled a significant reduction in operating loss for the period to £207k (H1 2021: £908k loss).
+Net finance costs were £5k compared with £7k for the first half of the previous year.
+As a result, loss before tax for the period was reduced to £202k (H1 2021: £915k loss) and the loss per share to 0.3 pence (H1 2021: 1.4 pence loss per share).
+During the period, as announced on 25 January 2022, the Group raised £500k from the issue of convertible loan notes.
+At 30 April 2022, the Group had cash and cash equivalents of £852k (31 October 2021: £582k).
+Outlook
+In the second half of the year, the Group has continued to deliver its IT consultancy projects and maintain tight control over costs. The Group expects revenue for the full year to be significantly higher than for the year to 31 October 2021 and anticipates a substantial reduction in net loss. However, the Group expects revenue for the second half of the year to be lower than that generated in the first half as the majority of the DeFi DEX contract was delivered during the first six-month period.
+The Board continues to closely monitor the progress of the Group and evaluate opportunities for generating value for shareholders.
+CONDENSED CONSOLIDATED STATEMENT OF COMPREHENSIVE INCOME
+For the six months ended 30 April 2022
+Note
+Six months ended
+30 Apr 2022
+Unaudited
+£
+Six months ended
+30 Apr 2021
+Unaudited
+£
+Year ended
+31 Oct 2021
+Audited
+£
+Revenue
+7
+361,061
+12,079
+61,863
+Cost of sales
+(246,097)
+(208,880)
+(250,670)
+Gross profit/(loss)
+114,964
+(196,801)
+(188,807)
+Administrative expenses
+(391,791)
+(573,030)
+(864,601)
+Gain/(loss) on foreign exchange
+69,985
+(138,498)
+(126,708)
+Operating loss
+(206,842)
+(908,329)
+(1,180,116)
+Finance income
+9,184
+263
+447
+Finance costs
+(4,563)
+(7,359)
+(13,151)
+Loss before taxation
+(202,221)
+(915,425)
+(1,192,820)
+Taxation
+-
+-
+(2,109)
+Loss attributable to equity holders of the Company for the period
+(202,221)
+(915,425)
+(1,194,929)
+Other comprehensive income
+(
+as may be reclassified to profit
+and loss in subsequent periods, net of taxes):
+Exchange difference on translating foreign operations
+(21,110)
+30,223
+(16,949)
+Comprehensive income attributable to equity holders of the Company for the period
+(223,331)
+(885,202)
+(1,177,980)
+Loss per share - basic (£ per share)
+8
+(0.003)
+(0.014)
+(0.018)
+Loss per share - fully diluted (£ per share)
+8
+(0.003)
+(0.014)
+(0.018)
+The accompanying notes form an integral part of these consolidated financial statements.
+CONDENSED CONSOLIDATED STATEMENT OF FINANCIAL POSITION
+As at 30 April 2022
+Note
+30 Apr 2022
+Unaudited
+£
+31 Oct 2021
+Audited
+£
+Assets
+Non-current assets
+Property, plant and equipment
+111,272
+175,207
+Right-of-use assets
+60,417
+163,410
+Intangible assets
+6
+-
+-
+Rental deposits
+30,886
+29,834
+Total non-current assets
+202,575
+368,451
+Current assets
+Investment in leases
+60,417
+-
+Trade and other receivables
+162,300
+127,414
+Tax receivable
+24,317
+23,489
+Cash and cash equivalents
+851,639
+581,618
+Total current assets
+1,098,673
+732,521
+Total assets
+1,301,248
+1,100,972
+Equity and liabilities
+Capital and reserves
+Ordinary shares
+9
+647,607
+647,607
+Share premium
+6,019,207
+6,019,207
+Foreign currency translation reserve
+(11,780)
+9,330
+Accumulated losses
+(6,192,621)
+(5,990,400)
+Total equity
+462,413
+685,744
+Liabilities
+Current liabilities
+Trade payables
+8,210
+1,075
+Accruals and other payables
+203,436
+244,664
+Lease liabilities
+100,985
+94,672
+Total current liabilities
+312,631
+340,411
+Non-current liabilities
+Lease liabilities
+26,204
+74,817
+Convertible loan notes
+10
+500,000
+-
+Total non-current liabilities
+526,204
+74,817
+Total equity and liabilities
+1,301,248
+1,100,972
+The accompanying notes form an integral part of these consolidated financial statements.
+CONDENSED CONSOLIDATED STATEMENT OF CHANGES IN EQUITY
+For the six months ended 30 April 2022
+Share
+capital
+Share premium
+Foreign currency translation reserve
+Accumulated losses
+Total equity
+£
+£
+£
+£
+£
+Balance as at 31 October 2020 (Audited)
+647,607
+6,019,207
+(7,619)
+(4,795,471)
+1,863,724
+Total comprehensive loss for the period
+-
+-
+30,223
+(915,425)
+(885,202)
+Balance at 30 April 2021 (Unaudited
+)
+647,607
+6,019,207
+(6,682)
+(1,770,877)
+4,889,255
+Total comprehensive loss for the period
+-
+-
+(937)
+(3,024,594)
+(3,025,531)
+Balance at 31 October 2021 (Audited
+)
+647,607
+6,019,207
+9,330
+(5,990,400)
+685,744
+Total comprehensive (loss) for the financial period
+(21,110)
+(202,221)
+(223,331)
+Balance at 30 April 2022 (Unaudited
+)
+647,607
+6,019,207
+(11,780)
+(6,192,621)
+462,413
+The accompanying notes form an integral part of these consolidated financial statements.
+CONDENSED CONSOLIDATED STATEMENT OF CASH FLOWS
+For the six months ended 30 April 2022
+Six months
+ended
+30 Apr 2022
+Unaudited
+£
+Six months ended
+30 Apr 2021
+Unaudited
+£
+Year ended
+31 Oct 2021
+Audited
+£
+Cash flows from operating activities
+Loss before taxation
+(202,221)
+(915,425)
+(1,192,820)
+Adjustment for:-
+Depreciation charges
+117,383
+60,137
+119,328
+Interest income
+(9,184)
+(263)
+(447)
+Loss/(gain) on foreign exchange
+(57,595)
+(61,843)
+116,106
+Operating loss before working capital changes
+(151,617)
+(709,451)
+(957,833)
+(Increase)/ decrease in receivables
+(34,886)
+13,916
+(56,318)
+(Decrease)/ increase in payables
+(15,840)
+47,602
+(48,854)
+(Decrease)/ increase in amount owing to directors
+(9,116)
+-
+2,533
+Tax paid
+-
+-
+(2,109)
+Cash used in operations
+(211,459)
+(647,933)
+(1,062,581)
+Interest received
+9,184
+263
+447
+Net cash used in operating activities
+(202,275)
+(646,670)
+(1,062,134)
+Cash flows from investing activities
+Acquisition of plant and equipment
+-
+(4,975)
+(6,540)
+Net cash used in investing activities
+-
+(4,975)
+(6,540)
+Cash flows from financing activities
+Repayment of lease liabilities
+(55,862)
+(44,803)
+(82,512)
+Issue of convertible loan notes
+500,000
+-
+-
+Net cash from / (used in) financing activities
+444,138
+(44,803)
+(82,512)
+Net increase / (decrease) in cash and cash equivalents
+241,863
+(697,448)
+(1,151,186)
+Cash and cash equivalents at beginning of the period
+581,618
+1,827,379
+1,827,379
+Effect of exchange rates on cash and cash equivalents
+28,158
+(107,346)
+(94,575)
+Cash and cash equivalents at end of the period
+851,639
+1,022,585
+581,618
+The accompanying notes form an integral part of these consolidated financial statements.
+NOTES TO THE UNAUDITED CONDENSED CONSOLIDATED INTERIM
+FINANCIAL STATEMENTS
+1. GENERAL INFORMATION
+AIQ Limited ("the Company") was incorporated and registered in The Cayman Islands as a private company limited by shares on 11 October 2017 under the Companies Law (as revised) of The Cayman Islands, with the name AIQ Limited, and registered number 327983.
+The Company's registered office is located at 5th Floor Genesis Building, Genesis Close, PO Box 446, Cayman Islands, KY1-1106.
+The Company has a standard listing on the London Stock Exchange.
+The consolidated financial statements include the financial statements of the Company and its controlled subsidiaries (the "Group").
+2. PRINCIPAL ACTIVITIES
+The principal activity of the Company is to seek acquisition opportunities and to act as a holding company for a group of subsidiaries that are involved in the technology sector.
+The Group is an information technology (IT) solutions provider, currently focused on the delivery of blockchain platforms in Asia through the provision of IT consultancy.
+3. ACCOUNTING POLICIES
+a) Basis of preparation
+The condensed consolidated interim financial statements have been prepared in accordance with the Disclosure and Transparency Rules of the Financial Conduct Authority and International Accounting Standard 34 "Interim Financial Reporting" (IAS 34). Other than as noted below, the accounting policies applied by the Group in these condensed interim financial statements are the same as those set out in the Group's audited financial statements for the year ended 31 October 2021. These financial statements have been prepared under the historical cost convention and cover the six-month period to 30 April 2022.
+These condensed financial statements do not include all of the information required for a complete set of IFRS financial statements. However, selected explanatory notes are included to explain events and transactions that are significant to an understanding of the changes in the Group's financial position and performance since the audited financial statements for the year ended 31 October 2021.
+The condensed interim financial statements are unaudited and have not been reviewed by the auditors and were approved by the Board of Directors on 28 July 2022.
+The financial information is presented in Pounds Sterling (£), which is the presentational currency of the Company.
+A summary of the principal accounting policies of the Group are set out below.
+b) Basis of consolidation
+The consolidated financial statements incorporate the financial statements of the Company and its subsidiaries made up to the end of the reporting period. Subsidiaries are entities over which the Group has control. The Group controls an investee if the Group has power over the investee, exposure to variable returns from the investee, and the ability to use its power to affect those variable returns.
+The consolidated financial statements present the results of the Company and its subsidiaries as if they formed a single entity. Inter-company balances and transactions between Group companies are therefore eliminated in full. The financial information of subsidiaries is included in the Group's financial statements from the date that control commences until the date that control ceases.
+c) Going concern
+The financial statements are required to be prepared on the going concern basis unless it is inappropriate to do so.
+The Group incurred losses of £0.2 million during the period and cash outflows from operating activities of £0.2 million. As at 30 April 2022, the Group had net current liabilities of £0.1 million and cash of £0.9 million. The Group's cash position was approximately £800,000 at the date of this report.
+The Group meets its day-to-day working capital requirements through cash generated from the capital it raised on admission to the London Stock Exchange, the issue of the convertible loan notes in the period (see note 10) and from the operations of its subsidiaries.
+Notwithstanding these actions, a material uncertainty exists that may cast significant doubt on the Group's ability to continue as a going concern with the uncertainty of future trading performance giving rise to a material uncertainty over the going concern status of the Group. The Directors consider the Group to be a going concern but have identified a material uncertainty in this regard.
+4. SUBSIDIARIES
+Name
+Place of incorporation
+Registered address
+Principal activity
+Effective interest
+30.04.2022
+31.10.2021
+Alchemist Codes Sdn Bhd
+Malaysia
+2-9, Jalan Puteri 4/8, Bandar Puteri, 47100 Puchong, Selangor Darul
+Ehsan
+Malaysia
+Design and development of software
+100%
+100%
+Alcodes International Limited*
+Hong Kong
+Cyberport 3, 3 Cyberport Road, Telegraph Bay, Hong Kong
+Software and app development
+100%
+100%
+* Held by Alchemist Codes Sdn Bhd
+5. INTANGIBLE ASSETS
+Goodwill and acquisition related intangible assets arising from the acquisition of Alchemist Codes were fully impaired in the year ended 31 October 2020. The OctaPLUS Platform and Messenger App were also fully impaired in the year ended 31 October 2021.
+No research and development costs were capitalised in the period ended 30 April 2022.
+6. REVENUE
+Six months ended
+30 Apr 2022
+Unaudited
+Six months ended
+30 Apr 2021
+Unaudited
+Year ended 31 Oct 2021
+Audited
+£
+£
+£
+Sale of software products
+19,052
+10,635
+37,639
+Project management and coordination income
+341,263
+-
+19,415
+Cashback income
+746
+1,332
+4,628
+Other
+-
+112
+181
+Total
+361,061
+12,079
+61,863
+All revenues were generated in Asia.
+During the period ended 30 April 2022, one customer accounted for £331,619 (92%) of revenues. No other customers accounted for more than 10%.
+An analysis of revenue by the timing of the delivery of goods and services to customers for the period ended 30 April 2022 and the year ended 31 October 2021 is as follows:
+Goods transferred at a point in time
+Services transferred over time
+Six monthsended
+30 Apr 2022
+Unaudited
+Six months ended
+30 Apr 2022
+Unaudited
+£
+£
+Sale of software products
+-
+-
+Project management
+-
+360,315
+Cashback income
+746
+-
+Other
+-
+-
+Total
+746
+360,315
+Goods transferred at a point in time
+Services transferred over time
+Six months
+ended 30 Apr 2021
+Unaudited
+Six months ended 30 Apr 2021
+Unaudited
+£
+£
+Sale of software products
+-
+10,635
+Project management
+-
+-
+Cashback income
+1,332
+-
+Other
+112
+-
+Total
+1,444
+10,635
+Goods transferred at a point in time
+Services transferred over time
+Year ended31 Oct 2021
+Audited
+Year ended31 Oct 2021
+Audited
+£
+£
+Sale of software products
+35,424
+2,215
+Project management
+12,822
+6,593
+Cashback income
+-
+4,628
+Other
+-
+181
+Total
+48,246
+13,617
+7. SEGMENT REPORTING
+IFRS 8 defines operating segments as those activities of an entity about which separate financial information is available and which are evaluated by the Board of Directors to assess performance and determine the allocation of resources. The Board of Directors is of the opinion that under IFRS 8 the Group has only one operating segment, the sale of software and ancillary services. The Board of Directors assesses the performance of the operating segment using financial information that is measured and presented in a manner consistent with that in the Financial Statements.
+All revenues were derived from Asia.
+8. LOSS PER SHARE
+The Company presents basic and diluted earnings per share information for its ordinary shares. Basic loss per share is calculated by dividing the loss attributable to ordinary shareholders of the Company by the weighted average number of ordinary shares in issue during the reporting period. Diluted earnings per share are determined by adjusting the loss attributable to ordinary shareholders and the weighted average number of ordinary shares outstanding for the effects of all dilutive potential ordinary shares.
+Six months ended 30 Apr 2022
+Six months ended 30 Apr 2021
+Year ended 31 Oct
+2021
+Unaudited
+Unaudited
+Audited
+£
+£
+£
+Loss after tax attributable to owners of the Company
+(202,221)
+(885,202)
+(1,177,980)
+Weighted average number of shares:
+-
+Basic
+64,760,721
+64,760,721
+64,760,721
+Conversion of loan note at period end share price
+5,555,556
+-
+-
+Fully diluted
+70,316,277
+64,760,721
+64,760,721
+Loss per share (expressed as £ per share)
+-
+Basic
+(0.003)
+(0.014)
+(0.018)
+-
+Fully diluted
+(0.003)
+(0.014)
+(0.018)
+9. SHARE CAPITAL
+Six months
+ended
+Six months
+ended
+Year
+ended
+30 Apr 2022
+30 Apr 2021
+31 Oct 2021
+Unaudited
+Unaudited
+Audited
+£
+£
+£
+As at beginning of period
+647,607
+647,607
+647,607
+As at end of period
+647,607
+647,607
+647,607
+Number
+Nominal
+value
+£
+Authorised
+Ordinary shares of £0.01 each
+800,000,000
+8,000,000
+Issued and fully paid:
+As at 1 November 2021
+64,760,721
+647,607
+Issue of shares in the period
+-
+-
+At 30 April 2022
+64,760,721
+647,607
+10. CONVERTIBLE LOAN NOTES
+On 24 January 2022, the Company entered into an unsecured convertible loan note agreement for a total subscription of £500,000 (the "Loan Notes").
+The Loan Notes have an expiration date of 24 January 2024 ("Expiration Date") and can be repaid, in part or in full, by the Company on 31 December in any year prior to the Expiration Date by giving not less than 14 days' written notice to the noteholders. All outstanding Loan Notes attract interest at a rate of 5% per annum from the date of issue (24 January 2022) to the date of repayment or conversion.
+The Loan Notes shall be convertible into new Ordinary Shares of the Company at the lesser of 11 pence per Ordinary Share or the Volume Weighted Average Price of the Company's Ordinary Shares on the London Stock Exchange in the seven-day period prior to the date on which the Loan Note is converted into Ordinary Shares. The Loan Notes shall be convertible, in part or in full, at any time from the date of issue until the Expiration Date by the noteholder giving to the Company at least one week's written notice.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+IR BRGDRRUDDGDI
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Loan Agreement</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 75/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Loan Agreement | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">5th Jul 2024</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:41 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">75/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Loan Agreement</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Dwight Mighty</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+5 Jul 2024 07:41
+RNS Number : 3098V
+AIQ Limited
+05 July 2024
+5 July 2024
+AIQ Limited
+("AIQ" or the "Company")
+Loan Agreement
+AIQ (LSE: AIQ) advises that it has entered into an agreement with Li Chun Chung, an Executive Director of the Company, for an interest-free, unsecured loan of USD100,000 (the "Loan Agreement"). The monies will be used by the Company for working capital purposes.
+Mr. Chung has informed the Company that he does not intend to request any repayment of the loan, which is re-payable upon demand, before 31 March 2025.
+The Loan Agreement is deemed to be related party transaction by virtue of Mr. Chung being an Executive Director. Harry Chathli and Dwight Mighty, being Independent Non-Executive Chairman and Non-Executive Director of the Company respectively, consider that the terms of the Loan Agreement is fair and reasonable insofar as the Company's shareholders are concerned.
+Enquiries
+AIQ Limited
+c/o +44 (0)20 4
+582 3500
+Harry Chathli, Chairman
+Guild Financial Advisory Limited (Financial Adviser)
++44 (0)
+7973839767
+Ross Andrews
+Gracechurch Group (Financial PR)
++44 (0)20 4582 3500
+Claire Norbury
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+AGRGLGDRGSGDGSU
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">4</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #4
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Strategic partnership with Centslink</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    BUSINESS WIN: Contract won or partnership announced | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">6th May 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS-R</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">BUSINESS WIN: Contract won or partnership announced</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📈 IMPROVING: Company demonstrating strength and growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Claire Norbury</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+6 May 2025 07:00
+RNS Number : 2989H
+AIQ Limited
+06 May 2025
+6 May 2025
+AIQ Limited
+("AIQ" or the "Company")
+AIQ establishes strategic partnership with Centslink
+MoU signed to pursue data centre construction projects
+AIQ (LSE: AIQ) announces that it has signed a Memorandum of Understanding ("MoU") with Centslink, a technology-driven enterprise specialising in the design, construction and delivery of data centre infrastructure and management, for the purpose of pursuing data centre construction projects in Southeast Asia.
+Headquartered in Dubai, Centslink provides comprehensive solutions tailored to the needs of clients across the Middle East, Africa, Asia-Pacific, and other key global markets. It offers end-to-end data centre development services, covering every stage from site selection and feasibility studies through to architectural design, systems integration, project execution, management commissioning, operations and maintenance. With a highly experienced engineering team and a strong track record, Centslink has delivered modular and scalable data centre projects for sectors including energy, government, finance, and telecommunications.
+The demand for data centres in Southeast Asia is growing rapidly, with the value of the data centre construction market forecast to increase from $5.4bn in 2024 to $11.8bn in 2030 (
+source
+). AIQ and Centslink intend to seek to capitalise on this development by jointly pursuing data centre projects, leveraging the experience and expertise of Centslink and the local knowledge and network of AIQ as well as its status as a publicly-listed company on the London Stock Exchange. As part of this, Centslink also intends to introduce AIQ to its partners, which represents further potential opportunities for the Company. However, there can be no guarantee that any of this activity will result in the award of a contract or the generation of revenue.
+Li Chun Chung, Executive Director of AIQ, said: "We are delighted to have entered this strategic partnership with Centslink. The market for data centres in Southeast Asia is significant and by combining our expertise and experience, we are well-positioned to capitalise on the demand for the construction of new facilities. We hope to update shareholders on our progress in due course."
+Enquiries
+AIQ Limited
+c/o +44 (0)20 4
+582 3500
+Li Chun Chung, Executive Director
+Guild Financial Advisory Limited (Financial Adviser)
++44 (0)
+7973839767
+Ross Andrews
+Gracechurch Group (Financial PR)
++44 (0)20 4582 3500
+Claire Norbury
+Centslink
+Louis Chan
++971 586773551
+This information is provided by Reach, the non-regulatory press release distribution service of RNS, part of the London Stock Exchange. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+NRAGZGGKDZZGKZM
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #10b98140;
+                    ">5</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #5
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📈</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Result of AGM</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 70/100 • BULLISH</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    FINANCIAL RESULTS: Financial results released | ✅ BULLISH: Positive results typically drive price increases. Check guidance for future expectations.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">14th Apr 2022</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">10:46 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #10b981;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #10b981;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">70/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">FINANCIAL RESULTS: Financial results released</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #10b981; font-weight: 600;">✅ BULLISH: Positive results typically drive price increases. Check guidance for future expectations.</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+14 Apr 2022 10:46
+RNS Number : 4218I
+AIQ Limited
+14 April 2022
+14 April 2022
+AIQ Limited
+("AIQ" or the "Company")
+Result of AGM
+AIQ Limited (LSE: AIQ) announces that at the Annual General Meeting ("AGM") of the Company held earlier today, all resolutions were duly passed.
+Details of the proxy voting results, which should be read alongside the Notice of AGM, are below:
+Resolution
+Votes for
+Votes against
+Votes withheld
+Total proxy votes
+No. of votes
+% of votes cast
+No. of votes
+% of votes cast
+No. of votes
+1
+33,616,402
+100.00
+0
+0.00
+0
+33,616,402
+2
+33,616,402
+100.00
+0
+0.00
+0
+33,616,402
+3
+33,611,951
+99.99
+4,451
+0.01
+0
+33,616,402
+There were no discretionary votes cast.
+Enquiries
+AIQ Limited
+c/o +44 (0)20 7618 9100
+Graham Duncan, Chairman
+VSA Capital Limited (Financial Adviser & Broker)
++44 (0)20 3005 5000
+Andrew Raca (Corporate Finance)
+Luther Pendragon (Media Relations)
++44 (0)20 7618 9100
+Claire Norbury
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+RAGFIFSASEISLIF
+                </div>
+            </details>
+            
+            </div>
+            
+            </div>
+            <div style="
+                margin-top: 20px;
+                padding: 14px 16px;
+                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+                border-radius: 10px;
+                font-size: 12px;
+                color: #78350f;
+                border-left: 3px solid #f59e0b;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            ">
+                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
+                <div style="line-height: 1.5;">
+                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
+                    Each RNS includes sentiment classification, key data extraction, and trading context. 
+                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
+                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                    </strong>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            details[open] > summary {
+                background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%) !important;
+                border-left-color: #0369a1 !important;
+            }
+            summary::-webkit-details-marker {
+                display: none;
+            }
+        </style>
+        
+
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-10 • CrashDash APEX Engine<br>
+            Report generated: 2026-01-12 • CrashDash APEX Engine<br>
             <strong>△ Not financial advice. Do your own research.</strong>
         </div>
 

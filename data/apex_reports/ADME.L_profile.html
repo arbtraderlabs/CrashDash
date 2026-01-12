@@ -215,19 +215,19 @@
         <!-- Header Card -->
         <div class="header-card">
             <div class="ticker-badge">ADME.L</div>
-            <div class="company-name">Unknown</div>
+            <div class="company-name">ADM Energy plc</div>
             <div class="company-meta">
                 <div class="meta-item">
                     <span class="meta-icon">■</span>
-                    <span><strong>Sector:</strong> Unknown</span>
+                    <span><strong>Sector:</strong> Energy</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">£</span>
-                    <span><strong>Market Cap:</strong> £0</span>
+                    <span><strong>Market Cap:</strong> £9,497</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 0 days</span>
+                    <span><strong>Days Active:</strong> 198 days</span>
                 </div>
             </div>
         </div>
@@ -258,6 +258,9 @@
             </div>
         </div>
 
+        <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
+        
+
         <!-- Decision Summary -->
         <div class="card">
             <div class="card-title">
@@ -276,9 +279,17 @@
             </div>
         </div>
 
-        <!-- Scoring Breakdown -->
+        <!-- ==================== TECHNICAL DETAILS (COLLAPSIBLE) ==================== -->
+        
         <div class="card">
-            <div class="card-title">
+          <details style="cursor:pointer;">
+            <summary style="font-weight:800; font-size:16px; list-style:none; padding: 10px; background: #f9fafb; border-radius: 8px;">
+              🔧 Technical Analysis & Scoring Details
+            </summary>
+            <div style="margin-top:14px;">
+              
+            <!-- Scoring Breakdown -->
+            <div class="card-title" style="margin-top: 20px;">
                 <span class="card-icon">▣</span>
                 APEX Score Breakdown
             </div>
@@ -290,7 +301,36 @@
 <div class="factor-item"><span class="factor-icon">◆</span><span><strong>Modest upside</strong><br><small>Historical best: +-0% • Score: 2/20 points</small></span></div>
 
             </div>
+            
+            <div style="margin-top: 40px;"></div>
+            
+            <!-- Exhaustion Metrics -->
+            <div class="card-title">
+                <span class="card-icon">📈</span>
+                Rally Cycle Position
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Current Position</div>
+                    <div style="font-size: 32px; font-weight: 800;">-99%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
+                    <div style="font-size: 32px; font-weight: 800;">-0%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
+                    <div style="font-size: 32px; font-weight: 800;">-6.6x</div>
+                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
+                </div>
+            </div>
+        
+            </div>
+          </details>
         </div>
+        
 
         <!-- Reasons Buy/Sell -->
         <div class="cards-grid">
@@ -396,73 +436,6 @@
             </div>
         </div>
 
-        <!-- Exhaustion Metrics -->
-        <div class="card">
-            <div class="card-title">
-                <span class="card-icon">📈</span>
-                Where Are We in the Rally Cycle?
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 20px;">
-                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
-                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">You're Up</div>
-                    <div style="font-size: 32px; font-weight: 800;">-99%</div>
-                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
-                </div>
-                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
-                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
-                    <div style="font-size: 32px; font-weight: 800;">-0%</div>
-                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
-                </div>
-                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
-                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
-                    <div style="font-size: 32px; font-weight: 800;">-6.6x</div>
-                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
-                </div>
-            </div>
-            <div style="padding: 15px; background: #f9fafb; border-radius: 8px;">
-                <div style="font-size: 13px; font-weight: 600; color: #666; margin-bottom: 10px;">Rally Progress Bar</div>
-                <div style="width: 100%; height: 24px; background: #e5e7eb; border-radius: 12px; overflow: hidden; position: relative;">
-                    <div style="height: 100%; background: linear-gradient(90deg, #10b981 0%, #f59e0b 70%, #ef4444 100%); width: -660.0%; transition: width 0.5s ease;"></div>
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 11px; font-weight: 700; color: #333;">
-                        -660% of typical rally
-                    </div>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px; color: #666;">
-                    <span>🟢 Entry</span>
-                    <span>🟡 Average Target</span>
-                    <span>🔴 Overextended</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- AI Insights -->
-        
-
-        <!-- Latest RNS News -->
-        <div class="card">
-            <div class="card-title">
-                <span class="card-icon">📰</span>
-                Latest Company News (RNS)
-            </div>
-            <div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Corporate Update</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div><div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Corporate Update, Delay to the Publication of Annual Results and Half-year Report, Continued Suspension to Trading on AIM</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div><div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Suspension - ADM Energy PLC</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div><div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Temporary Suspension</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div><div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Altoona Update, Debt Settlement & Issue of Equity</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div>
-            <div style="margin-top: 15px; padding: 12px; background: #f0f9ff; border-radius: 6px;"><strong>Key Themes:</strong> drilling, operations</div>
-        </div>
-
         <!-- Commentary -->
         <div class="card">
             <div class="card-title">
@@ -505,16 +478,1304 @@
                 <strong>Impact:</strong> HIGH
             </div>
             <div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">AI insights from Groq LLM</div></div></div>
-<div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">Company metadata profile</div></div></div>
 
             <div style="margin-top: 15px; font-size: 13px; color: #666;">
                 Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk.
             </div>
         </div>
 
+        <!-- ==================== TOP 5 RECENT RNS NEWS ==================== -->
+        
+        <div class="card" style="border-top: 3px solid #3b82f6;">
+            <div class="card-title" style="margin-bottom: 20px;">
+                <span class="card-icon">📰</span>
+                Top 5 Recent RNS Announcements
+            </div>
+            <div style="margin-top: 15px;">
+                
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Corporate Update</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Corporate Update | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">PRN</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Corporate Update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">⚠️ CRITICAL: Serious company health concerns - potential distress signal</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">The Company</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">100%, 25%, 41.4%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+30 Dec 2025 07:00
+ADM Energy Plc - Corporate Update
+ADM Energy Plc - Corporate Update
+PR Newswire
+LONDON, United Kingdom, December 30
+30 December 2025
+ADM Energy PLC
+("ADM" or the "Company")
+Corporate Update
+ADM Energy PLC (AIM: ADME; BER and FSE: P4JC), a natural resource investing company, provides the following update in relation to its financing, business operations and its continued suspension.
+Further to the announcement of 2 October 2025, in which the Company noted it was in advanced discussions with a number of parties in relation to both short- and long-term financing opportunities, the Company is now pleased to advise that these discussions have progressed well and the Company is optimistic will conclude shortly (“Financing Discussions”). On the basis of the Financing Discussions concluding, it is expected that a strategic investor will invest directly in a certain of the Company’s investee companies to assist with, inter alia, its continued development and expansion.
+In preparation for completion of the Financing Discussions, a new wholly owned subsidiary of the Company, Vega Energy USA, Inc. (“VEUSA”), a Texas corporation, has been incorporated.
+In parallel with completion of the Financing Discussions, the Company, through VEUSA, has also incorporated Eco Oil Disposal, LLC (“Eco Oil”), an Oklahoma limited liability company, for the purposes of restructuring its relationship with, and economic interest in, the reclamation business, JKT Reclamation, LLC (“JKT”) in Wilson, Oklahoma. The Company expects that the restructuring of matters related to its interest in the reclamation business will be concluded contemporaneously with the Financing Discussions.
+Operationally, JKT has seen substantial improvement in the second half of 2025. Mr. Freddy Nixon has been appointed as the manager of the Wilson, Oklahoma facility and will be appointed Chief Executive Officer of Eco Oil from 1 January 2026. Under the leadership of Mr. Nixon, the facility has averaged approximately US$71,000 per month of revenue for the five month period July 2025 to November 2025 versus approximately US$30,000 per month in 2024 (excluding months in which the facility was shut-down for operational and technical repairs).
+In the announcement on 2 October 2025, the Company advised that it was carefully monitoring its cash position, following low levels of cash flow, and as such, limited funds being returned to the Company by its investee companies in order to
+support the Company’s ongoing operations. Although the Board of the Company remains confident regarding the Financing Discussions, there is no certainty that these will materialise, and in this instance the Board will need to carefully consider the Company’s financial position and solvency. As such the Board of the Company continues to explore additional structured solutions and will continue to hold discussions with key stakeholders to manage the financial position of the Company.
+Additionally, further to the above and to the announcement of 2 October 2025, the Company announces it now expects to be in a position to publish its Annual Report and Financial Statements for its financial year ended 31 December 2024 ("2024 Annual Report") and its Half-year report for the six months ended 30 June 2025 ("2025 Half-year Report") by 31 January 2026.
+Pursuant to Rule 19 of the AIM Rules for Companies, trading in the Company's ordinary shares on AIM will remain suspended pending publication of its 2024 Annual Report and its 2025 Half-year Report.
+Market Abuse Regulation (MAR) Disclosure
+The information contained within this announcement is deemed by the Company to constitute inside information as stipulated under the Market Abuse Regulations (EU) No. 596/2014 as it forms part of UK domestic law by virtue of the European Union (Withdrawal) Act 2018. Upon the publication of this announcement via Regulatory Information Service, this inside information is now considered to be in the public domain.
+Enquiries:
+ADM Energy plc
++1 214 675 7579
+Randall Connally, Chief Executive Officer
+www.admenergyplc.com
+Cairn Financial Advisers LLP
++44 207 213 0880
+(Nominated Adviser)
+Jo Turner / Liam Murray / Ed Downes
+Novum Securities Limited
++44 207 399 9400
+(Broker)
+Gavin Burnell / Colin Rowbury
+ODDO BHF Corporates & Markets AG
++49 69 920540
+(Designated Sponsor, Frankfurt Stock Exchange)
+Michael B. Thiriot
+About ADM Energy PLC
+ADM Energy PLC (AIM: ADME; BER and FSE: P4JC) is a natural resources investing company with investments including a 100% interest in Vega Oil and Gas, LLC (“Vega”) and through Vega holds a 25% carried working interest in the Altoona Lease, California (“Altoona”); a 41.4% economic interest in JKT Reclamation, LLC (“JKT”); a 42.2% economic interest in OFX Technologies, LLC (
+www.ofxtechnologies.com
+) (“OFXT”), and through OFXT holds 100% of Efficient Oilfield Solutions, LLC (“EOS”); and, a 9.2% profit interest in the Aje Field, part of OML 113, which covers an area of 835km² offshore Nigeria. Aje has multiple oil, gas, and gas condensate reservoirs in the Turonian, Cenomanian and Albian sandstones with five wells drilled to date.
+Forward Looking Statements
+Certain statements in this announcement are, or may be deemed to be, forward-looking statements. Forward looking statements are identified by their use of terms and phrases such as "believe", "could", "should", "envisage'', "estimate", "intend", "may", "plan", "potentially", "expect", "will" or the negative of those, variations or comparable expressions, including references to assumptions. These forward-looking statements are not based on historical facts but rather on the Directors' current expectations and assumptions regarding the Company's future growth, results of operations, performance, future capital and other expenditures (including the amount, nature and sources of funding thereof), competitive advantages, business prospects and opportunities. Such forward-looking statements reflect the Directors' current beliefs and assumptions and are based on information currently available to the Directors.
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #10b98140;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📈</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Corporate Update, Delay to the Publication of Annual Results and Half-year Report, Continued Suspension to Trading on AIM</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • BULLISH</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    FINANCIAL RESULTS: Financial results released | ✅ BULLISH: Positive results typically drive price increases. Check guidance for future expectations.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">2nd Oct 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">PRN</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #10b981;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #10b981;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">FINANCIAL RESULTS: Financial results released</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #10b981; font-weight: 600;">✅ BULLISH: Positive results typically drive price increases. Check guidance for future expectations.</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #ef4444; font-weight: 600;">🔴 HIGH RISK: Multiple warning signals suggest caution</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">⚠️ CRITICAL: Serious company health concerns - potential distress signal</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">The Company</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">41.4%, 100%, 25%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+2 Oct 2025 07:00
+ADM Energy Plc - Corporate Update, Delay to the Publication of Annual Results and Half-year Report, Continued Suspension to Trading on AIM
+ADM Energy Plc - Corporate Update, Delay to the Publication of Annual Results and Half-year Report, Continued Suspension to Trading on AIM
+PR Newswire
+LONDON, United Kingdom, October 02
+02 October 2025
+ADM Energy PLC
+("ADM" or the "Company")
+Corporate Update
+Delay to the Publication of 2024 Annual Results and 2025
+Half-year Report
+and Continued Suspension to Trading on AIM
+ADM Energy PLC (AIM: ADME; BER and FSE: P4JC), a natural resource investing company, provides the following update in relation to trading activity of its investee company, JKT Reclamation, LLC, working capital position and its continued suspension
+.
+The Company was advised that
+on
+29 September 2025
+, JKT Reclamation, LLC (”JKT”), ADM’s investee company, signed an 18 month funded ISDA (International Swaps and Derivatives Association, Inc.) swap agreement (effective
+25 November 2025
+) with a large privately held US corporation (“Purchaser”) for the forward sale of 1,200 barrels of oil a month (the “Swap Agreement”). The proceeds of the Swap Agreement, approximately
+US$223,000
+, which were received on
+30 September 2025
+, will be used by JKT to continue to develop the reclamation operations at the site and the Company expects to provide further updates on JKT’s development as the funds are deployed.
+The Company has a 41.4% economic interest in JKT Reclamation, LLC, through its subsidiary ADM Energy (
+USA
+), Inc.
+In
+March 2025
+, the Company raised £587,000 via a Subscription and Broker Option, which was used to provide further capital to increase the Company’s interest in its portfolio of investments, including JKT and the Altoona
+Lease in
+Kern County, California
+.
+Despite the positive progress made by its investee companies and the recent funding being sourced by the Swap Agreement for JKT, limited funds are being returned to the Company to support its ongoing operations and the Company’s working capital remains very constrained as previously announced.
+Since this fundraise,
+the Board has been carefully managing the Company’s working capital while it explores longer-term structured solutions. It has reduced creditor liabilities and remains in discussions with key stakeholders to manage the financial position of the Company. Further, the Company is in continued discussions with an interested party in relation to further funding of its investee companies, and at the PLC level. However, in the event that these discussions do not progress, the Board will need to carefully consider the company’s financial position and solvency.
+Delay to the Publication of 2024 Annual Results and 2025
+Half-year Report
+Further to the announcement made on
+1 July 2025
+, the Company announces that it anticipates being able to publish its Annual Report and Financial Statements for its financial year ended
+31 December 2024
+("2024 Annual Report") and its Half-year Report for the six months ended
+30 June 2025
+("2025 Half-year Report") by
+31 December 2025
+.
+As announced previously, pursuant to Rule 19 of the AIM Rules for Companies (the "AIM Rules"), the Company was required to publish its 2024 Annual Report by
+30 June 2025
+and its 2025 Half-year Report by
+30 September 2025
+. Trading in the Company's ordinary shares on AIM will remain suspended pending publication of its 2024 Annual Report and Accounts and its 2025 Half-year Report.
+The Company will continue to make announcements regarding any developments that need to be disclosed in accordance with its obligations under the AIM Rules, whilst the temporary suspension is in place.
+Market Abuse Regulation (MAR) Disclosure
+The information contained within this announcement is deemed by the Company to constitute inside information as stipulated under the Market Abuse Regulations (EU) No. 596/2014 as it forms part of UK domestic law by virtue of the European Union (Withdrawal) Act 2018. Upon the publication of this announcement via Regulatory Information Service, this inside information is now considered to be in the public domain.
+Enquiries:
+ADM Energy plc
++1 214 675 7579
+Randall Connally, Chief Executive Officer
+www.admenergyplc.com
+Cairn Financial Advisers LLP
++44 207 213 0880
+(Nominated Adviser)
+Jo Turner / Liam Murray / Ed Downes
+Novum Securities Limited
++44 207 399 9400
+(Broker)
+Gavin Burnell / Colin Rowbury
+ODDO BHF Corporates & Markets AG
++49 69 920540
+(Designated Sponsor, Frankfurt Stock Exchange)
+Michael B. Thiriot
+About ADM Energy PLC
+ADM Energy PLC (AIM: ADME; BER and FSE: P4JC) is a natural resources investing company with investments including a 100% interest in Vega Oil and Gas, LLC (“Vega”) and through Vega holds a 25% carried working interest in the Altoona Lease,
+California
+(“Altoona”); a 41.4% economic interest in JKT Reclamation, LLC (“JKT”); a 42.2% economic interest in OFX Technologies, LLC (
+www.ofxtechnologies.com
+) (“OFXT”), and through OFXT holds 100% of Efficient Oilfield Solutions, LLC (“EOS”); and, a 9.2% profit interest in the Aje Field, part of OML 113, which covers an area of 835km² offshore
+Nigeria
+. Aje has multiple oil, gas, and gas condensate reservoirs in the Turonian, Cenomanian and Albian sandstones with five wells drilled to date.
+Forward Looking Statements
+Certain statements in this announcement are, or may be deemed to be, forward-looking statements. Forward looking statements are identified by their use of terms and phrases such as "believe", "could", "should", "envisage'', "estimate", "intend", "may", "plan", "potentially", "expect", "will" or the negative of those, variations or comparable expressions, including references to assumptions. These forward-looking statements are not based on historical facts but rather on the Directors' current expectations and assumptions regarding the Company's future growth, results of operations, performance, future capital and other expenditures (including the amount, nature and sources of funding thereof), competitive advantages, business prospects and opportunities. Such forward-looking statements reflect the Directors' current beliefs and assumptions and are based on information currently available to the Directors.
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Suspension - ADM Energy PLC</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 55/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    NEGATIVE ALERT: Trading suspension or operational halt | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">1st Jul 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:30 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">55/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">NEGATIVE ALERT: Trading suspension or operational halt</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #f59e0b; font-weight: 600;">🟡 MEDIUM RISK: Some concerns, assess context</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">⚠️ CRITICAL: Serious company health concerns - potential distress signal</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+1 Jul 2025 07:30
+RNS Number : 0359P
+AIM
+01 July 2025
+NOTICE
+01/07/2025 7:30am
+TEMPORARY SUSPENSION OF TRADING ON AIM
+ADM ENERGY PLC
+Trading on AIM for the under-mentioned securities has been temporarily suspended from 01/07/2025 7:30am, pending publication of the Company's annual audited accounts.
+ORDINARY SHARES OF 0.001P EACH, FULLY PAID
+(BJFDXW9) (GB00BJFDXW97)
+If you have any queries relating to the above, please contact the company's nominated adviser on +44 207 213 0880.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+EXCFMMITMTBJBMA
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">4</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #4
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Temporary Suspension</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    NEGATIVE ALERT: Trading suspension or operational halt | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">27th Jun 2024</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">2:30 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">NEGATIVE ALERT: Trading suspension or operational halt</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #f59e0b; font-weight: 600;">🟡 MEDIUM RISK: Some concerns, assess context</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">⚠️ CRITICAL: Serious company health concerns - potential distress signal</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">30.6%, 46.8%, 9.2%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+27 Jun 2024 14:30
+RNS Number : 2033U
+ADM Energy PLC
+27 June 2024
+27 June 2024
+ADM Energy PLC
+("ADM" or the "Company")
+Temporary Suspension of trading on AIM pending publication of 2023 Annual Report & Accounts
+ADM Energy PLC (AIM: ADME; BER and FSE: P4JC), a natural resource investing company, provides the following update in relation to its Annual Report and Financial Statements for its financial year ended 31 December 2023 (the "2023 Annual Report").
+Pursuant to Rule 19 of the AIM Rules for Companies (the "AIM Rules"), the Company is required to publish its 2023 Annual Report by 30 June 2024. The Company confirms, however, that the investments made by the Company in the US, which were announced during and post year end, have resulted in a delay in the expected timetable and the auditors require additional time to complete their audit.
+Accordingly, the Company no longer expects to be able to publish the 2023 Annual Report by 30 June 2024. The Company is now targeting the publication of the 2023 Annual Report before end of August 2024.
+Trading in the Company's ordinary shares on AIM will be suspended with effect from 7.30 a.m. on 1 July 2024, pending publication of its 2023 Annual Report and Accounts. Suspension from trading is expected to be lifted with the publication of the 2023 Annual Report in due course.
+The Company will continue to make announcements regarding any developments that need to be disclosed in accordance with its obligations under the AIM Rules, whilst the temporary suspension is in place.
+The information contained within this announcement is deemed by the Company to constitute inside information as stipulated under the Market Abuse Regulations (EU) No. 596/2014 as it forms part of UK domestic law by virtue of the European Union (Withdrawal) Act 2018. Upon the publication of this announcement via Regulatory Information Service , this inside information is now considered to be in the public domain.
+Enquiries:
+ADM Energy plc
++44 7495 779520
+Stefan Olivier, Chief Executive Officer
+www.admenergyplc.com
+Cairn Financial Advisers LLP
++44 20 7213 0880
+(Nominated Adviser)
+Jo Turner, James Caithie
+ODDO BHF Corporates & Markets AG
++49 69 920540
+(Designated Sponsor)
+Michael B. Thiriot
+Gracechurch Group
++44 20 4582 3500
+(Financial PR)
+Harry Chathli, Alexis Gore, Henry Gamble
+About ADM Energy PLC
+ADM Energy PLC (AIM: ADME; BER and FSE: P4JC) is a natural resources investing company with investments including a 30.6% economic interest in JKT Reclamation, LLC; a 46.8% economic interest in OFX Technologies, LLC (
+www.ofxtechnologies.com
+); and a 9.2% profit interest in the Aje Field, part of OML 113, which covers an area of 835km² offshore Nigeria. Aje has multiple oil, gas, and gas condensate reservoirs in the Turonian, Cenomanian and Albian sandstones with five wells drilled to date.
+Forward Looking Statements
+Certain statements in this announcement are, or may be deemed to be, forward-looking statements. Forward looking statements are identified by their use of terms and phrases such as "believe", "could", "should", "envisage'', "estimate", "intend", "may", "plan", "potentially", "expect", "will" or the negative of those, variations or comparable expressions, including references to assumptions. These forward-looking statements are not based on historical facts but rather on the Directors' current expectations and assumptions regarding the Company's future growth, results of operations, performance, future capital and other expenditures (including the amount, nature and sources of funding thereof), competitive advantages, business prospects and opportunities. Such forward-looking statements reflect the Directors' current beliefs and assumptions and are based on information currently available to the Directors.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+SUSFLFFVRIIDFIS
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">5</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #5
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Altoona Update, Debt Settlement & Issue of Equity</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Altoona Update, Debt Settlement & Issue of Equity | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">20th May 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Altoona Update, Debt Settlement & Issue of Equity</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Debt Settlement</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">100%, 100%, 25%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+20 May 2025 07:00
+RNS Number : 3063J
+ADM Energy PLC
+20 May 2025
+20 May 2025
+ADM Energy PLC
+("
+ADM
+" or the "
+Company
+")
+First Production at Altoona Lease
+Debt Settlement and Issue of Equity
+ADM Energy PLC (AIM: ADME; BER and FSE: P4JC), an AIM-quoted natural resource investing company, announces the initiation of production at the SPI-1 well at the Altoona Lease, Kern County, California (the "
+Lease
+").
+Investment Update
+On 17 April 2025, the Company announced that the Board had decided to transfer the ownership of the Lease to its 100% owned investee company Vega Oil and Gas LLC ("
+VOG
+"), as a part of an investment restructuring to better manage the Company's onshore U.S. oil and gas investments.
+Further to the announcement, the Company has invested US$100,000 to buy out the underlying oil and gas lease from the previous lease holder (the participation of the Company was previously via farm-in). The purchase of the lease includes in-place equipment and infrastructure including five new pump jacks and a new 150-barrel storage tank.
+First Production at the Lease
+Following completion of the investment, the SPI-1 well was put into production on 18 April 2025. As of 16 May 2025, the SPI-1 well has now produced approximately 90 barrels of oil or an average of approximately 3 barrels per day.
+The SPI-1 well was originally drilled in
+2004
+to a depth of 2,434 feet and, it is the Company's understanding, that the well was drilled using water-based mud (in place of oil-based mud).
+Due to the presence of expandable clays in the formation and suggested formation damage caused by the use of water-based mud, it is believed that the SPI-1 well is not capable of producing at typical rates that otherwise would be achievable. However, as the SPI-1 well is the only well on the Altoona Lease that was drilled to a depth exceeding 2,000 feet, the Company is pleased that the well is producing oil and believes that evidence of production from this well is highly encouraging and a supportive data point for the Company's plan to deepen two further wells (using oil-based mud) in order to test deeper production that may be contributing to the positive results realised in adjected leases by Chevron (USA).
+Further Development Plans
+As stated in the announcement on 17 April 2025, VOG and the Lease partners intend to bring up to 11 of the available well bores (including the SPI-1) into production (the "
+Phase 1
+" work program). The initial US$150,000 of the US$750,000 total sum from the farm-out consortium has been escrowed and will be used to fund the remainder of Phase 1. VOG is currently working with its partners to plan Phase 2 of the work program which will consist of the deepening of two wells in order to test deeper potential pay zones that are also currently producing in a neighbouring lease that is operated by Chevron (USA). As noted in the announcement on 17 April 2025, the remaining US$600,000 has been deposited into escrow and will be released upon completion of necessary pre-drill regulatory and technical work, and will be utilised to facilitate Phase 2.
+An updated investor presentation containing information on the Company's portfolio of investments will be made available in due course and will be posted on the Company's website.
+Debt Settlement
+The Company announces that it has agreed to settle an outstanding amount owned to a creditor, representing in aggregate approximately £37,697.50, via the issue of 37,697,500 new ordinary shares of 0.001 pence ("
+Ordinary Shares
+") at the issue price of 0.1 pence per new Ordinary Share ("
+Debt Settlement Shares
+").
+Admission and Total Voting Rights
+Application will be made for the 37,697,500 Debt Settlement Shares to be admitted to trading on AIM which is expected to occur on or around 23 May 2025 ("
+Admission
+"). The Debt Settlement Shares will rank
+pari passu
+in all respects with the ordinary shares of the Company currently traded on AIM.
+Following Admission, the Company's issued share capital will comprise 1,726,874,644 ordinary shares of 0.001 pence each. This number will represent the total voting rights in the Company and may be used by shareholders as the denominator for the calculation by which they can determine if they are required to notify their interest in, or a change to their interest in, the Company under the Financial Conduct Authority's Disclosure and Transparency Rules.
+Commenting on the recent developments within ADM's portfolio, Randall Connally, CEO, commented
+:
+"Having returned from a trip to southern California to inspect Altoona, I am more excited than ever about the significant potential that this lease holds for the Company. The extensive infrastructure and production activity by Chevron in the immediate vicinity of Altoona is a testament to the highly prolific reservoir rock in this area. The teams are working to advance the deepening of two wells which are expected to be completed before the end of August 2025 and ADM looks forward to updating investors further in due course."
+Market Abuse Regulation (MAR) Disclosure
+The information contained within this announcement is deemed by the Company to constitute inside information as stipulated under the Market Abuse Regulations (EU) No. 596/2014 as it forms part of UK domestic law by virtue of the European Union (Withdrawal) Act 2018 ('MAR'). Upon the publication of this announcement via Regulatory Information Service ('RIS'), this inside information is now considered to be in the public domain.
+Enquiries:
+ADM Energy plc
++1 214 675 7579
+Randall Connally, Chief Executive Officer
+www.admenergyplc.com
+Cairn Financial Advisers LLP
++44 207 213 0880
+(Nominated Adviser)
+Jo Turner
+Liam Murray
+Ed Downes
+Novum Securities Limited
++44 207 399 9400
+(Broker)
+Gavin Burnell
+Colin Rowbury
+ODDO BHF Corporates & Markets AG
++49 69 920540
+(Designated Sponsor, Frankfurt Stock Exchange)
+Michael B. Thiriot
+About ADM Energy PLC
+ADM Energy PLC (AIM: ADME; BER and FSE: P4JC) is a natural resources investing company with investments including a 100% interest in Vega Oil and Gas, LLC ("
+Vega
+") and through Vega holds a 25% carried working interest in the Altoona Lease, California ("
+Altoona
+"); a 41.4% economic interest in JKT Reclamation, LLC ("
+JKT
+"); a 42.2% economic interest in OFX Technologies, LLC (
+www.ofxtechnologies.com
+) ("
+OFXT
+"), and through OFXT holds 100% of Efficient Oilfield Solutions, LLC ("
+EOS
+"); and, a 9.2% profit interest in the Aje Field, part of OML 113, which covers an area of 835km² offshore Nigeria. Aje has multiple oil, gas, and gas condensate reservoirs in the Turonian, Cenomanian and Albian sandstones with five wells drilled to date.
+About the Altoona Lease
+The Altoona Lease is a circa 20-acre lease located in a crestal position within the Spellacy Anticline Region of the prolific Midway Sunset oil field. Discovered in 1915, the Altoona Lease has produced less than 1 million barrels of oil from multiple reservoir intervals primarily between 1,000 and 1,600 feet. Chevron (USA), Inc. ("
+Chevron
+") is actively developing leases contiguous with and surrounding the Altoona Lease. In March/April 2020 Chevron drilled and started producing the 3-8R and 3-8AR wells located approximately 250 meters from the Altoona Lease. These wells were drilled to deeper reservoir intervals at approximately 1,935 feet and combined, have produced in excess of 214,000 barrels of oil to the end of February 2025.
+A StockBox interview with ADM's CEO, Randall Connally focused on the Altoona Lease is available at
+https://youtu.be/TtmgtDy6vsw
+.
+Forward Looking Statements
+Certain statements in this announcement are, or may be deemed to be, forward-looking statements. Forward looking statements are identified by their use of terms and phrases such as "believe", "could", "should", "envisage'', "estimate", "intend", "may", "plan", "potentially", "expect", "will" or the negative of those, variations or comparable expressions, including references to assumptions. These forward-looking statements are not based on historical facts but rather on the Directors' current expectations and assumptions regarding the Company's future growth, results of operations, performance, future capital and other expenditures (including the amount, nature and sources of funding thereof), competitive advantages, business prospects and opportunities. Such forward-looking statements reflect the Directors' current beliefs and assumptions and are based on information currently available to the Directors.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+MSCSFWEEUEISESI
+                </div>
+            </details>
+            
+            </div>
+            
+            </div>
+            <div style="
+                margin-top: 20px;
+                padding: 14px 16px;
+                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+                border-radius: 10px;
+                font-size: 12px;
+                color: #78350f;
+                border-left: 3px solid #f59e0b;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            ">
+                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
+                <div style="line-height: 1.5;">
+                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
+                    Each RNS includes sentiment classification, key data extraction, and trading context. 
+                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
+                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                    </strong>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            details[open] > summary {
+                background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%) !important;
+                border-left-color: #0369a1 !important;
+            }
+            summary::-webkit-details-marker {
+                display: none;
+            }
+        </style>
+        
+
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-10 • CrashDash APEX Engine<br>
+            Report generated: 2026-01-12 • CrashDash APEX Engine<br>
             <strong>△ Not financial advice. Do your own research.</strong>
         </div>
 

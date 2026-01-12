@@ -215,19 +215,19 @@
         <!-- Header Card -->
         <div class="header-card">
             <div class="ticker-badge">SAN.L</div>
-            <div class="company-name">Unknown</div>
+            <div class="company-name">Santander UK plc</div>
             <div class="company-meta">
                 <div class="meta-item">
                     <span class="meta-icon">■</span>
-                    <span><strong>Sector:</strong> Unknown</span>
+                    <span><strong>Sector:</strong> nan</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">£</span>
-                    <span><strong>Market Cap:</strong> £0</span>
+                    <span><strong>Market Cap:</strong> £537,506,651</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 0 days</span>
+                    <span><strong>Days Active:</strong> 248 days</span>
                 </div>
             </div>
         </div>
@@ -258,6 +258,9 @@
             </div>
         </div>
 
+        <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
+        
+
         <!-- Decision Summary -->
         <div class="card">
             <div class="card-title">
@@ -276,9 +279,17 @@
             </div>
         </div>
 
-        <!-- Scoring Breakdown -->
+        <!-- ==================== TECHNICAL DETAILS (COLLAPSIBLE) ==================== -->
+        
         <div class="card">
-            <div class="card-title">
+          <details style="cursor:pointer;">
+            <summary style="font-weight:800; font-size:16px; list-style:none; padding: 10px; background: #f9fafb; border-radius: 8px;">
+              🔧 Technical Analysis & Scoring Details
+            </summary>
+            <div style="margin-top:14px;">
+              
+            <!-- Scoring Breakdown -->
+            <div class="card-title" style="margin-top: 20px;">
                 <span class="card-icon">▣</span>
                 APEX Score Breakdown
             </div>
@@ -290,7 +301,36 @@
 <div class="factor-item"><span class="factor-icon">◆</span><span><strong>Monster potential</strong><br><small>Historical best: +10313% • Score: 20/20 points</small></span></div>
 
             </div>
+            
+            <div style="margin-top: 40px;"></div>
+            
+            <!-- Exhaustion Metrics -->
+            <div class="card-title">
+                <span class="card-icon">📈</span>
+                Rally Cycle Position
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Current Position</div>
+                    <div style="font-size: 32px; font-weight: 800;">8%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
+                    <div style="font-size: 32px; font-weight: 800;">10313%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
+                    <div style="font-size: 32px; font-weight: 800;">0.0x</div>
+                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
+                </div>
+            </div>
+        
+            </div>
+          </details>
         </div>
+        
 
         <!-- Reasons Buy/Sell -->
         <div class="cards-grid">
@@ -396,73 +436,6 @@
             </div>
         </div>
 
-        <!-- Exhaustion Metrics -->
-        <div class="card">
-            <div class="card-title">
-                <span class="card-icon">📈</span>
-                Where Are We in the Rally Cycle?
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 20px;">
-                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
-                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">You're Up</div>
-                    <div style="font-size: 32px; font-weight: 800;">8%</div>
-                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
-                </div>
-                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
-                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
-                    <div style="font-size: 32px; font-weight: 800;">10313%</div>
-                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
-                </div>
-                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
-                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
-                    <div style="font-size: 32px; font-weight: 800;">0.0x</div>
-                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
-                </div>
-            </div>
-            <div style="padding: 15px; background: #f9fafb; border-radius: 8px;">
-                <div style="font-size: 13px; font-weight: 600; color: #666; margin-bottom: 10px;">Rally Progress Bar</div>
-                <div style="width: 100%; height: 24px; background: #e5e7eb; border-radius: 12px; overflow: hidden; position: relative;">
-                    <div style="height: 100%; background: linear-gradient(90deg, #10b981 0%, #f59e0b 70%, #ef4444 100%); width: 0.0%; transition: width 0.5s ease;"></div>
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 11px; font-weight: 700; color: #333;">
-                        0% of typical rally
-                    </div>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px; color: #666;">
-                    <span>🟢 Entry</span>
-                    <span>🟡 Average Target</span>
-                    <span>🔴 Overextended</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- AI Insights -->
-        
-
-        <!-- Latest RNS News -->
-        <div class="card">
-            <div class="card-title">
-                <span class="card-icon">📰</span>
-                Latest Company News (RNS)
-            </div>
-            <div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Result of AGM</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div><div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Expiration of Tender Offer</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div><div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">BOARD CHANGE</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div><div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Article 8</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div><div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">1160 ISE Delisting Announcement</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div>
-            <div style="margin-top: 15px; padding: 12px; background: #f0f9ff; border-radius: 6px;"><strong>Key Themes:</strong> drilling</div>
-        </div>
-
         <!-- Commentary -->
         <div class="card">
             <div class="card-title">
@@ -505,16 +478,1168 @@
                 <strong>Impact:</strong> HIGH
             </div>
             <div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">AI insights from Groq LLM</div></div></div>
-<div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">Company metadata profile</div></div></div>
 
             <div style="margin-top: 15px; font-size: 13px; color: #666;">
                 Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk.
             </div>
         </div>
 
+        <!-- ==================== TOP 5 RECENT RNS NEWS ==================== -->
+        
+        <div class="card" style="border-top: 3px solid #3b82f6;">
+            <div class="card-title" style="margin-bottom: 20px;">
+                <span class="card-icon">📰</span>
+                Top 5 Recent RNS Announcements
+            </div>
+            <div style="margin-top: 15px;">
+                
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Result of AGM</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    FINANCIAL RESULTS: Financial results released | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">2nd Apr 2020</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">6:22 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">FINANCIAL RESULTS: Financial results released</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #10b981; font-weight: 600;">🟢 LOW RISK: Positive signals, minimal concerns</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📈 IMPROVING: Company demonstrating strength and growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Triton Square</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">75%, 125%, 75%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+2 Apr 2020 18:22
+RNS Number : 6567I
+Santander UK Plc
+02 April 2020
+Companies Act 2006
+Resolutions of
+SANTANDER UK PLC
+(the "Company")
+At the ANNUAL GENERAL MEETING OF THE COMPANY, duly convened and held via videoconference, at 10:00 a.m. on 2 April 2020, at 2 Triton Square, Regent's Place, London, NW1 3AN, the following resolutions were duly passed.
+Resolutions 21 and 22 were passed as Special Resolutions:
+"Special Resolutions
+21.
+THAT
+the Company be authorised, without conditions, to buy back its own 8⅝% preference shares. The following terms apply:
+(a) The Company may buy back up to 125,000,000 8⅝% preference shares;
+(b) The lowest price which the Company can pay for 8⅝% preference shares is 75% of the average of the market values of the preference shares for five business days before the purchase is made; and
+(c) The highest price (not including expenses) which the Company can pay for each 8⅝% preference share is 125% of the average of the market values of the preference shares for five business days before the purchase is made.
+This authority shall begin on the date of the passing of this resolution and end on the conclusion of the next Annual General Meeting of the Company. The Company may agree, before this authorisation ends, to buy back its own 8⅝% preference shares even though the purchase may be completed after this authorisation ends.
+22.
+THAT
+the Company be authorised, without conditions, to buy back its own 10⅜% preference shares. The following terms apply:
+(a) The Company may buy up to 200,000,000 10⅜% preference shares;
+(b) The lowest price which the Company can pay for 10⅜% preference shares is 75% of the average of the market values of the preference shares for five business days before the purchase is made; and
+(c) The highest price (not including expenses) which the Company can pay for each 10⅜% preference share is 125% of the average of the market values of the preference shares for five business days before the purchase is made.
+This authority shall begin on the date of the passing of this resolution and end on the conclusion of the next Annual General Meeting of the Company. The Company may agree, before this authorisation ends, to buy back its own 10⅜% preference shares even though the purchase may be completed after this authorisation ends."
+END
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.
+END
+RAGITMRTMTTMBMM
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Expiration of Tender Offer</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Expiration of Tender Offer | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">23rd Mar 2020</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Expiration of Tender Offer</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #10b981; font-weight: 600;">🟢 LOW RISK: Positive signals, minimal concerns</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+23 Mar 2020 07:00
+RNS Number : 1593H
+Santander UK Plc
+23 March 2020
+Santander UK plc announces the expiration of its cash tender offer for up to $600,000,000 in aggregate principal amount of its5.000 per cent. Fixed Rate Subordinated Notes due 2023
+March 23, 2020
+- Santander UK plc (the "Offeror") announced today the expiration of its previously announced offer to purchase for cash (the "Tender Offer") up to $600,000,000 in aggregate principal amount (the "Maximum Tender Amount") of its 5.000 per cent. Fixed Rate Subordinated Notes due 2023 (the "Notes"). The Tender Offer was made upon the terms and subject to the conditions set forth in the offer to purchase dated February 24, 2020 (the "Offer to Purchase"). Capitalized terms used in this announcement and not otherwise defined have the meanings ascribed to them in the Offer to Purchase.
+The Tender Offer expired at 11:59 p.m., New York City time, on March 20, 2020. As previously announced by the Offeror on March 9, 2020, the Maximum Tender Amount was reached as at the Early Tender Time and, accordingly, the Offeror has not accepted any Notes validly tendered for purchase after the Early Tender Time.
+The Offeror retained J.P. Morgan Securities LLC (Telephone (within the United States): +1 212 834 8553 (U.S. collect) or +1 (866) 834 4666 (U.S. toll free); Telephone (outside the United States): +44 207 134 2468; Email: liability_management_EMEA@jpmorgan.com) and Santander Investment Securities Inc. (Telephone: +1 212 940 1442 (U.S. collect) or +1 855 404 3636 (U.S. toll free)) to act as the Dealer Managers for the Tender Offer and Lucid Issuer Services Limited (Telephone: +44 20 7704 0880; Email: santander@lucid-is.com) to act as the Information and Tender Agent for the Tender Offer.
+This announcement is for informational purposes only and does not constitute an offer to sell, or a solicitation of an offer to buy, any security (including the Notes). This announcement must be read in conjunction with the Offer to Purchase.
+The distribution of this announcement in certain jurisdictions may be restricted by law. Persons into whose possession this announcement comes are required by each of the Offeror, the Dealer Managers and the Information and Tender Agent to inform themselves about and to observe any such restrictions.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.
+END
+TENKKBBNNBKBQNB
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">BOARD CHANGE</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    MANAGEMENT CHANGE: Management change | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">17th Mar 2020</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:30 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">MANAGEMENT CHANGE: Management change</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📈 IMPROVING: Company demonstrating strength and growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Group Holdings</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+17 Mar 2020 07:30
+RNS Number : 3637G
+Santander UK Group Holdings PLC
+17 March 2020
+17 March 2020
+SANTANDER UK GROUP HOLDINGS PLC AND SANTANDER UK PLC (together "Santander UK")
+BOARD CHANGE
+17 March 2020
+Santander UK today announced that, following his appointment as Chair of Centrica plc announced today, Scott Wheway has informed the Board of his intention to step down from Santander UK's Boards later this year.
+Scott was appointed as an Independent Non-Executive Director of Santander UK plc on 1 October 2013 and of Santander UK Group Holdings plc on 10 January 2014 and Senior Independent Director of both companies on 1 May 2015. Scott will relinquish his committee chair responsibilities immediately and will step down from Santander UK following the completion of the process to select a new Chair of Santander UK, announced on 30 January 2020.
+An external search will be undertaken for a new non-executive director to join Santander UK's Board.
+-ends-
+For media enquiries, please contact:
+Alan Oliver Director of Corporate Communications 0207 756 5533
+Notes to editors
+Santander UK
+is a financial services provider in the UK that offers a wide range of personal and commercial financial products and services. At 30 December 2019, the bank serves around 14 million active customers with c23,500 employees and operates through 616 branches (which includes 51 university branches). Santander UK is subject to the full supervision of the Financial Conduct Authority (FCA) and the Prudential Regulation Authority (PRA) in the UK. Santander UK plc customers' eligible deposits are protected by the Financial Services Compensation Scheme (FSCS) in the UK.
+Banco Santander
+(SAN SM, STD US, BNC LN) is a leading retail and commercial bank, based in Spain, with a meaningful market share in 10 core countries in Europe and the Americas. Banco Santander is among the world's top banks by market capitalisation. Founded in 1857, Banco Santander has 144 million customers and over 200,000 employees at the close of September 2019. In September 2019, Banco Santander made attributable profit of EUR 3,732 million.
+Banco Santander has a standard listing of its ordinary shares on the London Stock Exchange and Santander UK plc has preference shares listed on the London Stock Exchange.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.
+END
+BOAKKABKFBKDFND
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">4</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #4
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Article 8</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 55/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Article 8 | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">10th Jun 2019</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">4:08 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">55/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Article 8</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+10 Jun 2019 16:08
+RNS Number : 7117B
+Santander UK Plc
+10 June 2019
+ARTICLE 8 NOTIFICATION
+Santander UK plc (the
+"
+Issuer
+"
+)
+This notification refers to:
+(1) the Base Prospectus dated 22 March 2019, as supplemented from time to time (the
+Base Prospectus
+) for Notes to be issued by the Issuer under its Structured Note and Certificate Programme; and
+(2) the Final Terms dated 25 March 2019
+(the
+Final Terms
+) in respect of the issue of up to £10,000,000 Preference Share-linked Autocallable Notes due 2025 - Series 1145 (ISIN XS1939344120) (the
+Note Issue
+).
+Pursuant to our obligations under Article 8 of the Prospectus Directive (Directive 2010/73/EU, as amended) we confirm in respect of the Note Issue the following information:
+Final Aggregate Nominal Amount: £2,407,196
+Paragraphs 4.1 and 4.2 of Part A to the Final Terms shall be read accordingly.
+DISCLAIMER - INTENDED ADDRESSEES
+Please note that the information contained in the Base Prospectus and the Final Terms may be addressed to and/or targeted at persons who are residents of particular countries (specified in the Base Prospectus and/or the Final Terms) only and is not intended for use and should not be relied upon by any person outside these countries and/or to whom the offer contained in the Base Prospectus and/or the Final Terms is not addressed. Prior to relying on the information contained in the Base Prospectus and/or the Final Terms, you must ascertain from the Base Prospectus and/or the Final Terms whether or not you are part of the intended addressees of the information contained therein.
+Your right to access this service is conditional upon complying with the above requirement.
+Neither the Base Prospectus nor the Final Terms referenced herein constitute an offer of securities for sale in the United States. The securities described herein have not been, and will not be, registered under the U.S. Securities Act of 1933, as amended (the "
+Securities Act
+"), or under any relevant securities laws of any state of the United States of America, and may not be offered or sold to U.S. persons or to persons within the United States of America, except pursuant to an exemption from the Securities Act.
+END
+This announcement has been issued through the Companies Announcement Service of Euronext Dublin.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.
+END
+ISEXBLFFKQFLBBE
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">5</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #5
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">1160 ISE Delisting Announcement</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 55/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: 1160 ISE Delisting Announcement | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">16th Mar 2020</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">8:36 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">55/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: 1160 ISE Delisting Announcement</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Structured Notes</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+16 Mar 2020 08:36
+RNS Number : 2446G
+Santander UK Plc
+16 March 2020
+Company Announcement
+For immediate release
+NOTICE OF DELISTING
+Santander UK plc
+(the
+"
+Issuer
+")
+£30,000,000 Equity Index Linked Notes due March 2026
+XS2085849870
+(the "
+N&C Securities
+")
+This notice relates to the above mentioned N&C Securities issued by the Issuer under the base prospectus relating to its Notes and Certificates Programme dated 3 December 2019 (the "
+Base Prospectus
+") and the final terms relating to the N&C Securities dated 9 December 2019 (the "
+Final Terms
+").
+Notice is hereby given that
+the Issuer has requested that Euronext Dublin delist the N&C Securities in a principal amount of £
+25,488,620 with immediate effect
+and that consequently following such delisting the aggregate principal amount of the N&C Securities issued and listed will be reduced to £4,511,380
+.
+For further information, please contact:
+Structured Notes Desk
+Tel: +44 (0) 20 7756 7000 or
+structurednotesafm@santander.co.uk
+.
+DISCLAIMER - INTENDED ADDRESSEES
+Please note that the information contained in the
+Base Prospectus
+and Final Terms may be addressed to and/or targeted at persons who are residents of particular countries (specified in the
+Base Prospectus
+and/or the Final Terms) only and is not intended for use and should not be relied upon by any person outside these countries and/or to whom the offer contained in the
+Base Prospectus
+and/or the Final Terms is not addressed. Prior to relying on the information contained in this notice, the
+Base Prospectus
+and/or the Final Terms, you must ascertain from the
+Base Prospectus
+and/or the Final Terms whether or not you are part of the intended addressees of the information contained therein.
+Your right to access this service is conditional upon complying with the above requirement.
+Neither the Base Prospectus nor the Final Terms referenced herein constitutes an offer of securities for sale in the United States. The securities described herein have not been, and will not be, registered under the U.S. Securities Act of 1933, as amended (the "
+Securities Act
+"), or under any relevant securities laws of any state of the United States of America, and may not be offered or sold to U.S. persons or to persons within the United States of America, except pursuant to an exemption from the Securities Act.
+END
+This announcement has been issued through the Companies Announcement Service of Euronext Dublin.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.
+END
+ISEFZGMFRVDGGZG
+                </div>
+            </details>
+            
+            </div>
+            
+            </div>
+            <div style="
+                margin-top: 20px;
+                padding: 14px 16px;
+                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+                border-radius: 10px;
+                font-size: 12px;
+                color: #78350f;
+                border-left: 3px solid #f59e0b;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            ">
+                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
+                <div style="line-height: 1.5;">
+                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
+                    Each RNS includes sentiment classification, key data extraction, and trading context. 
+                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
+                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                    </strong>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            details[open] > summary {
+                background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%) !important;
+                border-left-color: #0369a1 !important;
+            }
+            summary::-webkit-details-marker {
+                display: none;
+            }
+        </style>
+        
+
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-10 • CrashDash APEX Engine<br>
+            Report generated: 2026-01-12 • CrashDash APEX Engine<br>
             <strong>△ Not financial advice. Do your own research.</strong>
         </div>
 

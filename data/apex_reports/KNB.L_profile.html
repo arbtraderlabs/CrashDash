@@ -215,19 +215,19 @@
         <!-- Header Card -->
         <div class="header-card">
             <div class="ticker-badge">KNB.L</div>
-            <div class="company-name">Unknown</div>
+            <div class="company-name">Kanabo Group Plc</div>
             <div class="company-meta">
                 <div class="meta-item">
                     <span class="meta-icon">■</span>
-                    <span><strong>Sector:</strong> Unknown</span>
+                    <span><strong>Sector:</strong> Healthcare</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">£</span>
-                    <span><strong>Market Cap:</strong> £0</span>
+                    <span><strong>Market Cap:</strong> £14,229</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 0 days</span>
+                    <span><strong>Days Active:</strong> 277 days</span>
                 </div>
             </div>
         </div>
@@ -258,6 +258,9 @@
             </div>
         </div>
 
+        <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
+        
+
         <!-- Decision Summary -->
         <div class="card">
             <div class="card-title">
@@ -276,9 +279,17 @@
             </div>
         </div>
 
-        <!-- Scoring Breakdown -->
+        <!-- ==================== TECHNICAL DETAILS (COLLAPSIBLE) ==================== -->
+        
         <div class="card">
-            <div class="card-title">
+          <details style="cursor:pointer;">
+            <summary style="font-weight:800; font-size:16px; list-style:none; padding: 10px; background: #f9fafb; border-radius: 8px;">
+              🔧 Technical Analysis & Scoring Details
+            </summary>
+            <div style="margin-top:14px;">
+              
+            <!-- Scoring Breakdown -->
+            <div class="card-title" style="margin-top: 20px;">
                 <span class="card-icon">▣</span>
                 APEX Score Breakdown
             </div>
@@ -290,7 +301,36 @@
 <div class="factor-item"><span class="factor-icon">◆</span><span><strong>Modest upside</strong><br><small>Historical best: +50% • Score: 8/20 points</small></span></div>
 
             </div>
+            
+            <div style="margin-top: 40px;"></div>
+            
+            <!-- Exhaustion Metrics -->
+            <div class="card-title">
+                <span class="card-icon">📈</span>
+                Rally Cycle Position
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Current Position</div>
+                    <div style="font-size: 32px; font-weight: 800;">-99%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
+                    <div style="font-size: 32px; font-weight: 800;">50%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
+                    <div style="font-size: 32px; font-weight: 800;">-2.0x</div>
+                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
+                </div>
+            </div>
+        
+            </div>
+          </details>
         </div>
+        
 
         <!-- Reasons Buy/Sell -->
         <div class="cards-grid">
@@ -396,73 +436,6 @@
             </div>
         </div>
 
-        <!-- Exhaustion Metrics -->
-        <div class="card">
-            <div class="card-title">
-                <span class="card-icon">📈</span>
-                Where Are We in the Rally Cycle?
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 20px;">
-                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
-                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">You're Up</div>
-                    <div style="font-size: 32px; font-weight: 800;">-99%</div>
-                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
-                </div>
-                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
-                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
-                    <div style="font-size: 32px; font-weight: 800;">50%</div>
-                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
-                </div>
-                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
-                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
-                    <div style="font-size: 32px; font-weight: 800;">-2.0x</div>
-                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
-                </div>
-            </div>
-            <div style="padding: 15px; background: #f9fafb; border-radius: 8px;">
-                <div style="font-size: 13px; font-weight: 600; color: #666; margin-bottom: 10px;">Rally Progress Bar</div>
-                <div style="width: 100%; height: 24px; background: #e5e7eb; border-radius: 12px; overflow: hidden; position: relative;">
-                    <div style="height: 100%; background: linear-gradient(90deg, #10b981 0%, #f59e0b 70%, #ef4444 100%); width: -198.0%; transition: width 0.5s ease;"></div>
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 11px; font-weight: 700; color: #333;">
-                        -198% of typical rally
-                    </div>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px; color: #666;">
-                    <span>🟢 Entry</span>
-                    <span>🟡 Average Target</span>
-                    <span>🔴 Overextended</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- AI Insights -->
-        
-
-        <!-- Latest RNS News -->
-        <div class="card">
-            <div class="card-title">
-                <span class="card-icon">📰</span>
-                Latest Company News (RNS)
-            </div>
-            <div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Disposal of Subsidiary: The GP Service Limited</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div><div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Appointment of Joint Administrators</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div><div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Suspension - Kanabo Group plc</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div><div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Temporary suspension of listing</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div><div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Business Update</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div>
-            <div style="margin-top: 15px; padding: 12px; background: #f0f9ff; border-radius: 6px;"><strong>Key Themes:</strong> operations</div>
-        </div>
-
         <!-- Commentary -->
         <div class="card">
             <div class="card-title">
@@ -505,16 +478,1141 @@
                 <strong>Impact:</strong> HIGH
             </div>
             <div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">AI insights from Groq LLM</div></div></div>
-<div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">Company metadata profile</div></div></div>
 
             <div style="margin-top: 15px; font-size: 13px; color: #666;">
                 Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk.
             </div>
         </div>
 
+        <!-- ==================== TOP 5 RECENT RNS NEWS ==================== -->
+        
+        <div class="card" style="border-top: 3px solid #3b82f6;">
+            <div class="card-title" style="margin-bottom: 20px;">
+                <span class="card-icon">📰</span>
+                Top 5 Recent RNS Announcements
+            </div>
+            <div style="margin-top: 15px;">
+                
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Disposal of Subsidiary: The GP Service Limited</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 75/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE ACTION: Company divesting assets or subsidiary | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">11th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">11:30 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">75/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE ACTION: Company divesting assets or subsidiary</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #ef4444; font-weight: 600;">🔴 HIGH RISK: Multiple warning signals suggest caution</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📊 ANALYZE: Determine offer price, arbitrage opportunity if discount</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📉 DETERIORATING: Company showing signs of weakness</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+11 Dec 2025 11:30
+RNS Number : 2251L
+Kanabo Group PLC
+11 December 2025
+Kanabo Group plc (in Administration) ("Kanabo" or the "Company")
+Disposal of Subsidiary: The GP Service Limited
+11th December 2025
+The Joint Administrators of Kanabo Group plc (the "Company") announce that on 9 December 2025, the disposal of the Company's entire issued share capital in The GP Service Limited ("GPS") was completed. The subsidiary has been acquired by Green UK Wholesale Ltd (the "Buyer").
+The consideration for the transaction has been paid in full on completion. The specific terms remain confidential to protect the commercial interests of the operating business.
+Following this disposal, the Joint Administrators are now focused on the Company's remaining structure. The Joint Administrators are currently working closely with the Company's Directors to evaluate strategic options for the future of the Company.
+The objective of this review is to explore potential pathways that may allow the Company to exit administration as a going concern and to facilitate a potential lifting of the suspension of trading in the Company's shares.
+Enquiries:
+Administrator:
+Damian Webb
+damian.webb@rsmuk.com
+T: +44 20 3201 8000
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+DISPKDBBDBDDPBD
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Appointment of Joint Administrators</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 55/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    MANAGEMENT CHANGE: New executive or board member appointed | ✅ POSITIVE: New leadership can bring fresh perspective. Quality of hire matters.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">28th Nov 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">4:02 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">55/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">MANAGEMENT CHANGE: New executive or board member appointed</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">✅ POSITIVE: New leadership can bring fresh perspective. Quality of hire matters.</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+28 Nov 2025 16:02
+RNS Number : 5085J
+Kanabo Group PLC
+28 November 2025
+Kanabo Group Plc
+("
+Kanabo
+" or "the Company")
+Appointment of Joint Administrators
+Kanabo Group plc announces that Damian Webb and Stephanie Sutton of RSM UK Restructuring Advisory LLP have been appointed as joint administrators of the Company with effect from today.
+The Joint Administrators, working alongside the Board, will now assess a range of strategic options aimed at returning the Company to
+financial stability
+, with the intention of enabling the lifting of the current suspension and the subsequent restoration of trading in the Company's ordinary shares on the London Stock Exchange.
+Further updates will be provided as appropriate.
+Enquiries:
+Kanabo Group Plc:
+Avihu Tamir, CEOSharon Malka. NED
+avihu@kanabogroup.comsharonmalka1972@gmail.com
+Administrator
+:
+Damian Webb
+damian
+.webb@rsmuk.com
+T: +44 20 3201 8000
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+APPPKFBKABDDKDB
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Suspension - Kanabo Group plc</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 70/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    NEGATIVE ALERT: Trading suspension or operational halt | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">1st May 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:30 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">70/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">NEGATIVE ALERT: Trading suspension or operational halt</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #f59e0b; font-weight: 600;">🟡 MEDIUM RISK: Some concerns, assess context</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">⚠️ CRITICAL: Serious company health concerns - potential distress signal</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+1 May 2025 07:30
+RNS Number : 8910G
+Official List
+01 May 2025
+NOTICE OF TEMPORARY SUSPENSION OF LISTING FROM THE OFFICIAL LIST
+01/05/2025 07:30
+TEMPORARY SUSPENSION
+Kanabo Group plc
+The Financial Conduct Authority ("the FCA") temporarily suspends the securities set out below from the Official List effective from 01/05/2025 07:30 at the request of the company :
+Security Description
+Listing Category
+ISIN
+Ordinary Shares of 2.5p each; fully paid
+Equity shares (transition)
+GB00BYQCS703 ●
+This notice has been issued by Issuer Management - 020 7066 8352.
+NotesSEDOL numbers which are allocated by the London Stock Exchange as a Stock Exchange identifier may be found on their dealing notice.●Denotes the security is being admitted to trading on the London Stock Exchange, a Recognised Investment Exchange.†Denotes the security is also being admitted to trading on Aquis Stock Exchange, a Recognised Investment Exchange.#Denotes the security is also being admitted to trading on Euronext, a Recognised Investment Exchange.
+∼
+Denotes the security is also being admitted to trading on Cboe Europe, a Recognised Investment Exchange.^Denotes the security is also being admitted to trading on Shanghai-London Stock Connect, a Recognised Investment Exchange.*Denotes the security is also being admitted to trading on IPSX Prime, a Recognised Investment Exchange.Notices issued by the FCA in respect of admission of securities to the Official List must be read in conjunction with notices issued by the relevant Recognised Investment Exchange in respect of admission of securities to trading on its markets.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+SUSPKKBPQBKDBQN
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">4</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #4
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Temporary suspension of listing</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 55/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    NEGATIVE ALERT: Trading suspension or operational halt | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Apr 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">2:47 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">55/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">NEGATIVE ALERT: Trading suspension or operational halt</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #f59e0b; font-weight: 600;">🟡 MEDIUM RISK: Some concerns, assess context</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">⚠️ CRITICAL: Serious company health concerns - potential distress signal</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+30 Apr 2025 14:47
+RNS Number : 8832G
+Kanabo Group PLC
+30 April 2025
+30 April 2025
+Kanabo Group Plc
+("
+Kanabo
+" or "the Company")
+Temporary suspension of listing
+Kanabo announces that given that the Company is currently unable to meet its ongoing obligations to issue its audited annual financial report and accounts ("Audited Report"), in line with its reporting deadline of 30 April 2025, its listing of its ordinary shares will be temporarily suspended with effect from market opening tomorrow at 7.30 a.m., Thursday, 1 May 2025.
+When the Company completes its Audited Report, these will be announced to the market via a further RNS. Immediately after announcing the Audited Report, the Company will make application for the suspension of its listing to be lifted.
+This announcement contains inside information for the purposes of Article 7 of Regulation 2014/596/EU which is part of domestic UK law pursuant to the Market Abuse (Amendment) (EU Exit) regulations (SI 2019/310).
+For further information contact:
+Kanabo Group Plc:
+Avihu Tamir, CEO
+avihu@kanabogroup.com
++44 (0) 7599535423
+Brokers:
+Peterhouse Capital Limited
++44 (0) 20 7469 0930
++44 (0) 20 7220 9797
++44(0) 207 129 1474
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+SRSWPUWCCUPAGWU
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">5</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #5
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Business Update</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Business Update | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">4th Apr 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">4:20 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Business Update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #f59e0b; font-weight: 600;">🟡 MEDIUM RISK: Some concerns, assess context</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+4 Apr 2025 16:20
+RNS Number : 7877D
+Kanabo Group PLC
+04 April 2025
+Kanabo Group Plc
+Business Update
+4 April 2025
+Kanabo Group plc ("Kanabo" or the "Company") (LSE: KNB), a leader in digital health services and specialised medicines (including medicinal cannabis) wishes to update the market regarding the Company's financial position and strategic direction.
+On 4 March 2025, the Company announced that it continues to review its strategic direction and assess the need for additional resources to develop commercial AI technology. The Company's financial position has become more uncertain over the past month. The Company is engaged in ongoing discussions regarding a potential restructuring of its business, which may involve, among other options, asset disposals, mergers, or a refocus on the Company's core business lines. The Company is also continuing to assess its capital needs and funding requirements, including potential fundraising alternatives.
+In light of the uncertainty regarding the Company's financial position, the Company anticipates that completion and publication of the Company's audited accounts for the year ended 31 December 2024 will be delayed.
+Enquiries:
+Kanabo Group plc
+Avihu Tamir, Chief Executive Officer
+Odelia Vazana , Chief Financial Officer
++44 (0)20 7469 0930
+Peterhouse Capital Limited (Financial Adviser and Broker)
+Guy Miller
+/ Lucy Williams / Charles Goodfellow
++44 (0)20 7469 0930
+About Kanabo Group plc (LSE: KNB)
+Kanabo Group plc is a digital health company committed to improving patient care through its specialised technology platform and treatments, including medicinal cannabis.
+Kanabo's NHS-approved telehealth platform, The GP Service, provides video consultations, online prescriptions, and comprehensive primary care. Treat It, the Company's specialised clinic, extends these services to chronic pain management and mental health indications, offering patients access to secondary care.
+With two complementary business divisions, Kanabo delivers end-to-end digital health solutions, from telehealth consultations and prescriptions to tailored treatments. Its partially owned subsidiary, Kanabo Agritec Ltd, offers cultivation consultancy, enabling reliable access to high-quality raw materials for Kanabo's product range.
+Kanabo Group plc remains focused on delivering high-quality medical solutions that make healthcare more accessible for patients across the UK and beyond.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+UPDUSAVRVKUSRAR
+                </div>
+            </details>
+            
+            </div>
+            
+            </div>
+            <div style="
+                margin-top: 20px;
+                padding: 14px 16px;
+                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+                border-radius: 10px;
+                font-size: 12px;
+                color: #78350f;
+                border-left: 3px solid #f59e0b;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            ">
+                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
+                <div style="line-height: 1.5;">
+                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
+                    Each RNS includes sentiment classification, key data extraction, and trading context. 
+                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
+                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                    </strong>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            details[open] > summary {
+                background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%) !important;
+                border-left-color: #0369a1 !important;
+            }
+            summary::-webkit-details-marker {
+                display: none;
+            }
+        </style>
+        
+
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-10 • CrashDash APEX Engine<br>
+            Report generated: 2026-01-12 • CrashDash APEX Engine<br>
             <strong>△ Not financial advice. Do your own research.</strong>
         </div>
 

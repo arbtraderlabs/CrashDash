@@ -215,19 +215,19 @@
         <!-- Header Card -->
         <div class="header-card">
             <div class="ticker-badge">CDL.L</div>
-            <div class="company-name">Unknown</div>
+            <div class="company-name">Cloudbreak Discovery Plc</div>
             <div class="company-meta">
                 <div class="meta-item">
                     <span class="meta-icon">■</span>
-                    <span><strong>Sector:</strong> Unknown</span>
+                    <span><strong>Sector:</strong> Basic Materials</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">£</span>
-                    <span><strong>Market Cap:</strong> £0</span>
+                    <span><strong>Market Cap:</strong> £9,825,835</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 0 days</span>
+                    <span><strong>Days Active:</strong> 295 days</span>
                 </div>
             </div>
         </div>
@@ -258,6 +258,9 @@
             </div>
         </div>
 
+        <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
+        
+
         <!-- Decision Summary -->
         <div class="card">
             <div class="card-title">
@@ -276,9 +279,17 @@
             </div>
         </div>
 
-        <!-- Scoring Breakdown -->
+        <!-- ==================== TECHNICAL DETAILS (COLLAPSIBLE) ==================== -->
+        
         <div class="card">
-            <div class="card-title">
+          <details style="cursor:pointer;">
+            <summary style="font-weight:800; font-size:16px; list-style:none; padding: 10px; background: #f9fafb; border-radius: 8px;">
+              🔧 Technical Analysis & Scoring Details
+            </summary>
+            <div style="margin-top:14px;">
+              
+            <!-- Scoring Breakdown -->
+            <div class="card-title" style="margin-top: 20px;">
                 <span class="card-icon">▣</span>
                 APEX Score Breakdown
             </div>
@@ -290,7 +301,36 @@
 <div class="factor-item"><span class="factor-icon">◆</span><span><strong>Monster potential</strong><br><small>Historical best: +1178% • Score: 20/20 points</small></span></div>
 
             </div>
+            
+            <div style="margin-top: 40px;"></div>
+            
+            <!-- Exhaustion Metrics -->
+            <div class="card-title">
+                <span class="card-icon">📈</span>
+                Rally Cycle Position
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Current Position</div>
+                    <div style="font-size: 32px; font-weight: 800;">678%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
+                    <div style="font-size: 32px; font-weight: 800;">1178%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
+                    <div style="font-size: 32px; font-weight: 800;">0.6x</div>
+                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
+                </div>
+            </div>
+        
+            </div>
+          </details>
         </div>
+        
 
         <!-- Reasons Buy/Sell -->
         <div class="cards-grid">
@@ -396,73 +436,6 @@
             </div>
         </div>
 
-        <!-- Exhaustion Metrics -->
-        <div class="card">
-            <div class="card-title">
-                <span class="card-icon">📈</span>
-                Where Are We in the Rally Cycle?
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 20px;">
-                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
-                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">You're Up</div>
-                    <div style="font-size: 32px; font-weight: 800;">678%</div>
-                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
-                </div>
-                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
-                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
-                    <div style="font-size: 32px; font-weight: 800;">1178%</div>
-                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
-                </div>
-                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
-                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
-                    <div style="font-size: 32px; font-weight: 800;">0.6x</div>
-                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
-                </div>
-            </div>
-            <div style="padding: 15px; background: #f9fafb; border-radius: 8px;">
-                <div style="font-size: 13px; font-weight: 600; color: #666; margin-bottom: 10px;">Rally Progress Bar</div>
-                <div style="width: 100%; height: 24px; background: #e5e7eb; border-radius: 12px; overflow: hidden; position: relative;">
-                    <div style="height: 100%; background: linear-gradient(90deg, #10b981 0%, #f59e0b 70%, #ef4444 100%); width: 58.0%; transition: width 0.5s ease;"></div>
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 11px; font-weight: 700; color: #333;">
-                        58% of typical rally
-                    </div>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px; color: #666;">
-                    <span>🟢 Entry</span>
-                    <span>🟡 Average Target</span>
-                    <span>🔴 Overextended</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- AI Insights -->
-        
-
-        <!-- Latest RNS News -->
-        <div class="card">
-            <div class="card-title">
-                <span class="card-icon">📰</span>
-                Latest Company News (RNS)
-            </div>
-            <div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Exercise of Option to Acquire Crofton Gold Project</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div><div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Site Visit Completed to Crofton Gold Project, W.A.</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div><div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Site Visit Underway at Crofton Gold Project, W.A.</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div><div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Additional Option Exercise at Darlot West</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div><div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Gold Targeting at Darlot West Gold Project</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div>
-            <div style="margin-top: 15px; padding: 12px; background: #f0f9ff; border-radius: 6px;"><strong>Key Themes:</strong> drilling, operations</div>
-        </div>
-
         <!-- Commentary -->
         <div class="card">
             <div class="card-title">
@@ -505,16 +478,1334 @@
                 <strong>Impact:</strong> HIGH
             </div>
             <div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">AI insights from Groq LLM</div></div></div>
-<div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">Company metadata profile</div></div></div>
 
             <div style="margin-top: 15px; font-size: 13px; color: #666;">
                 Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk.
             </div>
         </div>
 
+        <!-- ==================== TOP 5 RECENT RNS NEWS ==================== -->
+        
+        <div class="card" style="border-top: 3px solid #3b82f6;">
+            <div class="card-title" style="margin-bottom: 20px;">
+                <span class="card-icon">📰</span>
+                Top 5 Recent RNS Announcements
+            </div>
+            <div style="margin-top: 15px;">
+                
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Exercise of Option to Acquire Crofton Gold Project</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 100/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Exercise of Option to Acquire Crofton Gold Project | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">9th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">100/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Exercise of Option to Acquire Crofton Gold Project</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📊 ANALYZE: Determine offer price, arbitrage opportunity if discount</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+9 Dec 2025 07:00
+RNS Number : 6858K
+Cloudbreak Discovery PLC
+09 December 2025
+09 December 2025
+Cloudbreak Discovery Plc
+('Cloudbreak', or 'the Company')
+Exercise of Option to Acquire Crofton Gold Project
+Cloudbreak Discovery Plc (LSE: CDL),
+a London Stock Exchange Main Market listed company, is pleased to announce that it has decided to exercise the option to acquire exploration licence application E45/6690 covering 57km² (
+Figure1
+) known as the Crofton Gold Project ("
+Crofton
+") located 120 kilometres east-southeast of famous Australian gold mining centre of Marble Bar and 75km northeast of the mining centre town of Nullagine in the Pilbara region of Western Australia. (
+Figure 1
+).
+Tom Evans, Cloudbreak's MD, commented; "the recent trip by our geologists to the Crofton licence has clearly indicated the very significant gold potential of the area and agreeing to finalise this acquisition is a great result for the Company. We consider ourselves to be extremely lucky to have secured this tenure with considerable quartz veining being observed on the licence which confirms our view that this asset will ultimately be a significant asset of the Company and add real shareholder value over the coming year."
+"Should we be fortunate to drill up a significant gold resource at Crofton next year, we will have a gold asset with two treatment plants within easy trucking distance. We are very bullish on the gold price heading into 2026, and we see a bright future for our shareholders pursuing this Western Australian gold strategy."
+Figure 1: Crofton geology, sample locations and results
+Commercial terms of the Crofton option exercise:
+The consideration for the option of GBP10,000 has already been paid, with exercise consideration to be satisfied by the issued of 56,000,000 ordinary shares in the Company ("
+Shares")
+. The Vendors have agreed that the Shares will only be issued when the Company has the ability to do so under applicable regulations.
+This announcement contains information which, prior to its disclosure, was inside information as stipulated under Regulation 11 of the Market Abuse (Amendment) (EU Exit) Regulations 2019/310 (as amended).
+-END-
+For Further Information, please contact:
+Cloudbreak Discovery PLC
+Peter Huljich, Chairman
+Tom Evans, Managing Director
+Tel: +44 207 887 6139
+Tel: +44 7851 703440
+AlbR Capital Limited
+(Financial Adviser)
+David Coffman/
+Dan Harris
+Tel:
++44 207 469 0930
+Marex Financial
+(Broker)
+Angelo Sofocleous / Keith Swann / Matt Bailey
+Tel: +44 (0) 207 655 6000
+Email: corporate@marex.com
+About Cloudbreak Discovery PLC
+LSE listed Cloudbreak Discovery PLC is a leading gold, precious and base metals resource explorer. Cloudbreak is focused on mineral exploration in Western Australia with the aim of bringing near-term cashflow and driving shareholder value. Through its wholly owned subsidiaries, the Company will develop its array of mineral assets, whilst continuing to generate new projects with a particular focus on commodities with high intrinsic value. Cloudbreak's generative model across the mineral sector enables a multi-asset approach to investing in the commodity cycle.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+ACQTPBTTMTIMBPA
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Site Visit Completed to Crofton Gold Project, W.A.</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Site Visit Completed to Crofton Gold Project, W.A. | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">8th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Site Visit Completed to Crofton Gold Project, W.A.</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">100%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+8 Dec 2025 07:00
+RNS Number : 6091K
+Cloudbreak Discovery PLC
+08 December 2025
+08 December 2025
+Cloudbreak Discovery Plc
+('Cloudbreak', or 'the Company')
+Site Visit Completed to Crofton Gold Project, W.A.
+Cloudbreak Discovery Plc (LSE: CDL),
+a London Stock Exchange Main Market listed company, is pleased to announce that the maiden site visit has been completed to the Crofton Gold Project ("Crofton") which is located 120 kilometres east-southeast of the famous Australian gold mining centre of Marble Bar and 75km northeast of the mining centre town of Nullagine, in the Pilbara region of Western Australia (
+Figure 3)
+.
+The purpose of the 3-day helicopter-supported Crofton site visit was to review areas where previous gold results up to 253g/t gold and 215g/t silver with visible gold had been recovered (as announced on 9 October 2025), and to assess vehicle access and logistics for future exploration programs.
+Tom Evans, Cloudbreak's MD, commented; "I am delighted to report a successful maiden site trip to Crofton, where company geologists took 54 samples from previous and new target areas. Observations of substantial quartz veins over hundreds of metres and tens of metres wide adds to the prospectivity of the project where bonanza grade gold samples up to 253 g/t were taken and historic gold production averaged 150g/t. A systematic exploration program consisting of in-fill and extension soil sampling, rock chip sampling and geological mapping is being designed and expected to commence in early 2026, after the wet season. This incredibly exciting gold project in Western Australia adds significantly to our growing portfolio of gold assets in a period of record gold prices and resurgent silver prices."
+Findings from Maiden Site Visit
+Crofton hosts an approximately 20km2 area of laterally extensive quartz veining hosted within the Yilgalong granite. Quartz veins are commonly 10s of metres wide and can be seen to extend along strike for 100s to 1,000s of metres. A total of 54 samples were taken around locations of previously reported gold results and along strike.
+On the ground, quartz veins were observed to host zones of boxwork iron oxides, primary sulphides including pyrite and galena, and copper-oxide stainings
+(Figure 2)
+, which are all indicators for the presence of hydrothermal fluids, that may contain gold and silver mineralisation. Previously reported rock chip results from some of these zones included.
+·
+48.63 g/t Au (RBR015)
+·
+62.48 g/t Au (RBR017)
+·
+20.61 g/t Au (RBR020)
+·
+12.24 g/t Au (RBR021)
+·
+253.59 g/t Au (RBR022)
+·
+195.53 g/t Au (RBR028)
+·
+10.22 g/t Au (RBR030)
+·
+2.78 g/t Au (RBR032)
+Numerous additional zones of outcrop that looks similar to the above previously sampled locations, were observed during the maiden site visit.
+Given the extent of quartz veining and the relative lack of systematic work completed to date at Crofton, a systematic exploration program consisting of in-fill and extension soil sampling, rock chip sampling and geological mapping is highly warranted. Planning for these programs is underway and expected to commence in early 2026, after the wet season. This work will assist with defining zones within the extensive quartz vein network, for the company's maiden drilling program.
+About the Crofton Gold Project
+Crofton
+hosts a large area of hydrothermal alteration within the Yilgalong Granitoid associated with a suite of prominent quartz veins. Historical exploration has been limited to surface sampling programs of stream sediment, soil and rock chip sampling.
+The company will hold a 100% interest in the
+Crofton
+property, which consists of one exploration licence application E45/6690 covering 57km² (
+Figure 3
+). The Crofton licence covers much of the Boodalyerrie Mining Centre, which has recorded production from 1901 to 1910 of 588.4 ounces gold from 122 tonnes of ore at a reconciled average grade of 150g/t gold.
+Future Plans and Assay Results Update:
+Samples have been submitted to ALS Perth, with results expected in 4-6 weeks. Planning for regional soil sampling - including orientation surveys - is underway and works are planned to start after the Australian summer concludes in March/April 2026. This will be followed up with geological mapping and rock chip sampling of target areas which will then be reviewed and prioritised for drill-testing.
+This announcement contains information which, prior to its disclosure, was inside information as stipulated under Regulation 11 of the Market Abuse (Amendment) (EU Exit) Regulations 2019/310 (as amended).
+-END-
+For additional information please contact:
+Cloudbreak Discovery PLC
+Peter Huljich, Chairman
+Tom Evans, Managing Director
+Tel: +44 207 887 6139
+Tel: +44 7851 703440
+AlbR Capital Limited
+(Financial Adviser)
+David Coffman / Dan Harris
+Tel: +44 207 469 0930
+Marex Financial
+(Broker)
+Angelo Sofocleous / Keith Swann / Matt Bailey
+Tel: +44 (0) 207 655 6000
+Email: corporate@marex.com
+About Cloudbreak Discovery PLC
+Cloudbreak Discovery PLC is a leading gold, precious and base metals resource explorer. Cloudbreak is focused on mineral exploration in Western Australia with the aim of bringing near-term cashflow and driving shareholder value.
+Through its wholly owned subsidiaries, the Company will develop its array of mineral assets, whilst continuing to generate new projects with a particular focus on commodities with high intrinsic value.
+Cloudbreak's generative model across the mineral sector enables a multi-asset approach to investing in the commodity cycle.
+Competent Persons Statement
+The Information in this report that relates to exploration results, mineral resources or ore reserves is based on information compiled by Mr Edward Mead, who is a Fellow of the Australasian Institute of Mining and Metallurgy. Mr Mead is a consultant to Cloudbreak Discovery Plc and employed by Doraleda Pty Ltd. Mr Mead has sufficient experience which is relevant to the style of mineralisation and type of deposits under consideration and to the activity that he is undertaking to qualify as a Competent Person as defined in the 2012 edition of the `Australian Code for Reporting Exploration Results, Mineral Resources and Ore Reserves' (the JORC Code). Mr Mead consents to the inclusion of this information in the form and context in which it appears in this report.
+Figure 1: Investigation of gold-bearing quartz veins at Crofton.
+Figure 2: Strongly fractured and re-silicified, composite quartz veining at site of previously reported rock chips containing high-grade gold.
+Figure 3: Location of the Crofton Gold project to towns in the district, gold processing plants and gold mines.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+TSTTRBRTMTJMBLA
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Site Visit Underway at Crofton Gold Project, W.A.</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Site Visit Underway at Crofton Gold Project, W.A. | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">27th Nov 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Site Visit Underway at Crofton Gold Project, W.A.</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">100%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+27 Nov 2025 07:00
+RNS Number : 1118J
+Cloudbreak Discovery PLC
+27 November 2025
+27 November 2025
+Cloudbreak Discovery Plc
+('Cloudbreak', or 'the Company')
+Site Visit Underway at Crofton Gold Project, W.A.
+Cloudbreak Discovery Plc (LSE: CDL),
+a London Stock Exchange Main Market listed company, is pleased to announce that a helicopter-supported site visit is underway at the Crofton Gold Project ("
+Crofton
+"), located 120 kilometres east-southeast of the famous Australian gold mining centre of Marble Bar and 75km northeast of the mining centre town of Nullagine in the Pilbara region of Western Australia.
+Figure 1
+.
+The maiden site visit by Cloudbreak will review work completed by previous companies at
+Crofton, where
+bonanza-grade gold results, up to 253g/t gold and 215g/t silver (As released to the market on 9 October 2025), with visible gold have been recovered. The site visit will also expand rock chip sampling across the project.
+Historic gold production from the area from 1901-1910 averaged 150 g/t gold.
+Tom Evans, Cloudbreak's MD, commented; "It is great to be on the ground at Crofton for the Company's maiden site visit and to be looking at where the bonanza grade gold samples up to 253 g/t were taken and historic gold production averaged 150g/t. These grades are exceptionally high and the site trip will validate and expand on previous work completed, where delineation of multiple trends with strike lengths of over a kilometre on the tenement give the Company a vast number of high priority exploration targets. This incredibly exciting gold project in Western Australia adds significantly to our growing portfolio of gold assets in a period of record gold prices and resurgent silver prices."
+About the Crofton Gold Project
+Crofton
+hosts a large area of hydrothermal alteration within the Yilgalong Granitoid, associated with a suite of prominent quartz veins. Historical exploration has been limited to surface sampling programs of stream sediment, soil and rock chip sampling.
+The Company will hold a 100% interest in the
+Crofton
+property, which consists of one exploration licence application E45/6690 covering 57km² (
+Figure 1
+). The Crofton licence covers much of the Boodalyerrie Mining Centre, which has recorded production from 1901 to 1910 of 588.4 ounces gold from 122 tonnes of ore at a reconciled average grade of 150g/t gold.
+Future Plans and Assay results update:
+The Company currently has a maiden site visit underway that will assess and validate previous work at Crofton. In the near future, the Company plans to conduct detailed geological mapping over the geochemical anomalies identified from previous work, and move towards defining drill targets.
+Figure 1: Location of the Crofton Gold project to towns in the district, gold processing plants and gold mines.
+This announcement contains information which, prior to its disclosure, was inside information as stipulated under Regulation 11 of the Market Abuse (Amendment) (EU Exit) Regulations 2019/310 (as amended).
+-END-
+For additional information please contact:
+Cloudbreak Discovery PLC
+Peter Huljich, Chairman
+Tom Evans, Managing Director
+Tel: +44 207 887 6139
+Tel: +44 7851 703440
+AlbR Capital Limited
+(Financial Adviser)
+David Coffman / Dan Harris
+Tel: +44 207 469 0930
+Marex Financial
+(Broker)
+Angelo Sofocleous / Keith Swann / Matt Bailey
+Tel: +44 (0) 207 655 6000
+Email: corporate@marex.com
+About Cloudbreak Discovery PLC
+Cloudbreak Discovery PLC is a leading gold, precious and base metals resource explorer. Cloudbreak is focused on mineral exploration in Western Australia with the aim of bringing near-term cashflow and driving shareholder value.
+Through its wholly owned subsidiaries, the Company will develop its array of mineral assets, whilst continuing to generate new projects with a particular focus on commodities with high intrinsic value.
+Cloudbreak's generative model across the mineral sector enables a multi-asset approach to investing in the commodity cycle.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+TSTEAFFKAFDSFFA
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">4</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #4
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Additional Option Exercise at Darlot West</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 100/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Additional Option Exercise at Darlot West | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">24th Nov 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">100/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Additional Option Exercise at Darlot West</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📊 ANALYZE: Determine offer price, arbitrage opportunity if discount</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+24 Nov 2025 07:00
+RNS Number : 6071I
+Cloudbreak Discovery PLC
+24 November 2025
+24 November 2025
+Cloudbreak Discovery Plc
+('Cloudbreak', or 'the Company')
+Additional Option Exercise at Darlot West
+Cloudbreak Discovery Plc (LSE: CDL),
+a London Stock Exchange Main Market listed company, is pleased to confirm that it will be exercising the option to acquire the additional land package at the Darlot West Gold Project ("Darlot West"). This is in addition to the initial land package option exercised on 22 September 2025 and increases the land held at Darlot West by five times.
+Darlot West is located only 10km southwest of the iconic Darlot Gold Mine in Western Australia with production of 2.8 million ounces of gold produced to date, and 25km north of Northern Star Limited Thunderbox Gold Mine with annual production of 232koz and resource of 4.7Moz and Reserve of 1.96Moz gold. (
+Figure 1
+).
+Tom Evans, Cloudbreak's MD, commented; "Our due diligence on this asset has proved the very significant gold potential of the area and agreeing to finalising this acquisition is a great result for the Company. We consider this to be a very positive and fortunate milestone for the Company, to have secured this tenure located between two of the most iconic goldmines in the area. Excellent results from our own recent gold sampling gave us significant gold grades with results up to 65.75 grams per tonne (over 2 ounces per tonne), and our sampling results have far exceeded our initial expectations. This confirms our view that this asset will ultimately be a cornerstone asset of the Company and add shareholder value over the coming year."
+"Should the future drilling programmes determine a significant gold resource at Darlot West next year, we will have the choice of two possible treatment plants within a 20km radius, for potential toll treatment . We remain bullish on the gold price heading into 2026, and we see a bright future for our shareholders pursuing this Western Australian gold strategy."
+Figure 1: Location of 60.6km2 Darlot West Gold Project, Western Australia - 10km from 2.8Moz Darlot Gold Mine, and 25km from Thunderbox Gold Mine operated by Northern Star Limited.
+Commercial terms of the Darlot expansion option exercise:
+The final consideration for this option period is GBP5,000 and 11,000,000 ordinary shares in the Company ("
+Shares")
+. The Vendors have agreed that the Shares will only be issued when the Company has the ability to do so under applicable regulations and the Company is currently working with its advisers to prepare an FCA approved prospectus to enable their issue.
+This announcement contains information which, prior to its disclosure, was inside information as stipulated under Regulation 11 of the Market Abuse (Amendment) (EU Exit) Regulations 2019/310 (as amended).
+-END-
+For Further Information, please contact:
+Cloudbreak Discovery PLC
+Peter Huljich, Chairman
+Tom Evans, Managing Director
+Tel: +44 207 887 6139
+Tel: +44 7851 703440
+AlbR Capital Limited
+(Financial Adviser)
+David Coffman / Dan Harris
+Tel: +44 207 469 0930
+Marex Financial
+(Broker)
+Angelo Sofocleous / Keith Swann / Matt Bailey
+Tel: +44 (0) 207 655 6000
+Email: corporate@marex.com
+About Cloudbreak Discovery PLC
+LSE listed Cloudbreak Discovery PLC is a leading gold, precious and base metals resource explorer. Cloudbreak is focused on mineral exploration in Western Australia with the aim of bringing near-term cashflow and driving shareholder value. Through its wholly owned subsidiaries, the Company will develop its array of mineral assets, whilst continuing to generate new projects with a particular focus on commodities with high intrinsic value. Cloudbreak's generative model across the mineral sector enables a multi-asset approach to investing in the commodity cycle.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+ACQUASNRVNUAUAA
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">5</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #5
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Gold Targeting at Darlot West Gold Project</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Gold Targeting at Darlot West Gold Project | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Oct 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Gold Targeting at Darlot West Gold Project</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+30 Oct 2025 07:00
+RNS Number : 3752F
+Cloudbreak Discovery PLC
+30 October 2025
+30 October 2025
+Cloudbreak Discovery Plc
+("Cloudbreak" or the "Company")
+Gold Targeting at Darlot West Gold Project
+Western Australia
+Cloudbreak Discovery Plc (LSE: CDL),
+a London Stock Exchange Main Market listed company, is pleased to announce highly promising results from the initial trial geochemical soil sampling program from its Darlot West Gold Project ("Darlot West"), located only 10km southwest of the iconic Darlot Gold Mine in Western Australia with 2.8 million ounces of gold produced to date, and 25km north of Northern Star Limited Thunderbox Gold Mine with annual production of 232koz, resource of 4.7Moz and reserves of 1.96Moz gold (
+Figure 3
+).
+​
+Geochemical soil sampling contoured assays (
+Figure 1
+) over 3 small areas on the smaller tenement E37/1396 (2.45km2 sampled area vs 60.6km2 overall tenement area) indicates that the exploration technique can successfully see mineralisation below soil cover, associated with the high-grade gold grades seen from recent outcrop rock chip sampling. The sampling was done using the Ultrafine Fraction of -200microns, which suppresses the ppb assay number result, but makes the data less noisy. The data is showing trends associated with lower magnetic intensity that will continue to be the focus of the Company. High-resolution magnetic data is due in the coming weeks, which will further refine the resolution of targets for follow-up work.
+The multiple rock chip results over 1g/t gold results reported on 24 October 2025 (
+Figure 1 and 2
+), with the results plotted on regional low-resolution open file magnetics, indicate significant area-wide gold potential, which is also supported by the trial geochemical soil data results and contours as shown on
+Figure 1
+. The geochemical contours indicate trends below soil cover around the recently released outcrop rock chip assays and are showing potential strike increases to the gold mineralisation. The magnetic highs and lows as shown indicate the structural complexity and dilation zones over the project area. There are large areas with clear evidence of highly elevated gold mineralisation, with geochemical contours supporting this, which bodes well for future exploration.
+​
+High Tenor of Rock chip results being followed up, returning over 10 g/t include:
+o
+65.75 g/t Au (2.11 ounces of gold per tonne)
+o
+40.44 g/t Au (1.30 ounces of gold per tonne)
+o
+27.23 g/t Au
+o
+19.79 g/t Au
+o
+15.89 g/t Au
+o
+15.40 g/t Au
+o
+14.39 g/t Au
+o
+13.99 g/t Au
+o
+12.66 g/t Au
+o
+12.45 g/t Au
+o
+10.78 g/t Au
+Tom Evans, Cloudbreak's MD, commented: "The excellent geochemical soil gold results and contours over soil covered areas that surround high tenor outcrop rock chip samples, have increased the strike of potential mineralisation within the small trial programme areas within E37/1396. This sampling technique will now be rolled out over the entire tenement package to identify new targets in a very cost-effective manner. 60km2 is a lot of land and using this type of geochemical sampling and analysis will fast track our exploration efforts here. We see gold associated with lower magnetic intensity rocks over a large area and significant gold mineralisation potential over large parts of the Darlot West project, with geochemical sampling seen as a viable exploration technique at Darlot West to be expanded over the entire project. The Darlot West Gold Project covers 60.6km2 and is a sizeable area, and with samples now up to 65.75g/t gold, we will continue to follow up on high priority gold mineralisation over the project with the aim of moving the project towards drilling as soon as possible. We expect the high-resolution magnetic survey results shortly, which will add to plans for the next round of exploration I look forward to updating shareholders as results come to hand."
+Future plans and work programs:
+·
+High-resolution airborne magnetics results expected within weeks.
+·
+Expand the geochemical sampling grid across the project.
+·
+The above results will assist with plans to refine areas for drilling
+Figure 1: Geochemical contours for gold within 3 smaller areas in tenement E37/1396, over regional low-resolution magnetics, including rock chip results from release dated 24 October 2025, Darlot West Gold Project.
+​
+​
+Figure 2: Rock chip results above 1 g/t gold with regional low-resolution magnetics, Darlot West Gold Project, from release dated 24 October 2025.
+​
+Figure 3: Location of 60.6km2 Darlot West Gold Project, Western Australia - 10km from 2.8Moz Darlot Gold Mine, and 25km from Thunderbox Gold Mine operated by Northern Star Limited.
+This announcement contains information which, prior to its disclosure, was inside information as stipulated under Regulation 11 of the Market Abuse (Amendment) (EU Exit) Regulations 2019/310 (as amended).
+-END-
+For Further Information, please contact:
+Cloudbreak Discovery PLC
+Peter Huljich, Chairman
+Tom Evans, Managing Director
+Tel: +44 207 887 6139
+Tel: +44 7851 703440
+AlbR Capital Limited
+(Financial Adviser)
+David Coffman / Anastassiya Eley
+Tel: +44 7399 9400
+Marex Financial
+(Broker)
+Angelo Sofocleous / Keith Swann / Matt Bailey
+Tel: +44 (0) 207 655 6000
+Email: corporate@marex.com
+​
+About Cloudbreak Discovery PLC
+LSE listed Cloudbreak Discovery PLC is a leading gold, precious and base metals resource explorer. Cloudbreak is focused on mineral exploration in Western Australia with the aim of bringing near-term cashflow and driving shareholder value. Through its wholly owned subsidiaries, the Company will develop its array of mineral assets, whilst continuing to generate new projects with a particular focus on commodities with high intrinsic value. Cloudbreak's generative model across the mineral sector enables a multi-asset approach to investing in the commodity cycle.
+Competent Persons Statement
+The Information in this report that relates to exploration results, mineral resources or ore reserves is based on information compiled by Mr Edward Mead, who is a Fellow of the Australasian Institute of Mining and Metallurgy. Mr Mead is a consultant to Cloudbreak Discovery Plc and employed by Doraleda Pty Ltd. Mr Mead has sufficient experience which is relevant to the style of mineralisation and type of deposits under consideration and to the activity that he is undertaking to qualify as a Competent Person as defined in the 2012 edition of the `Australian Code for Reporting Exploration Results, Mineral Resources and Ore Reserves' (the JORC Code). Mr Mead consents to the inclusion of this information in the form and context in which it appears in this report.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+UPDPKCBKPBDDAKB
+                </div>
+            </details>
+            
+            </div>
+            
+            </div>
+            <div style="
+                margin-top: 20px;
+                padding: 14px 16px;
+                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+                border-radius: 10px;
+                font-size: 12px;
+                color: #78350f;
+                border-left: 3px solid #f59e0b;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            ">
+                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
+                <div style="line-height: 1.5;">
+                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
+                    Each RNS includes sentiment classification, key data extraction, and trading context. 
+                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
+                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                    </strong>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            details[open] > summary {
+                background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%) !important;
+                border-left-color: #0369a1 !important;
+            }
+            summary::-webkit-details-marker {
+                display: none;
+            }
+        </style>
+        
+
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-10 • CrashDash APEX Engine<br>
+            Report generated: 2026-01-12 • CrashDash APEX Engine<br>
             <strong>△ Not financial advice. Do your own research.</strong>
         </div>
 

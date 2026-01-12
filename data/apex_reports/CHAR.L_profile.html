@@ -215,19 +215,19 @@
         <!-- Header Card -->
         <div class="header-card">
             <div class="ticker-badge">CHAR.L</div>
-            <div class="company-name">Unknown</div>
+            <div class="company-name">Chariot Limited</div>
             <div class="company-meta">
                 <div class="meta-item">
                     <span class="meta-icon">■</span>
-                    <span><strong>Sector:</strong> Unknown</span>
+                    <span><strong>Sector:</strong> Energy</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">£</span>
-                    <span><strong>Market Cap:</strong> £0</span>
+                    <span><strong>Market Cap:</strong> £27,286,132</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 0 days</span>
+                    <span><strong>Days Active:</strong> 165 days</span>
                 </div>
             </div>
         </div>
@@ -258,6 +258,9 @@
             </div>
         </div>
 
+        <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
+        
+
         <!-- Decision Summary -->
         <div class="card">
             <div class="card-title">
@@ -276,9 +279,17 @@
             </div>
         </div>
 
-        <!-- Scoring Breakdown -->
+        <!-- ==================== TECHNICAL DETAILS (COLLAPSIBLE) ==================== -->
+        
         <div class="card">
-            <div class="card-title">
+          <details style="cursor:pointer;">
+            <summary style="font-weight:800; font-size:16px; list-style:none; padding: 10px; background: #f9fafb; border-radius: 8px;">
+              🔧 Technical Analysis & Scoring Details
+            </summary>
+            <div style="margin-top:14px;">
+              
+            <!-- Scoring Breakdown -->
+            <div class="card-title" style="margin-top: 20px;">
                 <span class="card-icon">▣</span>
                 APEX Score Breakdown
             </div>
@@ -290,7 +301,36 @@
 <div class="factor-item"><span class="factor-icon">◆</span><span><strong>Modest upside</strong><br><small>Historical best: +57% • Score: 8/20 points</small></span></div>
 
             </div>
+            
+            <div style="margin-top: 40px;"></div>
+            
+            <!-- Exhaustion Metrics -->
+            <div class="card-title">
+                <span class="card-icon">📈</span>
+                Rally Cycle Position
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Current Position</div>
+                    <div style="font-size: 32px; font-weight: 800;">28%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
+                    <div style="font-size: 32px; font-weight: 800;">57%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
+                    <div style="font-size: 32px; font-weight: 800;">0.5x</div>
+                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
+                </div>
+            </div>
+        
+            </div>
+          </details>
         </div>
+        
 
         <!-- Reasons Buy/Sell -->
         <div class="cards-grid">
@@ -380,73 +420,6 @@
             </div>
         </div>
 
-        <!-- Exhaustion Metrics -->
-        <div class="card">
-            <div class="card-title">
-                <span class="card-icon">📈</span>
-                Where Are We in the Rally Cycle?
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 20px;">
-                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
-                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">You're Up</div>
-                    <div style="font-size: 32px; font-weight: 800;">28%</div>
-                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
-                </div>
-                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
-                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
-                    <div style="font-size: 32px; font-weight: 800;">57%</div>
-                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
-                </div>
-                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
-                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
-                    <div style="font-size: 32px; font-weight: 800;">0.5x</div>
-                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
-                </div>
-            </div>
-            <div style="padding: 15px; background: #f9fafb; border-radius: 8px;">
-                <div style="font-size: 13px; font-weight: 600; color: #666; margin-bottom: 10px;">Rally Progress Bar</div>
-                <div style="width: 100%; height: 24px; background: #e5e7eb; border-radius: 12px; overflow: hidden; position: relative;">
-                    <div style="height: 100%; background: linear-gradient(90deg, #10b981 0%, #f59e0b 70%, #ef4444 100%); width: 49.0%; transition: width 0.5s ease;"></div>
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 11px; font-weight: 700; color: #333;">
-                        49% of typical rally
-                    </div>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px; color: #666;">
-                    <span>🟢 Entry</span>
-                    <span>🟡 Average Target</span>
-                    <span>🔴 Overextended</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- AI Insights -->
-        
-
-        <!-- Latest RNS News -->
-        <div class="card">
-            <div class="card-title">
-                <span class="card-icon">📰</span>
-                Latest Company News (RNS)
-            </div>
-            <div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Grant of Deferred Share Awards</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div><div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Disposal of Water Business</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div><div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Disposal of Water Business</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div><div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Financing Completed for South Africa Wind Projects</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div><div style="padding: 12px; margin: 8px 0; background: #f9fafb; border-radius: 6px; border-left: 3px solid #667eea;">
-                <div style="font-weight: 600; margin-bottom: 4px;">Financial Close on Two Wind Generation Projects</div>
-                <div style="font-size: 12px; color: #666;">2026-01-03</div>
-            </div>
-            <div style="margin-top: 15px; padding: 12px; background: #f0f9ff; border-radius: 6px;"><strong>Key Themes:</strong> drilling</div>
-        </div>
-
         <!-- Commentary -->
         <div class="card">
             <div class="card-title">
@@ -489,16 +462,1598 @@
                 <strong>Impact:</strong> HIGH
             </div>
             <div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">AI insights from Groq LLM</div></div></div>
-<div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">Company metadata profile</div></div></div>
 
             <div style="margin-top: 15px; font-size: 13px; color: #666;">
                 Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk.
             </div>
         </div>
 
+        <!-- ==================== TOP 5 RECENT RNS NEWS ==================== -->
+        
+        <div class="card" style="border-top: 3px solid #3b82f6;">
+            <div class="card-title" style="margin-bottom: 20px;">
+                <span class="card-icon">📰</span>
+                Top 5 Recent RNS Announcements
+            </div>
+            <div style="margin-top: 15px;">
+                
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Grant of Deferred Share Awards</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 75/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Grant of Deferred Share Awards | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">24th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">75/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Grant of Deferred Share Awards</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+24 Dec 2025 07:00
+RNS Number : 7338M
+Chariot Limited
+24 December 2025
+24 December 2025
+Chariot Limited
+("Chariot", the "Company")
+Grant of Deferred Share Awards
+In line with best practice corporate governance for AIM companies, Chariot aims to remunerate its Directors through an appropriate mix of cash and share awards, aligning their interests with those of shareholders. During a challenging operating period, the Executive Directors delivered against pre-defined objectives, including stewardship of the Company through a period of operational and strategic transition and, with only limited historic awards remaining outstanding, the Board considers deferred equity to remain an important component of long-term incentive and retention arrangements. Accordingly, in recognition of this performance and to support continued alignment and retention, the Board has approved the grant of deferred share awards.
+The following Directors were duly granted deferred share awards in the form of nil cost options over ordinary shares ("Ordinary Shares") on 24 December 2025. Subject to continuing office, these share awards will vest in three equal instalments on 30 June 2026, 2027 and 2028 and will remain exercisable until 24 December 2035.
+Directors
+Position
+Number of Shares Awarded
+Adonis Pouroulis
+Chief Executive Officer
+6,000,000
+Julian Maurice-Williams
+Chief Financial Officer
+4,500,000
+Duncan Wallace
+Technical Director
+4,500,000
+Matching awards
+In accordance with the Company's Non-Executive Directors' Restricted Share Unit Plan on 24 December 2025, Chairman Andrew Hockey was granted 434,065 matching awards over Ordinary Shares in the Company. The awards
+were
+granted to match the purchase of shares made by Andrew Hockey on 14 August 2024 and 19 June 2025. The matching awards are conditional upon continuing office and retention of such purchased shares until the awards vest. 76,923 matching share awards will vest in three equal instalments being immediately, 14 August 2026 and 14 August 2027 and 357,142 matching share awards will vest in three equal instalments on 19 June 2026, 2027 and 2028.
+This announcement contains inside information for the purposes of Article 7 of EU Regulation 596/2014, as retained in the UK pursuant to S3 of the European Union (Withdrawal) Act 2018.
+Enquiries
+Chariot Limited
+Adonis Pouroulis, CEO
+Julian Maurice-Williams, CFO
++44 (0)20 7318 0450
+Cavendish Capital Markets Limited
+(Nomad and Joint Broker)
+Derrick Lee
++44 (0)20 7397 8900
+Stifel Nicolaus Europe Limited
+(Joint Broker)
+Callum Stewart, Ashton Clanfield
++44 (0) 20 7710 7760
+Celicourt Communications
+(Financial PR)
+Mark Antelme, Charles Denley-Myerson, Kathleen Beams
++44 (0)
+20 7770 6424
+Notes
+About Chariot
+Chariot is an Africa focused energy group with two core business streams: Upstream Oil and Gas and Renewable Power.
+Chariot's Upstream Oil and Gas pillar is focused on building out a full-value chain upstream growth business within Africa. Chariot holds a diverse footprint in Morocco with its offshore and onshore licences and is pursuing a range of new ventures with a focus on oil and gas production opportunities.
+Chariot's Renewable Power business is focused on providing competitive, sustainable and reliable energy through building, generating and trading renewable power in South Africa as well as progressing the development of its power-to-mining projects on the continent. Chariot is also continuing to advance its green hydrogen asset, Project Nour in Mauritania.
+The ordinary shares of Chariot Limited are admitted to trading on AIM under the symbol 'CHAR'.
+https://chariotenergygroup.com
+1.
+Details of the person discharging managerial responsibilities / person closely associated
+a)
+Name
+Adonis Pouroulis
+2.
+Reason for the Notification
+a)
+Position/status
+Chief Executive Officer
+b)
+Initial notification/Amendment
+Initial notification
+3.
+Details of the issuer, emission allowance market participant, auction platform, auctioneer or auction monitor
+a)
+Name
+Chariot Limited
+b)
+LEI
+21380046DOGKITYU6X54
+4.
+Details of the transaction(s): section to be repeated for (i) each type of instrument; (ii) each type of transaction; (iii) each date; and (iv) each place where transactions have been conducted
+a)
+Description of the Financial instrument, type of instrument
+Options over Ordinary Shares.
+Identification code
+ISIN for Chariot Limited Ordinary Shares: GG00B2R9PM06
+b)
+Nature of the transaction
+Grant of options over Ordinary Shares. In accordance with the Company's Long Term Incentive Share Scheme these options will vest evenly on 30 June 2026, 2027 and 2028 and will remain exercisable until 24 December 2035.
+c)
+Price(s) and volume(s)
+Price(s)
+Volume(s)
+£nil
+6,000,000
+d)
+Aggregated information:
+·
+Aggregated volume
+·
+Price
+Not applicable, single transaction.
+e)
+Date of the transaction
+24 December 2025
+f)
+Place of the transaction
+Outside a trading venue.
+1.
+Details of the person discharging managerial responsibilities / person closely associated
+a)
+Name
+Julian Maurice-Williams
+2.
+Reason for the Notification
+a)
+Position/status
+Chief Financial Officer
+b)
+Initial notification/Amendment
+Initial notification
+3.
+Details of the issuer, emission allowance market participant, auction platform, auctioneer or auction monitor
+a)
+Name
+Chariot Limited
+b)
+LEI
+21380046DOGKITYU6X54
+4.
+Details of the transaction(s): section to be repeated for (i) each type of instrument; (ii) each type of transaction; (iii) each date; and (iv) each place where transactions have been conducted
+a)
+Description of the Financial instrument, type of instrument
+Options over Ordinary Shares.
+Identification code
+ISIN for Chariot Limited Ordinary Shares: GG00B2R9PM06
+b)
+Nature of the transaction
+Grant of options over Ordinary Shares. In accordance with the Company's Long Term Incentive Share Scheme these options will vest evenly on 30 June 2026, 2027 and 2028 and will remain exercisable until 24 December 2035.
+c)
+Price(s) and volume(s)
+Price(s)
+Volume(s)
+£nil
+4,500,000
+d)
+Aggregated information:
+·
+Aggregated volume
+·
+Price
+Not applicable, single transaction.
+e)
+Date of the transaction
+24 December 2025
+f)
+Place of the transaction
+Outside a trading venue.
+1.
+Details of the person discharging managerial responsibilities / person closely associated
+a)
+Name
+Duncan Wallace
+2.
+Reason for the Notification
+a)
+Position/status
+Technical Director
+b)
+Initial notification/Amendment
+Initial notification
+3.
+Details of the issuer, emission allowance market participant, auction platform, auctioneer or auction monitor
+a)
+Name
+Chariot Limited
+b)
+LEI
+21380046DOGKITYU6X54
+4.
+Details of the transaction(s): section to be repeated for (i) each type of instrument; (ii) each type of transaction; (iii) each date; and (iv) each place where transactions have been conducted
+a)
+Description of the Financial instrument, type of instrument
+Options over Ordinary Shares.
+Identification code
+ISIN for Chariot Limited Ordinary Shares: GG00B2R9PM06
+b)
+Nature of the transaction
+Grant of options over Ordinary Shares. In accordance with the Company's Long Term Incentive Share Scheme these options will vest evenly on 30 June 2026, 2027 and 2028 and will remain exercisable until 24 December 2035.
+c)
+Price(s) and volume(s)
+Price(s)
+Volume(s)
+£nil
+4,500,000
+d)
+Aggregated information:
+·
+Aggregated volume
+·
+Price
+Not applicable, single transaction.
+e)
+Date of the transaction
+24 December 2025
+f)
+Place of the transaction
+Outside a trading venue.
+1.
+Details of the person discharging managerial responsibilities / person closely associated
+a)
+Name
+Andrew Hockey
+2.
+Reason for the Notification
+a)
+Position/status
+Chairman
+b)
+Initial notification/Amendment
+Initial notification
+3.
+Details of the issuer, emission allowance market participant, auction platform, auctioneer or auction monitor
+a)
+Name
+Chariot Limited
+b)
+LEI
+21380046DOGKITYU6X54
+4.
+Details of the transaction(s): section to be repeated for (i) each type of instrument; (ii) each type of transaction; (iii) each date; and (iv) each place where transactions have been conducted
+a)
+Description of the Financial instrument, type of instrument
+Options over Ordinary Shares.
+Identification code
+ISIN for Chariot Limited Ordinary Shares: GG00B2R9PM06
+b)
+Nature of the transaction
+Grant of options over Ordinary Shares. In accordance with the Company's Non-Executive Directors' Restricted Share Unit Plan these options will vest in three equal instalments being immediately, 14 August 2026 and 14 August 2027 and will remain exercisable until 24 December 2035.
+c)
+Price(s) and volume(s)
+Price(s)
+Volume(s)
+£nil
+76,923
+d)
+Aggregated information:
+·
+Aggregated volume
+·
+Price
+Not applicable, single transaction.
+e)
+Date of the transaction
+24 December 2025
+f)
+Place of the transaction
+Outside a trading venue.
+1.
+Details of the person discharging managerial responsibilities / person closely associated
+a)
+Name
+Andrew Hockey
+2.
+Reason for the Notification
+a)
+Position/status
+Chairman
+b)
+Initial notification/Amendment
+Initial notification
+3.
+Details of the issuer, emission allowance market participant, auction platform, auctioneer or auction monitor
+a)
+Name
+Chariot Limited
+b)
+LEI
+21380046DOGKITYU6X54
+4.
+Details of the transaction(s): section to be repeated for (i) each type of instrument; (ii) each type of transaction; (iii) each date; and (iv) each place where transactions have been conducted
+a)
+Description of the Financial instrument, type of instrument
+Options over Ordinary Shares.
+Identification code
+ISIN for Chariot Limited Ordinary Shares: GG00B2R9PM06
+b)
+Nature of the transaction
+Grant of options over Ordinary Shares. In accordance with the Company's Non-Executive Directors' Restricted Share Unit Plan these options will vest in three equal instalments on 19 June 2026, 2027 and 2028 and will remain exercisable until 24 December 2035.
+c)
+Price(s) and volume(s)
+Price(s)
+Volume(s)
+£nil
+357,142
+d)
+Aggregated information:
+·
+Aggregated volume
+·
+Price
+Not applicable, single transaction.
+e)
+Date of the transaction
+24 December 2025
+f)
+Place of the transaction
+Outside a trading venue.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+DSHBCBDDLUDDGUX
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Disposal of Water Business</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE ACTION: Company divesting assets or subsidiary | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">18th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">3:00 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE ACTION: Company divesting assets or subsidiary</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #f59e0b; font-weight: 600;">🟡 MEDIUM RISK: Some concerns, assess context</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">80%, 80%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+18 Dec 2025 15:00
+RNS Number : 1638M
+Chariot Limited
+18 December 2025
+18 December 2025
+Chariot Limited
+("Chariot", the "Company")
+Disposal of Water Business
+Chariot (AIM: CHAR), the Africa focused energy company, announces that it has disposed of its water business as it focuses on its core interests within the Power division in electricity trading and generation projects across southern Africa.
+The water business primarily held the proof-of-concept desalination project in Djibouti. The business was held through Chariot's stake in a subsidiary, Oasis Water Platform, which has now been sold to AquaNexus Holding.
+Sale consideration of US$435,000 in cash has been received and will be used for general corporate purposes.
+Enquiries
+Chariot Limited
+Adonis Pouroulis, CEO
+Julian Maurice-Williams, CFO
++44 (0)20 7318 0450
+Cavendish Capital Markets Limited
+(Nomad and Joint Broker)
+Derrick Lee
++44 (0)20 7397 8900
+Stifel Nicolaus Europe Limited
+(Joint Broker)
+Callum Stewart, Ashton Clanfield
++44 (0) 20 7710 7760
+Celicourt Communications
+(Financial PR)
+Mark Antelme, Charles Denley-Myerson, Kathleen Beams
++44 (0)
+20 7770 6424
+Notes
+About Chariot
+Chariot is an Africa focused energy group with two core business streams: Upstream Oil and Gas and Renewable Power.
+Chariot's Renewable Power business is focused on providing competitive, sustainable and reliable energy through building, generating and trading renewable power in South Africa as well as progressing the development of its power-to-mining projects on the continent. Chariot is also continuing to advance its green hydrogen asset, Project Nour in Mauritania.
+The ordinary shares of Chariot Limited are admitted to trading on AIM under the symbol 'CHAR'.
+https://chariotenergygroup.com
+About
+Oasis Water Platform
+Prior to the transaction described in this announcement, Chariot held 80% interests in Oasis Water Platform and its subsidiaries (together, the "Water Business"), through which the Company held a stake in a
+proof-of-concept desalination project in Djibouti.
+In the year to 31 December 2024, the Water Business generated revenues of US$162,000 and a loss of approximately US$100,000 after deduction of recurring operating and administrative expenses. At 31 December 2024, the book value of the Water Business within property, plant and equipment was US$550,000 (implying a book value of US$440,000 for Chariot's 80% stake).
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+DISUWAORVNUUAAA
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Disposal of Water Business</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE ACTION: Company divesting assets or subsidiary | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">18th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">3:00 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE ACTION: Company divesting assets or subsidiary</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #f59e0b; font-weight: 600;">🟡 MEDIUM RISK: Some concerns, assess context</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">80%, 80%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+18 Dec 2025 15:00
+RNS Number : 1638M
+Chariot Limited
+18 December 2025
+18 December 2025
+Chariot Limited
+("Chariot", the "Company")
+Disposal of Water Business
+Chariot (AIM: CHAR), the Africa focused energy company, announces that it has disposed of its water business as it focuses on its core interests within the Power division in electricity trading and generation projects across southern Africa.
+The water business primarily held the proof-of-concept desalination project in Djibouti. The business was held through Chariot's stake in a subsidiary, Oasis Water Platform, which has now been sold to AquaNexus Holding.
+Sale consideration of US$435,000 in cash has been received and will be used for general corporate purposes.
+Enquiries
+Chariot Limited
+Adonis Pouroulis, CEO
+Julian Maurice-Williams, CFO
++44 (0)20 7318 0450
+Cavendish Capital Markets Limited
+(Nomad and Joint Broker)
+Derrick Lee
++44 (0)20 7397 8900
+Stifel Nicolaus Europe Limited
+(Joint Broker)
+Callum Stewart, Ashton Clanfield
++44 (0) 20 7710 7760
+Celicourt Communications
+(Financial PR)
+Mark Antelme, Charles Denley-Myerson, Kathleen Beams
++44 (0)
+20 7770 6424
+Notes
+About Chariot
+Chariot is an Africa focused energy group with two core business streams: Upstream Oil and Gas and Renewable Power.
+Chariot's Renewable Power business is focused on providing competitive, sustainable and reliable energy through building, generating and trading renewable power in South Africa as well as progressing the development of its power-to-mining projects on the continent. Chariot is also continuing to advance its green hydrogen asset, Project Nour in Mauritania.
+The ordinary shares of Chariot Limited are admitted to trading on AIM under the symbol 'CHAR'.
+https://chariotenergygroup.com
+About
+Oasis Water Platform
+Prior to the transaction described in this announcement, Chariot held 80% interests in Oasis Water Platform and its subsidiaries (together, the "Water Business"), through which the Company held a stake in a
+proof-of-concept desalination project in Djibouti.
+In the year to 31 December 2024, the Water Business generated revenues of US$162,000 and a loss of approximately US$100,000 after deduction of recurring operating and administrative expenses. At 31 December 2024, the book value of the Water Business within property, plant and equipment was US$550,000 (implying a book value of US$440,000 for Chariot's 80% stake).
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+DISUWAORVNUUAAA
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">4</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #4
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Financing Completed for South Africa Wind Projects</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 85/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    BUSINESS WIN: Contract won or partnership announced | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">15th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">85/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">BUSINESS WIN: Contract won or partnership announced</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📈 IMPROVING: Company demonstrating strength and growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">24%, 34%, 24%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+15 Dec 2025 07:00
+RNS Number : 4902L
+Chariot Limited
+15 December 2025
+15 December 2025
+Chariot Limited
+("Chariot", the "Company")
+Significant Financing Completed for South African Wind Projects
+Securing future revenues through power generation and trading
+Chariot Limited (AIM: CHAR), the Africa focused energy group, is pleased to confirm that it has completed a significant financing and a strategic equity partnership primarily to fund its investment in two wind generation projects, Zen and Bergriver, ("the Projects") in South Africa, which have just reached financial close.
+As announced separately today, t
+hese Projects are being led by Acciona Energia,
+the largest pure play renewable energy company in the world,
+with construction to commence imminently.
+Chariot has incorporated a new subsidiary, Chariot Generation and Trading Pty Limited ("Chariot Generation and Trading") to consolidate its energy and trading operations in South Africa, as well as to enable this financing. Chariot Generation and Trading now holds a 24% stake in these Projects,
+as well as a 34% effective economic interest in Etana
+Energy (Pty) Limited ("Etana")
+the South African electricity trading platform
+.
+Post commissioning, anticipated in mid-2027, Chariot will receive revenue streams both from the generation of electricity from these Projects and from the subsequent trading of this power through Etana.
+Transaction highlights:
+•
+Financing package consists of project finance debt combined with third party equity investment and mezzanine debt, with no dilution at the Chariot Limited parent company level, being:
+o
+US$284 million gross long-term non-recourse project finance debt provided by Standard Bank and Investec at the Projects' level (Chariot Generation and Trading's stake 24%)
+o
+US$17 million strategic cash equity investment from the Mahlako Energy Fund I (the "Mahlako Fund"), managed by Mahlako A Phahla Financial Services ("Mahlako"), a highly respected South African fund manager, following which Chariot holds a 65% stake in Chariot Generation and Trading, with the Mahlako Fund holding the remaining 35%
+▪
+Use of the Mahlako funding includes financing the construction of the Projects, the development of potential future wind and solar projects in South Africa and working capital
+o
+US$9 million non-recourse mezzanine debt provided by Standard Bank in respect of Chariot Generation and Trading's holdings in the Projects
+Adonis Pouroulis, CEO of Chariot, commented:
+"We are delighted to have completed this financing which is multi-layered but carefully structured to enable our first entry into wind generation assets, a key part of our long-term plan as we continue to build our Renewable Power business. We now own a sizeable portion of two utility-scale infrastructure projects, all funded at the subsidiary level, and we are very pleased to welcome Mahlako as co-investors into this business. They are a highly regarded South African-focused investor and we look forward to working with them on these and further projects where we see material growth and potential. I would also like to thank Standard Bank and Investec for their support and we look forward to providing updates on progress."
+Makole Mupita & Meta Mhlarhi, Founders of Mahlako added:
+"We are pleased to join Chariot, Acciona Energia and H1 in delivering the Zen and Bergriver wind farms. This investment marks an important milestone for Mahlako as we expand our exposure to the emerging licensed electricity trading market, which we believe will play a critical role in South Africa's energy future. We look forward to partnering with Chariot as the projects move into construction and as new opportunities in renewable generation and trading continue to grow."
+Key Deal Terms:
+Equity Investment
+•
+A new subsidiary, Chariot Generation and Trading, has been incorporated and is now owned by Chariot 65% and Mahlako 35%. Chariot and its team will continue to manage both the existing and future investments of Chariot Generation and Trading
+•
+Chariot Generation and Trading's assets include:
+o
+US$18 million (ZAR 296 million) cash received through the issue of an equal number of ordinary and redeemable preference shares to Mahlako (ZAR 290 million) and a further issue of ordinary shares to Chariot (ZAR 6 million)
+o
+24% holdings in each of the Zen and Bergriver wind projects
+o
+34% effective economic interest in Etana
+o
+Potential future wind and solar generation projects in South Africa
+•
+Chariot Generation and Trading's cash will be used:
+o
+To fund its share of the Projects combined with additional funds from mezzanine debt and project finance
+o
+To cover Chariot's related re-charged overheads
+o
+For other working capital requirements and potential subsequent renewable generation projects in South Africa
+Mezzanine Debt
+•
+US$9 million (ZAR 150 million) non-recourse mezzanine debt provided by Standard Bank, secured against Chariot Generation and Trading's holdings in both the Projects
+Project Finance Debt
+•
+Gross US$284 million (ZAR 4.8 billion) (net US$68 million (ZAR 1.2 billion) attributable to the 24% share of Chariot Generation and Trading) non-recourse project finance debt provided by Standard Bank and Investec at the Project level
+About Mahlako
+Mahlako
+is an African women-owned social infrastructure group in advisory services, financial services and alternative investment management, focused on the delivery of effective socio-economic developmental assets and implementable solutions that deliver sustainable impact and superior risk adjusted return profiles over the long term.
+Its mission is to drive sustainable development and offer enhanced returns to stakeholders through provision of innovative solutions to the public sector and investing across alternative financial services asset classes. It is recognised as a trusted African infrastructure advisory firm delivering innovative and implementable solutions to the public sector and as a trusted alternative fund manager providing profitable investments with a socio-economic impact. For more information please visit
+https://www.mahlakofs.co.za/
+About Standard Bank
+Standard Bank Group is the largest African bank by assets, operating in 20 African countries, four global financial centres and two offshore hubs. Headquartered in Johannesburg, South Africa, it is listed on the Johannesburg Stock Exchange, with share code SBK, and the Namibian Stock Exchange, share code SNB. Standard Bank has a 162-year history in South Africa and started building a franchise outside southern Africa in the early 1990s. Their strategic position, which enables them to connect Africa to other select emerging markets as well as pools of capital in developed markets, and their balanced portfolio of businesses, provide significant opportunities for growth. As at 30 June 2024, Standard Bank Group had 19.5 million clients, employed nearly 51,000 people (including Liberty) and had almost 1,200 points of representation and 5,500 ATMs on the African continent.
+The group's largest shareholder is the Industrial and Commercial Bank of China (ICBC), the world's largest bank, with a 19.4% shareholding. In addition, Standard Bank Group and ICBC share a strategic partnership that facilitates trade and deal flow between Africa, China and select emerging markets. For further information, go to
+http://www.standardbank.com
+About Investec
+Investec partners with private, institutional, and corporate clients, offering international banking, investments, and wealth management services in two principal markets, South Africa, and the UK, as well as certain other countries. The Group was established in 1974 and currently has 7,500+ employees.
+Investec has a dual listed company structure with primary listings on the London and Johannesburg Stock Exchanges. For further information go to
+https://www.investec.com/
+This announcement contains inside information for the purposes of Article 7 of EU Regulation 596/2014, as retained in the UK pursuant to S3 of the European Union (Withdrawal) Act 2018.
+Enquiries
+Chariot Limited
+Adonis Pouroulis, CEO
+Julian Maurice-Williams, CFO
++44 (0)20 7318 0450
+Cavendish Capital Markets Limited
+(Nomad and Joint Broker)
+Derrick Lee
++44 (0)20 7397 8900
+Stifel Nicolaus Europe Limited
+(Joint Broker)
+Callum Stewart, Ashton Clanfield
++44 (0) 20 7710 7760
+Celicourt Communications
+(Financial PR)
+Mark Antelme, Charles Denley-Myerson, Kathleen Beams
++44 (0)
+20 7770 6424
+Notes
+About Chariot
+Chariot is an Africa focused energy group with two core business streams: Upstream Oil and Gas and Renewable Power.
+Chariot's Renewable Power business is focused on providing competitive, sustainable and reliable energy through generating and trading renewable power in South Africa as well as progressing the development of its power-to-mining projects on the continent. Chariot is also continuing to advance its green hydrogen asset, Project Nour in Mauritania.
+The ordinary shares of Chariot Limited are admitted to trading on AIM under the symbol 'CHAR'.
+https://chariotenergygroup.com
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+PFUDZLFFELLEFBF
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">5</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #5
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Financial Close on Two Wind Generation Projects</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    BUSINESS WIN: Contract won or partnership announced | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">15th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">BUSINESS WIN: Contract won or partnership announced</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📈 IMPROVING: Company demonstrating strength and growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">51%, 25%, 24%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+15 Dec 2025 07:00
+RNS Number : 4635L
+Chariot Limited
+15 December 2025
+15 December 2025
+Chariot Limited
+("Chariot", the "Company")
+Financial Close Reached on Two Large Wind Generation Projects in South Africa
+Chariot holds material equity stakes and Etana Energy secures 190MW of power
+Chariot Limited (AIM: CHAR), the Africa focused energy group, is pleased to announce its involvement in two large wind generation projects, the Zen (100MW) and Bergriver (94MW) wind farms ("the Projects") in South Africa, which have a combined export capacity of 190MW and have now reached financial close. These Projects are co-owned by Acciona Energia, the largest pure play renewable energy company in the world and lead sponsor which holds 51%, H1 Holdings (Pty) Limited ("H1") with 25%, and 24% held by Chariot Generation and Trading Pty Limited ("Chariot Generation and Trading"), Chariot's newly incorporated business together with its strategic equity partner, Mahlako A Phahla Financial Services.
+Etana Energy (Pty) Limited ("Etana"), the South African electricity trading platform in which Chariot Generation and Trading holds an economic interest of 34% alongside H1, Norfund and Standard Bank, has also signed a 20-year Power Purchase Agreement ("PPA") for the entire supply of electricity generated from these Projects.
+·
+The Zen and Bergriver wind farms are located in South Africa's Western Cape and construction is expected to commence imminently with commissioning scheduled for mid-2027
+·
+Once operational, these Projects will displace around 600,000 tonnes of CO
+₂
+emissions annually
+·
+As announced separately today, Chariot has fully financed its share in these Projects through funding arranged at the subsidiary level
+·
+These are Etana's first wind projects to reach financial close, bringing its generation portfolio to four renewable energy projects, the power from which will be transmitted across South Africa's national grid and sold to a range of commercial and industrial customers
+Adonis Pouroulis, CEO of Chariot, commented:
+"Reaching financial close on these Zen and Bergriver assets is a key development milestone and we are very pleased to be working alongside Acciona Energía and H1 as we play a part in building essential infrastructure, contributing to diversifying the energy mix and delivering clean, reliable power across South African industries.
+Closing this transaction is also a key milestone for Chariot as we have effectively created two material future revenue streams; through our stakes in these wind generation assets which will sell power and through revenues from the trading of this energy through Etana.
+Renewable power generation and trading have significant potential and growing our exposure to both is a core part of our strategy going forward. Zen and Bergriver add significant scale to Etana, which is making great strides in becoming one of South Africa's leading energy aggregators, and we have further large projects in the development pipeline. I would like to thank the teams that worked so hard across all workstreams that have been required to execute these transactions."
+About Acciona Energía
+:
+Acciona Energía is the largest 100% renewable energy company in the world with no fossil legacy. It has 15.1GW of renewable energy and presence in 24 countries. With 30 years of experience, Acciona Energía offers a complete portfolio of tailor-made energy solutions for its corporate and institutional clients to meet their decarbonization goals. Acciona Energía is committed to the highest environmental, social and corporate governance (ESG) standards. Acciona S.A., a leading global company in the provision of regenerative solutions for a decarbonized economy, is the majority shareholder of Acciona Energía.
+www.acciona-energia.com
+About Etana:
+Etana Energy is a licensed energy trader actively supplying renewable electricity through the national and municipal electricity grids to businesses across South Africa. A majority black-owned company, Etana provides businesses with flexible, renewable energy solutions that are clean and simple - enabling deep decarbonisation, forward price path certainty and significant cost savings. Etana has one hydroelectric project in operation,
+nearly 300MW of wind and solar in construction, and a 500MW+ pipeline
+of shovel-ready grid-connectable renewable energy projects, underpinned by secured payment guarantee facilities. With this, Etana is fulfilling its mission of accelerating the deployment of new clean energy generation capacity to the South African grid. For more information, visit
+https://www.etana.energy
+Etana is owned by Chariot Generation and Trading (34% economic interest), H1 (36%), Norfund (20%) and Standard Bank (10%).
+This announcement contains inside information for the purposes of Article 7 of EU Regulation 596/2014, as retained in the UK pursuant to S3 of the European Union (Withdrawal) Act 2018.
+Enquiries
+Chariot Limited
+Adonis Pouroulis, CEO
+Julian Maurice-Williams, CFO
++44 (0)20 7318 0450
+Cavendish Capital Markets Limited
+(Nomad and Joint Broker)
+Derrick Lee
++44 (0)20 7397 8900
+Stifel Nicolaus Europe Limited
+(Joint Broker)
+Callum Stewart, Ashton Clanfield
++44 (0) 20 7710 7760
+Celicourt Communications
+(Financial PR)
+Mark Antelme, Charles Denley-Myerson, Kathleen Beams
++44 (0)
+20 7770 6424
+Notes
+About Chariot
+Chariot is an Africa focused energy group with two core business streams: Upstream Oil and Gas and Renewable Power.
+Chariot's Renewable Power business is focused on providing competitive, sustainable and reliable energy through building, generating and trading renewable power in South Africa as well as progressing the development of its power-to-mining projects on the continent. Chariot is also continuing to advance its green hydrogen asset, Project Nour in Mauritania.
+The ordinary shares of Chariot Limited are admitted to trading on AIM under the symbol 'CHAR'.
+https://chariotenergygroup.com
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+PFUPKBBPOBDDNBD
+                </div>
+            </details>
+            
+            </div>
+            
+            </div>
+            <div style="
+                margin-top: 20px;
+                padding: 14px 16px;
+                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+                border-radius: 10px;
+                font-size: 12px;
+                color: #78350f;
+                border-left: 3px solid #f59e0b;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            ">
+                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
+                <div style="line-height: 1.5;">
+                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
+                    Each RNS includes sentiment classification, key data extraction, and trading context. 
+                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
+                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                    </strong>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            details[open] > summary {
+                background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%) !important;
+                border-left-color: #0369a1 !important;
+            }
+            summary::-webkit-details-marker {
+                display: none;
+            }
+        </style>
+        
+
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-10 • CrashDash APEX Engine<br>
+            Report generated: 2026-01-12 • CrashDash APEX Engine<br>
             <strong>△ Not financial advice. Do your own research.</strong>
         </div>
 
