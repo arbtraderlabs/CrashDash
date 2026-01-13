@@ -1,7 +1,7 @@
 {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "TXP.L",
-  "generated_at": "2026-01-13T15:02:21.675703Z",
+  "generated_at": "2026-01-13T23:11:53.634138Z",
   "top_card": {
     "ticker": "TXP.L",
     "company_name": "Touchstone Exploration Inc.",
@@ -26,11 +26,11 @@
       "currency": "GBP",
       "risk_tier": "High Risk",
       "current_market_cap": 34097028,
-      "current_close_price": 10.5275
+      "current_close_price": 10.625
     },
     "basics": {
       "ticker": "TXP.L",
-      "current_price": 10.5275,
+      "current_price": 10.625,
       "ath": 178.0,
       "atl": 5.7,
       "ath_date": "2021-02-10",
@@ -39,14 +39,14 @@
       "week_52_low": 5.7,
       "week_52_high_date": "2025-01-21",
       "week_52_low_date": "2025-11-17",
-      "drawdown_from_ath_pct": 94.09,
+      "drawdown_from_ath_pct": 94.03,
       "data_start": "2020-01-02",
       "data_end": "2026-01-13",
       "total_bars": 1523
     },
     "latest_signal": {
       "date": "2025-11-17",
-      "scan_date": "2026-01-12",
+      "scan_date": "2026-01-13",
       "signal_type": "CRASH ZONE BOTTOM",
       "signal_color": "YELLOW",
       "price": 6.15,
@@ -55,9 +55,9 @@
       "rsi": 8.2,
       "cycle_position": 0.05,
       "holding_period_days": 57,
-      "current_pnl_pct": 71.18,
+      "current_pnl_pct": 72.76,
       "rally_state": "peaked",
-      "distance_from_high_pct": -4.3,
+      "distance_from_high_pct": -3.41,
       "Rally_Count": 1,
       "days_since_last_high": 7,
       "last_high_date": "2026-01-06",
@@ -101,13 +101,13 @@
         "signal_type": "CRASH ZONE BOTTOM",
         "signal_color": "YELLOW",
         "entry_price": 6.15,
-        "current_price": 10.5275,
-        "current_return_pct": 71.18,
+        "current_price": 10.625,
+        "current_return_pct": 72.76,
         "best_rally_pct": 78.86,
         "best_rally_date": "2026-01-06",
         "rally_state": "peaked",
         "Rally_Count": 1,
-        "distance_from_high_pct": -4.3,
+        "distance_from_high_pct": -3.41,
         "days_since_last_high": 7,
         "lock_in_reached": true,
         "age_days": 57,
@@ -136,7 +136,14 @@
     "risk_flags": [
       "EXTREME_DRAWDOWN"
     ],
-    "last_updated": "2026-01-13 14:06:19 UTC"
+    "last_updated": "2026-01-13 22:05:25 UTC",
+    "volatility": {
+      "atr_normalized": 9.18,
+      "stddev_20d": 0.0
+    },
+    "trends": {
+      "intelligence_signal": "TOPPED_OUT"
+    }
   },
   "decision_summary": {
     "why_it_matters": [
@@ -211,16 +218,19 @@
       "current_interest": 0,
       "momentum_score": 0,
       "trend_direction": "flat",
-      "intelligence_signal": null
+      "intelligence_signal": "TOPPED_OUT"
     },
     "volatility": {
-      "atr_normalized": null,
-      "stddev_20d": null
+      "atr_normalized": 9.18,
+      "stddev_20d": 0.0
     },
     "risk_flags": {
       "split_risk_level": "NONE",
       "halt_risk": "NONE",
       "penny_stock_risk": "NONE"
+    },
+    "catalyst_dates": {
+      "proxy_date": "2026-01-06"
     }
   },
   "ai_insights": {
@@ -260,26 +270,34 @@
       ]
     },
     "panic_analysis": {
-      "panic_score": 26,
-      "signal": "MILD_CONCERN",
-      "interpretation": "\ud83d\udfe2 Normal volatility - not a crash signal",
+      "panic_score": 84,
+      "signal": "EXTREME_PANIC",
+      "interpretation": "\ud83d\udd34 Capitulation zone - contrarian opportunity if fundamentals intact",
       "breakdown": {
-        "price_destruction": 0,
-        "volume_death": 0,
+        "price_destruction": 40,
+        "volume_death": 18,
         "social_silence": 6,
         "news_sentiment": 20
       },
-      "is_opportunity": false,
-      "opportunity_reason": "\ud83d\ude10 Normal market conditions - no crash signal"
+      "is_opportunity": true,
+      "opportunity_reason": "\ud83d\udd25 EXTREME PANIC + Intact timing = Prime contrarian entry zone"
     },
     "fear_vs_facts": {
       "fear_points": [
+        "\ud83d\udc94 Price destruction: 40/40 points",
+        "\ud83d\udcc9 Volume death: 18/20 points",
         "\ud83d\udcf0 Negative news: 20/20 points"
       ],
       "facts_points": [],
-      "verdict": "\u2696\ufe0f Mixed signals - Fear and facts balanced, wait for clarity"
+      "verdict": "\ud83c\udfaf CONTRARIAN OPPORTUNITY - Fear dominates but facts support recovery potential"
     },
     "crashhunter_signals": [
+      {
+        "type": "EXTREME_PANIC",
+        "icon": "\ud83d\udd34",
+        "text": "Panic 84/100",
+        "color": "#ef4444"
+      },
       {
         "type": "CROWDED",
         "icon": "\u26a0\ufe0f",
@@ -331,14 +349,14 @@
       }
     ],
     "decision_matrix": {
-      "decision": "AVOID",
-      "reason": "\u274c SELL/TAKE_PROFITS - timing CROWDED",
+      "decision": "BUY",
+      "reason": "\ud83c\udfaf CrashHunter Signal: \ud83d\udd25 EXTREME PANIC + Intact timing = Prime contrarian entry zone",
       "checklist": [
         {
           "criterion": "Panic Score",
-          "value": "26/100",
-          "pass": false,
-          "icon": "\ud83d\udfe2"
+          "value": "84/100",
+          "pass": true,
+          "icon": "\ud83d\udd34"
         },
         {
           "criterion": "Timing Regime",
@@ -365,7 +383,65 @@
           "icon": "\ud83c\udfed"
         }
       ],
-      "pass_rate": "3/5"
+      "pass_rate": "4/5"
+    },
+    "contrarian_panic": {
+      "total_score": 36,
+      "band": "\ud83d\udfe2 MILD COMPRESSION (Top 50% - WATCHLIST)",
+      "components": {
+        "compression": {
+          "score": 19,
+          "max": 40,
+          "signals_30d": 2,
+          "signals_60d": 2,
+          "signals_90d": 2,
+          "signals_per_week": 2.0,
+          "total_signals": 2,
+          "rsi_extreme_count": 2,
+          "rsi_ultra_count": 2,
+          "escalation_count": 0,
+          "density_score": 15,
+          "rsi_score": 4,
+          "escalation_score": 0,
+          "description": "2.0 signals/week | 2 RSI<20 | \ud83d\udcca MODERATE COMPRESSION"
+        },
+        "intensification": {
+          "score": 5,
+          "max": 20,
+          "recent_types": [
+            "CRASH ZONE BOTTOM",
+            "CRASH ZONE BOTTOM"
+          ],
+          "escalating": false,
+          "sustained": false,
+          "current_intensity": 1,
+          "pattern": "NORMAL CRASH LEVEL"
+        },
+        "volume_death": {
+          "score": 8,
+          "max": 15,
+          "relative_volume": 3.74,
+          "description": "High volume - Panic spike or interest"
+        },
+        "pop_potential": {
+          "score": 4,
+          "max": 15,
+          "best_historical_rally": 78.9,
+          "avg_rally": 78.1,
+          "signal_count": 2,
+          "description": "Baseline mover (79%)"
+        },
+        "accumulation": {
+          "score": 0,
+          "max": 10,
+          "has_accumulation": false,
+          "bars_since_accum": 0,
+          "description": "No accumulation"
+        }
+      },
+      "ticker": "TXP.L",
+      "signal_date": "2025-11-17",
+      "total_signals_history": 2
     }
   },
   "scoring_breakdown": {
@@ -435,8 +511,8 @@
   },
   "exhaustion": {
     "regime": "CROWDED",
-    "run_multiple": 0.9,
-    "current_run_pct": 71.18,
+    "run_multiple": 0.92,
+    "current_run_pct": 72.76,
     "avg_historical_run_pct": 78.86
   },
   "history_snapshot": {
@@ -447,7 +523,7 @@
     "new_rns_titles": []
   },
   "commentary": {
-    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows CROWDED timing with 58/100 APEX score. Historical data shows 1 rallies averaging 79% upside. Current position: +71.2%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
+    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows CROWDED timing with 58/100 APEX score. Historical data shows 1 rallies averaging 79% upside. Current position: +72.8%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
     "bull_case": [
       "Limited upside case without catalysts"
     ],
@@ -461,7 +537,7 @@
     "sources_present": {
       "snapshot_json": false,
       "daily_enrichment_row": true,
-      "historical_profile": false,
+      "historical_profile": true,
       "metadata": true,
       "triangulation_events": true,
       "ai_insights": false

@@ -1,7 +1,7 @@
 {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "VRS.L",
-  "generated_at": "2026-01-13T15:02:22.967350Z",
+  "generated_at": "2026-01-13T23:11:56.469319Z",
   "top_card": {
     "ticker": "VRS.L",
     "company_name": "Versarien plc",
@@ -46,7 +46,7 @@
     },
     "latest_signal": {
       "date": "2025-11-27",
-      "scan_date": "2026-01-12",
+      "scan_date": "2026-01-13",
       "signal_type": "DEEP CRASH BOTTOM",
       "signal_color": "GREEN",
       "price": 0.007,
@@ -1231,15 +1231,9 @@
       }
     ],
     "split_risk": {
-      "split_detected": true,
-      "split_date": "2025-12-01",
-      "split_ratio": "1:20",
-      "days_from_split": 4,
-      "split_type": "REVERSE_SPLIT",
-      "risk_level": "HIGH",
-      "confidence": "LOW",
-      "warning": "Signal occurred near stock split on 2025-12-01 (1:20) - price data may be affected by corporate action",
-      "recommendation": "VERIFY price data independently before trading - P&L calculations may be inaccurate near corporate actions"
+      "split_detected": false,
+      "risk_level": "NONE",
+      "confidence": "HIGH"
     },
     "data_quality": {
       "price_reliability": "SUSPECT",
@@ -1253,7 +1247,14 @@
       "PENNY_STOCK",
       "FREQUENT_CRASHES"
     ],
-    "last_updated": "2026-01-13 14:06:05 UTC"
+    "last_updated": "2026-01-13 22:05:02 UTC",
+    "volatility": {
+      "atr_normalized": 8.33,
+      "stddev_20d": 0.0
+    },
+    "trends": {
+      "intelligence_signal": "ACCUMULATION"
+    }
   },
   "decision_summary": {
     "why_it_matters": [
@@ -1329,16 +1330,19 @@
       "current_interest": 0,
       "momentum_score": 0,
       "trend_direction": "flat",
-      "intelligence_signal": null
+      "intelligence_signal": "ACCUMULATION"
     },
     "volatility": {
-      "atr_normalized": null,
-      "stddev_20d": null
+      "atr_normalized": 8.33,
+      "stddev_20d": 0.0
     },
     "risk_flags": {
       "split_risk_level": "HIGH",
       "halt_risk": "NONE",
       "penny_stock_risk": "HIGH"
+    },
+    "catalyst_dates": {
+      "proxy_date": "2025-11-28"
     }
   },
   "ai_insights": {
@@ -1378,12 +1382,12 @@
       ]
     },
     "panic_analysis": {
-      "panic_score": 62,
+      "panic_score": 70,
       "signal": "HIGH_PANIC",
       "interpretation": "\ud83d\udfe0 Fear dominant - watch for reversal signs",
       "breakdown": {
         "price_destruction": 40,
-        "volume_death": 6,
+        "volume_death": 14,
         "social_silence": 6,
         "news_sentiment": 10
       },
@@ -1403,7 +1407,7 @@
       {
         "type": "HIGH_PANIC",
         "icon": "\ud83d\udfe0",
-        "text": "Fear 62/100",
+        "text": "Fear 70/100",
         "color": "#f59e0b"
       },
       {
@@ -1462,7 +1466,7 @@
       "checklist": [
         {
           "criterion": "Panic Score",
-          "value": "62/100",
+          "value": "70/100",
           "pass": true,
           "icon": "\ud83d\udd34"
         },
@@ -1492,6 +1496,65 @@
         }
       ],
       "pass_rate": "2/5"
+    },
+    "contrarian_panic": {
+      "total_score": 31,
+      "band": "\ud83d\udfe2 MILD COMPRESSION (Top 50% - WATCHLIST)",
+      "components": {
+        "compression": {
+          "score": 11,
+          "max": 40,
+          "signals_30d": 3,
+          "signals_60d": 3,
+          "signals_90d": 4,
+          "signals_per_week": 0.31,
+          "total_signals": 63,
+          "rsi_extreme_count": 2,
+          "rsi_ultra_count": 0,
+          "escalation_count": 1,
+          "density_score": 3,
+          "rsi_score": 4,
+          "escalation_score": 4,
+          "description": "0.3 signals/week | 2 RSI<20 | 1 escalations | \ud83c\udfaf MILD COMPRESSION"
+        },
+        "intensification": {
+          "score": 5,
+          "max": 20,
+          "recent_types": [
+            "CRASH ZONE BOTTOM",
+            "DEEP CRASH BOTTOM",
+            "DEEP CRASH BOTTOM"
+          ],
+          "escalating": false,
+          "sustained": false,
+          "current_intensity": 2,
+          "pattern": "NORMAL CRASH LEVEL"
+        },
+        "volume_death": {
+          "score": 5,
+          "max": 15,
+          "relative_volume": 2.72,
+          "description": "Elevated volume - Some activity"
+        },
+        "pop_potential": {
+          "score": 10,
+          "max": 15,
+          "best_historical_rally": 395.2,
+          "avg_rally": 73.6,
+          "signal_count": 63,
+          "description": "SOLID MOVER - Historical 3x+ (395%)"
+        },
+        "accumulation": {
+          "score": 0,
+          "max": 10,
+          "has_accumulation": false,
+          "bars_since_accum": 0,
+          "description": "No accumulation"
+        }
+      },
+      "ticker": "VRS.L",
+      "signal_date": "2025-11-27",
+      "total_signals_history": 63
     }
   },
   "scoring_breakdown": {
@@ -1607,7 +1670,7 @@
     "sources_present": {
       "snapshot_json": false,
       "daily_enrichment_row": true,
-      "historical_profile": false,
+      "historical_profile": true,
       "metadata": true,
       "triangulation_events": true,
       "ai_insights": false

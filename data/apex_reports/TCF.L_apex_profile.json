@@ -1,7 +1,7 @@
 {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "TCF.L",
-  "generated_at": "2026-01-13T15:02:22.380574Z",
+  "generated_at": "2026-01-13T23:11:54.957548Z",
   "top_card": {
     "ticker": "TCF.L",
     "company_name": "Theracryf Plc",
@@ -12,9 +12,9 @@
     "confidence_score_100": 60,
     "ai_final_score_25": 12,
     "ai_strength": "MODERATE",
-    "timing_regime": "CONFIRMED",
-    "action": "HOLD/WATCH",
-    "thesis_one_liner": "HOLD/WATCH - CONFIRMED timing with 46/100 opportunity score"
+    "timing_regime": "EARLY_BUILD",
+    "action": "WATCH",
+    "thesis_one_liner": "WATCH - EARLY_BUILD timing with 46/100 opportunity score"
   },
   "enrichment": {
     "company_info": {
@@ -26,11 +26,11 @@
       "currency": "GBP",
       "risk_tier": "High Risk",
       "current_market_cap": 4512823,
-      "current_close_price": 0.2004
+      "current_close_price": 0.21
     },
     "basics": {
       "ticker": "TCF.L",
-      "current_price": 0.2004,
+      "current_price": 0.21,
       "ath": 16.7517,
       "atl": 0.175,
       "ath_date": "2020-05-15",
@@ -39,14 +39,14 @@
       "week_52_low": 0.175,
       "week_52_high_date": "2025-02-03",
       "week_52_low_date": "2025-10-14",
-      "drawdown_from_ath_pct": 98.8,
+      "drawdown_from_ath_pct": 98.75,
       "data_start": "2020-01-02",
       "data_end": "2026-01-13",
       "total_bars": 1523
     },
     "latest_signal": {
       "date": "2025-11-20",
-      "scan_date": "2026-01-12",
+      "scan_date": "2026-01-13",
       "signal_type": "CRASH ZONE BOTTOM",
       "signal_color": "YELLOW",
       "price": 0.19,
@@ -55,9 +55,9 @@
       "rsi": 0.0,
       "cycle_position": 0.1765,
       "holding_period_days": 54,
-      "current_pnl_pct": 5.47,
-      "rally_state": "rallying",
-      "distance_from_high_pct": -5.47,
+      "current_pnl_pct": 10.53,
+      "rally_state": "peaked",
+      "distance_from_high_pct": -0.94,
       "Rally_Count": 1,
       "days_since_last_high": 14,
       "last_high_date": "2025-12-30",
@@ -299,13 +299,13 @@
         "signal_type": "CRASH ZONE BOTTOM",
         "signal_color": "YELLOW",
         "entry_price": 0.19,
-        "current_price": 0.2004,
-        "current_return_pct": 5.47,
+        "current_price": 0.21,
+        "current_return_pct": 10.53,
         "best_rally_pct": 11.58,
         "best_rally_date": "2025-12-03",
-        "rally_state": "rallying",
+        "rally_state": "peaked",
         "Rally_Count": 1,
-        "distance_from_high_pct": -5.47,
+        "distance_from_high_pct": -0.94,
         "days_since_last_high": 14,
         "lock_in_reached": true,
         "age_days": 54,
@@ -335,12 +335,19 @@
       "EXTREME_DRAWDOWN",
       "FREQUENT_CRASHES"
     ],
-    "last_updated": "2026-01-13 14:06:12 UTC"
+    "last_updated": "2026-01-13 22:05:13 UTC",
+    "volatility": {
+      "atr_normalized": 10.0,
+      "stddev_20d": 0.0
+    },
+    "trends": {
+      "intelligence_signal": "TOPPED_OUT"
+    }
   },
   "decision_summary": {
     "why_it_matters": [
       "APEX 46/100 indicates moderate opportunity quality",
-      "Timing regime: CONFIRMED",
+      "Timing regime: EARLY_BUILD",
       "Historical profile: 1 rallies, 12% best run"
     ],
     "main_risk": "Confidence 60/100 - full data loaded",
@@ -410,16 +417,19 @@
       "current_interest": 0,
       "momentum_score": 0,
       "trend_direction": "flat",
-      "intelligence_signal": null
+      "intelligence_signal": "TOPPED_OUT"
     },
     "volatility": {
-      "atr_normalized": null,
-      "stddev_20d": null
+      "atr_normalized": 10.0,
+      "stddev_20d": 0.0
     },
     "risk_flags": {
       "split_risk_level": "NONE",
       "halt_risk": "NONE",
       "penny_stock_risk": "NONE"
+    },
+    "catalyst_dates": {
+      "proxy_date": "2025-12-03"
     }
   },
   "ai_insights": {
@@ -459,28 +469,37 @@
       ]
     },
     "panic_analysis": {
-      "panic_score": 16,
-      "signal": "NO_PANIC",
-      "interpretation": "\u26aa Calm market - no crash signals detected",
+      "panic_score": 74,
+      "signal": "HIGH_PANIC",
+      "interpretation": "\ud83d\udfe0 Fear dominant - watch for reversal signs",
       "breakdown": {
-        "price_destruction": 0,
-        "volume_death": 0,
+        "price_destruction": 40,
+        "volume_death": 18,
         "social_silence": 6,
         "news_sentiment": 10
       },
-      "is_opportunity": false,
-      "opportunity_reason": "\ud83d\ude10 Normal market conditions - no crash signal"
+      "is_opportunity": true,
+      "opportunity_reason": "\u26a0\ufe0f HIGH PANIC + Early timing = Potential accumulation phase"
     },
     "fear_vs_facts": {
-      "fear_points": [],
+      "fear_points": [
+        "\ud83d\udc94 Price destruction: 40/40 points",
+        "\ud83d\udcc9 Volume death: 18/20 points"
+      ],
       "facts_points": [],
-      "verdict": "\u2696\ufe0f Mixed signals - Fear and facts balanced, wait for clarity"
+      "verdict": "\ud83c\udfaf CONTRARIAN OPPORTUNITY - Fear dominates but facts support recovery potential"
     },
     "crashhunter_signals": [
       {
-        "type": "CONFIRMED",
-        "icon": "\u2705",
-        "text": "Confirmed",
+        "type": "HIGH_PANIC",
+        "icon": "\ud83d\udfe0",
+        "text": "Fear 74/100",
+        "color": "#f59e0b"
+      },
+      {
+        "type": "BUILDING",
+        "icon": "\ud83d\udcca",
+        "text": "Building",
         "color": "#10b981"
       }
     ],
@@ -519,21 +538,35 @@
         "title": "Notice of Results",
         "status": "published",
         "icon": "\ud83d\udce2"
+      },
+      {
+        "type": "expected",
+        "date": "Expected soon",
+        "title": "Watch for: Funding announcement or operational update",
+        "status": "pending",
+        "icon": "\ud83d\udd2e"
+      },
+      {
+        "type": "expected",
+        "date": "Expected soon",
+        "title": "Watch for: Volume expansion confirmation",
+        "status": "pending",
+        "icon": "\ud83d\udd2e"
       }
     ],
     "decision_matrix": {
-      "decision": "AVOID",
-      "reason": "\u274c HOLD/WATCH - timing CONFIRMED",
+      "decision": "WATCH",
+      "reason": "\u23f3 Monitor for timing regime change or panic escalation",
       "checklist": [
         {
           "criterion": "Panic Score",
-          "value": "16/100",
-          "pass": false,
-          "icon": "\ud83d\udfe2"
+          "value": "74/100",
+          "pass": true,
+          "icon": "\ud83d\udd34"
         },
         {
           "criterion": "Timing Regime",
-          "value": "CONFIRMED",
+          "value": "EARLY_BUILD",
           "pass": true,
           "icon": "\u2705"
         },
@@ -556,7 +589,66 @@
           "icon": "\ud83c\udfed"
         }
       ],
-      "pass_rate": "3/5"
+      "pass_rate": "4/5"
+    },
+    "contrarian_panic": {
+      "total_score": 24,
+      "band": "\u26aa LOW COMPRESSION (Early/Weak)",
+      "components": {
+        "compression": {
+          "score": 7,
+          "max": 40,
+          "signals_30d": 1,
+          "signals_60d": 2,
+          "signals_90d": 2,
+          "signals_per_week": 0.15,
+          "total_signals": 13,
+          "rsi_extreme_count": 1,
+          "rsi_ultra_count": 1,
+          "escalation_count": 0,
+          "density_score": 3,
+          "rsi_score": 4,
+          "escalation_score": 0,
+          "description": "0.2 signals/week | 1 RSI<20 | Early stage"
+        },
+        "intensification": {
+          "score": 5,
+          "max": 20,
+          "recent_types": [
+            "ENHANCED CRASH CRASH-ACCUM COMBO",
+            "CRASH ZONE BOTTOM",
+            "CRASH ZONE BOTTOM"
+          ],
+          "escalating": false,
+          "sustained": false,
+          "current_intensity": 1,
+          "pattern": "NORMAL CRASH LEVEL"
+        },
+        "volume_death": {
+          "score": 8,
+          "max": 15,
+          "relative_volume": 7.53,
+          "description": "High volume - Panic spike or interest"
+        },
+        "pop_potential": {
+          "score": 4,
+          "max": 15,
+          "best_historical_rally": 80.7,
+          "avg_rally": 39.8,
+          "signal_count": 13,
+          "description": "Baseline mover (81%)"
+        },
+        "accumulation": {
+          "score": 0,
+          "max": 10,
+          "has_accumulation": false,
+          "bars_since_accum": 0,
+          "description": "No accumulation"
+        }
+      },
+      "ticker": "TCF.L",
+      "signal_date": "2025-11-20",
+      "total_signals_history": 13
     }
   },
   "scoring_breakdown": {
@@ -600,6 +692,14 @@
   "reasons_buy_sell": {
     "reasons_to_buy": [
       {
+        "reason": "Early stage positioning offers best R:R if catalysts appear",
+        "tag": "MED",
+        "evidence": [
+          "timing_regime=EARLY_BUILD",
+          "current_return_pct=10.5%"
+        ]
+      },
+      {
         "reason": "Proven winner - previously hit lock-in target",
         "tag": "MED",
         "evidence": [
@@ -611,11 +711,11 @@
   },
   "trade_plan": {
     "trader_plan": {
-      "style": "Active trade",
-      "action": "HOLD/WATCH",
-      "sizing": "1-3% position based on conviction",
-      "risk": "Stop below recent support / invalidation level",
-      "profit_taking": "Scale out into strength: 25% @ +15%, 50% @ +50%, trail runner"
+      "style": "Watch / Starter",
+      "action": "Wait for base + catalyst confirmation; starter position only",
+      "sizing": "0-1% until CONFIRMED",
+      "risk": "Invalidation = breaks recent lows / dilution / suspension",
+      "profit_taking": "Scale out 25% at +15%, 25% at +50%, runner above"
     },
     "investor_plan": {
       "allowed": false,
@@ -625,9 +725,9 @@
     }
   },
   "exhaustion": {
-    "regime": "CONFIRMED",
-    "run_multiple": 0.36,
-    "current_run_pct": 5.47,
+    "regime": "EARLY_BUILD",
+    "run_multiple": 0.7,
+    "current_run_pct": 10.53,
     "avg_historical_run_pct": 11.58
   },
   "history_snapshot": {
@@ -638,21 +738,21 @@
     "new_rns_titles": []
   },
   "commentary": {
-    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows CONFIRMED timing with 46/100 APEX score. Historical data shows 1 rallies averaging 12% upside. Current position: +5.5%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
+    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows EARLY_BUILD timing with 46/100 APEX score. Historical data shows 1 rallies averaging 12% upside. Current position: +10.5%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
     "bull_case": [
-      "Limited upside case without catalysts"
+      "Early regime often offers best risk/reward"
     ],
     "bear_case": [
       "Monitor for breakdown signals"
     ],
-    "timing_translation": "Momentum confirmed. This is the trade zone if thesis holds.",
+    "timing_translation": "Early accumulation phase. Watch for confirmation before committing size.",
     "confidence_explained": "Confidence 60/100 reflects full data quality with triangulation loaded."
   },
   "data_quality": {
     "sources_present": {
       "snapshot_json": false,
       "daily_enrichment_row": true,
-      "historical_profile": false,
+      "historical_profile": true,
       "metadata": true,
       "triangulation_events": true,
       "ai_insights": false

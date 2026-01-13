@@ -1,20 +1,20 @@
 {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "VAST.L",
-  "generated_at": "2026-01-13T15:02:22.759057Z",
+  "generated_at": "2026-01-13T23:11:56.121490Z",
   "top_card": {
     "ticker": "VAST.L",
     "company_name": "Vast Resources plc",
     "sector": "Basic Materials",
     "market_cap_gbp": 59970,
     "days_active": 48,
-    "apex_score_100": 29,
+    "apex_score_100": 14,
     "confidence_score_100": 30,
     "ai_final_score_25": 16,
     "ai_strength": "STRONG",
     "timing_regime": "BROKEN",
     "action": "AVOID",
-    "thesis_one_liner": "AVOID - BROKEN timing with 29/100 opportunity score"
+    "thesis_one_liner": "AVOID - BROKEN timing with 14/100 opportunity score"
   },
   "enrichment": {
     "company_info": {
@@ -46,7 +46,7 @@
     },
     "latest_signal": {
       "date": "2025-11-25",
-      "scan_date": "2026-01-12",
+      "scan_date": "2026-01-13",
       "signal_type": "CRASH ZONE BOTTOM",
       "signal_color": "YELLOW",
       "price": 0.11,
@@ -1420,15 +1420,37 @@
     },
     "splits": [
       {
-        "date": "2025-12-24",
-        "ratio": "1:20",
-        "ratio_value": 100.0
+        "date": "2021-05-06",
+        "detected_at": "2026-01-13T16:49:44.401537",
+        "market": "LSE_AIM",
+        "ratio": 0.01,
+        "ratio_display": "1/100",
+        "source": "yahoo",
+        "type": "stock_split"
+      },
+      {
+        "date": "2024-03-01",
+        "detected_at": "2026-01-13T16:49:44.401699",
+        "market": "LSE_AIM",
+        "ratio": 0.1666666666666666,
+        "ratio_display": "1/6",
+        "source": "yahoo",
+        "type": "stock_split"
       }
     ],
     "split_risk": {
-      "split_detected": false,
-      "risk_level": "NONE",
-      "confidence": "HIGH"
+      "split_detected": true,
+      "risk_level": "HIGH",
+      "confidence": "HIGH",
+      "latest_split": {
+        "date": "2024-03-01",
+        "detected_at": "2026-01-13T16:49:44.401699",
+        "market": "LSE_AIM",
+        "ratio": 0.1666666666666666,
+        "ratio_display": "1/6",
+        "source": "yahoo",
+        "type": "stock_split"
+      }
     },
     "data_quality": {
       "price_reliability": "RELIABLE",
@@ -1441,11 +1463,18 @@
       "PENNY_STOCK",
       "FREQUENT_CRASHES"
     ],
-    "last_updated": "2026-01-13 14:05:53 UTC"
+    "last_updated": "2026-01-13 22:04:44 UTC",
+    "volatility": {
+      "atr_normalized": 8.25,
+      "stddev_20d": 0.0
+    },
+    "trends": {
+      "intelligence_signal": "ACCUMULATION"
+    }
   },
   "decision_summary": {
     "why_it_matters": [
-      "APEX 29/100 indicates moderate opportunity quality",
+      "APEX 14/100 indicates weak opportunity quality",
       "Timing regime: BROKEN",
       "Historical profile: 0 rallies, 9% best run"
     ],
@@ -1518,16 +1547,19 @@
       "current_interest": 0,
       "momentum_score": 0,
       "trend_direction": "flat",
-      "intelligence_signal": null
+      "intelligence_signal": "ACCUMULATION"
     },
     "volatility": {
-      "atr_normalized": null,
-      "stddev_20d": null
+      "atr_normalized": 8.25,
+      "stddev_20d": 0.0
     },
     "risk_flags": {
       "split_risk_level": "NONE",
       "halt_risk": "NONE",
       "penny_stock_risk": "HIGH"
+    },
+    "catalyst_dates": {
+      "proxy_date": "2025-12-22"
     }
   },
   "ai_insights": {
@@ -1565,12 +1597,12 @@
       ]
     },
     "panic_analysis": {
-      "panic_score": 54,
+      "panic_score": 58,
       "signal": "MODERATE_FEAR",
       "interpretation": "\ud83d\udfe1 Cautious sentiment - assess risk/reward",
       "breakdown": {
         "price_destruction": 40,
-        "volume_death": 6,
+        "volume_death": 10,
         "social_silence": 6,
         "news_sentiment": 2
       },
@@ -1643,7 +1675,7 @@
       "checklist": [
         {
           "criterion": "Panic Score",
-          "value": "54/100",
+          "value": "58/100",
           "pass": false,
           "icon": "\ud83d\udfe2"
         },
@@ -1655,7 +1687,7 @@
         },
         {
           "criterion": "APEX Quality",
-          "value": "29/100",
+          "value": "14/100",
           "pass": false,
           "icon": "\u26a0\ufe0f"
         },
@@ -1673,6 +1705,65 @@
         }
       ],
       "pass_rate": "1/5"
+    },
+    "contrarian_panic": {
+      "total_score": 26,
+      "band": "\u26aa LOW COMPRESSION (Early/Weak)",
+      "components": {
+        "compression": {
+          "score": 7,
+          "max": 40,
+          "signals_30d": 2,
+          "signals_60d": 2,
+          "signals_90d": 2,
+          "signals_per_week": 0.15,
+          "total_signals": 74,
+          "rsi_extreme_count": 2,
+          "rsi_ultra_count": 0,
+          "escalation_count": 0,
+          "density_score": 3,
+          "rsi_score": 4,
+          "escalation_score": 0,
+          "description": "0.2 signals/week | 2 RSI<20 | Early stage"
+        },
+        "intensification": {
+          "score": 5,
+          "max": 20,
+          "recent_types": [
+            "EXTREME CRASH BOTTOM",
+            "CRASH ZONE BOTTOM",
+            "CRASH ZONE BOTTOM"
+          ],
+          "escalating": false,
+          "sustained": false,
+          "current_intensity": 1,
+          "pattern": "NORMAL CRASH LEVEL"
+        },
+        "volume_death": {
+          "score": 0,
+          "max": 15,
+          "relative_volume": 1.6,
+          "description": "Normal volume"
+        },
+        "pop_potential": {
+          "score": 14,
+          "max": 15,
+          "best_historical_rally": 620.0,
+          "avg_rally": 173.0,
+          "signal_count": 74,
+          "description": "BIG POPPER - Historical 5x+ (620%)"
+        },
+        "accumulation": {
+          "score": 0,
+          "max": 10,
+          "has_accumulation": false,
+          "bars_since_accum": 0,
+          "description": "No accumulation"
+        }
+      },
+      "ticker": "VAST.L",
+      "signal_date": "2025-11-25",
+      "total_signals_history": 74
     }
   },
   "scoring_breakdown": {
@@ -1682,6 +1773,7 @@
       "Volume confirmation: +6 (Relative_Volume=1.6)",
       "Pattern reliability: +0 (Rally_Count=0.0)",
       "Upside history: +2 (best_rally_pct=9%)",
+      "Split risk penalty: -15 (HIGH, age_factor=1.00)",
       "Round-trip collapse: -12 (lock_in_reached=True, current_return=-98.9%)"
     ],
     "technical_score": {
@@ -1710,8 +1802,9 @@
       "reason": "Best rally of 9% gives 2/20 points"
     },
     "penalties": {
-      "total": -12,
+      "total": -27,
       "items": [
+        "Split risk penalty: -15 (HIGH, age_factor=1.00)",
         "Round-trip collapse: -12 (lock_in_reached=True, current_return=-98.9%)"
       ]
     }
@@ -1774,7 +1867,7 @@
     "new_rns_titles": []
   },
   "commentary": {
-    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows BROKEN timing with 29/100 APEX score. Historical data shows 0 rallies averaging 9% upside. Current position: -98.9%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
+    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows BROKEN timing with 14/100 APEX score. Historical data shows 0 rallies averaging 9% upside. Current position: -98.9%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
     "bull_case": [
       "Limited upside case without catalysts"
     ],
@@ -1788,7 +1881,7 @@
     "sources_present": {
       "snapshot_json": false,
       "daily_enrichment_row": true,
-      "historical_profile": false,
+      "historical_profile": true,
       "metadata": true,
       "triangulation_events": true,
       "ai_insights": false

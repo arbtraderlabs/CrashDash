@@ -1,7 +1,7 @@
 {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "CHSS.L",
-  "generated_at": "2026-01-13T15:02:22.087745Z",
+  "generated_at": "2026-01-13T23:11:54.369490Z",
   "top_card": {
     "ticker": "CHSS.L",
     "company_name": "World Chess PLC",
@@ -26,11 +26,11 @@
       "currency": "GBP",
       "risk_tier": "Low Risk",
       "current_market_cap": 5277631,
-      "current_close_price": 0.8
+      "current_close_price": 0.85
     },
     "basics": {
       "ticker": "CHSS.L",
-      "current_price": 0.8,
+      "current_price": 0.85,
       "ath": 18.0,
       "atl": 0.004,
       "ath_date": "2024-07-29",
@@ -39,14 +39,14 @@
       "week_52_low": 0.004,
       "week_52_high_date": "2025-03-03",
       "week_52_low_date": "2025-11-17",
-      "drawdown_from_ath_pct": 95.56,
+      "drawdown_from_ath_pct": 95.28,
       "data_start": "2023-04-06",
       "data_end": "2026-01-13",
       "total_bars": 699
     },
     "latest_signal": {
       "date": "2025-11-17",
-      "scan_date": "2026-01-12",
+      "scan_date": "2026-01-13",
       "signal_type": "ULTRA CRASH BOTTOM",
       "signal_color": "RED",
       "price": 0.0061,
@@ -55,9 +55,9 @@
       "rsi": 0.0,
       "cycle_position": 0.0008,
       "holding_period_days": 57,
-      "current_pnl_pct": 13014.75,
+      "current_pnl_pct": 13834.43,
       "rally_state": "rallying",
-      "distance_from_high_pct": -11.11,
+      "distance_from_high_pct": -5.56,
       "Rally_Count": 1,
       "days_since_last_high": 22,
       "last_high_date": "2025-12-22",
@@ -482,13 +482,13 @@
         "signal_type": "ULTRA CRASH BOTTOM",
         "signal_color": "RED",
         "entry_price": 0.0061,
-        "current_price": 0.8,
-        "current_return_pct": 13014.75,
+        "current_price": 0.85,
+        "current_return_pct": 13834.43,
         "best_rally_pct": 14654.1,
         "best_rally_date": "2025-12-17",
         "rally_state": "rallying",
         "Rally_Count": 1,
-        "distance_from_high_pct": -11.11,
+        "distance_from_high_pct": -5.56,
         "days_since_last_high": 22,
         "lock_in_reached": true,
         "age_days": 57,
@@ -511,15 +511,9 @@
       }
     ],
     "split_risk": {
-      "split_detected": true,
-      "split_date": "2025-11-17",
-      "split_ratio": "1:20",
-      "days_from_split": 0,
-      "split_type": "REVERSE_SPLIT",
-      "risk_level": "HIGH",
-      "confidence": "LOW",
-      "warning": "Signal occurred near stock split on 2025-11-17 (1:20) - price data may be affected by corporate action",
-      "recommendation": "VERIFY price data independently before trading - P&L calculations may be inaccurate near corporate actions"
+      "split_detected": false,
+      "risk_level": "NONE",
+      "confidence": "HIGH"
     },
     "data_quality": {
       "price_reliability": "SUSPECT",
@@ -532,7 +526,14 @@
       "EXTREME_DRAWDOWN",
       "FREQUENT_CRASHES"
     ],
-    "last_updated": "2026-01-13 14:06:15 UTC"
+    "last_updated": "2026-01-13 22:05:18 UTC",
+    "volatility": {
+      "atr_normalized": 10.0,
+      "stddev_20d": 0.0
+    },
+    "trends": {
+      "intelligence_signal": "UPTREND"
+    }
   },
   "decision_summary": {
     "why_it_matters": [
@@ -607,16 +608,19 @@
       "current_interest": 0,
       "momentum_score": 0,
       "trend_direction": "flat",
-      "intelligence_signal": null
+      "intelligence_signal": "UPTREND"
     },
     "volatility": {
-      "atr_normalized": null,
-      "stddev_20d": null
+      "atr_normalized": 10.0,
+      "stddev_20d": 0.0
     },
     "risk_flags": {
       "split_risk_level": "HIGH",
       "halt_risk": "NONE",
       "penny_stock_risk": "NONE"
+    },
+    "catalyst_dates": {
+      "proxy_date": "2025-12-17"
     }
   },
   "ai_insights": {
@@ -656,26 +660,35 @@
       ]
     },
     "panic_analysis": {
-      "panic_score": 16,
-      "signal": "NO_PANIC",
-      "interpretation": "\u26aa Calm market - no crash signals detected",
+      "panic_score": 74,
+      "signal": "HIGH_PANIC",
+      "interpretation": "\ud83d\udfe0 Fear dominant - watch for reversal signs",
       "breakdown": {
-        "price_destruction": 0,
-        "volume_death": 0,
+        "price_destruction": 40,
+        "volume_death": 18,
         "social_silence": 6,
         "news_sentiment": 10
       },
       "is_opportunity": false,
-      "opportunity_reason": "\ud83d\ude10 Normal market conditions - no crash signal"
+      "opportunity_reason": "\ud83d\udcca Moderate fear detected - monitor for escalation"
     },
     "fear_vs_facts": {
-      "fear_points": [],
+      "fear_points": [
+        "\ud83d\udc94 Price destruction: 40/40 points",
+        "\ud83d\udcc9 Volume death: 18/20 points"
+      ],
       "facts_points": [
         "\ud83d\udcc8 Historical upside: 14654% proven capacity"
       ],
-      "verdict": "\u2705 Facts align with low fear - Normal risk/reward"
+      "verdict": "\ud83c\udfaf CONTRARIAN OPPORTUNITY - Fear dominates but facts support recovery potential"
     },
     "crashhunter_signals": [
+      {
+        "type": "HIGH_PANIC",
+        "icon": "\ud83d\udfe0",
+        "text": "Fear 74/100",
+        "color": "#f59e0b"
+      },
       {
         "type": "BROKEN",
         "icon": "\u274c",
@@ -726,9 +739,9 @@
       "checklist": [
         {
           "criterion": "Panic Score",
-          "value": "16/100",
-          "pass": false,
-          "icon": "\ud83d\udfe2"
+          "value": "74/100",
+          "pass": true,
+          "icon": "\ud83d\udd34"
         },
         {
           "criterion": "Timing Regime",
@@ -755,7 +768,66 @@
           "icon": "\ud83c\udfed"
         }
       ],
-      "pass_rate": "2/5"
+      "pass_rate": "3/5"
+    },
+    "contrarian_panic": {
+      "total_score": 56,
+      "band": "\ud83d\udfe1 MODERATE COMPRESSION (Top 30% - GOOD SETUP)",
+      "components": {
+        "compression": {
+          "score": 25,
+          "max": 40,
+          "signals_30d": 2,
+          "signals_60d": 2,
+          "signals_90d": 9,
+          "signals_per_week": 0.69,
+          "total_signals": 23,
+          "rsi_extreme_count": 9,
+          "rsi_ultra_count": 8,
+          "escalation_count": 2,
+          "density_score": 8,
+          "rsi_score": 10,
+          "escalation_score": 7,
+          "description": "0.7 signals/week | 9 RSI<20 | 2 escalations | \u26a1 HIGH COMPRESSION"
+        },
+        "intensification": {
+          "score": 8,
+          "max": 20,
+          "recent_types": [
+            "DEEP CRASH BOTTOM",
+            "CRASH ZONE BOTTOM",
+            "ULTRA CRASH BOTTOM"
+          ],
+          "escalating": false,
+          "sustained": false,
+          "current_intensity": 4,
+          "pattern": "AT EXTREME LEVEL"
+        },
+        "volume_death": {
+          "score": 8,
+          "max": 15,
+          "relative_volume": 14.46,
+          "description": "High volume - Panic spike or interest"
+        },
+        "pop_potential": {
+          "score": 15,
+          "max": 15,
+          "best_historical_rally": 14654.1,
+          "avg_rally": 743.5,
+          "signal_count": 23,
+          "description": "MONSTER POPPER - Historical 10x+ (14654%)"
+        },
+        "accumulation": {
+          "score": 0,
+          "max": 10,
+          "has_accumulation": false,
+          "bars_since_accum": 0,
+          "description": "No accumulation"
+        }
+      },
+      "ticker": "CHSS.L",
+      "signal_date": "2025-11-17",
+      "total_signals_history": 23
     }
   },
   "scoring_breakdown": {
@@ -765,7 +837,7 @@
       "Volume confirmation: +10 (Relative_Volume=14.5)",
       "Pattern reliability: +5 (Rally_Count=1.0)",
       "Upside history: +20 (best_rally_pct=14654%)",
-      "Split risk penalty: -15 (split_risk_level=HIGH)",
+      "Split risk penalty: -15 (HIGH, age_factor=1.00)",
       "Recent exhaustion: -10 (best_rally=14654%, days_since_high=22.0)"
     ],
     "technical_score": {
@@ -796,7 +868,7 @@
     "penalties": {
       "total": -25,
       "items": [
-        "Split risk penalty: -15 (split_risk_level=HIGH)",
+        "Split risk penalty: -15 (HIGH, age_factor=1.00)",
         "Recent exhaustion: -10 (best_rally=14654%, days_since_high=22.0)"
       ]
     }
@@ -846,8 +918,8 @@
   },
   "exhaustion": {
     "regime": "BROKEN",
-    "run_multiple": 0.89,
-    "current_run_pct": 13014.75,
+    "run_multiple": 0.94,
+    "current_run_pct": 13834.43,
     "avg_historical_run_pct": 14654.1
   },
   "history_snapshot": {
@@ -858,7 +930,7 @@
     "new_rns_titles": []
   },
   "commentary": {
-    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows BROKEN timing with 49/100 APEX score. Historical data shows 1 rallies averaging 14654% upside. Current position: +13014.8%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
+    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows BROKEN timing with 49/100 APEX score. Historical data shows 1 rallies averaging 14654% upside. Current position: +13834.4%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
     "bull_case": [
       "Strong historical rally behavior (14654% best run)"
     ],
@@ -872,7 +944,7 @@
     "sources_present": {
       "snapshot_json": false,
       "daily_enrichment_row": true,
-      "historical_profile": false,
+      "historical_profile": true,
       "metadata": true,
       "triangulation_events": true,
       "ai_insights": false

@@ -1,7 +1,7 @@
 {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "AMG.L",
-  "generated_at": "2026-01-13T22:04:40.185199Z",
+  "generated_at": "2026-01-13T23:22:50.665029Z",
   "top_card": {
     "ticker": "AMG.L",
     "company_name": "Atlas Metals Group plc",
@@ -966,7 +966,7 @@
       "EXTREME_DRAWDOWN",
       "FREQUENT_CRASHES"
     ],
-    "last_updated": "2026-01-13 20:05:54 UTC",
+    "last_updated": "2026-01-13 22:04:46 UTC",
     "volatility": {
       "atr_normalized": 5.79,
       "stddev_20d": 0.0
@@ -1136,24 +1136,32 @@
       ]
     },
     "panic_analysis": {
-      "panic_score": 35,
-      "signal": "MILD_CONCERN",
-      "interpretation": "\ud83d\udfe2 Normal volatility - not a crash signal",
+      "panic_score": 70,
+      "signal": "HIGH_PANIC",
+      "interpretation": "\ud83d\udfe0 Fear dominant - watch for reversal signs",
       "breakdown": {
-        "price_destruction": 5,
+        "price_destruction": 40,
         "volume_death": 14,
         "social_silence": 6,
         "news_sentiment": 10
       },
-      "is_opportunity": false,
-      "opportunity_reason": "\ud83d\ude10 Normal market conditions - no crash signal"
+      "is_opportunity": true,
+      "opportunity_reason": "\u26a0\ufe0f HIGH PANIC + Early timing = Potential accumulation phase"
     },
     "fear_vs_facts": {
-      "fear_points": [],
+      "fear_points": [
+        "\ud83d\udc94 Price destruction: 40/40 points"
+      ],
       "facts_points": [],
-      "verdict": "\u2696\ufe0f Mixed signals - Fear and facts balanced, wait for clarity"
+      "verdict": "\ud83c\udfaf CONTRARIAN OPPORTUNITY - Fear dominates but facts support recovery potential"
     },
     "crashhunter_signals": [
+      {
+        "type": "HIGH_PANIC",
+        "icon": "\ud83d\udfe0",
+        "text": "Fear 70/100",
+        "color": "#f59e0b"
+      },
       {
         "type": "EARLY",
         "icon": "\u23f0",
@@ -1218,9 +1226,9 @@
       "checklist": [
         {
           "criterion": "Panic Score",
-          "value": "35/100",
-          "pass": false,
-          "icon": "\ud83d\udfe2"
+          "value": "70/100",
+          "pass": true,
+          "icon": "\ud83d\udd34"
         },
         {
           "criterion": "Timing Regime",
@@ -1247,7 +1255,66 @@
           "icon": "\ud83c\udfed"
         }
       ],
-      "pass_rate": "3/5"
+      "pass_rate": "4/5"
+    },
+    "contrarian_panic": {
+      "total_score": 61,
+      "band": "\ud83d\udfe0 HIGH COMPRESSION (Top 15% - STRONG OPPORTUNITY)",
+      "components": {
+        "compression": {
+          "score": 25,
+          "max": 40,
+          "signals_30d": 9,
+          "signals_60d": 9,
+          "signals_90d": 9,
+          "signals_per_week": 0.69,
+          "total_signals": 47,
+          "rsi_extreme_count": 5,
+          "rsi_ultra_count": 0,
+          "escalation_count": 1,
+          "density_score": 8,
+          "rsi_score": 10,
+          "escalation_score": 4,
+          "description": "0.7 signals/week | 5 RSI<20 | 1 escalations | \u26a1 HIGH COMPRESSION"
+        },
+        "intensification": {
+          "score": 8,
+          "max": 20,
+          "recent_types": [
+            "CRASH ZONE BOTTOM",
+            "ENHANCED CRASH CRASH-ACCUM COMBO",
+            "ENHANCED CRASH CRASH-ACCUM COMBO"
+          ],
+          "escalating": false,
+          "sustained": false,
+          "current_intensity": 5,
+          "pattern": "AT EXTREME LEVEL"
+        },
+        "volume_death": {
+          "score": 5,
+          "max": 15,
+          "relative_volume": 2.52,
+          "description": "Elevated volume - Some activity"
+        },
+        "pop_potential": {
+          "score": 15,
+          "max": 15,
+          "best_historical_rally": 672.4,
+          "avg_rally": 349.3,
+          "signal_count": 47,
+          "description": "BIG POPPER - Historical 5x+ (672%)"
+        },
+        "accumulation": {
+          "score": 8,
+          "max": 10,
+          "has_accumulation": true,
+          "bars_since_accum": 1,
+          "description": "Accum 1 bars ago"
+        }
+      },
+      "ticker": "AMG.L",
+      "signal_date": "2026-01-12",
+      "total_signals_history": 47
     }
   },
   "scoring_breakdown": {
@@ -1347,7 +1414,7 @@
     "sources_present": {
       "snapshot_json": false,
       "daily_enrichment_row": true,
-      "historical_profile": false,
+      "historical_profile": true,
       "metadata": true,
       "triangulation_events": true,
       "ai_insights": true

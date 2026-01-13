@@ -1,7 +1,7 @@
 {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "OBD.L",
-  "generated_at": "2026-01-13T15:02:23.132291Z",
+  "generated_at": "2026-01-13T23:11:56.698886Z",
   "top_card": {
     "ticker": "OBD.L",
     "company_name": "Oxford BioDynamics Plc",
@@ -26,11 +26,11 @@
       "currency": "GBP",
       "risk_tier": "High Risk",
       "current_market_cap": 10744441,
-      "current_close_price": 0.2598
+      "current_close_price": 0.264
     },
     "basics": {
       "ticker": "OBD.L",
-      "current_price": 0.2598,
+      "current_price": 0.264,
       "ath": 125.0,
       "atl": 0.203,
       "ath_date": "2021-03-23",
@@ -46,7 +46,7 @@
     },
     "latest_signal": {
       "date": "2025-12-02",
-      "scan_date": "2026-01-12",
+      "scan_date": "2026-01-13",
       "signal_type": "CRASH ZONE BOTTOM",
       "signal_color": "YELLOW",
       "price": 0.254,
@@ -55,9 +55,9 @@
       "rsi": 41.3,
       "cycle_position": 0.0275,
       "holding_period_days": 42,
-      "current_pnl_pct": 2.28,
+      "current_pnl_pct": 3.94,
       "rally_state": "rallying",
-      "distance_from_high_pct": -7.21,
+      "distance_from_high_pct": -5.71,
       "Rally_Count": 1,
       "days_since_last_high": 11,
       "last_high_date": "2026-01-02",
@@ -1019,13 +1019,13 @@
         "signal_type": "DEEP CRASH BOTTOM",
         "signal_color": "GREEN",
         "entry_price": 0.255,
-        "current_price": 0.2598,
-        "current_return_pct": 1.88,
+        "current_price": 0.264,
+        "current_return_pct": 3.53,
         "best_rally_pct": 17.65,
         "best_rally_date": "2025-12-01",
         "rally_state": "rallying",
         "Rally_Count": 1,
-        "distance_from_high_pct": -13.4,
+        "distance_from_high_pct": -12.0,
         "days_since_last_high": 11,
         "lock_in_reached": true,
         "age_days": 46,
@@ -1037,13 +1037,13 @@
         "signal_type": "CRASH ZONE BOTTOM",
         "signal_color": "YELLOW",
         "entry_price": 0.254,
-        "current_price": 0.2598,
-        "current_return_pct": 2.28,
+        "current_price": 0.264,
+        "current_return_pct": 3.94,
         "best_rally_pct": 10.24,
         "best_rally_date": "2026-01-12",
         "rally_state": "rallying",
         "Rally_Count": 1,
-        "distance_from_high_pct": -7.21,
+        "distance_from_high_pct": -5.71,
         "days_since_last_high": 11,
         "lock_in_reached": false,
         "age_days": 42,
@@ -1073,7 +1073,14 @@
       "EXTREME_DRAWDOWN",
       "FREQUENT_CRASHES"
     ],
-    "last_updated": "2026-01-13 14:05:55 UTC"
+    "last_updated": "2026-01-13 22:04:47 UTC",
+    "volatility": {
+      "atr_normalized": 5.87,
+      "stddev_20d": 0.0
+    },
+    "trends": {
+      "intelligence_signal": "UPTREND"
+    }
   },
   "decision_summary": {
     "why_it_matters": [
@@ -1146,16 +1153,19 @@
       "current_interest": 0,
       "momentum_score": 0,
       "trend_direction": "flat",
-      "intelligence_signal": null
+      "intelligence_signal": "UPTREND"
     },
     "volatility": {
-      "atr_normalized": null,
-      "stddev_20d": null
+      "atr_normalized": 5.87,
+      "stddev_20d": 0.0
     },
     "risk_flags": {
       "split_risk_level": "NONE",
       "halt_risk": "NONE",
       "penny_stock_risk": "NONE"
+    },
+    "catalyst_dates": {
+      "proxy_date": "2026-01-12"
     }
   },
   "ai_insights": {
@@ -1195,24 +1205,32 @@
       ]
     },
     "panic_analysis": {
-      "panic_score": 16,
-      "signal": "NO_PANIC",
-      "interpretation": "\u26aa Calm market - no crash signals detected",
+      "panic_score": 70,
+      "signal": "HIGH_PANIC",
+      "interpretation": "\ud83d\udfe0 Fear dominant - watch for reversal signs",
       "breakdown": {
-        "price_destruction": 0,
-        "volume_death": 0,
+        "price_destruction": 40,
+        "volume_death": 14,
         "social_silence": 6,
         "news_sentiment": 10
       },
       "is_opportunity": false,
-      "opportunity_reason": "\ud83d\ude10 Normal market conditions - no crash signal"
+      "opportunity_reason": "\ud83d\udcca Moderate fear detected - monitor for escalation"
     },
     "fear_vs_facts": {
-      "fear_points": [],
+      "fear_points": [
+        "\ud83d\udc94 Price destruction: 40/40 points"
+      ],
       "facts_points": [],
-      "verdict": "\u2696\ufe0f Mixed signals - Fear and facts balanced, wait for clarity"
+      "verdict": "\ud83c\udfaf CONTRARIAN OPPORTUNITY - Fear dominates but facts support recovery potential"
     },
     "crashhunter_signals": [
+      {
+        "type": "HIGH_PANIC",
+        "icon": "\ud83d\udfe0",
+        "text": "Fear 70/100",
+        "color": "#f59e0b"
+      },
       {
         "type": "CONFIRMED",
         "icon": "\u2705",
@@ -1263,9 +1281,9 @@
       "checklist": [
         {
           "criterion": "Panic Score",
-          "value": "16/100",
-          "pass": false,
-          "icon": "\ud83d\udfe2"
+          "value": "70/100",
+          "pass": true,
+          "icon": "\ud83d\udd34"
         },
         {
           "criterion": "Timing Regime",
@@ -1292,7 +1310,66 @@
           "icon": "\ud83c\udfed"
         }
       ],
-      "pass_rate": "3/5"
+      "pass_rate": "4/5"
+    },
+    "contrarian_panic": {
+      "total_score": 34,
+      "band": "\ud83d\udfe2 MILD COMPRESSION (Top 50% - WATCHLIST)",
+      "components": {
+        "compression": {
+          "score": 17,
+          "max": 40,
+          "signals_30d": 5,
+          "signals_60d": 6,
+          "signals_90d": 6,
+          "signals_per_week": 0.46,
+          "total_signals": 54,
+          "rsi_extreme_count": 1,
+          "rsi_ultra_count": 0,
+          "escalation_count": 2,
+          "density_score": 3,
+          "rsi_score": 4,
+          "escalation_score": 7,
+          "description": "0.5 signals/week | 1 RSI<20 | 2 escalations | \ud83d\udcca MODERATE COMPRESSION"
+        },
+        "intensification": {
+          "score": 5,
+          "max": 20,
+          "recent_types": [
+            "ENHANCED DEEP CRASH-ACCUM COMBO",
+            "DEEP CRASH BOTTOM",
+            "CRASH ZONE BOTTOM"
+          ],
+          "escalating": false,
+          "sustained": false,
+          "current_intensity": 1,
+          "pattern": "NORMAL CRASH LEVEL"
+        },
+        "volume_death": {
+          "score": 5,
+          "max": 15,
+          "relative_volume": 2.43,
+          "description": "Elevated volume - Some activity"
+        },
+        "pop_potential": {
+          "score": 7,
+          "max": 15,
+          "best_historical_rally": 193.8,
+          "avg_rally": 44.3,
+          "signal_count": 54,
+          "description": "Moderate performer (194%)"
+        },
+        "accumulation": {
+          "score": 0,
+          "max": 10,
+          "has_accumulation": false,
+          "bars_since_accum": 0,
+          "description": "No accumulation"
+        }
+      },
+      "ticker": "OBD.L",
+      "signal_date": "2025-12-02",
+      "total_signals_history": 54
     }
   },
   "scoring_breakdown": {
@@ -1354,8 +1431,8 @@
   },
   "exhaustion": {
     "regime": "CONFIRMED",
-    "run_multiple": 0.15,
-    "current_run_pct": 2.28,
+    "run_multiple": 0.26,
+    "current_run_pct": 3.94,
     "avg_historical_run_pct": 10.24
   },
   "history_snapshot": {
@@ -1366,7 +1443,7 @@
     "new_rns_titles": []
   },
   "commentary": {
-    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows CONFIRMED timing with 45/100 APEX score. Historical data shows 1 rallies averaging 10% upside. Current position: +2.3%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
+    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows CONFIRMED timing with 45/100 APEX score. Historical data shows 1 rallies averaging 10% upside. Current position: +3.9%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
     "bull_case": [
       "Limited upside case without catalysts"
     ],
@@ -1380,7 +1457,7 @@
     "sources_present": {
       "snapshot_json": false,
       "daily_enrichment_row": true,
-      "historical_profile": false,
+      "historical_profile": true,
       "metadata": true,
       "triangulation_events": true,
       "ai_insights": false

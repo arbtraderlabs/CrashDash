@@ -1,7 +1,7 @@
 {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "TRC.L",
-  "generated_at": "2026-01-13T15:02:23.893077Z",
+  "generated_at": "2026-01-13T23:11:58.280984Z",
   "top_card": {
     "ticker": "TRC.L",
     "company_name": "The Revel Collective Plc",
@@ -46,7 +46,7 @@
     },
     "latest_signal": {
       "date": "2025-12-22",
-      "scan_date": "2026-01-12",
+      "scan_date": "2026-01-13",
       "signal_type": "EXTREME CRASH BOTTOM",
       "signal_color": "ORANGE",
       "price": 0.025,
@@ -835,15 +835,9 @@
       }
     ],
     "split_risk": {
-      "split_detected": true,
-      "split_date": "2025-12-29",
-      "split_ratio": "1:20",
-      "days_from_split": 7,
-      "split_type": "REVERSE_SPLIT",
-      "risk_level": "HIGH",
-      "confidence": "LOW",
-      "warning": "Signal occurred near stock split on 2025-12-29 (1:20) - price data may be affected by corporate action",
-      "recommendation": "VERIFY price data independently before trading - P&L calculations may be inaccurate near corporate actions"
+      "split_detected": false,
+      "risk_level": "NONE",
+      "confidence": "HIGH"
     },
     "data_quality": {
       "price_reliability": "SUSPECT",
@@ -857,7 +851,14 @@
       "PENNY_STOCK",
       "FREQUENT_CRASHES"
     ],
-    "last_updated": "2026-01-13 14:06:12 UTC"
+    "last_updated": "2026-01-13 22:05:13 UTC",
+    "volatility": {
+      "atr_normalized": 10.0,
+      "stddev_20d": 0.0
+    },
+    "trends": {
+      "intelligence_signal": "ACCUMULATION"
+    }
   },
   "decision_summary": {
     "why_it_matters": [
@@ -932,16 +933,19 @@
       "current_interest": null,
       "momentum_score": null,
       "trend_direction": null,
-      "intelligence_signal": null
+      "intelligence_signal": "ACCUMULATION"
     },
     "volatility": {
-      "atr_normalized": null,
-      "stddev_20d": null
+      "atr_normalized": 10.0,
+      "stddev_20d": 0.0
     },
     "risk_flags": {
       "split_risk_level": "HIGH",
       "halt_risk": "NONE",
       "penny_stock_risk": "HIGH"
+    },
+    "catalyst_dates": {
+      "proxy_date": "2025-12-23"
     }
   },
   "ai_insights": {
@@ -981,12 +985,12 @@
       ]
     },
     "panic_analysis": {
-      "panic_score": 62,
+      "panic_score": 74,
       "signal": "HIGH_PANIC",
       "interpretation": "\ud83d\udfe0 Fear dominant - watch for reversal signs",
       "breakdown": {
         "price_destruction": 40,
-        "volume_death": 6,
+        "volume_death": 18,
         "social_silence": 6,
         "news_sentiment": 10
       },
@@ -995,18 +999,19 @@
     },
     "fear_vs_facts": {
       "fear_points": [
-        "\ud83d\udc94 Price destruction: 40/40 points"
+        "\ud83d\udc94 Price destruction: 40/40 points",
+        "\ud83d\udcc9 Volume death: 18/20 points"
       ],
       "facts_points": [
         "\ud83d\udcb0 Deep value: 99% off recent peak"
       ],
-      "verdict": "\u2696\ufe0f Mixed signals - Fear and facts balanced, wait for clarity"
+      "verdict": "\ud83c\udfaf CONTRARIAN OPPORTUNITY - Fear dominates but facts support recovery potential"
     },
     "crashhunter_signals": [
       {
         "type": "HIGH_PANIC",
         "icon": "\ud83d\udfe0",
-        "text": "Fear 62/100",
+        "text": "Fear 74/100",
         "color": "#f59e0b"
       },
       {
@@ -1071,7 +1076,7 @@
       "checklist": [
         {
           "criterion": "Panic Score",
-          "value": "62/100",
+          "value": "74/100",
           "pass": true,
           "icon": "\ud83d\udd34"
         },
@@ -1101,6 +1106,65 @@
         }
       ],
       "pass_rate": "3/5"
+    },
+    "contrarian_panic": {
+      "total_score": 27,
+      "band": "\u26aa LOW COMPRESSION (Early/Weak)",
+      "components": {
+        "compression": {
+          "score": 7,
+          "max": 40,
+          "signals_30d": 2,
+          "signals_60d": 2,
+          "signals_90d": 2,
+          "signals_per_week": 0.15,
+          "total_signals": 41,
+          "rsi_extreme_count": 2,
+          "rsi_ultra_count": 2,
+          "escalation_count": 0,
+          "density_score": 3,
+          "rsi_score": 4,
+          "escalation_score": 0,
+          "description": "0.2 signals/week | 2 RSI<20 | Early stage"
+        },
+        "intensification": {
+          "score": 8,
+          "max": 20,
+          "recent_types": [
+            "DEEP CRASH BOTTOM",
+            "EXTREME CRASH BOTTOM",
+            "EXTREME CRASH BOTTOM"
+          ],
+          "escalating": false,
+          "sustained": false,
+          "current_intensity": 3,
+          "pattern": "AT EXTREME LEVEL"
+        },
+        "volume_death": {
+          "score": 8,
+          "max": 15,
+          "relative_volume": 8.14,
+          "description": "High volume - Panic spike or interest"
+        },
+        "pop_potential": {
+          "score": 4,
+          "max": 15,
+          "best_historical_rally": 140.0,
+          "avg_rally": 22.9,
+          "signal_count": 41,
+          "description": "Baseline mover (140%)"
+        },
+        "accumulation": {
+          "score": 0,
+          "max": 10,
+          "has_accumulation": false,
+          "bars_since_accum": 0,
+          "description": "No accumulation"
+        }
+      },
+      "ticker": "TRC.L",
+      "signal_date": "2025-12-22",
+      "total_signals_history": 41
     }
   },
   "scoring_breakdown": {
@@ -1197,7 +1261,7 @@
     "sources_present": {
       "snapshot_json": false,
       "daily_enrichment_row": true,
-      "historical_profile": false,
+      "historical_profile": true,
       "metadata": true,
       "triangulation_events": true,
       "ai_insights": false

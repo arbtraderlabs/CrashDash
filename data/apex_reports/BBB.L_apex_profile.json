@@ -1,7 +1,7 @@
 {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "BBB.L",
-  "generated_at": "2026-01-13T15:02:22.286970Z",
+  "generated_at": "2026-01-13T23:11:54.830669Z",
   "top_card": {
     "ticker": "BBB.L",
     "company_name": "Bigblu Broadband plc",
@@ -46,7 +46,7 @@
     },
     "latest_signal": {
       "date": "2025-12-04",
-      "scan_date": "2026-01-12",
+      "scan_date": "2026-01-13",
       "signal_type": "CRASH ZONE BOTTOM",
       "signal_color": "YELLOW",
       "price": 6.1,
@@ -190,7 +190,14 @@
     "risk_flags": [
       "EXTREME_DRAWDOWN"
     ],
-    "last_updated": "2026-01-13 14:06:20 UTC"
+    "last_updated": "2026-01-13 22:05:25 UTC",
+    "volatility": {
+      "atr_normalized": 9.28,
+      "stddev_20d": 0.0
+    },
+    "trends": {
+      "intelligence_signal": "TOPPED_OUT"
+    }
   },
   "decision_summary": {
     "why_it_matters": [
@@ -265,16 +272,19 @@
       "current_interest": 0,
       "momentum_score": 0,
       "trend_direction": "flat",
-      "intelligence_signal": null
+      "intelligence_signal": "TOPPED_OUT"
     },
     "volatility": {
-      "atr_normalized": null,
-      "stddev_20d": null
+      "atr_normalized": 9.28,
+      "stddev_20d": 0.0
     },
     "risk_flags": {
       "split_risk_level": "NONE",
       "halt_risk": "NONE",
       "penny_stock_risk": "NONE"
+    },
+    "catalyst_dates": {
+      "proxy_date": "2025-12-10"
     }
   },
   "ai_insights": {
@@ -312,24 +322,33 @@
       ]
     },
     "panic_analysis": {
-      "panic_score": 16,
-      "signal": "NO_PANIC",
-      "interpretation": "\u26aa Calm market - no crash signals detected",
+      "panic_score": 74,
+      "signal": "HIGH_PANIC",
+      "interpretation": "\ud83d\udfe0 Fear dominant - watch for reversal signs",
       "breakdown": {
-        "price_destruction": 0,
-        "volume_death": 0,
+        "price_destruction": 40,
+        "volume_death": 18,
         "social_silence": 6,
         "news_sentiment": 10
       },
-      "is_opportunity": false,
-      "opportunity_reason": "\ud83d\ude10 Normal market conditions - no crash signal"
+      "is_opportunity": true,
+      "opportunity_reason": "\u26a0\ufe0f HIGH PANIC + Early timing = Potential accumulation phase"
     },
     "fear_vs_facts": {
-      "fear_points": [],
+      "fear_points": [
+        "\ud83d\udc94 Price destruction: 40/40 points",
+        "\ud83d\udcc9 Volume death: 18/20 points"
+      ],
       "facts_points": [],
-      "verdict": "\u2696\ufe0f Mixed signals - Fear and facts balanced, wait for clarity"
+      "verdict": "\ud83c\udfaf CONTRARIAN OPPORTUNITY - Fear dominates but facts support recovery potential"
     },
     "crashhunter_signals": [
+      {
+        "type": "HIGH_PANIC",
+        "icon": "\ud83d\udfe0",
+        "text": "Fear 74/100",
+        "color": "#f59e0b"
+      },
       {
         "type": "BUILDING",
         "icon": "\ud83d\udcca",
@@ -394,9 +413,9 @@
       "checklist": [
         {
           "criterion": "Panic Score",
-          "value": "16/100",
-          "pass": false,
-          "icon": "\ud83d\udfe2"
+          "value": "74/100",
+          "pass": true,
+          "icon": "\ud83d\udd34"
         },
         {
           "criterion": "Timing Regime",
@@ -423,7 +442,66 @@
           "icon": "\ud83c\udfed"
         }
       ],
-      "pass_rate": "3/5"
+      "pass_rate": "4/5"
+    },
+    "contrarian_panic": {
+      "total_score": 41,
+      "band": "\ud83d\udfe2 MILD COMPRESSION (Top 50% - WATCHLIST)",
+      "components": {
+        "compression": {
+          "score": 28,
+          "max": 40,
+          "signals_30d": 5,
+          "signals_60d": 5,
+          "signals_90d": 5,
+          "signals_per_week": 2.33,
+          "total_signals": 5,
+          "rsi_extreme_count": 5,
+          "rsi_ultra_count": 5,
+          "escalation_count": 0,
+          "density_score": 15,
+          "rsi_score": 10,
+          "escalation_score": 0,
+          "description": "2.3 signals/week | 5 RSI<20 | \u26a1 HIGH COMPRESSION"
+        },
+        "intensification": {
+          "score": 5,
+          "max": 20,
+          "recent_types": [
+            "DEEP CRASH BOTTOM",
+            "DEEP CRASH BOTTOM",
+            "CRASH ZONE BOTTOM"
+          ],
+          "escalating": false,
+          "sustained": false,
+          "current_intensity": 1,
+          "pattern": "NORMAL CRASH LEVEL"
+        },
+        "volume_death": {
+          "score": 8,
+          "max": 15,
+          "relative_volume": 3.22,
+          "description": "High volume - Panic spike or interest"
+        },
+        "pop_potential": {
+          "score": 0,
+          "max": 15,
+          "best_historical_rally": 18.2,
+          "avg_rally": 14.0,
+          "signal_count": 5,
+          "description": "Weak history (18%)"
+        },
+        "accumulation": {
+          "score": 0,
+          "max": 10,
+          "has_accumulation": false,
+          "bars_since_accum": 0,
+          "description": "No accumulation"
+        }
+      },
+      "ticker": "BBB.L",
+      "signal_date": "2025-12-04",
+      "total_signals_history": 5
     }
   },
   "scoring_breakdown": {
@@ -520,7 +598,7 @@
     "sources_present": {
       "snapshot_json": false,
       "daily_enrichment_row": true,
-      "historical_profile": false,
+      "historical_profile": true,
       "metadata": true,
       "triangulation_events": true,
       "ai_insights": false

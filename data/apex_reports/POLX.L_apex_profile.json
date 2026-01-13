@@ -1,7 +1,7 @@
 {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "POLX.L",
-  "generated_at": "2026-01-13T15:02:21.764085Z",
+  "generated_at": "2026-01-13T23:11:53.815982Z",
   "top_card": {
     "ticker": "POLX.L",
     "company_name": "Polarean Imaging plc",
@@ -46,7 +46,7 @@
     },
     "latest_signal": {
       "date": "2025-11-27",
-      "scan_date": "2026-01-12",
+      "scan_date": "2026-01-13",
       "signal_type": "DEEP CRASH BOTTOM",
       "signal_color": "GREEN",
       "price": 0.08,
@@ -1055,7 +1055,14 @@
       "EXTREME_DRAWDOWN",
       "FREQUENT_CRASHES"
     ],
-    "last_updated": "2026-01-13 14:06:08 UTC"
+    "last_updated": "2026-01-13 22:05:07 UTC",
+    "volatility": {
+      "atr_normalized": 8.95,
+      "stddev_20d": 0.3466
+    },
+    "trends": {
+      "intelligence_signal": "ACCUMULATION"
+    }
   },
   "decision_summary": {
     "why_it_matters": [
@@ -1130,16 +1137,19 @@
       "current_interest": 0,
       "momentum_score": 0,
       "trend_direction": "flat",
-      "intelligence_signal": null
+      "intelligence_signal": "ACCUMULATION"
     },
     "volatility": {
-      "atr_normalized": null,
-      "stddev_20d": null
+      "atr_normalized": 8.95,
+      "stddev_20d": 0.3466
     },
     "risk_flags": {
       "split_risk_level": "NONE",
       "halt_risk": "NONE",
       "penny_stock_risk": "NONE"
+    },
+    "catalyst_dates": {
+      "proxy_date": "2025-12-08"
     }
   },
   "ai_insights": {
@@ -1179,26 +1189,34 @@
       ]
     },
     "panic_analysis": {
-      "panic_score": 16,
-      "signal": "NO_PANIC",
-      "interpretation": "\u26aa Calm market - no crash signals detected",
+      "panic_score": 66,
+      "signal": "HIGH_PANIC",
+      "interpretation": "\ud83d\udfe0 Fear dominant - watch for reversal signs",
       "breakdown": {
-        "price_destruction": 0,
-        "volume_death": 0,
+        "price_destruction": 40,
+        "volume_death": 10,
         "social_silence": 6,
         "news_sentiment": 10
       },
-      "is_opportunity": false,
-      "opportunity_reason": "\ud83d\ude10 Normal market conditions - no crash signal"
+      "is_opportunity": true,
+      "opportunity_reason": "\u26a0\ufe0f HIGH PANIC + Early timing = Potential accumulation phase"
     },
     "fear_vs_facts": {
-      "fear_points": [],
+      "fear_points": [
+        "\ud83d\udc94 Price destruction: 40/40 points"
+      ],
       "facts_points": [
         "\ud83d\udcc8 Historical upside: 169% proven capacity"
       ],
-      "verdict": "\u2705 Facts align with low fear - Normal risk/reward"
+      "verdict": "\u2696\ufe0f Mixed signals - Fear and facts balanced, wait for clarity"
     },
     "crashhunter_signals": [
+      {
+        "type": "HIGH_PANIC",
+        "icon": "\ud83d\udfe0",
+        "text": "Fear 66/100",
+        "color": "#f59e0b"
+      },
       {
         "type": "EARLY",
         "icon": "\u23f0",
@@ -1264,14 +1282,14 @@
       }
     ],
     "decision_matrix": {
-      "decision": "WATCH",
-      "reason": "\u23f3 Monitor for timing regime change or panic escalation",
+      "decision": "BUY",
+      "reason": "\ud83c\udfaf CrashHunter Signal: \u26a0\ufe0f HIGH PANIC + Early timing = Potential accumulation phase",
       "checklist": [
         {
           "criterion": "Panic Score",
-          "value": "16/100",
-          "pass": false,
-          "icon": "\ud83d\udfe2"
+          "value": "66/100",
+          "pass": true,
+          "icon": "\ud83d\udd34"
         },
         {
           "criterion": "Timing Regime",
@@ -1298,7 +1316,66 @@
           "icon": "\ud83c\udfed"
         }
       ],
-      "pass_rate": "4/5"
+      "pass_rate": "5/5"
+    },
+    "contrarian_panic": {
+      "total_score": 40,
+      "band": "\ud83d\udfe2 MILD COMPRESSION (Top 50% - WATCHLIST)",
+      "components": {
+        "compression": {
+          "score": 28,
+          "max": 40,
+          "signals_30d": 6,
+          "signals_60d": 9,
+          "signals_90d": 9,
+          "signals_per_week": 0.69,
+          "total_signals": 53,
+          "rsi_extreme_count": 6,
+          "rsi_ultra_count": 0,
+          "escalation_count": 2,
+          "density_score": 8,
+          "rsi_score": 10,
+          "escalation_score": 7,
+          "description": "0.7 signals/week | 6 RSI<20 | 2 escalations | \u26a1 HIGH COMPRESSION"
+        },
+        "intensification": {
+          "score": 5,
+          "max": 20,
+          "recent_types": [
+            "EXTREME CRASH BOTTOM",
+            "EXTREME CRASH BOTTOM",
+            "DEEP CRASH BOTTOM"
+          ],
+          "escalating": false,
+          "sustained": false,
+          "current_intensity": 2,
+          "pattern": "NORMAL CRASH LEVEL"
+        },
+        "volume_death": {
+          "score": 0,
+          "max": 15,
+          "relative_volume": 1.68,
+          "description": "Normal volume"
+        },
+        "pop_potential": {
+          "score": 7,
+          "max": 15,
+          "best_historical_rally": 168.8,
+          "avg_rally": 30.7,
+          "signal_count": 53,
+          "description": "Moderate performer (169%)"
+        },
+        "accumulation": {
+          "score": 0,
+          "max": 10,
+          "has_accumulation": false,
+          "bars_since_accum": 0,
+          "description": "No accumulation"
+        }
+      },
+      "ticker": "POLX.L",
+      "signal_date": "2025-11-27",
+      "total_signals_history": 53
     }
   },
   "scoring_breakdown": {
@@ -1402,7 +1479,7 @@
     "sources_present": {
       "snapshot_json": false,
       "daily_enrichment_row": true,
-      "historical_profile": false,
+      "historical_profile": true,
       "metadata": true,
       "triangulation_events": true,
       "ai_insights": false
