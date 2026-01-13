@@ -1,20 +1,20 @@
 {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "WSBN.L",
-  "generated_at": "2026-01-13T15:28:27.531459Z",
+  "generated_at": "2026-01-13T20:52:48.758073Z",
   "top_card": {
     "ticker": "WSBN.L",
     "company_name": "Wishbone Gold Plc",
     "sector": "Basic Materials",
     "market_cap_gbp": 26145372,
     "days_active": 35,
-    "apex_score_100": 58,
+    "apex_score_100": 43,
     "confidence_score_100": 60,
     "ai_final_score_25": 18,
     "ai_strength": "STRONG",
     "timing_regime": "CONFIRMED",
     "action": "HOLD/WATCH",
-    "thesis_one_liner": "HOLD/WATCH - CONFIRMED timing with 58/100 opportunity score"
+    "thesis_one_liner": "HOLD/WATCH - CONFIRMED timing with 43/100 opportunity score"
   },
   "enrichment": {
     "company_info": {
@@ -46,7 +46,7 @@
     },
     "latest_signal": {
       "date": "2025-12-09",
-      "scan_date": "2026-01-12",
+      "scan_date": "2026-01-13",
       "signal_type": "CRASH ZONE BOTTOM",
       "signal_color": "YELLOW",
       "price": 41.0,
@@ -878,11 +878,48 @@
       "best_rally_pct": 2198.0,
       "worst_rally_pct": 26.76
     },
-    "splits": [],
+    "splits": [
+      {
+        "date": "2020-01-13",
+        "detected_at": "2026-01-13T16:49:44.398778",
+        "market": "LSE_AIM",
+        "ratio": 0.01,
+        "ratio_display": "1/100",
+        "source": "yahoo",
+        "type": "stock_split"
+      },
+      {
+        "date": "2020-01-21",
+        "detected_at": "2026-01-13T16:49:44.398943",
+        "market": "LSE_AIM",
+        "ratio": 0.01,
+        "ratio_display": "1/100",
+        "source": "yahoo",
+        "type": "stock_split"
+      },
+      {
+        "date": "2025-12-01",
+        "detected_at": "2026-01-13T16:49:44.399126",
+        "market": "LSE_AIM",
+        "ratio": 0.01,
+        "ratio_display": "1/100",
+        "source": "yahoo",
+        "type": "stock_split"
+      }
+    ],
     "split_risk": {
-      "split_detected": false,
-      "risk_level": "NONE",
-      "confidence": "HIGH"
+      "split_detected": true,
+      "risk_level": "HIGH",
+      "confidence": "HIGH",
+      "latest_split": {
+        "date": "2025-12-01",
+        "detected_at": "2026-01-13T16:49:44.399126",
+        "market": "LSE_AIM",
+        "ratio": 0.01,
+        "ratio_display": "1/100",
+        "source": "yahoo",
+        "type": "stock_split"
+      }
     },
     "data_quality": {
       "price_reliability": "RELIABLE",
@@ -893,11 +930,18 @@
       "EXTREME_DRAWDOWN",
       "FREQUENT_CRASHES"
     ],
-    "last_updated": "2026-01-13 14:06:05 UTC"
+    "last_updated": "2026-01-13 20:06:09 UTC",
+    "volatility": {
+      "atr_normalized": 8.93,
+      "stddev_20d": 0.0
+    },
+    "trends": {
+      "intelligence_signal": "UPTREND"
+    }
   },
   "decision_summary": {
     "why_it_matters": [
-      "APEX 58/100 indicates strong opportunity quality",
+      "APEX 43/100 indicates moderate opportunity quality",
       "Timing regime: CONFIRMED",
       "Historical profile: 1 rallies, 154% best run"
     ],
@@ -970,16 +1014,19 @@
       "current_interest": null,
       "momentum_score": null,
       "trend_direction": null,
-      "intelligence_signal": null
+      "intelligence_signal": "UPTREND"
     },
     "volatility": {
-      "atr_normalized": null,
-      "stddev_20d": null
+      "atr_normalized": 8.93,
+      "stddev_20d": 0.0
     },
     "risk_flags": {
       "split_risk_level": "NONE",
       "halt_risk": "NONE",
       "penny_stock_risk": "NONE"
+    },
+    "catalyst_dates": {
+      "proxy_date": "2026-01-08"
     }
   },
   "ai_insights": {
@@ -1046,12 +1093,6 @@
         "icon": "\u2705",
         "text": "Confirmed",
         "color": "#10b981"
-      },
-      {
-        "type": "MODERATE_QUALITY",
-        "icon": "\ud83c\udf1f",
-        "text": "APEX 58",
-        "color": "#3b82f6"
       }
     ],
     "catalyst_pipeline": [
@@ -1109,9 +1150,9 @@
         },
         {
           "criterion": "APEX Quality",
-          "value": "58/100",
-          "pass": true,
-          "icon": "\u2b50"
+          "value": "43/100",
+          "pass": false,
+          "icon": "\u26a0\ufe0f"
         },
         {
           "criterion": "Data Confidence",
@@ -1126,7 +1167,7 @@
           "icon": "\ud83c\udfed"
         }
       ],
-      "pass_rate": "4/5"
+      "pass_rate": "3/5"
     }
   },
   "scoring_breakdown": {
@@ -1135,7 +1176,8 @@
       "Drawdown reversion potential: +16 (Drawdown_Pct=82.2%)",
       "Volume confirmation: +10 (Relative_Volume=3.2)",
       "Pattern reliability: +5 (Rally_Count=1.0)",
-      "Upside history: +8 (best_rally_pct=154%)"
+      "Upside history: +8 (best_rally_pct=154%)",
+      "Split risk penalty: -15 (HIGH, age_factor=1.00)"
     ],
     "technical_score": {
       "points": 19,
@@ -1163,8 +1205,10 @@
       "reason": "Best rally of 154% gives 8/20 points"
     },
     "penalties": {
-      "total": 0,
-      "items": []
+      "total": -15,
+      "items": [
+        "Split risk penalty: -15 (HIGH, age_factor=1.00)"
+      ]
     }
   },
   "reasons_buy_sell": {
@@ -1208,7 +1252,7 @@
     "new_rns_titles": []
   },
   "commentary": {
-    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows CONFIRMED timing with 58/100 APEX score. Historical data shows 1 rallies averaging 154% upside. Current position: +104.9%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
+    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows CONFIRMED timing with 43/100 APEX score. Historical data shows 1 rallies averaging 154% upside. Current position: +104.9%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
     "bull_case": [
       "Limited upside case without catalysts"
     ],

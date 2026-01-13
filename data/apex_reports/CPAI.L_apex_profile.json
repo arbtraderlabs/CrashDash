@@ -1,20 +1,20 @@
 {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "CPAI.L",
-  "generated_at": "2026-01-13T20:05:16.526300Z",
+  "generated_at": "2026-01-13T22:04:39.937063Z",
   "top_card": {
     "ticker": "CPAI.L",
     "company_name": "capAI Plc",
     "sector": "Real Estate",
     "market_cap_gbp": 4082701,
     "days_active": 0,
-    "apex_score_100": 36,
+    "apex_score_100": 21,
     "confidence_score_100": 50,
     "ai_final_score_25": 10,
     "ai_strength": "MODERATE",
     "timing_regime": "EARLY_BUILD",
     "action": "WATCH",
-    "thesis_one_liner": "WATCH - EARLY_BUILD timing with 36/100 opportunity score"
+    "thesis_one_liner": "WATCH - EARLY_BUILD timing with 21/100 opportunity score"
   },
   "enrichment": {
     "company_info": {
@@ -698,11 +698,39 @@
       "best_rally_pct": 3652.0,
       "worst_rally_pct": -2.64
     },
-    "splits": [],
+    "splits": [
+      {
+        "date": "2024-01-15",
+        "detected_at": "2026-01-13T16:49:55.592267",
+        "market": "LSE_MAIN",
+        "ratio": 0.1,
+        "ratio_display": "1/10",
+        "source": "yahoo",
+        "type": "stock_split"
+      },
+      {
+        "date": "2025-10-08",
+        "detected_at": "2026-01-13T16:49:55.592431",
+        "market": "LSE_MAIN",
+        "ratio": 0.1,
+        "ratio_display": "1/10",
+        "source": "yahoo",
+        "type": "stock_split"
+      }
+    ],
     "split_risk": {
-      "split_detected": false,
-      "risk_level": "NONE",
-      "confidence": "HIGH"
+      "split_detected": true,
+      "risk_level": "HIGH",
+      "confidence": "HIGH",
+      "latest_split": {
+        "date": "2025-10-08",
+        "detected_at": "2026-01-13T16:49:55.592431",
+        "market": "LSE_MAIN",
+        "ratio": 0.1,
+        "ratio_display": "1/10",
+        "source": "yahoo",
+        "type": "stock_split"
+      }
     },
     "data_quality": {
       "price_reliability": "RELIABLE",
@@ -713,11 +741,18 @@
       "EXTREME_DRAWDOWN",
       "FREQUENT_CRASHES"
     ],
-    "last_updated": "2026-01-13 17:04:15 UTC"
+    "last_updated": "2026-01-13 20:05:51 UTC",
+    "volatility": {
+      "atr_normalized": 7.05,
+      "stddev_20d": 0.0
+    },
+    "trends": {
+      "intelligence_signal": "TOPPED_OUT"
+    }
   },
   "decision_summary": {
     "why_it_matters": [
-      "APEX 36/100 indicates moderate opportunity quality",
+      "APEX 21/100 indicates weak opportunity quality",
       "Timing regime: EARLY_BUILD",
       "Historical profile: 0 rallies, 0% best run"
     ],
@@ -774,7 +809,7 @@
     "social": {
       "has_data": true,
       "buzz_level": "HIGH",
-      "post_count": 167,
+      "post_count": 360,
       "sentiment_breakdown": {
         "positive": 0.0,
         "neutral": 100.0,
@@ -786,16 +821,19 @@
       "current_interest": 0,
       "momentum_score": 0,
       "trend_direction": "flat",
-      "intelligence_signal": null
+      "intelligence_signal": "TOPPED_OUT"
     },
     "volatility": {
-      "atr_normalized": null,
-      "stddev_20d": null
+      "atr_normalized": 7.05,
+      "stddev_20d": 0.0
     },
     "risk_flags": {
       "split_risk_level": "NONE",
       "halt_risk": "NONE",
       "penny_stock_risk": "NONE"
+    },
+    "catalyst_dates": {
+      "proxy_date": "2026-01-13"
     }
   },
   "ai_insights": {
@@ -966,7 +1004,7 @@
         },
         {
           "criterion": "APEX Quality",
-          "value": "36/100",
+          "value": "21/100",
           "pass": false,
           "icon": "\u26a0\ufe0f"
         },
@@ -992,7 +1030,8 @@
       "Drawdown reversion potential: +18 (Drawdown_Pct=89.5%)",
       "Volume confirmation: +6 (Relative_Volume=1.5)",
       "Pattern reliability: +0 (Rally_Count=0.0)",
-      "Upside history: +2 (best_rally_pct=0%)"
+      "Upside history: +2 (best_rally_pct=0%)",
+      "Split risk penalty: -15 (HIGH, age_factor=1.00)"
     ],
     "technical_score": {
       "points": 10,
@@ -1020,8 +1059,10 @@
       "reason": "Best rally of 0% gives 2/20 points"
     },
     "penalties": {
-      "total": 0,
-      "items": []
+      "total": -15,
+      "items": [
+        "Split risk penalty: -15 (HIGH, age_factor=1.00)"
+      ]
     }
   },
   "reasons_buy_sell": {
@@ -1066,7 +1107,7 @@
     "new_rns_titles": []
   },
   "commentary": {
-    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows EARLY_BUILD timing with 36/100 APEX score. Historical data shows 0 rallies averaging 0% upside. Current position: +0.0%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
+    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows EARLY_BUILD timing with 21/100 APEX score. Historical data shows 0 rallies averaging 0% upside. Current position: +0.0%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
     "bull_case": [
       "Early regime often offers best risk/reward"
     ],
