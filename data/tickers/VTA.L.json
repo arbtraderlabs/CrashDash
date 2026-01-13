@@ -27,25 +27,28 @@
     "total_bars": 1522
   },
   "latest_signal": {
-    "date": "2025-09-11",
-    "scan_date": "2026-01-12",
-    "signal_type": "DEEP CRASH BOTTOM",
-    "signal_color": "GREEN",
-    "price": 6.9469,
-    "drawdown_pct": 99.02,
-    "ai_score": 11.0,
-    "rsi": 0.0,
-    "cycle_position": 0.0005,
-    "holding_period_days": 123,
-    "current_pnl_pct": -6.43,
-    "rally_state": "accumulating",
-    "distance_from_high_pct": -99.07,
-    "Rally_Count": 1,
-    "days_since_last_high": 7,
-    "last_high_date": "2026-01-05",
-    "lock_in_reached": true,
-    "lock_in_date": "2025-09-19",
-    "best_rally_pct": 10007.96
+    "date": "2026-01-12",
+    "scan_date": "2026-01-13",
+    "signal_type": "ULTRA CRASH BOTTOM",
+    "signal_color": "RED",
+    "price": 6.5,
+    "drawdown_pct": 99.09,
+    "ai_score": 15.0,
+    "rsi": 3.6,
+    "cycle_position": -0.0001,
+    "holding_period_days": 0,
+    "current_pnl_pct": 0.0,
+    "rally_state": "peaked",
+    "distance_from_high_pct": 0.0,
+    "Rally_Count": 0,
+    "days_since_last_high": 0,
+    "last_high_date": "2026-01-12",
+    "lock_in_reached": false,
+    "lock_in_date": null,
+    "best_rally_pct": 0.0,
+    "split_affected": true,
+    "split_warning": "\u26a0\ufe0f",
+    "warning_message": "Signal near stock split on 2026-01-12 (1:20)"
   },
   "best_historical_signal": {
     "signal_date": "2025-09-11",
@@ -112,10 +115,28 @@
       "lock_in_reached": true,
       "age_days": 123,
       "status": "historical"
+    },
+    {
+      "signal_id": "VTA.L_2026-01-12",
+      "signal_date": "2026-01-12",
+      "signal_type": "ULTRA CRASH BOTTOM",
+      "signal_color": "RED",
+      "entry_price": 6.5,
+      "current_price": 6.5,
+      "current_return_pct": 0.0,
+      "best_rally_pct": 0.0,
+      "best_rally_date": "2026-01-12",
+      "rally_state": "peaked",
+      "Rally_Count": 0,
+      "distance_from_high_pct": 0.0,
+      "days_since_last_high": 0,
+      "lock_in_reached": false,
+      "age_days": 1,
+      "status": "active"
     }
   ],
   "stats": {
-    "total_signals": 3,
+    "total_signals": 4,
     "win_rate_pct": 100.0,
     "avg_rally_pct": 10183.71,
     "median_rally_pct": 10183.71,
@@ -135,18 +156,25 @@
     }
   ],
   "split_risk": {
-    "split_detected": false,
-    "risk_level": "NONE",
-    "confidence": "HIGH"
+    "split_detected": true,
+    "split_date": "2026-01-12",
+    "split_ratio": "1:20",
+    "days_from_split": 0,
+    "split_type": "REVERSE_SPLIT",
+    "risk_level": "HIGH",
+    "confidence": "LOW",
+    "warning": "Signal occurred near stock split on 2026-01-12 (1:20) - price data may be affected by corporate action",
+    "recommendation": "VERIFY price data independently before trading - P&L calculations may be inaccurate near corporate actions"
   },
   "data_quality": {
-    "price_reliability": "RELIABLE",
-    "pnl_reliability": "RELIABLE",
-    "overall_confidence": "HIGH"
+    "price_reliability": "SUSPECT",
+    "pnl_reliability": "SUSPECT",
+    "overall_confidence": "LOW"
   },
   "risk_flags": [
+    "SIGNAL_NEAR_SPLIT",
     "HAS_REVERSE_SPLIT",
     "EXTREME_DRAWDOWN"
   ],
-  "last_updated": "2026-01-13 14:06:19 UTC"
+  "last_updated": "2026-01-13 17:04:45 UTC"
 }
