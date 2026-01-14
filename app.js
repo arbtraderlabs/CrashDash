@@ -1423,7 +1423,7 @@ async function showSignalTimeline(ticker) {
                 📈 Signal History (${allSignals.length} signal${allSignals.length !== 1 ? 's' : ''})
             </h3>
             <div id="signalHistoryContainer" style="display: flex; flex-direction: column; gap: 12px;">
-                ${allSignals.slice(0, 10).map(sig => {
+                ${allSignals.sort((a, b) => new Date(b.signal_date) - new Date(a.signal_date)).slice(0, 10).map(sig => {
                     const signalState = sig.rally_state ? rallyStateColors[sig.rally_state] : null;
                     const signalColorEmoji = {
                         'RED': '🔴',
