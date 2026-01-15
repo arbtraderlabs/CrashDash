@@ -1556,65 +1556,64 @@ async function showSignalTimeline(ticker) {
         </div>
 
         
-        <!-- CURRENT SIGNAL - MERGED RALLY STATUS & MARKET PROFILE -->
+        <!-- CURRENT SIGNAL - COMPACT SINGLE TILE -->
         <div style="background: linear-gradient(135deg, rgba(${parseInt(signalColorStyle.bg.slice(1,3), 16)}, ${parseInt(signalColorStyle.bg.slice(3,5), 16)}, ${parseInt(signalColorStyle.bg.slice(5,7), 16)}, 0.1), rgba(10, 132, 255, 0.05)); border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem; color: white; border: 1px solid ${signalColorStyle.borderColor};">
-            <h3 style="margin: 0 0 0.75rem 0; font-size: 0.95rem; display: flex; align-items: center; gap: 6px; font-weight: 600;">
+            <h3 style="margin: 0 0 0.75rem 0; font-size: 0.95rem; font-weight: 600;">
                 💹 Latest Signal
             </h3>
             
-            <!-- Latest Signal as Single Unified Tile -->
-            <div style="background: linear-gradient(135deg, rgba(${parseInt(signalColorStyle.bg.slice(1,3), 16)}, ${parseInt(signalColorStyle.bg.slice(3,5), 16)}, ${parseInt(signalColorStyle.bg.slice(5,7), 16)}, 0.15), rgba(10, 132, 255, 0.08)); border-radius: 12px; padding: 1rem; border: 1px solid ${signalColorStyle.borderColor};">
-                <!-- Header Row -->
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 2px solid rgba(255,255,255,0.1);">
-                    <div style="flex: 1;">
-                        <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 4px; font-weight: 600;">Signal Status</div>
-                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px; flex-wrap: wrap;">
-                            ${currentState ? `<div style="background: ${currentState.bg}; color: white; padding: 6px 12px; border-radius: 6px; font-size: 0.9rem; font-weight: 700;">${currentState.text}</div>` : ''}
-                            ${completeLatestSignal.best_rally_pct !== undefined ? `<div style="font-size: 1.3rem; font-weight: 900; color: #22c55e;">${completeLatestSignal.best_rally_pct === 0 ? '0%' : '+' + completeLatestSignal.best_rally_pct.toFixed(2) + '%'}</div>` : ''}
-                            ${completeLatestSignal.signal_type ? `<div style="background: ${signalColorStyle.bg}; color: white; padding: 4px 10px; border-radius: 5px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px;">${completeLatestSignal.signal_type}</div>` : ''}
+            <!-- Latest Signal Compact Tile (like History format) -->
+            <div style="background: rgba(255,255,255,0.08); border-radius: 8px; padding: 1rem; border-left: 4px solid ${signalColorStyle.bg};">
+                <!-- Header: Date + Badges -->
+                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.75rem;">
+                    <div>
+                        <div style="font-weight: 700; color: white; margin-bottom: 4px;">
+                            ${completeLatestSignal.date || completeLatestSignal.signal_date || 'N/A'}
+                        </div>
+                        <div style="font-size: 0.7rem; color: rgba(255,255,255,0.7); display: flex; gap: 6px; flex-wrap: wrap;">
+                            ${completeLatestSignal.signal_type ? `<span style="background: ${signalColorStyle.bg}; color: white; padding: 2px 6px; border-radius: 3px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2px; font-size: 0.65rem;">${completeLatestSignal.signal_type}</span>` : ''}
+                            ${currentState ? `<span style="background: ${currentState.bg}; color: white; padding: 2px 6px; border-radius: 3px; font-weight: 600; font-size: 0.65rem;">${currentState.text}</span>` : ''}
                         </div>
                     </div>
-                    ${completeLatestSignal.lock_in_reached ? `<div style="background: rgba(16, 185, 129, 0.25); border: 1px solid #10b981; padding: 6px 12px; border-radius: 6px; color: #10b981; font-size: 0.75rem; font-weight: 700;">✓ LOCK-IN</div>` : ''}
+                    ${completeLatestSignal.lock_in_reached ? `<span style="background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981; padding: 3px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 600;">✓ Lock-in</span>` : ''}
                 </div>
                 
-                <!-- Main Metrics Grid -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.8rem; margin-bottom: 0.8rem;">
-                    <!-- Entry -->
-                    <div style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 0.7rem; border-left: 3px solid #10b981;">
-                        <div style="color: rgba(255,255,255,0.5); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.3px; font-weight: 600; margin-bottom: 6px;">Entry Price</div>
-                        <div style="color: white; font-size: 1.1rem; font-weight: 800;">${completeLatestSignal.price ? (completeLatestSignal.price * 100).toFixed(2) : completeLatestSignal.entry_price ? (completeLatestSignal.entry_price * 100).toFixed(2) : '-'}p</div>
-                        <div style="color: rgba(255,255,255,0.4); font-size: 0.65rem; margin-top: 4px;">${completeLatestSignal.date || completeLatestSignal.signal_date || '-'}</div>
+                <!-- Compact Metrics Grid -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 0.75rem; font-size: 0.8rem;">
+                    <!-- Entry Price -->
+                    <div>
+                        <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px;">Entry:</div>
+                        <div style="font-weight: 600; color: white;">${completeLatestSignal.price ? (completeLatestSignal.price * 100).toFixed(2) : completeLatestSignal.entry_price ? (completeLatestSignal.entry_price * 100).toFixed(2) : '-'}p</div>
                     </div>
                     
-                    <!-- P&L -->
-                    <div style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 0.7rem; border-left: 3px solid ${completeLatestSignal.current_pnl_pct >= 0 ? '#10b981' : '#ef4444'};">
-                        <div style="color: rgba(255,255,255,0.5); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.3px; font-weight: 600; margin-bottom: 6px;">Current P&L</div>
-                        <div style="color: ${completeLatestSignal.current_pnl_pct >= 0 ? '#10b981' : '#ef4444'}; font-size: 1.1rem; font-weight: 800;">${completeLatestSignal.current_pnl_pct === 0 ? '0%' : (completeLatestSignal.current_pnl_pct >= 0 ? '+' : '') + completeLatestSignal.current_pnl_pct.toFixed(1) + '%'}</div>
-                        <div style="color: rgba(255,255,255,0.4); font-size: 0.65rem; margin-top: 4px;">live now</div>
+                    <!-- Current P&L -->
+                    <div>
+                        <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px;">P&L:</div>
+                        <div style="font-weight: 600; color: ${completeLatestSignal.current_pnl_pct >= 0 ? '#10b981' : '#ef4444'};">${completeLatestSignal.current_pnl_pct === 0 ? '0%' : (completeLatestSignal.current_pnl_pct >= 0 ? '+' : '') + completeLatestSignal.current_pnl_pct.toFixed(1) + '%'}</div>
                     </div>
                     
-                    <!-- Age -->
-                    <div style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 0.7rem; border-left: 3px solid #06b6d4;">
-                        <div style="color: rgba(255,255,255,0.5); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.3px; font-weight: 600; margin-bottom: 6px;">Signal Age</div>
-                        <div style="color: #06b6d4; font-size: 1.1rem; font-weight: 800;">${completeLatestSignal.age_days || '0'}d</div>
-                        <div style="color: rgba(255,255,255,0.4); font-size: 0.65rem; margin-top: 4px;">days old</div>
+                    <!-- Best Rally -->
+                    <div>
+                        <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px;">Best:</div>
+                        <div style="font-weight: 600; color: #22c55e;">${completeLatestSignal.best_rally_pct !== undefined ? '+' + completeLatestSignal.best_rally_pct.toFixed(1) + '%' : '-'}</div>
                     </div>
-                </div>
-                
-                <!-- Tactical Row -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.8rem;">
+                    
+                    <!-- Signal Age -->
+                    <div>
+                        <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px;">Age:</div>
+                        <div style="font-weight: 600; color: #06b6d4;">${completeLatestSignal.age_days || '0'}d</div>
+                    </div>
+                    
                     <!-- Cycle Position -->
-                    <div style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 0.7rem; border-left: 3px solid #fbbf24;">
-                        <div style="color: rgba(255,255,255,0.5); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.3px; font-weight: 600; margin-bottom: 6px;">Cycle Position</div>
-                        <div style="color: #fbbf24; font-size: 1.1rem; font-weight: 800;">${completeLatestSignal.cycle_position ? (completeLatestSignal.cycle_position * 100).toFixed(0) : '-'}%</div>
-                        <div style="color: rgba(255,255,255,0.4); font-size: 0.65rem; margin-top: 4px;">progress</div>
+                    <div>
+                        <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px;">Cycle:</div>
+                        <div style="font-weight: 600; color: #fbbf24;">${completeLatestSignal.cycle_position ? (completeLatestSignal.cycle_position * 100).toFixed(0) : '-'}%</div>
                     </div>
                     
-                    <!-- AI Score -->
-                    <div style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 0.7rem; border-left: 3px solid #667eea;">
-                        <div style="color: rgba(255,255,255,0.5); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.3px; font-weight: 600; margin-bottom: 6px;">AI Confidence</div>
-                        <div style="color: #667eea; font-size: 1.1rem; font-weight: 800;">${completeLatestSignal.ai_score ? completeLatestSignal.ai_score.toFixed(1) : '-'}<span style="font-size: 0.75rem; color: rgba(255,255,255,0.5);">/10</span></div>
-                        <div style="color: rgba(255,255,255,0.4); font-size: 0.65rem; margin-top: 4px;">signal strength</div>
+                    <!-- AI Confidence -->
+                    <div>
+                        <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px;">AI Score:</div>
+                        <div style="font-weight: 600; color: #667eea;">${completeLatestSignal.ai_score ? completeLatestSignal.ai_score.toFixed(1) : '-'}/10</div>
                     </div>
                 </div>
             </div>
