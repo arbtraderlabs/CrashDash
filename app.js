@@ -1483,74 +1483,71 @@ async function showSignalTimeline(ticker) {
             <div id="priceChart" style="width: 100%; height: 300px; min-height: 250px;"></div>
         </div>
         
-        <!-- 52-WEEK PRICE ACTION -->
-        <div style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.15) 0%, rgba(59, 130, 246, 0.1) 100%); border-radius: 12px; padding: 1.2rem; margin-bottom: 1rem; border: 1px solid rgba(59, 130, 246, 0.4); box-shadow: 0 4px 12px rgba(14, 165, 233, 0.1);">
-            <h3 style="color: white; margin: 0 0 1rem 0; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; font-weight: 600;">
-                📊 Price Action (52-Week)
-            </h3>
-            
-            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; justify-content: center;">
-                <!-- 52-Week High -->
-                <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.08)); border-radius: 6px; padding: 0.45rem 0.7rem; border: 1px solid rgba(16, 185, 129, 0.4); flex: 1 1 auto; min-width: 140px; text-align: center;">
-                    <div style="display: flex; flex-direction: column; align-items: center; gap: 0.2rem; font-size: 0.65rem;">
-                        <div style="color: #10b981; text-transform: uppercase; font-weight: 600; letter-spacing: 0.3px;">High</div>
-                        <div style="color: white; font-weight: 800; font-size: 0.75rem;">${basics.week_52_high ? basics.week_52_high + 'p' : '-'}</div>
-                        <div style="color: rgba(255,255,255,0.5); font-size: 0.6rem;">${basics.week_52_high_date ? new Date(basics.week_52_high_date).toLocaleDateString('en-GB', { month: 'short', day: '2-digit', year: '2-digit' }) : '-'}</div>
+        <!-- PRICE ACTION & HISTORICAL PERFORMANCE - COMBINED COMPACT TILE -->
+        <div style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.12), rgba(6, 182, 212, 0.08)); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; color: white; border: 1px solid rgba(59, 130, 246, 0.3);">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                <!-- Price Action Box -->
+                <div>
+                    <h3 style="color: white; margin: 0 0 0.6rem 0; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                        📊 Price Action
+                    </h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                        <!-- High -->
+                        <div style="background: rgba(16, 185, 129, 0.15); border-radius: 6px; padding: 0.5rem; border-left: 3px solid #10b981; text-align: center;">
+                            <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">High</div>
+                            <div style="color: #10b981; font-weight: 700; font-size: 0.85rem;">${basics.week_52_high ? basics.week_52_high + 'p' : '-'}</div>
+                            <div style="color: rgba(255,255,255,0.4); font-size: 0.6rem; margin-top: 2px;">${basics.week_52_high_date ? new Date(basics.week_52_high_date).toLocaleDateString('en-GB', { month: 'short', day: '2-digit', year: '2-digit' }) : '-'}</div>
+                        </div>
+                        <!-- Low -->
+                        <div style="background: rgba(239, 68, 68, 0.15); border-radius: 6px; padding: 0.5rem; border-left: 3px solid #ef4444; text-align: center;">
+                            <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Low</div>
+                            <div style="color: #ef4444; font-weight: 700; font-size: 0.85rem;">${basics.week_52_low ? basics.week_52_low + 'p' : '-'}</div>
+                            <div style="color: rgba(255,255,255,0.4); font-size: 0.6rem; margin-top: 2px;">${basics.week_52_low_date ? new Date(basics.week_52_low_date).toLocaleDateString('en-GB', { month: 'short', day: '2-digit', year: '2-digit' }) : '-'}</div>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- 52-Week Low -->
-                <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(239, 68, 68, 0.08)); border-radius: 6px; padding: 0.45rem 0.7rem; border: 1px solid rgba(239, 68, 68, 0.4); flex: 1 1 auto; min-width: 140px; text-align: center;">
-                    <div style="display: flex; flex-direction: column; align-items: center; gap: 0.2rem; font-size: 0.65rem;">
-                        <div style="color: #ef4444; text-transform: uppercase; font-weight: 600; letter-spacing: 0.3px;">Low</div>
-                        <div style="color: white; font-weight: 800; font-size: 0.75rem;">${basics.week_52_low ? basics.week_52_low + 'p' : '-'}</div>
-                        <div style="color: rgba(255,255,255,0.5); font-size: 0.6rem;">${basics.week_52_low_date ? new Date(basics.week_52_low_date).toLocaleDateString('en-GB', { month: 'short', day: '2-digit', year: '2-digit' }) : '-'}</div>
+
+                <!-- Historical Performance Box -->
+                <div>
+                    <h3 style="color: white; margin: 0 0 0.6rem 0; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                        📈 Performance
+                    </h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                        <!-- Signals -->
+                        <div style="background: rgba(6, 182, 212, 0.15); border-radius: 6px; padding: 0.5rem; border-left: 3px solid #06b6d4; text-align: center;">
+                            <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Signals</div>
+                            <div style="color: #06b6d4; font-weight: 700; font-size: 0.85rem;">${allSignals.length || 30}</div>
+                        </div>
+                        <!-- Win Rate -->
+                        <div style="background: rgba(34, 197, 94, 0.15); border-radius: 6px; padding: 0.5rem; border-left: 3px solid #22c55e; text-align: center;">
+                            <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Win Rate</div>
+                            <div style="color: #22c55e; font-weight: 700; font-size: 0.85rem;">100%</div>
+                        </div>
+                        <!-- Best Rally -->
+                        <div style="background: rgba(168, 85, 247, 0.15); border-radius: 6px; padding: 0.5rem; border-left: 3px solid #a855f7; text-align: center;">
+                            <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Best</div>
+                            <div style="color: #a855f7; font-weight: 700; font-size: 0.85rem;">+304%</div>
+                        </div>
+                        <!-- Avg Rally -->
+                        <div style="background: rgba(59, 130, 246, 0.15); border-radius: 6px; padding: 0.5rem; border-left: 3px solid #3b82f6; text-align: center;">
+                            <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Avg</div>
+                            <div style="color: #3b82f6; font-weight: 700; font-size: 0.85rem;">133%</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Historical Performance Card -->
-        <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(34, 197, 94, 0.1)); border-radius: 12px; padding: 0.8rem; margin-bottom: 1rem; color: white; border: 1px solid rgba(6, 182, 212, 0.35);">
-            <h3 style="margin: 0 0 0.6rem 0; font-size: 0.9rem; display: flex; align-items: center; gap: 6px; font-weight: 600;">
-                📈 Historical Performance
-            </h3>
-            
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem;">
-                <!-- Total Signals -->
-                <div style="background: rgba(6, 182, 212, 0.25); border-radius: 6px; padding: 0.35rem 0.4rem; text-align: center; border-left: 2px solid #06b6d4;">
-                    <div style="color: rgba(255,255,255,0.5); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.2px; margin-bottom: 2px;">Signals</div>
-                    <div style="color: #06b6d4; font-size: 0.75rem; font-weight: 800;">${allSignals.length || 30}</div>
+            <!-- Extra Metrics Row (Best Date & Peak) -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 0.75rem;">
+                <!-- Best Date -->
+                <div style="background: rgba(251, 146, 60, 0.15); border-radius: 6px; padding: 0.5rem; border-left: 3px solid #fb923c; text-align: center;">
+                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Best Date</div>
+                    <div style="color: #fb923c; font-weight: 700; font-size: 0.8rem;">31 Mar 25</div>
                 </div>
-                
-                <!-- Win Rate -->
-                <div style="background: rgba(34, 197, 94, 0.25); border-radius: 6px; padding: 0.35rem 0.4rem; text-align: center; border-left: 2px solid #22c55e;">
-                    <div style="color: rgba(255,255,255,0.5); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.2px; margin-bottom: 2px;">Win Rate</div>
-                    <div style="color: #22c55e; font-size: 0.75rem; font-weight: 800;">100%</div>
-                </div>
-                
-                <!-- Best Rally -->
-                <div style="background: rgba(168, 85, 247, 0.25); border-radius: 6px; padding: 0.35rem 0.4rem; text-align: center; border-left: 2px solid #a855f7;">
-                    <div style="color: rgba(255,255,255,0.5); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.2px; margin-bottom: 2px;">Best Rally</div>
-                    <div style="color: #a855f7; font-size: 0.75rem; font-weight: 800;">+304%</div>
-                </div>
-                
-                <!-- Avg Rally -->
-                <div style="background: rgba(59, 130, 246, 0.25); border-radius: 6px; padding: 0.35rem 0.4rem; text-align: center; border-left: 2px solid #3b82f6;">
-                    <div style="color: rgba(255,255,255,0.5); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.2px; margin-bottom: 2px;">Avg Rally</div>
-                    <div style="color: #3b82f6; font-size: 0.75rem; font-weight: 800;">133%</div>
-                </div>
-                
-                <!-- Best Signal Date -->
-                <div style="background: rgba(251, 146, 60, 0.25); border-radius: 6px; padding: 0.35rem 0.4rem; text-align: center; border-left: 2px solid #fb923c;">
-                    <div style="color: rgba(255,255,255,0.5); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.2px; margin-bottom: 2px;">Best Date</div>
-                    <div style="color: #fb923c; font-size: 0.75rem; font-weight: 800;">31 Mar 25</div>
-                </div>
-                
-                <!-- Peak Rally Days -->
-                <div style="background: rgba(244, 63, 94, 0.25); border-radius: 6px; padding: 0.35rem 0.4rem; text-align: center; border-left: 2px solid #f43f5e;">
-                    <div style="color: rgba(255,255,255,0.5); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.2px; margin-bottom: 2px;">Peak Rally</div>
-                    <div style="color: #f43f5e; font-size: 0.75rem; font-weight: 800;">+303.7%</div>
+                <!-- Peak Rally -->
+                <div style="background: rgba(244, 63, 94, 0.15); border-radius: 6px; padding: 0.5rem; border-left: 3px solid #f43f5e; text-align: center;">
+                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Peak</div>
+                    <div style="color: #f43f5e; font-weight: 700; font-size: 0.8rem;">+303.7%</div>
                 </div>
             </div>
         </div>
