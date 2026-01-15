@@ -1102,6 +1102,15 @@ async function showCompanyModal(ticker) {
     closeCompanyModal();
     
     const modalHTML = `
+        <style>
+            .company-modal-content { max-width: 820px; }
+            .metadata-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+            .metadata-section { background: rgba(255,255,255,0.02); padding: 12px; border-radius:8px; }
+            .metadata-item { display: flex; justify-content: space-between; gap: 8px; align-items: center; padding: 4px 0; }
+            .metadata-label { color: rgba(255,255,255,0.6); font-size: 0.85rem; }
+            .metadata-value { color: white; font-weight: 600; text-align: right; }
+            .risk-flag { background: rgba(239,68,68,0.2); color: white; padding: 6px 12px; border-radius: 20px; margin-right: 8px; display: inline-block; font-weight: 600; }
+        </style>
         <div class="company-modal-overlay" id="companyModalOverlay" onclick="closeCompanyModal()">
             <div class="company-modal-content" onclick="event.stopPropagation()">
                 <div class="company-modal-header">
@@ -1478,28 +1487,28 @@ async function showSignalTimeline(ticker) {
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                 <!-- Left Column -->
                 <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                    <div style="display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
-                        <span style="color: rgba(255,255,255,0.6); font-size: 0.75rem;">Signals</span>
-                        <span style="color: white; font-weight: 600; font-size: 0.8rem;">${allSignals.length || 30}</span>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Signals</span>
+                        <span class="metadata-value">${allSignals.length || 30}</span>
                     </div>
-                    <div style="display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
-                        <span style="color: rgba(255,255,255,0.6); font-size: 0.75rem;">Win Rate</span>
-                        <span style="color: white; font-weight: 600; font-size: 0.8rem;">100%</span>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Win Rate</span>
+                        <span class="metadata-value">100%</span>
                     </div>
                 </div>
                 <!-- Right Column -->
                 <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                    <div style="display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
-                        <span style="color: rgba(255,255,255,0.6); font-size: 0.75rem;">Best Date</span>
-                        <span style="color: white; font-weight: 600; font-size: 0.8rem;">${(metadata.best_historical_signal && metadata.best_historical_signal.signal_date) ? new Date(metadata.best_historical_signal.signal_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }) : 'N/A'}</span>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Best Date</span>
+                        <span class="metadata-value">${(metadata.best_historical_signal && metadata.best_historical_signal.signal_date) ? new Date(metadata.best_historical_signal.signal_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }) : 'N/A'}</span>
                     </div>
-                    <div style="display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
-                        <span style="color: rgba(255,255,255,0.6); font-size: 0.75rem;">Peak Rally</span>
-                        <span style="color: white; font-weight: 600; font-size: 0.8rem;">${(metadata.best_historical_signal && metadata.best_historical_signal.rally_pct) ? ('+' + metadata.best_historical_signal.rally_pct.toFixed(1) + '%') : '-'} <span style="color: rgba(255,255,255,0.5); font-weight: 400; font-size: 0.7rem;">(${(metadata.best_historical_signal && metadata.best_historical_signal.days_to_peak) ? metadata.best_historical_signal.days_to_peak + 'd' : '-'})</span></span>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Peak Rally</span>
+                        <span class="metadata-value">${(metadata.best_historical_signal && metadata.best_historical_signal.rally_pct) ? ('+' + metadata.best_historical_signal.rally_pct.toFixed(1) + '%') : '-'} <span style="color: rgba(255,255,255,0.5); font-weight: 400; font-size: 0.7rem;">(${(metadata.best_historical_signal && metadata.best_historical_signal.days_to_peak) ? metadata.best_historical_signal.days_to_peak + 'd' : '-'})</span></span>
                     </div>
-                    <div style="display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
-                        <span style="color: rgba(255,255,255,0.6); font-size: 0.75rem;">${cleanTickerDisplay(ticker)} Avg Rally</span>
-                        <span style="color: white; font-weight: 600; font-size: 0.8rem;">${stats.avg_rally_pct ? stats.avg_rally_pct.toFixed(0) + '%' : '-'}</span>
+                    <div class="metadata-item">
+                        <span class="metadata-label">${cleanTickerDisplay(ticker)} Avg Rally</span>
+                        <span class="metadata-value">${stats.avg_rally_pct ? stats.avg_rally_pct.toFixed(0) + '%' : '-'}</span>
                     </div>
                 </div>
             </div>
