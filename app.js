@@ -1533,9 +1533,9 @@ async function showSignalTimeline(ticker) {
                         <!-- Best Date + Peak Rally (single plain tile, no background colors) -->
                         <div style="border-radius: 6px; padding: 0.55rem; text-align: center;">
                             <div style="color: rgba(255,255,255,0.7); font-size: 0.65rem; margin-bottom: 4px; text-transform: uppercase; font-weight: 600;">Best Date</div>
-                            <div style="color: white; font-weight: 700; font-size: 0.9rem; margin-bottom: 6px;">${bestSignal.signal_date ? new Date(bestSignal.signal_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }) : 'N/A'}</div>
+                            <div style="color: white; font-weight: 700; font-size: 0.9rem; margin-bottom: 6px;">${(metadata.best_historical_signal && metadata.best_historical_signal.signal_date) ? new Date(metadata.best_historical_signal.signal_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }) : 'N/A'}</div>
                             <div style="color: rgba(255,255,255,0.7); font-size: 0.65rem; margin-bottom: 4px; text-transform: uppercase; font-weight: 600;">Peak Rally</div>
-                            <div style="color: white; font-weight: 700; font-size: 0.9rem;">${bestSignal.rally_pct ? ('+' + bestSignal.rally_pct.toFixed(1) + '%') : '-'} <span style="color: rgba(255,255,255,0.65); font-weight: 500; font-size: 0.85rem;">(${bestSignal.days_to_peak ? bestSignal.days_to_peak + ' days' : '-'})</span></div>
+                            <div style="color: white; font-weight: 700; font-size: 0.9rem;">${(metadata.best_historical_signal && metadata.best_historical_signal.rally_pct) ? ('+' + metadata.best_historical_signal.rally_pct.toFixed(1) + '%') : '-'} <span style="color: rgba(255,255,255,0.65); font-weight: 500; font-size: 0.85rem;">(${(metadata.best_historical_signal && metadata.best_historical_signal.days_to_peak) ? metadata.best_historical_signal.days_to_peak + ' days' : '-'})</span></div>
                         </div>
             </div>
 
