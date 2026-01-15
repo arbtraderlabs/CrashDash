@@ -1471,7 +1471,19 @@ async function showSignalTimeline(ticker) {
         </div>
         
         <!-- PERFORMANCE TILE - SIMPLE SPLIT -->
-        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; color: white; border: 1px solid rgba(255,255,255,0.1);">
+        <style>
+            /* Scoped performance tile tweaks: remove separators and add responsiveness */
+            #performance-tile .metadata-item { border-bottom: none !important; padding: 8px 0; }
+            #performance-tile .metadata-label { color: rgba(255,255,255,0.75); }
+            #performance-tile .metadata-value { color: white; font-weight: 700; text-align: right; }
+            @media (max-width: 600px) {
+                #performance-tile { padding: 0.6rem; }
+                #performance-tile .metadata-label { font-size: 0.85rem; }
+                #performance-tile .metadata-value { font-size: 0.95rem; }
+                #performance-tile h3 { font-size: 0.95rem; }
+            }
+        </style>
+        <div id="performance-tile" style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; color: white; border: 1px solid rgba(255,255,255,0.1);">
             <h3 style="color: white; margin: 0 0 0.75rem 0; font-size: 0.9rem; font-weight: 700; display: flex; align-items: center; gap: 6px;">
                 📈 Performance
             </h3>
@@ -1480,26 +1492,26 @@ async function showSignalTimeline(ticker) {
                 <div style="display: flex; flex-direction: column; gap: 0.5rem;">
                     <div class="metadata-item">
                         <span class="metadata-label">Signals</span>
-                        <span class="metadata-value">${allSignals.length || 30}</span>
+                        <span class="metadata-value" style="color: white;">${allSignals.length || 30}</span>
                     </div>
                     <div class="metadata-item">
                         <span class="metadata-label">Win Rate</span>
-                        <span class="metadata-value">100%</span>
+                        <span class="metadata-value" style="color: white;">100%</span>
                     </div>
                 </div>
                 <!-- Right Column -->
                 <div style="display: flex; flex-direction: column; gap: 0.5rem;">
                     <div class="metadata-item">
                         <span class="metadata-label">Best Date</span>
-                        <span class="metadata-value">${(metadata.best_historical_signal && metadata.best_historical_signal.signal_date) ? new Date(metadata.best_historical_signal.signal_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }) : 'N/A'}</span>
+                        <span class="metadata-value" style="color: white;">${(metadata.best_historical_signal && metadata.best_historical_signal.signal_date) ? new Date(metadata.best_historical_signal.signal_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }) : 'N/A'}</span>
                     </div>
                     <div class="metadata-item">
                         <span class="metadata-label">Peak Rally</span>
-                        <span class="metadata-value">${(metadata.best_historical_signal && metadata.best_historical_signal.rally_pct) ? ('+' + metadata.best_historical_signal.rally_pct.toFixed(1) + '%') : '-'} <span style="color: rgba(255,255,255,0.5); font-weight: 400; font-size: 0.7rem;">(${(metadata.best_historical_signal && metadata.best_historical_signal.days_to_peak) ? metadata.best_historical_signal.days_to_peak + 'd' : '-'})</span></span>
+                        <span class="metadata-value" style="color: white;">${(metadata.best_historical_signal && metadata.best_historical_signal.rally_pct) ? ('+' + metadata.best_historical_signal.rally_pct.toFixed(1) + '%') : '-'} <span style="color: rgba(255,255,255,0.5); font-weight: 400; font-size: 0.7rem;">(${(metadata.best_historical_signal && metadata.best_historical_signal.days_to_peak) ? metadata.best_historical_signal.days_to_peak + 'd' : '-'})</span></span>
                     </div>
                     <div class="metadata-item">
                         <span class="metadata-label">${cleanTickerDisplay(ticker)} Avg Rally</span>
-                        <span class="metadata-value">${stats.avg_rally_pct ? stats.avg_rally_pct.toFixed(0) + '%' : '-'}</span>
+                        <span class="metadata-value" style="color: white;">${stats.avg_rally_pct ? stats.avg_rally_pct.toFixed(0) + '%' : '-'}</span>
                     </div>
                 </div>
             </div>
