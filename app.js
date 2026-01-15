@@ -1102,15 +1102,6 @@ async function showCompanyModal(ticker) {
     closeCompanyModal();
     
     const modalHTML = `
-        <style>
-            .company-modal-content { max-width: 820px; }
-            .metadata-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-            .metadata-section { background: rgba(255,255,255,0.02); padding: 12px; border-radius:8px; }
-            .metadata-item { display: flex; justify-content: space-between; gap: 8px; align-items: center; padding: 4px 0; }
-            .metadata-label { color: rgba(255,255,255,0.6); font-size: 0.85rem; }
-            .metadata-value { color: white; font-weight: 600; text-align: right; }
-            .risk-flag { background: rgba(239,68,68,0.2); color: white; padding: 6px 12px; border-radius: 20px; margin-right: 8px; display: inline-block; font-weight: 600; }
-        </style>
         <div class="company-modal-overlay" id="companyModalOverlay" onclick="closeCompanyModal()">
             <div class="company-modal-content" onclick="event.stopPropagation()">
                 <div class="company-modal-header">
