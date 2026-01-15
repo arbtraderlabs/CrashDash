@@ -1577,11 +1577,71 @@ async function showSignalTimeline(ticker) {
                 </div>
             </div>
         </div>
+
+        <!-- PRICE ACTION & PERFORMANCE - COMBINED COMPACT TILE -->
+        <div style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.12), rgba(6, 182, 212, 0.08)); border-radius: 12px; padding: 0.9rem; margin-bottom: 1rem; color: white; border: 1px solid rgba(59, 130, 246, 0.3);">
+            <h3 style="color: white; margin: 0 0 0.7rem 0; font-size: 0.9rem; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+                📊 52-Week · 📈 Performance
+            </h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 0.6rem;">
+                <!-- 52-Week High -->
+                <div style="background: rgba(16, 185, 129, 0.15); border-radius: 6px; padding: 0.55rem; border-left: 3px solid #10b981; text-align: center;">
+                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">High</div>
+                    <div style="color: #10b981; font-weight: 700; font-size: 0.85rem;">${basics.week_52_high ? basics.week_52_high + 'p' : '-'}</div>
+                    <div style="color: rgba(255,255,255,0.4); font-size: 0.6rem; margin-top: 2px;">${basics.week_52_high_date ? new Date(basics.week_52_high_date).toLocaleDateString('en-GB', { month: 'short', day: '2-digit' }) : '-'}</div>
+                </div>
+
+                <!-- 52-Week Low -->
+                <div style="background: rgba(239, 68, 68, 0.15); border-radius: 6px; padding: 0.55rem; border-left: 3px solid #ef4444; text-align: center;">
+                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Low</div>
+                    <div style="color: #ef4444; font-weight: 700; font-size: 0.85rem;">${basics.week_52_low ? basics.week_52_low + 'p' : '-'}</div>
+                    <div style="color: rgba(255,255,255,0.4); font-size: 0.6rem; margin-top: 2px;">${basics.week_52_low_date ? new Date(basics.week_52_low_date).toLocaleDateString('en-GB', { month: 'short', day: '2-digit' }) : '-'}</div>
+                </div>
+
+                <!-- Signals Count -->
+                <div style="background: rgba(6, 182, 212, 0.15); border-radius: 6px; padding: 0.55rem; border-left: 3px solid #06b6d4; text-align: center;">
+                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Signals</div>
+                    <div style="color: #06b6d4; font-weight: 700; font-size: 0.85rem;">${allSignals.length || 30}</div>
+                </div>
+
+                <!-- Win Rate -->
+                <div style="background: rgba(34, 197, 94, 0.15); border-radius: 6px; padding: 0.55rem; border-left: 3px solid #22c55e; text-align: center;">
+                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Win</div>
+                    <div style="color: #22c55e; font-weight: 700; font-size: 0.85rem;">100%</div>
+                </div>
+
+                <!-- Best Rally % -->
+                <div style="background: rgba(168, 85, 247, 0.15); border-radius: 6px; padding: 0.55rem; border-left: 3px solid #a855f7; text-align: center;">
+                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Best</div>
+                    <div style="color: #a855f7; font-weight: 700; font-size: 0.85rem;">+304%</div>
+                </div>
+
+                <!-- Avg Rally % -->
+                <div style="background: rgba(59, 130, 246, 0.15); border-radius: 6px; padding: 0.55rem; border-left: 3px solid #3b82f6; text-align: center;">
+                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Avg</div>
+                    <div style="color: #3b82f6; font-weight: 700; font-size: 0.85rem;">133%</div>
+                </div>
+
+                <!-- Best Date -->
+                <div style="background: rgba(251, 146, 60, 0.15); border-radius: 6px; padding: 0.55rem; border-left: 3px solid #fb923c; text-align: center;">
+                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Best Date</div>
+                    <div style="color: #fb923c; font-weight: 700; font-size: 0.8rem;">31 Mar 25</div>
+                </div>
+
+                <!-- Peak Rally with Days -->
+                <div style="background: rgba(244, 63, 94, 0.15); border-radius: 6px; padding: 0.55rem; border-left: 3px solid #f43f5e; text-align: center;">
+                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Peak</div>
+                    <div style="color: #f43f5e; font-weight: 700; font-size: 0.8rem;">+303.7%</div>
+                    <div style="color: rgba(255,255,255,0.4); font-size: 0.6rem; margin-top: 1px;">101 days</div>
+                </div>
+            </div>
+        </div>
         
         <!-- Signal History Timeline -->
         <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin-top: 1rem; border: 1px solid rgba(10, 132, 255, 0.2);">
             <h3 style="color: white; margin: 0 0 0.75rem 0; font-size: 0.95rem; font-weight: 600;">
-                📈 Signal History (${allSignals.length} signal${allSignals.length !== 1 ? 's' : ''})
+                🎯 Signal History <span style="background: rgba(10, 132, 255, 0.3); padding: 4px 10px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; color: #06b6d4;">${allSignals.length}</span>
             </h3>
             <div id="signalHistoryContainer" style="display: flex; flex-direction: column; gap: 0.75rem;">
                 ${allSignals.sort((a, b) => new Date(b.signal_date) - new Date(a.signal_date)).slice(0, 10).map(sig => {
@@ -1630,7 +1690,18 @@ async function showSignalTimeline(ticker) {
                                 </div>
                                 <div>
                                     <span style="color: rgba(255,255,255,0.6);">Age:</span>
-                                    <span style="font-weight: 600; color: white;">${sig.age_days}d</span>
+                                    <span style="font-weight: 600; color: #06b6d4;">${sig.age_days}d</span>
+                                </div>
+                            </div>
+                            <!-- Peak Rally & Days (Separate Row) -->
+                            <div style="margin-top: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                                <div style="background: rgba(251, 146, 60, 0.15); border-radius: 6px; padding: 6px; border-left: 2px solid #fb923c; text-align: center;">
+                                    <div style="color: rgba(255,255,255,0.5); font-size: 0.65rem; text-transform: uppercase; font-weight: 600;">Best Date</div>
+                                    <div style="color: #fb923c; font-size: 0.75rem; font-weight: 700;">31 Mar 25</div>
+                                </div>
+                                <div style="background: rgba(244, 63, 94, 0.15); border-radius: 6px; padding: 6px; border-left: 2px solid #f43f5e; text-align: center;">
+                                    <div style="color: rgba(255,255,255,0.5); font-size: 0.65rem; text-transform: uppercase; font-weight: 600;">Peak Rally</div>
+                                    <div style="color: #f43f5e; font-size: 0.75rem; font-weight: 700;">+${sig.best_rally_pct.toFixed(1)}% (${sig.days_to_peak || sig.age_days || '0'}d)</div>
                                 </div>
                             </div>
                             <div style="margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap;">
