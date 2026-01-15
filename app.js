@@ -1472,11 +1472,11 @@ async function showSignalTimeline(ticker) {
         
         <!-- PERFORMANCE TILE - SIMPLE SPLIT -->
         <style>
-            /* Scoped performance tile tweaks: remove separators and add responsiveness */
-            #performance-tile .metadata-item { border-bottom: none !important; padding: 8px 0; }
-            #performance-tile .metadata-label { color: rgba(255,255,255,0.75); }
-            #performance-tile .metadata-value { color: white; font-weight: 700; text-align: right; }
-            @media (max-width: 600px) {
+            /* Scoped performance tile tweaks: left-justify label and value, remove separators, responsive sizing */
+            #performance-tile .metadata-item { border-bottom: none !important; padding: 8px 0; display: flex; align-items: center; gap: 0.75rem; justify-content: flex-start; }
+            #performance-tile .metadata-label { color: rgba(255,255,255,0.75); flex: 0 0 auto; }
+            #performance-tile .metadata-value { color: white; font-weight: 700; text-align: left; flex: 0 0 auto; }
+            @media (max-width: 900px) {
                 #performance-tile { padding: 0.6rem; }
                 #performance-tile .metadata-label { font-size: 0.85rem; }
                 #performance-tile .metadata-value { font-size: 0.95rem; }
