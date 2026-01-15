@@ -1481,6 +1481,13 @@ async function showSignalTimeline(ticker) {
             <h3 style="color: white; margin: 0 0 0.8rem 0; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; font-weight: 600;">
                 📈 Price Chart</h3>
             <div id="priceChart" style="width: 100%; height: 300px; min-height: 250px;"></div>
+            
+            <!-- 52-Week High/Low Plain Text -->
+            <div style="margin-top: 0.8rem; text-align: center; font-size: 0.75rem; color: rgba(255,255,255,0.7);">
+                <div style="color: white; font-weight: 600; margin-bottom: 4px;">52-Week Range</div>
+                <div>High: ${basics.week_52_high ? basics.week_52_high + 'p' : '-'} (${basics.week_52_high_date ? new Date(basics.week_52_high_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }) : '-'})</div>
+                <div>Low: ${basics.week_52_low ? basics.week_52_low + 'p' : '-'} (${basics.week_52_low_date ? new Date(basics.week_52_low_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }) : '-'})</div>
+            </div>
         </div>
         
         <!-- PRICE ACTION & HISTORICAL PERFORMANCE - COMBINED COMPACT TILE -->
