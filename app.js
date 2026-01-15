@@ -1364,65 +1364,226 @@ async function showSignalTimeline(ticker) {
         
         const currentState = latestSignal.rally_state ? rallyStateColors[latestSignal.rally_state] : null;
         
+        // Extract company info for header
+        const companyInfo = metadata.company_info || {};
+        const basics = metadata.basics || {};
+        const tickerInfo = tickerLookup[ticker] || {};
+        
+        // Get market cap in proper format
+        const marketCapCandidate = getMarketCapCandidate(ticker, metadata, tickerInfo);
+        const formattedMarketCap = formatMarketCap(marketCapCandidate);
+        
+        // Get current price (pence-aware)
+        const currentPriceVal = getPriceFieldForTicker(ticker, basics, 'current_price');
+        const fmtCurrentPrice = (currentPriceVal !== undefined && currentPriceVal !== null && !isNaN(currentPriceVal)) ? Number(currentPriceVal).toFixed(4) : '-';
+        
         content.innerHTML = `
-        <h2 style="color: white; margin: 0 0 1.5rem 0; font-size: 1.5rem;">
-            ${cleanTickerDisplay(ticker)} - Rally Timeline
-        </h2>
+        <!-- STICKY COMPANY INFO HEADER -->
+        <div style="position: sticky; top: 0; z-index: 9999; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; background: rgb(26, 35, 54); box-shadow: 0 2px 8px rgba(0,0,0,0.3); border-bottom: 1px solid rgba(10, 132, 255, 0.4); padding: 0.6rem 1.5rem; margin: 0;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; width: 100%; overflow: hidden;">
+                <!-- Ticker & Company Name (Left) -->
+                <div style="flex: 1 1 auto; min-width: 100px; max-width: 180px;">
+                    <div style="color: white; font-size: 0.95rem; font-weight: 800; letter-spacing: 0.5px;">${cleanTickerDisplay(ticker)}</div>
+                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; line-height: 1; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${companyInfo.name || 'Company'}</div>
+                </div>
+                
+                <!-- Key Metrics (Center) - 4 columns -->
+                <div style="display: flex; gap: 0.5rem; align-items: center; flex: 2 1 auto; overflow: hidden;">
+                    <!-- Current Price (with currency) -->
+                    <div style="text-align: center; min-width: 60px; flex-shrink: 0;">
+                        <div style="color: rgba(255,255,255,0.5); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1;">
+                            Price <span style="color: #f59e0b; font-size: 0.5rem; font-weight: 600;">${companyInfo.currency || 'GBP'}</span>
+                        </div>
+                        <div style="color: white; font-size: 0.85rem; font-weight: 800; line-height: 1.1; margin-top: 1px;">${fmtCurrentPrice}p</div>
+                    </div>
+                    
+                    <!-- Market Cap -->
+                    <div style="text-align: center; min-width: 55px; flex-shrink: 0;">
+                        <div style="color: rgba(255,255,255,0.5); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1;">Cap</div>
+                        <div style="color: #10b981; font-size: 0.85rem; font-weight: 800; line-height: 1.1; margin-top: 1px;">${formattedMarketCap}</div>
+                    </div>
+                    
+                    <!-- Exchange (combined Market + Exchange) -->
+                    <div style="text-align: center; min-width: 60px; flex-shrink: 0;">
+                        <div style="color: rgba(255,255,255,0.5); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1;">Exchange</div>
+                        <div style="font-size: 0.75rem; font-weight: 700; line-height: 1.1; margin-top: 1px;">
+                            <span style="color: #06b6d4;">${companyInfo.exchange || 'LSE'}</span>
+                            <span style="color: #a855f7;"> ${companyInfo.market || 'AIM'}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Close Button (Right) - VISIBLE -->
+                <button onclick="closeSignalTimeline()" style="
+                    background: rgba(255,255,255,0.1);
+                    border: 1px solid rgba(255,255,255,0.2);
+                    color: rgba(255,255,255,0.8);
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-size: 1.2rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: all 0.2s ease;
+                    flex-shrink: 0;
+                    padding: 0;
+                    font-weight: 700;
+                "
+                onmouseover="this.style.background='rgba(255,255,255,0.2)'; this.style.color='white'"
+                onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.color='rgba(255,255,255,0.8)'"
+                title="Close">
+                    ✕
+                </button>
+            </div>
+        </div>
+        
+        <!-- Details Row - ALSO STICKY (Sector & Industry) -->
+        <div style="position: sticky; top: 52px; z-index: 9998; display: flex; gap: 1.5rem; font-size: 0.65rem; background: rgb(26, 35, 54); box-shadow: 0 2px 6px rgba(0,0,0,0.2); border-bottom: 1px solid rgba(10, 132, 255, 0.2); padding: 0.35rem 1.5rem 0.4rem 1.5rem; margin: 0; text-align: left;">
+            <div style="display: flex; align-items: center; gap: 0.4rem; min-width: 100px;">
+                <span style="color: #667eea; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 500; flex-shrink: 0;">Sector:</span>
+                <span style="color: white; font-weight: 700; font-size: 0.7rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${companyInfo.sector || '-'}</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.4rem; flex: 1; overflow: hidden;">
+                <span style="color: #667eea; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 500; flex-shrink: 0;">Ind:</span>
+                <span style="color: white; font-weight: 700; font-size: 0.7rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${companyInfo.industry || '-'}</span>
+            </div>
+        </div>
+        
+        <!-- Content starts here with proper spacing and padding -->
+        <div style="padding: 1.5rem; padding-top: 1rem;">
         
         <!-- 5-Year Price Chart -->
-        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem; border: 1px solid rgba(10, 132, 255, 0.2);">
-            <h3 style="color: white; margin: 0 0 1rem 0; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-                📈 ${cleanTickerDisplay(ticker)} - 5 Year Price History
-            </h3>
-            <div id="priceChart" style="width: 100%; height: 400px; min-height: 300px;"></div>
+        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; border: 1px solid rgba(10, 132, 255, 0.2);">
+            <h3 style="color: white; margin: 0 0 0.8rem 0; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; font-weight: 600;">
+                📈 Price Chart</h3>
+            <div id="priceChart" style="width: 100%; height: 300px; min-height: 250px;"></div>
         </div>
         
         <!-- Current Rally Analysis Card -->
-        <div style="background: linear-gradient(135deg, var(--navy), #1A3A52); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; color: white; border: 1px solid rgba(10, 132, 255, 0.3);">
-            <h3 style="margin: 0 0 1rem 0; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
-                📊 Current Rally Analysis
+        <div style="background: linear-gradient(135deg, var(--navy), #1A3A52); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; color: white; border: 1px solid rgba(10, 132, 255, 0.3);">
+            <h3 style="margin: 0 0 0.75rem 0; font-size: 0.95rem; display: flex; align-items: center; gap: 6px; font-weight: 600;">
+                📊 Current Rally Status
             </h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem;">
                 ${currentState ? `
-                    <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.75rem;">
-                        <div style="color: rgba(255,255,255,0.7); font-size: 0.75rem; margin-bottom: 4px;">Rally State</div>
-                        <div style="color: white; font-size: 1.1rem; font-weight: 700;">${currentState.text}</div>
+                    <div style="background: rgba(255,255,255,0.12); border-radius: 8px; padding: 0.6rem;">
+                        <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.3px;">State</div>
+                        <div style="color: white; font-size: 0.9rem; font-weight: 700;">${currentState.text}</div>
                     </div>
                 ` : ''}
                 ${latestSignal.Rally_Count !== undefined ? `
-                    <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.75rem;">
-                        <div style="color: rgba(255,255,255,0.7); font-size: 0.75rem; margin-bottom: 4px;">Rally Cycles</div>
-                        <div style="color: white; font-size: 1.1rem; font-weight: 700;">${latestSignal.Rally_Count} ${latestSignal.Rally_Count >= 2 ? '⚠️' : ''}</div>
+                    <div style="background: rgba(255,255,255,0.12); border-radius: 8px; padding: 0.6rem;">
+                        <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.3px;">Cycles</div>
+                        <div style="color: white; font-size: 0.9rem; font-weight: 700;">${latestSignal.Rally_Count} ${latestSignal.Rally_Count >= 2 ? '⚠️' : ''}</div>
                     </div>
                 ` : ''}
                 ${latestSignal.lock_in_reached ? `
-                    <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.75rem;">
-                        <div style="color: rgba(255,255,255,0.7); font-size: 0.75rem; margin-bottom: 4px;">Lock-in Status</div>
-                        <div style="color: white; font-size: 1.1rem; font-weight: 700;">✓ Achieved</div>
-                        ${latestSignal.lock_in_date ? `<div style="color: rgba(255,255,255,0.6); font-size: 0.7rem;">${new Date(latestSignal.lock_in_date).toLocaleDateString('en-GB')}</div>` : ''}
+                    <div style="background: rgba(255,255,255,0.12); border-radius: 8px; padding: 0.6rem;">
+                        <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.3px;">Lock-in</div>
+                        <div style="color: #10b981; font-size: 0.9rem; font-weight: 700;">✓ Achieved</div>
+                        ${latestSignal.lock_in_date ? `<div style="color: rgba(255,255,255,0.5); font-size: 0.6rem; margin-top: 2px;">${new Date(latestSignal.lock_in_date).toLocaleDateString('en-GB')}</div>` : ''}
                     </div>
                 ` : ''}
                 ${latestSignal.distance_from_high_pct !== undefined ? `
-                    <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.75rem;">
-                        <div style="color: rgba(255,255,255,0.7); font-size: 0.75rem; margin-bottom: 4px;">From Peak</div>
-                        <div style="color: white; font-size: 1.1rem; font-weight: 700;">${latestSignal.distance_from_high_pct.toFixed(2)}%</div>
+                    <div style="background: rgba(255,255,255,0.12); border-radius: 8px; padding: 0.6rem;">
+                        <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.3px;">From Peak</div>
+                        <div style="color: #667eea; font-size: 0.9rem; font-weight: 700;">${latestSignal.distance_from_high_pct.toFixed(2)}%</div>
                     </div>
                 ` : ''}
                 ${latestSignal.best_rally_pct !== undefined ? `
-                    <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.75rem;">
-                        <div style="color: rgba(255,255,255,0.7); font-size: 0.75rem; margin-bottom: 4px;">Best Rally</div>
-                        <div style="color: white; font-size: 1.1rem; font-weight: 700;">+${latestSignal.best_rally_pct.toFixed(2)}%</div>
+                    <div style="background: rgba(255,255,255,0.12); border-radius: 8px; padding: 0.6rem;">
+                        <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.3px;">Max Rally</div>
+                        <div style="color: #22c55e; font-size: 0.9rem; font-weight: 700;">+${latestSignal.best_rally_pct.toFixed(2)}%</div>
                     </div>
                 ` : ''}
             </div>
         </div>
         
+        <!-- MARKET PROFILE - ENTRY ANALYSIS (PHASE 1) -->
+        <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(10, 132, 255, 0.1)); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; color: white; border: 1px solid rgba(16, 185, 129, 0.3);">
+            <h3 style="margin: 0 0 0.75rem 0; font-size: 0.95rem; display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 600;" onclick="this.parentElement.querySelector('[data-profile-details]').style.display = this.parentElement.querySelector('[data-profile-details]').style.display === 'none' ? 'grid' : 'none'; this.querySelector('.expand-icon').style.transform = this.parentElement.querySelector('[data-profile-details]').style.display === 'none' ? 'rotate(0deg)' : 'rotate(180deg)';">
+                💹 Market Profile
+                <span class="expand-icon" style="display: inline-block; transition: transform 0.3s ease; margin-left: auto; font-size: 1rem;">▼</span>
+            </h3>
+            <div data-profile-details style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 0.75rem; margin-top: 0;">
+                <!-- Entry Price Context -->
+                <div style="background: rgba(255,255,255,0.08); border-radius: 6px; padding: 0.6rem; border-left: 2px solid #10b981;">
+                    <div style="color: rgba(255,255,255,0.5); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 3px;">Entry</div>
+                    <div style="color: white; font-size: 1rem; font-weight: 800;">${latestSignal.price ? (latestSignal.price * 100).toFixed(2) : '-'}p</div>
+                    <div style="color: rgba(255,255,255,0.4); font-size: 0.6rem; margin-top: 2px;">${latestSignal.date || '-'}</div>
+                </div>
+                
+                <!-- Drawdown at Entry -->
+                <div style="background: rgba(255,255,255,0.08); border-radius: 6px; padding: 0.6rem; border-left: 2px solid #f97316;">
+                    <div style="color: rgba(255,255,255,0.5); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 3px;">Drawdown</div>
+                    <div style="color: #f97316; font-size: 1rem; font-weight: 800;">${latestSignal.drawdown_pct ? latestSignal.drawdown_pct.toFixed(1) : '-'}%</div>
+                    <div style="color: rgba(255,255,255,0.4); font-size: 0.6rem; margin-top: 2px;">from ATH</div>
+                </div>
+                
+                <!-- RSI Signal Strength -->
+                <div style="background: rgba(255,255,255,0.08); border-radius: 6px; padding: 0.6rem; border-left: 2px solid #a855f7;">
+                    <div style="color: rgba(255,255,255,0.5); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 3px;">RSI</div>
+                    <div style="color: ${latestSignal.rsi < 30 ? '#10b981' : latestSignal.rsi < 50 ? '#eab308' : '#ef4444'}; font-size: 1rem; font-weight: 800;">${latestSignal.rsi ? latestSignal.rsi.toFixed(1) : '-'}</div>
+                    <div style="color: ${latestSignal.rsi < 30 ? '#10b981' : latestSignal.rsi < 50 ? '#eab308' : '#ef4444'}; font-size: 0.6rem; margin-top: 2px;">${latestSignal.rsi < 30 ? 'Oversold' : latestSignal.rsi < 50 ? 'Low' : 'Recovery'}</div>
+                </div>
+                
+                <!-- Current P&L (Repeating from above for mobile context) -->
+                <div style="background: rgba(255,255,255,0.08); border-radius: 6px; padding: 0.6rem; border-left: 2px solid ${latestSignal.current_pnl_pct >= 0 ? '#10b981' : '#ef4444'};">
+                    <div style="color: rgba(255,255,255,0.5); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 3px;">P&L</div>
+                    <div style="color: ${latestSignal.current_pnl_pct >= 0 ? '#10b981' : '#ef4444'}; font-size: 1rem; font-weight: 800;">${latestSignal.current_pnl_pct >= 0 ? '+' : ''}${latestSignal.current_pnl_pct ? latestSignal.current_pnl_pct.toFixed(1) : '-'}%</div>
+                    <div style="color: rgba(255,255,255,0.4); font-size: 0.6rem; margin-top: 2px;">live</div>
+                </div>
+                
+                <!-- Days Holding -->
+                <div style="background: rgba(255,255,255,0.08); border-radius: 6px; padding: 0.6rem; border-left: 2px solid #06b6d4;">
+                    <div style="color: rgba(255,255,255,0.5); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 3px;">Days</div>
+                    <div style="color: white; font-size: 1rem; font-weight: 800;">${latestSignal.holding_period_days || '0'}</div>
+                    <div style="color: rgba(255,255,255,0.4); font-size: 0.6rem; margin-top: 2px;">holding</div>
+                </div>
+                
+                <!-- Best Theoretical Rally -->
+                <div style="background: rgba(255,255,255,0.08); border-radius: 6px; padding: 0.6rem; border-left: 2px solid #22c55e;">
+                    <div style="color: rgba(255,255,255,0.5); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 3px;">Max</div>
+                    <div style="color: #22c55e; font-size: 1rem; font-weight: 800;">+${latestSignal.best_rally_pct ? latestSignal.best_rally_pct.toFixed(1) : '-'}%</div>
+                    <div style="color: rgba(255,255,255,0.4); font-size: 0.6rem; margin-top: 2px;">rally</div>
+                </div>
+            </div>
+            
+            <!-- Advanced Metrics (Collapsible Sub-section) -->
+            <div style="margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+                <div style="color: rgba(255,255,255,0.7); font-size: 0.8rem; cursor: pointer; display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem;" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'grid' : 'none'; this.querySelector('.toggle-icon').style.transform = this.nextElementSibling.style.display === 'none' ? 'rotate(0deg)' : 'rotate(180deg)');">
+                    <span class="toggle-icon" style="display: inline-block; transition: transform 0.3s ease; font-size: 1rem;">▶</span>
+                    Advanced Metrics
+                </div>
+                <div style="display: none; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;">
+                    <div style="background: rgba(255,255,255,0.05); border-radius: 6px; padding: 0.6rem; font-size: 0.75rem;">
+                        <div style="color: rgba(255,255,255,0.5); margin-bottom: 2px;">Cycle Position</div>
+                        <div style="color: white; font-weight: 600;">${latestSignal.cycle_position ? (latestSignal.cycle_position * 100).toFixed(0) : '-'}%</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); border-radius: 6px; padding: 0.6rem; font-size: 0.75rem;">
+                        <div style="color: rgba(255,255,255,0.5); margin-bottom: 2px;">Distance from Peak</div>
+                        <div style="color: ${latestSignal.distance_from_high_pct > 0 ? '#10b981' : '#ef4444'}; font-weight: 600;">${latestSignal.distance_from_high_pct ? latestSignal.distance_from_high_pct.toFixed(1) : '-'}%</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); border-radius: 6px; padding: 0.6rem; font-size: 0.75rem;">
+                        <div style="color: rgba(255,255,255,0.5); margin-bottom: 2px;">AI Score</div>
+                        <div style="color: #667eea; font-weight: 600;">${latestSignal.ai_score ? latestSignal.ai_score.toFixed(1) : '-'} / 10</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); border-radius: 6px; padding: 0.6rem; font-size: 0.75rem;">
+                        <div style="color: rgba(255,255,255,0.5); margin-bottom: 2px;">Rally Cycles</div>
+                        <div style="color: ${latestSignal.Rally_Count >= 2 ? '#fbbf24' : '#10b981'}; font-weight: 600;">${latestSignal.Rally_Count || '0'} ${latestSignal.Rally_Count >= 2 ? '⚠️' : ''}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <!-- Signal History Timeline -->
-        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(10, 132, 255, 0.2);">
-            <h3 style="color: white; margin: 0 0 1rem 0; font-size: 1rem;">
+        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin-top: 1rem; border: 1px solid rgba(10, 132, 255, 0.2);">
+            <h3 style="color: white; margin: 0 0 0.75rem 0; font-size: 0.95rem; font-weight: 600;">
                 📈 Signal History (${allSignals.length} signal${allSignals.length !== 1 ? 's' : ''})
             </h3>
-            <div id="signalHistoryContainer" style="display: flex; flex-direction: column; gap: 12px;">
+            <div id="signalHistoryContainer" style="display: flex; flex-direction: column; gap: 0.75rem;">
                 ${allSignals.sort((a, b) => new Date(b.signal_date) - new Date(a.signal_date)).slice(0, 10).map(sig => {
                     const signalState = sig.rally_state ? rallyStateColors[sig.rally_state] : null;
                     const signalColorEmoji = {
@@ -1505,10 +1666,11 @@ async function showSignalTimeline(ticker) {
                 </p>
             </div>
         ` : ''}
+        </div>
     `;
         
         console.log('Displaying modal...');
-        modal.style.display = 'block';
+        modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
         
         // Load and render price chart
