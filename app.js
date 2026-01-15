@@ -1568,11 +1568,11 @@ async function showSignalTimeline(ticker) {
                 <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 2px solid rgba(255,255,255,0.1);">
                     <div style="flex: 1;">
                         <div style="font-size: 0.7rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 4px; font-weight: 600;">Signal Status</div>
-                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px; flex-wrap: wrap;">
                             ${currentState ? `<div style="background: ${currentState.bg}; color: white; padding: 6px 12px; border-radius: 6px; font-size: 0.9rem; font-weight: 700;">${currentState.text}</div>` : ''}
                             ${completeLatestSignal.best_rally_pct !== undefined ? `<div style="font-size: 1.3rem; font-weight: 900; color: #22c55e;">${completeLatestSignal.best_rally_pct === 0 ? '0%' : '+' + completeLatestSignal.best_rally_pct.toFixed(2) + '%'}</div>` : ''}
+                            ${completeLatestSignal.signal_type ? `<div style="background: ${signalColorStyle.bg}; color: white; padding: 4px 10px; border-radius: 5px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px;">${completeLatestSignal.signal_type}</div>` : ''}
                         </div>
-                        ${completeLatestSignal.signal_type ? `<div style="font-size: 0.75rem; color: rgba(255,255,255,0.7);">${completeLatestSignal.signal_type}</div>` : ''}
                     </div>
                     ${completeLatestSignal.lock_in_reached ? `<div style="background: rgba(16, 185, 129, 0.25); border: 1px solid #10b981; padding: 6px 12px; border-radius: 6px; color: #10b981; font-size: 0.75rem; font-weight: 700;">✓ LOCK-IN</div>` : ''}
                 </div>
