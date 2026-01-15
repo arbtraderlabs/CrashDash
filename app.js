@@ -1621,8 +1621,8 @@ async function showSignalTimeline(ticker) {
         
         <!-- Signal History Timeline -->
         <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin-top: 1rem; border: 1px solid rgba(10, 132, 255, 0.2);">
-            <h3 style="color: white; margin: 0 0 0.75rem 0; font-size: 0.95rem; font-weight: 600;">
-                📈 Signal History (${allSignals.length} signal${allSignals.length !== 1 ? 's' : ''})
+            <h3 style="color: white; margin: 0 0 1rem 0; font-size: 1.05rem; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+                🎯 Signal History <span style="background: rgba(10, 132, 255, 0.3); padding: 4px 10px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; color: #06b6d4;">${allSignals.length}</span>
             </h3>
             <div id="signalHistoryContainer" style="display: flex; flex-direction: column; gap: 0.75rem;">
                 ${allSignals.sort((a, b) => new Date(b.signal_date) - new Date(a.signal_date)).slice(0, 10).map(sig => {
@@ -1640,43 +1640,43 @@ async function showSignalTimeline(ticker) {
                     const formattedDate = `${String(dateObj.getDate()).padStart(2, '0')}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${dateObj.getFullYear()}`;
                     
                     return `
-                        <div style="background: rgba(255,255,255,0.08); border-radius: 8px; padding: 1rem; border-left: 4px solid ${signalState ? signalState.bg : '#6b7280'};">
-                            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
-                                <div>
-                                    <div style="font-weight: 700; color: white; margin-bottom: 4px;">
+                        <div style="background: rgba(255,255,255,0.08); border-radius: 8px; padding: 0.75rem; border-left: 4px solid ${signalState ? signalState.bg : '#6b7280'}; transition: background 0.2s;">
+                            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.6rem; flex-wrap: wrap; gap: 8px;">
+                                <div style="flex: 1; min-width: 150px;">
+                                    <div style="font-weight: 700; color: white; margin-bottom: 3px; font-size: 0.9rem;">
                                         ${signalColorEmoji} ${formattedDate}
                                     </div>
-                                    <div style="font-size: 0.75rem; color: rgba(255,255,255,0.7);">${sig.signal_type}</div>
+                                    <div style="font-size: 0.7rem; color: rgba(255,255,255,0.7);">${sig.signal_type}</div>
                                 </div>
                                 ${signalState ? `
-                                    <span style="background: ${signalState.bg}; color: white; padding: 3px 8px; border-radius: 6px; font-size: 0.7rem; font-weight: 600;">
+                                    <span style="background: ${signalState.bg}; color: white; padding: 3px 8px; border-radius: 6px; font-size: 0.65rem; font-weight: 600; white-space: nowrap;">
                                         ${signalState.text}
                                     </span>
                                 ` : ''}
                             </div>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; font-size: 0.8rem;">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 6px; font-size: 0.75rem;">
                                 <div>
-                                    <span style="color: rgba(255,255,255,0.6);">Entry:</span>
-                                    <span style="font-weight: 600; color: white;">${(sig.entry_price * 100).toFixed(2)}p</span>
+                                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 2px;">Entry</div>
+                                    <div style="font-weight: 600; color: white;">${(sig.entry_price * 100).toFixed(2)}p</div>
                                 </div>
                                 <div>
-                                    <span style="color: rgba(255,255,255,0.6);">Return:</span>
-                                    <span style="font-weight: 600;" class="${sig.current_return_pct >= 0 ? 'positive' : 'negative'}">
+                                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 2px;">Return</div>
+                                    <div style="font-weight: 600;" class="${sig.current_return_pct >= 0 ? 'positive' : 'negative'}">
                                         ${sig.current_return_pct >= 0 ? '+' : ''}${sig.current_return_pct.toFixed(1)}%
-                                    </span>
+                                    </div>
                                 </div>
                                 <div>
-                                    <span style="color: rgba(255,255,255,0.6);">Best:</span>
-                                    <span style="font-weight: 600; color: #22c55e;">+${sig.best_rally_pct.toFixed(1)}%</span>
+                                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 2px;">Best</div>
+                                    <div style="font-weight: 600; color: #22c55e;">+${sig.best_rally_pct.toFixed(1)}%</div>
                                 </div>
                                 <div>
-                                    <span style="color: rgba(255,255,255,0.6);">Age:</span>
-                                    <span style="font-weight: 600; color: white;">${sig.age_days}d</span>
+                                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 2px;">Age</div>
+                                    <div style="font-weight: 600; color: #06b6d4;">${sig.age_days}d</div>
                                 </div>
                             </div>
-                            <div style="margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap;">
-                                ${sig.lock_in_reached ? '<span style="background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600;">✓ Lock-in</span>' : ''}
-                                ${sig.Rally_Count >= 2 ? `<span style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; border: 1px solid #fbbf24; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600;">⚠ ${sig.Rally_Count} Cycles</span>` : ''}
+                            <div style="margin-top: 6px; display: flex; gap: 6px; flex-wrap: wrap; font-size: 0.65rem;">
+                                ${sig.lock_in_reached ? '<span style="background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981; padding: 2px 6px; border-radius: 3px; font-weight: 600;">✓ Lock-in</span>' : ''}
+                                ${sig.Rally_Count >= 2 ? `<span style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; border: 1px solid #fbbf24; padding: 2px 6px; border-radius: 3px; font-weight: 600;">⚠ ${sig.Rally_Count}x</span>` : ''}
                             </div>
                         </div>
                     `;
