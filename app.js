@@ -1530,18 +1530,13 @@ async function showSignalTimeline(ticker) {
                             <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Win Rate</div>
                             <div style="color: #22c55e; font-weight: 700; font-size: 0.85rem;">100%</div>
                         </div>
-                        <!-- Best Rally -->
-                        <div style="background: rgba(168, 85, 247, 0.15); border-radius: 6px; padding: 0.5rem; border-left: 3px solid #a855f7; text-align: center;">
-                            <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Best</div>
-                            <div style="color: #a855f7; font-weight: 700; font-size: 0.85rem;">+304%</div>
+                        <!-- Best Date + Peak Rally (single plain tile, no background colors) -->
+                        <div style="border-radius: 6px; padding: 0.55rem; text-align: center;">
+                            <div style="color: rgba(255,255,255,0.7); font-size: 0.65rem; margin-bottom: 4px; text-transform: uppercase; font-weight: 600;">Best Date</div>
+                            <div style="color: white; font-weight: 700; font-size: 0.9rem; margin-bottom: 6px;">${bestSignal.signal_date ? new Date(bestSignal.signal_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }) : 'N/A'}</div>
+                            <div style="color: rgba(255,255,255,0.7); font-size: 0.65rem; margin-bottom: 4px; text-transform: uppercase; font-weight: 600;">Peak Rally</div>
+                            <div style="color: white; font-weight: 700; font-size: 0.9rem;">${bestSignal.rally_pct ? ('+' + bestSignal.rally_pct.toFixed(1) + '%') : '-'} <span style="color: rgba(255,255,255,0.65); font-weight: 500; font-size: 0.85rem;">(${bestSignal.days_to_peak ? bestSignal.days_to_peak + ' days' : '-'})</span></div>
                         </div>
-                        <!-- Avg Rally -->
-                        <div style="background: rgba(59, 130, 246, 0.15); border-radius: 6px; padding: 0.5rem; border-left: 3px solid #3b82f6; text-align: center;">
-                            <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Avg</div>
-                            <div style="color: #3b82f6; font-weight: 700; font-size: 0.85rem;">133%</div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!-- Extra Metrics Row (Best Date & Peak Rally with Days) -->
