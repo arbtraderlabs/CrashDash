@@ -1459,7 +1459,11 @@ async function showSignalTimeline(ticker) {
         <!-- 5-Year Price Chart -->
         <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; border: 1px solid rgba(10, 132, 255, 0.2);">
             <h3 style="color: white; margin: 0 0 0.8rem 0; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; font-weight: 600;">
-                📈 Price Chart</h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="flex-shrink:0;">
+                    <path d="M3 17v3h18v-14" stroke="rgb(10,132,255)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <polyline points="3 13 8 8 13 12 21 4" stroke="rgb(10,132,255)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+                ${cleanTickerDisplay(ticker)} Price Chart</h3>
             <div id="priceChart" style="width: 100%; height: 300px; min-height: 250px;"></div>
             
             <!-- 52-Week High/Low Plain Text -->
@@ -1474,18 +1478,22 @@ async function showSignalTimeline(ticker) {
         <style>
             /* Scoped performance tile tweaks: left-justify label and value, remove separators, responsive sizing */
             #performance-tile .metadata-item { border-bottom: none !important; padding: 8px 0; display: flex; align-items: center; gap: 0.75rem; justify-content: flex-start; }
-            #performance-tile .metadata-label { color: rgba(255,255,255,0.75); flex: 0 0 auto; }
-            #performance-tile .metadata-value { color: white; font-weight: 700; text-align: left; flex: 0 0 auto; }
+            /* Label smaller than value */
+            #performance-tile .metadata-label { color: rgba(255,255,255,0.75); flex: 0 0 auto; font-size: 0.85rem; }
+            #performance-tile .metadata-value { color: white; font-weight: 700; text-align: left; flex: 0 0 auto; font-size: 1.05rem; }
             @media (max-width: 900px) {
                 #performance-tile { padding: 0.6rem; }
-                #performance-tile .metadata-label { font-size: 0.85rem; }
+                #performance-tile .metadata-label { font-size: 0.78rem; }
                 #performance-tile .metadata-value { font-size: 0.95rem; }
                 #performance-tile h3 { font-size: 0.95rem; }
             }
         </style>
         <div id="performance-tile" style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; color: white; border: 1px solid rgba(255,255,255,0.1);">
-            <h3 style="color: white; margin: 0 0 0.75rem 0; font-size: 0.9rem; font-weight: 700; display: flex; align-items: center; gap: 6px;">
-                📈 Performance
+            <h3 style="color: white; margin: 0 0 0.75rem 0; font-size: 0.9rem; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true" style="flex-shrink:0;">
+                    <path d="M3 14h3v4H3zM10 8h3v10h-3zM17 4h3v14h-3z" fill="#06b6d4" />
+                </svg>
+                Performance
             </h3>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                 <!-- Left Column -->
@@ -1520,8 +1528,13 @@ async function showSignalTimeline(ticker) {
         ${metadata && metadata.risk_flags && metadata.risk_flags.length > 0 ? `
         <!-- RISK FACTORS WARNING TILE -->
         <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.1);">
-            <h3 style="margin: 0 0 0.75rem 0; font-size: 0.95rem; font-weight: 600; color: #fbbf24;">
-                ⚠️ Risk Factors
+            <h3 style="margin: 0 0 0.75rem 0; font-size: 0.95rem; font-weight: 600; color: #fbbf24; display:flex; align-items:center; gap:8px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true" style="flex-shrink:0;">
+                    <path d="M12 2 2 20h20L12 2z" stroke="#f59e0b" stroke-width="1.2" fill="rgba(251,191,36,0.08)" stroke-linejoin="round"/>
+                    <path d="M12 8v4" stroke="#f59e0b" stroke-width="1.6" stroke-linecap="round"/>
+                    <circle cx="12" cy="16" r="0.8" fill="#f59e0b"/>
+                </svg>
+                Risk Factors
             </h3>
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
                 ${metadata.risk_flags.map(flag => `
@@ -1535,8 +1548,11 @@ async function showSignalTimeline(ticker) {
         
         <!-- CURRENT SIGNAL - COMPACT SINGLE TILE -->
         <div style="background: linear-gradient(135deg, rgba(${parseInt(signalColorStyle.bg.slice(1,3), 16)}, ${parseInt(signalColorStyle.bg.slice(3,5), 16)}, ${parseInt(signalColorStyle.bg.slice(5,7), 16)}, 0.1), rgba(10, 132, 255, 0.05)); border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem; color: white; border: 1px solid ${signalColorStyle.borderColor};">
-            <h3 style="margin: 0 0 0.75rem 0; font-size: 0.95rem; font-weight: 600;">
-                💹 Latest Signal
+            <h3 style="margin: 0 0 0.75rem 0; font-size: 0.95rem; font-weight: 600; display:flex; align-items:center; gap:8px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true" style="flex-shrink:0;">
+                    <path d="M3 18h3v-6H3zM9 12h3v6H9zM15 8h3v10h-3z" fill="#a855f7" />
+                </svg>
+                Latest Signal
             </h3>
             
             <!-- Latest Signal Compact Tile (like History format) -->
@@ -1552,7 +1568,7 @@ async function showSignalTimeline(ticker) {
                             ${currentState ? `<span style="background: ${currentState.bg}; color: white; padding: 2px 6px; border-radius: 3px; font-weight: 600; font-size: 0.65rem;">${currentState.text}</span>` : ''}
                         </div>
                     </div>
-                    ${completeLatestSignal.lock_in_reached ? `<span style="background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981; padding: 3px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 600;">✓ Lock-in</span>` : ''}
+                    ${completeLatestSignal.lock_in_reached ? `<span style="display:inline-flex; align-items:center; gap:6px; background: rgba(16, 185, 129, 0.12); color: #10b981; border: 1px solid #10b981; padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 700;"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"14\" height=\"14\" fill=\"none\" aria-hidden=\"true\"><path d=\"M20 6L9 17l-5-5\" stroke=\"#10b981\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Lock-in</span>` : ''}
                 </div>
                 
                 <!-- Compact Metrics Grid -->
@@ -1599,7 +1615,12 @@ async function showSignalTimeline(ticker) {
         <!-- Signal History Timeline -->
         <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin-top: 1rem; border: 1px solid rgba(10, 132, 255, 0.2);">
             <h3 style="color: white; margin: 0 0 1rem 0; font-size: 1.05rem; font-weight: 700; display: flex; align-items: center; gap: 8px;">
-                🎯 Signal History <span style="background: rgba(10, 132, 255, 0.3); padding: 4px 10px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; color: #06b6d4;">${allSignals.length}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true" style="flex-shrink:0;">
+                    <circle cx="12" cy="8" r="3" stroke="#f59e0b" stroke-width="1.4" fill="rgba(251,191,36,0.06)"/>
+                    <path d="M12 11v6" stroke="#f59e0b" stroke-width="1.4" stroke-linecap="round"/>
+                    <path d="M8 17h8" stroke="#f59e0b" stroke-width="1.4" stroke-linecap="round"/>
+                </svg>
+                Signal History <span style="background: rgba(10, 132, 255, 0.3); padding: 4px 10px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; color: #06b6d4;">${allSignals.length}</span>
             </h3>
             <div id="signalHistoryContainer" style="display: flex; flex-direction: column; gap: 0.75rem;">
                 ${allSignals.sort((a, b) => new Date(b.signal_date) - new Date(a.signal_date)).slice(0, 10).map(sig => {
@@ -1653,7 +1674,9 @@ async function showSignalTimeline(ticker) {
                             </div>
                             <div style="margin-top: 6px; display: flex; gap: 6px; flex-wrap: wrap; font-size: 0.65rem;">
                                 ${sig.lock_in_reached ? '<span style="background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981; padding: 2px 6px; border-radius: 3px; font-weight: 600;">✓ Lock-in</span>' : ''}
-                                ${sig.Rally_Count >= 2 ? `<span style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; border: 1px solid #fbbf24; padding: 2px 6px; border-radius: 3px; font-weight: 600;">⚠ ${sig.Rally_Count}x</span>` : ''}
+                                ${sig.Rally_Count >= 2 ? `<span style="display:inline-flex; align-items:center; gap:6px; background: rgba(251, 191, 36, 0.12); color: #fbbf24; border: 1px solid #fbbf24; padding: 4px 8px; border-radius: 6px; font-weight: 700;">` +
+                                    `<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"14\" height=\"14\" fill=\"none\" aria-hidden=\"true\"><path d=\"M12 2 2 20h20L12 2z\" stroke=\"#f59e0b\" stroke-width=\"1.2\" fill=\"rgba(251,191,36,0.08)\" stroke-linejoin=\"round\"/><path d=\"M12 8v4\" stroke=\"#f59e0b\" stroke-width=\"1.6\" stroke-linecap=\"round\"/></svg>` +
+                                    ` ${sig.Rally_Count}x</span>` : ''}
                             </div>
                         </div>
                     `;
@@ -1674,10 +1697,11 @@ async function showSignalTimeline(ticker) {
             ` : ''}
         </div>
         
-        ${latestSignal.Rally_Count >= 2 ? `
+                ${latestSignal.Rally_Count >= 2 ? `
             <div style="background: rgba(251, 191, 36, 0.15); border-left: 4px solid #fbbf24; border-radius: 8px; padding: 1rem; margin-top: 1rem; border: 1px solid rgba(251, 191, 36, 0.3);">
-                <h4 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
-                    ⚠️ Risk Warning
+                <h4 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
+                    <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"none\" aria-hidden=\"true\" style=\"flex-shrink:0;\"><path d=\"M12 2 2 20h20L12 2z\" stroke=\"#f59e0b\" stroke-width=\"1.2\" fill=\"rgba(251,191,36,0.08)\" stroke-linejoin=\"round\"/><path d=\"M12 8v4\" stroke=\"#f59e0b\" stroke-width=\"1.6\" stroke-linecap=\"round\"/></svg>
+                    Risk Warning
                 </h4>
                 <p style="color: rgba(255,255,255,0.9); margin: 0; font-size: 0.85rem;">
                     Multiple rally cycles detected (${latestSignal.Rally_Count} cycles). This pattern may indicate pump-and-dump behavior or high volatility. Exercise caution.
