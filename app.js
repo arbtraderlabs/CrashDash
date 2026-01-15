@@ -1537,17 +1537,18 @@ async function showSignalTimeline(ticker) {
                 </div>
             </div>
 
-            <!-- Extra Metrics Row (Best Date & Peak) -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 0.75rem;">
+            <!-- Extra Metrics Row (Best Date & Peak Rally with Days) -->
+            <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 0.5rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 0.75rem;">
                 <!-- Best Date -->
                 <div style="background: rgba(251, 146, 60, 0.15); border-radius: 6px; padding: 0.5rem; border-left: 3px solid #fb923c; text-align: center;">
                     <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Best Date</div>
                     <div style="color: #fb923c; font-weight: 700; font-size: 0.8rem;">31 Mar 25</div>
                 </div>
-                <!-- Peak Rally -->
+                <!-- Peak Rally with Days -->
                 <div style="background: rgba(244, 63, 94, 0.15); border-radius: 6px; padding: 0.5rem; border-left: 3px solid #f43f5e; text-align: center;">
-                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Peak</div>
-                    <div style="color: #f43f5e; font-weight: 700; font-size: 0.8rem;">+303.7%</div>
+                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Peak Rally</div>
+                    <div style="color: #f43f5e; font-weight: 700; font-size: 0.85rem;">+303.7%</div>
+                    <div style="color: rgba(255,255,255,0.4); font-size: 0.65rem; margin-top: 2px;">(89 days)</div>
                 </div>
             </div>
         </div>
