@@ -1174,27 +1174,6 @@ async function showCompanyModal(ticker) {
                             </div>
                         </div>
                         
-                        <!-- Price Action -->
-                        <div class="metadata-section">
-                            <h4>📊 Price Action</h4>
-                            <div class="metadata-item">
-                                <span class="metadata-label">52 Week High</span>
-                                <span class="metadata-value">${fmtPrice(athVal)}p</span>
-                            </div>
-                            <div class="metadata-item">
-                                <span class="metadata-label">52 Week High Date</span>
-                                <span class="metadata-value">${basics.week_52_high_date ? new Date(basics.week_52_high_date).toLocaleDateString('en-GB', {day: '2-digit', month: 'short', year: 'numeric'}).replace(/ /g, '-') : '-'}</span>
-                            </div>
-                            <div class="metadata-item">
-                                <span class="metadata-label">52 Week Low</span>
-                                <span class="metadata-value">${fmtPrice(atlVal)}p</span>
-                            </div>
-                            <div class="metadata-item">
-                                <span class="metadata-label">52 Week Low Date</span>
-                                <span class="metadata-value">${basics.week_52_low_date ? new Date(basics.week_52_low_date).toLocaleDateString('en-GB', {day: '2-digit', month: 'short', year: 'numeric'}).replace(/ /g, '-') : '-'}</span>
-                            </div>
-                        </div>
-                        
                         <!-- Latest Signal -->
                         <div class="metadata-section">
                             <h4>🎯 Latest Signal</h4>
@@ -1389,6 +1368,7 @@ async function showSignalTimeline(ticker) {
         // Extract company info for header
         const companyInfo = metadata.company_info || {};
         const basics = metadata.basics || {};
+        const stats = metadata.stats || {};
         const tickerInfo = tickerLookup[ticker] || {};
         
         // Get market cap in proper format
@@ -1490,71 +1470,56 @@ async function showSignalTimeline(ticker) {
             </div>
         </div>
         
-        <!-- PRICE ACTION & HISTORICAL PERFORMANCE - COMBINED COMPACT TILE -->
-        <div style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.12), rgba(6, 182, 212, 0.08)); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; color: white; border: 1px solid rgba(59, 130, 246, 0.3);">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
-                <!-- Price Action Box -->
-                <div>
-                    <h3 style="color: white; margin: 0 0 0.6rem 0; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 6px;">
-                        📊 Price Action
-                    </h3>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
-                        <!-- High -->
-                        <div style="background: rgba(16, 185, 129, 0.15); border-radius: 6px; padding: 0.5rem; border-left: 3px solid #10b981; text-align: center;">
-                            <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">High</div>
-                            <div style="color: #10b981; font-weight: 700; font-size: 0.85rem;">${basics.week_52_high ? basics.week_52_high + 'p' : '-'}</div>
-                            <div style="color: rgba(255,255,255,0.4); font-size: 0.6rem; margin-top: 2px;">${basics.week_52_high_date ? new Date(basics.week_52_high_date).toLocaleDateString('en-GB', { month: 'short', day: '2-digit', year: '2-digit' }) : '-'}</div>
-                        </div>
-                        <!-- Low -->
-                        <div style="background: rgba(239, 68, 68, 0.15); border-radius: 6px; padding: 0.5rem; border-left: 3px solid #ef4444; text-align: center;">
-                            <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Low</div>
-                            <div style="color: #ef4444; font-weight: 700; font-size: 0.85rem;">${basics.week_52_low ? basics.week_52_low + 'p' : '-'}</div>
-                            <div style="color: rgba(255,255,255,0.4); font-size: 0.6rem; margin-top: 2px;">${basics.week_52_low_date ? new Date(basics.week_52_low_date).toLocaleDateString('en-GB', { month: 'short', day: '2-digit', year: '2-digit' }) : '-'}</div>
-                        </div>
+        <!-- PERFORMANCE TILE - SIMPLE SPLIT -->
+        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; color: white; border: 1px solid rgba(255,255,255,0.1);">
+            <h3 style="color: white; margin: 0 0 0.75rem 0; font-size: 0.9rem; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                📈 Performance
+            </h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <!-- Left Column -->
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div style="display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                        <span style="color: rgba(255,255,255,0.6); font-size: 0.75rem;">Signals</span>
+                        <span style="color: white; font-weight: 600; font-size: 0.8rem;">${allSignals.length || 30}</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                        <span style="color: rgba(255,255,255,0.6); font-size: 0.75rem;">Win Rate</span>
+                        <span style="color: white; font-weight: 600; font-size: 0.8rem;">100%</span>
                     </div>
                 </div>
-
-                <!-- Historical Performance Box -->
-                <div>
-                    <h3 style="color: white; margin: 0 0 0.6rem 0; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 6px;">
-                        📈 Performance
-                    </h3>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
-                        <!-- Signals -->
-                        <div style="background: rgba(6, 182, 212, 0.15); border-radius: 6px; padding: 0.5rem; border-left: 3px solid #06b6d4; text-align: center;">
-                            <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Signals</div>
-                            <div style="color: #06b6d4; font-weight: 700; font-size: 0.85rem;">${allSignals.length || 30}</div>
-                        </div>
-                        <!-- Win Rate -->
-                        <div style="background: rgba(34, 197, 94, 0.15); border-radius: 6px; padding: 0.5rem; border-left: 3px solid #22c55e; text-align: center;">
-                            <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Win Rate</div>
-                            <div style="color: #22c55e; font-weight: 700; font-size: 0.85rem;">100%</div>
-                        </div>
-                        <!-- Best Date + Peak Rally (single plain tile, no background colors) -->
-                        <div style="border-radius: 6px; padding: 0.55rem; text-align: center;">
-                            <div style="color: rgba(255,255,255,0.7); font-size: 0.65rem; margin-bottom: 4px; text-transform: uppercase; font-weight: 600;">Best Date</div>
-                            <div style="color: white; font-weight: 700; font-size: 0.9rem; margin-bottom: 6px;">${(metadata.best_historical_signal && metadata.best_historical_signal.signal_date) ? new Date(metadata.best_historical_signal.signal_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }) : 'N/A'}</div>
-                            <div style="color: rgba(255,255,255,0.7); font-size: 0.65rem; margin-bottom: 4px; text-transform: uppercase; font-weight: 600;">Peak Rally</div>
-                            <div style="color: white; font-weight: 700; font-size: 0.9rem;">${(metadata.best_historical_signal && metadata.best_historical_signal.rally_pct) ? ('+' + metadata.best_historical_signal.rally_pct.toFixed(1) + '%') : '-'} <span style="color: rgba(255,255,255,0.65); font-weight: 500; font-size: 0.85rem;">(${(metadata.best_historical_signal && metadata.best_historical_signal.days_to_peak) ? metadata.best_historical_signal.days_to_peak + ' days' : '-'})</span></div>
-                        </div>
-            </div>
-
-            <!-- Extra Metrics Row (Best Date & Peak Rally with Days) -->
-            <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 0.5rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 0.75rem;">
-                <!-- Best Date -->
-                <div style="background: rgba(251, 146, 60, 0.15); border-radius: 6px; padding: 0.5rem; border-left: 3px solid #fb923c; text-align: center;">
-                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Best Date</div>
-                    <div style="color: #fb923c; font-weight: 700; font-size: 0.8rem;">31 Mar 25</div>
-                </div>
-                <!-- Peak Rally with Days -->
-                <div style="background: rgba(244, 63, 94, 0.15); border-radius: 6px; padding: 0.5rem; border-left: 3px solid #f43f5e; text-align: center;">
-                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px; text-transform: uppercase; font-weight: 600;">Peak Rally</div>
-                    <div style="color: #f43f5e; font-weight: 700; font-size: 0.85rem;">+303.7%</div>
-                    <div style="color: rgba(255,255,255,0.4); font-size: 0.65rem; margin-top: 2px;">(89 days)</div>
+                <!-- Right Column -->
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div style="display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                        <span style="color: rgba(255,255,255,0.6); font-size: 0.75rem;">Best Date</span>
+                        <span style="color: white; font-weight: 600; font-size: 0.8rem;">${(metadata.best_historical_signal && metadata.best_historical_signal.signal_date) ? new Date(metadata.best_historical_signal.signal_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }) : 'N/A'}</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                        <span style="color: rgba(255,255,255,0.6); font-size: 0.75rem;">Peak Rally</span>
+                        <span style="color: white; font-weight: 600; font-size: 0.8rem;">${(metadata.best_historical_signal && metadata.best_historical_signal.rally_pct) ? ('+' + metadata.best_historical_signal.rally_pct.toFixed(1) + '%') : '-'} <span style="color: rgba(255,255,255,0.5); font-weight: 400; font-size: 0.7rem;">(${(metadata.best_historical_signal && metadata.best_historical_signal.days_to_peak) ? metadata.best_historical_signal.days_to_peak + 'd' : '-'})</span></span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                        <span style="color: rgba(255,255,255,0.6); font-size: 0.75rem;">${cleanTickerDisplay(ticker)} Avg Rally</span>
+                        <span style="color: white; font-weight: 600; font-size: 0.8rem;">${stats.avg_rally_pct ? stats.avg_rally_pct.toFixed(0) + '%' : '-'}</span>
+                    </div>
                 </div>
             </div>
         </div>
 
+        ${metadata && metadata.risk_flags && metadata.risk_flags.length > 0 ? `
+        <!-- RISK FACTORS WARNING TILE -->
+        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.1);">
+            <h3 style="margin: 0 0 0.75rem 0; font-size: 0.95rem; font-weight: 600; color: #fbbf24;">
+                ⚠️ Risk Factors
+            </h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                ${metadata.risk_flags.map(flag => `
+                    <span style="background: rgba(239, 68, 68, 0.2); color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; border: 1px solid rgba(239, 68, 68, 0.4);">
+                        ${flag.replace(/_/g, ' ')}
+                    </span>
+                `).join('')}
+            </div>
+        </div>
+        ` : ''}
         
         <!-- CURRENT SIGNAL - COMPACT SINGLE TILE -->
         <div style="background: linear-gradient(135deg, rgba(${parseInt(signalColorStyle.bg.slice(1,3), 16)}, ${parseInt(signalColorStyle.bg.slice(3,5), 16)}, ${parseInt(signalColorStyle.bg.slice(5,7), 16)}, 0.1), rgba(10, 132, 255, 0.05)); border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem; color: white; border: 1px solid ${signalColorStyle.borderColor};">
