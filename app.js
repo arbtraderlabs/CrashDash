@@ -2258,7 +2258,7 @@ async function loadAIReport(ticker) {
             display: flex; 
             align-items: ${isMobile ? 'flex-start' : 'center'}; 
             justify-content: center;
-            padding-top: ${isMobile ? '5rem' : '0'};
+            padding-top: ${isMobile ? '3.5rem' : '0'};
             padding-bottom: ${isMobile ? '2rem' : '0'};
             overflow-y: ${isMobile ? 'auto' : 'hidden'};
             animation: fadeIn 0.3s ease;
