@@ -1,0 +1,253 @@
+// ============================================
+// CRASH DASH - Main Application Logic
+// ============================================
+
+console.log('🚀 CRASH DASH app.js loaded!');
+
+// Global data stores
+let allSignals = [];
+let allMetadata = {};
+let tickerLookup = {};
+let dashboardStats = {};
+let currentSort = { column: 'date', direction: 'desc' };
+let dateFilter = '1m'; // 'all', '1m', '3m', '6m', '1y', 'custom' - default 1 month
+let customDateRange = { start: null, end: null };
+let groupedSignals = {}; // Grouped by ticker for compressed mode
+
+console.log('Global variables initialized');
+
+// ============================================
+// PENCE-AWARE HELPERS
+// ============================================
+
+// Parse Signal_Type to extract base severity and modifiers
+function parseSignalType(signalType) {
+    if (!signalType) return { baseSeverity: 'UNKNOWN', baseColor: 'YELLOW', isEnhanced: false };
+    
+    const upper = signalType.toUpperCase();
+    const isEnhanced = upper.includes('ENHANCED');
+    
+    let baseSeverity = 'CRASH ZONE';
+    let baseColor = 'YELLOW';
+    
+    if (upper.includes('ULTRA')) {
+        baseSeverity = 'ULTRA';
+        baseColor = 'RED';
+    } else if (upper.includes('EXTREME')) {
+        baseSeverity = 'EXTREME';
+        baseColor = 'ORANGE';
+    } else if (upper.includes('DEEP')) {
+        baseSeverity = 'DEEP';
+        baseColor = 'GREEN';
+    } else if (upper.includes('CRASH ZONE') || upper.includes('CRASH')) {
+        baseSeverity = 'CRASH ZONE';
+        baseColor = 'YELLOW';
+    }
+    
+    return { baseSeverity, baseColor, isEnhanced };
+}
+
+// Small inline SVG helpers for signal badges
+function svgSignalDot(hexColor) {
+    return `<svg width="12" height="12" viewBox="0 0 12 12" style="vertical-align:middle; margin-right:4px;"><circle cx="6" cy="6" r="5" fill="${hexColor}"/></svg>`;
+}
+
+function svgEnhancedRing() {
+    return `<svg width="12" height="12" viewBox="0 0 12 12" style="vertical-align:middle; margin-right:4px;"><circle cx="6" cy="6" r="5" fill="none" stroke="#a855f7" stroke-width="1.6"/></svg>`;
+}
+
+function svgTargetIcon() {
+    return `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-right:6px;" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8" stroke="#f59e0b" stroke-width="1.6"/><circle cx="12" cy="12" r="4" fill="#f59e0b"/></svg>`;
+}
+
+// Return true if ticker appears to be an LSE ticker (.L)
+function isLseTicker(ticker) {
+    if (!ticker) return false;
+    return String(ticker).toUpperCase().endsWith('.L');
+}
+
+// Clean ticker for display (remove .L suffix)
+function cleanTickerDisplay(ticker) {
+    if (!ticker) return '';
+    return String(ticker).replace(/\.L$/i, '');
+}
+
+// Safely coerce to number or undefined
+function toNumber(v) {
+    if (v === undefined || v === null) return undefined;
+    const n = Number(v);
+    return Number.isFinite(n) ? n : undefined;
+}
+
+// Get a price-like field from an object, preferring *_pence when ticker is LSE
+// Returns a GBP float (or undefined)
+function getPriceFieldForTicker(ticker, obj, fieldName) {
+    if (!obj) return undefined;
+    const lse = isLseTicker(ticker);
+    const penceField = `${fieldName}_pence`;
+    if (lse && obj[penceField] !== undefined && obj[penceField] !== null) {
+        const p = toNumber(obj[penceField]);
+        if (p !== undefined) return p / 100.0;
+    }
+    const raw = toNumber(obj[fieldName]);
+    return raw;
+}
+
+// Market cap candidate selection: prefer market_cap_pence or companyInfo current_market_cap_pence
+function getMarketCapCandidate(ticker, metadata, tickerInfo) {
+    const companyInfo = metadata?.company_info || {};
+    // Prefer ticker-level market cap pence
+    if (tickerInfo && tickerInfo.market_cap_pence !== undefined && tickerInfo.market_cap_pence !== null) {
+        const p = toNumber(tickerInfo.market_cap_pence);
+        if (p !== undefined) return p / 100.0;
+    }
+    // then company-level current market cap pence
+    if (companyInfo && companyInfo.current_market_cap_pence !== undefined && companyInfo.current_market_cap_pence !== null) {
+        const p = toNumber(companyInfo.current_market_cap_pence);
+        if (p !== undefined) return p / 100.0;
+    }
+    // fallback to already-GPB market cap fields
+    if (companyInfo && companyInfo.current_market_cap !== undefined && companyInfo.current_market_cap !== null) {
+        const n = toNumber(companyInfo.current_market_cap);
+        if (n !== undefined) return n;
+    }
+    if (tickerInfo && tickerInfo.market_cap !== undefined && tickerInfo.market_cap !== null) {
+        const n = toNumber(tickerInfo.market_cap);
+        if (n !== undefined) return n;
+    }
+    return undefined;
+}
+
+// ============================================
+// INITIALIZATION
+// ============================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM Content Loaded - starting initialization');
+    console.log('Papa Parse available:', typeof Papa !== 'undefined');
+    
+    // Initialize view
+    loadAllData();
+    setupEventListeners();
+    setupMobileScrollHint();
+});
+
+// Auto-hide mobile scroll hint after first user interaction
+function setupMobileScrollHint() {
+    try {
+        const wrapper = document.getElementById('signalsWrapper');
+        const hint = document.getElementById('mobileScrollHint');
+        if (!wrapper || !hint) return;
+
+        const hideHint = () => {
+            hint.style.display = 'none';
+            wrapper.removeEventListener('scroll', hideHint);
+            wrapper.removeEventListener('touchstart', hideHint);
+        };
+
+        // If user scrolls or touches, hide the hint
+        wrapper.addEventListener('scroll', hideHint, { passive: true });
+        wrapper.addEventListener('touchstart', hideHint, { passive: true });
+
+        // Also hide after 6 seconds automatically
+        setTimeout(() => { hint.style.display = 'none'; }, 6000);
+    } catch (e) {
+        console.warn('Mobile scroll hint setup failed', e);
+    }
+}
+
+// ============================================
+// DATA LOADING
+// ============================================
+
+async function loadAllData() {
+    try {
+        console.log('Starting data load...');
+        
+        // Cache buster
+        const cacheBuster = '?v=' + Date.now();
+        
+        // Load dashboard stats
+        console.log('Loading dashboard stats...');
+        const statsResponse = await fetch('data/dashboard_stats.json' + cacheBuster);
+        if (!statsResponse.ok) throw new Error('Failed to load dashboard_stats.json');
+        dashboardStats = await statsResponse.json();
+        console.log('Dashboard stats loaded:', dashboardStats);
+        updateStats();
+        
+        // Load ticker lookup
+        console.log('Loading ticker lookup...');
+        const lookupResponse = await fetch('data/ticker_lookup.json' + cacheBuster);
+        if (!lookupResponse.ok) throw new Error('Failed to load ticker_lookup.json');
+        const lookupData = await lookupResponse.json();
+        tickerLookup = lookupData.tickers;
+        console.log('Ticker lookup loaded:', Object.keys(tickerLookup).length, 'tickers');
+        populateFilterDropdowns(lookupData.sectors);
+        
+        // Load metadata index
+        console.log('Loading metadata index...');
+        const metadataResponse = await fetch('data/metadata_index.json' + cacheBuster);
+        if (!metadataResponse.ok) throw new Error('Failed to load metadata_index.json');
+        const metadataIndex = await metadataResponse.json();
+        
+        // Store metadata for quick lookup
+        console.log('Processing metadata index...');
+        if (metadataIndex && metadataIndex.tickers) {
+            metadataIndex.tickers.forEach(ticker => {
+                if (ticker && ticker.ticker) {
+                    allMetadata[ticker.ticker] = ticker;
+                }
+            });
+            console.log('Metadata loaded for', Object.keys(allMetadata).length, 'tickers');
+        } else {
+            console.warn('Metadata index has no tickers array');
+        }
+        
+        // Load signals CSV (now enriched with 49 fields - all original + 28 enriched)
+        console.log('Loading enriched signals CSV...');
+        Papa.parse('data/signals.csv' + cacheBuster, {
+            download: true,
+            header: true,
+            complete: (results) => {
+                console.log('Signals CSV loaded:', results.data.length, 'rows');
+                
+                // Filter signals (columns already in correct format)
+                allSignals = results.data.filter(row => row.Ticker);
+                
+                // Build enrichment lookup: "TICKER_DATE" -> enriched data
+                window.enrichmentLookup = {};
+                allSignals.forEach(signal => {
+                    const ticker = signal.Ticker;
+                    const date = signal.Date;
+                    if (ticker && date) {
+                        const key = `${ticker}_${date}`;
+                        window.enrichmentLookup[key] = {
+                            rally_state: signal.rally_state,
+                            Rally_Count: parseInt(signal.Rally_Count) || 0,
+                            lock_in_reached: (signal.lock_in_reached === 'True' || signal.lock_in_reached === true || signal.lock_in_reached === 'true'),
+                            lock_in_date: signal.lock_in_date,
+                            distance_from_high_pct: parseFloat(signal.distance_from_high_pct) || 0,
+                            split_affected: (signal.split_affected === 'True' || signal.split_affected === true || signal.split_affected === 'true'),
+                            best_rally_pct: parseFloat(signal.best_rally_pct) || 0,
+                            age_days: parseInt(signal.age_days) || 0
+                        };
+                    }
+                });
+                
+                console.log('Filtered signals:', allSignals.length);
+                console.log('Enrichment lookup:', Object.keys(window.enrichmentLookup).length, 'entries');
+                renderSignalsTable();
+            },
+            error: (error) => {
+                console.error('Error loading signals CSV:', error);
+                document.getElementById('signalsTableBody').innerHTML = 
+                    '<tr><td colspan="8" class="no-results">Error loading signals data</td></tr>';
+            }
+        });
+        
+    } catch (error) {
+        console.error('Error loading data:', error);
+        console.error('Error stack:', error.stack);
+        alert('Error loading data: ' + error.message);
+    }
+}
