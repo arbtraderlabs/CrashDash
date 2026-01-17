@@ -1,0 +1,2555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrashDash • MAST.L APEX Profile</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .header-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .ticker-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .company-name { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .company-meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f7fafc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .meta-icon { font-size: 18px; }
+        
+        .score-hero {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        .action-display {
+            margin-bottom: 20px;
+        }
+        .scores-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .score-number {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .score-label { font-size: 12px; color: #666; margin-top: 5px; }
+        .timing-badge-large {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 24px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            margin: 20px 0;
+        }
+        .thesis-line {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .factors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .factor-item {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        .factor-icon { font-size: 20px; }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-icon { font-size: 24px; }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-label { color: #666; font-size: 14px; }
+        .stat-value { font-weight: 600; font-size: 16px; }
+        
+        .rally-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .risk-indicator {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .risk-high { background: #fee2e2; }
+        .risk-icon { font-size: 24px; }
+        
+        .reason-item {
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .tag {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .footer {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-top: 20px;
+        }
+        
+        .alert-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Header Card -->
+        <div class="header-card">
+            <div class="ticker-badge">MAST.L</div>
+            <div class="company-name">Quantum Data Energy PLC</div>
+            <div class="company-meta">
+                <div class="meta-item">
+                    <span class="meta-icon">■</span>
+                    <span><strong>Sector:</strong> Utilities</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">£</span>
+                    <span><strong>Market Cap:</strong> £1,273,813</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">◷</span>
+                    <span><strong>Days Active:</strong> 37 days</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action & Score Hero Section -->
+        <div class="score-hero">
+            <div class="action-display">
+                <span style="font-size: 32px; font-weight: 800; color: white;">◉ WATCH</span>
+            </div>
+            
+            <div class="scores-row">
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">31</div>
+                    <div class="score-label">APEX SCORE</div>
+                </div>
+                <div class="score-circle">
+                    <div class="score-number" style="color: #f59e0b;">50</div>
+                    <div class="score-label">CONFIDENCE</div>
+                </div>
+            </div>
+            
+            <div class="timing-badge-large">
+                Timing: <span class="rally-badge" style="background: #fee2e2; color: #991b1b;">TOO EARLY</span>
+            </div>
+            
+            <div class="thesis-line">
+                WATCH - TOO_EARLY timing with 31/100 opportunity score
+            </div>
+        </div>
+
+        <!-- ==================== CRASHDASH INTELLIGENCE - PANIC HUNTER VIEW ==================== -->
+        
+        <div class="card" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b;">
+            <div class="card-title" style="color: #0f172a;">
+                <span class="card-icon">🏭</span>
+                CrashDash Intelligence • Industrials
+            </div>
+            
+            <!-- Fear Meter -->
+            <div style="background: white; padding: 24px; border-radius: 14px; margin-bottom: 20px; text-align: center;">
+                <div style="font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 16px;">🔥 PANIC METER</div>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 16px;">
+                    <div style="width: 160px; height: 160px; border-radius: 50%; background: conic-gradient(#f59e0b 237.6deg, #e5e7eb 237.6deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                        <div style="width: 130px; height: 130px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <div style="font-size: 48px; font-weight: 800; color: #f59e0b;">66</div>
+                            <div style="font-size: 12px; color: #64748b; font-weight: 600;">PANIC SCORE</div>
+                        </div>
+                    </div>
+                    <div style="text-align: left; max-width: 400px;">
+                        <div style="font-size: 18px; font-weight: 700; color: #f59e0b; margin-bottom: 12px;">HIGH PANIC</div>
+                        <div style="font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 12px;">🟠 Fear dominant - watch for reversal signs</div>
+                        <div style="font-size: 13px; color: #64748b;">
+                            <div>💔 Price: 40/40</div>
+                            <div>📉 Volume: 10/20</div>
+                            <div>🔇 Social: 6/20</div>
+                            <div>📰 News: 10/20</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CrashHunter Signals -->
+                <div style="margin-top: 20px;">
+                    <span style="display: inline-block; background: #f59e0b; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">🟠 Fear 66/100</span><span style="display: inline-block; background: #3b82f6; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">⏰ Too Early</span>
+                </div>
+                
+                <!-- Opportunity Flag -->
+                <div style="margin-top: 20px; padding: 16px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 10px; color: white; font-weight: 700; font-size: 16px;">🎯 ⚠️ HIGH PANIC + Early timing = Potential accumulation phase</div>
+            </div>
+            
+            <!-- Contrarian Compression Energy Panel -->
+            
+            <!-- Contrarian Compression Energy Panel -->
+            <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 24px; border-radius: 14px; margin-bottom: 20px; border: 3px solid #f59e0b;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <span style="font-size: 32px;">⚡</span>
+                    <div style="flex: 1;">
+                        <div style="font-size: 20px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">
+                            CONTRARIAN COMPRESSION SCORE
+                        </div>
+                        <div style="font-size: 13px; color: #475569; font-weight: 600;">
+                            Signal Congestion Framework • Compression = Explosive Potential
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Score Display -->
+                <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 30px;">
+                        <!-- Circular gauge -->
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: conic-gradient(#f59e0b 226.8deg, #e5e7eb 226.8deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                            <div style="width: 110px; height: 110px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <div style="font-size: 42px; font-weight: 800; color: #f59e0b;">63</div>
+                                <div style="font-size: 11px; color: #64748b; font-weight: 600;">/ 100</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Key metrics -->
+                        <div style="text-align: left;">
+                            <div style="font-size: 16px; font-weight: 700; color: #f59e0b; margin-bottom: 12px;">🟠 HIGH COMPRESSION (Top 15% - STRONG OPPORTUNITY)</div>
+                            <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                                <div><strong>1.2</strong> signals/week</div>
+                                <div><strong>6</strong> RSI &lt; 20 events</div>
+                                <div><strong>4</strong> escalations detected</div>
+                                <div style="color: #f59e0b; font-weight: 700; margin-top: 6px;">
+                                    💎 Historical pop: <strong>+3496%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Component Breakdown -->
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 15px;">
+                        📊 5-COMPONENT BREAKDOWN
+                    </div>
+                    
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">compression</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #ef4444;">35/40</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #ef4444; height: 100%; width: 87.5%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">1.2 signals/week | 6 RSI<20 | 4 escalations | 🔥 EXTREME COMPRESSION</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">intensification</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">5/20</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 25.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;"></div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">volume death</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">0/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">Normal volume</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">pop potential</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #ef4444;">15/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #ef4444; height: 100%; width: 100.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">MONSTER POPPER - Historical 10x+ (3496%)</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">accumulation</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #ef4444;">8/10</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #ef4444; height: 100%; width: 80.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">Accum 2 bars ago</div>
+                </div>
+                
+                </div>
+                
+                <!-- Contrarian Philosophy -->
+                <div style="background: rgba(255,255,255,0.7); padding: 16px; border-radius: 10px; border-left: 4px solid #f59e0b;">
+                    <div style="font-weight: 700; color: #0f172a; margin-bottom: 8px; font-size: 14px;">
+                        🎯 CONTRARIAN WISDOM
+                    </div>
+                    <div style="font-size: 13px; color: #334155; line-height: 1.6;">
+                        <strong>Signal congestion = Compression energy = Explosive potential.</strong><br>
+                        When multiple crash signals cluster together with extreme RSI and proven rally history, 
+                        it creates a compressed spring effect. More panic = More opportunity for contrarians.
+                        <div style="margin-top: 8px; padding: 10px; background: rgba(239,68,68,0.1); border-radius: 6px; font-size: 12px;">
+                            <strong style="color: #f59e0b;">Theory:</strong> High compression scores (60+) historically precede 
+                            explosive 10-20x moves when catalysts arrive. This is the foundation of crash hunting.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Fear vs Facts Contrarian View -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                <div style="background: #fee2e2; padding: 18px; border-radius: 12px; border-left: 4px solid #ef4444;">
+                    <div style="font-weight: 700; color: #991b1b; margin-bottom: 12px; font-size: 15px;">😱 FEAR (What Panic Shows)</div>
+                    <div style="color: #7f1d1d;">
+                        <div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 💔 Price destruction: 40/40 points</div>
+                    </div>
+                </div>
+                <div style="background: #dcfce7; padding: 18px; border-radius: 12px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #065f46; margin-bottom: 12px; font-size: 15px;">📊 FACTS (What Data Shows)</div>
+                    <div style="color: #064e3b;">
+                        <div style="color: #64748b; font-size: 14px;">Limited historical data</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contrarian Verdict -->
+            <div style="background: white; padding: 18px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #6366f1;">
+                <div style="font-weight: 700; color: #4338ca; margin-bottom: 10px; font-size: 15px;">⚖️ Contrarian Verdict</div>
+                <div style="font-size: 15px; color: #1e293b; line-height: 1.6; font-weight: 600;">
+                    🎯 CONTRARIAN OPPORTUNITY - Fear dominates but facts support recovery potential
+                </div>
+            </div>
+            
+            <!-- Industry Crash Patterns -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">⚠️ Crash Patterns (Industrials)</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book decline or cancellations</div><div>• Margin compression (input costs)</div><div>• Cyclical demand weakness</div>
+                    </div>
+                    <div style="margin-top: 12px; padding: 10px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e; font-weight: 600;">🚨 Active: Project delays or overruns</div>
+                </div>
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">🚀 Recovery Paths</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book growth or new contracts</div><div>• Margin recovery (efficiency gains)</div><div>• Cyclical upturn (capex recovery)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Catalyst Pipeline -->
+            <div style="background: rgba(255,255,255,0.5); padding: 18px; border-radius: 12px; margin-bottom: 20px;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 14px; font-size: 15px;">📅 Catalyst Pipeline</div>
+                
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Hindlip Makes Significant Construction Progress</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Record Generation and Revenues For 2025</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">QDE CEO Interview & Publication of Business Video</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">2025 A Remarkable Year in Review</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Electricity Generation and Revenues Surge</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+            
+            <!-- CrashDash Decision Matrix -->
+            <div style="background: white; padding: 20px; border-radius: 12px; border: 3px solid #f59e0b;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 16px; text-align: center;">
+                    🎯 CRASHDASH DECISION: <span style="color: #f59e0b; font-size: 20px;">WATCH</span>
+                </div>
+                <div style="font-size: 15px; color: #475569; text-align: center; margin-bottom: 20px; font-weight: 600;">
+                    ⏳ Monitor for timing regime change or panic escalation
+                </div>
+                <div style="background: #f8fafc; padding: 16px; border-radius: 10px;">
+                    <div style="font-weight: 700; color: #64748b; margin-bottom: 12px; font-size: 13px;">CHECKLIST (4/5 pass)</div>
+                    
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🔴</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Panic Score</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">66/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">✅</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Timing Regime</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">TOO_EARLY</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">⚠️</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">APEX Quality</div>
+                    <div style="font-size: 13px; color: #ef4444; font-weight: 600;">31/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🎯</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Data Confidence</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">50/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🏭</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Industry Pattern</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">1 active</div>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
+        
+
+        <!-- Decision Summary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◆</span>
+                Why This Matters
+            </div>
+            <div class="stat-row"><span>• APEX 31/100 indicates moderate opportunity quality</span></div><div class="stat-row"><span>• Timing regime: TOO_EARLY</span></div><div class="stat-row"><span>• Historical profile: 0 rallies, 3% best run</span></div>
+            
+            <div class="alert-box" style="margin-top: 20px;">
+                <strong>△ Main Risk:</strong> Confidence 50/100 - full data loaded
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong>◉ Watch Next:</strong>
+                <div style="padding: 8px 0;">• RNS catalysts (funding/operational updates)</div><div style="padding: 8px 0;">• Volume expansion confirmation</div><div style="padding: 8px 0;">• Timing regime change signals</div>
+            </div>
+        </div>
+
+        <!-- ==================== TECHNICAL DETAILS (COLLAPSIBLE) ==================== -->
+        
+        <div class="card">
+          <details style="cursor:pointer;">
+            <summary style="font-weight:800; font-size:16px; list-style:none; padding: 10px; background: #f9fafb; border-radius: 8px;">
+              🔧 Technical Analysis & Scoring Details
+            </summary>
+            <div style="margin-top:14px;">
+              
+            <!-- Scoring Breakdown -->
+            <div class="card-title" style="margin-top: 20px;">
+                <span class="card-icon">▣</span>
+                APEX Score Breakdown
+            </div>
+            <div class="factors-list">
+                <div class="factor-item"><span class="factor-icon">◆</span><span><strong>Strong Technical Setup</strong><br><small>Chart quality: 14/20 • Score: 18/25 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Massive recovery potential</strong><br><small>Down 97.7% from peak • Score: 20/20 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Above average volume</strong><br><small>1.5x average • Score: 6/10 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>No history</strong><br><small>0 previous rallies • Score: 0/15 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Modest upside</strong><br><small>Historical best: +3% • Score: 2/20 points</small></span></div>
+
+            </div>
+            
+            <div style="margin-top: 40px;"></div>
+            
+            <!-- Exhaustion Metrics -->
+            <div class="card-title">
+                <span class="card-icon">📈</span>
+                Rally Cycle Position
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Current Position</div>
+                    <div style="font-size: 32px; font-weight: 800;">-19%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
+                    <div style="font-size: 32px; font-weight: 800;">3%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
+                    <div style="font-size: 32px; font-weight: 800;">-1.2x</div>
+                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
+                </div>
+            </div>
+        
+            </div>
+          </details>
+        </div>
+        
+
+        <!-- Reasons Buy/Sell -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #10b981;">▲</span>
+                    Reasons to Buy
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Early stage positioning offers best R:R if catalysts appear</span>
+                    <span class="tag" style="background: #f59e0b; color: white;">⚡ Medium Strength</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">timing=TOO EARLY • current return=-18.7%</div>
+            </div>
+            
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #ef4444;">▼</span>
+                    Reasons to Sell / Avoid
+                </div>
+                <div style="color: #666; font-style: italic;">No major sell signals.</div>
+            </div>
+        </div>
+
+        <!-- Trade Plans -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">📊</span>
+                    Short-Term Trader Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 20%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <div style="font-size: 18px; font-weight: 600; margin-bottom: 5px;">Watch / Starter</div>
+                    <div style="font-size: 14px; opacity: 0.9;">Wait for base + catalyst confirmation; starter position only</div>
+                </div>
+                <div style="padding: 12px; background: #f9fafb; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Position Size</div>
+                    <div style="font-weight: 600;">0-1% until CONFIRMED</div>
+                </div>
+                <div style="padding: 12px; background: #fef2f2; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Risk Management</div>
+                    <div style="font-weight: 600; color: #dc2626;">Invalidation = breaks recent lows / dilution / suspension</div>
+                </div>
+                <div style="padding: 12px; background: #f0fdf4; border-radius: 6px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Exit Strategy</div>
+                    <div style="font-weight: 600; color: #059669;">Scale out 25% at +15%, 25% at +50%, runner above</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">💼</span>
+                    Long-Term Investor Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center;">
+                    <div style="font-size: 32px; margin-bottom: 5px;">✗</div>
+                    <div style="font-size: 18px; font-weight: 600;">Not Recommended for Investors</div>
+                </div>
+                <div style="padding: 15px; background: #f9fafb; border-radius: 8px; font-size: 14px; line-height: 1.6;">
+                    <strong style="color: #667eea;">📋 Investment Thesis:</strong><br>
+                    Unlock after AI triangulation + CONFIRMED timing<br><br>
+                    <strong style="color: #667eea;">⏳ Time Horizon:</strong><br>
+                    N/A<br><br>
+                    <strong style="color: #ef4444;">🛡️ Exit Rule:</strong><br>
+                    N/A
+                </div>
+            </div>
+        </div>
+
+        <!-- Commentary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◐</span>
+                Executive Commentary
+            </div>
+            <div style="line-height: 1.6; margin-bottom: 20px;">
+                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows TOO_EARLY timing with 31/100 APEX score. Historical data shows 0 rallies averaging 3% upside. Current position: -18.7%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #10b981;">▲ Bull Case:</strong>
+                <div style="padding: 8px 0;">• Early regime often offers best risk/reward</div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #ef4444;">▼ Bear Case:</strong>
+                <div style="padding: 8px 0;">• TOO_EARLY means you can get chopped before real move</div>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
+                <strong>◷ Timing Translation:</strong><br>
+                It might be starting, but not proven yet. Wait for base + volume + catalysts.
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
+                <strong>◎ Confidence Explained:</strong><br>
+                Confidence 50/100 reflects full data quality with triangulation loaded.
+            </div>
+        </div>
+
+        <!-- Data Quality Warning -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">△</span>
+                Data Quality Notice
+            </div>
+            <div class="alert-box">
+                <strong>Analysis Mode:</strong> HISTORICAL_ONLY<br>
+                <strong>Impact:</strong> HIGH
+            </div>
+            <div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">AI insights from Groq LLM</div></div></div>
+
+            <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk.
+            </div>
+        </div>
+
+        <!-- ==================== TOP 5 RECENT RNS NEWS ==================== -->
+        
+        <div class="card" style="border-top: 3px solid #3b82f6;">
+            <div class="card-title" style="margin-bottom: 20px;">
+                <span class="card-icon">📰</span>
+                Top 5 Recent RNS Announcements
+            </div>
+            <div style="margin-top: 15px;">
+                
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Hindlip Makes Significant Construction Progress</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">13th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Guy Wheatley</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+13 Jan 2026 07:00
+RNS Number : 5943O
+Quantum Data Energy PLC
+13 January 2026
+Quantum Data Energy PLC
+(Incorporated in England and Wales)
+(Registration Number: 12886458)
+LEI :213800HFVHGJ9YGO9F71
+Share code on the LSE: MAST
+ISIN: GB00BNG90H86
+('QCD' or 'the Company')
+Dated:
+13
+January 2026
+Quantum Data Energy
+PLC
+(
+"
+QDE
+"
+, "Quantum",
+or the "Company")
+Hindlip 7.5 MW
+FlexGen
+Power Project
+Makes Significant Construction Progress
+London, UK - Quantum Data Energy PLC (LSE: MAST)
+is pleased to announce, further to its previous RNS announcement dated 6 November 2025, that its Hindlip 7.5 MW flexible generation power project ("Hindlip"), which is fully funded in partnership with Powertree as previously announced, has made significant construction progress and is on track to complete construction and start commercial operations and income generation during Q2 2026 as planned. Key highlights and details are provided below.
+Hindlip
+Construction
+Progress Key Highlights:
+QDE
+is pleased to confirm that progress remains on schedule, with major civil and structural works now largely complete and the site preparing to transition into the electrical installation phase.
+Key activities and next steps are as follows:
+·
+Site clearance is now fully complete - All ground preparation, levelling and sub-surface works have been concluded;
+·
+All concrete bases have been laid - This includes pads for gensets, transformers, switchgear, gas infrastructure, control room, and auxiliary equipment;
+·
+Full perimeter fencing is now installed - The site boundary is secured and ready for restricted-access operational works;
+·
+Acoustic Fencing steel supports have been installed; and
+·
+Switchgear building construction progressing well, with building shell now erected and roofing installed. Doors expected to be installed late January 2026.
+QDE confirms that the project has now transitioned into the electrical phase, with the following currently being executed:
+·
+HV cable trenching and duct installation;
+·
+LV and signal ducting works;
+·
+Full earthing grid excavations and installation;
+·
+Cable pulls and termination works to follow thereafter;
+·
+Control Room container and GRP building - expected late January 2026; and
+·
+On-site delivery of gensets, transformers and HV switchgear - expected mid-February 2026
+Based on current progress and contractor confirmations, pre-commissioning is still expected to begin in early April 2026, with final commissioning and performance testing to occur mid-May 2026.
+Photos below from the Hindlip site showing significant construction progress on site:
+1. Site perimeter fencing installed, securing the site
+2. Concrete bases now complete, with electrical cable ducting visible
+3. Switchgear room construction progressing well, with building shell and roof now complete
+4. Acoustic fencing steel supports in place
+Ivan Wentzel
+,
+Head of Operations
+at
+Quantum Data
+Energy
+PLC
+, said
+:
+"
+The Hindlip project has moved from groundwork into full structural development. Civil works are effectively complete and the programme remains on track. With equipment deliveries confirmed and commissioning scheduled, we are moving into the final
+phase
+t
+o
+ward energisation and commercial
+operations
+in Q2
+.
+"
+Part Settlement of Company Subsidiary's Legacy Creditor Balance
+The Company announces that in part settlement of a legacy creditor balance owing by the Company's subsidiary, Sloane Developments Ltd, it is now issuing 5,143,417 new ordinary shares of 0.10p par value each in the Company (the "
+Settlement Shares
+"). The Settlement Shares are issued at a price per share of 4.36p, being the prevailing market closing bid share price on 12 January 2026, for a total share consideration of £224,253.
+Application will be made for the admission of the
+5,143,417
+new ordinary shares to trading on the LSE ("Admission") pursuant to the authorities approved by shareholders at the General Meeting on 8 July 2025. The shares will rank pari passu with the existing ordinary shares and it is expected that Admission will become effective at 8.00 a.m. on 16 January 2026.
+Following Admission, the Company's issued share capital will consist of 171,529,152 ordinary shares with voting rights. The Company does not hold any ordinary shares in treasury. This figure of 171,529,152 may be used by shareholders in the Company as the denominator for the calculations by which they will determine if they require to notify their interest in, or a change to their interest in, the share capital of the Company under the UK Financial Conduct Authority's Disclosure Guidance and Transparency Rules.
+Stay up to date with QDE's latest news and updates by joining our emailing list and social media channels, as follows:
+Website
+https://quantumdata.energy
+General enquires
+https://quantumdata.energy/contact
+RNS email alerts
+https://quantumdata.energy/news
+LinkedIn
+https://www.linkedin.com/company/quantum-data-energy-plc/
+X (formerly Twitter)
+@mastplc
+About
+Quantum Data Energy
+PLC:
+Quantum Data Energy PLC (LSE: MAST) is a UK-based developer, operator and owner of flexible generation power assets. The Company delivers flexible, modular power solutions to the UK grid and AI datacentres worldwide, en
+a
+bling scalable, reliable energy for
+next-generation digital infrastructure. The Company has deep expertise in infr
+a
+structure planning, grid access, gas access, and efficient power supply. Its new AI power supply strategy is i
+n
+tended to position Quantum as a leading AI infrastructure platform
+on the London Stock Exchange.
+ENDS
+This announcement contains inside information for the purposes of the UK version of the Market Abuse Regulation (EU No. 596/2014) as it forms part of United Kingdom domestic law by virtue of the European Union (Withdrawal) Act 2018 ('UK MAR'). Upon the publication of this announcement, this inside information is now considered to be in the public domain.
+Pieter Krügel
+contact@quantumdata.energy
+Quantum Data Energy PLC
+CEO
+Guy Wheatley, CFA
++44 (0)203 4117773
+Fortified Securities
+Corporate Broker
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+UPDBIGDBISBDGLD
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Record Generation and Revenues For 2025</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 70/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    FINANCIAL RESULTS: Revenue £1.6 million | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">6th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">70/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">FINANCIAL RESULTS: Revenue £1.6 million</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📈 IMPROVING: Company demonstrating strength and growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Guy Wheatley</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">100%, 71%, 136%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+Today 07:00
+RNS Number : 7183N
+Quantum Data Energy PLC
+06 January 2026
+Quantum Data Energy PLC
+(Incorporated in England and Wales)
+(Registration Number: 12886458)
+LEI :213800HFVHGJ9YGO9F71
+Share code on the LSE: MAST
+ISIN: GB00BNG90H86
+Dated
+:
+6
+January
+202
+6
+Quantum Data Energy
+PLC
+(
+"
+Q
+uantum
+"
+, "QDE"
+or the "Company")
+Record High Full
+-
+Year Electricity Generation and Revenues Achieved
+London, UK - Quantum Data Energy PLC (LSE: MAST)
+is pleased to announce, further to its RNS announcement dated 9 December 2025, that its 100% owned Pyebridge 8.1 MW flexible generation power asset ("Pyebridge") has achieved record high electricity generation and revenues for the 2025 full calendar year. Electricity generated and sold for the full 12-month period of 2025 came to c. 10.8 Gigawatt/hours ("GWh") representing an increase of c. 71% compared to the same period in the prior year, and total revenues for the full 12-month period of 2025 increased with c. 136% compared to the same period in the prior year. Further key highlights are detailed below.
+Key H
+ighlights:
+·
+Pyebridge achieved record high electricity generation output and sales of c. 1.6 GWh for the month of December 2025, representing its highest generation output in any single month to date;
+·
+Pyebridge generated and sold c. 10.8 GWh of electricity during the full 12-month period of 2025, representing an increase of c. 71% compared to the 12-month period of the prior year;
+·
+This sustained high output underscores the asset's robust operational performance and the growing demand for flexible generation capacity amid intermittent renewable supply;
+·
+Total revenues generated for 2025 came to c. £1.6 million, representing Pyebridge's highest income generated compared to any previous calendar year, and an increase of c. 130% compared to 2024;
+·
+Total revenues are based on an average of c. 5.6 MW in production over the period, representing c. £291,000 per MW per annum;
+·
+During 2025 Pyebridge achieved an average electricity sales price of c. £135/MWh representing an outperformance of c. 67% compared to the average wholesale market electricity price over year; and
+·
+During 2025 Pyebridge generated and sold electricity for an average of 11 hours per day, demonstrating the ongoing strong demand for flexible generation power and validating QDE's core business model.
+Pieter Krügel
+,
+CEO
+at
+Quantum Data
+Energy
+PLC
+, said
+:
+"
+We are
+very
+proud
+of the 2025 full year results that we achieved with our Pyebridge asset, which represent record high electricity generation and revenues
+. The results underscore the successful outcome of the refurbishment programme at Pyebridge, as well as the ongoing strong demand for flexible generation power amid intermittent renewable supply. QDE's core business model is to generate and supply flexible power at a premium when the national grid is constrained, and that business model is clearly working very well. We are looking forward to 2026 during which we plan to grow our portfolio of assets as we advance toward our first target of 300 MW at some pace."
+Issued Share Capital and TVR:
+Capitalised terms used in this part of the announcement have the same meaning as those given to them in the Company's RNS announcement dated 23 May 2025 unless otherwise defined.
+This part of the announcement is made in accordance with DTR 5.6.1.
+The Company announces that following the application to and subsequent approval by the London Stock Exchange for the Prepaid and Cash Warrants block listings as previously announced on 17th September 2025 and 7th October 2025 respectively, and further to its RNS announcement dated 2 December 2025, the Company has during the period since 2 December 2025 issued a further 27,625,000 shares fully paid ("
+Ordinary Shares
+"). The Ordinary Shares' issues follow the exercise of Prepaid and Cash Warrants, issued pursuant to the share issue authorities approved by shareholders at the Company's General Meeting held on 8 July 2025 and as detailed in its FCA approved Prospectus published on 9 July 2025.
+Such Ordinary Shares were admitted to the Official List of the UK Listing Authority and to trading on the London Stock Exchange's main market for listed securities under the Company's Prepaid and Cash Warrants block listings facilities.
+As of 5 January 2026, the Company's issued share capital consists of 166,385,735 Ordinary Shares with voting rights. The Company does not hold any ordinary shares in treasury. This figure of 166,385,735 may be used by shareholders in the Company as the denominator for the calculations by which they will determine if they require to notify their interest in, or a change to their interest in, the share capital of the Company under the UK Financial Conduct Authority's Disclosure Guidance and Transparency Rules ("DTR").
+Significant shareholdings (>3% holding) will be updated on the Company's website
+www.quantumdata.energy
+to coincide with the release of this announcement.
+Prepaid and Cash Warrants:
+Essentially all of the Prepaid Warrants have been exercised with only 758,836 (or 0.61% of the total) Prepaid Warrants remaining unexercised. Under the terms of the Equity Fundraise as previously announced, 50% of the Cash Warrants originally issued to the extent not previously exercised expire on 11 January 2026, resulting in 122,200,000 Cash Warrants remaining unexercised. Such remaining unexercised Cash Warrants expire on 11 July 2026 if not exercised.
+About Quantum Data Energy PLC:
+Quantum Data Energy PLC (LSE: MAST) is a UK-based developer, operator and owner of flexible generation power assets. The Company delivers flexible, modular power solutions to the UK grid and AI datacentres worldwide, en
+a
+bling
+scalable, reliable energy for next-generation digital infrastructure. The Company has deep expertise in infr
+a
+structure planning, grid access, gas access, and efficient power supply. Its new AI power supply strategy is i
+n
+tended to position Quantum as a lea
+ding AI infrastructure platform on the London Stock Exchange.
+Stay up to date with Quantum's latest news and updates by joining our emailing list and social media channels, as follows:
+Website
+https://quantumdata.energy
+General enquires
+https://quantumdata.energy/contact
+RNS email alerts
+https://quantumdata.energy/news
+LinkedIn
+https://www.linkedin.com/company/quantum-data-energy-plc/
+X (formerly Twitter)
+@mastplc
+ENDS
+This announcement contains inside information for the purposes of the UK version of the Market Abuse Regulation (EU No. 596/2014) as it forms part of United Kingdom domestic law by virtue of the European Union (Withdrawal) Act 2018 ('UK MAR'). Upon the publication of this announcement, this inside information is now considered to be in the public domain.
+Pieter Krügel
+contact@quantumdata.energy
+Quantum Data Energy PLC
+CEO
+Guy Wheatley, CFA
++44 (0)203 4117773
+Fortified Securities
+Corporate Broker
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+MSCUPUWWGUPQGRA
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">QDE CEO Interview & Publication of Business Video</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 55/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: QDE CEO Interview & Publication of Business Video | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">18th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">10:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS-R</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">55/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: QDE CEO Interview & Publication of Business Video</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Quantum Data</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+18 Dec 2025 10:00
+RNS Number : 1220M
+Quantum Data Energy PLC
+18 December 2025
+Quantum Data Energy PLC
+(Incorporated in England and Wales)
+(Registration Number: 12886458)
+LEI :213800HFVHGJ9YGO9F71
+Share code on the LSE: MAST
+ISIN: GB00BNG90H86
+Dated
+:
+1
+8
+Dece
+mber
+2025
+Quantum Data Energy
+PLC
+(
+"
+Q
+uantum
+"
+, "QDE"
+or the "Company")
+QDE CEO Interviewed on Vox Markets and Publication of QDE Business Video
+London, UK - Quantum Data Energy PLC (LSE: MAST)
+is pleased to announce
+that an interview recorded recently by its Chief Executive Officer, Pieter Krügel, with
+Vox
+Markets
+has been released. The interview can be viewed on the Vox platform
+here
+, or is available as an audio podcast
+here
+or via other major podcast platforms. It is also available in the media section of QDE's website
+here
+.
+In the interview, Pieter provides a summary of QDE's transformational achievements during 2025 and outlines what to expect in 2026.
+Further, QDE has produced and released a video to summarise its core business model and highlight key benefits to investors. The video can be viewed on the Vox platform
+here
+. It is also available in the media section of QDE's website
+here
+.
+A
+bout Quantum Data Energy PLC:
+Quantum Data Energy
+PLC (LSE:
+MAST
+) is a UK-based developer, operator and owner of flexible generation power assets.
+The Company
+delivers flexible, modular power solutions to the UK grid and AI datacentres worldwide, en
+a
+bling scalable, reliable energy for
+next-generation digital infrastructure
+.
+The Company has deep expertise in infr
+a
+structure planning, grid access, gas access, and efficient power supply. Its new AI power supply strategy is i
+n
+tended to position
+Quantum
+as a leading AI infrastructure platform
+on the London Stock Exchange.
+Stay up to date with Quantum's latest news and updates by joining our emailing list and social media channels, as follows:
+Website
+https://quantumdata.energy
+General enquires
+https://quantumdata.energy/contact
+RNS email alerts
+https://quantumdata.energy/news
+LinkedIn
+https://www.linkedin.com/company/quantum-data-energy-plc/
+X (formerly Twitter)
+@mastplc
+ENDS
+Pieter Krügel
+contact@quantumdata.energy
+Quantum Data Energy PLC
+CEO
+Guy Wheatley, CFA
++44 (0)203 4117773
+Fortified Securities
+Corporate Broker
+This information is provided by Reach, the non-regulatory press release distribution service of RNS, part of the London Stock Exchange. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+NRAGPGQAPUPAUBR
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">4</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #4
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">2025 A Remarkable Year in Review</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: 2025 A Remarkable Year in Review | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">16th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: 2025 A Remarkable Year in Review</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #10b981; font-weight: 600;">🟢 LOW RISK: Positive signals, minimal concerns</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📈 IMPROVING: Company demonstrating strength and growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Quantum Data</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">100%, 100%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+16 Dec 2025 07:00
+RNS Number : 6572L
+Quantum Data Energy PLC
+16 December 2025
+Quantum Data Energy PLC
+(Incorporated in England and Wales)
+(Registration Number: 12886458)
+LEI :213800HFVHGJ9YGO9F71
+Share code on the LSE: MAST
+ISIN: GB00BNG90H86
+Dated
+:
+16
+Dece
+mber
+2025
+Quantum Data Energy
+PLC
+(
+"
+Q
+uantum
+"
+, "QDE"
+or the "Company")
+2025
+A
+Remarkable Year
+in
+Review
+London, UK - Quantum Data Energy PLC (LSE: MAST)
+is pleased to announce an overview of the key progress and milestones achieved during 2025. Looking back to the start of the year, the Company had a market capitalisation and valuation of below £1m, and a net liabilities balance sheet position, making it very difficult to raise funding in an already challenging capital markets environment. Since the start of the year to date, the Company completed an equity fundraise of £5m gross proceeds. The equity fundraise was approved by the Company's shareholders at a General Meeting held on 8 July 2025, and by the FCA approving the Company's prospectus which was published on 9 July 2025. As a result of the successful completion of the equity fundraise, the Company settled essentially all its liabilities at PLC level, leaving a healthy cash balance to grow the business, and now has an increased market capitalisation and valuation of c. £7m1 at the date of this announcement, representing enterprise value growth of c. 10x. Further, the Company's 100% owned 8.1 MW Pyebridge flexible generation power asset has produced record electricity generation and sales revenue during the first 11-months of 2025, highlighting the strong demand for flexgen power and proving the Company's business model. The Company completed a £5m project investment agreement for its Hindlip 7.5 MW flexible generation power project in JV with Powertree at project SPV level (being non-dilutive to PLC shareholders), resulting in the project being fully funded through construction into production with no further funding obligations from QDE, proving that the Company is able to attract and secure non-dilutive funding for its projects. Further key progress and milestones achieved during 2025 to date are highlighted below.
+Key H
+ighlights:
+·
+Completed an equity fundraise of £5m gross proceeds (see RNS announcement dated 11 July 2025);
+·
+Company's 100% owned 8.1 MW Pyebridge flexible generation power asset has produced record electricity generation and sales revenue during the first 11-months of 2025, highlighting the strong demand for flexgen power and proving the Company's business model (see latest RNS announcement in this regard dated 9 December 2025);
+·
+Company completed a £5m project investment agreement for its Hindlip 7.5 MW flexible generation power project in JV with Powertree at project SPV level (being non-dilutive to PLC shareholders), resulting in the project being fully funded through construction into production with no further funding obligations from QDE (see RNS announcement dated 6 May 2025);
+·
+Company's Hindlip 7.5 MW flexgen project commences and progresses construction, with completion and commercial production expected in Q1 2026 (see RNS announcement dated 6 November 2025);
+·
+Acquired the exclusive rights to a 25 MW portfolio of flexgen development projects at a significantly lower cost compared to market, substantially bolstering the Company's portfolio of projects (see RNS announcement dated 22 July 2025);
+·
+Offer to purchase a 7 MW brownfield flexgen site (see RNS dated 4 September 2025);
+·
+Introduced QDE's new AI datacentre power supply strategy, and entered into JV agreements with key partners, Carbon Zero Markets and Navon World to bolster its new strategy (see RNS announcement dated 11 November 2025);
+·
+Company rebrand and name change following strategic expansion, to better reflect the Company's purpose as it advances toward its new vision (see RNS announcement dated 3 November 2025); and
+·
+Company has appointed Sustainable Investing Solutions ("SIS") to assist with its growth funding at project level process (see RNS announcement dated 2 December 2025).
+Pieter Krügel
+,
+CEO
+at
+Quantum Data
+Energy
+PLC
+, said
+:
+"
+Looking back at 2025 it is clear that it was a remarkable year for the Company
+. We started the year with a market capitalisation of below £1m and coupled with already challenging capital market conditions in general, making it very difficult to raise funding. Since the start of the year to date we successfully recapitalized the Company to the tune of £5m gross proceeds, settled essentially all debts at PLC level, leaving a healthy cash balance to grow the business, and made significant business growth progress. The net result of all the progress and milestones we achieved during 2025 to date is reflected in the Company's market capitalisation and valuation which is now sitting around £7m representing enterprise value growth of c. 10x. We have big plans for 2026 and a lot of momentum behind us, so we are expecting to progress toward our first target of 300 MW at some pace. I would like to sincerely thank our loyal shareholders who have supported the Company this past year."
+A
+bout Quantum Data Energy PLC:
+Quantum Data Energy
+PLC (LSE:
+MAST
+) is a UK-based developer, operator and owner of flexi
+ble generation power assets.
+The Company
+delivers flexible, modular power solutions to the UK grid and AI datacentres worldwide, en
+a
+bling scalable, reliable energy for next-generation digital infrastructure
+.
+The Company has deep expertise in infr
+a
+structure
+planning, grid access, gas access, and efficient power supply. Its new AI power supply strategy is i
+n
+tended to position
+Quantum
+as a leading AI infrastructure platform on the London Stock Exchange.
+Stay up to date with Quantum's latest news and updates by joining our emailing list and social media channels, as follows:
+Website
+https://quantumdata.energy
+General enquires
+https://quantumdata.energy/contact
+RNS email alerts
+https://quantumdata.energy/news
+LinkedIn
+https://www.linkedin.com/company/quantum-data-energy-plc/
+X (formerly Twitter)
+@mastplc
+References:
+1:
+https://www.londonstockexchange.com/stock/MAST/quantum-data-energy-plc/company-page
+ENDS
+This announcement contains inside information for the purposes of the UK version of the Market Abuse Regulation (EU No. 596/2014) as it forms part of United Kingdom domestic law by virtue of the European Union (Withdrawal) Act 2018 ('UK MAR'). Upon the publication of this announcement, this inside information is now considered to be in the public domain.
+Pieter Krügel
+contact@quantumdata.energy
+Quantum Data Energy PLC
+CEO
+Guy Wheatley, CFA
++44 (0)203 4117773
+Fortified Securities
+Corporate Broker
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+UPDPKPBBFBDDCBD
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">5</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #5
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Electricity Generation and Revenues Surge</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 70/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    FINANCIAL RESULTS: Revenue £1.45 million | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">9th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">70/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">FINANCIAL RESULTS: Revenue £1.45 million</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #10b981; font-weight: 600;">🟢 LOW RISK: Positive signals, minimal concerns</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📈 IMPROVING: Company demonstrating strength and growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Quantum Data</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">100%, 71%, 136%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+9 Dec 2025 07:00
+RNS Number : 7318K
+Quantum Data Energy PLC
+09 December 2025
+Quantum Data Energy PLC
+(Incorporated in England and Wales)
+(Registration Number: 12886458)
+LEI :213800HFVHGJ9YGO9F71
+Share code on the LSE: MAST
+ISIN: GB00BNG90H86
+Dated
+:
+9
+Dece
+mber
+2025
+Quantum Data Energy
+PLC
+(
+"
+Q
+uantum
+"
+, "QDE"
+or the "Company")
+Electricity Generation and
+Revenues
+Surge at
+Pyebridge
+8.1 MW FlexGen Power Asset
+London, UK - Quantum Data Energy PLC (LSE: MAST)
+is pleased to announce, further to its RNS announcement dated 18 November 2025, that its 100% owned Pyebridge 8.1 MW flexible generation power asset has sustained the trend of the past few months with record high monthly electricity generation and associated revenues. Electricity generation for the first 11-month period of 2025 has increased with c. 71% compared to the same period in the prior year, and total revenues for the first 11-month period of 2025 increased with c. 136% compared to the same period in the prior year.
+Key H
+ighlights:
+·
+Pyebridge maintained strong monthly electricity generation output and sales of c. 1.3 Gigawatt/hours ("GWh") for the month of November 2025, consistent with October's record high performance;
+·
+Pyebridge generated and sold c. 9.2 GWh of electricity during the first 11-month period of 2025, representing an increase of c. 71% compared to the first 11-month period of the prior year;
+·
+This sustained output underscores the asset's robust operational performance and the growing demand for flexible generation capacity amid intermittent renewable supply;
+·
+Total revenues generated for the first 11-months of 2025 came to c. £1.45 million, representing Pyebridge's highest income generated over the first 11 months of any year, and an increase of c. 136% compared to the same period in 2024;
+·
+Total revenues are based on an average of c. 5.5 MW in production over the period, representing c. £286,000 per MW per annum;
+·
+During the first 11-months of 2025 Pyebridge achieved an average electricity sales price of c. £139/MWh representing an outperformance of c. 71% compared to the average wholesale market electricity price over the same period; and
+·
+During the first 11-month period of 2025 Pyebridge generated and sold electricity for an average of 11 hours per day, demonstrating the ongoing strong demand for flexible power generation and validating QDE's business model.
+Tanya Zwemstra
+,
+Head of
+Finance
+at
+Quantum Data
+Energy
+PLC
+, said
+:
+"
+We are pleased to
+report
+that Pyebridge
+consistently delivered
+monthly electricity generation
+exceeding
+1 GWh
+for
+three
+consecutive months
+,
+accomp
+a
+nied by strong
+revenue
+performance
+.
+This achievement highlights QDE's unwavering commitment to delivering reliable energy to the UK grid through scalable, flexible, modular power solutions."
+A
+bout Quantum Data Energy PLC:
+Quantum Data Energy
+PLC (LSE:
+MAST
+) is a UK-based developer, operator and owner of flexi
+ble generation power assets. The Company has deep expertise in infrastructure planning, grid access, gas access, and efficient power supply. Its new AI power supply strategy is intended to position
+Quantum
+as a leading AI infrastructure platform on the Lon
+don Stock Exchange.
+Stay up to date with Quantum's latest news and updates by joining our emailing list and social media channels, as follows:
+Website
+https://quantumdata.energy
+General enquires
+https://quantumdata.energy/contact
+RNS email alerts
+https://quantumdata.energy/news
+LinkedIn
+https://www.linkedin.com/company/quantum-data-energy-plc/
+X (formerly Twitter)
+@mastplc
+ENDS
+This announcement contains inside information for the purposes of the UK version of the Market Abuse Regulation (EU No. 596/2014) as it forms part of United Kingdom domestic law by virtue of the European Union (Withdrawal) Act 2018 ('UK MAR'). Upon the publication of this announcement, this inside information is now considered to be in the public domain.
+Pieter Krügel
+contact@quantumdata.energy
+Quantum Data Energy PLC
+CEO
+Guy Wheatley, CFA
++44 (0)203 4117773
+Fortified Securities
+Corporate Broker
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+UPDTPBMTMTJMTAA
+                </div>
+            </details>
+            
+            </div>
+            
+            </div>
+            <div style="
+                margin-top: 20px;
+                padding: 14px 16px;
+                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+                border-radius: 10px;
+                font-size: 12px;
+                color: #78350f;
+                border-left: 3px solid #f59e0b;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            ">
+                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
+                <div style="line-height: 1.5;">
+                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
+                    Each RNS includes sentiment classification, key data extraction, and trading context. 
+                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
+                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                    </strong>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            details[open] > summary {
+                background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%) !important;
+                border-left-color: #0369a1 !important;
+            }
+            summary::-webkit-details-marker {
+                display: none;
+            }
+            
+            /* ========== MOBILE RESPONSIVE ========== */
+            @media (max-width: 768px) {
+                body {
+                    padding: 10px;
+                    font-size: 14px;
+                }
+                
+                .container {
+                    margin: 0 auto;
+                }
+                
+                .header-card {
+                    padding: 14px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .company-name {
+                    font-size: 22px;
+                    margin-bottom: 8px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 13px;
+                    padding: 6px 12px;
+                }
+                
+                .company-meta {
+                    gap: 8px;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+                
+                .meta-item {
+                    padding: 6px 12px;
+                    font-size: 12px;
+                    gap: 6px;
+                }
+                
+                .meta-icon {
+                    font-size: 14px;
+                }
+                
+                .score-hero {
+                    padding: 20px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .action-display {
+                    font-size: 18px !important;
+                    margin-bottom: 12px;
+                }
+                
+                .scores-row {
+                    gap: 16px;
+                    margin: 20px 0;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    display: flex;
+                }
+                
+                .score-circle {
+                    width: 110px;
+                    height: 110px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 32px;
+                }
+                
+                .score-label {
+                    font-size: 10px;
+                    margin-top: 4px;
+                }
+                
+                .timing-badge-large {
+                    padding: 10px 20px;
+                    font-size: 14px;
+                    margin: 12px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 14px;
+                    padding: 12px;
+                    margin-top: 12px;
+                }
+                
+                .factors-list {
+                    grid-template-columns: 1fr;
+                    gap: 10px;
+                    margin-top: 12px;
+                }
+                
+                .factor-item {
+                    padding: 12px;
+                    font-size: 12px;
+                    gap: 8px;
+                }
+                
+                .factor-icon {
+                    font-size: 16px;
+                }
+                
+                .cards-grid {
+                    grid-template-columns: 1fr;
+                    gap: 12px;
+                    margin-bottom: 12px;
+                }
+                
+                .card {
+                    padding: 16px;
+                    border-radius: 12px;
+                }
+                
+                .card-title {
+                    font-size: 14px;
+                    margin-bottom: 12px;
+                    gap: 8px;
+                }
+                
+                .card-icon {
+                    font-size: 18px;
+                }
+                
+                .stat-row {
+                    padding: 8px 0;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+                
+                .stat-label {
+                    font-size: 12px;
+                }
+                
+                .stat-value {
+                    font-size: 14px;
+                }
+                
+                .rally-badge {
+                    padding: 4px 10px;
+                    font-size: 10px;
+                }
+                
+                .risk-indicator {
+                    gap: 10px;
+                    padding: 12px;
+                    flex-wrap: wrap;
+                }
+                
+                .risk-icon {
+                    font-size: 20px;
+                }
+                
+                .reason-item {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                }
+                
+                .tag {
+                    padding: 3px 8px;
+                    font-size: 10px;
+                }
+                
+                .footer {
+                    padding: 12px;
+                    font-size: 11px;
+                    margin-top: 12px;
+                    border-radius: 12px;
+                }
+                
+                .alert-box {
+                    padding: 12px;
+                    margin: 10px 0;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                body {
+                    padding: 8px 6px;
+                }
+                
+                .header-card {
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    border-radius: 8px;
+                }
+                
+                .company-name {
+                    font-size: 18px;
+                    margin-bottom: 6px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 11px;
+                    padding: 3px 8px;
+                }
+                
+                .company-meta {
+                    gap: 4px;
+                    flex-direction: column;
+                }
+                
+                .meta-item {
+                    padding: 4px 6px;
+                    font-size: 11px;
+                    background: rgba(247, 250, 252, 0.7);
+                }
+                
+                .score-hero {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                    border-radius: 12px;
+                }
+                
+                .score-circle {
+                    width: 70px;
+                    height: 70px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 22px;
+                    font-weight: 800;
+                }
+                
+                .score-label {
+                    font-size: 7px;
+                    margin-top: 2px;
+                }
+                
+                .scores-row {
+                    flex-direction: column;
+                    gap: 10px;
+                    margin: 12px 0;
+                    align-items: center;
+                }
+                
+                .timing-badge-large {
+                    padding: 6px 12px;
+                    font-size: 11px;
+                    margin: 10px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 11px;
+                    padding: 8px;
+                    line-height: 1.3;
+                }
+                
+                .card {
+                    padding: 10px;
+                    margin-bottom: 8px;
+                    border-radius: 8px;
+                }
+                
+                .card-title {
+                    font-size: 12px;
+                    margin-bottom: 8px;
+                    font-weight: 700;
+                }
+            }
+        </style>
+        
+
+        <!-- Footer -->
+        <div class="footer">
+            Report generated: 2026-01-17 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            <strong>△ Not financial advice. Do your own research.</strong>
+            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
+                <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

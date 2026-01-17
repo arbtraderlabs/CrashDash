@@ -1,0 +1,3297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrashDash • HMI.L APEX Profile</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .header-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .ticker-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .company-name { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .company-meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f7fafc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .meta-icon { font-size: 18px; }
+        
+        .score-hero {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        .action-display {
+            margin-bottom: 20px;
+        }
+        .scores-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .score-number {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .score-label { font-size: 12px; color: #666; margin-top: 5px; }
+        .timing-badge-large {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 24px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            margin: 20px 0;
+        }
+        .thesis-line {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .factors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .factor-item {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        .factor-icon { font-size: 20px; }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-icon { font-size: 24px; }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-label { color: #666; font-size: 14px; }
+        .stat-value { font-weight: 600; font-size: 16px; }
+        
+        .rally-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .risk-indicator {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .risk-high { background: #fee2e2; }
+        .risk-icon { font-size: 24px; }
+        
+        .reason-item {
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .tag {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .footer {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-top: 20px;
+        }
+        
+        .alert-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Header Card -->
+        <div class="header-card">
+            <div class="ticker-badge">HMI.L</div>
+            <div class="company-name">Harvest Minerals Limited</div>
+            <div class="company-meta">
+                <div class="meta-item">
+                    <span class="meta-icon">■</span>
+                    <span><strong>Sector:</strong> Basic Materials</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">£</span>
+                    <span><strong>Market Cap:</strong> £1,257,923</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">◷</span>
+                    <span><strong>Days Active:</strong> 260 days</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action & Score Hero Section -->
+        <div class="score-hero">
+            <div class="action-display">
+                <span style="font-size: 32px; font-weight: 800; color: white;">◉ WATCH</span>
+            </div>
+            
+            <div class="scores-row">
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">48</div>
+                    <div class="score-label">APEX SCORE</div>
+                </div>
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">40</div>
+                    <div class="score-label">CONFIDENCE</div>
+                </div>
+            </div>
+            
+            <div class="timing-badge-large">
+                Timing: <span class="rally-badge" style="background: #fef3c7; color: #92400e;">EARLY BUILD</span>
+            </div>
+            
+            <div class="thesis-line">
+                WATCH - EARLY_BUILD timing with 48/100 opportunity score
+            </div>
+        </div>
+
+        <!-- ==================== CRASHDASH INTELLIGENCE - PANIC HUNTER VIEW ==================== -->
+        
+        <div class="card" style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); border: 2px solid #ef4444;">
+            <div class="card-title" style="color: #0f172a;">
+                <span class="card-icon">🏭</span>
+                CrashDash Intelligence • Industrials
+            </div>
+            
+            <!-- Fear Meter -->
+            <div style="background: white; padding: 24px; border-radius: 14px; margin-bottom: 20px; text-align: center;">
+                <div style="font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 16px;">🔥 PANIC METER</div>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 16px;">
+                    <div style="width: 160px; height: 160px; border-radius: 50%; background: conic-gradient(#ef4444 273.6deg, #e5e7eb 273.6deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                        <div style="width: 130px; height: 130px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <div style="font-size: 48px; font-weight: 800; color: #ef4444;">76</div>
+                            <div style="font-size: 12px; color: #64748b; font-weight: 600;">PANIC SCORE</div>
+                        </div>
+                    </div>
+                    <div style="text-align: left; max-width: 400px;">
+                        <div style="font-size: 18px; font-weight: 700; color: #ef4444; margin-bottom: 12px;">EXTREME PANIC</div>
+                        <div style="font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 12px;">🔴 Capitulation zone - contrarian opportunity if fundamentals intact</div>
+                        <div style="font-size: 13px; color: #64748b;">
+                            <div>💔 Price: 40/40</div>
+                            <div>📉 Volume: 10/20</div>
+                            <div>🔇 Social: 6/20</div>
+                            <div>📰 News: 20/20</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CrashHunter Signals -->
+                <div style="margin-top: 20px;">
+                    <span style="display: inline-block; background: #ef4444; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">🔴 Panic 76/100</span><span style="display: inline-block; background: #10b981; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">📊 Building</span>
+                </div>
+                
+                <!-- Opportunity Flag -->
+                <div style="margin-top: 20px; padding: 16px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 10px; color: white; font-weight: 700; font-size: 16px;">🎯 🔥 EXTREME PANIC + Intact timing = Prime contrarian entry zone</div>
+            </div>
+            
+            <!-- Contrarian Compression Energy Panel -->
+            
+            <!-- Contrarian Compression Energy Panel -->
+            <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); padding: 24px; border-radius: 14px; margin-bottom: 20px; border: 3px solid #10b981;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <span style="font-size: 32px;">⚡</span>
+                    <div style="flex: 1;">
+                        <div style="font-size: 20px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">
+                            CONTRARIAN COMPRESSION SCORE
+                        </div>
+                        <div style="font-size: 13px; color: #475569; font-weight: 600;">
+                            Signal Congestion Framework • Compression = Explosive Potential
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Score Display -->
+                <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 30px;">
+                        <!-- Circular gauge -->
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: conic-gradient(#10b981 154.8deg, #e5e7eb 154.8deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                            <div style="width: 110px; height: 110px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <div style="font-size: 42px; font-weight: 800; color: #10b981;">43</div>
+                                <div style="font-size: 11px; color: #64748b; font-weight: 600;">/ 100</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Key metrics -->
+                        <div style="text-align: left;">
+                            <div style="font-size: 16px; font-weight: 700; color: #10b981; margin-bottom: 12px;">🟢 MILD COMPRESSION (Top 50% - WATCHLIST)</div>
+                            <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                                <div><strong>0.7</strong> signals/week</div>
+                                <div><strong>6</strong> RSI &lt; 20 events</div>
+                                <div><strong>4</strong> escalations detected</div>
+                                <div style="color: #10b981; font-weight: 700; margin-top: 6px;">
+                                    💎 Historical pop: <strong>+224%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Component Breakdown -->
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 15px;">
+                        📊 5-COMPONENT BREAKDOWN
+                    </div>
+                    
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">compression</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #f59e0b;">31/40</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #f59e0b; height: 100%; width: 77.5%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">0.7 signals/week | 6 RSI<20 | 4 escalations | ⚡ HIGH COMPRESSION</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">intensification</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">5/20</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 25.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;"></div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">volume death</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">0/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">Normal volume</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">pop potential</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #eab308;">7/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #eab308; height: 100%; width: 46.666666666666664%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">Moderate performer (224%)</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">accumulation</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">0/10</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">No accumulation</div>
+                </div>
+                
+                </div>
+                
+                <!-- Contrarian Philosophy -->
+                <div style="background: rgba(255,255,255,0.7); padding: 16px; border-radius: 10px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #0f172a; margin-bottom: 8px; font-size: 14px;">
+                        🎯 CONTRARIAN WISDOM
+                    </div>
+                    <div style="font-size: 13px; color: #334155; line-height: 1.6;">
+                        <strong>Signal congestion = Compression energy = Explosive potential.</strong><br>
+                        When multiple crash signals cluster together with extreme RSI and proven rally history, 
+                        it creates a compressed spring effect. More panic = More opportunity for contrarians.
+                        <div style="margin-top: 8px; padding: 10px; background: rgba(239,68,68,0.1); border-radius: 6px; font-size: 12px;">
+                            <strong style="color: #10b981;">Theory:</strong> High compression scores (60+) historically precede 
+                            explosive 10-20x moves when catalysts arrive. This is the foundation of crash hunting.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Fear vs Facts Contrarian View -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                <div style="background: #fee2e2; padding: 18px; border-radius: 12px; border-left: 4px solid #ef4444;">
+                    <div style="font-weight: 700; color: #991b1b; margin-bottom: 12px; font-size: 15px;">😱 FEAR (What Panic Shows)</div>
+                    <div style="color: #7f1d1d;">
+                        <div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 💔 Price destruction: 40/40 points</div><div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 📰 Negative news: 20/20 points</div>
+                    </div>
+                </div>
+                <div style="background: #dcfce7; padding: 18px; border-radius: 12px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #065f46; margin-bottom: 12px; font-size: 15px;">📊 FACTS (What Data Shows)</div>
+                    <div style="color: #064e3b;">
+                        <div style="color: #64748b; font-size: 14px;">Limited historical data</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contrarian Verdict -->
+            <div style="background: white; padding: 18px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #6366f1;">
+                <div style="font-weight: 700; color: #4338ca; margin-bottom: 10px; font-size: 15px;">⚖️ Contrarian Verdict</div>
+                <div style="font-size: 15px; color: #1e293b; line-height: 1.6; font-weight: 600;">
+                    🎯 CONTRARIAN OPPORTUNITY - Fear dominates but facts support recovery potential
+                </div>
+            </div>
+            
+            <!-- Industry Crash Patterns -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">⚠️ Crash Patterns (Industrials)</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book decline or cancellations</div><div>• Margin compression (input costs)</div><div>• Cyclical demand weakness</div>
+                    </div>
+                    
+                </div>
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">🚀 Recovery Paths</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book growth or new contracts</div><div>• Margin recovery (efficiency gains)</div><div>• Cyclical upturn (capex recovery)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Catalyst Pipeline -->
+            <div style="background: rgba(255,255,255,0.5); padding: 18px; border-radius: 12px; margin-bottom: 20px;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 14px; font-size: 15px;">📅 Catalyst Pipeline</div>
+                
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Interim Results</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Results of AGM</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Notice of AGM</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Holding(s) in Company</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Issue of Settlement Shares and TVR</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+            
+            <!-- CrashDash Decision Matrix -->
+            <div style="background: white; padding: 20px; border-radius: 12px; border: 3px solid #ef4444;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 16px; text-align: center;">
+                    🎯 CRASHDASH DECISION: <span style="color: #ef4444; font-size: 20px;">WATCH</span>
+                </div>
+                <div style="font-size: 15px; color: #475569; text-align: center; margin-bottom: 20px; font-weight: 600;">
+                    ⏳ Monitor for timing regime change or panic escalation
+                </div>
+                <div style="background: #f8fafc; padding: 16px; border-radius: 10px;">
+                    <div style="font-weight: 700; color: #64748b; margin-bottom: 12px; font-size: 13px;">CHECKLIST (4/5 pass)</div>
+                    
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🔴</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Panic Score</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">76/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">✅</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Timing Regime</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">EARLY_BUILD</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">⚠️</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">APEX Quality</div>
+                    <div style="font-size: 13px; color: #ef4444; font-weight: 600;">48/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🎯</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Data Confidence</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">40/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🏭</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Industry Pattern</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">0 active</div>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
+        
+
+        <!-- Decision Summary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◆</span>
+                Why This Matters
+            </div>
+            <div class="stat-row"><span>• APEX 48/100 indicates moderate opportunity quality</span></div><div class="stat-row"><span>• Timing regime: EARLY_BUILD</span></div><div class="stat-row"><span>• Historical profile: 1 rallies, 90% best run</span></div>
+            
+            <div class="alert-box" style="margin-top: 20px;">
+                <strong>△ Main Risk:</strong> Confidence 40/100 - full data loaded
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong>◉ Watch Next:</strong>
+                <div style="padding: 8px 0;">• RNS catalysts (funding/operational updates)</div><div style="padding: 8px 0;">• Volume expansion confirmation</div><div style="padding: 8px 0;">• Timing regime change signals</div>
+            </div>
+        </div>
+
+        <!-- ==================== TECHNICAL DETAILS (COLLAPSIBLE) ==================== -->
+        
+        <div class="card">
+          <details style="cursor:pointer;">
+            <summary style="font-weight:800; font-size:16px; list-style:none; padding: 10px; background: #f9fafb; border-radius: 8px;">
+              🔧 Technical Analysis & Scoring Details
+            </summary>
+            <div style="margin-top:14px;">
+              
+            <!-- Scoring Breakdown -->
+            <div class="card-title" style="margin-top: 20px;">
+                <span class="card-icon">▣</span>
+                APEX Score Breakdown
+            </div>
+            <div class="factors-list">
+                <div class="factor-item"><span class="factor-icon">◆</span><span><strong>Moderate Technical Setup</strong><br><small>Chart quality: 9/20 • Score: 11/25 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Massive recovery potential</strong><br><small>Down 90.0% from peak • Score: 18/20 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Above average volume</strong><br><small>1.6x average • Score: 6/10 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Limited history</strong><br><small>1 previous rallies • Score: 5/15 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Modest upside</strong><br><small>Historical best: +90% • Score: 8/20 points</small></span></div>
+
+            </div>
+            
+            <div style="margin-top: 40px;"></div>
+            
+            <!-- Exhaustion Metrics -->
+            <div class="card-title">
+                <span class="card-icon">📈</span>
+                Rally Cycle Position
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Current Position</div>
+                    <div style="font-size: 32px; font-weight: 800;">6%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
+                    <div style="font-size: 32px; font-weight: 800;">90%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
+                    <div style="font-size: 32px; font-weight: 800;">0.1x</div>
+                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
+                </div>
+            </div>
+        
+            </div>
+          </details>
+        </div>
+        
+
+        <!-- Reasons Buy/Sell -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #10b981;">▲</span>
+                    Reasons to Buy
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Early stage positioning offers best R:R if catalysts appear</span>
+                    <span class="tag" style="background: #f59e0b; color: white;">⚡ Medium Strength</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">timing=EARLY BUILD • current return=6.0%</div>
+            </div>
+            
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Proven winner - previously hit lock-in target</span>
+                    <span class="tag" style="background: #f59e0b; color: white;">⚡ Medium Strength</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">profit target reached: True</div>
+            </div>
+            
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #ef4444;">▼</span>
+                    Reasons to Sell / Avoid
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Stale signal - not for active trading</span>
+                    <span class="tag" style="background: #ef4444; color: white;">🚨 High Risk</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">historical • signal date=2025-05-01</div>
+            </div>
+            
+            </div>
+        </div>
+
+        <!-- Trade Plans -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">📊</span>
+                    Short-Term Trader Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 20%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <div style="font-size: 18px; font-weight: 600; margin-bottom: 5px;">Watch / Starter</div>
+                    <div style="font-size: 14px; opacity: 0.9;">Wait for base + catalyst confirmation; starter position only</div>
+                </div>
+                <div style="padding: 12px; background: #f9fafb; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Position Size</div>
+                    <div style="font-weight: 600;">0-1% until CONFIRMED</div>
+                </div>
+                <div style="padding: 12px; background: #fef2f2; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Risk Management</div>
+                    <div style="font-weight: 600; color: #dc2626;">Invalidation = breaks recent lows / dilution / suspension</div>
+                </div>
+                <div style="padding: 12px; background: #f0fdf4; border-radius: 6px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Exit Strategy</div>
+                    <div style="font-weight: 600; color: #059669;">Scale out 25% at +15%, 25% at +50%, runner above</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">💼</span>
+                    Long-Term Investor Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center;">
+                    <div style="font-size: 32px; margin-bottom: 5px;">✗</div>
+                    <div style="font-size: 18px; font-weight: 600;">Not Recommended for Investors</div>
+                </div>
+                <div style="padding: 15px; background: #f9fafb; border-radius: 8px; font-size: 14px; line-height: 1.6;">
+                    <strong style="color: #667eea;">📋 Investment Thesis:</strong><br>
+                    Unlock after AI triangulation + CONFIRMED timing<br><br>
+                    <strong style="color: #667eea;">⏳ Time Horizon:</strong><br>
+                    N/A<br><br>
+                    <strong style="color: #ef4444;">🛡️ Exit Rule:</strong><br>
+                    N/A
+                </div>
+            </div>
+        </div>
+
+        <!-- Commentary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◐</span>
+                Executive Commentary
+            </div>
+            <div style="line-height: 1.6; margin-bottom: 20px;">
+                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows EARLY_BUILD timing with 48/100 APEX score. Historical data shows 1 rallies averaging 90% upside. Current position: +6.0%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #10b981;">▲ Bull Case:</strong>
+                <div style="padding: 8px 0;">• Early regime often offers best risk/reward</div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #ef4444;">▼ Bear Case:</strong>
+                <div style="padding: 8px 0;">• Monitor for breakdown signals</div>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
+                <strong>◷ Timing Translation:</strong><br>
+                Early accumulation phase. Watch for confirmation before committing size.
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
+                <strong>◎ Confidence Explained:</strong><br>
+                Confidence 40/100 reflects full data quality with triangulation loaded.
+            </div>
+        </div>
+
+        <!-- Data Quality Warning -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">△</span>
+                Data Quality Notice
+            </div>
+            <div class="alert-box">
+                <strong>Analysis Mode:</strong> HISTORICAL_ONLY<br>
+                <strong>Impact:</strong> HIGH
+            </div>
+            <div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">AI insights from Groq LLM</div></div></div>
+
+            <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk.
+            </div>
+        </div>
+
+        <!-- ==================== TOP 5 RECENT RNS NEWS ==================== -->
+        
+        <div class="card" style="border-top: 3px solid #3b82f6;">
+            <div class="card-title" style="margin-bottom: 20px;">
+                <span class="card-icon">📰</span>
+                Top 5 Recent RNS Announcements
+            </div>
+            <div style="margin-top: 15px;">
+                
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #10b98140;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📈</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Interim Results</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • BULLISH</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    FINANCIAL RESULTS: 3% growth | ✅ BULLISH: Positive results typically drive price increases. Check guidance for future expectations.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Sep 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">8:31 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #10b981;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #10b981;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">FINANCIAL RESULTS: 3% growth</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #10b981; font-weight: 600;">✅ BULLISH: Positive results typically drive price increases. Check guidance for future expectations.</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #ef4444; font-weight: 600;">🔴 HIGH RISK: Multiple warning signals suggest caution</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">🚀 WATCH FOR BREAKOUT: Positive results often trigger continuation moves</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📉 DETERIORATING: Company showing signs of weakness</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Condensed Consolidated</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">18.9%, 3%, 12%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+30 Sep 2025 08:31
+RNS Number : 3955B
+Harvest Minerals Limited
+30 September 2025
+30 September 2025
+Harvest Minerals Limited
+("Harvest" or the "Company")
+Interim Results
+Harvest Minerals Limited, the AIM listed fertiliser producer, announces its interim results for the six months ended 30 June 2025.
+REVIEW OF OPERATIONS
+We have implemented a dual strategy at the Arapuá Project ("Arapuá") in Brazil. The first focus is on the production and sale of our established organic fertiliser, KP Fértil®. The second is on progressing the development of the project's Rare Earth Elements ("REE") potential. By diversifying we are trying to broaden our commodity exposure and expand our future opportunities.
+Fertiliser
+Sales continue to be negatively affected as the fertiliser sector faces a challenging period, driven by both macroeconomic pressures and a continuation of local factors impacting commodity prices as noted in the Company's 2023 annual results (released on 26 June 2024). We launched a new marketing campaign for KP Fértil® during the review period, which generated a positive initial reaction. Unfortunately, this has not continued, and sales have subsequently been below expectations. As a result, the period under review has been disappointing and the Company forecasts no near-term respite to the difficult trading conditions.
+Total sales for the 6 month period to 30 June 2025 were 10,525 tonnes, which included 3,402 tonnes of orders placed in 2024 and 5,559 tonnes of orders placed in 2025, respectively, but only delivered, and therefore recognised as revenue, in H1 2025. As the Company continues to experience a volatile trading environment, expectations for the remainder of the year have been substantially reduced and the Company is now forecasting total annual sales of 25Kt.
+Rare Earth Elements
+The REE potential at Arapuá warrants further investigation, albeit we are at an early stage in the exploration programme. Laboratory analysis of rock samples has confirmed REE concentrations ranging from 1,176 ppm to 1,860 ppm of total rare earth oxides ("TREO"), while historical analyses have shown even higher values, ranging from 1,837 ppm to 4,117 ppm TREO (see RNS dated 10 April 2024).
+Accordingly, we are planning a fully funded, two-stage REE-focused programme. The first stage involves reviewing historical data and samples from previous drill holes, along with conducting new auger drill holes to clarify and confirm resources. The second stage will expand drilling efforts, conduct a detailed analysis of the optimal beneficiation process, and evaluate both the resource volume and concentration within the deposit. Crucially, this work is supported by Arapuá's existing infrastructure, including on-site teams, laboratories, and equipment.
+The REE potential at Arapuá has been further highlighted through a Technical Cooperation Agreement signed with PVW Resources Limited (ASX: PVW), an Australian company specialising in REE projects in Brazil and beyond as announced on 17 September 2024.
+RESULTS
+The loss after tax recorded in the Condensed Consolidated Statement of Comprehensive Income for the half-year ended 30 June 2025 was $1,980,127 (2024: $1,780,082). Net cash outflow from operating activities in the Condensed Consolidated Statement of Cashflows for the half year ended 30 June 2025 was $313,542 (2024: $877,023).
+SUBSEQUENT EVENTS
+As announced on 23 June 2025, the Company raised gross proceeds of £300,000 through placing 100,000,000 new ordinary shares of no par value at a placing price of 0.3 pence. The Company also issued one warrant per two Placing Shares, exercisable at 0.6p for a period of 2 years from Admission. The proceeds from the rise were received on 2 July 2025.
+Other than the above matters, post period end, there have been no known significant events after the end of the period that require disclosure in this report.
+OUTLOOK
+The outlook for the fertiliser business remains very unclear and the Company continues to critically evaluate the position of the division within the group going forward. Similarly, whilst the REE potential warrants further investigation we continue to approach this opportunity cautiously and mindful of the limitations of our current resources.
+Auditor's Independence Declaration
+Section 307C of the
+Corporations Act 2001
+requires our auditors, HLB Mann Judd, to provide the Directors of the company with an Independence Declaration in relation to the review of the half-year financial report. This Independence Declaration is set out on the Page 4 and forms part of the Directors' Report for the half-year ended 30 June 2025.
+This report is signed in accordance with a resolution of the Board of Directors.
+Brian McMaster
+Executive Chairman
+30 September 2025
+Competent Person Statement
+The technical information in this report is based on complied and reviewed data by Mr Paulo Brito BSc(geol), MAusIMM, MAIG. Mr Brito is a consulting geologist for Harvest Minerals Limited and is a Member of AusIMM - The Minerals Institute, as well as, a Member of Australian Institute of Geoscientists. Mr Brito has sufficient experience which is relevant to the style of mineralisation and type of deposit under consideration and to the activity which is being undertaken to qualify as a Competent Person as defined in the 2012 Edition of the "Australasian Code for Reporting of Exploration Results, Mineral Resources and Ore Reserves". Mr Brito also meets the requirements of a qualified person under the AIM Note for Mining, Oil and Gas Companies and consents to the inclusion in this report of the matters based on his information in the form and context in which it appears. Mr Brito accepts responsibility for the accuracy of the statements disclosed in this report.
+Condensed Consolidated Statement of Comprehensive Income
+for the half-year ended 30 June 2025
+Consolidated
+Notes
+6 months ended 30 June
+2025
+$
+6 months ended
+30 June
+2024
+$
+Revenue from fertiliser sales
+3
+516,533
+1,226,412
+Cost of goods sold
+4
+(623,077)
+(1,243,202)
+Gross loss
+(106,544)
+(16,790)
+Interest income
+25,158
+17,196
+Foreign exchange gain/(loss)
+(2,892)
+3,756
+Accounting fees
+(97,218)
+(83,675)
+Audit and tax fees
+(43,557)
+(56,466)
+Advertising fees
+(60,128)
+(64,517)
+Consultants' fees
+(4,721)
+(3,442)
+Directors' fees
+(431,999)
+(391,574)
+Depreciation
+(107,947)
+(119,743)
+Legal fees
+(3,155)
+(2,399)
+Wages & Salaries
+(110,593)
+(194,651)
+Interest expense
+(314,748)
+(219,079)
+Public company costs
+(110,461)
+(107,930)
+Travel expenses
+(74,073)
+(127,492)
+Impairment expense trade receivable
+(184,025)
+-
+Impairment exploration expense
+(107,500)
+(106,276)
+Other expenses
+(243,499)
+(306,120)
+Loss from continuing operations before income tax
+(1,977,902)
+(1,779,202)
+Income tax expense
+(2,225)
+(880)
+Loss from continuing operations after income tax
+(1,980,127)
+(1,780,082)
+Other comprehensive income
+Item that may be reclassified subsequently to profit or loss
+Foreign currency translation
+299,160
+(776,779)
+Other comprehensive income for the half-year
+299,160
+(776,779)
+Total comprehensive loss for the half-year
+(1,680,967)
+(2,556,861)
+Loss per share
+Basic and diluted loss per share (cents per share)
+(0.67)
+(0.94)
+Condensed Consolidated Statement of Financial Position
+as at 30 June 2025
+Consolidated
+Notes
+30 June
+2025
+$
+31 December
+2024
+$
+Assets
+Current Assets
+Cash and cash equivalents
+5
+534,463
+1,013,410
+Trade and other receivables
+6
+869,287
+481,074
+Inventories
+7
+545,087
+686,037
+Total Current Assets
+1,948,837
+2,180,521
+Non-Current Assets
+Trade and other receivables
+432,723
+399,219
+Investments
+227,099
+310,859
+Plant and equipment
+8
+2,806,051
+2,727,361
+Mine properties
+9
+3,478,679
+3,359,270
+Deferred exploration and evaluation expenditure
+-
+96,366
+Total Non-Current Assets
+6,944,552
+6,893,075
+Total Assets
+8,893,389
+9,073,596
+Current Liabilities
+Trade and other payables
+10
+896,764
+1,026,103
+Borrowings
+11
+1,126,780
+1,856,489
+Total Current Liabilities
+2,023,544
+2,882,592
+Non-Current Liabilities
+Provision for rehabilitation
+391,908
+363,344
+Borrowings
+11
+2,345,426
+1,313,135
+Total Non-Current Liabilities
+2,737,334
+1,676,479
+Total Liabilities
+4,760,878
+4,559,071
+Net Assets
+4,132,511
+4,514,525
+Equity
+Contributed equity
+12
+46,432,123
+45,133,170
+Reserves
+1,104,681
+805,521
+Accumulated losses
+(43,404,293)
+(41,424,166)
+Total Equity
+4,132,511
+4,514,525
+Condensed Consolidated Statement of Changes in Equity
+for the half-year ended 30 June 2025
+Consolidated
+Notes
+Contributed equity
+$
+Accumulated losses
+$
+Foreign currency translation reserve
+$
+Option reserve
+$
+Total
+$
+Balance as at 1 January 2025
+12
+45,133,170
+(41,424,166)
+(2,735,527)
+3,541,048
+4,514,525
+Total comprehensive gain for the half-year
+Loss for the half-year 30 June 2025
+-
+(1,980,127)
+-
+-
+(1,980,127)
+Other comprehensive income
+-
+-
+299,160
+-
+299,160
+Total comprehensive income for the half-year
+-
+(1,980,127)
+299,160
+-
+(1,680,967)
+Transactions with owners in their capacity as owners
+Shares issued 23 June 25
+582,892
+-
+-
+-
+582,892
+Shares issued to Directors 30 June 25
+716,061
+-
+-
+-
+716,061
+Balance at 30 June 2025
+46,432,123
+(43,404,293)
+(2,436,367)
+3,541,048
+4,132,511
+Balance as at 1 January 2024
+43,328,219
+(37,757,493)
+(1,779,210)
+3,541,048
+7,332,564
+Total comprehensive gain for the half-year
+Loss for the half-year 30 June 2024
+-
+(1,780,082)
+-
+-
+(1,780,082)
+Other comprehensive income
+-
+-
+(776,779)
+-
+(776,779)
+Total comprehensive income for the half-year
+-
+(1,780,082)
+(776,779)
+-
+(2,556,861)
+Balance at 30 June 2024
+12
+43,328,219
+(39,537,575)
+(2,555,989)
+3,541,048
+4,775,703
+Condensed Consolidated Statement of Cash Flows
+for the half-year ended 30 June 2025
+Consolidated
+6 months ended
+30 June
+2025
+$
+6 months ended
+30 June
+2024
+$
+Cash flows from operating activities
+Receipts from customers
+693,927
+649,173
+Payments to suppliers and employees
+(897,260)
+(1,324,313)
+Interest received
+25,158
+17,196
+Interest paid
+(135,367)
+(219,079)
+Net cash outflow from operating activities
+(313,542)
+(877,023)
+Cash flows from investing activities
+Purchase of plant and equipment
+(102,081)
+(18,956)
+Net cash outflow from investing activities
+(102,081)
+(18,956)
+Cash flows from financing activities
+Proceeds from borrowings
+281,462
+1,057,142
+Repayment of borrowings
+(392,032)
+(430,298)
+Net cash inflow from financing activities
+(110,570)
+626,844
+Net decrease in cash and cash equivalents
+(526,193)
+(269,135)
+Cash and cash equivalents at beginning of period
+1,013,410
+795,554
+Effect of exchange rate fluctuations on cash held
+47,246
+(76,270)
+Cash and cash equivalents at the end of the period
+5
+534,463
+450,149
+Notes to the Condensed Consolidated Financial Statements
+for the half-year ended 30 June 2025
+NOTE 1: STATEMENT OF SIGNIFICANT ACCOUNTING POLICIES
+Corporate Information
+This general purpose half-year financial report of Harvest Minerals Limited
+(the "Company")
+and its subsidiaries (the "Group") for the half-year ended 30 June 2025 was authorised for issue in accordance with a resolution of the Directors on 30 September 2025.
+Harvest Minerals Limited is a company limited by shares incorporated in Australia whose shares are publicly traded on the AIM market of the London Stock Exchange.
+The nature of the operations and principal activities of the Group are described in the Directors' Report.
+Basis of Preparation
+This financial report for the half-year ended 30 June 2025 has been prepared in accordance with the requirements of the Corporations Act 2001, applicable accounting standards including AASB 134
+Interim Financial Reporting,
+Accounting Interpretations and other authoritative pronouncements of the Australian Accounting Standards Board ("AASB"). Compliance with AASB 134 ensures compliance with IAS 134
+"Interim Financial Reporting".
+The Group is a for profit entity for financial reporting purposes under Australian Accounting Standards.
+These half-year financial statements do not include all notes of the type normally included within the annual financial statements and therefore cannot be expected to provide as full an understanding of the financial performance, financial position and financing and investing activities of the group as the full financial statements.
+It is recommended that the half-year financial statements be read in conjunction with the annual report for the year ended 31 December 2024 and considered together with any public announcements made by Harvest Minerals Limited during the half-year ended 30 June 2025 in accordance with the continuous disclosure obligations of the AIM market.
+For the purpose of preparing the interim report, the half-year has been treated as a discrete reporting period. The accounting policies and methods of computation adopted are consistent with those of the previous financial year and corresponding interim reporting period. These accounting policies are consistent with Australian Accounting Standards and with International Financial Reporting Standards.
+New and amending Accounting Standards and Interpretations
+In the half-year ended 30 June 2025, the
+Directors
+have reviewed all of the new and revised Standards and Interpretations issued by the AASB that are relevant to the Group's operations and effective for current reporting periods beginning on or after 1 January 2025. The Directors have also reviewed all new Standards and Interpretations that have been issued but are not yet effective for the half-year ended 30 June 2025. As a result of this review the Directors have determined that there is no impact, material or otherwise, of the new and revised Standards and Interpretations on the Group's business and, therefore, no change is necessary to the Group accounting policies.
+New and amended accounting standards and interpretations have been published but are not mandatory. The Group has decided against early adoptions of these standards, and has determined the potential impact on the financial statements from the adoption of these standards and interpretations is not material to the Group.
+Going concern
+For the half-year ended 30 June 2025 the Group recorded a loss after tax of $1,800,746 (Half-year to 30 June 2024: $1,980,127) and had net cash outflows from operating and investing activities of $591,112 (Half-year to 30 June 2024: $895,979). These conditions indicate a material uncertainty that may cast significant doubt about the Group's ability to continue as a going concern and, therefore, that it may be unable to realise its assets and discharge its liabilities in the normal course of business. In the absence of an improvement in sales volumes and pricing, the ability of the Group to continue as a going concern will be dependent on securing additional funding through debt or equity and/or from asset sales in order for the Group to continue to fund its operational activities in the longer term.
+The half-year financial report has been prepared on the basis that the Group is a going concern, which contemplates the continuity of normal business activity, realisation of assets and settlement of liabilities in the normal course of business for the following reasons:
+·
+Management have considered the future capital requirements of the entity and will consider all funding options as required, including (but not limited to) fundraising and/or asset sales. In March 2025, the Group launched a strategic review to explore and evaluate a range of alternatives, which could ultimately include the potential sale of one or both business divisions;
+·
+The level of the Group's discretionary expenditure (such as advertising fees, consultants fees, directors' fees, wages and salaries and travel expenses) can be managed;
+·
+The Directors agreed to pause drawing their remuneration until such point as the Company is able to pay;
+·
+In March 2025, the Group successfully renegotiated R$5.0 million (c. £675,000) working capital debt, obtaining a 12-month grace period and an extended 36-month repayment plan. The Group may need to seek similar refinancing arrangements with its lenders in the coming year;
+·
+The Group has historically demonstrated its ability to raise funds to satisfy its immediate cash requirements;
+As at the date of this report, the Board and Management believe there are sufficient funds to meet the Group's working capital requirements in the near term and that sufficient funds will become available, through certain of the above actions, if and when needed, to finance the operations of the Group in the longer term. Should the Group not be able to continue as a going concern, it may be required to realise its assets and discharge its liabilities other than in the ordinary course of business, and at amounts that differ from those stated in the half-year financial report. The half-year financial report does not include any adjustments relating to the recoverability and classification of recorded asset amounts or liabilities that might be necessary should the Group not continue as a going concern.
+Material Accounting Policies
+Deferred Exploration and Evaluation Expenditure
+Exploration and evaluation expenditure incurred by or on behalf of the Group is accumulated separately for each area of interest. Such expenditure comprises net direct costs and an appropriate portion of related overhead expenditure but does not include general overheads or administrative expenditure not having a specific nexus with a particular area of interest.
+Each area of interest is limited to a size related to a known or probable mineral resource capable of supporting a mining operation. Exploration and evaluation expenditure for each area of interest is carried forward as an asset provided that one of the following conditions is met:
+·
+such costs are expected to be recouped through successful development and exploitation of the area of interest or, alternatively, by its sale; or
+·
+exploration and evaluation activities in the area of interest have not yet reached a stage which permits a reasonable assessment of the existence or otherwise of economically recoverable reserves, and active and significant operations in relation to the area are continuing.
+Expenditure which fails to meet the conditions outlined above is written off. Furthermore, the directors regularly review the carrying value of exploration and evaluation expenditure and make write downs if the values are not expected to be recoverable.
+Identifiable exploration assets acquired are recognised as assets at their cost of acquisition, as determined by the requirements of AASB 6 Exploration for and Evaluation of Mineral Resources. Exploration assets acquired are reassessed on a regular basis and these costs are carried forward provided that at least one of the conditions referred to in AASB 6 is met.
+Exploration and evaluation expenditure incurred subsequent to acquisition in respect of an exploration asset acquired is accounted for in accordance with the policy outlined above for exploration expenditure incurred by or on behalf of the entity.
+Acquired exploration assets are not written down below acquisition cost until such time as the acquisition cost is not expected to be recovered. When an area of interest is abandoned, any expenditure carried forward in respect of that area is written off. Expenditure is not carried forward in respect of any area of interest/mineral resource unless the Group's rights of tenure to that area of interest are current.
+Mine Properties
+Mine properties represent the accumulation of all exploration, evaluation and development expenditure incurred in respect of areas of interest in which mining has commenced or is in the process of commencing. When further development expenditure is incurred in respect of mine property after the commencement of production, such expenditure is carried forward as part of the mine property only when substantial future economic benefits are thereby established, otherwise such expenditure is classified as part of the cost of production.
+Amortisation is provided on a unit of production basis which results in a write off of the cost proportional to the depletion of the proven and probable mineral reserves.
+The net carrying value of each area of interest is reviewed regularly and to the extent to which this value exceeds its recoverable amount, the excess is either fully provided against or written off in the financial year in which this is determined.
+The Group provides for environmental restoration and rehabilitation at site which includes any costs to dismantle and remove certain items of plant and equipment. The cost of an item includes the initial estimate of the costs of dismantling and removing the item and restoring the site on which it is located, the obligation for which an entity incurs when an item is acquired or as a consequence of having used the item during that period. This asset is depreciated on the basis of the current estimate of the useful life of the asset. In accordance with AASB 137 Provisions, Contingent Liabilities and Contingent Assets the Group is also required to recognise as a provision the best estimate of the present value of expenditure required to settle this obligation. The present value of estimated future cash flows is measured using a current market discount rate.
+Stripping costs
+Costs associated with material stripping activity, which is the process of removing mine waste materials to gain access to the mineral deposits underneath, during the production phase of surface mining are accounted for as either inventory or a non-current asset (non-current asset is also referred to as a 'stripping activity asset').
+To the extent that the benefit from the stripping activity is realised in the form of inventory produced, the Group accounts for the costs of that stripping activity in accordance with the principles of AASB 102 Inventories. To the extent the benefit is improved access to ore, the Group recognises these costs as a non-current asset provided that:
+·
+it is probable that the future economic benefit (improved access to the ore body) associated with the stripping activity will flow to the Group;
+·
+the Group can identify the component of the ore body for which access has been improved; and
+·
+the costs relating to the stripping activity associated with that component can be measured reliably.
+Stripping activity assets are initially measured at cost, being the accumulation of costs directly incurred to perform the stripping activity that improves access to the identified component of ore plus an allocation of directly attributable overhead costs. In addition, stripping activity assets are accounted for as an addition to, or as an enhancement to, an existing asset.
+Accordingly, the nature of the existing asset determines:
+·
+whether the Group classifies the stripping activity asset as tangible or intangible; and
+·
+the basis on which the stripping activity asset is measured subsequent to initial recognition.
+In circumstances where the costs of the stripping activity asset and the inventory produced are not separately identifiable, the Group allocates the production stripping costs between the inventory produced and the stripping activity asset by using an allocation basis that is based on volume of waste extracted compared with expected volume, for a given volume of ore production.
+Borrowings
+Borrowings are initially recognised at fair value, net of transaction costs incurred. Borrowings are subsequently measured at amortised cost. Any difference between the proceeds (net of transaction costs) and the redemption amount is recognised in profit or loss over the period of the borrowing using the effective interest method. Fees paid on the establishment of loan facilities are recognised as transaction costs of the loan to the extent that it is probable that some or all of the facility will be drawn down. In this case, the fee is deferred until the draw down occurs. To the extent there is no evidence that it is probable that some or all of the facility will be drawn down, the fee is capitalised as a prepayment for liquidity services and amortised over the period of the facility to which it relates.
+Revenue
+Revenue arises mainly from the sale of fertiliser. The Group generates revenue in Brazil. To determine whether to recognise revenue, the Group follows a 5-step process:
+1. Identifying the contract with a customer
+2. Identifying the performance obligations
+3. Determining the transaction price
+4. Allocating the transaction price to the performance obligations
+5. Recognising revenue when/as performance obligation(s) are satisfied.
+The revenue and profits recognised in any period are based on the delivery of performance obligations and an assessment of when control is transferred to the customer.
+In determining the amount of revenue and profits to record, and related statement of financial position items (such as contract fulfilment assets, capitalisation of costs to obtain a contract, trade receivables, accrued income and deferred income) to recognise in the period, management is required to form a number of key judgements and assumptions. This includes an assessment of the costs the Group incurs to deliver the contractual commitments and whether such costs should be expensed as incurred or capitalised.
+Revenue is recognised either when the performance obligation in the contract has been performed, so 'point in time' recognition or 'over time' as control of the performance obligation is transferred to the customer. For contracts with multiple components to be delivered such as fertiliser, management applies judgement to consider whether those promised goods and services are (i) distinct - to be accounted for as separate performance obligations; (ii) not distinct - to be combined with other promised goods or services until a bundle is identified that is distinct or (iii) part of a series of distinct goods and services that are substantially the same and have the same pattern of transfer to the customer.
+Transaction price
+At contract inception the total transaction price is estimated, being the amount to which the Group expects to be entitled and has rights to under the present contract. The transaction price does not include estimates of consideration resulting from change orders for additional goods and services unless these are agreed. Once the total transaction price is determined, the Group allocates this to the identified performance obligations in proportion to their relative stand-alone selling prices and recognises revenue when (or as) those performance obligations are satisfied.
+For each performance obligation, the Group determines if revenue will be recognised over time or at a point in time. Where the Group recognises revenue over time for long term contracts, this is in general due to the Group performing and the customer simultaneously receiving and consuming the benefits provided over the life of the contract.
+For each performance obligation to be recognised over time, the Group applies a revenue recognition method that faithfully depicts the Group's performance in transferring control of the goods or services to the customer. This decision requires assessment of the real nature of the goods or services that the Group has promised to transfer to the customer. The Group applies the relevant output or input method consistently to similar performance obligations in other contracts.
+When using the output method the Group recognises revenue on the basis of direct measurements of the value to the customer of the goods and services transferred to date relative to the remaining goods and services under the contract. Where the output method is used, in particular for long term service contracts where the series guidance is applied, the Group often uses a method of time elapsed which requires minimal estimation. Certain long term contracts use output methods based upon estimation of number of users, level of service activity or fees collected.
+If performance obligations in a contract do not meet the over time criteria, the Group recognises revenue at a point in time. This may be at the point of physical delivery of goods and acceptance by a customer or when the customer obtains control of an asset or service in a contract with customer-specified acceptance criteria.
+Disaggregation of revenue
+The Group disaggregates revenue from contracts with customers by contract type, which includes only fertiliser as management believes this best depicts how the nature, amount, timing and uncertainty of the Group's revenue and cash flows.
+Performance obligations
+Performance obligations categorised within this revenue type include the debtor taking ownership of the fertiliser product.
+Inventories
+Inventories are valued at the lower of cost and net realisable value.
+Costs incurred in bringing each product to its present location and condition is accounted for as follows:
+·
+Raw materials - purchase cost; and
+·
+Finished goods - cost of direct materials and
+labour
+and an appropriate proportion of variable and fixed overheads based on normal operating capacity.
+Net realisable value is the estimated selling price in the ordinary course of business, less estimated costs of completion and the estimated costs necessary to make the sale.
+Provisions
+Provisions are recognised when the Group has a present obligation (legal or constructive) as a result of a past event, it is probable that an outflow of resources embodying economic benefits will be required to settle the obligation and a reliable estimate can be made of the amount of the obligation.
+Where the Group expects some, or all, of a provision to be reimbursed, for example under an insurance contract, the reimbursement is recognised as a separate asset but only when the reimbursement is virtually certain. The expense relating to any provision is presented in the statement of comprehensive income net of any reimbursement.
+If the effect of the time value of money is material, provisions are determined by discounting the expected future cash flows at a pre-tax rate that reflects current market assessments of the time value of money, and where appropriate, the risks specific to the liability. Where discounting is used, the increase in the provision due to the passage of time is recognised as a finance cost.
+NOTE 2: SEGMENT REPORTING
+For management purposes, the Group is organised into one main operating segment, which involves mining exploration
+,
+processing and sale of fertiliser. All of the Group's activities are interrelated, and discrete financial information is reported to the Board (Chief Operating Decision Maker) as a single segment. No revenue is derived from a single external customer.
+Accordingly, all significant operating decisions are based upon analysis of the Group as one segment. The financial results from this segment are equivalent to the financial statements of the Group as a whole. Revenue earned by the Group is generated in Brazil and all of the Group's non-current assets reside in Brazil.
+The following table present revenue and loss information and certain asset and liability information regarding business segments for the half year ended 30 June 2025.
+Continuing operations
+Australia
+Brazil
+Consolidated
+30 June 2025
+$
+$
+$
+Segment revenue
+-
+516,533
+516,533
+Segment profit/(loss) before income tax expense
+(661,168)
+(1,318,959)
+(1,980,127)
+30 June 2025
+Segment assets
+931,319
+7,962,070
+8,893,389
+Segment liabilities
+156,538
+4,604,340
+4, 760,878
+Additions to non-current assets
+102,081
+102,081
+Continuing operations
+Australia
+Brazil
+Consolidated
+30 June 2024
+$
+$
+$
+Segment revenue
+-
+1,226,412
+1,226,412
+Segment loss before income tax expense
+(607,355)
+(1,171,847)
+(1,779,202)
+30 June 2024
+Segment assets
+145,037
+9,783,509
+9,928,546
+Segment liabilities
+1,215,474
+3,937,369
+5,152,843
+Additions to non-current assets
+-
+18,956
+18,956
+NOTE 3: REVENUE FROM CONTRACTS WITH CUSTOMERS
+The Group derives its revenue from the sale of goods at a point in time in the major category of Fertiliser.
+Consolidated
+6 months to
+30 June
+2025$
+6 months to
+30 June
+2024$
+Fertiliser sales
+516,533
+1,226,412
+Total revenue
+516,533
+1,226,412
+NOTE 4: COST OF GOODS SOLD
+Consolidated
+6 months to
+30 June
+2025$
+6 months to
+30 June
+2024$
+Mine operating costs
+389,152
+902,167
+Royalty expense
+19,740
+42,483
+Depreciation
+103,990
+157,989
+Amortisation
+110,195
+140,563
+Total cost of goods sold
+623,077
+1,243,202
+NOTE 5: CASH AND CASH EQUIVALENTS
+Consolidated
+Reconciliation of Cash and Cash Equivalents
+Cash comprises:
+30 June
+2025$
+31 December
+2024$
+Cash at bank
+534,463
+1,013,410
+534,463
+1,013,410
+NOTE 6: TRADE AND OTHER RECEIVABLES
+Consolidated
+30 June
+2025$
+31 December
+2024$
+Trade Debtors
+2,338,677
+2,196,383
+Expected credit losses
+(2,202,179)
+(1,880,404)
+Net Debtors
+136,498
+315,979
+Prepayments
+57,431
+5,042
+Cash advances
+40,665
+127,217
+GST receivable
+22,139
+1,615
+Funds from capital raise1
+582,892
+-
+Other
+29,662
+31,221
+Total trade and other receivables
+869,287
+481,074
+1
+The proceeds for the shares issued on 23 June 2025 were received by the Company on 2 July 2025.
+(i)
+Classification of trade receivables
+Trade debtors, other debtors and goods and services tax are receivable on varying collection terms. Due to the short-term nature of these receivables, their carrying value is assumed to approximate their fair value. Some debtors are given industry standard longer payment terms which may cross over more than one accounting period. These trade terms are widely used in the agricultural market in Brazil and are considered industry norms.
+(ii)
+Impairment of trade receivables
+The group applies the simplified approach to measuring expected credit losses which uses a lifetime expected loss allowance for all trade receivables and contract assets. To measure the expected credit losses, trade receivables have been grouped based on shared credit risk characteristics and the days past due. The historical loss rates are adjusted to reflect current and forward information on macroeconomic factors affecting the ability of the customers to settle the receivables. Trade receivables are written off where there is no reasonable expectation of recovery. Indicators that there is no reasonable expectation of recovery include, amongst others, the failure of a debtor to engage in a repayment plan with the group, and a failure to make contractual payments for a period of greater than 120 days past due.
+NOTE 7: INVENTORIES
+Consolidated
+30 June
+2025$
+31 December
+2024$
+Raw materials at cost
+272,293
+254,182
+Finished goods at cost
+272,794
+431,855
+545,087
+686,037
+NOTE 8: PLANT AND EQUIPMENT
+Consolidated
+6 months to
+30 June
+2025$
+12 months to
+31 December 2024$
+At beginning of the period
+2,727,361
+3,682,001
+Additions for the period
+102,081
+11,706
+Depreciation charge for the period
+(211,937)
+(508,269)
+Net exchange difference on translation
+188,546
+(458,077)
+Balance at the end of the period
+2,806,051
+2,727,361
+NOTE 9: MINE PROPERTIES
+Consolidated
+6 months to
+30 June
+2025$
+12 months to
+31 December 2024$
+At beginning of the period
+3,359,270
+4,162,685
+Amortisation charge for the period
+(110,195)
+(244,755)
+Net exchange difference on translation
+229,604
+(558,660)
+Balance at the end of the period
+3,478,679
+3,359,270
+Mine Properties - impairment
+Management identified indicators of impairment in relation to the Group's Arapua project assets as market capitalisation is below net assets and the subsidiary is loss making due to difficult market conditions. An assessment for impairment on the Arapua project cash generating unit was undertaken utilising fair value less costs of disposal and no impairment was recognised as a result of this assessment.
+The Arapua project cash generating unit has a carrying value of $6.123 million consisting of Mine Properties, Plant and Equipment, Deferred Exploration and Evaluation Expenditure, and Provision for Rehabilitation. The fair value was calculated using the income approach and an independent expert was engaged to assist Management. The fair value is a level 2 on the fair value hierarchy and the key assumptions used in the model are as follows:
+Discount rate
+18.9%
+Perpetual Growth
+3%
+Annual Production Volume
+70,000 - 282,000 tonnes
+Price
+BRL 230 per tonne
+Cost
+BRL 56 per tonne
+Market Growth
+0 - 12%
+The following sensitivities were applied to the fair value less costs of disposal:
+Discount rate
+22.9%
+Perpetual Growth
+1%
+Price
+BRL 200 per tonne
+Cost
+BRL 89.6 per tonne
+Market Growth
+0 - 12%
+NOTE 10: TRADE AND OTHER PAYABLES
+Consolidated
+30 June
+2025$
+31 December
+2024$
+Trade payables
+119,402
+20,398
+Accruals
+155,476
+388,603
+Customer Deposits
+611,737
+605,353
+Other payables
+10,149
+11,749
+896,764
+1,026,103
+Trade creditors, other creditors and goods and services tax are non-interest bearing and generally payable on 60-day terms.
+Due to the short term nature of these payables, their carrying value is assumed to approximate their fair value.
+NOTE 11: BORROWINGS
+Consolidated
+30 June
+2025
+31 December 2024
+$
+$
+Current
+Secured Loans payable
+1,126,780
+1,856,489
+1,126,780
+1,856,489
+Non-current
+Secured Loans payable
+2,345,426
+1,313,135
+2,345,426
+1,313,135
+As at 30 June 2025, the Group recorded $3,472,206 (31 December 2024: $3,169,624) of secured loans as a payable.
+Reconciliation in liabilities from financing activities:
+Bank loan
+Total
+$
+$
+31 December 2024
+3,169,624
+3,169,624
+Loan drawdowns
+281,462
+281,462
+Repayments
+(392,032)
+(392,032)
+Interest expense
+314,748
+314,748
+Effect of exchange rate
+98,404
+98,404
+30 June 2025
+3,472,206
+3,472,206
+At 30 June 2025 all loan facilities for the Group were fully drawn down and are as follows:
+Bank
+Maturity
+Interest Rate
+Security
+SANTANDER
+Sep 2026
+1.18% per month
+Equipment
+BDMG
+Mar 2028
+CDI + 4.90% per year
+Partial cash collateral
+iTAU
+May 2026
+2.06% per month
+10% Receivables
+BRADESCO
+Dec 2026
+1.75% per month
+Partial cash collateral
+BRADESCO
+Feb 2029
+1.80% per month
+Unsecured
+In March 2025, the Group announced it has successfully renegotiated its R$5.0 million (c. £675,000) working capital debt, obtaining a 12-month grace period and an extended 36-month repayment plan.
+NOTE 12: CONTRIBUTED EQUITY
+30 June
+2025
+$
+31 December
+2024
+$
+Contributed equity
+Ordinary shares fully paid
+46,432,123
+45,133,170
+6 months to
+30 June 2025
+12 months year ended
+31 December 2024
+No.
+$
+No.
+$
+Movements in ordinary shares on issue
+Opening balance
+289,169,217
+45,133,170
+189,169,217
+43,328,219
+Shares issued July 2024
+-
+-
+100,000,000
+1,804,951
+Shares issued 23 June 2025
+100,000,000
+582,892
+-
+-
+Shares issued 30 June 2025
+114,000,000
+716,061
+-
+-
+Closing balance
+503,169,217
+46,432,123
+289,169,217
+45,133,170
+NOTE 13: DIVIDENDS
+No dividends have been paid or provided for during the half-year (half-year to 30 June 2024: $nil).
+NOTE 14: CONTINGENT LIABILITIES AND COMMITMENTS
+There has been no material change in contingent liabilities or commitments since the last annual reporting date.
+NOTE 15: FINANCIAL INSTRUMENTS
+The Group has a number of financial instruments which are not measured at fair value in the statement of financial position.
+The Directors consider that the carrying amounts of current receivables, current payables and current borrowings are considered to be a reasonable approximation of their fair values.
+NOTE 16: SUBSEQUENT EVENTS
+As announced on 23 June 2025, the Company raised gross proceeds of £300,000 through placing 100,000,000 new ordinary shares of no par value at a placing price of 0.3 pence. The Company also issued one warrant per two Placing Shares, exercisable at 0.6p for a period of 2 years from Admission. The proceeds from the raise were received on 2 July 2025.
+Other than the above matters, post period end, there have been no known significant events after the end of the period that require disclosure in this report
+.
+Enquiries:
+Harvest Minerals Limited
+Brian McMaster (Chairman)
+Tel: +44 (0) 203 940 6625
+Strand Hanson Limited Nominated & Financial Adviser
+Ritchie Balmer
+James Spinney
+Tel: +44 (0) 20 7409 3494
+Tavira Financial Limited
+Jonathan Evans
+Tel: +44 (0) 20 3192 1733
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+IR DBLBXEKLLBBV
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #10b98140;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📈</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Results of AGM</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 70/100 • BULLISH</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    FINANCIAL RESULTS: Financial results released | ✅ BULLISH: Positive results typically drive price increases. Check guidance for future expectations.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">14th Aug 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">9:30 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #10b981;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #10b981;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">70/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">FINANCIAL RESULTS: Financial results released</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #10b981; font-weight: 600;">✅ BULLISH: Positive results typically drive price increases. Check guidance for future expectations.</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Ritchie Balmer</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+14 Aug 2025 09:30
+RNS Number : 3398V
+Harvest Minerals Limited
+14 August 2025
+14 August 2025
+Harvest Minerals Limited
+("Harvest" or the "Company")
+Results of AGM
+Harvest Minerals Limited, the AIM listed fertiliser producer, held its Annual General Meeting today and the resolution was duly passed.
+Enquiries:
+Harvest Minerals Limited
+Brian McMaster (Chairman)
+Tel: +44 (0) 203 940 6625
+Strand Hanson Limited Nominated & Financial Adviser
+Ritchie Balmer
+James Spinney
+Tel: +44 (0) 20 7409 3494
+Tavira Financial Limited
+Jonathan Evans
+Tel: +44 (0) 20 3192 1733
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+RAGFIFFTTLISLIE
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Notice of AGM</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 55/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Notice of AGM | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">14th Jul 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">55/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Notice of AGM</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Ritchie Balmer</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+14 Jul 2025 07:00
+RNS Number : 5450Q
+Harvest Minerals Limited
+14 July 2025
+14 July 2025
+Harvest Minerals Limited
+("Harvest" or the "Company")
+Notice of AGM
+Harvest Minerals Limited, the AIM listed organic fertilizer producer, is pleased to announce that the Annual General Meeting ('AGM') of the Company will be held at 4.00pm (AWST) on Thursday 14 August 2025 at 22 Lindsay Street, Perth, WA 6000, Australia.
+The notice of AGM and form of proxy has been posted to shareholders and will be made available on the Company's website at
+http://www.harvestminerals.net
+.
+Enquiries:
+Harvest Minerals Limited
+Brian McMaster (Chairman)
+Tel: +44 (0) 203 940 6625
+Strand Hanson Limited (Nominated & Financial Adviser)
+Ritchie Balmer
+James Spinney
+Tel: +44 (0) 20 7409 3494
+Tavira Financial
+(Broker)
+Jonathan Evans
+Tel: +44 (0) 20
+3
+192 1733
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+NOAFIFLTDSIILIE
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">4</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #4
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Holding(s) in Company</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 100/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    HOLDING DISCLOSURE: Holding disclosed | 📊 NEUTRAL: Significant holder at 14.715% - potential price setter or activist.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">10th Jul 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">1:56 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">100/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">HOLDING DISCLOSURE: Holding disclosed</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 NEUTRAL: Significant holder at 14.715% - potential price setter or activist.</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📊 ANALYZE: Determine offer price, arbitrage opportunity if discount</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Conversion Period</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">4.886%, 4.886%, 8.502%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+10 Jul 2025 13:56
+RNS Number : 6025Q
+Harvest Minerals Limited
+10 July 2025
+TR-1: S
+tandard form for notification of major holdings
+NOTIFICATION OF MAJOR HOLDINGS
+(to be sent to the relevant issuer
+and
+to the FCA in Microsoft Word format if possible)
+i
+1a. Identity of the issuer or the underlying issuer of existing shares to which voting rights are attached
+ii
+:
+Harvest Minerals Ltd
+1b. Please indicate if the issuer is a non-UK issuer
+(please mark with an "X" if appropriate)
+Non-UK issuer
+X
+2. Reason for the notification
+(please mark the appropriate box or boxes with an "X")
+An acquisition or disposal of voting rights
+An acquisition or disposal of financial instruments
+An event changing the breakdown of voting rights
+Other (please specify) iii: Decrease in % of voting rights attached to the shares due to the change in
+Issued Share Capital
+X
+3. Details of person subject to the notification obligation
+iv
+Name
+HSBC Holdings PLC
+City and country of registered office (if applicable)
+London, United Kingdom
+4. Full name of shareholder(s)
+(if different from 3.)
+v
+Name
+D&A Holdings Ltd
+City and country of registered office (if applicable)
+Jersey, Channel Islands
+5. Date on which the threshold was crossed or reached
+vi
+:
+04/07/2025
+6.
+Date on which issuer notified (DD/MM/YYYY):
+10/07/2025
+7. Total positions of person(s) subject to the notification obligation
+% of voting rights attached to shares (total of 8. A)
+% of
+voting rights through
+financial instruments(total of 8.B 1 + 8.B 2)
+Total of both in % (8.A + 8.B)
+Total number of voting rights held in issuer (8.A + 8.B)
+vii
+Resulting situation on the date on which threshold was crossed or reached
+4.886%
+Nil
+4.886%
+24,587,738
+Position of previous notification (if
+applicable)
+8.502%
+Nil
+8.502%
+8. Notified details of the resulting situation on the date on which the threshold was crossed or reached
+viii
+A: Voting rights attached to shares
+Class/type ofshares
+ISIN code (if possible)
+Number of voting rights
+ix
+% of voting rights
+Direct
+(DTR5.1)
+Indirect
+(DTR5.2.1)
+Direct
+(DTR5.1)
+Indirect
+(DTR5.2.1)
+AU000XINEAB4
+24,587,738
+4.886%
+SUBTOTAL 8. A
+24,587,738
+4.886%
+B 1: Financial Instruments according to DTR5.3.1R (1) (a)
+Type of financial instrument
+Expirationdate
+x
+Exercise/Conversion Period
+xi
+Number of voting rights that may be acquired if the instrument is
+exercised/converted.
+% of voting rights
+SUBTOTAL 8. B 1
+Nil
+Nil
+B 2: Financial Instruments with similar economic effect according to DTR5.3.1R (1) (b)
+Type of financial instrument
+Expirationdate
+x
+Exercise/Conversion Period
+xi
+Physical or cash
+Settlement
+xii
+Number of voting rights
+% of voting rights
+SUBTOTAL 8.B.2
+Nil
+Nil
+9. Information in relation to the person subject to the notification obligation
+(please mark the
+applicable box with an "X")
+Person subject to the notification obligation is not controlled by any natural person or legal entity and does not control any other undertaking(s) holding directly or indirectly an interest in the (underlying) issuer
+xiii
+Full
+chain of controlled undertakings through which the voting rights and/or thefinancial instruments are effectively held starting with the ultimate controlling natural person or legal entity
+(please add additional rows as necessary)
+xiv
+X
+Name
+xv
+% of voting rights if it equals or is higher than the notifiable threshold
+% of voting rights through financial instruments if it equals or is higher than the notifiable threshold
+Total of both if it equals or is higher than the notifiable threshold
+HSBC Holdings plc
+HSBC Asia Holdings Limited
+The Hongkong and Shanghai Banking Corporation Limited
+HSBC International Trustee (Holdings) Pte. Limited
+HSBC International Trustee Limited, Jersey Branch
+D&A Holdings Ltd
+4.886%
+Nil
+4.886%
+10. In case of proxy voting, please identify:
+Name of the proxy holder
+The number and % of voting rights held
+The date until which the voting rights will be held
+11. Additional information
+xvi
+Place of completion
+London, United Kingdom
+Date of completion
+10/07/2025
+Notes
+i
+Please note this form should be read jointly with the applicable Disclosure Guidance and Transparency Rules Chapter 5 (DTR5) available on the following link:
+https://www.handbook.fca.org.uk/handbook/DTR/5/?view=chapter
+ii
+Full name of the legal entity and further specification of the issuer or underlying issuer, provided it is reliable and accurate (e.g. address, LEI, domestic number identity). Indicate in the relevant section whether the issuer is a non UK issuer.
+iii
+Other reason for the notification could be voluntary notifications, changes of attribution of the nature of the holding (e.g. expiring of financial instruments) or acting in concert.
+iv
+This should be the full name of (a) the shareholder; (b) the natural person or legal entity acquiring, disposing of or exercising voting rights in the cases provided for in DTR5.2.1 (b) to (h); (c) all parties to the agreement referred to in DTR5.2.1 (a) or (d) the holder of financial instruments referred to in DTR5.3.1.
+As the disclosure of cases of acting in concert may vary due to the specific circumstances (e.g. same or different total positions of the parties, entering or exiting of acting in concert by a single party) the standard form does not provide for a specific method how to notify cases of acting in concert.
+In relation to the transactions referred to in DTR5.2.1 (b) to (h), the following list is provided as indication of the persons who should be mentioned:
+- in the circumstances foreseen in DTR5.2.1 (b), the natural person or legal entity that acquires the voting rights and is entitled to exercise them under the agreement and the natural person or legal entity who is transferring temporarily for consideration the voting rights;
+- in the circumstances foreseen in DTR5.2.1 (c), the natural person or legal entity holding the collateral, provided the person or entity controls the voting rights and declares its intention of exercising them, and natural person or legal entity lodging the collateral under these conditions;
+- in the circumstances foreseen in DTR5.2.1 (d), the natural person or legal entity who has a life interest in shares if that person or entity is entitled to exercise the voting rights attached to the shares and the natural person or legal entity who is disposing of the voting rights when the life interest is created;
+- in the circumstances foreseen in DTR5.2.1 (e), the controlling natural person or legal entity and, provided it has a notification duty at an individual level under DTR 5.1, under DTR5.2.1 (a) to (d) or under a combination of any of those situations, the controlled undertaking;
+- in the circumstances foreseen in DTR5.2.1 (f), the deposit taker of the shares, if he can exercise the voting rights attached to the shares deposited with him at his discretion, and the depositor of the shares allowing the deposit taker to exercise the voting rights at his discretion;
+- in the circumstances foreseen in DTR5.2.1 (g), the natural person or legal entity that controls the voting rights;
+- in the circumstances foreseen in DTR5.2.1 (h), the proxy holder, if he can exercise the voting rights at his discretion, and the shareholder who has given his proxy to the proxy holder allowing the latter to exercise the voting rights at his discretion (e.g. management companies).
+v
+Applicable in the cases provided for in DTR5.2.1 (b) to (h). This should be the full name of the shareholder who is the counterparty to the natural person or legal entity referred to DTR5.2 unless the percentage of voting rights held by the shareholder is lower than the lowest notifiable threshold for the disclosure of voting rights holdings in accordance with national practices (e.g. identification of funds managed by management companies).
+vi
+The date on which threshold is crossed or reached should be the date on which the acquisition or disposal took place or the other reason triggered the notification obligation. For passive crossings, the date when the corporate event took effect.
+vii
+The total number of voting rights held in the issuer shall be composed of all the shares, including depository receipts representing shares, to which voting rights are attached even if the exercise thereof is suspended.
+viii
+If the holding has fallen below the lowest applicable threshold, please note that it might not be necessary to disclose the extent of the holding, only that the new holding is below that threshold.
+ix
+In case of combined holdings of shares with voting rights attached "direct holding" and voting rights "indirect holding", please split the voting rights number and percentage into the direct and indirect columns - if there is no combined holdings, please leave the relevant box blank.
+x
+Date of maturity/expiration of the financial instrument i.e. the date when right to acquire shares ends.
+xi
+If the financial instrument has such a period - please specify this period - for example once every 3 months starting from [date].
+xii
+In case of cash settled instruments the number and percentages of voting rights is to be presented on a delta-adjusted basis (DTR 5.3.3.A).
+xiii
+If the person subject to the notification obligation is either controlled and/or does control another undertaking then the second option applies.
+xiv
+The full chain of controlled undertakings starting with the ultimate controlling natural person or legal entity has to be presented also in the cases, in which only on subsidiary level a threshold is crossed or reached and the subsidiary undertaking discloses the notification as only in this way will the markets get always the full picture of the group holdings. In case of multiple chains through which the voting rights and/or financial instruments are effectively held the chains have to be presented chain by chain by numbering each chain accordingly. Please see the below example:
+Name of ultimate controlling person A (chain 1)
+Name of controlled undertaking B
+Name of controlled undertaking C
+Name of ultimate controlling person A (chain 2)
+Name of controlled undertaking B
+Name of controlled undertaking D
+Name of ultimate controlling person A (chain3)
+Name of controlled undertaking E
+Name of controlled undertaking F
+xv
+The names of controlled undertakings through which the voting rights and/or financial instruments are effectively held have to be presented irrespectively whether the controlled undertakings cross or reach the lowest applicable threshold themselves.
+xvi
+Example: Correction of a previous notification.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+HOLURVURVOUBAAR
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">5</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #5
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Issue of Settlement Shares and TVR</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Issue of Settlement Shares and TVR | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Jun 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">2:10 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Issue of Settlement Shares and TVR</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Ritchie Balmer</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">15.9%, 11.5%, 8.6%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+30 Jun 2025 14:10
+RNS Number : 0268P
+Harvest Minerals Limited
+30 June 2025
+30 June 2025
+Harvest Minerals Limited
+("Harvest" or the "Company")
+Issue of Settlement Shares and TVR
+Harvest Minerals Limited, t
+he AIM listed organic fertilizer producer
+, is
+pleased to announce the settlement of c. £342,000 of director / company secretary fees, through the issue of, in aggregate, 114,000,000 new ordinary shares of no par value at a price of 0.3p ("Issue Price") (the "Equity Issue"). The Equity Issue shares will be subject to a hard lock-in for six months from the date of Admission. The Issue Price is the same as the price at which the Company's fundraise as announced on 23 June 2025 was undertaken, and approximately equal to the current market price.
+Issue of Settlement Shares
+The Equity Issue of 114,000,000 new Ordinary Shares is to three of the four Board members, and to Palisade Business Consulting (which provides the Company with accounting and company secretary services) as settlement for all fees outstanding to the various parties up until 30 June 2025. As has been previously disclosed, Jack James is a director and shareholder of Palisade Business Consulting:
+Party
+Fees Owed (
+£)
+No. of Settlement Shares issued
+Brian McMaster
+132,000
+44,000,000
+Luis Azevedo
+120,000
+40,000,000
+Jack James
+29,594
+9,864,667
+Palisade Business Consulting (PBC)
+60,406
+20,135,333
+Total
+342,000
+114,000,000
+Following the issue of the Settlement Shares, the Directors holdings will be as below:
+Shareholdings
+Director
+Position
+Current
+Holding
+Settlement Shares
+Holding on Admission
+% on
+Admission
+Brian McMaster
+Executive Chairman
+35,842,996
+44,000,000
+79,842,996
+15.9%
+Luis Azevedo
+Non-Executive Director
+17,645,135
+40,000,000
+57,645,135
+11.5%
+Jack James, inc. PBC
+Non-Executive Director
+13,135,200
+30,000,000
+43,135,200
+8.6%
+Related Party Transaction
+The issue of the Settlement Shares constitutes a related party transaction under AIM Rule 13 of the AIM Rules for Companies. Alex Penha, as the independent director of the Company for the purposes of this transaction, considers, having consulted with the Company's Nominated Adviser, that the terms of the issue of the Settlement Shares are fair and reasonable insofar as the Company's shareholders are concerned.
+Application to trading on AIM
+The Equity Issue is conditional on Admission. Application will be made to the London Stock Exchange for the 114,000,000 new Ordinary Shares to
+be admitted to trading on AIM. It is expected that Admission will become effective and that dealings in the new Ordinary Shares will commence at 8.00 a.m. on 4 July 2025 ("Admission").
+Total Voting Rights
+Following the Equity Issue, the total issued share capital of the Company will consist of 503,169,217 Ordinary Shares with voting rights. The Company does not hold any Ordinary Shares in treasury and accordingly there are no voting rights in respect of any treasury shares.
+On Admission, the abovementioned figure of 503,169,217 Ordinary Shares may be used by shareholders in the Company as the denominator for the calculations by which they will determine if they are required to notify their interest in, or a change to their interest in, Harvest under the Financial Conduct Authority's Disclosure Guidance and Transparency Rules.
+Enquiries:
+Harvest Minerals Limited
+Brian McMaster (Chairman)
+Tel: +44 (0) 203 940 6625
+Strand Hanson Limited (Nominated & Financial Adviser)
+Ritchie Balmer
+James Spinney
+Tel: +44 (0) 20 7409 3494
+Tavira Financial
+(Broker)
+Jonathan Evans
+Tel: +44 (0) 20
+3
+192 1733
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+MSCFLFIVRTIIVIE
+                </div>
+            </details>
+            
+            </div>
+            
+            </div>
+            <div style="
+                margin-top: 20px;
+                padding: 14px 16px;
+                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+                border-radius: 10px;
+                font-size: 12px;
+                color: #78350f;
+                border-left: 3px solid #f59e0b;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            ">
+                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
+                <div style="line-height: 1.5;">
+                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
+                    Each RNS includes sentiment classification, key data extraction, and trading context. 
+                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
+                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                    </strong>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            details[open] > summary {
+                background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%) !important;
+                border-left-color: #0369a1 !important;
+            }
+            summary::-webkit-details-marker {
+                display: none;
+            }
+            
+            /* ========== MOBILE RESPONSIVE ========== */
+            @media (max-width: 768px) {
+                body {
+                    padding: 10px;
+                    font-size: 14px;
+                }
+                
+                .container {
+                    margin: 0 auto;
+                }
+                
+                .header-card {
+                    padding: 14px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .company-name {
+                    font-size: 22px;
+                    margin-bottom: 8px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 13px;
+                    padding: 6px 12px;
+                }
+                
+                .company-meta {
+                    gap: 8px;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+                
+                .meta-item {
+                    padding: 6px 12px;
+                    font-size: 12px;
+                    gap: 6px;
+                }
+                
+                .meta-icon {
+                    font-size: 14px;
+                }
+                
+                .score-hero {
+                    padding: 20px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .action-display {
+                    font-size: 18px !important;
+                    margin-bottom: 12px;
+                }
+                
+                .scores-row {
+                    gap: 16px;
+                    margin: 20px 0;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    display: flex;
+                }
+                
+                .score-circle {
+                    width: 110px;
+                    height: 110px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 32px;
+                }
+                
+                .score-label {
+                    font-size: 10px;
+                    margin-top: 4px;
+                }
+                
+                .timing-badge-large {
+                    padding: 10px 20px;
+                    font-size: 14px;
+                    margin: 12px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 14px;
+                    padding: 12px;
+                    margin-top: 12px;
+                }
+                
+                .factors-list {
+                    grid-template-columns: 1fr;
+                    gap: 10px;
+                    margin-top: 12px;
+                }
+                
+                .factor-item {
+                    padding: 12px;
+                    font-size: 12px;
+                    gap: 8px;
+                }
+                
+                .factor-icon {
+                    font-size: 16px;
+                }
+                
+                .cards-grid {
+                    grid-template-columns: 1fr;
+                    gap: 12px;
+                    margin-bottom: 12px;
+                }
+                
+                .card {
+                    padding: 16px;
+                    border-radius: 12px;
+                }
+                
+                .card-title {
+                    font-size: 14px;
+                    margin-bottom: 12px;
+                    gap: 8px;
+                }
+                
+                .card-icon {
+                    font-size: 18px;
+                }
+                
+                .stat-row {
+                    padding: 8px 0;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+                
+                .stat-label {
+                    font-size: 12px;
+                }
+                
+                .stat-value {
+                    font-size: 14px;
+                }
+                
+                .rally-badge {
+                    padding: 4px 10px;
+                    font-size: 10px;
+                }
+                
+                .risk-indicator {
+                    gap: 10px;
+                    padding: 12px;
+                    flex-wrap: wrap;
+                }
+                
+                .risk-icon {
+                    font-size: 20px;
+                }
+                
+                .reason-item {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                }
+                
+                .tag {
+                    padding: 3px 8px;
+                    font-size: 10px;
+                }
+                
+                .footer {
+                    padding: 12px;
+                    font-size: 11px;
+                    margin-top: 12px;
+                    border-radius: 12px;
+                }
+                
+                .alert-box {
+                    padding: 12px;
+                    margin: 10px 0;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                body {
+                    padding: 8px 6px;
+                }
+                
+                .header-card {
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    border-radius: 8px;
+                }
+                
+                .company-name {
+                    font-size: 18px;
+                    margin-bottom: 6px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 11px;
+                    padding: 3px 8px;
+                }
+                
+                .company-meta {
+                    gap: 4px;
+                    flex-direction: column;
+                }
+                
+                .meta-item {
+                    padding: 4px 6px;
+                    font-size: 11px;
+                    background: rgba(247, 250, 252, 0.7);
+                }
+                
+                .score-hero {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                    border-radius: 12px;
+                }
+                
+                .score-circle {
+                    width: 70px;
+                    height: 70px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 22px;
+                    font-weight: 800;
+                }
+                
+                .score-label {
+                    font-size: 7px;
+                    margin-top: 2px;
+                }
+                
+                .scores-row {
+                    flex-direction: column;
+                    gap: 10px;
+                    margin: 12px 0;
+                    align-items: center;
+                }
+                
+                .timing-badge-large {
+                    padding: 6px 12px;
+                    font-size: 11px;
+                    margin: 10px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 11px;
+                    padding: 8px;
+                    line-height: 1.3;
+                }
+                
+                .card {
+                    padding: 10px;
+                    margin-bottom: 8px;
+                    border-radius: 8px;
+                }
+                
+                .card-title {
+                    font-size: 12px;
+                    margin-bottom: 8px;
+                    font-weight: 700;
+                }
+            }
+        </style>
+        
+
+        <!-- Footer -->
+        <div class="footer">
+            Report generated: 2026-01-17 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            <strong>△ Not financial advice. Do your own research.</strong>
+            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
+                <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

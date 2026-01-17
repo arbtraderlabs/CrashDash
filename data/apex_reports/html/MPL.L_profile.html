@@ -1,0 +1,2492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrashDash • MPL.L APEX Profile</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .header-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .ticker-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .company-name { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .company-meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f7fafc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .meta-icon { font-size: 18px; }
+        
+        .score-hero {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        .action-display {
+            margin-bottom: 20px;
+        }
+        .scores-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .score-number {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .score-label { font-size: 12px; color: #666; margin-top: 5px; }
+        .timing-badge-large {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 24px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            margin: 20px 0;
+        }
+        .thesis-line {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .factors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .factor-item {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        .factor-icon { font-size: 20px; }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-icon { font-size: 24px; }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-label { color: #666; font-size: 14px; }
+        .stat-value { font-weight: 600; font-size: 16px; }
+        
+        .rally-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .risk-indicator {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .risk-high { background: #fee2e2; }
+        .risk-icon { font-size: 24px; }
+        
+        .reason-item {
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .tag {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .footer {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-top: 20px;
+        }
+        
+        .alert-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Header Card -->
+        <div class="header-card">
+            <div class="ticker-badge">MPL.L</div>
+            <div class="company-name">Mercantile Ports & Logistics Limited</div>
+            <div class="company-meta">
+                <div class="meta-item">
+                    <span class="meta-icon">■</span>
+                    <span><strong>Sector:</strong> Industrials</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">£</span>
+                    <span><strong>Market Cap:</strong> £2,226,954</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">◷</span>
+                    <span><strong>Days Active:</strong> 17 days</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action & Score Hero Section -->
+        <div class="score-hero">
+            <div class="action-display">
+                <span style="color: white;">UNKNOWN</span>
+            </div>
+            
+            <div class="scores-row">
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">32</div>
+                    <div class="score-label">APEX SCORE</div>
+                </div>
+                <div class="score-circle">
+                    <div class="score-number" style="color: #f59e0b;">60</div>
+                    <div class="score-label">CONFIDENCE</div>
+                </div>
+            </div>
+            
+            <div class="timing-badge-large">
+                Timing: <span class="rally-badge" style="background: #dbeafe; color: #1e40af;">CROWDED</span>
+            </div>
+            
+            <div class="thesis-line">
+                SELL/TAKE_PROFITS - CROWDED timing with 32/100 opportunity score
+            </div>
+        </div>
+
+        <!-- ==================== CRASHDASH INTELLIGENCE - PANIC HUNTER VIEW ==================== -->
+        
+        <div class="card" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b;">
+            <div class="card-title" style="color: #0f172a;">
+                <span class="card-icon">🏭</span>
+                CrashDash Intelligence • Industrials
+            </div>
+            
+            <!-- Fear Meter -->
+            <div style="background: white; padding: 24px; border-radius: 14px; margin-bottom: 20px; text-align: center;">
+                <div style="font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 16px;">🔥 PANIC METER</div>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 16px;">
+                    <div style="width: 160px; height: 160px; border-radius: 50%; background: conic-gradient(#f59e0b 223.20000000000002deg, #e5e7eb 223.20000000000002deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                        <div style="width: 130px; height: 130px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <div style="font-size: 48px; font-weight: 800; color: #f59e0b;">62</div>
+                            <div style="font-size: 12px; color: #64748b; font-weight: 600;">PANIC SCORE</div>
+                        </div>
+                    </div>
+                    <div style="text-align: left; max-width: 400px;">
+                        <div style="font-size: 18px; font-weight: 700; color: #f59e0b; margin-bottom: 12px;">HIGH PANIC</div>
+                        <div style="font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 12px;">🟠 Fear dominant - watch for reversal signs</div>
+                        <div style="font-size: 13px; color: #64748b;">
+                            <div>💔 Price: 40/40</div>
+                            <div>📉 Volume: 6/20</div>
+                            <div>🔇 Social: 6/20</div>
+                            <div>📰 News: 10/20</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CrashHunter Signals -->
+                <div style="margin-top: 20px;">
+                    <span style="display: inline-block; background: #f59e0b; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">🟠 Fear 62/100</span><span style="display: inline-block; background: #f59e0b; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">⚠️ Crowded</span>
+                </div>
+                
+                <!-- Opportunity Flag -->
+                
+            </div>
+            
+            <!-- Contrarian Compression Energy Panel -->
+            
+            <!-- Contrarian Compression Energy Panel -->
+            <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); padding: 24px; border-radius: 14px; margin-bottom: 20px; border: 3px solid #10b981;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <span style="font-size: 32px;">⚡</span>
+                    <div style="flex: 1;">
+                        <div style="font-size: 20px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">
+                            CONTRARIAN COMPRESSION SCORE
+                        </div>
+                        <div style="font-size: 13px; color: #475569; font-weight: 600;">
+                            Signal Congestion Framework • Compression = Explosive Potential
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Score Display -->
+                <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 30px;">
+                        <!-- Circular gauge -->
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: conic-gradient(#10b981 79.2deg, #e5e7eb 79.2deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                            <div style="width: 110px; height: 110px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <div style="font-size: 42px; font-weight: 800; color: #10b981;">22</div>
+                                <div style="font-size: 11px; color: #64748b; font-weight: 600;">/ 100</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Key metrics -->
+                        <div style="text-align: left;">
+                            <div style="font-size: 16px; font-weight: 700; color: #10b981; margin-bottom: 12px;">⚪ LOW COMPRESSION (Early/Weak)</div>
+                            <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                                <div><strong>0.2</strong> signals/week</div>
+                                <div><strong>3</strong> RSI &lt; 20 events</div>
+                                <div><strong>0</strong> escalations detected</div>
+                                <div style="color: #10b981; font-weight: 700; margin-top: 6px;">
+                                    💎 Historical pop: <strong>+108%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Component Breakdown -->
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 15px;">
+                        📊 5-COMPONENT BREAKDOWN
+                    </div>
+                    
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">compression</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">13/40</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 32.5%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">0.2 signals/week | 3 RSI<20 | 🎯 MILD COMPRESSION</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">intensification</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">5/20</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 25.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;"></div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">volume death</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">0/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">Normal volume</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">pop potential</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">4/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 26.666666666666668%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">Baseline mover (108%)</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">accumulation</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">0/10</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">No accumulation</div>
+                </div>
+                
+                </div>
+                
+                <!-- Contrarian Philosophy -->
+                <div style="background: rgba(255,255,255,0.7); padding: 16px; border-radius: 10px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #0f172a; margin-bottom: 8px; font-size: 14px;">
+                        🎯 CONTRARIAN WISDOM
+                    </div>
+                    <div style="font-size: 13px; color: #334155; line-height: 1.6;">
+                        <strong>Signal congestion = Compression energy = Explosive potential.</strong><br>
+                        When multiple crash signals cluster together with extreme RSI and proven rally history, 
+                        it creates a compressed spring effect. More panic = More opportunity for contrarians.
+                        <div style="margin-top: 8px; padding: 10px; background: rgba(239,68,68,0.1); border-radius: 6px; font-size: 12px;">
+                            <strong style="color: #10b981;">Theory:</strong> High compression scores (60+) historically precede 
+                            explosive 10-20x moves when catalysts arrive. This is the foundation of crash hunting.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Fear vs Facts Contrarian View -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                <div style="background: #fee2e2; padding: 18px; border-radius: 12px; border-left: 4px solid #ef4444;">
+                    <div style="font-weight: 700; color: #991b1b; margin-bottom: 12px; font-size: 15px;">😱 FEAR (What Panic Shows)</div>
+                    <div style="color: #7f1d1d;">
+                        <div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 💔 Price destruction: 40/40 points</div>
+                    </div>
+                </div>
+                <div style="background: #dcfce7; padding: 18px; border-radius: 12px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #065f46; margin-bottom: 12px; font-size: 15px;">📊 FACTS (What Data Shows)</div>
+                    <div style="color: #064e3b;">
+                        <div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 📈 Historical upside: 108% proven capacity</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contrarian Verdict -->
+            <div style="background: white; padding: 18px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #6366f1;">
+                <div style="font-weight: 700; color: #4338ca; margin-bottom: 10px; font-size: 15px;">⚖️ Contrarian Verdict</div>
+                <div style="font-size: 15px; color: #1e293b; line-height: 1.6; font-weight: 600;">
+                    ⚖️ Mixed signals - Fear and facts balanced, wait for clarity
+                </div>
+            </div>
+            
+            <!-- Industry Crash Patterns -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">⚠️ Crash Patterns (Industrials)</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book decline or cancellations</div><div>• Margin compression (input costs)</div><div>• Cyclical demand weakness</div>
+                    </div>
+                    
+                </div>
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">🚀 Recovery Paths</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book growth or new contracts</div><div>• Margin recovery (efficiency gains)</div><div>• Cyclical upturn (capex recovery)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Catalyst Pipeline -->
+            <div style="background: rgba(255,255,255,0.5); padding: 18px; border-radius: 12px; margin-bottom: 20px;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 14px; font-size: 15px;">📅 Catalyst Pipeline</div>
+                
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Update on Ongoing Legal Proceedings</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Update on Ongoing Legal Proceedings</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Update</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Result of General Meeting</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Notice of GM and Related Party Transaction</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+            
+            <!-- CrashDash Decision Matrix -->
+            <div style="background: white; padding: 20px; border-radius: 12px; border: 3px solid #f59e0b;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 16px; text-align: center;">
+                    🎯 CRASHDASH DECISION: <span style="color: #f59e0b; font-size: 20px;">AVOID</span>
+                </div>
+                <div style="font-size: 15px; color: #475569; text-align: center; margin-bottom: 20px; font-weight: 600;">
+                    ❌ SELL/TAKE_PROFITS - timing CROWDED
+                </div>
+                <div style="background: #f8fafc; padding: 16px; border-radius: 10px;">
+                    <div style="font-weight: 700; color: #64748b; margin-bottom: 12px; font-size: 13px;">CHECKLIST (3/5 pass)</div>
+                    
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🔴</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Panic Score</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">62/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">✅</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Timing Regime</div>
+                    <div style="font-size: 13px; color: #ef4444; font-weight: 600;">CROWDED</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">⚠️</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">APEX Quality</div>
+                    <div style="font-size: 13px; color: #ef4444; font-weight: 600;">32/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🎯</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Data Confidence</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">60/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🏭</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Industry Pattern</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">0 active</div>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
+        
+
+        <!-- Decision Summary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◆</span>
+                Why This Matters
+            </div>
+            <div class="stat-row"><span>• APEX 32/100 indicates moderate opportunity quality</span></div><div class="stat-row"><span>• Timing regime: CROWDED</span></div><div class="stat-row"><span>• Historical profile: 1 rallies, 108% best run</span></div>
+            
+            <div class="alert-box" style="margin-top: 20px;">
+                <strong>△ Main Risk:</strong> Confidence 60/100 - full data loaded
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong>◉ Watch Next:</strong>
+                <div style="padding: 8px 0;">• RNS catalysts (funding/operational updates)</div><div style="padding: 8px 0;">• Volume expansion confirmation</div><div style="padding: 8px 0;">• Timing regime change signals</div>
+            </div>
+        </div>
+
+        <!-- ==================== TECHNICAL DETAILS (COLLAPSIBLE) ==================== -->
+        
+        <div class="card">
+          <details style="cursor:pointer;">
+            <summary style="font-weight:800; font-size:16px; list-style:none; padding: 10px; background: #f9fafb; border-radius: 8px;">
+              🔧 Technical Analysis & Scoring Details
+            </summary>
+            <div style="margin-top:14px;">
+              
+            <!-- Scoring Breakdown -->
+            <div class="card-title" style="margin-top: 20px;">
+                <span class="card-icon">▣</span>
+                APEX Score Breakdown
+            </div>
+            <div class="factors-list">
+                <div class="factor-item"><span class="factor-icon">◆</span><span><strong>Moderate Technical Setup</strong><br><small>Chart quality: 9/20 • Score: 11/25 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Massive recovery potential</strong><br><small>Down 83.3% from peak • Score: 17/20 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Above average volume</strong><br><small>1.5x average • Score: 6/10 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Limited history</strong><br><small>1 previous rallies • Score: 5/15 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Good upside</strong><br><small>Historical best: +108% • Score: 8/20 points</small></span></div>
+
+            </div>
+            
+            <div style="margin-top: 40px;"></div>
+            
+            <!-- Exhaustion Metrics -->
+            <div class="card-title">
+                <span class="card-icon">📈</span>
+                Rally Cycle Position
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Current Position</div>
+                    <div style="font-size: 32px; font-weight: 800;">108%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
+                    <div style="font-size: 32px; font-weight: 800;">108%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
+                    <div style="font-size: 32px; font-weight: 800;">1.0x</div>
+                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
+                </div>
+            </div>
+        
+            </div>
+          </details>
+        </div>
+        
+
+        <!-- Reasons Buy/Sell -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #10b981;">▲</span>
+                    Reasons to Buy
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Proven winner - previously hit lock-in target</span>
+                    <span class="tag" style="background: #f59e0b; color: white;">⚡ Medium Strength</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">profit target reached: True</div>
+            </div>
+            
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #ef4444;">▼</span>
+                    Reasons to Sell / Avoid
+                </div>
+                <div style="color: #666; font-style: italic;">No major sell signals.</div>
+            </div>
+        </div>
+
+        <!-- Trade Plans -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">📊</span>
+                    Short-Term Trader Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 20%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <div style="font-size: 18px; font-weight: 600; margin-bottom: 5px;">Active trade</div>
+                    <div style="font-size: 14px; opacity: 0.9;">SELL/TAKE_PROFITS</div>
+                </div>
+                <div style="padding: 12px; background: #f9fafb; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Position Size</div>
+                    <div style="font-weight: 600;">1-3% position based on conviction</div>
+                </div>
+                <div style="padding: 12px; background: #fef2f2; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Risk Management</div>
+                    <div style="font-weight: 600; color: #dc2626;">Stop below recent support / invalidation level</div>
+                </div>
+                <div style="padding: 12px; background: #f0fdf4; border-radius: 6px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Exit Strategy</div>
+                    <div style="font-weight: 600; color: #059669;">Scale out into strength: 25% @ +15%, 50% @ +50%, trail runner</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">💼</span>
+                    Long-Term Investor Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center;">
+                    <div style="font-size: 32px; margin-bottom: 5px;">✗</div>
+                    <div style="font-size: 18px; font-weight: 600;">Not Recommended for Investors</div>
+                </div>
+                <div style="padding: 15px; background: #f9fafb; border-radius: 8px; font-size: 14px; line-height: 1.6;">
+                    <strong style="color: #667eea;">📋 Investment Thesis:</strong><br>
+                    Unlock after AI triangulation + CONFIRMED timing<br><br>
+                    <strong style="color: #667eea;">⏳ Time Horizon:</strong><br>
+                    N/A<br><br>
+                    <strong style="color: #ef4444;">🛡️ Exit Rule:</strong><br>
+                    N/A
+                </div>
+            </div>
+        </div>
+
+        <!-- Commentary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◐</span>
+                Executive Commentary
+            </div>
+            <div style="line-height: 1.6; margin-bottom: 20px;">
+                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows CROWDED timing with 32/100 APEX score. Historical data shows 1 rallies averaging 108% upside. Current position: +108.3%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #10b981;">▲ Bull Case:</strong>
+                <div style="padding: 8px 0;">• Limited upside case without catalysts</div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #ef4444;">▼ Bear Case:</strong>
+                <div style="padding: 8px 0;">• Monitor for breakdown signals</div>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
+                <strong>◷ Timing Translation:</strong><br>
+                Late stage. Consider taking profits as risk/reward deteriorates.
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
+                <strong>◎ Confidence Explained:</strong><br>
+                Confidence 60/100 reflects full data quality with triangulation loaded.
+            </div>
+        </div>
+
+        <!-- Data Quality Warning -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">△</span>
+                Data Quality Notice
+            </div>
+            <div class="alert-box">
+                <strong>Analysis Mode:</strong> HISTORICAL_ONLY<br>
+                <strong>Impact:</strong> HIGH
+            </div>
+            <div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">AI insights from Groq LLM</div></div></div>
+
+            <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk.
+            </div>
+        </div>
+
+        <!-- ==================== TOP 5 RECENT RNS NEWS ==================== -->
+        
+        <div class="card" style="border-top: 3px solid #3b82f6;">
+            <div class="card-title" style="margin-bottom: 20px;">
+                <span class="card-icon">📰</span>
+                Top 5 Recent RNS Announcements
+            </div>
+            <div style="margin-top: 15px;">
+                
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Update on Ongoing Legal Proceedings</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 55/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Update on Ongoing Legal Proceedings | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">18th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">3:29 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">55/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Update on Ongoing Legal Proceedings</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">National Company</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+18 Dec 2025 15:29
+RNS Number : 1776M
+Mercantile Ports & Logistics Ltd
+18 December 2025
+Mercantile Ports & Logistics Limited
+(
+"MPL"
+or the
+"Company"
+)
+Update
+Mercantile
+Ports & Logistics Limited (AIM: MPL), which is operating and continuing to develop a port and logistics facility in Navi Mumbai, Maharashtra, India, provides
+an update on the ongoing legal proceedings relating to its subsidiary, Karanja Terminal & Logistics Pvt. Ltd.
+A civil appeal was listed before the Supreme Court of India earlier today, in which the appellant sought to set aside the interim order previously granted in MPL's favour by the National Company Law Appellate Tribunal (NCLAT) on 10 December 2025.
+Following submissions from all parties, the Supreme Court did not pass any adverse order against the Company and directed the NCLAT to hear the matter on 14 January 2026, and, if possible, to dispose of the appeal on that date.
+Importantly, the interim order dated 10 December 2025 remains in force.
+The Company will continue to pursue all legal remedies available to protect its interests and will provide further updates as appropriate.
+For further information, please visit
+www.mercpl.com
+or contact:
+MPL
+c/o Cavendish
++44 (0) 207 220 0500
+Cavendish Capital Markets Limited
+(Nomad and Broker)
+Stephen Keys
++44 (0) 207 220 0500
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+UPDEVLFFELLFFBV
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Update on Ongoing Legal Proceedings</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 55/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Update on Ongoing Legal Proceedings | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">18th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">3:29 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">55/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Update on Ongoing Legal Proceedings</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">National Company</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+18 Dec 2025 15:29
+RNS Number : 1776M
+Mercantile Ports & Logistics Ltd
+18 December 2025
+Mercantile Ports & Logistics Limited
+(
+"MPL"
+or the
+"Company"
+)
+Update
+Mercantile
+Ports & Logistics Limited (AIM: MPL), which is operating and continuing to develop a port and logistics facility in Navi Mumbai, Maharashtra, India, provides
+an update on the ongoing legal proceedings relating to its subsidiary, Karanja Terminal & Logistics Pvt. Ltd.
+A civil appeal was listed before the Supreme Court of India earlier today, in which the appellant sought to set aside the interim order previously granted in MPL's favour by the National Company Law Appellate Tribunal (NCLAT) on 10 December 2025.
+Following submissions from all parties, the Supreme Court did not pass any adverse order against the Company and directed the NCLAT to hear the matter on 14 January 2026, and, if possible, to dispose of the appeal on that date.
+Importantly, the interim order dated 10 December 2025 remains in force.
+The Company will continue to pursue all legal remedies available to protect its interests and will provide further updates as appropriate.
+For further information, please visit
+www.mercpl.com
+or contact:
+MPL
+c/o Cavendish
++44 (0) 207 220 0500
+Cavendish Capital Markets Limited
+(Nomad and Broker)
+Stephen Keys
++44 (0) 207 220 0500
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+UPDEVLFFELLFFBV
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Update</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Update | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">17th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">9:37 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Karanja Terminal</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+17 Dec 2025 09:37
+RNS Number : 9350L
+Mercantile Ports & Logistics Ltd
+17 December 2025
+Mercantile Ports & Logistics Limited
+(
+"MPL"
+or the
+"Company"
+)
+Update
+Mercantile
+Ports & Logistics Limited (AIM: MPL), which is operating and continuing to develop a port and logistics facility in Navi Mumbai, Maharashtra, India, provides an update on the legal position and
+confirms that it continues to pursue vigorously all legal remedies to safeguard its wholly owned strategic asset, Karanja Terminal & Logistics Pvt. Ltd. ("KTPL"), located in Navi Mumbai, India.
+The Company recently secured interim protection from the Insolvency Appellate Tribunal, which restrains the solicitation of expressions of interest from third parties, thereby preserving the status quo while legal proceedings are ongoing.
+MPL has also formally offered to redeem the full outstanding debt relating to the asset, exercising its lawful right to settlement. The debt had previously been assigned to Prudent ARC, a transaction which MPL is contesting and which forms part of ongoing legal proceedings.
+Prudent ARC has since appealed against the interim order to the Supreme Court of India. The matter is scheduled to be heard on Thursday, 18 December 2025.
+MPL remains confident in the strength of its legal position and is committed to defending shareholder value while ensuring that due process is followed.
+The Company continues to enjoy the support of its major global stakeholders.
+Commenting on the development, Pav Bakhshi, Managing Director of Mercantile Ports & Logistics, said:
+"We have made a credible and lawful offer to redeem the outstanding debt in full. Karanja is a strategic infrastructure asset that rightfully belongs to MPL, and we will continue to pursue all legal avenues to protect the Company's interests and those of its shareholders."
+Further announcements will be made as developments unfold.
+For further information, please visit
+www.mercpl.com
+or contact:
+MPL
+c/o Cavendish
++44 (0) 207 220 0500
+Cavendish Capital Markets Limited
+(Nomad and Broker)
+Stephen Keys
++44 (0) 207 220 0500
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+UPDGCBDDDXBDGUR
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #10b98140;
+                    ">4</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #4
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📈</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Result of General Meeting</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • BULLISH</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    FINANCIAL RESULTS: Financial results released | ✅ BULLISH: Positive results typically drive price increases. Check guidance for future expectations.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">15th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">11:17 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #10b981;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #10b981;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">FINANCIAL RESULTS: Financial results released</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #10b981; font-weight: 600;">✅ BULLISH: Positive results typically drive price increases. Check guidance for future expectations.</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📈 IMPROVING: Company demonstrating strength and growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Stephen Keys</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+15 Dec 2025 11:17
+RNS Number : 6006L
+Mercantile Ports & Logistics Ltd
+15 December 2025
+Mercantile Ports & Logistics Limited
+(
+"MPL"
+or the
+"Company"
+)
+Result of General Meeting
+Mercantile
+Ports & Logistics Limited (AIM: MPL), which is operating and continuing to develop a port and logistics facility in Navi Mumbai, Maharashtra, India, is pleased to announce that further to the Company's announcement of 19 November 2025, at the General Meeting held earlier today the Resolutions proposed were duly passed by shareholders.
+Application will be made to the London Stock Exchange for the cancellation of the Redemption Shares and admission of the Subscription Shares to trading on AIM. It is expected that admission of the Subscription Shares will occur and that dealings will commence at 8.00 a.m. on 16 December 2025.
+Unless otherwise defined herein, capitalised terms in this announcement have the same meaning as in the shareholder circular published on 19 November 2025.
+For further information, please visit
+www.mercpl.com
+or contact:
+MPL
+c/o Cavendish
++44 (0) 207 220 0500
+Cavendish Capital Markets Limited
+(Nomad and Broker)
+Stephen Keys
++44 (0) 207 220 0500
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+ROMFELFFELLFFBZ
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">5</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #5
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Notice of GM and Related Party Transaction</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 100/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Notice of GM and Related Party Transaction | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">19th Nov 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">2:45 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">100/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Notice of GM and Related Party Transaction</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Existing Ordinary</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">38.4%, 38.4%, 15%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+19 Nov 2025 14:45
+RNS Number : 2294I
+Mercantile Ports & Logistics Ltd
+19 November 2025
+19 November 2025
+Mercantile Ports & Logistics Limited
+(
+"MPL"
+or the
+"Company"
+)
+Notice of General Meeting and Related Party Transaction
+Mercantile
+Ports & Logistics Limited (AIM: MPL), which is operating and continuing to develop a port and logistics facility in Navi Mumbai, Maharashtra, India, announces that
+, the Company will today post a circular to shareholders giving notice of a general meeting (the "
+General Meeting
+") will be held at 11.00 a.m. on 15 December 2025 at 2nd Floor, Lefebvre Place, Lefebvre Street, St Peter Port, Guernsey, GY1 2JP.
+A copy of the Notice of General Meeting will be dispatched to shareholders who have elected not to receive electronic communications, and an electronic copy will shortly be available to download from the Company's website at
+www.mercpl.com
+for the purposes of AIM Rule 26.
+As disclosed at the time of various fundraisings and subsequent Annual Reports, the process to enable the Company to receive the proceeds from overseas shareholders was complex and consequently subscription monies could not be received in the UK. The Company has been advised that the Redesignation, Redemption and Subscription is the most effective way to enable previously raised subscription monies to be held in the UK. It should be noted that the Redesignation, Redemption and Subscription, will not result in any change to the aggregate number of Ordinary Shares of the Company, its financial position or to the shareholdings of existing shareholders.
+The Subscription is conditional on:
+(a) the passing of the Resolutions at the General Meeting; and
+(b) Admission of the Subscription Shares becoming effective by no later than 8.00 a.m. on
+16
+December 2025 or such later date as the Company, Cavendish and Hunch Ventures may agree in writing.
+If any of the conditions are not satisfied, the Subscription Shares will not be issued to Hunch Ventures.
+The Subscription Shares will be issued free of all liens, charges and encumbrances and will, when issued and fully paid, rank
+pari passu
+in all respects with the Existing Ordinary Shares, including the right to receive all dividends and other distributions declared, made or paid after the date of their issue.
+Upon the Redesignation and Redemption, the Redemption Shares shall be redeemed and cancelled for nil consideration. Immediately following the Redesignation and Redemption, Hunch Ventures will subscribe for the Subscription Shares, which comprise an equal number of new Ordinary Shares as the Redemption Shares.
+Following the Redesignation, Redemption and Subscription, Hunch Ventures will hold an aggregate of
+136,819,712
+Ordinary Shares
+, representing
+38.4
+% of the issued Ordinary Shares
+.
+Application will be made to the London Stock Exchange for the cancellation of the Existing Hunch Shares and admission of the New Hunch Shares to trading on AIM. Subject to shareholder approval at the GM, it is expected that admission of the New Hunch Shares will occur and that dealings will commence at 8.00 a.m. on
+16
+December
+2025.
+Related Party Transaction
+Hunch Ventures is an undertaking controlled by Karanpal Singh (a Non-Executive Director of the Company). Hunch Ventures is considered to be a related party of the Company for the purposes of Rule 13 of the AIM Rules for Companies.
+Hunch Ventures is subscribing for the Subscription Shares under the Subscription. The Subscription constitutes a related party transaction for the purposes of the AIM Rules for Companies. The Directors who are independent of these transactions, being Jay Mehta, Jeremy Warner Allen, John Fitzgerald, Stefan Passantino and Dmitri Tsvetkov, having consulted with the Company's nominated adviser, Cavendish, consider that that the Subscription is fair and reasonable insofar as Shareholders are concerned.
+Unless otherwise defined, capitalised terms in this announcement shall have the meaning set out in the in the Circular.
+- Ends -
+For further information, please visit
+www.mercpl.com
+or contact:
+MPL
+c/o Cavendish
++44 (0) 207 220 0500
+Cavendish Capital Markets Limited
+(Nomad and Broker)
+Stephen Keys
++44 (0) 207 220 0500
+Proposed Adoption of the New Articles
+Proposed Redesignation and Redemption of Redemption Shares
+Proposed Subscription for Subscription Shares by Hunch Ventures
+and
+Notice of General Meeting
+1. Background
+As referenced in the announcement earlier today, the Company is in discussions regarding the full repayment of all outstanding amounts owed by the Company, which as at today's date including principal and accrued interest stands at approximately £60m. The Company continues to explore all options as available to it under law to enable it to repay its debt. The Company remains grateful for the continued support that Hunch Ventures has provided to the Company since 2018 and especially in relation to the discussions regarding a solution for the Company's debt.
+As disclosed at the time of various fundraisings and subsequent Annual Reports, the process to enable the Company to receive the proceeds from overseas shareholders was complex and consequently subscription monies could not be received in the UK. Hunch Ventures has historically supported the Company's Indian Subsidiary under legally binding arrangement. In view of the present scenario and the uncertainty around the settlement process with the Company's lenders in India, the Company has been advised that the Subscription, Redesignation and Redemption is the most effective way to simplify the position and for subscription monies to be received and held in the UK. It should be noted that the Subscription, Redesignation and Redemption will not result in any change to the aggregate number of Ordinary Shares of the Company, its financial position or to the shareholdings of existing shareholders and relationship with Hunch Ventures.
+2. Current status of the Group
+The purpose of the Circular is to explain the Subscription, Redemption and Redesignation and to recommend that you vote in favour of the Resolutions, which are necessary in order to implement the Subscription, Redesignation and Redemption.
+On 30 June 2025, the Company announced its preliminary results for the year ended 31 December 2024 in which the Chairman made the following statement:
+"The year under review was one of operational progress, strategic positioning, and foundations being laid for future growth. We report revenues of £4.35 million, which, as previously reported, reflects the fact that a number of issues were encountered……… Perhaps the biggest impact, however, was the previously announced renegotiation of the Company's loan facility with its consortium of lenders, which impeded the Company's ability to secure longer term contracts with customers. These factors, though temporary, affected throughput volumes during the period.
+Despite these challenges, the fundamental strength of our business model remains intact, and our long-term prospects continue to remain buoyant."
+Whilst the Board remains confident in the prospects of the Company, as referred to in various announcements in recent weeks, the Company has been seeking redress through the Courts in India to ensure that the terms of the One-Time Settlement, which it considers were agreed with its lenders, are honoured. With the debt now having been assigned to a third party, the Company will continue negotiations with that party to ensure that its interests are protected. In the meantime, the negative impact on operations as a result of this uncertainty remains.
+3. Effects of the Subscription, Redesignation and Redemption
+Upon the Redesignation and Redemption, the Redemption Shares shall be redeemed and cancelled for nil consideration. Immediately following the Redesignation and Redemption, Hunch Ventures will subscribe for the Subscription Shares..
+Following the Subscription, Hunch Ventures will hold an aggregate of
+136,819,712
+Ordinary Shares
+, representing
+38.4
+% of the issued Ordinary Shares.
+4. The Subscription and Relationship with Hunch Ventures
+The Subscription
+Hunch Ventures has agreed to subscribe for an aggregate 136,819,712 Subscription Shares at an aggregate subscription price of £
+820,918.27 which is to be received by the Company by no later than 31 December 2025
+.
+The Subscription is conditional on:
+(a) the passing of the Resolutions at the General Meeting; and
+(b) Admission of the Subscription Shares becoming effective by no later than 8.00 a.m. on
+16 December 2025
+or such later date as the Company, Cavendish and Hunch Ventures may agree in writing.
+If any of the conditions are not satisfied, the Subscription Shares will not be issued to Hunch Ventures.
+The Subscription Shares will be issued free of all liens, charges and encumbrances and will, when issued and fully paid, rank
+pari passu
+in all respects with the Existing Ordinary Shares, including the right to receive all dividends and other distributions declared, made or paid after the date of their issue.
+Application will be made to the London Stock Exchange for Admission of the Subscription Shares to trading on AIM. It is expected that Admission will occur and that dealings will commence by no later than 8.00 a.m. on
+16 December
+2025, at which time it is also expected that the Subscription Shares will be enabled for settlement in CREST.
+Relationship between the Company and Hunch Ventures
+The Subscription Agreement also governs the relationship between the Company and Hunch Ventures by, inter alia, providing that:
+·
+Hunch Ventures shall have the right to appoint two Directors for so long as it holds more than 15% of the voting rights of the Company's issued share capital from time to time and the right to appoint one Director for so long as it holds more than 10% but less than 15% of the voting rights of the Company's issued share capital from time to time;
+·
+for a two year period from Admission, Hunch Ventures and its group of companies undertake not to be engaged in any competing business of the Company in India;
+·
+all transactions between Hunch Ventures and the Group shall be undertaken on an arms' length basis;
+·
+Hunch Ventures agrees not to dispose of any Subscription Shares without the prior consent of the Company and Cavendish during the 12 month period following Admission, except in certain customary exceptions; and
+·
+Hunch Ventures agrees to dispose of any Subscription Shares via Cavendish during the 36 month period following Admission so as to ensure an orderly market in the Ordinary Shares.
+The Subscription Agreement and the obligations thereunder will cease to have effect on the earlier of: (i) the Ordinary Shares ceasing to be traded on AIM; or (ii) Hunch Ventures ceasing to hold at least 5% of the voting rights of Company's issued share capital from time to time.
+The Subscription Agreement provides that the relevant Subscription Shares may be issued to Hunch Ventures or any member of Hunch Ventures group of companies. The obligations thereunder will also apply to the member of Hunch Ventures group of companies to whom the Subscription Shares are issued.
+5. Related Party Transactions
+Hunch Ventures, is an undertaking controlled by Karanpal Singh (a Non-Executive Director of the Company). Hunch Ventures is considered to be a related party of the Company for the purposes of Rule 13 of the AIM Rules for Companies.
+Hunch Ventures is subscribing for the Subscription Shares under the Subscription. The Subscription constitutes a related party transaction for the purposes of the AIM Rules for Companies. The Directors who are independent of these transactions, being Jay Mehta, Jeremy Warner Allen, John Fitzgerald, Stefan Passantino and Dmitri Tsvetkov, having consulted with the Company's nominated adviser, Cavendish, consider that that the Subscription is fair and reasonable insofar as Shareholders are concerned.
+6. General Meeting
+The Directors do not currently have the authority to effect the Subscription, Redesignation and Redemption, accordingly, the Board is seeking the following approvals of Shareholders at the General Meeting;
+A notice convening the General Meeting, which is to be held at registered office of the Company at 2nd Floor, Lefebvre Place, Lefebvre Street, St Peter Port, Guernsey GY1 2JP at 11.00 a.m. on 15 December 2025, is set out in
+‎
+Part VI -
+Notice of General Meeting
+of the Circular. At the General Meeting, the Resolutions will be proposed to adopt the New Articles and authorise the Directors to undertake the Subscription, Redesignation and Redemption. Subject to both of the Resolutions being passed, the Directors shall then redeem the Redemption Shares for nil consideration and complete the Subscription.
+·
+Resolution 1, which is a special resolution, will amend adopt the New Articles, the only substantive change between the New Articles and the Articles being the addition of a new Articles 13.1.3 allowing the Company by ordinary resolution to redesignate any of its shares into shares of another class. A copy of the New Articles is appended to the Notice of the General Meeting.
+·
+Resolution 2, which is an ordinary resolution, will redesignate the Redemption Shares as Redeemable Shares which may be redeemed by the Company for nil consideration.
+·
+Resolution 3, which is an ordinary resolution, will authorise the Directors to issue and allot the Subscription Shares.
+·
+Resolution 4, which is a special resolution, will dis-apply the pre-emption rights contained in the New Articles in respect of the Subscription Shares.
+7. Action to be taken in respect of the General Meeting
+Shareholders will not receive a hard-copy Form of Proxy for the General Meeting. Instead, you will find instructions in the section entitled "Notes" in the Notice of General Meeting to enable you to vote electronically and how to register to do so. To register, you will need your "Investor Code", which can be found on your share certificate.
+Shareholders may request a paper Form of Proxy from the Registrars if they do not have access to the internet. Proxy votes should be submitted as early as possible and in any event by no later than 11.00 a.m. on 13 December 2025 (or, in the case of an adjournment, no later than 48 hours (excluding non-working days) before the time fixed for holding of the adjourned meeting).
+The completion and return of a Form of Proxy will not preclude you from attending and voting in person at the General Meeting, or any adjournment thereof, should you wish to do so.
+8. Recommendation
+The Directors believe that the Subscription, Redesignation, Redemption and the passing of the Resolutions are in the best interests of the Company and Shareholders, taken as a whole. Accordingly, the Directors unanimously recommend that Shareholders vote in favour of the Resolutions, as they intend to do in respect of their own holdings of Ordinary Shares.
+DEFINITIONS
+"
+Admission
+"
+the admission of the Subscription Shares to trading on AIM in accordance with the AIM Rules for Companies.
+"
+AIM
+"
+AIM, the market of that name operated by the London Stock Exchange.
+"
+AIM Rules for Companies
+"
+the AIM Rules for Companies and guidance notes as published by London Stock Exchange from time to time.
+"
+Announcement
+"
+this RIS announcement issued by the Company on 19 November 2025 in relation to the Subscription, Redesignation and Redemption.
+"
+Articles
+"
+the articles of incorporation of the Company in force from time to time.
+"
+Board
+" or "
+Directors
+"
+the directors of the Company as at the date of the Circular.
+"
+Cavendish
+"
+Cavendish Capital Markets Limited.
+"
+Company
+"
+Mercantile Ports & Logistics Limited.
+"
+control
+"
+(i) the power (whether by way of ownership of shares, proxy, contract, agency or otherwise) to: (a) cast, or control the casting of, more than 50% of the maximum number of votes that might be cast at a general meeting of the Company; or (b) appoint or remove all, or the majority, of the Directors or other equivalent officers of the Company; or (c) give directions with respect to the operating and financial policies of the Company with which the Directors or other equivalent officers of the Company are obliged to comply; and/or (ii) the holding beneficially of more than 50% of the issued shares of the Company (excluding any issued shares that carry no right to participate beyond a distribution of either profits or capital), but excluding in the case of each of (i) and (ii) any such power or holding that arises as a result of the issue of Ordinary Shares by the Company in connection with an acquisition.
+"
+CREST
+" or "
+CREST system
+"
+the system for the paperless settlement of trades in securities and the holding of uncertified securities operated by Euroclear in the system for the paperless settlement of trades insecurities and the holding of uncertificated securities operated by Euroclear in accordance with the CREST Regulations.
+"
+Euroclear
+"
+Euroclear UK & International Limited, a company incorporated in England & Wales, being the operator of CREST.
+"
+Existing Ordinary Shares
+"
+the issued ordinary share capital of the Company at the date of the Circular, being
+356,312,692
+Ordinary Shares.
+"
+FCA
+"
+the UK Financial Conduct Authority acting in its capacity as the competent authority under Part VI of FSMA.
+"
+Form of Proxy
+"
+the electronic form of proxy for use in connection with the General Meeting (a hard-copy of which may be requested from the Registrar).
+"
+FSMA
+"
+Financial Services and Markets Act 2000.
+"
+General Meeting
+"
+a general meeting of the Shareholders or a class of Shareholders, or, as the context requires, the general meeting of the Company, convened for 11.00 a.m. on 15 December 2025 or at any adjournment thereof.
+"
+Group
+"
+the Company and its subsidiaries from time to time.
+"
+Hunch Ventures
+"
+Hunch Ventures and Investment Private Limited, a company incorporated in India, with company registration number 289161 and whose registered office is at 5 Ground Floor, Plot No. 09 Copia Corporate Suites, Jasola New Delhi, South Delhi DL 110044, India.
+"
+India
+"
+the Republic of India.
+"
+Latest Practicable Date
+"
+18 November 2025, being the latest practicable date prior to the publication of the Circular.
+"
+London Stock Exchange
+"
+London Stock Exchange plc.
+"
+New Articles
+"
+the amended articles of incorporation of the Company proposed to be adopted pursuant to the Resolutions.
+"
+Non-Executive Director(s)
+"
+Director(s) discharging non-executive responsibilities.
+"
+Notice of General Meeting
+"
+the notice convening the General Meeting as set out in
+‎
+Part VI -
+Notice of General Meeting
+of the Circular.
+"
+Ordinary Shares
+"
+ordinary shares of no par value each in the Company.
+"
+Redeemable Shares
+"
+the Redeemable Shares of no par value in the Company with the rights set out in the Resolutions.
+"
+Redemption
+"
+the proposed redemption of the Redemption Shares following Redesignation as described in Part V -
+Letter from the Chairman
+.
+"
+Redemption Shares
+"
+the
+136,819,712
+Ordinary Shares, which are proposed to be redesignated as Redeemable Shares pursuant to the Redesignation and then redeemed and cancelled pursuant to the Redemption.
+"
+Redesignation
+"
+the proposed redesignation of the Redemption Shares as Redeemable Shares pursuant to the Resolutions.
+"
+Registered Office
+"
+the registered office of the Company at 2nd Floor, Lefebvre Place, Lefebvre Street, St Peter Port, Guernsey GY1 2JP.
+"
+Registrars
+"
+MUFG Corporate Markets.
+"
+Resolutions
+"
+the ordinary resolution and special resolution to be proposed at the General Meeting, as set out in the Notice of the General Meeting.
+"
+RIS
+"
+a regulatory information service that is on the list of regulatory information services maintained by the FCA.
+"
+Shareholders
+"
+the holders of Ordinary Shares.
+"
+Subscription
+"
+the proposed subscription for Subscription Shares pursuant to the terms of the Subscription Agreement.
+"
+Subscription Agreement
+"
+Subscription Price
+the subscription and relationship agreement entered into on
+18 November 2025
+between Hunch Ventures, the Company and Cavendish in respect of both the Subscription and the relationship between the Company and Hunch Ventures following completion of the Subscription.
+0.60p being the closing price on 18 November 2025, being the latest practicable date prior to publication of the Circular.
+"
+Subscription Shares
+"
+the new Ordinary Shares to be issued by the Company pursuant to the Subscription.
+"
+United Kingdom
+" or "
+UK
+"
+the United Kingdom of Great Britain and Northern Ireland.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+NOGPKCBQQBDDKDD
+                </div>
+            </details>
+            
+            </div>
+            
+            </div>
+            <div style="
+                margin-top: 20px;
+                padding: 14px 16px;
+                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+                border-radius: 10px;
+                font-size: 12px;
+                color: #78350f;
+                border-left: 3px solid #f59e0b;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            ">
+                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
+                <div style="line-height: 1.5;">
+                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
+                    Each RNS includes sentiment classification, key data extraction, and trading context. 
+                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
+                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                    </strong>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            details[open] > summary {
+                background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%) !important;
+                border-left-color: #0369a1 !important;
+            }
+            summary::-webkit-details-marker {
+                display: none;
+            }
+            
+            /* ========== MOBILE RESPONSIVE ========== */
+            @media (max-width: 768px) {
+                body {
+                    padding: 10px;
+                    font-size: 14px;
+                }
+                
+                .container {
+                    margin: 0 auto;
+                }
+                
+                .header-card {
+                    padding: 14px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .company-name {
+                    font-size: 22px;
+                    margin-bottom: 8px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 13px;
+                    padding: 6px 12px;
+                }
+                
+                .company-meta {
+                    gap: 8px;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+                
+                .meta-item {
+                    padding: 6px 12px;
+                    font-size: 12px;
+                    gap: 6px;
+                }
+                
+                .meta-icon {
+                    font-size: 14px;
+                }
+                
+                .score-hero {
+                    padding: 20px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .action-display {
+                    font-size: 18px !important;
+                    margin-bottom: 12px;
+                }
+                
+                .scores-row {
+                    gap: 16px;
+                    margin: 20px 0;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    display: flex;
+                }
+                
+                .score-circle {
+                    width: 110px;
+                    height: 110px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 32px;
+                }
+                
+                .score-label {
+                    font-size: 10px;
+                    margin-top: 4px;
+                }
+                
+                .timing-badge-large {
+                    padding: 10px 20px;
+                    font-size: 14px;
+                    margin: 12px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 14px;
+                    padding: 12px;
+                    margin-top: 12px;
+                }
+                
+                .factors-list {
+                    grid-template-columns: 1fr;
+                    gap: 10px;
+                    margin-top: 12px;
+                }
+                
+                .factor-item {
+                    padding: 12px;
+                    font-size: 12px;
+                    gap: 8px;
+                }
+                
+                .factor-icon {
+                    font-size: 16px;
+                }
+                
+                .cards-grid {
+                    grid-template-columns: 1fr;
+                    gap: 12px;
+                    margin-bottom: 12px;
+                }
+                
+                .card {
+                    padding: 16px;
+                    border-radius: 12px;
+                }
+                
+                .card-title {
+                    font-size: 14px;
+                    margin-bottom: 12px;
+                    gap: 8px;
+                }
+                
+                .card-icon {
+                    font-size: 18px;
+                }
+                
+                .stat-row {
+                    padding: 8px 0;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+                
+                .stat-label {
+                    font-size: 12px;
+                }
+                
+                .stat-value {
+                    font-size: 14px;
+                }
+                
+                .rally-badge {
+                    padding: 4px 10px;
+                    font-size: 10px;
+                }
+                
+                .risk-indicator {
+                    gap: 10px;
+                    padding: 12px;
+                    flex-wrap: wrap;
+                }
+                
+                .risk-icon {
+                    font-size: 20px;
+                }
+                
+                .reason-item {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                }
+                
+                .tag {
+                    padding: 3px 8px;
+                    font-size: 10px;
+                }
+                
+                .footer {
+                    padding: 12px;
+                    font-size: 11px;
+                    margin-top: 12px;
+                    border-radius: 12px;
+                }
+                
+                .alert-box {
+                    padding: 12px;
+                    margin: 10px 0;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                body {
+                    padding: 8px 6px;
+                }
+                
+                .header-card {
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    border-radius: 8px;
+                }
+                
+                .company-name {
+                    font-size: 18px;
+                    margin-bottom: 6px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 11px;
+                    padding: 3px 8px;
+                }
+                
+                .company-meta {
+                    gap: 4px;
+                    flex-direction: column;
+                }
+                
+                .meta-item {
+                    padding: 4px 6px;
+                    font-size: 11px;
+                    background: rgba(247, 250, 252, 0.7);
+                }
+                
+                .score-hero {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                    border-radius: 12px;
+                }
+                
+                .score-circle {
+                    width: 70px;
+                    height: 70px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 22px;
+                    font-weight: 800;
+                }
+                
+                .score-label {
+                    font-size: 7px;
+                    margin-top: 2px;
+                }
+                
+                .scores-row {
+                    flex-direction: column;
+                    gap: 10px;
+                    margin: 12px 0;
+                    align-items: center;
+                }
+                
+                .timing-badge-large {
+                    padding: 6px 12px;
+                    font-size: 11px;
+                    margin: 10px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 11px;
+                    padding: 8px;
+                    line-height: 1.3;
+                }
+                
+                .card {
+                    padding: 10px;
+                    margin-bottom: 8px;
+                    border-radius: 8px;
+                }
+                
+                .card-title {
+                    font-size: 12px;
+                    margin-bottom: 8px;
+                    font-weight: 700;
+                }
+            }
+        </style>
+        
+
+        <!-- Footer -->
+        <div class="footer">
+            Report generated: 2026-01-17 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            <strong>△ Not financial advice. Do your own research.</strong>
+            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
+                <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,2663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrashDash • INLZ.L APEX Profile</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .header-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .ticker-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .company-name { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .company-meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f7fafc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .meta-icon { font-size: 18px; }
+        
+        .score-hero {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        .action-display {
+            margin-bottom: 20px;
+        }
+        .scores-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .score-number {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .score-label { font-size: 12px; color: #666; margin-top: 5px; }
+        .timing-badge-large {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 24px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            margin: 20px 0;
+        }
+        .thesis-line {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .factors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .factor-item {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        .factor-icon { font-size: 20px; }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-icon { font-size: 24px; }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-label { color: #666; font-size: 14px; }
+        .stat-value { font-weight: 600; font-size: 16px; }
+        
+        .rally-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .risk-indicator {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .risk-high { background: #fee2e2; }
+        .risk-icon { font-size: 24px; }
+        
+        .reason-item {
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .tag {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .footer {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-top: 20px;
+        }
+        
+        .alert-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Header Card -->
+        <div class="header-card">
+            <div class="ticker-badge">INLZ.L</div>
+            <div class="company-name">Inland ZDP Plc</div>
+            <div class="company-meta">
+                <div class="meta-item">
+                    <span class="meta-icon">■</span>
+                    <span><strong>Sector:</strong> Real Estate</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">£</span>
+                    <span><strong>Market Cap:</strong> £270</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">◷</span>
+                    <span><strong>Days Active:</strong> 840 days</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action & Score Hero Section -->
+        <div class="score-hero">
+            <div class="action-display">
+                <span style="color: white;">UNKNOWN</span>
+            </div>
+            
+            <div class="scores-row">
+                <div class="score-circle">
+                    <div class="score-number" style="color: #f59e0b;">58</div>
+                    <div class="score-label">APEX SCORE</div>
+                </div>
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">40</div>
+                    <div class="score-label">CONFIDENCE</div>
+                </div>
+            </div>
+            
+            <div class="timing-badge-large">
+                Timing: <span class="rally-badge" style="background: #dbeafe; color: #1e40af;">CROWDED</span>
+            </div>
+            
+            <div class="thesis-line">
+                SELL/TAKE_PROFITS - CROWDED timing with 58/100 opportunity score
+            </div>
+        </div>
+
+        <!-- ==================== CRASHDASH INTELLIGENCE - PANIC HUNTER VIEW ==================== -->
+        
+        <div class="card" style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); border: 2px solid #ef4444;">
+            <div class="card-title" style="color: #0f172a;">
+                <span class="card-icon">🏭</span>
+                CrashDash Intelligence • Industrials
+            </div>
+            
+            <!-- Fear Meter -->
+            <div style="background: white; padding: 24px; border-radius: 14px; margin-bottom: 20px; text-align: center;">
+                <div style="font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 16px;">🔥 PANIC METER</div>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 16px;">
+                    <div style="width: 160px; height: 160px; border-radius: 50%; background: conic-gradient(#ef4444 313.2deg, #e5e7eb 313.2deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                        <div style="width: 130px; height: 130px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <div style="font-size: 48px; font-weight: 800; color: #ef4444;">87</div>
+                            <div style="font-size: 12px; color: #64748b; font-weight: 600;">PANIC SCORE</div>
+                        </div>
+                    </div>
+                    <div style="text-align: left; max-width: 400px;">
+                        <div style="font-size: 18px; font-weight: 700; color: #ef4444; margin-bottom: 12px;">EXTREME PANIC</div>
+                        <div style="font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 12px;">🔴 Capitulation zone - contrarian opportunity if fundamentals intact</div>
+                        <div style="font-size: 13px; color: #64748b;">
+                            <div>💔 Price: 40/40</div>
+                            <div>📉 Volume: 14/20</div>
+                            <div>🔇 Social: 13/20</div>
+                            <div>📰 News: 20/20</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CrashHunter Signals -->
+                <div style="margin-top: 20px;">
+                    <span style="display: inline-block; background: #ef4444; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">🔴 Panic 87/100</span><span style="display: inline-block; background: #f59e0b; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">⚠️ Crowded</span><span style="display: inline-block; background: #3b82f6; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">🌟 APEX 58</span>
+                </div>
+                
+                <!-- Opportunity Flag -->
+                <div style="margin-top: 20px; padding: 16px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 10px; color: white; font-weight: 700; font-size: 16px;">🎯 🔥 EXTREME PANIC + Intact timing = Prime contrarian entry zone</div>
+            </div>
+            
+            <!-- Contrarian Compression Energy Panel -->
+            
+            <!-- Contrarian Compression Energy Panel -->
+            <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); padding: 24px; border-radius: 14px; margin-bottom: 20px; border: 3px solid #10b981;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <span style="font-size: 32px;">⚡</span>
+                    <div style="flex: 1;">
+                        <div style="font-size: 20px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">
+                            CONTRARIAN COMPRESSION SCORE
+                        </div>
+                        <div style="font-size: 13px; color: #475569; font-weight: 600;">
+                            Signal Congestion Framework • Compression = Explosive Potential
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Score Display -->
+                <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 30px;">
+                        <!-- Circular gauge -->
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: conic-gradient(#10b981 57.6deg, #e5e7eb 57.6deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                            <div style="width: 110px; height: 110px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <div style="font-size: 42px; font-weight: 800; color: #10b981;">16</div>
+                                <div style="font-size: 11px; color: #64748b; font-weight: 600;">/ 100</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Key metrics -->
+                        <div style="text-align: left;">
+                            <div style="font-size: 16px; font-weight: 700; color: #10b981; margin-bottom: 12px;">⚪ LOW COMPRESSION (Early/Weak)</div>
+                            <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                                <div><strong>0.1</strong> signals/week</div>
+                                <div><strong>1</strong> RSI &lt; 20 events</div>
+                                <div><strong>0</strong> escalations detected</div>
+                                <div style="color: #10b981; font-weight: 700; margin-top: 6px;">
+                                    💎 Historical pop: <strong>+80%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Component Breakdown -->
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 15px;">
+                        📊 5-COMPONENT BREAKDOWN
+                    </div>
+                    
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">compression</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">7/40</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 17.5%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">0.1 signals/week | 1 RSI<20 | Early stage</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">intensification</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">0/20</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;"></div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">volume death</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">5/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 33.33333333333333%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">Elevated volume - Some activity</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">pop potential</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">4/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 26.666666666666668%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">Baseline mover (80%)</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">accumulation</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">0/10</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">No accumulation</div>
+                </div>
+                
+                </div>
+                
+                <!-- Contrarian Philosophy -->
+                <div style="background: rgba(255,255,255,0.7); padding: 16px; border-radius: 10px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #0f172a; margin-bottom: 8px; font-size: 14px;">
+                        🎯 CONTRARIAN WISDOM
+                    </div>
+                    <div style="font-size: 13px; color: #334155; line-height: 1.6;">
+                        <strong>Signal congestion = Compression energy = Explosive potential.</strong><br>
+                        When multiple crash signals cluster together with extreme RSI and proven rally history, 
+                        it creates a compressed spring effect. More panic = More opportunity for contrarians.
+                        <div style="margin-top: 8px; padding: 10px; background: rgba(239,68,68,0.1); border-radius: 6px; font-size: 12px;">
+                            <strong style="color: #10b981;">Theory:</strong> High compression scores (60+) historically precede 
+                            explosive 10-20x moves when catalysts arrive. This is the foundation of crash hunting.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Fear vs Facts Contrarian View -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                <div style="background: #fee2e2; padding: 18px; border-radius: 12px; border-left: 4px solid #ef4444;">
+                    <div style="font-weight: 700; color: #991b1b; margin-bottom: 12px; font-size: 15px;">😱 FEAR (What Panic Shows)</div>
+                    <div style="color: #7f1d1d;">
+                        <div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 💔 Price destruction: 40/40 points</div><div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 📰 Negative news: 20/20 points</div>
+                    </div>
+                </div>
+                <div style="background: #dcfce7; padding: 18px; border-radius: 12px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #065f46; margin-bottom: 12px; font-size: 15px;">📊 FACTS (What Data Shows)</div>
+                    <div style="color: #064e3b;">
+                        <div style="color: #64748b; font-size: 14px;">Limited historical data</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contrarian Verdict -->
+            <div style="background: white; padding: 18px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #6366f1;">
+                <div style="font-weight: 700; color: #4338ca; margin-bottom: 10px; font-size: 15px;">⚖️ Contrarian Verdict</div>
+                <div style="font-size: 15px; color: #1e293b; line-height: 1.6; font-weight: 600;">
+                    🎯 CONTRARIAN OPPORTUNITY - Fear dominates but facts support recovery potential
+                </div>
+            </div>
+            
+            <!-- Industry Crash Patterns -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">⚠️ Crash Patterns (Industrials)</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book decline or cancellations</div><div>• Margin compression (input costs)</div><div>• Cyclical demand weakness</div>
+                    </div>
+                    
+                </div>
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">🚀 Recovery Paths</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book growth or new contracts</div><div>• Margin recovery (efficiency gains)</div><div>• Cyclical upturn (capex recovery)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Catalyst Pipeline -->
+            <div style="background: rgba(255,255,255,0.5); padding: 18px; border-radius: 12px; margin-bottom: 20px;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 14px; font-size: 15px;">📅 Catalyst Pipeline</div>
+                
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">ZDP Share Accrued Value, Asset Cover and return</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">ZDP Share accrued value and asset cover</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Board appointment</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Final Results to 30 Sep 2020</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Issue of 1,671,067 new ZDP Shares</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+            
+            <!-- CrashDash Decision Matrix -->
+            <div style="background: white; padding: 20px; border-radius: 12px; border: 3px solid #ef4444;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 16px; text-align: center;">
+                    🎯 CRASHDASH DECISION: <span style="color: #ef4444; font-size: 20px;">BUY</span>
+                </div>
+                <div style="font-size: 15px; color: #475569; text-align: center; margin-bottom: 20px; font-weight: 600;">
+                    🎯 CrashHunter Signal: 🔥 EXTREME PANIC + Intact timing = Prime contrarian entry zone
+                </div>
+                <div style="background: #f8fafc; padding: 16px; border-radius: 10px;">
+                    <div style="font-weight: 700; color: #64748b; margin-bottom: 12px; font-size: 13px;">CHECKLIST (4/5 pass)</div>
+                    
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🔴</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Panic Score</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">87/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">✅</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Timing Regime</div>
+                    <div style="font-size: 13px; color: #ef4444; font-weight: 600;">CROWDED</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">⭐</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">APEX Quality</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">58/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🎯</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Data Confidence</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">40/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🏭</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Industry Pattern</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">0 active</div>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
+        
+
+        <!-- Decision Summary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◆</span>
+                Why This Matters
+            </div>
+            <div class="stat-row"><span>• APEX 58/100 indicates strong opportunity quality</span></div><div class="stat-row"><span>• Timing regime: CROWDED</span></div><div class="stat-row"><span>• Historical profile: 1 rallies, 80% best run</span></div>
+            
+            <div class="alert-box" style="margin-top: 20px;">
+                <strong>△ Main Risk:</strong> Confidence 40/100 - full data loaded
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong>◉ Watch Next:</strong>
+                <div style="padding: 8px 0;">• RNS catalysts (funding/operational updates)</div><div style="padding: 8px 0;">• Volume expansion confirmation</div><div style="padding: 8px 0;">• Timing regime change signals</div>
+            </div>
+        </div>
+
+        <!-- ==================== TECHNICAL DETAILS (COLLAPSIBLE) ==================== -->
+        
+        <div class="card">
+          <details style="cursor:pointer;">
+            <summary style="font-weight:800; font-size:16px; list-style:none; padding: 10px; background: #f9fafb; border-radius: 8px;">
+              🔧 Technical Analysis & Scoring Details
+            </summary>
+            <div style="margin-top:14px;">
+              
+            <!-- Scoring Breakdown -->
+            <div class="card-title" style="margin-top: 20px;">
+                <span class="card-icon">▣</span>
+                APEX Score Breakdown
+            </div>
+            <div class="factors-list">
+                <div class="factor-item"><span class="factor-icon">◆</span><span><strong>Strong Technical Setup</strong><br><small>Chart quality: 14/20 • Score: 18/25 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Massive recovery potential</strong><br><small>Down 83.0% from peak • Score: 17/20 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Strong volume</strong><br><small>2.4x average • Score: 10/10 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Limited history</strong><br><small>1 previous rallies • Score: 5/15 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Modest upside</strong><br><small>Historical best: +80% • Score: 8/20 points</small></span></div>
+
+            </div>
+            
+            <div style="margin-top: 40px;"></div>
+            
+            <!-- Exhaustion Metrics -->
+            <div class="card-title">
+                <span class="card-icon">📈</span>
+                Rally Cycle Position
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Current Position</div>
+                    <div style="font-size: 32px; font-weight: 800;">80%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
+                    <div style="font-size: 32px; font-weight: 800;">80%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
+                    <div style="font-size: 32px; font-weight: 800;">1.0x</div>
+                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
+                </div>
+            </div>
+        
+            </div>
+          </details>
+        </div>
+        
+
+        <!-- Reasons Buy/Sell -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #10b981;">▲</span>
+                    Reasons to Buy
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Proven winner - previously hit lock-in target</span>
+                    <span class="tag" style="background: #f59e0b; color: white;">⚡ Medium Strength</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">profit target reached: True</div>
+            </div>
+            
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #ef4444;">▼</span>
+                    Reasons to Sell / Avoid
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Stale signal - not for active trading</span>
+                    <span class="tag" style="background: #ef4444; color: white;">🚨 High Risk</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">historical • signal date=2023-09-28</div>
+            </div>
+            
+            </div>
+        </div>
+
+        <!-- Trade Plans -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">📊</span>
+                    Short-Term Trader Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 20%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <div style="font-size: 18px; font-weight: 600; margin-bottom: 5px;">Active trade</div>
+                    <div style="font-size: 14px; opacity: 0.9;">SELL/TAKE_PROFITS</div>
+                </div>
+                <div style="padding: 12px; background: #f9fafb; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Position Size</div>
+                    <div style="font-weight: 600;">1-3% position based on conviction</div>
+                </div>
+                <div style="padding: 12px; background: #fef2f2; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Risk Management</div>
+                    <div style="font-weight: 600; color: #dc2626;">Stop below recent support / invalidation level</div>
+                </div>
+                <div style="padding: 12px; background: #f0fdf4; border-radius: 6px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Exit Strategy</div>
+                    <div style="font-weight: 600; color: #059669;">Scale out into strength: 25% @ +15%, 50% @ +50%, trail runner</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">💼</span>
+                    Long-Term Investor Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center;">
+                    <div style="font-size: 32px; margin-bottom: 5px;">✗</div>
+                    <div style="font-size: 18px; font-weight: 600;">Not Recommended for Investors</div>
+                </div>
+                <div style="padding: 15px; background: #f9fafb; border-radius: 8px; font-size: 14px; line-height: 1.6;">
+                    <strong style="color: #667eea;">📋 Investment Thesis:</strong><br>
+                    Unlock after AI triangulation + CONFIRMED timing<br><br>
+                    <strong style="color: #667eea;">⏳ Time Horizon:</strong><br>
+                    N/A<br><br>
+                    <strong style="color: #ef4444;">🛡️ Exit Rule:</strong><br>
+                    N/A
+                </div>
+            </div>
+        </div>
+
+        <!-- Commentary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◐</span>
+                Executive Commentary
+            </div>
+            <div style="line-height: 1.6; margin-bottom: 20px;">
+                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows CROWDED timing with 58/100 APEX score. Historical data shows 1 rallies averaging 80% upside. Current position: +80.3%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #10b981;">▲ Bull Case:</strong>
+                <div style="padding: 8px 0;">• Limited upside case without catalysts</div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #ef4444;">▼ Bear Case:</strong>
+                <div style="padding: 8px 0;">• Monitor for breakdown signals</div>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
+                <strong>◷ Timing Translation:</strong><br>
+                Late stage. Consider taking profits as risk/reward deteriorates.
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
+                <strong>◎ Confidence Explained:</strong><br>
+                Confidence 40/100 reflects full data quality with triangulation loaded.
+            </div>
+        </div>
+
+        <!-- Data Quality Warning -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">△</span>
+                Data Quality Notice
+            </div>
+            <div class="alert-box">
+                <strong>Analysis Mode:</strong> HISTORICAL_ONLY<br>
+                <strong>Impact:</strong> HIGH
+            </div>
+            <div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">AI insights from Groq LLM</div></div></div>
+
+            <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk.
+            </div>
+        </div>
+
+        <!-- ==================== TOP 5 RECENT RNS NEWS ==================== -->
+        
+        <div class="card" style="border-top: 3px solid #3b82f6;">
+            <div class="card-title" style="margin-bottom: 20px;">
+                <span class="card-icon">📰</span>
+                Top 5 Recent RNS Announcements
+            </div>
+            <div style="margin-top: 15px;">
+                
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">ZDP Share Accrued Value, Asset Cover and return</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">9th Sep 2022</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">4:34 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Financial Indebtedness</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">9.87%, 120%, 9.9%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+9 Sep 2022 16:34
+RNS Number : 9946Y
+Inland ZDP PLC
+09 September 2022
+Inland ZDP PLC
+ZDP Share Accrued Value, Asset Cover and return
+9 September 2022
+As at 30 June 2022, each ZDP Share had an accrued Capital Entitlement of 180.4 pence. The redemption value per ZDP Share is 201.4p on 10 April 2024.
+The annual rate of return on the mid market price on 9 September 2022 of 173.5 pence is 9.87%.
+The Cover Ratio as at 30 June 2022 has been calculated as follows:
+Cover Ratio (Assets / Financial Indebtedness) 2.53 times
+Capital Entitlement, Assets, Financial Indebtedness and Cover Ratio have been determined as set out in the Circular to ZDP Shareholders published by Inland ZDP PLC on 19 July 2018, which is available at:
+http://www.inlandhomesplc.com/investors/inland-zdp/zdp-documents-and-accounts/
+.
+As at 30 June 2022, Inland Homes plc, which has guaranteed the amounts due to ZDP Shareholders, had complied with all its covenants under the Loan Note, Contribution Agreement and related security documentation. ZDPCo has the benefit of first legal charges granted by members of the Inland Homes Group over specific pledged assets and pledged cash. There are no prior charges to any other Inland Group creditors in relation to the pledged assets or pledged cash.
+The book value of the pledged assets is required to be more than 120% of the aggregate accrued amount due to ZDP Shareholders net of any pledged cash.
+The book values used for the cover ratio and security covenant are based on historical cost less any impairment provisions. In practice, as work through the planning process progresses, the open market value of the sites increases above the book value. The uplift is measured on an EPRA basis in the annual and half year accounts, but has not been calculated as at 30 June 2022.
+ZDP Share statistics
+ZDP Share price as at 9 September 2022: 173.5p
+Annual rate or return to maturity: 9.9%
+Hurdle rate to recover ZDP Share price -44.8% per annum
+Hurdle rate to Final Capital Entitlement -40.6% per annum
+These hurdle rates are based on the unaudited book values in the Inland Homes PLC unaudited management accounts as at 30 June 2022.
+On 6 September 2022 Inland Homes PLC announced provisions relating to the poor performance of the construction division (£15.4m for the second half of the financial year). The Cover Ratio is based on the book value of Assets and Financial Indebtedness and reflects any write down of asset values; however it is not impacted by provisions for future trading losses or value enhancements arising from planning consents being obtained. The book value of certain receivables was written down by £4.7 million after 30 June 2022. If this provision had been made before 30 June, the Cover Ratio would have been 2.49 times.
+Enquiries:
+Inland ZDP PLC
+Nishith Malde FCA Tel: 01494 762450
+David Floyd Tel: 01722 781142
+This announcement contains inside information for the purposes of Article 7 of the Market Abuse Regulations (EU) No.596/2014 as retained in UK law (MAR). Upon the publication of this announcement, this information is considered to be in the public domain.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+STRUKOVRUAUKRAR
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">ZDP Share accrued value and asset cover</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">8th May 2018</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">3:23 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Capital Entitlement</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+8 May 2018 15:23
+RNS Number : 4034N
+Inland ZDP PLC
+08 May 2018
+Inland ZDP PLC
+ZDP Share Accrued Value and Asset Cover and financing arrangements.
+8 May 2018
+As at 31 March 2018, each ZDP Share had an accrued Capital Entitlement of 145.02 pence.
+The Cover Ratio and Gearing Ratio as at 31 March 2018 have been calculated as follows:
+Cover Ratio (Assets / Financial Indebtedness) 10.3 times
+Gearing Ratio 9.1 per cent.
+Capital Entitlement, Assets, Financial Indebtedness, Cover Ratio and Gearing Ratio have been determined as set out in the Prospectus published by Inland ZDP PLC on 14 December 2012, which is available at:
+http://www.inlandhomes.co.uk/inland-zdp-plc/
+.
+The figures used to calculate Financial Indebtedness exclude debt which falls due for repayment after 10 October 2019 (being six months after the redemption date for the ZDP Shares). The inclusion of all the relevant tangible assets in the Assets, but the exclusion of most of the Inland Group's borrowings from the Financial Indebtedness is the reason for the high level of the Cover Ratio and the low level of the Gearing Ratio.
+As at 31 March 2018, Inland Homes plc had complied with all its covenants under the Loan Note, Contribution Agreement and related security documentation, save that a charge over a pledged asset was released on 28 March 2018 (due to a transaction relating to the relevant property asset), creating a temporary shortfall as the replacement security, which had been approved by the board, had not been formally registered as at 31 March 2018. The replacement security has subsequently been registered within the time limits set out in the Loan Note. The Board of Inland ZDP PLC is pleased to confirm that Inland Homes plc is currently compliant with all its covenants under the Loan Note, Contribution Agreement and related security documentation.
+As the redemption date of the ZDP shares on 10 April 2019 is now within a year, Inland Homes plc intends to consult major ZDP Shareholders in relation to refinancing options, which include the possibility of a rollover into new ZDP Shares or the deferral of the redemption date of the existing ZDP Shares (with an appropriate increase in the Final Capital Entitlement), certain possible changes to the terms of the Loan Note, Contribution Agreement and related security documentation and an opportunity for those ZDP Shareholders who wish to realise their investment in ZDP Shares to do so.
+Enquiries:
+Inland ZDP PLC
+Nishith Malde FCA Tel: 01494 762450
+This information is provided by RNS
+The company news service from the London Stock Exchange
+END
+MSCLLFFSEFITIIT
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">👥</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Board appointment</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">APPOINTMENT</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">8th May 2018</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">3:16 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Finance Director</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+8 May 2018 15:16
+RNS Number : 4019N
+Inland ZDP PLC
+08 May 2018
+Inland ZDP PLC
+Board appointment
+8 May 2018
+Inland ZDP PLC is pleased to announce the appointment of Gary John Skinner as a director with immediate effect.
+Gary joined Inland Homes as a Managing Director in February 2016 and has been responsible for delivering construction partnerships and joint venture developments, as well as overseeing the Health and Safety standards, HR and Customer Services.
+Disclosures
+Mr Skinner (i) is not a director of any other publicly quoted company, nor has he been a director of any other publicly quoted company at any time in the previous five years; (ii) has no convictions in relation to fraudulent offences; (iii) has not been a director or senior manager (who is relevant to establishing that a company has the appropriate expertise and experience for the management of that company) of any company at the time of any bankruptcy, receivership or liquidation of such company; and (iv) has not received any official public incrimination and/or sanction by any statutory or regulatory authorities (including designated professional bodies) or been disqualified by a court from acting as a director of a company or from acting in the management or conduct of the affairs of a company.
+For further information, please contact:
+Inland ZDP PLC Tel: +44 (0) 1494 762 450
+Stephen Wicks, Chairman
+Nishith Malde, Finance Director
+This information is provided by RNS
+The company news service from the London Stock Exchange
+END
+BOAUWASRWVAVRAR
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #10b98140;
+                    ">4</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #4
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Final Results to 30 Sep 2020</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">POSITIVE RESULTS</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Positive development - monitor for follow-through in share price.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">8th Feb 2021</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Companies Act</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">120%, 10%, 50%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+8 Feb 2021 07:00
+RNS Number : 2310O
+Inland ZDP PLC
+08 February 2021
+Inland ZDP PLC
+8 February 2021
+INLAND ZDP PLC
+AUDITED RESULTS FOR YEAR ENDED 30 SEPTEMBER 2020
+The board of Inland ZDP PLC (the "Company") announces the results for the year ended 30 September 2020 and the publication of its annual report.
+Inland ZDP plc was incorporated on 22 November 2012 and has a capital structure comprising unlisted ordinary shares and zero dividend preference shares ('ZDP shares') listed on the Official List and traded on the London Stock Exchange. The Company's ordinary share capital is wholly owned by Inland Homes 2013 Limited which is a wholly owned subsidiary of Inland Homes plc ('Inland'), which has a principal activity of acquiring residential and mixed-use sites and seeking planning consent for development. Inland develops a number of the plots for private sale and sells consented plots to housebuilders.
+Following the publication of a prospectus on 14 December 2012 and issue of 8,500,000 ZDP shares at 100p per share there has been a series of further placings of new ZDP Shares in successive years resulting in there being 18,101,857 ZDP shares in issue as at 30 September 2020 (30 September 2019: 16,430,790 ZDP shares). 1,671,067 new ZDP shares were issued during the year ended 30 September 2020. The proceeds of the ZDP share issues totaling £2.7m were lent to Inland Homes 2013 Limited for use in future investment opportunities.
+Pursuant to a loan agreement between the Company and Inland, the Company has lent Inland the gross proceeds of its placings and all issue costs were borne by Inland to pursue future opportunities. This loan is on terms requiring its repayment by Inland to the Company on the ZDP shares repayment date when the Company must be wound up. The ZDP repayment date was initially 10 April 2019, but this was extended by five years to 10 April 2024 by the passing of resolutions at general and class meetings on 13 August 2018.
+Key performance indicators
+The key performance indicators used by the board to measure the Company's success are the cover ratio (which is described in detail in the Chairman's statement), the accrued capital entitlement and the price of the ZDP shares.
+30 September 2020
+30
+September
+2019
+Asset value per ZDP share
+167.30p
+159.42p
+Accrued capital entitlement per ZDP Share
+ZDP share price
+166.81p
+156.00p
+159.12p
+161.50p
+The asset value and the accrued capital entitlement will continue to increase as the repayment date approaches. The book value of ZDP Shares in the financial statements is derived from the various issue prices using the effective interest method, whereas the accrued capital entitlement is based on the initial issue price (100p) and its accrual over time to the redemption price and is not affected by the prices of subsequent issues. As at the repayment date, the book value and accrued capital entitlement will be equal to one another.
+Under normal circumstances it is anticipated that the ZDP share price will be higher than the accrued entitlement as it will reflect the fixed nature of the return. The year-end share price had not recovered from the fall in markets in March 2020 caused by COVID-19. However, as the share price recovers from this fall, it is still expected that provided interest rates remain low, there will be a premium on the ZDP shares for as long as the return is higher than is generally available elsewhere. It is unlikely that the share price will exceed the ultimate repayment price of 201.4p which is due on 10 April 2024.
+Objective
+The objective of the company is to make loans to Inland on terms which provide the final capital entitlement due to the holders of the ZDP shares at the repayment date of 10 April 2024.
+Principal risks and uncertainty and risk management
+The Board believes that the principal risk faced by the Company is the credit risk associated with the loan made to Inland. The specific risks faced by Inland are included within its financial statements and comprise: the inability to source, acquire, promote and dispose of land; the increased complexity in the planning process and the adoption of the Community Infrastructure Levy; a severe fall in the housing market in the regions in which the group operates; inability to retain or source high calibre and experienced staff; significant upward changes in interest rates; unexpected contamination being found on a site; changes in legislation; cost overruns, material shortages and construction delays; and the availability of finance for land acquisition. The Directors of the Company are also directors of the ultimate parent company and are therefore in a position to assess the recoverability of amounts due by Inland.
+The Company is also exposed to risks in relation to its financial instruments. Further details of these risks and the way in which they are managed are contained in note 9 of the financial statements.
+CHAIRMAN'S STATEMENT
+The original loan and contribution agreements between the Company and Inland contain certain protections for the Company which are intended to benefit its ZDP shareholders. These include first charges over pledged assets and pledged cash in a charged bank account. The pledged assets (such as property and interests in property development joint ventures) must have a book value of at least 120% of the accrued value of the ZDP shares net of the pledged cash. As at 30 September 2020, the accrued amount due to ZDP shareholders was £30,234,786 (30 June 2019: £26,144,183), the pledged cash was £7,702,396 (30 June 2019: £7,020,000) and the pledged assets had a book value of £32,861,848 (30 June 2019: £38,772,990), thereby satisfying this requirement.
+The loan agreement also contains a covenant relating to asset cover, which is shown below as at 30 September 2020. The definitions of Assets and Financial Indebtedness are set out in the prospectus published in connection with the issue of the ZDP shares which is available at
+http://www.inlandhomesplc.com/investors/inland-zdp/zdp-documents-and-accounts/
+. The definition of Financial Indebtedness excludes indebtedness which falls due more than 6 months after the final ZDP Repayment Date of 10 April 2024.
+Asset cover
+:
+Assets / Financial Indebtedness plus ZDP Final Redemption Liability = 2.2 times cover (30 September 2019: 2.0 times cover).
+The asset cover should be at least 1.8 times, so this covenant, which is tested quarterly, was satisfied at 30 September 2020.
+The board believes that the use of book values is generally conservative, because a substantial proportion of the group's assets are properties for which planning consents are sought. The planning process takes time and any progress towards reaching the stage when building can commence is not reflected in an increase in the book values beyond the costs attributable to the relevant sites, whereas any diminution in value is reflected by way of impairment provisions, such that planning gains are not generally recognised in Inland's financial statements until sales are contracted. If the covenant ratios were to be calculated by reference to the market values of the assets, the cover would be higher and the gearing lower.
+The COVID-19 pandemic affected the Inland Homes plc group in a variety of ways as described in its annual report. The financing arrangements for the group are designed to spread loan and ZDP share maturities over time so that the risk of having to refinance an excessive amount when financial and credit markets are stressed is reduced. The funding comes from several sources, but with compatible terms and security arrangements, reducing the group's reliance on any single lender. Some of the group's financial commitments are at fixed rates and others (mainly revolving credit) are at floating rates of interest. This achieves a balance between deferring the impact of changes in interest rates and providing flexibility to draw down and repay some debt without early repayment penalties. The ZDP Shares benefit from the group's debt policies which mitigate and spread certain financing risks, and represent an important element of the Group's financing structure. ZDP Shareholders' ongoing support for the group is much appreciated by the Board.
+Enquiries:
+Inland ZDP PLC
+Nishith Malde FCA Tel: 01494 762450
+STATEMENT OF COMPREHENSIVE INCOME
+Yearended
+15-month period ended
+30 September 2020
+30 September
+2019
+Continuing operations
+Note
+£000
+£000
+Revenue
+Interest income
+2
+1,537
+1,523
+Total income
+1,537
+1,523
+Expenditure
+Expenses
+3
+-
+-
+Total expenditure
+-
+-
+Profit before finance costs and taxation
+1,537
+1,523
+Finance costs
+4
+(1,537)
+(1,523)
+Profit before tax
+-
+Income tax
+5
+-
+-
+Profit for the year and total comprehensive income
+-
+-
+Earnings per share for profit attributable to the equity holders of the company during the year / period
+6
+0.0p
+0.0p
+STATEMENT OF FINANCIAL POSITION
+30 September 2020
+30
+September
+2019
+Note
+£000
+£000
+Current assets
+Intercompany receivable
+9,11
+30,285
+26,194
+30,285
+26,194
+Non-current liabilities
+Zero Dividend Preference Shares
+7
+(30,235)
+(26,144)
+(30,235)
+(26,144)
+Net assets
+50
+50
+Equity
+Ordinary share capital
+8
+50
+50
+Shareholders' funds
+50
+50
+STATEMENT OF CHANGES IN EQUITY
+Share
+capital
+Total
+£000
+£000
+At 30 June 2018
+50
+50
+Result and total comprehensive income for the period
+-
+-
+At 30 September 2019
+50
+50
+Result and total comprehensive income for the year
+-
+-
+At 30 September 2020
+50
+50
+STATEMENT OF CASHFLOWS
+Year
+ended
+15-month period ended
+30 September 2020
+30 September 2019
+£000
+£000
+Cash flow from operating activities
+Profit for the year / period before tax
+-
+-
+Adjustments for:
+- interest expense
+1,537
+1,523
+- interest and similar income
+(1,537)
+(1,523)
+Net cash flow from operating activities
+-
+-
+Net increase in cash and cash equivalents
+-
+-
+Net cash and cash equivalents at beginning of the year / period
+-
+-
+Net cash and cash equivalents at the end of the year / period
+-
+-
+The accompanying accounting policies and notes form and integral part of these financial statements.
+NOTES TO THE FINANCIAL STATEMENTS
+1 Accounting policies
+The principal accounting policies adopted in the preparation of the financial statements are set out below.
+1.1 Basis of preparation
+The financial information has been prepared in accordance with the Companies Act 2006 and International Accounting Standards in conformity with the requirements of the Companies Act 2006. The financial information comprises the Statement of Financial Position as at 30 September 2020 and, for the year ended 30 September 2020, the related Statement of Comprehensive Income, Statement of Changes in Equity, Statement of Cashflows and related notes hereinafter referred to as 'financial information'. The principal accounting policies adopted by the Company are set out below.
+The financial statements are prepared in sterling, which is the functional currency of the Company. Monetary amounts in these financial statements are rounded to the nearest £'000.
+These accounting policies comply with each accounting standard that is mandatory for accounting year ended 30 September 2020.
+At the date of approval of these financial statements, certain new standards, amendments and interpretations to existing standards have been published by the IASB but are not yet effective and have not been adopted early by the Company.
+Management anticipates that all of the relevant pronouncements will be adopted in the Company's accounting policies for the first period beginning after the effective date of the pronouncement. Information on new standards, amendments and interpretations that are expected to be relevant to the Company's financial statements is provided below.
+Certain other new standards and interpretations have been issued but are not expected to have a material impact on the Company's financial statements.
+The Company's business activities principal risks and uncertainty, and risk management are set out in the Strategic Report on pages 1 and 2. The Company is reliant on the ability of Inland Homes Plc to continue as a going concern as detailed in the strategic report. Further disclosures regarding the Company's financial instruments and exposure to credit and liquidity risk are set out in note 9 of the Financial Statements.
+Given the dependency on Inland Homes Plc, details regarding their going concern assumptions are given below.
+Standards in issue but not yet effective
+• Amendments to IFRS 9: Financial Instruments
+• Annual Improvements to IFRSs (2015-2017 Cycle)
+• Amendments to References to the Conceptual Framework in IFRS Standards*
+• IFRS 3 Definition of a Business (Amendments to IFRS 3);
+• IAS 1 and IAS 8 Definition of Material (Amendments to IAS 1 and IAS 8);
+• IFRS 9, IAS 38 and IFRS 7 Interest Rate Benchmark Reform (Amendments to IFRS 9, IAS 38 and IFRS 7);
+• Annual Improvements to IFRSs (2018-2020 Cycle)*; and
+• IFRS 9, IAS 39, IFRS 7, IFRS 4 and IFRS 16 Interest Rate Benchmark Return Reform - Phase 2 (Amendments to IFRS 9, IAS 39, IFRS 7 and IFRS 16)*
+*Standards and amendments not yet endorsed by the EU.
+None of the standards above are expected to have an impact on the Company's financial statements.
+Going concern
+The Directors have reviewed the performance of the Group to which the Company is a member of for the current period and forecasts for the period to 28 February 2022. The going concern of the Company is dependent on that of the Group due to the use of intercompany debt across the Group to support the consolidated operations and therefore Going Concern has been considered at Group level.
+The Directors have reviewed the performance of the Group and parent Company for the current year and forecasts for the period to 28 February 2022.
+The Directors are required to assess the Group's and parent Company's abilities to continue as a going concern for a period of at least the next twelve months. Given the significant adverse impact of the COVID-19 crisis on the economy and the activities of the Group, a thorough review of the going concern assumption has been undertaken in preparing the Group and parent Company financial statements.
+The Group's and parent Company's going concern assessment considers the Group's and parent Company's principal risks and is dependent on several factors, including its financial performance, continued access to borrowing facilities and the ability to operate within their respective financial covenants.
+In response to the global COVID-19 pandemic, which quickly emerged in March 2020, the Group adopted stringent cash management procedures to conserve resources, a range of other measures undertaken to reduce the cost base and raised new equity of £9.4m, net of expenses, to strengthen the balance sheet and provide additional liquidity during this uncertain period.
+In preparing the forecasts the Directors have considered the continued adoption of stringent cash management procedures, market disruptions already brought about by COVID-19, the possibility of future disruption in the going concern period which could potentially be caused by COVID-19 and other risks and uncertainties, including credit risk and liquidity risk, the present and possible future economic climate, the current and possible future demand for land with planning consent and the state of the housing market in the geographic areas where the Group operates. The key risks faced by the Group are set out on pages 36 to 38 of the Group's annual report.
+At the date of signing of the Group and parent Company's accounts, the continued and prolonged impact of COVID-19 may result in further uncertainties that are not apparent at present. There are contractual and anticipated cash inflows expected which ensure that the Group and parent Company have sufficient working capital for its requirements.
+At the date of signing of this report, the Group has a total forward order book of £53.5m for private homes reserved or contracted, including two contracted block sales of 109 units and a contracted sale of a hotel and £73.9m for partnership housing contract income. In addition, the Group has contracted to sell a parcel of land for £14.0m (including payments for infrastructure works) subject to certain conditions being fulfilled.
+The Group also has contracted annualised residential and commercial rental income of £2.3m.
+As also disclosed in Note 42 of the Group's Annual Report and Accounts, the Group extended the following facilities during January 2021:
+• A revolving credit facility for £15.4m to 31 December 2021.
+• Two loan facilities amounting to £11.0m to 31 December 2021.
+• Three bank loan facilities amounting to £41.3m to 30 April 2022.
+The Group has three facilities totalling £26.4m falling due for repayment on 31 December 2021. The Directors are in advanced discussions with the provider of the revolving credit facility to renew the facility for a further five-year period. The Directors have positive relationships and have had constructive discussions with all their existing lenders and a number of other potential lenders; however, they do not as yet have a binding commitment to extend or refinance these facilities beyond 31 December 2021.
+The Group has also negotiated a relaxation to the interest cover covenant test under the revolving credit facility with HSBC in respect of the December 2020 and March 2021 periods as proactive defence against any possible severe but plausible downside scenarios.
+The Directors have performed detailed sensitivity analyses to test the Group's future liquidity and banking covenant compliance based on several scenarios. The Group has forecast land sales in the next twelve months in the normal course of its business.
+As part of their Going Concern review, the Directors have considered the impact of a delay of six months on each of these sales in isolation. They have also considered, again in isolation, a price reduction of 10% on all residential unit sales that have not been contracted and are forecast to complete after 31 March 2021. Finally, the Group considered a delay in residential unit sales by three months. None of these scenarios leads to an issue with either the Group's debt covenants or its liquidity.
+The Directors have also considered the following severe, but plausible downside scenario:
+• Only residential sales that have exchanged or reserved complete between now and 31 March. After 31 March through to 28 February 2022 legal completions of residential units continue, but at a 50% reduction in volume and a 10% reduction in sales prices
+• No land sales until the end of May 2021, other than a small scheduled sale where negotiations with the purchaser are in progress at the date of this report.
+Additionally, the Directors considered an even more severe scenario which mirrors the above but assumes no residential unit sales for a period of three months from 1 April 2021 before returning to the assumptions in the Group's base case.
+The Board's modelling choice of cessation of activity period for the severe, but plausible downside scenario is based on the market experiences of 2020, when the national housebuilders stopped purchasing land for a short period during national lockdown.
+In making their assessment of the sensitivity tested above the Directors have considered the Stamp Duty Land Tax holiday which expires on 31 March 2021. The Directors are therefore confident that residential unit sales reserved or exchanged for completions due in the months of February 2021 and March 2021 are secure. The Directors have assumed that the current Stamp Duty Land Tax holiday window is not extended by the UK Government after 31 March 2021 in preparing their projections.
+Under both severe, but plausible scenarios, the Directors would need to make strategic choices in the near term to delay both planning application activity, construction activity and identified but non-contractual purchases however there is no need for any further liquidity to be introduced into the Group or any need for any relaxation of the Group's financial covenants with its lenders. Should the cessation of the land and planning activity and housebuilding activity discussed above, extend beyond the periods referred to above, then the Group may have to rely on the sale of property assets at lower than open market values to generate liquidity for the Group and parent Company to meet their obligations as they fall contractually due. Again, there would be no need for any relaxation of the Group's financial covenants with its lenders under such circumstances.
+Additionally, the Directors also have the option to access the capital and debt markets to raise further liquidity as may be needed.
+The Strategy outlined above details our approach to the current situation but, the Directors are mindful that no one can forecast exactly how the global COVID-19 pandemic will play out and how this may affect the Group, industry and the wider economy for the foreseeable future. A significant worsening of the situation and a return to a strict national lockdown for a prolonged period longer than the severe, but plausible downside scenarios would have implications for the Group as it would for many other businesses. Such a situation would then require the Directors to re-examine the Group's financial position at the time and if necessary, report any significant adverse changes.
+At the time of approving these financial statements and after making appropriate enquiries, the Directors have a reasonable expectation that the Group and parent Company have adequate resources to continue in operational existence for the foreseeable future. The Directors therefore consider it appropriate to prepare the financial statements on the Going Concern basis.
+1.2 Income
+Income is recognised in revenue using the effective interest method on an accruals basis.
+1.3 Expenses
+All expenses are borne by the Company's parent Company, Inland Homes 2013 Limited.
+1.4 Zero dividend preference shares
+Zero dividend preference shares are recognised as liabilities in the Statement of Financial Position in accordance with IFRS 9: Financial Instruments. After initial recognition, these liabilities are measured at amortised cost, which represents the initial proceeds of the issuance plus the accrued interest based on the effective interest method to 30 September 2020.
+With the modification of the zero dividend preference shares, which occurred during the prior period, the revised terms were considered to constitute a substantial modification.
+1.5 Intercompany receivable
+Intercompany receivables are recognised as assets in the Statement of Financial Position in accordance with IFRS 9: Financial Instruments. After initial recognition they are measured at amortised cost which represents the initial loan plus the accrued interest receivable at the reporting date. Directors have assessed intercompany receivables to meet the requirements under the business model test and SPPI test. The objective of the business model is to hold financial assets to collect their contractual cash flows. The cash flows are solely payments of principal and interest on the principal amounts outstanding.
+The Company applies the general approach to providing for expected credit losses prescribed by IFRS 9 for intercompany receivables. The expected credit loss provision in the current year and prior period have been assessed as £nil.
+Pursuant to a loan agreement between the Company and Inland Homes plc, the Company has lent Inland Homes plc the gross proceeds of its placings. This loan is on terms requiring its repayment by Inland Homes plc to the Company on the ZDP shares repayment date when the company must be wound up however the loan made is repayable to Inland ZDP plc on demand and therefore classified as a current asset.
+1.6 Finance costs
+Finance costs are calculated as the difference between the proceeds on the issue of zero dividend preference shares and the final liability and are charged as finance costs over the term of the life of these shares using the effective interest method.
+1.7 Finance income
+Finance income is calculated on the amount lent to Inland Homes 2013 Limited and represents the difference between the amounts advanced (which was equal to the proceeds on the issue of zero dividend preference shares) and the final amounts due (which is equal to the liability payable on redemption of the zero dividend preference shares). It is recognised as revenue as interest income over the term of the zero dividend preference shares using the effective interest method.
+1.8 Taxation
+The charge for taxation is based on the taxable profits for the year. Taxable profit differs from profit before tax as reported in the Statement of Comprehensive Income because it excludes items of income or expenses that are never taxable or deductible. The Company's liability for tax is calculated using rates that have been enacted or substantively enacted by the reporting date.
+1.9 Equity
+An equity instrument is a contract which evidences a residual interest in the assets after deducting all liabilities. Equity comprises 'Share capital', which represents the nominal value of equity shares.
+1.10 Key estimates and assumptions
+Estimates and judgements used in preparing the financial statements are continually evaluated and are based on historical experience and other factors, including expectations of future events that are believed reasonable. The resulting estimates will, by definition, seldom equal the related actual results.
+Judgement is required in assessing the recoverability of the intercompany receivable. Recoverability is underpinned by the profitability of Inland's development and strategic land sites
+1.11 Segment information
+In accordance with IFRS 8, information is disclosed to enable the users of financial statements to evaluate the nature and financial effects of the business activities in which the Company engages. The board has identified that the sole operating segment is to provide the final capital entitlement of the Company's ZDP shares to the holders of the ZDP shares at the final repayment date of 10 April 2024. Consequently, all information presented in these financial statements relate to that segment.
+2 Interest Income
+Yearended
+15-month period ended
+30 September 2020
+30 September 2019
+£000
+£000
+Interest income from group undertakings
+1,537
+1,523
+3 Expenses
+Administration expenses of £nil were suffered during the year (period ended 30 September 2019: £nil). All administration expenses during the year, including auditor's remuneration of £25,000 (2019 £20,000), were borne by the ultimate parent Company, Inland Homes plc. The directors received no remuneration for their services in relation to Inland ZDP PLC. Further disclosures with regards to the auditors' remuneration can be found in the group financial statements.
+There were no employees other than directors in the current year or the prior year.
+4 Finance costs
+Yearended
+15-month period ended
+30 September 2020
+30 September 2019
+£000
+£000
+ZDP share interest costs
+1,537
+1,523
+5 Taxation
+Yearended
+15-month period ended
+30 September 2020
+30 September 2019
+£000
+£000
+Profit before tax
+-
+-
+Profit on ordinary activities multiplied by the standard
+rate of corporation tax in the UK of 19.00% (2019: 19.00%)
+ZDP share interest costs disallowed
+Group relief
+-
+292
+(292)
+-
+290
+(290)
+Tax charge
+-
+-
+6 Earnings per ordinary share
+The calculation of earnings per share is based on a profit after tax figure for the year of £nil (period ended 30 September 2019: £nil) and the weighted average number of 50,000 ordinary shares in issue during the year. The basic and diluted earnings per share are the same.
+7 Zero dividend preference shares
+At 30 September
+2020
+At 30 September
+2020
+At 30
+September
+2019
+At 30
+September
+2019
+No.
+£000
+No.
+£000
+ZDP shares
+Opening ZDP shares
+16,430,790
+26,144
+12,444,200
+18,447
+Issued during the year/period
+1,671,067
+2,554
+3,986,590
+6,174
+ZDP share interest cost
+-
+1,537
+-
+1,523
+18,101,857
+30,235
+16,430,790
+26,144
+8
+Ordinary share capital
+Authorised/called up/allotted/fully paid
+At 30 September
+2020
+At 30 September
+2020
+At 30 September
+2019
+At 30 September
+2019
+No.
+£000
+No.
+£000
+Opening ordinary shares
+50,000
+50
+50,000
+50
+Issued during the year / period
+-
+-
+-
+-
+50,000 issued ordinary shares of £1 each
+50,000
+50
+50,000
+50
+All ordinary shares are owned by the Company's parent Company, Inland Homes 2013 Limited.
+Each ordinary share is entitled to one vote at a general meeting.
+In addition to receiving any income distributed by way of dividend, the ordinary shareholders will be entitled to all surplus assets after payment of all debts, including the ZDP shares.
+9 Financial instruments
+The Company's financial instruments comprise fixed interest creditors classified as financial liabilities at amortised cost and financial assets classified as amortised cost.
+The main risks arising from the Company's financial instruments are liquidity risk and funding risk and credit risk.
+Liquidity and funding risk
+This is the risk that the Company will encounter difficulty in meeting obligations associated with financial liabilities.
+Liquidity risk is considered to be significant as the Company is reliant upon repayment from its ultimate parent Company. The parent Company manages liquidity risk by maintaining sufficient cash balances and ensuring availability of funding through an adequate amount of credit facilities. The parent Company aims to maintain flexibility in funding by keeping credit lines available.
+Contractual maturity analysis for financial liabilities
+At 30 September 2020
+At 30 September 2019
+£000
+£000
+ZDP shares final redemption figure
+ZDP shares final redemption figure
+Less than one year
+-
+-
+More than one year and less than five years
+36,457
+33,092
+Over five years
+-
+-
+36,457
+33,092
+Credit risk
+This is the risk that a counterparty to a financial instrument will fail to discharge an obligation or commitment that it has entered with the Company. Credit risk is managed by way of a security over the loan. The security relates to pledged tangible assets (such as property and interests in property development joint ventures) and pledged cash in a charged bank account.
+At the reporting date, the Company's financial assets exposed to credit risk amounted to the following:
+Amortised Cost
+At 30 September 2020
+At 30 September 2019
+£000
+£000
+Amounts due from ultimate parent company
+30,285
+26,194
+The directors consider the carrying amounts to be a reasonable approximation of fair value.
+The Company applies the general approach to providing for expected credit losses prescribed by IFRS 9 for amounts due from ultimate parent Company. There were no expected credit loss provisions in the current year and prior period. The security that is pledged is more than sufficient to cover the amounts due. The Directors have assessed a possible downturn in the value of the pledged assets by 10% and following that assessment no credit loss, as defined by IFRS 9, would arise.
+The following table presents the fair value of financial liabilities that are carried at amortised cost in the Statement of Financial Position in accordance with the fair value hierarchy. This hierarchy groups financial liabilities into three levels based on the significance of inputs used in measuring the fair value of the financial liabilities. The fair value hierarchy has the following levels:
+·
+Level 1: quoted prices (unadjusted) in active markets for identical liabilities;
+·
+Level 2: inputs other than quoted prices included within Level 1 that are observable for the liability, either directly (i.e., as prices) or indirectly (i.e. derived from prices); and
+·
+Level 3: inputs for the liability that are not based on observable market data (unobservable inputs).
+The level within which the financial liability is classified is determined based on the lowest level of significant input to the fair value measurement.
+If the financial liabilities were measured at fair value in the Group Statement of Financial Position, they would be grouped into the fair value hierarchy as follows:
+The level within which the financial liability is classified is determined based on the lowest level of significant input to the fair value measurement.
+Level 1
+£000
+Level 2
+£000
+Level 3
+£000
+Total
+£000
+Net fair value at 1 July 2018
+26,536
+-
+-
+26,536
+Additions
+2,699
+-
+-
+2,699
+Fair value movements during the year
+(996)
+-
+-
+(996)
+Net fair value at 30 September 2020
+28,239
+-
+-
+28,239
+Level 1
+£000
+Level 2
+£000
+Level 3
+£000
+Total
+£000
+Net fair value at 1 October 2019
+18,878
+-
+-
+18,878
+Additions
+6,174
+-
+-
+6,174
+Fair value movements during the year
+1,484
+-
+-
+1,484
+Net fair value at 30 September 2019
+26,536
+-
+-
+26,536
+The ZDP shares are carried at their accrued value of 166.81p per share (30 September 2019: 159.12p) however their closing price on the main market of the London Stock Exchange on 30 September 2020 was 156.00p (30 September 2019: 161.50p).
+In August 2018, the ZDP shareholders agreed to rollover and extend the facility and will now be repaid on or before 10 April 2024. This was accounted for as a substantial modification due to the significant extension in the term of the debt, the change to the covenants and the substantial change in interest rate. This resulted in no gain or loss being recognised in the Statement of Comprehensive Income.
+10
+Capital management policies and procedures
+The Company's objectives when managing capital are:
+·
+to safeguard its ability to continue as a going concern; and
+·
+to ensure sufficient liquid resources are available to meet the funding requirement of its ZDP shareholders.
+The directors consider that the capital management policies and procedures of the ultimate parent company will enable the Company to meet its objectives. Further details of the policies and procedures of Inland Homes plc can be found within its financial statements and include a target capital to overall financing ratio of over 40%.
+The capital of the Company comprises 1,860,186 (ordinary shares and ZDP preference shares) and the nominal value of these amounted to £50,000 and £1,810,186 respectively.
+11 Related party transactions
+The loan to Inland Homes plc is repayable along with all accrued interest, together with a contribution for such amount that will result in the Company having sufficient cash funds to satisfy the then current, or as the case may be, final capital entitlement of the ZDP shares on the ZDP repayment date (see the Strategic Report on page 1) or immediately upon an event of default. At 30 September 2020, the total amount due from the ultimate parent Company was £30,285,000 (30 September 2019: £26,194,000).
+12 Ultimate controlling party
+The directors regard Inland Homes Plc as the ultimate parent and controlling party.
+13 Holding Company
+The Company is a wholly owned subsidiary of Inland Homes 2013 Limited which is a wholly owned subsidiary of Inland Homes plc, a quoted Company whose shares are traded on the AIM market of the London Stock Exchange. Copies of its accounts for the year ended 30 September 2020 will shortly be available to view on Inland's website (
+www.inlandhomesplc.com
+)
+14 Responsibility and audit
+The Directors are the persons responsible for the full annual report and financial statements.
+Each of the Directors confirms that to the best of his knowledge:
+·
+the financial statements, prepared in accordance with IFRS as adopted by the European Union, give a true and fair view of the assets, liabilities, financial position and profit or loss of the Company; and
+·
+the Strategic Report and the Report of the Directors includes a fair review of the development and performance of the business and the position of the Company together with a description of the principal risks and uncertainties it faces.
+The statutory financial statements have been audited by BDO LLP and their report was unqualified.
+15 Publication of non-statutory accounts
+The financial information for the year ended 30 September 2020 and the fifteen -month period ended 30 September 2019 in this announcement does not constitute the company's statutory accounts for those years.
+Statutory accounts for the fifteen-month period ended 30 September 2019 have been delivered to the Registrar of Companies. The statutory accounts for the year ended 30 September 2020 will be delivered to the registrar of companies in due course.
+The auditors' reports on the accounts for 30 September 2020 and 30 September 2019 were unqualified, did not draw attention to any matters by way of emphasis, and did not contain a statement under 498(2) or 498(3) of the Companies Act 2006.
+A copy of the annual report will shortly be submitted to the National Storage Mechanism and will be available for inspection at
+https://data.fca.org.uk/#/nsm/nationalstoragemechanism
+and at the Company's website: http://www.inlandhomesplc.com/investors/inland-zdp/zdp-documents-and-accounts/
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+FR DKABKDBKDPBK
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">5</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #5
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Issue of 1,671,067 new ZDP Shares</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7th Nov 2019</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">11:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Inland Group</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+7 Nov 2019 11:00
+RNS Number : 6415S
+Inland ZDP PLC
+07 November 2019
+THIS ANNOUNCEMENT IS FOR INFORMATION PURPOSES ONLY AND SHALL NOT CONSTITUTE AN OFFER TO SELL OR ISSUE OR THE SOLICITATION OF AN OFFER TO BUY, SUBSCRIBE OR ACQUIRE ANY TRANSFERABLE SECURITIES NOR SHALL IT FORM THE BASIS OF ANY CONTRACT FOR THE SALE OF ANY INTEREST IN A TRANSFERABLE SECURITY OR A SOLICITATION, INDUCEMENT, ADVICE OR RECOMMENDATION TO EFFECT ANY TRANSACTION OF ANY KIND WHATSOEVER. IT IS NOT AN OFFER TO BUY, SUBSCRIBE OR ACQUIRE ANY SECURITIES IN ANY JURISDICTION IN WHICH ANY SUCH OFFER OR SOLICITATION WOULD BE UNLAWFUL. THIS ANNOUNCEMENT AND THE INFORMATION CONTAINED HEREIN IS RESTRICTED AND IS NOT FOR RELEASE, PUBLICATION OR DISTRIBUTION, IN WHOLE OR IN PART, DIRECTLY OR INDIRECTLY, IN OR INTO THE UNITED STATES OF AMERICA, AUSTRALIA, CANADA, JAPAN, THE REPUBLIC OF SOUTH AFRICA OR ANY OTHER JURISDICTION IN WHICH SUCH RELEASE, PUBLICATION OR DISTRIBUTION WOULD BE UNLAWFUL.
+Press release
+Inland ZDP PLC
+Issue of 1,671,067 new ZDP Shares
+For release on 7 November 2019
+Issue of ZDP Shares and use of proceeds
+The Board of Inland ZDP PLC ("
+ZDPCo
+" or the "
+Company
+") is pleased to announce the issue of 1,671,067 new zero dividend preference shares of 10 pence each ("
+ZDP Shares
+") at a price of 161.5 pence each ("
+Placing Price
+"), subject to the admission of the ZDP Shares to listing on the Official List (by way of a standard listing under the Listing Rules) and to trading on London Stock Exchange plc's main market, for which applications have been made (the "
+Placing
+"). Dealings in the ZDP Shares are expected to commence at 8.00 a.m. on 12 November 2019 ("
+Admission
+").
+The terms and conditions of the Placing are set out in the Appendix to this announcement.
+The gross proceeds of the Placing are up to £2.7 million which ZDPCo will lend to its ultimate holding company, Inland Homes PLC ("
+Inland Homes
+"), pursuant to an interest-free secured loan note to be entered into between ZDPCo and Inland Homes on or shortly after Admission ("
+New Loan Note
+"). The New Loan Note will be on the same terms as the loan note entered into between ZDPCo and Inland Homes on 20 December 2012 as amended on 13 August 2018.
+Inland Homes will pay the costs of the Placing (estimated to be approximately £73,475) out of its own resources and will apply the proceeds of the Placing to invest in inventories, property development joint ventures or settle liabilities to vendors of development sites.
+Rights of ZDP Shares
+A ZDP Share is not an equity share and does not entitle the holder to any dividends, but it offers the holder a capital payment on a fixed date at a higher price than the initial subscription price, giving the holder a fixed return. The amount due to holders of ZDP Shares ("
+ZDP Shareholders
+"), which accrues over time, is accounted for as a liability rather than as share capital. ZDP Shareholders will receive no dividends, but are entitled to receive 201.4 pence per ZDP Share on 10 April 2024, when ZDPCo will be wound up in accordance with the terms of the ZDP Shares and the articles of association of the Company. This equates to a gross redemption yield on the 161.5p Placing Price of 5.1 per cent. per annum.
+The new ZDP Shares will be identical in all respects to the zero dividend preference shares of 10 pence each of ZDPCo in issue at the date of this announcement ("
+Existing ZDP Shares
+") and, therefore, will benefit from the same security arrangements as described in the
+prospectus published by ZDPCo on 14 December 2012 (the "
+Prospectus
+") which were amended as described in the circular published by the Company on 19 July 2018, which are both available for download at
+http://www.inlandhomes.co.uk/inland-zdp-plc
+.
+In summary, these security arrangements require that Inland Homes places the gross proceeds of the Placing in the Secured Account as Pledged Cash with first priority security over that account granted to ZDPCo. Amounts may be withdrawn by Inland Homes from the Secured Account to fund the business, and reduce the debt, of the Inland Group subject to first ranking security over Pledged Assets being granted in favour of ZDPCo with sufficient value to satisfy 120 per cent. of the accrued capital entitlement of the ZDP Shares then in issue net of Pledged Cash.
+Key information about the new ZDP Shares:
+Expected admission date (the "
+Settlement Date
+")
+8.00 a.m. on 12 November
+ZDP Final Payment Date
+10 April 2024
+Issue price per ZDP Share
+161.5 pence
+Final Capital Entitlement per ZDP Share
+201.4 pence
+Redemption Yield at the Placing Price
+5.1 per cent. per annum
+Key information about the total ZDP shares following the Placing:
+Total number of ZDP Shares in issue
+18,101,857
+Initial Cover (IFRS book values)
+2.0 times
+Initial Cover (with EPRA revaluation adjustments)
+2.6 times
+Hurdle rate to receive the Final Capital Entitlement (IFRS)
+-14.1 per cent. per annum
+Hurdle rate to receive the Placing Price (IFRS)
+-15.4 per cent. per annum
+ISIN
+GB00B99R1Q79
+SEDOL Code
+B99R1Q7
+Ticker
+INLZ
+The above Cover Ratio and Hurdle rates have been derived from the interim accounts of Inland Homes PLC as at 31 December 2018, calculated on the basis set out in the Prospectus, but adjusted further to reflect the increased number of ZDP Shares in issue following the Placing and the investment of the proceeds of the Placing in the Inland Group's business.
+Capitalised words in this announcement and which are not otherwise defined in this announcement have the same meanings as in the Prospectus unless the context otherwise requires.
+Further information:
+For further information please contact:
+Inland Homes PLC
+Stephen Wicks, Chief Executive
+Nishith Malde, Finance Director
+Gary Skinner, Managing Director
+Tel: +44 (0) 1494 762450
+www.inlandhomes.co.uk
+Inland ZDP Ticker: INLZ
+EGR Broking Ltd
+Adviser/Joint Broker to ZDPCo
+David Floyd
+Jonathan Hall
+Tel: +44 (0)203 697 9496
+N+1 Singer Advisory LLP
+Joint broker to ZDPCo
+Sales:
+Paul Glover
+Tel: +44 (0) 20 7496 3073
+Editor's Note:
+Inland Homes
+identifies land in the South of England where it considers it to hold excellent potential for residential and mixed use development including commercial space. It then seeks to enhance its land value by obtaining planning permission before selling consented land onto housebuilders or building completed homes.
+NO REPRESENTATION OR WARRANTY, EXPRESS OR IMPLIED, IS OR WILL BE MADE AS TO, OR IN RELATION TO, AND NO RESPONSIBILITY OR LIABILITY IS OR WILL BE ACCEPTED BY INLAND HOMES OR ZDPCO OR BY ANY OF THEIR RESPECTIVE AFFILIATES OR AGENTS AS TO, OR IN RELATION TO, THE ACCURACY OR COMPLETENESS OF THIS ANNOUNCEMENT OR ANY OTHER WRITTEN OR ORAL INFORMATION MADE AVAILABLE TO OR PUBLICLY AVAILABLE TO ANY INTERESTED PARTY OR ITS ADVISERS, AND ANY LIABILITY THEREFORE IS EXPRESSLY DISCLAIMED.
+ALL INVESTMENTS ARE SUBJECT TO RISK. PAST PERFORMANCE IS NO GUARANTEE OF FUTURE RETURNS. THE VALUE OF INVESTMENTS MAY FLUCTUATE. RESULTS ACHIEVED IN THE PAST ARE NO GUARANTEE OF FUTURE RESULTS. THIS DOCUMENT IS NOT INTENDED TO CONSTITUTE LEGAL, TAX OR ACCOUNTING ADVICE OR INVESTMENT RECOMMENDATIONS. PROSPECTIVE INVESTORS ARE ADVISED TO SEEK EXPERT LEGAL, FINANCIAL, TAX AND OTHER PROFESSIONAL ADVICE BEFORE MAKING ANY INVESTMENT DECISION.
+APPENDIX
+TERMS AND CONDITIONS OF THE PLACING
+A placee ("
+Placee
+") agrees to subscribe for those ZDP Shares allocated to it by N+1 Singer Advisory LLP ("
+N+1 Singer
+") and EGR Broking Limited ("
+EGR
+") (together the "
+Joint Brokers
+") at the Placing Price, subject to and conditional on, amongst other things the terms and conditions set out below, in the placing letter ("
+Placing Letter
+") and the form of confirmation accompanying the Placing Letter ("
+Form of Confirmation
+").
+1.
+PAYMENT FOR ZDP SHARES
+1.1 Each Placee must pay the Placing Price for the ZDP Shares issued to the Placee in the manner and by the time directed by N+1 Singer. If any Placee fails to pay the Placing Price as so directed and/or by the time required, the relevant Placee's application for ZDP Shares may, at the discretion of the Joint Brokers, either be rejected or accepted and, in the latter case, paragraph 1.2 of these terms and conditions shall apply.
+1.2 Each Placee is deemed to agree that if it does not comply with its obligation to pay the Placing Price for the ZDP Shares allocated to it in accordance with paragraph 1.1 of these terms and conditions and N+1 Singer elects to accept that Placee's application, the relevant Placee shall be deemed hereby to have appointed N+1 Singer or any nominee of N+1 Singer as its agent to use its reasonable endeavours to sell (in one or more transactions) any or all of the ZDP Shares allocated to the Placee in respect of which payment shall not have been made as directed, and to indemnify N+1 Singer and its affiliates on demand in respect of any liability for any costs or stamp duty reserve tax or any other liability whatsoever arising in respect of any such sale or sales. A sale of all or any of such ZDP Shares shall not release the relevant Placee from the obligation to make such payment for relevant ZDP Shares to the extent that N+1 Singer or its nominee has failed to sell such ZDP Shares at a consideration which, after deduction of the expenses of such sale and payment of stamp duty and/or stamp duty reserve tax as aforementioned, exceeds the Placing Price.
+2 REPRESENTATIONS AND WARRANTIES
+2.1 By agreeing to subscribe for ZDP Shares under the Placing, each Placee which enters into a Placing Commitment to subscribe for ZDP Shares will (for itself and any person(s) procured by it to subscribe for ZDP Shares and any nominee(s) for any such person(s)) be deemed to represent, warrant and acknowledge to each of the Company, Inland Homes, Link Asset Services (the "
+Registrars
+") and the Joint Brokers that:
+2.1.1 in agreeing to subscribe for ZDP Shares under the Placing, it is relying solely on this announcement and the Placing Letter and not on any other information given, or representation or statement made at any time, by any person concerning the Company, Inland Homes or the Placing. It agrees that none of the Company, Inland Homes, the Joint Brokers or the Registrars, nor any of their respective officers, agents, or employees, will have any liability for any other information or representation. It irrevocably and unconditionally waives any rights it may have in respect of any other information or representation;
+2.1.2 if the laws of any territory or jurisdiction outside England and Wales are applicable to its agreement to subscribe for ZDP Shares under the Placing, it warrants that it has complied with all such laws, obtained all governmental and other consents which may be required, complied with all requisite formalities and paid any issue, transfer or other taxes due in connection with its application in any territory and that it has not taken any action or omitted to take any action which will result in the Company, Inland Homes, the Joint Brokers or the Registrars or any of their respective officers, agents or employees acting in breach of the regulatory or legal requirements, directly or indirectly, of any territory or jurisdiction outside the United Kingdom in connection with the Placing;
+2.1.3 it has carefully read and understands this announcement in its entirety and acknowledges that it is acquiring ZDP Shares on the terms and subject to the conditions set out herein and the articles of association of the Company (the "
+Articles
+") and agrees that in accepting a participation in the Placing it has had access to all information it believes necessary or appropriate in connection with its decision to subscribe for the ZDP Shares;
+2.1.4 it has not relied and will not rely on the Joint Brokers or any person affiliated with the Joint Brokers in connection with any investigation of the accuracy of any information contained in this announcement (or any other document/announcement) issued by the Company (or Inland Homes) prior to the Settlement Date;
+2.1.5 the content of this announcement and any other document/announcement published by the Company (or Inland Homes) prior to the Settlement Date is exclusively the responsibility of the Company (or where applicable, Inland Homes) and its or their respective directors, and neither the Joint Brokers nor any person acting on its behalf nor any of its affiliates are responsible for or shall have any liability for any information, representation or statement contained herein or elsewhere issued or published by the Company (or Inland Homes) prior to the Settlement Date or any information published or issued by or on behalf of the Company or Inland Homes, and will not be liable for any decision by a Placee to participate in the Placing based on any information, representation or statement contained herein or in any other document/announcement;
+2.1.6 it acknowledges that no person is authorised in connection with the Placing to give any information or make any representation other than as contained herein prior to the Settlement Date and, if given or made, any information or representation must not be relied upon as having been authorised by the Company, Inland Homes, the Joint Brokers or the Registrars;
+2.1.7 it is not applying as, nor is it applying as nominee or agent for, a person who is or may be liable to notify and account for tax under the Stamp Duty Reserve Tax Regulations 1986 at any of the increased rates referred to in section 67, 70, 93 or 96 of the Finance Act 1986 (depositary receipts and clearance services);
+2.1.8 if it is within the United Kingdom, it is a person who falls within Articles 19(5) or 49(a) to (d) of the Financial Services and Markets Act 2000 (Financial Promotion) Order 2005 or it is a person to whom the ZDP Shares may lawfully be offered and is a person who is a professional client or an eligible counterparty within the meaning of Chapter 3 of the FCA's Conduct of Business Sourcebook or, if it is receiving the offer in circumstances under which the laws or regulations of a jurisdiction other than the United Kingdom would apply, it is a person to whom the ZDP Shares may be lawfully offered under that other jurisdiction's laws and regulations;
+2.1.9 if it is a resident in the European Economic Area ("
+EEA
+") (other than the United Kingdom): (a) it is a "qualified investor" within the meaning of the law in the relevant Member State implementing Article 2(1)(e)(i), (ii) or (iii) of the Prospectus Directive 2003/71/EC (as amended by the updated Prospectus Directive 2010/73/EU) (the "
+Prospectus Directive
+"); and (b) if that relevant Member State has implemented the Prospectus Directive, that it is a person to whom the ZDP Shares may lawfully be marketed under the Prospectus Directive or under the applicable implementing legislation (if any) of that relevant Member State;
+2.1.10 in the case of any ZDP Shares acquired by a Placee as a financial intermediary within the EEA (other than the United Kingdom) as that term is used in Article 3(2) of the Prospectus Directive:
+(a) the ZDP Shares acquired by it in the Placing have not been acquired on behalf of, nor have they been acquired with a view to their offer or resale to, persons in any relevant Member State other than qualified investors, as that term is defined in the Prospectus Directive, or in circumstances in which the prior consent of the Joint Brokers has been given to the offer or resale; or
+(b) where ZDP Shares have been acquired by it on behalf of persons in any relevant Member State (other than the United Kingdom) other than qualified investors, the offer of those ZDP Shares to it is not treated under the Prospectus Directive as having been made to such persons;
+2.1.11 it does not have a registered address in, and is not a citizen, resident or national of, any jurisdiction in which it is unlawful to make or accept an offer of the ZDP Shares and it is not acting on a non-discretionary basis for any such person;
+2.1.12 if it is outside the United Kingdom, neither this announcement nor any other offering, marketing or other material in connection with the Placing constitutes an invitation, offer or promotion to, or arrangement with, it or any person whom it is procuring to subscribe for ZDP Shares pursuant to the Placing unless, in the relevant territory, such offer, invitation or other course of conduct could lawfully be made to it or such person and such documents or material could lawfully be provided to it or such person and ZDP Shares could lawfully be distributed to and subscribed and held by it or such person without compliance with any unfulfilled approval, registration or other regulatory or legal requirements;
+2.1.13 if the Placee is a natural person, such Placee is not under the age of majority (18 years of age in the United Kingdom) on the date of such Placee's agreement subscribe for ZDP Shares under the Placing and will not be any such person on the date any such agreement to subscribe under the Placing is accepted;
+2.1.14 it has complied and will comply with all applicable provisions of the Criminal Justice Act 1993 and the regulation (EU) No. 596/2016 of the European Parliament and of the Council of 16 April 2014 on market abuse with respect to anything done by it in relation to the Placing and/or the ZDP Shares;
+2.1.15 it has not, directly or indirectly, distributed, forwarded, transferred or otherwise transmitted any presentation or offering materials concerning the Placing or the ZDP Shares to any persons within the United States or to any US Persons, nor will it do any of the foregoing ("
+US Person
+" as defined in Regulation S under the United States Securities Act of 1933 (as amended) (the "
+US Securities Act
+"); and "
+United States
+" or "
+US
+" means the United States of America, its territories and possessions, any state of the United States of America and the District of Columbia);
+2.1.16 it represents, acknowledges and agrees to the representations, warranties and agreements as set out under the heading "
+United States Purchase and Transfer Restrictions
+" in paragraph 5 below;
+2.1.17 it acknowledges that neither the Joint Brokers nor any of their affiliates, nor any person acting on its or their behalf is making any recommendations to it, advising it regarding the suitability of any transactions it may enter into in connection with the Placing or providing any advice in relation to the Placing and participation in the Placing is on the basis that it is not and will not be a client of either of the Joint Brokers and that the Joint Brokers do not have any duties or responsibilities to it for providing the protections afforded to their clients or for providing advice in relation to the Placing nor in respect of any representations, warranties, undertakings or indemnities otherwise required to be given by it in connection with its application under the Placing;
+2.1.18 it acknowledges that where it is subscribing for ZDP Shares for one or more managed, discretionary or advisory accounts, it is authorised in writing for each such account:
+(a) to subscribe for the ZDP Shares for each such account;
+(b) to make on each such account's behalf the representations, warranties and agreements set out in this announcement; and
+(c) to receive on behalf of each such account any documentation relating to the Placing in the form provided by the Company and the Joint Brokers or any of them;
+and it agrees that the provisions of this paragraph shall survive any resale of the ZDP Shares by or on behalf of any such account;
+2.1.19 if it is acting as a "distributor" (for the purposes of the MiFID II Product Governance Requirements):
+(a) it acknowledges that the target market assessment undertaken by the Joint Brokers does not constitute: (i) an assessment of suitability or appropriateness for the purposes of MiFID II; or (ii) a recommendation to any investor or group of investors to invest in, or purchase, or take any other action whatsoever with respect to the ZDP Shares and each distributor is responsible for undertaking its own target market assessment in respect of the ZDP Shares and determining appropriate distribution channels;
+(b) notwithstanding any target market assessment undertaken by the Joint Brokers, it confirms that it has satisfied itself as to the appropriate knowledge, experience, financial situation, risk tolerance and objectives and needs of the investors to whom it plans to distribute the ZDP Shares and that it has considered the compatibility of the risk/reward profile of such ZDP Shares with the end target market; and
+(c) it acknowledges that the price of the ZDP Shares may decline and investors could lose all or part of their investment; capital protection cannot be guaranteed on the ZDP Shares; and an investment in the ZDP Shares is compatible only with investors who do not need a guaranteed capital protection, who (either alone or in conjunction with an appropriate financial or other adviser) are capable of evaluating the merits and risks of such an investment and who have sufficient resources to be able to bear any losses that may result therefrom,
+and for the purposes of this paragraph, "
+MiFID II Product Governance Requirements
+" means the product governance requirements contained within: (i) the Directive 2014/65/EU on markets in financial instruments, as amended ("Directive 2014/65/EU"); (ii) Articles 9 and 10 of Commission Delegated Directive (EU) 2017/593 supplementing Directive 2014/65/EU; and (iii) local implementing measures; and "
+MiFID II
+" means the Directive 2014/65/EU and amending Directive 2002/92/EC and Directive 2011/61/EU, together with Regulation (EU) No 600/2014 of the European Parliament and the Council of 15 May 2014 on markets in financial instruments and amending Regulation (EU) No 648/2012;
+2.1.20 it irrevocably appoints any director of the Company and any director and/or authorised signatory of either of the Joint Brokers to be its agent and on its behalf (without any obligation or duty to do so), to sign, execute and deliver any documents and do all acts, matters and things as may be necessary for, or incidental to, its subscription for all or any of the ZDP Shares for which it has given a commitment under the Placing, in the event of its own failure to do so;
+2.1.21 it accepts that if the Placing does not proceed or the new ZDP Shares for which valid applications are received and accepted are not admitted to the Official List of the UK Listing Authority and to trading on the London Stock Exchange plc's main market for listed securities for any reason whatsoever then none of the Joint Brokers nor the Company, nor Inland Homes, nor persons controlling, controlled by or under common control with any of them nor any of their respective employees, agents, officers, members, stockholders, partners or representatives, shall have any liability whatsoever to it or any other person;
+2.1.22 in connection with its participation in the Placing it has observed all relevant legislation and regulations;
+2.1.23 it acknowledges that the Joint Brokers, Inland Homes and the Company are entitled to exercise any of their rights in their absolute discretion without any liability whatsoever to it;
+2.1.24 the representations, undertakings and warranties contained herein given by it are irrevocable. It acknowledges that the Joint Brokers, Inland Homes and the Company and their respective affiliates will rely upon the truth and accuracy of the foregoing representations and warranties and it agrees that if any of the representations or warranties made or deemed to have been made by its subscription of the ZDP Shares are no longer accurate, it shall promptly notify the Joint Brokers, Inland Homes and the Company;
+2.1.25 where it or any person acting on behalf of it is dealing with the Joint Brokers, any money held in an account with either of the Joint Brokers on behalf of it and/or any person acting on behalf of it will not be treated as client money within the meaning of the relevant rules and regulations of the FCA which therefore will not require the Joint Brokers to segregate such money, as that money will be held by the Joint Brokers under a banking relationship and not as trustee;
+2.1.26 any of its clients, whether or not identified to the Joint Brokers, will remain its sole responsibility and will not become clients of either of the Joint Brokers for the purposes of the rules of the FCA or for the purposes of any other statutory or regulatory provision;
+2.1.27 it accepts that the allocation of ZDP Shares shall be determined by the Joint Brokers at their discretion having consulted with the Company and its advisers, and that the Joint Brokers may scale down any commitments for this purpose on such basis as it may determine;
+2.1.28 time shall be of the essence as regards its obligations to settle payment for the ZDP Shares and to comply with its other obligations under the Placing;
+2.1.29 its commitment to acquire ZDP Shares will be agreed orally with either of the Joint Brokers (as agent for the Company) and that a contract note or Form of Confirmation will be issued by N+1 Singer as soon as possible thereafter. That oral confirmation will constitute an irrevocable, legally binding Placing Commitment upon that person (who at that point will become a Placee) in favour of the Company and N+1 Singer to subscribe for the number of ZDP Shares allocated to it at the Placing Price on the terms and conditions set out in herein and, as applicable, in the contract note or Form of Confirmation. Except with the consent of N+1 Singer, such oral Placing Commitment will not be capable of variation or revocation after the time at which it is made; and
+2.1.30 its allocation of ZDP Shares under the Placing will be evidenced by the contract note or Form of Confirmation, as applicable, confirming:
+(a) the number of ZDP Shares that such Placee has agreed to subscribe for;
+(b) the aggregate amount that such Placee will be required to pay for such ZDP Shares; and
+(c) settlement instructions to pay N+1 Singer as agents for the Company.
+2.1.31 The terms herein will be deemed to be incorporated into that contract note or Form of Confirmation.
+2.2 The Company reserves the right to issue fewer than all of the ZDP Shares offered herein or to issue to any subscriber fewer than all of the ZDP Shares a subscriber has offered to subscribe.
+3 MONEY LAUNDERING
+3.1 Each Placee acknowledges and agrees that:
+3.1.1 its application is only made on the basis that it accepts full responsibility for any requirement to verify the identity of its clients and other persons in respect of whom it has applied. In addition, it represents and warrants that it is a person:
+(a) subject to the Money Laundering Regulations 2017 in force in the United Kingdom; or
+(b) subject to the Money Laundering Directive (2005/60/EC of the European Parliament and of the EC Council of 26 October 2005 on the prevention of the use of the financial system for the purpose of money laundering and terrorist financing) (the "
+Money Laundering
+Directive
+"); or
+(c) acting in the course of a business in relation to which an overseas regulatory authority exercises regulatory functions and is based or incorporated in, or formed under the law of, a country in which there are in force provisions at least equivalent to those required by the Money Laundering Directive; and
+3.1.2 due to anti-money laundering and the countering of terrorist financing requirements, either of the Joint Brokers and/or the Company and/or their agents may require proof of identity and verification of the source of the payment before the application can be processed and that, in the event of delay or failure by the applicant to produce any information required for verification purposes, the Joint Brokers, the Company and/or their agents may refuse to accept the application and the subscription moneys relating thereto. It holds harmless and will indemnify the Joint Brokers, the Company and their agents against any liability, loss or cost ensuing due to the failure to process such application, if such information as has been required has not been provided by it.
+4 DATA PROTECTION
+4.1 Each Placee acknowledges that it has been informed that, pursuant to the General Data Protection Regulation 2016/679 (the "
+DP Legislation
+") the Company and/or the Registrars may hold personal data (as defined in the DP Legislation) relating to past and present shareholders.
+Personal data may be retained on record for a period exceeding six years after it is no longer used (subject to any limitations on retention periods set out in applicable law). The Registrars will process such personal data at all times in compliance with DP Legislation and shall only process for the purposes set out in the Company's privacy notice, which is available for review on the Company's website http://www.inlandhomesplc.com/site-essentials/privacy-policy/ (the "
+Privacy Notice
+"), including for the purposes set out below (collectively, the "
+Purposes
+"), being able to:
+4.1.1 process the personal data to the extent and in such manner as is necessary for the performance of its obligations under its service contract, including as required by or in connection with the Placee's holding of ZDP Shares, including processing personal data in connection with credit and money laundering checks on the Placee;
+4.1.2 communicate with the Placee as necessary in connection with its affairs and generally in connection with its holding of ZDP Shares;
+4.1.3 to comply with the legal and regulatory obligations of the Company, and/or the Registrars; and
+4.1.4 process the personal data for the Registrars' internal administration.
+4.2 In order to meet the Purposes, it may be necessary for the Company, N+1 Singer and the Registrars to provide personal data to:
+4.2.1 third parties located either within, or outside of the EEA, if necessary for the Registrars to perform its functions, or when it is necessary for its legitimate interests, and in particular in connection with the holding of ZDP Shares; or
+4.2.2 its affiliates, the Company (in the case of the Registrars) and their respective associates, some of which may be located outside of the EEA.
+4.3 Any sharing of personal data by the Company, either of the Joint Brokers or the Registrars with other parties will be carried out in accordance with the DP Legislation and as set out in the Privacy Notice.
+4.4 By becoming registered as a holder of ZDP Shares a person becomes a data subject (as defined in the DP Legislation). In providing the Registrars with information, each Placee hereby represents and warrants to the Registrars that it has (i) notified any data subject of the Purposes for which personal data will be used and by which parties it will be used and it has provided a copy of the Company's Privacy Notice and any other data protection notice which has been provided by the Company, the Joint Brokers and/or the Registrars; and (ii) where consent is legally required under applicable DP legislation, it has obtained the consent of any data subject to the Registrars and their respective associates holding and using their personal data for the Purposes (including the explicit consent of the data subjects for the processing of any sensitive personal data for the Purposes set out above in this paragraph 6).
+4.5 Each Placee acknowledges that by submitting personal data to the Joint Brokers and/or the Registrars (acting for and on behalf of the Company) where the Placee is a natural person he or she has read and understood the terms of the Company's Privacy Notice.
+4.6 Each Placee acknowledges that by submitting personal data to the Joint Brokers and/or the Registrars (acting for and on behalf of the Company) where the Placee is not a natural person it represents and warrants that:
+4.6.1 it has brought the Company's Privacy Notice to the attention of any underlying data subjects on whose behalf or account the Placee may act or whose personal data will be disclosed to the Company as a result of the Placee agreeing to acquire or subscribe for ZDP Shares; and
+4.6.2 the Placee has complied in all other respects with all applicable data protection legislation in respect of disclosure and provision of personal data to the Company.
+4.7 Where the Placee acts for or on account of an underlying data subject or otherwise discloses the personal data of an underlying data subject, he/she/it shall, in respect of the personal data it processes in relation to or arising in relation to the Placing:
+4.7.1 comply with all applicable data protection legislation;
+4.7.2 take appropriate technical and organisational measures against unauthorised or unlawful processing of the personal data and against accidental loss or destruction of, or damage to the personal data;
+4.7.3 if required, agree with the Company, the Joint Brokers and the Registrars, the responsibilities of each such entity as regards relevant data subjects' rights and notice requirements; and
+4.7.4 it shall immediately on demand, fully indemnify each of the Company, the Joint Brokers and the Registrars and keep them fully and effectively indemnified against all costs, demands, claims, expenses (including legal costs and disbursements on a full indemnity basis), losses (including indirect losses and loss of profits, business and reputation), actions, proceedings and liabilities of whatsoever nature arising from or incurred by the Company, N+1 Singer, EGR and/or the Registrars in connection with any failure by the Placee to comply with the provisions set out above.
+5 UNITED STATES PURCHASE AND TRANSFER RESTRICTIONS
+5.1 By participating in the Placing, each Placee acknowledges and agrees that it will (for itself and any person(s) procured by it to subscribe for ZDP Shares and any nominee(s) for any such person(s)) be further deemed to represent and warrant to each of the Company, Inland Homes, the Registrars and the Joint Brokers that:
+5.1.1 it is either:
+(a) not a US Person, is not located within the United States, is acquiring the ZDP Shares in an offshore transaction meeting the requirements of Regulation S and is not acquiring the ZDP Shares for the account or benefit or a US Person; or
+(b) a US Person to whom ZDP Shares may be offered pursuant to an exemption from, or in a transaction not subject to, the registration requirements of the US Securities Act and in compliance with any applicable securities laws of any state or other jurisdiction in the United States;
+5.1.2 it acknowledges that the ZDP Shares have not been and will not be registered under the US Securities Act or with any securities regulatory authority of any state or other jurisdiction of the United States and may not be offered or sold in the United States or to, or for the account or benefit of, US Persons except in a transaction exempt from, or not subject to, the registration requirements of the US Securities Act and in compliance with all applicable state securities laws and under circumstances that would not require the Company to register under the United States Investment Company Act of 1940, as amended (the "
+US Investment Company Act
+");
+5.1.3 it acknowledges that the Company has not and will not be registered under the US Investment Company Act and that the Company has put in place restrictions for transactions not involving any public offering in the United States, and to ensure that the Company is not and will not be required to register under the US Investment Company Act;
+5.1.4 unless the Company expressly consents otherwise in writing, no portion of the assets used to purchase, and no portion of the assets used to hold, the ZDP Shares or any beneficial interest therein constitutes or will constitute the assets of:
+(a) an employee benefit plan as defined in Section 3(3) of ERISA that is subject to Title I of the United States Employee Retirement Income Security Act of 1974, as amended ("
+ERISA
+");
+(b) a plan as defined in Section 4975 of the US Internal Revenue Code of 1986, as amended (the "
+US Code
+"), including an individual retirement account or other arrangement that is subject to Section 4975 of the US Code; or
+(c) an entity which is deemed to hold the assets of any of the foregoing types of plans, accounts or arrangements that is subject to Title I of ERISA or Section 4975 of the US Code. In addition, if a Placee is a governmental, church, non-US or other employee benefit plan that is subject to any federal, state, local or non-US law that is substantially similar to the provisions of Title I of ERISA or Section 4975 of the US Code, its purchase, holding, and disposition of the ZDP Shares must not constitute or result in a non-exempt violation of any such substantially similar law;
+5.1.5 if any ZDP Shares are issued to it in certificated form, then such certificates evidencing ownership will contain a legend substantially to the following effect, unless otherwise determined by the Company in accordance with applicable law:
+INLAND ZDP PLC (THE
+COMPANY) HAS NOT BEEN AND WILL NOT BE REGISTERED UNDER THE US
+INVESTMENT COMPANY ACT OF 1940, AS AMENDED. IN ADDITION, THE
+SECURITIES OF THE COMPANY REPRESENTED BY THIS CERTIFICATE HAVE NOT
+BEEN AND WILL NOT BE REGISTERED UNDER THE US SECURITIES ACT OF 1933,
+AS AMENDED, OR WITH ANY SECURITIES REGULATORY AUTHORITY OF ANY
+STATE OR OTHER JURISDICTION OF THE UNITED STATES. ACCORDINGLY, THIS
+SECURITY MAY NOT BE OFFERED, SOLD, PLEDGED OR OTHERWISE
+TRANSFERRED WITHIN THE UNITED STATES OR TO, OR FOR THE ACCOUNT OR
+BENEFIT OF, US PERSONS EXCEPT IN ACCORDANCE WITH THE US SECURITIES
+ACT OR AN EXEMPTION THEREFROM AND UNDER CIRCUMSTANCES WHICH DO
+NOT REQUIRE THE COMPANY TO REGISTER UNDER THE US INVESTMENT
+COMPANY ACT, IN EACH CASE IN ACCORDANCE WITH ALL APPLICABLE
+SECURITIES LAWS. IN ADDITION, THIS SECURITY MAY NOT BE OFFERED, SOLD,
+PLEDGED OR OTHERWISE TRANSFERRED TO ANY PERSON USING THE ASSETS
+OF (I) (A) AN ''EMPLOYEE BENEFIT PLAN'' AS DEFINED IN SECTION 3(3) OF ERISA
+THAT IS SUBJECT TO TITLE I OF ERISA; (B) A ''PLAN'' AS DEFINED IN SECTION 4975
+OF THE US CODE, INCLUDING AN INDIVIDUAL RETIREMENT ACCOUNT OR OTHER
+ARRANGEMENT THAT IS SUBJECT TO SECTION 4975 OF THE US CODE; OR (C) AN
+ENTITY WHICH IS DEEMED TO HOLD THE ASSETS OF ANY OF THE FOREGOING
+TYPES OF PLANS, ACCOUNTS OR ARRANGEMENTS THAT IS SUBJECT TO TITLE I
+OF ERISA OR SECTION 4975 OF THE US CODE OR (II) A GOVERNMENTAL, CHURCH,
+NON-US OR OTHER EMPLOYEE BENEFIT PLAN THAT IS SUBJECT TO ANY
+FEDERAL, STATE, LOCAL OR NON-US LAW THAT IS SUBSTANTIALLY SIMILAR TO
+THE PROVISIONS OF TITLE I OF ERISA OR SECTION 4975 OF THE US CODE UNLESS
+THE PURCHASE, HOLDING OR DISPOSITION OF THE SECURITIES WILL NOT
+RESULT IN A VIOLATION OF APPLICABLE LAW AND/OR CONSTITUTE A NONEXEMPT
+PROHIBITED TRANSACTION UNDER SECTION 503 OF THE US CODE OR
+ANY SUBSTANTIALLY SIMILAR LAW.
+5.1.6 if in the future the Placee decides to offer, sell, transfer, assign or otherwise dispose of its ZDP Shares, it will do so only in compliance with an exemption from the registration requirements of the US Securities Act and under circumstances which will not require the Company to register under the US Investment Company Act. It acknowledges that any sale, transfer, assignment, pledge or other disposal made other than in compliance with such laws and the above stated restrictions will be subject to the compulsory transfer provisions as provided in the Articles;
+5.1.7 it is purchasing the ZDP Shares for its own account or for one or more investment accounts for which it is acting as a fiduciary or agent, in each case for investment only, and not with a view to or for sale or other transfer in connection with any distribution of the ZDP Shares in any manner that would violate the US Securities Act, the US Investment Company Act or any other applicable securities laws;
+5.1.8 it acknowledges that the Company reserves the right to make inquiries of any holder of the ZDP Shares or interests therein at any time as to such person's status under US federal securities laws and to require any such person that has not satisfied the Company that holding by such person will not violate or require registration under US securities laws to transfer such ZDP Shares or interests in accordance with the Articles;
+5.1.9 it acknowledges and understands that the Company is required to comply with the United States Foreign Account Tax Compliance Act ("
+FATCA
+") and agrees to furnish any information and documents the Company may from time to time request, including but not limited to information required under FATCA;
+5.1.10 it is entitled to acquire the ZDP Shares under the laws of all relevant jurisdictions which apply to it, it has fully observed all such laws and obtained all governmental and other consents which may be required thereunder and complied with all necessary formalities and it has paid all issue, transfer or other taxes due in connection with its acceptance in any jurisdiction of the ZDP Shares and that it has not taken any action, or omitted to take any action, which may result in the Company, the Registrars, the Joint Brokers or their respective members directors, officers, agents, employees and advisers being in breach of the laws of any jurisdiction in connection with the Placing or its acceptance of participation in the Placing;
+5.1.11 it has received, carefully read and understands this announcement, and has not, directly or indirectly, distributed, forwarded, transferred or otherwise transmitted any presentation or offering materials concerning the ZDP Shares to within the United States or to any US Persons, nor will it do any of the foregoing; and
+5.1.12 if it is acquiring any ZDP Shares as a fiduciary or agent for one or more accounts, the Placee has sole investment discretion with respect to each such account or authority to acquire such shares in respect of an advisory client and, in both cases, full power and authority to make such foregoing representations, warranties, acknowledgements and agreements on behalf of each such account.
+5.2 The Company, the Registrars, the Joint Brokers and their respective members directors, officers, agents, employees, advisers and others will rely upon the truth and accuracy of the foregoing representations, warranties, acknowledgments and agreements.
+5.3 If any of the representations, warranties, acknowledgments or agreements made by the Placee are no longer accurate or have not been complied with, the Placee will immediately notify the Company, the Joint Brokers and the Registrars.
+6 SUPPLY AND DISCLOSURE OF INFORMATION
+If the Joint Brokers, the Registrars or the Company or any of their agents request any information about a Placee's agreement to subscribe for ZDP Shares under the Placing, such Placee must promptly disclose it to them.
+7 NON UNITED KINGDOM INVESTORS
+7.1 If the Placee is outside the United Kingdom, neither this announcement nor any other offering, marketing or other material in connection with the Placing constitutes an invitation, offer or promotion to, or arrangement with, it or any person whom it is procuring to subscribe for ZDP Shares pursuant to the Placing unless, in the relevant territory, such offer, invitation or other course of conduct could lawfully be made to it or such person and such documents or materials could lawfully be provided to it or such person and ZDP Shares could lawfully be distributed to and subscribed and held by it or such person without compliance with any unfulfilled approval, registration or other regulatory or legal requirements.
+7.2 None of the ZDP Shares has been or will be registered under the laws of the United States, Canada, Australia, the Republic of South Africa or Japan. Accordingly, the ZDP Shares may not be offered, sold, issued or delivered, directly or indirectly, within any of the United States, Canada, Australia, the Republic of South Africa or Japan or to any US Person or to any national, resident or citizen of Canada, Australia, the Republic of South Africa or Japan unless an exemption from any registration requirement is available.
+8 MISCELLANEOUS
+8.1 The rights and remedies of the Company, the Joint Brokers, the Registrars and Inland Homes under these terms and conditions are in addition to any rights and remedies which would otherwise be available to each of them and the exercise or partial exercise of one will not prevent the exercise of others.
+8.2 On application, if a Placee is a discretionary or advisory fund manager, that Placee may be asked to disclose in writing or orally the jurisdiction in which its funds are managed or owned. All documents provided in connection with the Placing will be sent at the Placee's risk. They may be returned by post to such Placee at the address notified by such Placee.
+8.3 Each Placee agrees to be bound by the Articles once the ZDP Shares, which the Placee has agreed to subscribe for pursuant to the Placing, have been acquired by the Placee. The contract to subscribe for ZDP Shares under the Placing and the appointments and authorities mentioned herein and all disputes and claims arising out of or in connection with its subject matter or formation (including non-contractual disputes or claims) will be governed by, and construed in accordance with, the laws of England and Wales. For the exclusive benefit of the Company, Inland Homes, the Joint Brokers and the Registrars, each Placee irrevocably submits to the jurisdiction of the courts of England and Wales and waives any objection to proceedings in any such court on the ground of venue or on the ground that proceedings have been brought in an inconvenient forum. This does not prevent an action being taken against the Placee in any other jurisdiction.
+8.4 In the case of a joint agreement to subscribe for ZDP Shares under the Placing, references to a Placee in these terms and conditions are to each of the Placees who are a party to that joint agreement and their liability is joint and several.
+8.5 The Joint Brokers and the Company expressly reserve the right to modify the Placing (including, without limitation, the timetable and settlement) at any time before allocations are determined. The Placing is subject to the satisfaction of the following conditions of the Placing.
+8.5.1 Admission occurring not later than 8.00 a.m. on the Settlement Date, or such later time and date as the Joint Brokers may agree, being not later than 8.00 a.m. on 28 August 2019;
+8.5.2
+the
+Company allotting, subject only to Admission, the new ZDP Shares to be issued pursuant to the Placing; and
+8.5.3 each condition to enable the new ZDP Shares to be issued pursuant to the Placing to be admitted as a participating security in CREST (other than Admission) being satisfied on or before 8.00 a.m. on the date of Admission as may be agreed by the Joint Brokers and the Company.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.
+END
+IOEKMMGMLNNGLZG
+                </div>
+            </details>
+            
+            </div>
+            
+            </div>
+            <div style="
+                margin-top: 20px;
+                padding: 14px 16px;
+                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+                border-radius: 10px;
+                font-size: 12px;
+                color: #78350f;
+                border-left: 3px solid #f59e0b;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            ">
+                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
+                <div style="line-height: 1.5;">
+                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
+                    Each RNS includes sentiment classification, key data extraction, and trading context. 
+                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
+                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                    </strong>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            details[open] > summary {
+                background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%) !important;
+                border-left-color: #0369a1 !important;
+            }
+            summary::-webkit-details-marker {
+                display: none;
+            }
+            
+            /* ========== MOBILE RESPONSIVE ========== */
+            @media (max-width: 768px) {
+                body {
+                    padding: 10px;
+                    font-size: 14px;
+                }
+                
+                .container {
+                    margin: 0 auto;
+                }
+                
+                .header-card {
+                    padding: 14px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .company-name {
+                    font-size: 22px;
+                    margin-bottom: 8px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 13px;
+                    padding: 6px 12px;
+                }
+                
+                .company-meta {
+                    gap: 8px;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+                
+                .meta-item {
+                    padding: 6px 12px;
+                    font-size: 12px;
+                    gap: 6px;
+                }
+                
+                .meta-icon {
+                    font-size: 14px;
+                }
+                
+                .score-hero {
+                    padding: 20px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .action-display {
+                    font-size: 18px !important;
+                    margin-bottom: 12px;
+                }
+                
+                .scores-row {
+                    gap: 16px;
+                    margin: 20px 0;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    display: flex;
+                }
+                
+                .score-circle {
+                    width: 110px;
+                    height: 110px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 32px;
+                }
+                
+                .score-label {
+                    font-size: 10px;
+                    margin-top: 4px;
+                }
+                
+                .timing-badge-large {
+                    padding: 10px 20px;
+                    font-size: 14px;
+                    margin: 12px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 14px;
+                    padding: 12px;
+                    margin-top: 12px;
+                }
+                
+                .factors-list {
+                    grid-template-columns: 1fr;
+                    gap: 10px;
+                    margin-top: 12px;
+                }
+                
+                .factor-item {
+                    padding: 12px;
+                    font-size: 12px;
+                    gap: 8px;
+                }
+                
+                .factor-icon {
+                    font-size: 16px;
+                }
+                
+                .cards-grid {
+                    grid-template-columns: 1fr;
+                    gap: 12px;
+                    margin-bottom: 12px;
+                }
+                
+                .card {
+                    padding: 16px;
+                    border-radius: 12px;
+                }
+                
+                .card-title {
+                    font-size: 14px;
+                    margin-bottom: 12px;
+                    gap: 8px;
+                }
+                
+                .card-icon {
+                    font-size: 18px;
+                }
+                
+                .stat-row {
+                    padding: 8px 0;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+                
+                .stat-label {
+                    font-size: 12px;
+                }
+                
+                .stat-value {
+                    font-size: 14px;
+                }
+                
+                .rally-badge {
+                    padding: 4px 10px;
+                    font-size: 10px;
+                }
+                
+                .risk-indicator {
+                    gap: 10px;
+                    padding: 12px;
+                    flex-wrap: wrap;
+                }
+                
+                .risk-icon {
+                    font-size: 20px;
+                }
+                
+                .reason-item {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                }
+                
+                .tag {
+                    padding: 3px 8px;
+                    font-size: 10px;
+                }
+                
+                .footer {
+                    padding: 12px;
+                    font-size: 11px;
+                    margin-top: 12px;
+                    border-radius: 12px;
+                }
+                
+                .alert-box {
+                    padding: 12px;
+                    margin: 10px 0;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                body {
+                    padding: 8px 6px;
+                }
+                
+                .header-card {
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    border-radius: 8px;
+                }
+                
+                .company-name {
+                    font-size: 18px;
+                    margin-bottom: 6px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 11px;
+                    padding: 3px 8px;
+                }
+                
+                .company-meta {
+                    gap: 4px;
+                    flex-direction: column;
+                }
+                
+                .meta-item {
+                    padding: 4px 6px;
+                    font-size: 11px;
+                    background: rgba(247, 250, 252, 0.7);
+                }
+                
+                .score-hero {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                    border-radius: 12px;
+                }
+                
+                .score-circle {
+                    width: 70px;
+                    height: 70px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 22px;
+                    font-weight: 800;
+                }
+                
+                .score-label {
+                    font-size: 7px;
+                    margin-top: 2px;
+                }
+                
+                .scores-row {
+                    flex-direction: column;
+                    gap: 10px;
+                    margin: 12px 0;
+                    align-items: center;
+                }
+                
+                .timing-badge-large {
+                    padding: 6px 12px;
+                    font-size: 11px;
+                    margin: 10px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 11px;
+                    padding: 8px;
+                    line-height: 1.3;
+                }
+                
+                .card {
+                    padding: 10px;
+                    margin-bottom: 8px;
+                    border-radius: 8px;
+                }
+                
+                .card-title {
+                    font-size: 12px;
+                    margin-bottom: 8px;
+                    font-weight: 700;
+                }
+            }
+        </style>
+        
+
+        <!-- Footer -->
+        <div class="footer">
+            Report generated: 2026-01-17 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            <strong>△ Not financial advice. Do your own research.</strong>
+            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
+                <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

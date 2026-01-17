@@ -1,0 +1,3727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrashDash • GST.L APEX Profile</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .header-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .ticker-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .company-name { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .company-meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f7fafc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .meta-icon { font-size: 18px; }
+        
+        .score-hero {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        .action-display {
+            margin-bottom: 20px;
+        }
+        .scores-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .score-number {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .score-label { font-size: 12px; color: #666; margin-top: 5px; }
+        .timing-badge-large {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 24px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            margin: 20px 0;
+        }
+        .thesis-line {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .factors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .factor-item {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        .factor-icon { font-size: 20px; }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-icon { font-size: 24px; }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-label { color: #666; font-size: 14px; }
+        .stat-value { font-weight: 600; font-size: 16px; }
+        
+        .rally-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .risk-indicator {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .risk-high { background: #fee2e2; }
+        .risk-icon { font-size: 24px; }
+        
+        .reason-item {
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .tag {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .footer {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-top: 20px;
+        }
+        
+        .alert-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Header Card -->
+        <div class="header-card">
+            <div class="ticker-badge">GST.L</div>
+            <div class="company-name">GSTechnologies Ltd.</div>
+            <div class="company-meta">
+                <div class="meta-item">
+                    <span class="meta-icon">■</span>
+                    <span><strong>Sector:</strong> Technology</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">£</span>
+                    <span><strong>Market Cap:</strong> £13,950,661</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">◷</span>
+                    <span><strong>Days Active:</strong> 24 days</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action & Score Hero Section -->
+        <div class="score-hero">
+            <div class="action-display">
+                <span style="color: white;">UNKNOWN</span>
+            </div>
+            
+            <div class="scores-row">
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">48</div>
+                    <div class="score-label">APEX SCORE</div>
+                </div>
+                <div class="score-circle">
+                    <div class="score-number" style="color: #f59e0b;">60</div>
+                    <div class="score-label">CONFIDENCE</div>
+                </div>
+            </div>
+            
+            <div class="timing-badge-large">
+                Timing: <span class="rally-badge" style="background: #dcfce7; color: #166534;">CONFIRMED</span>
+            </div>
+            
+            <div class="thesis-line">
+                HOLD/WATCH - CONFIRMED timing with 48/100 opportunity score
+            </div>
+        </div>
+
+        <!-- ==================== CRASHDASH INTELLIGENCE - PANIC HUNTER VIEW ==================== -->
+        
+        <div class="card" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b;">
+            <div class="card-title" style="color: #0f172a;">
+                <span class="card-icon">🏭</span>
+                CrashDash Intelligence • Industrials
+            </div>
+            
+            <!-- Fear Meter -->
+            <div style="background: white; padding: 24px; border-radius: 14px; margin-bottom: 20px; text-align: center;">
+                <div style="font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 16px;">🔥 PANIC METER</div>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 16px;">
+                    <div style="width: 160px; height: 160px; border-radius: 50%; background: conic-gradient(#f59e0b 237.6deg, #e5e7eb 237.6deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                        <div style="width: 130px; height: 130px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <div style="font-size: 48px; font-weight: 800; color: #f59e0b;">66</div>
+                            <div style="font-size: 12px; color: #64748b; font-weight: 600;">PANIC SCORE</div>
+                        </div>
+                    </div>
+                    <div style="text-align: left; max-width: 400px;">
+                        <div style="font-size: 18px; font-weight: 700; color: #f59e0b; margin-bottom: 12px;">HIGH PANIC</div>
+                        <div style="font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 12px;">🟠 Fear dominant - watch for reversal signs</div>
+                        <div style="font-size: 13px; color: #64748b;">
+                            <div>💔 Price: 40/40</div>
+                            <div>📉 Volume: 18/20</div>
+                            <div>🔇 Social: 6/20</div>
+                            <div>📰 News: 2/20</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CrashHunter Signals -->
+                <div style="margin-top: 20px;">
+                    <span style="display: inline-block; background: #f59e0b; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">🟠 Fear 66/100</span><span style="display: inline-block; background: #10b981; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">✅ Confirmed</span>
+                </div>
+                
+                <!-- Opportunity Flag -->
+                
+            </div>
+            
+            <!-- Contrarian Compression Energy Panel -->
+            
+            <!-- Contrarian Compression Energy Panel -->
+            <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); padding: 24px; border-radius: 14px; margin-bottom: 20px; border: 3px solid #10b981;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <span style="font-size: 32px;">⚡</span>
+                    <div style="flex: 1;">
+                        <div style="font-size: 20px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">
+                            CONTRARIAN COMPRESSION SCORE
+                        </div>
+                        <div style="font-size: 13px; color: #475569; font-weight: 600;">
+                            Signal Congestion Framework • Compression = Explosive Potential
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Score Display -->
+                <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 30px;">
+                        <!-- Circular gauge -->
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: conic-gradient(#10b981 136.8deg, #e5e7eb 136.8deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                            <div style="width: 110px; height: 110px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <div style="font-size: 42px; font-weight: 800; color: #10b981;">38</div>
+                                <div style="font-size: 11px; color: #64748b; font-weight: 600;">/ 100</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Key metrics -->
+                        <div style="text-align: left;">
+                            <div style="font-size: 16px; font-weight: 700; color: #10b981; margin-bottom: 12px;">🟢 MILD COMPRESSION (Top 50% - WATCHLIST)</div>
+                            <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                                <div><strong>0.4</strong> signals/week</div>
+                                <div><strong>0</strong> RSI &lt; 20 events</div>
+                                <div><strong>1</strong> escalations detected</div>
+                                <div style="color: #10b981; font-weight: 700; margin-top: 6px;">
+                                    💎 Historical pop: <strong>+1038%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Component Breakdown -->
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 15px;">
+                        📊 5-COMPONENT BREAKDOWN
+                    </div>
+                    
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">compression</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">10/40</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 25.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">0.4 signals/week | 1 escalations | 🎯 MILD COMPRESSION</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">intensification</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">5/20</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 25.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;"></div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">volume death</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #eab308;">8/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #eab308; height: 100%; width: 53.333333333333336%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">High volume - Panic spike or interest</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">pop potential</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #ef4444;">15/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #ef4444; height: 100%; width: 100.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">MONSTER POPPER - Historical 10x+ (1038%)</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">accumulation</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">0/10</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">No accumulation</div>
+                </div>
+                
+                </div>
+                
+                <!-- Contrarian Philosophy -->
+                <div style="background: rgba(255,255,255,0.7); padding: 16px; border-radius: 10px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #0f172a; margin-bottom: 8px; font-size: 14px;">
+                        🎯 CONTRARIAN WISDOM
+                    </div>
+                    <div style="font-size: 13px; color: #334155; line-height: 1.6;">
+                        <strong>Signal congestion = Compression energy = Explosive potential.</strong><br>
+                        When multiple crash signals cluster together with extreme RSI and proven rally history, 
+                        it creates a compressed spring effect. More panic = More opportunity for contrarians.
+                        <div style="margin-top: 8px; padding: 10px; background: rgba(239,68,68,0.1); border-radius: 6px; font-size: 12px;">
+                            <strong style="color: #10b981;">Theory:</strong> High compression scores (60+) historically precede 
+                            explosive 10-20x moves when catalysts arrive. This is the foundation of crash hunting.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Fear vs Facts Contrarian View -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                <div style="background: #fee2e2; padding: 18px; border-radius: 12px; border-left: 4px solid #ef4444;">
+                    <div style="font-weight: 700; color: #991b1b; margin-bottom: 12px; font-size: 15px;">😱 FEAR (What Panic Shows)</div>
+                    <div style="color: #7f1d1d;">
+                        <div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 💔 Price destruction: 40/40 points</div><div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 📉 Volume death: 18/20 points</div>
+                    </div>
+                </div>
+                <div style="background: #dcfce7; padding: 18px; border-radius: 12px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #065f46; margin-bottom: 12px; font-size: 15px;">📊 FACTS (What Data Shows)</div>
+                    <div style="color: #064e3b;">
+                        <div style="color: #64748b; font-size: 14px;">Limited historical data</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contrarian Verdict -->
+            <div style="background: white; padding: 18px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #6366f1;">
+                <div style="font-weight: 700; color: #4338ca; margin-bottom: 10px; font-size: 15px;">⚖️ Contrarian Verdict</div>
+                <div style="font-size: 15px; color: #1e293b; line-height: 1.6; font-weight: 600;">
+                    🎯 CONTRARIAN OPPORTUNITY - Fear dominates but facts support recovery potential
+                </div>
+            </div>
+            
+            <!-- Industry Crash Patterns -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">⚠️ Crash Patterns (Industrials)</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book decline or cancellations</div><div>• Margin compression (input costs)</div><div>• Cyclical demand weakness</div>
+                    </div>
+                    
+                </div>
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">🚀 Recovery Paths</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book growth or new contracts</div><div>• Margin recovery (efficiency gains)</div><div>• Cyclical upturn (capex recovery)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Catalyst Pipeline -->
+            <div style="background: rgba(255,255,255,0.5); padding: 18px; border-radius: 12px; margin-bottom: 20px;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 14px; font-size: 15px;">📅 Catalyst Pipeline</div>
+                
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">End of MiCA Transitional Period in Lithuania</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">End of MiCA Transitional Period in Lithuania</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Acquisition of Finferno</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Acquisition of Finferno</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Interim Results</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+            
+            <!-- CrashDash Decision Matrix -->
+            <div style="background: white; padding: 20px; border-radius: 12px; border: 3px solid #f59e0b;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 16px; text-align: center;">
+                    🎯 CRASHDASH DECISION: <span style="color: #f59e0b; font-size: 20px;">AVOID</span>
+                </div>
+                <div style="font-size: 15px; color: #475569; text-align: center; margin-bottom: 20px; font-weight: 600;">
+                    ❌ HOLD/WATCH - timing CONFIRMED
+                </div>
+                <div style="background: #f8fafc; padding: 16px; border-radius: 10px;">
+                    <div style="font-weight: 700; color: #64748b; margin-bottom: 12px; font-size: 13px;">CHECKLIST (4/5 pass)</div>
+                    
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🔴</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Panic Score</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">66/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">✅</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Timing Regime</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">CONFIRMED</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">⚠️</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">APEX Quality</div>
+                    <div style="font-size: 13px; color: #ef4444; font-weight: 600;">48/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🎯</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Data Confidence</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">60/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🏭</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Industry Pattern</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">0 active</div>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
+        
+
+        <!-- Decision Summary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◆</span>
+                Why This Matters
+            </div>
+            <div class="stat-row"><span>• APEX 48/100 indicates moderate opportunity quality</span></div><div class="stat-row"><span>• Timing regime: CONFIRMED</span></div><div class="stat-row"><span>• Historical profile: 2 rallies, 31% best run</span></div>
+            
+            <div class="alert-box" style="margin-top: 20px;">
+                <strong>△ Main Risk:</strong> Confidence 60/100 - full data loaded
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong>◉ Watch Next:</strong>
+                <div style="padding: 8px 0;">• RNS catalysts (funding/operational updates)</div><div style="padding: 8px 0;">• Volume expansion confirmation</div><div style="padding: 8px 0;">• Timing regime change signals</div>
+            </div>
+        </div>
+
+        <!-- ==================== TECHNICAL DETAILS (COLLAPSIBLE) ==================== -->
+        
+        <div class="card">
+          <details style="cursor:pointer;">
+            <summary style="font-weight:800; font-size:16px; list-style:none; padding: 10px; background: #f9fafb; border-radius: 8px;">
+              🔧 Technical Analysis & Scoring Details
+            </summary>
+            <div style="margin-top:14px;">
+              
+            <!-- Scoring Breakdown -->
+            <div class="card-title" style="margin-top: 20px;">
+                <span class="card-icon">▣</span>
+                APEX Score Breakdown
+            </div>
+            <div class="factors-list">
+                <div class="factor-item"><span class="factor-icon">◆</span><span><strong>Moderate Technical Setup</strong><br><small>Chart quality: 9/20 • Score: 11/25 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Massive recovery potential</strong><br><small>Down 86.4% from peak • Score: 17/20 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Explosive volume</strong><br><small>4.8x average • Score: 10/10 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Limited history</strong><br><small>2 previous rallies • Score: 5/15 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Modest upside</strong><br><small>Historical best: +31% • Score: 5/20 points</small></span></div>
+
+            </div>
+            
+            <div style="margin-top: 40px;"></div>
+            
+            <!-- Exhaustion Metrics -->
+            <div class="card-title">
+                <span class="card-icon">📈</span>
+                Rally Cycle Position
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Current Position</div>
+                    <div style="font-size: 32px; font-weight: 800;">21%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
+                    <div style="font-size: 32px; font-weight: 800;">31%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
+                    <div style="font-size: 32px; font-weight: 800;">0.7x</div>
+                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
+                </div>
+            </div>
+        
+            </div>
+          </details>
+        </div>
+        
+
+        <!-- Reasons Buy/Sell -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #10b981;">▲</span>
+                    Reasons to Buy
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Proven winner - previously hit lock-in target</span>
+                    <span class="tag" style="background: #f59e0b; color: white;">⚡ Medium Strength</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">profit target reached: True</div>
+            </div>
+            
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #ef4444;">▼</span>
+                    Reasons to Sell / Avoid
+                </div>
+                <div style="color: #666; font-style: italic;">No major sell signals.</div>
+            </div>
+        </div>
+
+        <!-- Trade Plans -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">📊</span>
+                    Short-Term Trader Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 20%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <div style="font-size: 18px; font-weight: 600; margin-bottom: 5px;">Active trade</div>
+                    <div style="font-size: 14px; opacity: 0.9;">HOLD/WATCH</div>
+                </div>
+                <div style="padding: 12px; background: #f9fafb; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Position Size</div>
+                    <div style="font-weight: 600;">1-3% position based on conviction</div>
+                </div>
+                <div style="padding: 12px; background: #fef2f2; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Risk Management</div>
+                    <div style="font-weight: 600; color: #dc2626;">Stop below recent support / invalidation level</div>
+                </div>
+                <div style="padding: 12px; background: #f0fdf4; border-radius: 6px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Exit Strategy</div>
+                    <div style="font-weight: 600; color: #059669;">Scale out into strength: 25% @ +15%, 50% @ +50%, trail runner</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">💼</span>
+                    Long-Term Investor Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center;">
+                    <div style="font-size: 32px; margin-bottom: 5px;">✗</div>
+                    <div style="font-size: 18px; font-weight: 600;">Not Recommended for Investors</div>
+                </div>
+                <div style="padding: 15px; background: #f9fafb; border-radius: 8px; font-size: 14px; line-height: 1.6;">
+                    <strong style="color: #667eea;">📋 Investment Thesis:</strong><br>
+                    Unlock after AI triangulation + CONFIRMED timing<br><br>
+                    <strong style="color: #667eea;">⏳ Time Horizon:</strong><br>
+                    N/A<br><br>
+                    <strong style="color: #ef4444;">🛡️ Exit Rule:</strong><br>
+                    N/A
+                </div>
+            </div>
+        </div>
+
+        <!-- Commentary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◐</span>
+                Executive Commentary
+            </div>
+            <div style="line-height: 1.6; margin-bottom: 20px;">
+                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows CONFIRMED timing with 48/100 APEX score. Historical data shows 2 rallies averaging 31% upside. Current position: +21.2%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #10b981;">▲ Bull Case:</strong>
+                <div style="padding: 8px 0;">• Limited upside case without catalysts</div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #ef4444;">▼ Bear Case:</strong>
+                <div style="padding: 8px 0;">• Monitor for breakdown signals</div>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
+                <strong>◷ Timing Translation:</strong><br>
+                Momentum confirmed. This is the trade zone if thesis holds.
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
+                <strong>◎ Confidence Explained:</strong><br>
+                Confidence 60/100 reflects full data quality with triangulation loaded.
+            </div>
+        </div>
+
+        <!-- Data Quality Warning -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">△</span>
+                Data Quality Notice
+            </div>
+            <div class="alert-box">
+                <strong>Analysis Mode:</strong> HISTORICAL_ONLY<br>
+                <strong>Impact:</strong> HIGH
+            </div>
+            <div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">AI insights from Groq LLM</div></div></div>
+
+            <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk.
+            </div>
+        </div>
+
+        <!-- ==================== TOP 5 RECENT RNS NEWS ==================== -->
+        
+        <div class="card" style="border-top: 3px solid #3b82f6;">
+            <div class="card-title" style="margin-bottom: 20px;">
+                <span class="card-icon">📰</span>
+                Top 5 Recent RNS Announcements
+            </div>
+            <div style="margin-top: 15px;">
+                
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">End of MiCA Transitional Period in Lithuania</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 70/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: End of MiCA Transitional Period in Lithuania | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">31st Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">70/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: End of MiCA Transitional Period in Lithuania</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📊 ANALYZE: Determine offer price, arbitrage opportunity if discount</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Gabrielle Cordeiro</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+31 Dec 2025 07:00
+RNS Number : 1900N
+GSTechnologies Ltd
+31 December 2025
+31 December
+2025
+GSTechnologies Limited
+("GST" or the "Company")
+End of MiCA Transitional Period in Lithuania
+GSTechnologies
+Ltd (LSE: GST), the fintech company, announces that
+following the submission of a
+MiCA license application to the Bank of Lithuania in September 2025,
+GS Fintech UAB has not obtained crypto-asset service provider (CASP) authorisation under MiCA by the end of the transitional period, which expires on 31 December 2025.
+The Company plans to resubmit its application to the Bank of Lithuania in Q1 2026 and in the meantime, to ensure trading continuity without interruption, GS Fintech UAB's platform will transition to operations under VASP-registered Finferno Spółka Z Ograniczoną Odpowiedzialnością in Poland, whose acquisition by the Company was announced on 29 December 2025.
+Enquiries:
+The Company
+Tone Goh, Executive Chairman
++65 6444 2988
+Financial Adviser
+First Sentinel Corporate Finance
++44 (0)20 3855 5551
+Brian Stockbridge /
+Gabrielle Cordeiro
+Broker
+CMC Markets
++44 (0)20 3003 8632
+Douglas Crippen
+Financial PR & Investor Relations
+IFC Advisory Limited
+Tim Metcalfe / Graham Herring / Florence Staton
++44 20 (0) 3934 6632
+For more information please see:
+https://gstechnologies.co.uk/
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+UPDPKKBBPBDDBBN
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">End of MiCA Transitional Period in Lithuania</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 70/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: End of MiCA Transitional Period in Lithuania | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">31st Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">70/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: End of MiCA Transitional Period in Lithuania</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📊 ANALYZE: Determine offer price, arbitrage opportunity if discount</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Gabrielle Cordeiro</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+31 Dec 2025 07:00
+RNS Number : 1900N
+GSTechnologies Ltd
+31 December 2025
+31 December
+2025
+GSTechnologies Limited
+("GST" or the "Company")
+End of MiCA Transitional Period in Lithuania
+GSTechnologies
+Ltd (LSE: GST), the fintech company, announces that
+following the submission of a
+MiCA license application to the Bank of Lithuania in September 2025,
+GS Fintech UAB has not obtained crypto-asset service provider (CASP) authorisation under MiCA by the end of the transitional period, which expires on 31 December 2025.
+The Company plans to resubmit its application to the Bank of Lithuania in Q1 2026 and in the meantime, to ensure trading continuity without interruption, GS Fintech UAB's platform will transition to operations under VASP-registered Finferno Spółka Z Ograniczoną Odpowiedzialnością in Poland, whose acquisition by the Company was announced on 29 December 2025.
+Enquiries:
+The Company
+Tone Goh, Executive Chairman
++65 6444 2988
+Financial Adviser
+First Sentinel Corporate Finance
++44 (0)20 3855 5551
+Brian Stockbridge /
+Gabrielle Cordeiro
+Broker
+CMC Markets
++44 (0)20 3003 8632
+Douglas Crippen
+Financial PR & Investor Relations
+IFC Advisory Limited
+Tim Metcalfe / Graham Herring / Florence Staton
++44 20 (0) 3934 6632
+For more information please see:
+https://gstechnologies.co.uk/
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+UPDPKKBBPBDDBBN
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Acquisition of Finferno</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 70/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE ACTION: Company being acquired or acquiring another | 💰 EXPANSION: Company acquiring competitor. Growth positive but capital intensive.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">29th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">10:08 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">70/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE ACTION: Company being acquired or acquiring another</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">💰 EXPANSION: Company acquiring competitor. Growth positive but capital intensive.</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #10b981; font-weight: 600;">🟢 LOW RISK: Positive signals, minimal concerns</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📊 ANALYZE: Determine offer price, arbitrage opportunity if discount</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📈 IMPROVING: Company demonstrating strength and growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Service Provider</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+29 Dec 2025 10:08
+RNS Number : 9872M
+GSTechnologies Ltd
+29 December 2025
+29 December
+2025
+GSTechnologies Limited
+("GST" or the "Company")
+Acquisition of Finferno
+GSTechnologies
+Ltd (LSE: GST), the fintech company, is pleased to announce that the Company has entered into a legally binding agreement to acquire the entire issued share capital of Finferno Spółka Z Ograniczoną Odpowiedzialnością ("Finferno"), a Polish-registered Virtual Asset Service Provider ("VASP"), for an undisclosed cash consideration (the "Acquisition").
+The Acquisition, which is being funded through the Company's existing cash resources, is intended to facilitate the growth of the Group's digital asset business, focused on both digital asset exchange and wealth management, in Poland and Central Europe. In particular, the Acquisition will enable the Group to launch new offerings in Poland, initially on a pilot basis. GST views Poland as a particularly attractive area for future growth given the country's robust economic growth forecasts and surging cryptocurrency adoption.
+Tone Goh, Chairman of GST, commented:
+"I am very pleased to be announcing the acquisition of Finferno, which will add to GST's growing digital asset capabilities. T
+his acquisition is in line with our plans to grow our digital asset business,
+GS Fintech,
+internationally in selected markets where we see strong potential. Poland, and Central Europe more widely, offer attractive opportunities for GST, and we are keen to invest more in the region, which is enjoying significant economic growth and burgeoning cryptocurrency adoption. As we enter 2026 GST is very well positioned and I look forward to providing further updates in due course.
+"
+Enquiries:
+The Company
+Tone Goh, Executive Chairman
++65 6444 2988
+Financial Adviser
+First Sentinel Corporate Finance
++44 (0)20 3855 5551
+Brian Stockbridge /
+Gabrielle Cordeiro
+Broker
+CMC Markets
++44 (0)20 3003 8632
+Douglas Crippen
+Financial PR & Investor Relations
+IFC Advisory Limited
+Tim Metcalfe / Graham Herring / Florence Staton
++44 20 (0) 3934 6632
+For more information please see:
+https://gstechnologies.co.uk/
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+ACQUKRRRVNUUUAA
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">4</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #4
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Acquisition of Finferno</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 70/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE ACTION: Company being acquired or acquiring another | 💰 EXPANSION: Company acquiring competitor. Growth positive but capital intensive.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">29th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">10:08 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">70/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE ACTION: Company being acquired or acquiring another</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">💰 EXPANSION: Company acquiring competitor. Growth positive but capital intensive.</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #10b981; font-weight: 600;">🟢 LOW RISK: Positive signals, minimal concerns</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📊 ANALYZE: Determine offer price, arbitrage opportunity if discount</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📈 IMPROVING: Company demonstrating strength and growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Service Provider</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+29 Dec 2025 10:08
+RNS Number : 9872M
+GSTechnologies Ltd
+29 December 2025
+29 December
+2025
+GSTechnologies Limited
+("GST" or the "Company")
+Acquisition of Finferno
+GSTechnologies
+Ltd (LSE: GST), the fintech company, is pleased to announce that the Company has entered into a legally binding agreement to acquire the entire issued share capital of Finferno Spółka Z Ograniczoną Odpowiedzialnością ("Finferno"), a Polish-registered Virtual Asset Service Provider ("VASP"), for an undisclosed cash consideration (the "Acquisition").
+The Acquisition, which is being funded through the Company's existing cash resources, is intended to facilitate the growth of the Group's digital asset business, focused on both digital asset exchange and wealth management, in Poland and Central Europe. In particular, the Acquisition will enable the Group to launch new offerings in Poland, initially on a pilot basis. GST views Poland as a particularly attractive area for future growth given the country's robust economic growth forecasts and surging cryptocurrency adoption.
+Tone Goh, Chairman of GST, commented:
+"I am very pleased to be announcing the acquisition of Finferno, which will add to GST's growing digital asset capabilities. T
+his acquisition is in line with our plans to grow our digital asset business,
+GS Fintech,
+internationally in selected markets where we see strong potential. Poland, and Central Europe more widely, offer attractive opportunities for GST, and we are keen to invest more in the region, which is enjoying significant economic growth and burgeoning cryptocurrency adoption. As we enter 2026 GST is very well positioned and I look forward to providing further updates in due course.
+"
+Enquiries:
+The Company
+Tone Goh, Executive Chairman
++65 6444 2988
+Financial Adviser
+First Sentinel Corporate Finance
++44 (0)20 3855 5551
+Brian Stockbridge /
+Gabrielle Cordeiro
+Broker
+CMC Markets
++44 (0)20 3003 8632
+Douglas Crippen
+Financial PR & Investor Relations
+IFC Advisory Limited
+Tim Metcalfe / Graham Herring / Florence Staton
++44 20 (0) 3934 6632
+For more information please see:
+https://gstechnologies.co.uk/
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+ACQUKRRRVNUUUAA
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #ef4444 0%, #ef4444dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #ef444440;
+                    ">5</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #5
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #ef4444 0%, #ef4444dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📉</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Interim Results</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 100/100 • BEARISH</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    FINANCIAL RESULTS: Profit 1.8 million | 📉 BEARISH: Poor results likely cause selling. Assess if bottom is in.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">18th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #ef4444;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #ef4444;">BEARISH</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #ef4444;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #ef4444;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">100/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">FINANCIAL RESULTS: Profit 1.8 million</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #ef4444; font-weight: 600;">📉 BEARISH: Poor results likely cause selling. Assess if bottom is in.</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #10b981; font-weight: 600;">🟢 LOW RISK: Positive signals, minimal concerns</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📊 ANALYZE: Determine offer price, arbitrage opportunity if discount</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📈 IMPROVING: Company demonstrating strength and growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Treasury Shares</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">100%, 66.66%, 66.66%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+18 Dec 2025 07:00
+RNS Number : 0149M
+GSTechnologies Ltd
+18 December 2025
+18 December 2025
+GSTechnologies Limited
+("GST" or the "Company", or, together with its subsidiaries, the "Group")
+Interim Results for the six months ended 30 September 2025
+GSTechnologies Limited (LSE: GST), the fintech company,
+announces the Company's unaudited interim results for the six months ended 30 September 2025 ("H1 26" or the "Period").
+Highlights
+●
+Further significant progress for the Group, both with the foreign exchange and payments business, and the digital asset business, particularly the Bake platform following its integration into the Group.
+●
+Formal adoption of a Bitcoin treasury reserve policy to hold a significant proportion of the Company's cash in Bitcoin, reflecting confidence in Bitcoin's ability to reduce counterparty and exchange rate risk, enhance shareholder value, and align with the Group's GS Money strategy.
+●
+Raised £1.925 million via a placing and retail offer to build the Company's Bitcoin treasury reserve.
+●
+Revenue for the Period reduced to US$1.40 million (H1 25 US$2.23 million). However, this was a near doubling of the revenue achieved in H2 25 (US$0.73 million), reflecting the growth of the Group's digital assets businesses and the absence of non-recurring revenue in the comparative period.
+●
+Net loss for the Period increased to US$437k (H1 25: US$69k loss) as the Group continues to invest in developing its GS Money solutions across both
+foreign exchange and payment services (Angra Global),
+and
+digital assets (GS20 Exchange and Bake).
+●
+As of 30 September 2025, the Company had US$3.91 million in cash and cash equivalents (30 September 2024: US$2.91 million), including the Company's Bitcoin holding valued at approximately US$1.01 million.
+●
+Net assets as at 30 September 2025 increased significantly to US$10.13 million compared to US$7.13 million at 30 September 2024.
+Chairman's Statement
+I am pleased to present on behalf of the board of directors of GST (the "Board") the interim report of the Company for the six months ended 30 September 2025.
+Operational review
+Foreign Exchange and Payment Services - Angra Global
+Angra Global operates under the AngraFX and Angra Global brand names and is a UK Financial Conduct Authority ("FCA") approved Authorised Payment Institution ("API"), as well as holding a Canadian Money Services Business ("MSB") licence.
+Angra Global provides a multi-currency e-wallet service, currently covering Sterling, Euro, US Dollar, Canadian Dollar, Chinese Yuan Renminbi and US Dollar Tether Token transactions. This service enables Angra customers to securely store their funds within Angra Global business accounts and facilitate seamless foreign exchange conversions and fund transfers through Angra's established and reliable banking partnerships, akin to a conventional business bank account, utilising technology developed by the Group's subsidiary in Singapore, GS Fintech Pte Ltd. Additionally, the MSB licence enables Angra to issue Sterling local accounts and Euro SEPA IBAN accounts to its clients, thereby providing a comprehensive one-stop business banking solution.
+During the Period Angra continued to refine its processes and ensure that the focus is only on business where an appropriate margin can be achieved. This has led to a short-term reduction in revenue, but Angra has now successfully transitioned from an 'old fashioned' fully manual banking system to a more technologically advanced system, positioning it very well for its planned growth and expansion.
+To drive future growth Angra has hired a new business development manager. He has more than 20 years of experience in the remittance business and will, in particular, be tasked with expanding Angra's South American business. In this regard, Angra in process of establishing a Brazilian branch that the Company expects to be operational in Q1 2026.
+Angra Limited in the UK is currently applying for an FCA Electronic Money Institution ("EMI") licence which will enable it to substantially increase its market offerings and services, including the ability to issue electronic money and provide payment services such as digital wallets and prepaid cards. Significant investment continued during the Period in connection with this application which continues to progress.
+Just before the start of the Period, the Company entered into a legally binding sale and purchase agreement to acquire 100% of Metapay SP. Z.O.O ("Metapay"), a company incorporated in Poland. Metapay holds a Small Payment Institution (SPI) licence and is registered under the Polish Act on Payment Services with MIP260/2025 status. The acquisition of Metapay is in line with GST's strategy to enhance its footprint in domestic and cross border payment services across Europe. Completion of the Metapay acquisition remains subject to the necessary regulatory approvals, a process that is ongoing, and completion is now expected to occur in Q1 2026. Post-completion, it is the Company's intention that Metapay will be renamed as Angra Limited Z.O.O. and, coupled with the grant of the EMI licence, is expected to facilitate a material expansion in both the service offerings and geographical reach of Angra Global.
+In addition, further complementary acquisitions are being investigated to accelerate Angra Global's growth and provide additional licences and infrastructure internationally.
+Digital Assets - GS20 Exchange and Bake
+The Group's GS Fintech UAB business is a holder of a Crypto Currency Exchange Licence, registered in Lithuania, and launched the Company's GS20 crypto asset exchange in November 2022. On 1 January 2025, GS Fintech UAB acquired the business and assets from Cake Pte Ltd and Cake DeFi UAB (together "CAKE") for an undisclosed cash consideration. The acquisition comprised a leading cryptocurrency investment platform, Bake. The acquisition of the Bake platform was a significant step for GST and the GS20 Exchange and Bake's crypto asset operations have now been combined into one single operating entity, GS Fintech UAB, with the backend systems between Bake and the GS20 Exchange also being fully consolidated.
+GS Fintech UAB continues to actively advance its compliance framework in alignment with the European Union's MiCA regulations and appointed Lithuania-based Agne Penikienė as CEO of GS Fintech UAB, together with forming a new management board, in the Period. In September 2025 a
+MiCA license application was submitted to the Bank of Lithuania
+.
+Post submission, the Company has responded to follow-up questions, primarily focused on GST and its corporate ownership structure, and we are optimistic the licence will be granted in due course.
+Various enhancements have been made to the product and service offering to the Group's digital asset customers. This has included the launch of a savings product enabling users to grow their crypto holdings and earn real-time rewards. This has gained significant traction since launch, with strong adoption across the active user base.
+The Group has also been adding to its offering via partnerships. This has included Circle Alliance Membership, where Bake joined the Penikienėle Alliance, bringing fully MiCA-compliant USDC and EURC stablecoins to the Group's 800,000+ users and further strengthening our regulated stablecoin offering. In addition, in partnership with licensed EMI, Nuvei UAB, direct SEPA EUR deposits and withdrawals have been successfully rolled out to every Bake wallet, alongside 24/7 buying and selling of cryptocurrencies for Euro.
+I am pleased with the progress that our Digital Asset operations have made in the Period and I believe they are well positioned for significant further growth in 2026.
+Semnet
+The Group acquired 66.66% of the share capital of Semnet Pte Ltd ("Semnet"), a cybersecurity company based in Singapore, on 29 February 2024. Semnet is a cybersecurity business that is providing the Company with expertise and licences as well as servicing a wide variety of external customers.
+The business performance was disappointing in the period and on 18 July 2025, the Company announced that it had issued a notice of arbitration to the sellers of Semnet, Choo Seet EE and Zheng Kang Wen Mervyn (the "Sellers"), as set out in the Sale and Purchase Agreement dated 5 December 2023, pursuant to which the Company acquired 66.66% of the issued share capital of Semnet (the "SPA"). The notice of arbitration was sent in accordance with the provisions of the SPA and set out that the Company considered that the Sellers acted in breach of their non-compete undertakings owed to the Company and also acted in breach of their express obligations owned to Semnet as employees.
+A mediation hearing was held in early December 2025 and a formal settlement agreement between the Sellers and the Company is expected to be entered into in late December 2025 or early January 2026. It is currently expected by the GST Board that this will see the return to the Company US$800,000 of cash consideration, the 58,844,713 consideration shares issued to the Sellers and a payment in Singapore Dollars equating to approximately US$300,000 to cover the Company's operational costs. Further updates will be announced as appropriate.
+Bitcoin Treasury Policy
+On 25 June 2025, the Company announced the formal adoption of a Bitcoin treasury reserve policy (the "Treasury Policy"). The Treasury Policy allows for a significant proportion of the cash resources of the Company, as determined by the GST Directors from time to time, to be held in Bitcoin. The GST Directors believe Bitcoin offers liquidity comparable to cash while serving as a reliable store of value.
+The adoption of the Treasury Policy reflects the GST Directors' confidence in Bitcoin's ability to reduce counterparty and exchange rate risk, while potentially enhancing shareholder value beyond the Group's core operations. The Treasury Policy also aligns seamlessly with the Company's GS Money strategy and its operation of the Bake Cryptocurrency Platform. As a fintech company specialising in digital asset services, GST is well-positioned to integrate Bitcoin into its corporate treasury, strengthening its competitive edge in the rapidly evolving blockchain economy.
+As announced on 17 September 2025, the Company currently holds approximately 8.8 Bitcoin in its treasury, acquired at an average purchase price of US$113,592.94 per Bitcoin, for an aggregate cost of US$999,617.90. This initial Bitcoin purchase was undertaken at a level the Board believed was prudent. However, at this time the market was starting to show clear signs of needing a consolidation and further purchases were paused. As at 16 December 2025 the Bitcoin price was approximately US$87,000.
+The GST Board continues to believe that allocating a significant portion of the Company's cash reserves to Bitcoin aligns with the Group's operational focus and the services provided within the cryptocurrency ecosystem. We firmly believe in Bitcoin's role as a digital store of value and its alignment with GST's long-term financial objectives. In time the Company intends to add significantly to its Bitcoin holding and has allocated an initial US$2 million for the purchase of Bitcoin, to be added to the Company's treasury at strategic intervals, as determined by the GST Board. Additional Bitcoin purchases over and above the initial US$2 million allocation will be dependent on the day-to-day cash needs of the Company.
+Funding
+In order to build the Company's Bitcoin treasury reserve, in July 2025 the Company raised gross proceeds of £1,925,000 through a placing and retail offer of 160,416,666 Ordinary Shares at a price of 1.20 pence per share.
+The Board is mindful of dilution for existing shareholders, and the Company will only undertake further fundraising activities if the Board believes additional capital is required to achieve the Company's strategic goals.
+Summary
+The first half of the financial year was another one of significant progress for the Group, both with the foreign exchange and payments business and the digital asset business, particularly the Bake Cryptocurrency Platform. In addition, the adoption of a Bitcoin treasury policy perfectly aligns with the Group's operational focus and the services we provide within the cryptocurrency ecosystem. Whilst we would have liked to have built the Group's Bitcoin holding faster, I believe the Board's cautious approach was vindicated by the downward movement of the Bitcoin price experienced post Period end. However, we have every intention of using the proceeds of the placing and retail offer undertaken earlier in the year to significantly increase the Bitcoin holding, but only when the GST Board believes it is prudent to do so.
+In the second half of the financial year we are looking to
+grow revenues from all the Group's businesses and further strengthen the Group's regulatory position. We will also continue to explore further complementary value enhancing acquisition opportunities that can assist with accelerating the development of the Group.
+I believe GST is extremely well positioned for the future and I look forward to providing regular updates on the Group's progress.
+Tone Kay Kim GOH
+Chairman
+Financial Review
+The Group's interim financial statements represent a full six-month contribution from all subsidiaries.
+Income Analysis
+Whilst revenue for the Period reduced to US$1.40 million (H1 25 US$2.23 million), this was a near doubling of the revenue achieved in H2 25 of US$0.73 million, reflecting particularly the growth of the Group's digital assets businesses. The H1 25 prior year comparative included one-off revenue from Semnet and business streams that have been discontinued at Angra.
+Whilst the Group continues to invest in the development of its businesses, losses continue. The net loss for the Period of US$0.437 million compared to a net loss of US$0.67 million in H1 25. The Board is confident that the investments made are laying strong foundations for profitable future growth.
+Balance Sheet Analysis
+The Group cash position, including the Group's Bitcoin holding valued at approximately US$1.01 million, improved to US$3.91 million as at 30 September 2025 (30 September 2024 US$2.91 million). The increase in cash reserves are reflective of the fundraise undertaken to raise gross proceeds of £1.925 million in July 2025.
+Net assets as at 30 September 2025 increased significantly to US$10.13 million compared to US$7.13 million at 30 September 2024 following the increase in cash resources and the progress of the Group's businesses.
+Summary
+The financial performance for the Period shows marked improvement compared to the prior period. The Group's net loss is being managed and the investments made, coupled with the strengthened cash position and increased net assets, suggest that the Group is on the right path. The Group continues to focus on achieving profitability, whilst investing for the future.
+Director's Responsibilities Statement
+We confirm that to the best of our knowledge:
+(a) the unaudited condensed interim financial statements for the Period have been prepared in accordance with IAS 34 'Interim Financial Reporting';
+(b) the interim management report includes a fair review of the information required by DTR 4.2.7R (indication of important events and their impact during the first six months and description of principal risks and uncertainties for the remaining six months of the year); and
+(c) the interim management report includes a fair review of the information required by DTR 4.2.8R (disclosure of related parties' transactions and changes therein).
+Enquiries:
+The Company
+Tone Goh, Executive Chairman
++61 8 6189 8531
+Financial Adviser
+First Sentinel Corporate Finance
++44 (0)20 3855 5551
+Brian Stockbridge / Gabrielle Cordeiro
+Broker
+CMC Markets
++44 (0)20 3003 8632
+Douglas Crippen
+Financial PR & Investor Relations
+IFC Advisory Limited
+Tim Metcalfe / Graham Herring / Florence Staton
++44 (0)20 3934 6632
+For more information please see:
+https://gstechnologies.co.uk
+Unaudited consolidated statement of profit or loss and other comprehensive income
+for the period ended 30 September 2025
+Unaudited
+Audited
+Unaudited
+Six months
+Year
+Six months
+Notes
+ended
+ended
+ended
+30.09.2025
+31.03.2025
+30.09.2024
+US$ 000
+US$ 000
+US$ 000
+Net operating income
+Revenue
+6
+1,399
+2,817
+2,227
+Other income
+7
+6
+147
+7
+1,405
+2,964
+2,234
+Net operating expense
+Continuing operations
+8
+(1,943)
+(5,159)
+(2,330)
+Foreign exchange gain/(loss)
+81
+(118)
+(15)
+Operating loss before tax
+(457)
+(2,313)
+(110)
+Income tax expense
+21
+20
+15
+41
+Net loss for the period
+(437)
+(2,298)
+(69)
+Other comprehensive loss
+Revaluation gain from digital assets
+-
+58
+-
+Movement in foreign exchange reserve
+(273)
+(52)
+(655)
+Total comprehensive loss for the period
+(710)
+(2,292)
+(724)
+Net Loss for the period attributable to:
+Equity holders for the parent
+(303)
+(2,195)
+(46)
+Non-controlling interest
+23
+(133)
+(103)
+(23)
+(436)
+(2,298)
+(69)
+Total comprehensive loss for the period
+attributable to:
+Equity holders for the parent
+(577)
+(2,189)
+(701)
+Non-controlling interest
+(133)
+(103)
+(23)
+(710)
+(2,292)
+(724)
+Basic (loss) per share
+11
+(0.00019)
+(0.00106)
+(0.00003)
+Diluted (loss) per share
+(0.00019)
+(0.00106)
+(0.00003)
+Unaudited consolidated statement of financial position
+as at 30 September 2025
+Unaudited
+Audited
+Unaudited
+Six months
+Year
+Six months
+Notes
+ended
+ended
+ended
+30.09.2025
+31.03.2025
+30.09.2024
+US$ 000
+US$ 000
+US$ 000
+ASSETS
+Current assets
+Cash and cash equivalents
+13
+3,911
+4,214
+2,917
+Trade and other receivables
+14
+45,234
+38,263
+381
+Other assets
+277
+277
+277
+Inventories
+15
+6
+13
+10
+Total current assets
+49,428
+42,767
+3,585
+Non-current assets
+Property, plant and equipment
+16
+120
+109
+514
+Intangible assets
+18
+5,241
+4,141
+3,743
+Total non-current assets
+5,361
+4,250
+4,257
+TOTAL ASSETS
+54,789
+47,017
+7,842
+EQUITY
+Share Capital
+22
+18,163
+15,582
+12,124
+Treasury Shares
+(16)
+(16)
+(808)
+Reserves
+(280)
+8
+(287)
+Non-controlling interest
+(184)
+(51)
+-
+Other comprehensive income
+-
+58
+-
+Retained Earnings
+(7,557)
+(7,120)
+(3,893)
+Total Equity
+10,126
+8,445
+7,136
+Equity attributable to owners of the parent
+10,310
+8,496
+7,103
+Non-controlling equity interest
+23
+(184)
+(51)
+33
+10,126
+8,445
+7,136
+LIABILITIES
+Current liabilities
+Trade and other payable
+24
+44,530
+38,437
+538
+Lease liabilities
+17
+38
+37
+19
+Total current liabilities
+44,568
+38,474
+557
+Non-current liabilities
+Lease liabilities
+17
+68
+65
+107
+Loans payable
+25
+18
+24
+38
+Other payable
+9
+9
+4
+Total non-current liabilities
+95
+98
+149
+Total Liabilities
+44,663
+38,573
+706
+TOTAL EQUITY & LIABILITIES
+54,789
+47,017
+7,842
+Unaudited consolidated statement of changes in equity
+for the period ended 30 September 2025
+Shareholder Capital
+Treasury Shares
+FX Reserve
+NCI
+OCI
+Retained Earnings
+Total
+2025 Consolidated Interim
+(Unaudited)
+US$ 000
+US$ 000
+US$ 000
+US$ 000
+US$ 000
+US$ 000
+US$ 000
+Balance at 1 April 2025
+15,582
+(16)
+(8)
+(51)
+58
+(7,120)
+8,445
+Comprehensive Income / (Loss
+)
+Loss for the period
+-
+-
+-
+-
+-
+(437)
+(437)
+Other comprehensive loss for the period
+-
+-
+(272)
+-
+(58)
+-
+(329)
+Non-controlling interest
+-
+-
+-
+(133)
+-
+-
+(133)
+Total comprehensive loss for the period
+-
+-
+(272)
+(133)
+(58)
+(437)
+(900)
+Transactions with owners in their capacity as owners:
+Shares issued during the year
+2,581
+-
+-
+-
+-
+-
+2,581
+Balance at 30 September 2025
+18,163
+(16)
+(280)
+(184)
+-
+(7,557)
+10,126
+Shareholder Capital
+Treasury Shares
+FX Reserve
+NCI
+OCI
+Retained Earnings
+Total
+2025 Consolidated
+(Audited)
+US$ 000
+US$ 000
+US$ 000
+US$ 000
+US$ 000
+US$ 000
+US$ 000
+Balance at 1 April 2024
+10,870
+(808)
+44
+52
+-
+(4,822)
+5,336
+Comprehensive Income / (Loss
+)
+Loss for the year
+-
+-
+-
+-
+-
+(2,298)
+(2,298)
+Revaluation gains on digital assets
+-
+-
+-
+-
+58
+-
+58
+Other comprehensive loss for the year
+-
+-
+(52)
+-
+-
+-
+(52)
+Non-controlling interest
+-
+-
+-
+(103)
+-
+-
+(103)
+Total comprehensive loss for the year
+-
+-
+(52)
+(103)
+58
+(2,298)
+(2,395)
+Transactions with owners in their capacity as owners:
+Shares issued during the year
+4,712
+792
+-
+-
+-
+-
+5,504
+Balance at 31 March 2025
+15,582
+(16)
+(8)
+(51)
+58
+(7,120)
+8,445
+Unaudited consolidated statement of cash flow for the period ended
+for the period ended 30 September 2025
+Unaudited
+Audited
+Unaudited
+Six months
+Year
+Six months
+Notes
+ended
+ended
+ended
+30.09.2025
+31.03.2025
+30.09.2024
+US$ 000
+US$ 000
+US$ 000
+CASH FLOWS FROM OPERATING ACTIVITIES
+Loss before taxation from operations
+(457)
+(2,313)
+(110)
+Adjustments:
+Depreciation on property, plant and equipment
+16
+1
+14
+31
+Depreciation on right-of-use of asset
+-
+41
+-
+Impairment
+18
+-
+833
+-
+Interest expense on lease
+-
+6
+4
+Income tax
+(20)
+(15)
+41
+(Profit) / Loss on foreign exchange
+(146)
+(194)
+6
+Operating loss before working capital changes
+(622)
+(1,628)
+(28)
+Decrease/(Increase) in inventories
+7
+(3)
+-
+Decrease/(Increase) in trade and other receivables
+(6,971)
+(37,655)
+226
+(Decrease)/Increase in trade and other payables
+6,093
+37,404
+(496)
+Net cash flow used in operating activities
+(1,493)
+(1,882)
+(298)
+CASH FLOWS FROM INVESTING ACTIVITIES
+Purchase of property, plant and equipment
+(12)
+(3)
+(265)
+Deferred consideration paid
+-
+(220)
+-
+Purchase of intangible asset
+(1,100)
+(866)
+(30)
+Net cash flow from investing activities
+(1,112)
+(1,089)
+(295)
+CASH FLOWS FROM FINANCING ACTIVITIES
+Issuance of new shares
+2,581
+4,712
+1,561
+Treasury shares
+-
+-
+-
+Principal elements of lease payments
+-
+69
+(4)
+Decrease in loans payable
+(6)
+(17)
+(3)
+Forex reserves
+(273)
+52
+(656)
+Net cash flow from financing activities
+2,302
+4,574
+899
+Net increase/(decrease) in cash and cash equivalents
+(303)
+1,603
+306
+Cash and cash equivalents at beginning of the period
+4,214
+2,611
+2,611
+Cash and cash equivalents at end of the period
+13
+3,911
+4,214
+2,917
+Notes to the Group Unaudited Consolidated Financial Statements
+These notes form an integral part of and should be read in conjunction with the accompanying
+financial statements.
+1. Corporate information
+The consolidated financial statements of GSTechnologies Ltd (the "Company") and its subsidiaries (collectively referred to as the "Group" for the financial period from 1 April 2025 and ended 30 September 2025 were authorised for issue in accordance with a resolution of the
+Directors on 18 December 2025.
+The registered office of GSTechnologies Ltd, the ultimate parent of the Group is Craigmur Chambers, Road Town, Tortola, VG1110, British Virgin Islands.
+The principal activity of the Company comprises of fintech services through the use of blockchain technology; and the provision of data infrastructure, storage and technology services by its subsidiaries.
+2. Basis of preparation
+2.1 Statement of compliance
+The unaudited interim consolidated financial statements of the Group have been prepared in accordance with International Financial Reporting Standards (IFRS) as adopted by United Kingdon Accounting Standards, including Financial Reporting Standard 102, The Financial Reporting Standard applicable in the United Kingdon and Ireland and the Companies Act 2006 as they apply to the financial statements of the Group for the period 1 April 2025 to 30 September 2025.
+The unaudited set of financial statements included in this half-yearly financial report has been prepared in accordance with UK adopted International Accounting Standard 34, "Interim Financial Reporting and the Disclosure and Transparency Rules of the Financial Conduct Authority".
+The annual financial statements of the Group will be prepared in accordance with UK adopted International Financial Reporting Standards. They do not constitute statutory accounts within the meaning of section 434(3) of the Companies Act 2006 and should be read in conjunction with the financial statements prepared for GSTechnologies Ltd for the twelve months ended 31 March 2025, which were prepared in accordance with International Financial Reporting Standards (IFRS) and are available to shareholders on request.
+The information for the period ended 30 September 2025 has neither been audited nor reviewed and does not constitute statutory accounts as defined in Section 434 of the Companies Act 2006.
+The unaudited interim consolidated financial statements have been prepared on a historical cost convention basis, except for certain financial instruments that have been measured at fair value. The consolidated financial statements are presented in US dollars and all values are rounded to the nearest thousand except when otherwise indicated.
+The preparation of financial statements in conformity with FRS requires management to exercise its judgement in the process of applying the Group's accounting policies. It also requires the use of accounting estimates and assumptions that affect the reported amounts of assets and liabilities and disclosure of contingent assets and liabilities at the date of the financial statements, and the reported amounts of revenues and expenses during the financial year. Although these estimates are based on management's best knowledge of current events and actions, actual results may ultimately differ from those estimates. Critical accounting estimates and assumptions used that are significant to the financial statements, and areas involving a higher degree of judgement or complexity, are disclosed in Note 3.
+2.2 Consolidation
+The unaudited consolidated financial statements comprise the financial statements of the Group as of 30 September 2025, and for the period then ended.
+The financial statements of the subsidiaries are prepared for the same reporting period as the GSTechnologies Ltd (parent company), using consistent accounting.
+Subsidiaries are consolidated from the date on which control is transferred to the Group to the date on which that control ceases. In preparing the consolidated financial statements, intercompany transactions, balances and unrealised gains on transactions between group companies are eliminated. Unrealised losses are also eliminated unless the transaction provides evidence of an impairment of the asset transferred. Where necessary, adjustments are made to the financial statements of subsidiaries to ensure consistency of accounting policies with those of the Group.
+Minority interest is that part of the net results of operations and of net assets of a subsidiary attributable to interests which are not owned directly or indirectly by the Group. It is measured at the minorities' share of the fair value of the subsidiaries' identifiable assets and liabilities at the date of acquisition by the Group and the minorities' share of changes in equity since the date of acquisition, except when the losses applicable to the minority in a subsidiary exceed the minority interest in the equity of that subsidiary. In such cases, the excess and further losses applicable to the minority are attributed to the equity holders of the Company, unless the minority has a binding obligation to, and is able to, make good the losses. When that subsidiary subsequently reports profits, the profits applicable to the minority are attributed to the equity holders of the Company until the minority's share of losses previously absorbed by the equity holders of the Company has been recovered.
+3.
+Significant accounting judgements, estimates and assumptions
+Estimates and judgements are continually evaluated and are based on historical experience and other factors, including expectations of future events that are believed to be reasonable under the circumstances.
+Critical accounting estimates and assumptions
+The preparation of the Group's consolidated financial statements requires management to make judgements, estimates and assumptions that affect the reported amounts of assets and liabilities and the disclosure of contingent liabilities at the date of the consolidated financial statements, and the reported amounts of revenues and expenses during the reporting period. Estimates and assumptions are continuously evaluated and are based on management's experience and other factors, including expectations of future events that are believed to be reasonable under the circumstances. However, actual outcomes would differ from these estimates if different assumptions were used and different conditions existed.
+In particular, the Group has identified the following areas where significant judgements, estimates and assumptions are required, and where actual results were to differ, may materially affect the financial position or financial results reported in future periods. Further information on these and how they impact the various accounting policies is in the relevant notes to the consolidated financial statements.
+Going concern
+This report has been prepared on the going concern basis, which contemplates the continuation of normal business activity and the realisation of assets and the settlement of liabilities in the normal course of business.
+At 30 September 2025, the Group held cash reserves of US$3,911,000 (2024: US$2,917,000).
+The Directors believe that there are sufficient funds to meet the Group's working capital requirements.
+The Group recorded a loss of US$437,000 for the six months ended 30 September 2025 and had net assets of US$10,126,000 as of 30 September 2025 (2024: loss of US$69,000 and net assets of US$7,135,000).
+Subsidiaries GS Fintech UAB, Angra Limited, and Semnet Pte Ltd are expected to contribute profit to the Group.
+Estimated impairment of goodwill
+The Group tests annually whether goodwill has suffered any impairment, in accordance with the accounting policy stated in Note 5.5. The recoverable amounts of cash-generating units have been determined based on value-in-use calculations.
+Income taxes
+The Group is subject to income taxes in numerous jurisdictions. Significant judgement is required in determining the capital allowances and deductibility of certain expenses during the estimation of the provision for income taxes. There are many transactions and calculations for which the ultimate tax determination is uncertain during the ordinary course of business. The Group recognises liabilities for anticipated tax audit issues based on estimates of whether additional taxes will be due. Where the final tax outcome of these matters is different from the amounts that were initially recorded, such differences will impact the income tax and deferred income tax provisions in the period in which such determination is made.
+Contingencies
+By their nature, contingencies will only be resolved when one or more uncertain future events occur or fail to occur. The assessment of the existence, and potential quantum, of contingencies inherently involves the exercise of significant judgement and the use of estimates regarding the outcome of future events. Please refer to Note 26 for further details.
+The preparation of the Company's financial statements requires management to make judgements, estimates and assumptions that affect the reported amounts of revenues, expenses, assets and liabilities, and the disclosure of contingent liabilities at the end of each reporting period. Uncertainty about these assumptions and estimates could result in outcomes that require a material adjustment to the carrying amount of the asset or liability affected in the future periods.
+Critical judgements in applying the entity's accounting policies
+Management is of the opinion that there are no significant judgements made in applying accounting estimates and policies that have a significant risk of causing a material adjustment to the carrying amounts of assets and liabilities within the next financial year.
+Key sources of estimation uncertainty
+The key assumptions concerning the future and other key sources of estimation uncertainty at the end of the reporting period are discussed below. The Company based its assumptions and estimates on parameters available when the financial statements were prepared. Existing circumstances and assumptions about future developments, however, may change due to market changes or circumstances arising beyond the control of the Company. Such changes are reflected in the assumptions when they occur.
+Provision for expected credit losses (ECL) on trade receivables and contract assets
+ECLs are unbiased probability-weighted estimates of credit losses which are determined by evaluating a range of possible outcomes and taking into account past events, current conditions and assessment of future economic conditions.
+The Company uses a provision matrix to calculate ECLs for trade receivables and contract assets. The provision rates are based on days past due for groupings of various customer segments that have similar loss patterns. The provision matrix is initially based on the Company's historical observed default rates. The Company will calibrate the matrix to adjust historical credit loss experience with forward-looking information. At every reporting date, historical default rates are updated and changes in the forward- looking estimates are analysed.
+The assessment of the correlation between historical observed default rates, forecast economic conditions and ECLs is a significant estimate. The amount of ECLs is sensitive to changes in circumstances and of forecast economic conditions. The Company's historical credit loss experience and forecast of economic conditions may also not be representative of customer's actual default in the future.
+The carrying amount of the Company's trade receivables at the end of the reporting period is disclosed in Note 14 to the financial statements.
+Allowance for inventory obsolescence
+The Company reviews the ageing analysis of inventories at each reporting date, and makes provision for obsolete and slow-moving inventory items identified that are no longer suitable for sale. The net realisable value for such inventories is estimated based on the most reliable evidence available at the reporting date. These estimates take into consideration market demand, competition, selling price and cost directly relating to events occurring after the end of the financial year to the extent that such events confirm conditions existing at the end of the financial year. Possible changes in these estimates could result in revisions to the valuation of inventories. The carrying amounts of the Company's inventories at the reporting date are disclosed in Note 15 to the financial statements.
+4. Adoption of new and amended standards and interpretations
+There are several new accounting standards and interpretations issued by the IFRS that are not yet mandatorily applicable to the Group and have not been applied in preparing these consolidated financial statements. The Group does not plan to adopt these standards early.
+These standards are not expected to have a material impact on the Group in the current or future reporting periods.
+5. Summary of significant accounting policies
+5.1
+Revenue recognition
+The Group's revenue is primarily derived from consideration paid by customers to transfer money internationally. The Group recognises revenue when performance obligations are satisfied, meaning when the funds are received by the recipients.
+Sale of goods
+Revenue from the sale of goods is recognised when a Group entity has delivered the products to the customer, the customer has accepted the products and collectability of the related receivables is reasonably assured.
+Component parts and products are often sold with a right of return. Accumulated experience is used to estimate and provide for such returns at the time of sale.
+Rendering of services
+Revenue from remittance services is recognised over the period in which the services are rendered, by reference to completion of the specific transaction assessed on the basis of the actual service provided as a proportion of the total services to be performed. A customer enters into the contract with the Company at the time of opening an account or initiating a money transfer. Generally, the customer agrees to the contractual terms by formally accepting, on Company's website or the Company's App, the terms and conditions of the respective service, which detail the Group's performance obligations and fees.
+The transaction price is the amount of consideration expected to be received in exchange for providing services to a customer. The fees charged to customers are shown to them upfront prior to the transaction being initiated. For international transfers, a single upfront fee per transaction is charged, consisting of a fixed and a variable amount. The amount of both the fixed and the variable portion of the fee depends on a number of factors, including the currency route, the transfer size, the type of transaction being undertaken and the payment method used. Company offers certain rebates in the form of a fee refund for eligible transactions. The refund liability is recognised for the expected future rebates at the time of the transaction and deducted from revenue in accordance with IFRS 15.
+The transaction price is allocated to performance obligations of the different revenue streams on the basis of relative standalone selling prices. As there is typically a single performance obligation associated with each type of service provided to a customer, the revenue is recognised at the point in time when the performance obligation has been satisfied. For money transfers it is upon delivery of funds to the recipient. In the case of money conversions it is when a customer balance is converted into a different currency.
+Interest income
+Interest income is recognised on a time-proportion basis using the effective interest method. When a receivable is impaired, the Group reduces the carrying amount to its recoverable amount, being the estimated future cashflow discounted at original effective interest rate of the instrument, and thereafter amortising the discount as interest income.
+Government grants
+Grants from the government are recognised at their fair value where there is a reasonable assurance that the grant will be received and the group will comply with all attached conditions. Note 7 provides further information on how the group accounts for government grants.
+5.2
+Property, Plant and Equipment
+Measurement
+Plant and equipment are shown at cost less accumulated depreciation and impairment losses. The initial cost of an asset comprises its purchase price or construction cost, any costs directly attributable to bringing the asset into operation, any incidental cost of purchase, and associated borrowing costs. The purchase price or construction cost is the aggregate amount paid and the fair value of any other consideration given to acquire the asset. Directly attributable costs include employee benefits, professional fees and costs of testing whether the asset is functioning properly. Capitalised borrowing costs include those that are directly attributable to the construction of mining and infrastructure assets.
+Property, plant and equipment relate to plant, machinery, fixtures and fittings and are shown at historical cost less accumulated depreciation and impairment losses.
+Depreciation
+Depreciation of property, plant and equipment are computed on a straight-line basis over the estimated useful life of the assets.
+The depreciation rates applied to each type of asset are as follows:
+Computer Equipment
+3 years
+Fixtures and fittings
+3 years
+Lease improvements
+2 years
+The residual values and useful lives of property, plant and equipment are reviewed, and adjusted as appropriate, at each balance sheet date.
+Subsequent expenditure
+Subsequent expenditure relating to property, plant and equipment that has already been recognised is added to the carrying amount of the asset when it is probable that future economic benefits, in excess of the standard of performance of the asset before the expenditure was made, will flow to the Group and the cost can be reliably measured. Other subsequent expenditure is recognised as an expense during the financial year in which it is incurred.
+Disposal
+On disposal of an item of property, plant and equipment, the difference between the net disposal proceeds and its carrying amount is taken to the income statement. Any amount in revaluation reserve relating to that asset is transferred to retained earnings.
+5.3
+Intangible assets
+Goodwill, licences and computer software have been classified as intangible assets with indefinite useful lives. In accordance with IAS 38 Intangible Assets and IAS 36 Impairment of Assets, such assets are not amortised but are tested for impairment annually, or more frequently if events or changes in circumstances indicate that they might be impaired.
+Gross Carrying Amount
+Accumulated Amortization
+Impairment
+IntangibleAssets, Net
+Life
+Intangible assets
+US$'000
+US$'000
+USS'000
+US$'000
+Amortizing intangible assets:
+Crypto License
+30
+(27)
+3
+3 years
+Software & Licenses
+108
+(21)
+87
+3 years
+Indefinite-lived intangible assets:
+Goodwill
+961
+961
+indefinite
+Software & Licenses
+1,562
+1,562
+indefinite
+Neobanking platform
+1,017
+1,017
+indefinite
+Digital Assets
+505
+1,100
+1,605
+indefinite
+Trademarks
+6
+6
+indefinite
+Total
+4,188
+(48)
+1,100
+5,241
+Management has assessed the useful lives of these assets as indefinite, based on the following considerations:
+Goodwill
+- In accordance with IFRS, goodwill is deemed to have an indefinite useful life. It is not amortised but is subject to annual impairment testing, or more frequent review if indicators of impairment arise.
+Licences
+- The licences are granted by regulatory authorities and are renewable indefinitely provided that Angra Limited complies with the relevant regulatory requirements. As these licences represent the core regulatory permission necessary to operate the business, management considers them to be of indefinite duration and fundamental to the Group's ongoing operations.
+Computer Software
+- The Group fully owns the intellectual property rights associated with its proprietary software platform. The software is subject to ongoing maintenance, enhancements and adaptation to meet evolving business and technological requirements. Management does not anticipate technological obsolescence in the foreseeable future and, as such, considers the software to have an indefinite useful life.
+5.4
+Investments in subsidiaries, joint ventures and associated companies
+Investments in subsidiaries, joint ventures and associated companies are stated at cost less accumulated impairment losses (Note 5.5) in the Company's balance sheet. On disposal of investments in subsidiaries, joint ventures and associated companies, the difference between net disposal proceeds and the carrying amount of the investment is taken to the income statement.
+5.5
+Impairment of assets
+Goodwill is tested annually for impairment, as well as when there is any indication that the goodwill may be impaired. Impairment loss on goodwill is not reversed in a subsequent period.
+Intangible assets, property, plant and equipment and investments in subsidiaries are reviewed for impairment whenever there is any indication that these assets may be impaired. If any such indication exists, the recoverable amount (i.e. the higher of the fair value less cost to sell and value in use) of the asset is estimated to determine the amount of impairment loss.
+5.6
+Financial instruments
+Financial assets
+i.
+Classification, initial recognition and measurement
+The Company classifies its financial assets into the following measurement categories: amortised cost; fair value through other comprehensive income (FVOCI); and fair value through profit or loss (FVPL).
+Financial assets are recognised when, and only when the entity becomes party to the contractual provisions of the instruments.
+At initial recognition, the Company measures a financial asset at its fair value plus, in the case of a financial asset not at FVPL, transaction costs that are directly attributable to the acquisition of the financial assets. Transaction costs of financial assets carried at FVPL are expensed in profit or loss.
+Trade receivables are measured at the amount of consideration to which the Company expects to be entitled in exchange for transferring promised goods or services to a customer, excluding amounts collected on behalf of third party, if the trade receivables do not contain a significant financing component at initial recognition.
+ii.
+Subsequent measurement
+Debt instruments
+Subsequent measurement of debt instruments depends on the Company's business model for managing the asset and the contractual cash flow characteristics of the asset. The Company only has debt instruments at amortised cost.
+Financial assets that are held for the collection of contractual cash flows where those cash flows represent solely payments of principal and interest are measured at amortised cost. Financial assets are measured at amortised cost using the effective interest method, less impairment. Gains and losses are recognised in profit or loss when the assets are derecognised or impaired, and through the amortisation process.
+Debt instruments of the Company comprise cash and cash equivalents and trade and other receivables.
+Equity instruments
+On initial recognition of an investment in equity instrument that is not held for trading, the Company may irrevocably elect to present subsequent changes in fair value in other comprehensive income which will not be reclassified subsequently to profit or loss. Dividends from such investments are to be recognised in profit or loss when the Company's right to receive payments is established. For investments in equity instruments which the Company has not elected to present subsequent changes in fair value in other comprehensive income, changes in fair value are recognised in profit or loss.
+iii.
+Derecognition
+A financial asset is derecognised where the contractual right to receive cash flows from the asset has expired. On derecognition of a financial asset in its entirety, the difference between the carrying amount and the sum of the consideration received and any cumulative gain or loss that had been recognised in other comprehensive income for debt instruments is recognised in profit or loss.
+Financial liabilities
+i.
+Classification, initial recognition and measurement
+Financial liabilities are recognised when, and only when, the Company becomes a party to the contractual provisions of the financial instrument. The Company determines the classification of its financial liabilities at initial recognition.
+All financial liabilities are recognised initially at fair value plus in the case of financial liabilities not at FVPL, directly attributable transaction costs.
+ii.
+Subsequent measurement
+After initial recognition, financial liabilities that are not carried at FVPL are subsequently measured at amortised cost using the effective interest method. Gains and losses are recognised in profit or loss when the liabilities are derecognised, and through the amortisation process.
+Financial liabilities measured at amortised cost comprise trade and other payables.
+iii.
+Derecognition
+A financial liability is derecognised when the obligation under the liability is discharged or cancelled or expires. On derecognition, the difference between the carrying amounts and the consideration paid is recognised in profit or loss.
+Offsetting
+Financial assets and liabilities are offset and the net amount presented in the statement of financial position when, and only when, the Company has a legal right to offset the amounts and intends either to settle on a net basis or to realise the asset and settle the liability simultaneously.
+Impairment
+Financial assets
+The Company recognises an allowance for expected credit losses (ECLs) for all debt instruments not held at FVPL and contract assets. ECLs are based on the difference between the contractual cash flows due in accordance with the contract and all the cash flows that the Company expects to receive, discounted at an approximation of the original effective interest rate. The expected cash flows will include cash flows from the sale of collateral held or other credit enhancements that are integral to the contractual terms.
+ECLs are recognised in two stages. For credit exposures for which there has not been a significant increase in credit risk since initial recognition, ECLs are provided for credit losses that result from default events that are possible within the next 12-months (a 12-month ECL). For those credit exposures for which there has been a significant increase in credit risk since initial recognition, a loss allowance is recognised for credit losses expected over the remaining life of the exposure, irrespective of timing of the default (a lifetime ECL).
+For trade receivables and contract assets, the Company applies a simplified approach in calculating ECLs. Therefore, the Company does not track changes in credit risk, but instead recognises a loss allowance based on lifetime ECLs at each reporting date. The Company has established a provision matrix that is based on its historical credit loss experience, adjusted for forward-looking factors specific to the debtors and the economic environment which could affect debtors' ability to pay.
+The Company considers a financial asset in default when contractual payments are past due for more than 90 days. However, in certain cases, the Company may also consider a financial asset to be in default when internal or external information indicates that the Company is unlikely to receive the outstanding contractual amounts in full before taking into account any credit enhancements held by the Company. A financial asset is written off when there is no reasonable expectation of recovering the contractual cash flows.
+Non-financial assets
+The carrying amounts of the Company's non-financial assets, other than inventories, are reviewed at each reporting date to determine whether there is any indication of impairment. If any such indication exists, then the asset's recoverable amount is estimated. An impairment loss is recognised if the carrying amount of an asset or its related cash-generating unit (CGU) exceeds its estimated recoverable amount.
+The recoverable amount of an asset or CGU is the greater of its value in use and its fair value less costs to sell. For the purpose of impairment testing, the recoverable amount is determined on an individual asset basis unless the asset does not generate cash inflows that are largely independent of those from other assets. If this is the case, the recoverable amount is determined for the CGU to which the asset belongs. If the recoverable amount of the asset (or CGU) is estimated to be less than its carrying amount, the carrying amount of the asset (or CGU) is reduced to its recoverable amount.
+The difference between the carrying amount and recoverable amount is recognised as an impairment loss in profit or loss.
+An impairment loss for an asset other than goodwill is reversed only if, there has been a change in the estimates used to determine the asset's recoverable amount since the last impairment loss was recognised. The carrying amount of this asset is increased to its revised recoverable amount, provided that this amount does not exceed the carrying amount that would have been determined (net of any accumulated amortisation or depreciation) had no impairment loss been recognised for the asset in prior years.
+A reversal of impairment loss for an asset other than goodwill is recognised in profit or loss.
+5.7
+Trade and other receivables
+The fair values of trade and other receivables are estimated as the present value of future cash flows, discounted at the market rate of interest at the measurement date. Current receivables with no stated interest rate are measured at the original invoice amount if the effect of discounting is immaterial. Fair value is determined at initial recognition and, for disclosure purposes, at each annual reporting date.
+5.8
+Trade and other payables
+Trade and other payables are non-derivative financial liabilities that are not quoted in an active market. It represents liabilities for goods and services provided to the Group prior to the year end and which are unpaid. These amounts are unsecured and have 7-30 day payment terms. Trade and other payables are presented as current liabilities unless payment is not during within 12 months from the reporting date. They are recognised initially at their fair value and subsequently measured at amortised cost using the effective interest method.
+5.9
+Interest-bearing loans and borrowings
+Borrowings are recognised initially at fair value, net of transaction costs incurred. Borrowings are subsequently stated at amortised cost. Any difference between the proceeds (net of transaction costs) and the redemption value is taken to the income statement over the period of the borrowings using the effective interest method.
+Borrowings which are due to be settled within twelve months after the balance sheet date are included in current borrowings in the balance sheet even though the original term was for a period longer than twelve months and an agreement to refinance, or to reschedule payments, on a long-term basis is completed after the balance sheet date and before the financial statements are authorised for issue. Other borrowings due to be settled more than twelve months after the balance sheet date are included in non-current borrowings in the balance sheet.
+5.10
+Fair value estimation
+The fair value of financial instruments traded in active markets (such as exchange- traded and over-the-counter securities and derivatives) is based on quoted market prices at the balance sheet date. The quoted market price used for financial assets held by the Group is the current bid price; the appropriate quoted market price for financial liabilities is the current ask price. The fair value of interest-rate swaps is calculated as the present value of the estimated future cash flow, discounted at actively quoted interest rates. The fair value of forward foreign exchange contracts is determined using forward exchange market rates at the balance sheet date.
+The fair value of financial instruments that are not traded in an active market is determined by using valuation techniques. The Group uses a variety of methods and makes assumptions that are based on market conditions existing at each balance sheet date. Quoted market prices or dealer quotes for similar instruments are used for long-term debt. Other techniques, such as estimated discounted cash flows, are used to determine fair value for the remaining financial instruments.
+The carrying amount of current receivables and payables are assumed to approximate their fair values. The fair value of financial liabilities for disclosure purposes is estimated by discounting the future contractual cash flows at the current market interest rate that is available to the Group for similar financial instruments.
+5.11
+Leases
+The Group assesses whether a contract is, or contains, a lease at the inception of the arrangement. A lease is recognised when the Group obtains the right to control the use of an identified asset for a period of time in exchange for consideration.
+Recognition and Measurement
+At the commencement date, the Group recognises a right-of-use (ROU) asset and a corresponding lease liability. The lease liability is initially measured at the present value of lease payments to be made over the lease term, discounted using the interest rate implicit in the lease, or if that cannot be readily determined, the Group's incremental borrowing rate.
+The right-of-use asset is initially measured at cost, comprising the amount of the lease liability, any lease payments made at or before the commencement date, and any initial direct costs, less any lease incentives received.
+Subsequent Measurement
+Lease liabilities are measured at amortised cost using the effective interest method and remeasured when future lease payments change due to reassessment or modification.
+Right-of-use assets are depreciated on a straight-line basis over the shorter of the asset's useful life or the lease term. They are also subject to impairment testing in accordance with the Group's impairment policy.
+Short-term and Low-value Leases
+Payments associated with short-term leases (12 months or less) and leases of low-value assets are recognised as an expense on a straight-line basis in the income statement.
+The Group provides disclosures on the nature and terms of lease arrangements, maturity analysis of lease liabilities, variable lease payments, and significant judgements made in determining lease terms and discount rates in Note 17.
+5.12
+Contract assets and liabilities
+Contract assets primarily relate to the Company's rights to consideration for work completed but not billed at the reporting date on project work. Contract assets are transferred to trade receivables when the rights become unconditional. This usually occurs when the Company invoices the customer.
+Contract liabilities primarily relate to advance consideration received from customers and progress billings issued in excess of the Company's rights to the consideration.
+5.13
+Inventories
+Inventories are stated at the lower of cost and net realisable value. The net realisable value is the estimated selling price in the ordinary course of business.
+5.14
+Income Tax
+GSTechnologies Ltd is a UK-listed entity and has assessed its obligations under the OECD Pillar Two rules, which introduce a minimum global effective tax rate for multinational enterprises. Based on its consolidated revenue being below the €750 million threshold in the current and preceding periods, the Company is exempt from Pillar Two reporting and top-up tax liabilities. This assessment has been made in accordance with guidance issued by HMRC, and the Directors confirm that the Company meets all conditions for exemption.
+The income tax expense or credit for the period is the tax payable on the current period's taxable income, based on the applicable income tax rate for each jurisdiction, adjusted by changes in deferred tax assets and liabilities attributable to temporary differences and to unused tax losses.
+The current income tax charge is calculated on the basis of the tax laws enacted or substantively enacted at the end of the reporting period in the countries where the company and its subsidiaries operate and generate taxable income. Management periodically evaluates positions taken in tax returns with respect to situations in which applicable tax regulation is subject to interpretation and considers whether it is probable that a taxation authority will accept an uncertain tax treatment. The group measures its tax balances either based on the most likely amount or the expected value, depending on which method provides a better prediction of the resolution of the uncertainty
+.
+Deferred income tax is provided using the balance sheet method on temporary differences at the reporting date between the tax bases of assets and liabilities and their carrying amounts for financial reporting purposes.
+Deferred income tax liabilities are recognised for all taxable temporary differences.
+Deferred income tax assets are recognised for all deductible temporary differences, carry forward of unused tax credits and unused tax losses, to the extent that it is probable that taxable profit will be available against which the deductible temporary differences, and the carry forward of unused tax credits and unused tax losses, can be utilised, except:
+In respect of deductible temporary differences associated with investments in subsidiaries, deferred income tax assets are recognised only to the extent that it is probable that the temporary differences will reverse in the foreseeable future and taxable profit will be available against which the temporary differences can be utilised.
+The carrying amount of deferred income tax assets is reviewed at the end of each reporting period and reduced to the extent that it is no longer probable that sufficient taxable profit will be available to allow all or part of the deferred income tax asset to be utilised. Unrecognised deferred income tax assets are reassessed at the end of each reporting period and are recognised to the extent that it has become probable that future taxable profit will be available to allow the deferred tax asset to be recovered.
+Deferred income tax assets and liabilities are measured at the tax rates that are expected to apply to the year when the asset is realised or the liability is settled, based on tax rates (and tax laws) that have been enacted or substantively enacted by the end of the reporting period.
+Deferred income tax assets and deferred income tax liabilities are offset if a legally enforceable right exists to set off current tax assets against current income tax liabilities and the deferred income taxes relate to the same taxable entity and the same taxation authority.
+5.15 Provisions
+for other liabilities and charges
+Provisions are measured at the present value of management's best estimate of the expenditure required to settle the present obligation at the end of the reporting period. The discount rate used to determine the present value is a pre-tax amount that reflects current market assessments of the time value of money, and the risks specific to the liability. The increase in the provision due to the passage of time is recognised as interest expense.
+5.16
+Employee benefits
+Defined contribution plans
+Defined contribution plans are post-employment benefit plans under which the Group pays fixed contributions into separate entities and will have no legal or constructive obligation to pay further contributions if any of the funds do not hold sufficient assets to pay all employee benefits relating to employee services in the current and preceding financial years. The Group's contribution to defined contribution plans are recognised in the financial year to which they relate.
+Termination benefits
+Termination benefits are payable when employment is terminated before the normal retirement date, or whenever an employee accepts voluntary redundancy in exchange for these benefits. The Group recognises termination benefits when it is demonstrably committed to either: terminating the employment of current employees according to a detailed formal plan without possibility of withdrawal; or providing termination benefits as a result of an offer made to encourage voluntary.
+5.17
+Currency translation
+i) Functional and presentation currency
+Items included in the financial statements of each entity in the Group are measured using the currency of the primary economic environment in which the entity operates ("the functional currency").
+The consolidated financial statements are presented in US dollars, which is the Group's presentation currency.
+ii) Transaction and Balances
+Transactions in foreign currencies are initially recorded in the functional currency at the respective functional currency rates prevailing at the date of the transaction. Monetary assets and liabilities denominated in foreign currencies are retranslated at the spot rate of exchange ruling at the reporting dates. All differences are taken to the profit or loss, should specific criteria be met.
+Non-monetary items that are measured in terms of historical cost in a foreign currency are translated using the exchange rate as at the date of the initial transaction. Non-monetary items measured at fair value in a foreign currency are translated using the exchange rates at the date when the fair value was determined.
+iii)
+Translation of Group entities' financial statements
+The results and financial position of foreign operations (none of which has the currency of a hyperinflationary economy) that have a functional currency different from the presentation currency are translated into the presentation currency as follows:
+·
+Assets and liabilities for each statement of financial position presented as translated at the closing rate at the date of the statement of financial position.
+·
+Income and expenses for each income statement and statement of profit or loss and other comprehensive income are translated at average exchange rates (unless this is not a reasonable approximation of the cumulative effect of the rates prevailing on the transactions dates, in which case income and expenses are translated at the dates of the transactions), and
+·
+All resulting exchange differences are recognised in other comprehensive income
+5.18
+Segment reporting
+A business segment is a group of assets and operations engaged in providing products or services that are subject to risks and returns that are different from those of other business segments. A geographical segment is engaged in providing products or services within a particular economic environment that is subject to risks and returns that are different from those of segments operating in other economic environments. The analysis of revenue by type of customer and geographical region, is set out in Note 6.
+5.19
+Cash and cash equivalents
+Cash and cash equivalents comprise cash on hand, deposits with financial institution and short-term deposits that are readily convertible to known amount of cash and that are subject to an insignificant risk of changes in their fair value and are used by the Company in the management of its short-term commitments. Bank overdrafts are included in borrowings on the balance sheet.
+5.20 Share capital
+Ordinary shares are classified as equity. Mandatorily redeemable preference shares are classified as liabilities. Incremental costs directly attributable to the issuance of new equity instruments are taken to equity as a deduction, net of tax, from the proceeds.
+Where any Group company purchases the Company's equity share capital (Treasury shares), the consideration paid, including any directly attributable incremental costs (net of income taxes), is deducted from equity attributable to the Company's equity holders until the shares are cancelled, reissued or disposed of. Where such shares are subsequently disposed or reissued, any consideration received, net of any directly attributable incremental transaction costs and the related income tax effects, is included in equity attributable to the Company's equity holders. Realised gain or loss on disposal or reissue of Treasury shares are included in retained profits of the Company.
+5.21
+Earnings per share
+(i) Basic earnings per share
+Basic earnings per share is calculated by dividing:
+• the profit attributable to owners of the company, excluding any costs of servicing equity other than ordinary shares.
+• by the weighted average number of ordinary shares outstanding during the financial year, adjusted for bonus elements in ordinary shares issued during the year and excluding treasury shares (Note 11).
+(ii) Diluted earnings per share
+Diluted earnings per share adjusts the figures used in the determination of basic earnings per share to take into account:
+• The after-income tax effect of interest and other financing costs associated with dilutive potential ordinary shares.
+• The weighted average number of additional ordinary shares that would have been outstanding, assuming the conversion of all dilutive potential ordinary shares.
+5.22
+Rounding of amounts
+All amounts disclosed in the financial statements and notes have been rounded off to the nearest thousand in United States Dollar, unless otherwise stated.
+6. Revenue
+6 months ended 30 September
+2025
+US$'000
+(Unaudited)
+2024
+US$'000
+(Unaudited)
+Rendering of services
+951
+1,695
+Transfer fees and charges
+448
+532
+1,399
+2,277
+Revenue by geographical region:
+Singapore
+951
+1,695
+UK and others
+448
+532
+1,399
+2,277
+Transaction fees and charges are from Angra Ltd with transaction volume of US$59.21 (2024: US$67.20) million and GS Fintech UAB with transaction volume of US$44.21 (2024: US$63.20) million respectively.
+7. Other income
+6 months ended 30 September
+2025
+US$'000
+(Unaudited)
+2024
+US$'000
+(Unaudited)
+Interest income
+2
+5
+Government grant
+4
+2
+6
+7
+8. Net operating expenses
+6 months ended 30 September
+Net operating expenses
+2025
+US$'000
+(Unaudited)
+2024
+US$'000
+(Unaudited)
+Continuing Operations
+Costs of goods sold
+354
+936
+Employee cost
+882
+667
+Admin expense
+366
+491
+Travel expense
+8
+49
+Lease expense
+101
+46
+Office expense
+182
+46
+Depreciation
+1
+31
+Occupancy cost
+17
+30
+Distribution, advertising and promotion
+6
+23
+Finance cost
+24
+7
+Interest expense on lease
+4
+4
+Impairment of digital asset
+2
+-
+1,943
+2,330
+9. Key management personnel
+6 months ended 30 September
+2025
+US$'000
+(Unaudited)
+2024
+US$'000
+(Unaudited)
+Directors' salaries
+321
+285
+Director's accommodation
+27
+-
+348 285
+10. Employee cost
+6 months ended 30 September
+2025
+US$'000
+(Unaudited)
+2024
+US$'000
+(Unaudited)
+Wages and salaries
+450
+320
+Staff welfare and other employee costs
+84
+62
+Total
+534
+382
+Average number of employees for the Group
+39
+36
+11. Earnings per share
+6 months ended 30 September
+2025
+US$'000
+(Unaudited)
+2024
+US$'000
+(Unaudited)
+Loss for the period attributable to members of the parent
+(437)
+(69)
+Basic earnings per share is calculated by dividing the profit attributable to owners of the Parent by the weighted average number of ordinary shares in issue during the period.
+Basic weighted average number of ordinary shares in issue
+2,281,718,690
+2,056,187,607
+Basic loss per share-cents
+(0.00019)
+(0.00003)
+Diluted loss per share-cents
+(0.00019)
+(0.00003)
+12. Segment reporting
+The consolidated entity's operating segments have been determined with reference to the monthly management accounts used by the chief operating decision maker to make decisions regarding the consolidated entity's operations and allocation of working capital.
+Due to the size and nature of the consolidated entity, the Board has been determined as the chief operating decision maker.
+The consolidated entity operates in one business segment, being information data technology and infrastructure.
+The revenues and results are those of the consolidated entity as a whole and are set out in the statement of profit and loss and other comprehensive income. The segment assets and liabilities of this segment are those of the consolidated entity and are set out in the Statement of Financial Position.
+13. Cash and cash equivalents
+6 months ended 30 September
+2025
+US$'000
+(Unaudited)
+2024
+US$'000
+(Unaudited)
+Cash at bank
+3,911
+2,917
+14. Trade and other receivables
+6 months ended 30 September
+2025
+US$'000
+(Unaudited)
+2024
+US$'000
+(Unaudited)
+Trade receivables
+45,066
+105
+Prepayments
+121
+143
+Other debtors
+47
+133
+45,234
+381
+15. Inventories
+Inventories are valued at the lower of cost and net realisable value.
+Semnet Pte Ltd inventory as at 30 September 2025:
+6 months ended 30 September
+2025
+US$'000
+(Unaudited)
+2024
+US$'000
+(Unaudited)
+Inventories
+6
+10
+16. Property, plant and equipment
+(Unaudited)
+Right-Of-Use
+Assets
+US$'000
+Renovation US$'000
+Furniture
+& Office
+Equipment US$'000
+Software
+US$'000
+Total US$'000
+Cost
+As at 31 March 2025
+151
+18
+99
+-
+267
+Additions / Transfer in
+-
+-
+7
+-
+7
+Disposal / Write-off
+-
+-
+-
+-
+-
+Forex translation
+-
+-
+-
+-
+-
+As at 30 September 2025
+151
+18
+106
+-
+274
+Accumulated depreciation
+As at 31 March 2025
+50
+11
+97
+-
+158
+Charge for the period
+-
+-
+1
+-
+1
+Disposal / Write-off
+-
+-
+-
+-
+-
+Forex translation
+(5)
+-
+-
+-
+(5)
+As at 30 September 2025
+45
+11
+98
+-
+154
+Net book value
+As at 31 March 2025
+101
+6
+2
+-
+192
+As at 30 September 2025
+106
+6
+8
+-
+120
+17. Lease liabilities
+Lease liabilities recognized in the balance sheet
+The balance sheet shows the following amounts relating to lease liabilities
+6 months ended 30 September
+2025
+US$'000
+(Unaudited)
+2024
+US$'000
+(Unaudited)
+Current
+38
+19
+Non-current
+68
+107
+106
+126
+Amounts recognized in the statement of profit or loss
+The statement of profit or loss shows the following amounts relating to leases:
+6 months ended 30 September
+2025
+US$'000
+(Unaudited)
+2024
+US$'000
+(Unaudited)
+Depreciation on ROU
+-
+23
+Interest expense on lease
+-
+4
+-
+27
+18. Intangible assets
+(Unaudited)
+Trademark US$'000
+Goodwill US$'000
+Digital Asset US$'000
+Software &
+Licenses US$'000
+Total
+US$'000
+As at 31 March 2024
+6
+1,761
+258
+2,082
+4,107
+Additions
+-
+-
+247
+620
+867
+Impairment
+-
+(800)
+-
+(33)
+(833)
+As at 31 March 2025
+6
+961
+505
+2,669
+4,141
+Additions
+-
+-
+1,100
+-
+1,100
+Impairment
+-
+-
+-
+-
+-
+As at 30 September 2025
+6
+961
+1,605
+2,669
+5,241
+19. Subsidiaries
+The Group's subsidiaries as at 30 September 2025 are set out below. Unless otherwise stated, they have share capital consisting solely of ordinary shares, and the proportion of ownership interests held equals the voting rights held by the Group. The country of incorporation or registration is also their principal place of business.
+Name of Subsidiary
+Place of Incorporation
+Proportion of
+Ownership
+Interest
+Proportion
+of Voting
+Power
+Golden Saint Technologies
+(Australia) Pty Ltd
+Australia
+100
+100
+GS Fintech Ltd
+GS Fintech Pte Ltd
+UK
+Singapore
+100
+100
+100
+100
+GS Fintech UAB
+Lithuania
+100
+100
+Angra Limited
+UK
+100
+100
+Angra Global Limited
+Canada
+100
+100
+Semnet Pte Ltd
+Singapore
+66.67
+66.67
+Bake Fintech Pte Ltd
+Singapore
+100
+100
+20.
+Incorporation of subsidiary
+On 4 March 2025, the Group incorporated Bake Fintech Pte. Ltd. ("Bake Fintech"), a wholly owned subsidiary by GSTechnologies Limited domiciled in Singapore. Bake Fintech was incorporated with a paid-up share capital of US$109,652 (equivalent to S$144,000).
+The company's principal activity is the development of software and applications to support the Group's financial technology operations. Bake Fintech operates primarily as a cost centre within the Group, undertaking software development, systems integration, and technology support services for GS Fintech UAB and its subsidiaries.
+Bake Fintech has been included in the consolidated interim financial statements for the full six-month period ended 30 September 2025, as the Group obtained control over the subsidiary from the date of its incorporation.
+The incorporation of Bake Fintech Pte. Ltd. forms part of the Group's ongoing strategy to strengthen its in-house technology development capabilities and to expand its operational presence in the Asia-Pacific region.
+No goodwill arose on consolidation as the subsidiary was incorporated by the Group.
+21. Taxation
+Unrecognised tax losses
+Where the realisation of deferred tax assets is dependent on future taxable profits, losses carried forward are recognised only to the extent that business forecasts predict that such profits will be available to the companies in which losses arose.
+The parent, GSTechnologies Ltd, is not liable to corporation tax in BVI, so it has no provision for deferred tax. However, Golden Saint Technologies (Australia) Pty Ltd is liable to tax in Australia, GS Fintech Pte Ltd and Semnet Pte Ltd is liable for tax in Singapore, Angra Limited and GS Fintech Ltd is liable in UK, Angra Global Limited in Canada and GS Fintech UAB is liable in Lithuania.
+Tax liability as at 30 September 2025 for GS Fintech UAB is US$ 12,887 and Semnet Pte Ltd is US$30,273.
+6 months ended 30 September
+2025
+US$'000
+(Unaudited)
+2024
+US$'000
+(Unaudited)
+Current income tax
+20
+368
+Adjustments for prior year
+23
+(41)
+43
+327
+Deferred tax expenses
+-
+-
+Provision for income tax
+43
+327
+22. Share capital and reserves
+The share capital of the Company is denominated in UK Pounds Sterling. Each allotment during the period was then translated into the Group's functional currency, US Dollars at the spot rate on the date of issue.
+Authorised
+Number of Shares
+US$'000
+Ordinary Shares
+As at 31 March 2025
+Issues during the period
+2,165,848,842
+15,582
+1 April 2025 to 30 September 2025
+160,416,666
+2,581
+Total shares issued as at 30 September 2025
+2,326,265,508
+18,163
+Treasury Shares during the period
+1 April 2025 to 30 September 2025
+(1,155,287)
+(16)
+23.
+Non-controlling equity interest
+All entities within the group are currently 100% owned, with the exception of Semnet Pte Ltd, in which GST holds a 66.67% stake, while the remaining 33.33% is owned by non-controlling interests.
+24. Trade and other payables
+6 months ended 30 September
+2025
+US$'000
+(Unaudited)
+2024
+US$'000
+(Unaudited)
+Trade payable
+44,422
+57
+Accruals
+60
+57
+Deferred revenue
+-
+61
+Other payable
+5
+36
+Income tax provision
+43
+327
+44,530
+538
+Trade payables are non-interest bearing and are normally settled on 60-day terms.
+25. Loans payable
+30-Sep-25
+30-Sep-24
+Term
+Current
+US$0'000
+(Unaudited)
+Non-current
+US$0'000
+(Unaudited)
+Current
+US$0'000
+(Unaudited)
+Non-current
+US$0'000
+(Unaudited)
+Loan 1
+5 years
+-
+18
+-
+38
+-
+18
+-
+38
+26. Commitments and contingencies
+The Group is subject to no material commitments or contingent liabilities.
+27. Ultimate controlling parties
+The Company is owned by a number of private shareholders and companies, none of whom own more than 25% of the issued share capital of the Company. Accordingly, there is no parent entity nor ultimate controlling party by virtue of shareholding.
+The significant shareholders as of 30 September 2025 are the following:
+Entities
+Quantity of Ordinary Shares
+Percentage of Ordinary Shares
+Hargreaves Lansdown (Nominees) Limited
+525,661,072
+22.61%
+Interactive Investor Services Nominees Limited
+341,063,694
+14.67%
+Securities Services Nominees Limited
+245,260,678
+10.55%
+28. Related party transactions
+The following is the significant related party transactions entered into by the Company with related parties on terms agreed between the parties:
+6 months ended 30 September
+2025
+US$'000
+(Unaudited)
+2024
+US$'000
+(Unaudited)
+Rendering of services to parent company
+-
+273
+Rendering of services to related parties
+-
+23
+-
+296
+29. Financial risk management objectives and policies
+The Group's activities expose it to a variety of financial risks. The Group's Board provides certain specific guidance in managing such risks, particularly as relates to credit and liquidity risk. Any form of borrowings requires approval from the Board and the Group does not currently use any derivative financial instruments to manage its financial risks. The key financial risks and the Group's major exposures are as follows:
+Foreign Currency Risk
+Currency risk is the risk that the value of a financial instrument will fluctuate due to changes in foreign exchange rates.
+The Company is exposed to currency risk on sales and purchases, that are denominated in foreign currencies.
+Interest Rate Risk
+Interest rate risk is the risk that the fair value or future cash flows of a financial instrument will fluctuate because of changes in market interest rates. A sensitivity analysis is not presented, as all borrowing costs have been capitalised as at 31 March 2024; therefore, profit or loss and equity would have not been affected by changes in the interest rate.
+Credit Risk
+The maximum exposure to credit risk is represented by the carrying amount of the financial assets. In relation to cash and cash equivalents, the Group limits its credit risk with regards to bank deposits by only dealing with reputable banks. In relation to sales receivables, the Group's credit risk is managed by credit checks for credit customers and approval of letters of credit by the Group's advising bank.
+Liquidity Risk
+Liquidity risk is the risk that the Group will not be able to meet its financial obligations as they fall due.
+The Group monitors its risk to a shortage of funds using a combination of cash flow forecasts, budgeting and monitoring of operational performance.
+Numbers in the table below represent the gross, contractual, undiscounted amount payable in relation to the financial liabilities.
+On Demand
+Less than three months
+Three to twelve
+months
+One to five years
+Total
+US$'000
+US$'000
+US$'000
+US$'000
+US$'000
+As of 30 September 2025:
+Trade and other payables
+44,530
+44,530
+30. Capital management
+Capital includes equity attributable to the equity holders of the parent. Refer to the statement of changes in equity for quantitative information regarding equity.
+The Group's primary objectives when managing capital are to safeguard its ability to continue as a going concern in order to provide returns for shareholders. For details of the capital managed by the Group as of 30 September 2025, please see Note 22.
+The Group is not subject to any externally imposed capital.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+IR FFMFWWEISEDE
+                </div>
+            </details>
+            
+            </div>
+            
+            </div>
+            <div style="
+                margin-top: 20px;
+                padding: 14px 16px;
+                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+                border-radius: 10px;
+                font-size: 12px;
+                color: #78350f;
+                border-left: 3px solid #f59e0b;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            ">
+                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
+                <div style="line-height: 1.5;">
+                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
+                    Each RNS includes sentiment classification, key data extraction, and trading context. 
+                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
+                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                    </strong>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            details[open] > summary {
+                background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%) !important;
+                border-left-color: #0369a1 !important;
+            }
+            summary::-webkit-details-marker {
+                display: none;
+            }
+            
+            /* ========== MOBILE RESPONSIVE ========== */
+            @media (max-width: 768px) {
+                body {
+                    padding: 10px;
+                    font-size: 14px;
+                }
+                
+                .container {
+                    margin: 0 auto;
+                }
+                
+                .header-card {
+                    padding: 14px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .company-name {
+                    font-size: 22px;
+                    margin-bottom: 8px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 13px;
+                    padding: 6px 12px;
+                }
+                
+                .company-meta {
+                    gap: 8px;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+                
+                .meta-item {
+                    padding: 6px 12px;
+                    font-size: 12px;
+                    gap: 6px;
+                }
+                
+                .meta-icon {
+                    font-size: 14px;
+                }
+                
+                .score-hero {
+                    padding: 20px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .action-display {
+                    font-size: 18px !important;
+                    margin-bottom: 12px;
+                }
+                
+                .scores-row {
+                    gap: 16px;
+                    margin: 20px 0;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    display: flex;
+                }
+                
+                .score-circle {
+                    width: 110px;
+                    height: 110px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 32px;
+                }
+                
+                .score-label {
+                    font-size: 10px;
+                    margin-top: 4px;
+                }
+                
+                .timing-badge-large {
+                    padding: 10px 20px;
+                    font-size: 14px;
+                    margin: 12px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 14px;
+                    padding: 12px;
+                    margin-top: 12px;
+                }
+                
+                .factors-list {
+                    grid-template-columns: 1fr;
+                    gap: 10px;
+                    margin-top: 12px;
+                }
+                
+                .factor-item {
+                    padding: 12px;
+                    font-size: 12px;
+                    gap: 8px;
+                }
+                
+                .factor-icon {
+                    font-size: 16px;
+                }
+                
+                .cards-grid {
+                    grid-template-columns: 1fr;
+                    gap: 12px;
+                    margin-bottom: 12px;
+                }
+                
+                .card {
+                    padding: 16px;
+                    border-radius: 12px;
+                }
+                
+                .card-title {
+                    font-size: 14px;
+                    margin-bottom: 12px;
+                    gap: 8px;
+                }
+                
+                .card-icon {
+                    font-size: 18px;
+                }
+                
+                .stat-row {
+                    padding: 8px 0;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+                
+                .stat-label {
+                    font-size: 12px;
+                }
+                
+                .stat-value {
+                    font-size: 14px;
+                }
+                
+                .rally-badge {
+                    padding: 4px 10px;
+                    font-size: 10px;
+                }
+                
+                .risk-indicator {
+                    gap: 10px;
+                    padding: 12px;
+                    flex-wrap: wrap;
+                }
+                
+                .risk-icon {
+                    font-size: 20px;
+                }
+                
+                .reason-item {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                }
+                
+                .tag {
+                    padding: 3px 8px;
+                    font-size: 10px;
+                }
+                
+                .footer {
+                    padding: 12px;
+                    font-size: 11px;
+                    margin-top: 12px;
+                    border-radius: 12px;
+                }
+                
+                .alert-box {
+                    padding: 12px;
+                    margin: 10px 0;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                body {
+                    padding: 8px 6px;
+                }
+                
+                .header-card {
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    border-radius: 8px;
+                }
+                
+                .company-name {
+                    font-size: 18px;
+                    margin-bottom: 6px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 11px;
+                    padding: 3px 8px;
+                }
+                
+                .company-meta {
+                    gap: 4px;
+                    flex-direction: column;
+                }
+                
+                .meta-item {
+                    padding: 4px 6px;
+                    font-size: 11px;
+                    background: rgba(247, 250, 252, 0.7);
+                }
+                
+                .score-hero {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                    border-radius: 12px;
+                }
+                
+                .score-circle {
+                    width: 70px;
+                    height: 70px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 22px;
+                    font-weight: 800;
+                }
+                
+                .score-label {
+                    font-size: 7px;
+                    margin-top: 2px;
+                }
+                
+                .scores-row {
+                    flex-direction: column;
+                    gap: 10px;
+                    margin: 12px 0;
+                    align-items: center;
+                }
+                
+                .timing-badge-large {
+                    padding: 6px 12px;
+                    font-size: 11px;
+                    margin: 10px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 11px;
+                    padding: 8px;
+                    line-height: 1.3;
+                }
+                
+                .card {
+                    padding: 10px;
+                    margin-bottom: 8px;
+                    border-radius: 8px;
+                }
+                
+                .card-title {
+                    font-size: 12px;
+                    margin-bottom: 8px;
+                    font-weight: 700;
+                }
+            }
+        </style>
+        
+
+        <!-- Footer -->
+        <div class="footer">
+            Report generated: 2026-01-17 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            <strong>△ Not financial advice. Do your own research.</strong>
+            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
+                <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

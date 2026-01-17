@@ -1,0 +1,2740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrashDash • EARN.L APEX Profile</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .header-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .ticker-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .company-name { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .company-meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f7fafc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .meta-icon { font-size: 18px; }
+        
+        .score-hero {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        .action-display {
+            margin-bottom: 20px;
+        }
+        .scores-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .score-number {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .score-label { font-size: 12px; color: #666; margin-top: 5px; }
+        .timing-badge-large {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 24px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            margin: 20px 0;
+        }
+        .thesis-line {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .factors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .factor-item {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        .factor-icon { font-size: 20px; }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-icon { font-size: 24px; }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-label { color: #666; font-size: 14px; }
+        .stat-value { font-weight: 600; font-size: 16px; }
+        
+        .rally-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .risk-indicator {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .risk-high { background: #fee2e2; }
+        .risk-icon { font-size: 24px; }
+        
+        .reason-item {
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .tag {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .footer {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-top: 20px;
+        }
+        
+        .alert-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Header Card -->
+        <div class="header-card">
+            <div class="ticker-badge">EARN.L</div>
+            <div class="company-name">EARNZ plc</div>
+            <div class="company-meta">
+                <div class="meta-item">
+                    <span class="meta-icon">■</span>
+                    <span><strong>Sector:</strong> Financial Services</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">£</span>
+                    <span><strong>Market Cap:</strong> £6,360,647</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">◷</span>
+                    <span><strong>Days Active:</strong> 427 days</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action & Score Hero Section -->
+        <div class="score-hero">
+            <div class="action-display">
+                <span style="font-size: 32px; font-weight: 800; color: white;">◉ WATCH</span>
+            </div>
+            
+            <div class="scores-row">
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">26</div>
+                    <div class="score-label">APEX SCORE</div>
+                </div>
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">35</div>
+                    <div class="score-label">CONFIDENCE</div>
+                </div>
+            </div>
+            
+            <div class="timing-badge-large">
+                Timing: <span class="rally-badge" style="background: #fee2e2; color: #991b1b;">TOO EARLY</span>
+            </div>
+            
+            <div class="thesis-line">
+                WATCH - TOO_EARLY timing with 26/100 opportunity score
+            </div>
+        </div>
+
+        <!-- ==================== CRASHDASH INTELLIGENCE - PANIC HUNTER VIEW ==================== -->
+        
+        <div class="card" style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); border: 2px solid #ef4444;">
+            <div class="card-title" style="color: #0f172a;">
+                <span class="card-icon">🏭</span>
+                CrashDash Intelligence • Industrials
+            </div>
+            
+            <!-- Fear Meter -->
+            <div style="background: white; padding: 24px; border-radius: 14px; margin-bottom: 20px; text-align: center;">
+                <div style="font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 16px;">🔥 PANIC METER</div>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 16px;">
+                    <div style="width: 160px; height: 160px; border-radius: 50%; background: conic-gradient(#ef4444 302.40000000000003deg, #e5e7eb 302.40000000000003deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                        <div style="width: 130px; height: 130px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <div style="font-size: 48px; font-weight: 800; color: #ef4444;">84</div>
+                            <div style="font-size: 12px; color: #64748b; font-weight: 600;">PANIC SCORE</div>
+                        </div>
+                    </div>
+                    <div style="text-align: left; max-width: 400px;">
+                        <div style="font-size: 18px; font-weight: 700; color: #ef4444; margin-bottom: 12px;">EXTREME PANIC</div>
+                        <div style="font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 12px;">🔴 Capitulation zone - contrarian opportunity if fundamentals intact</div>
+                        <div style="font-size: 13px; color: #64748b;">
+                            <div>💔 Price: 40/40</div>
+                            <div>📉 Volume: 18/20</div>
+                            <div>🔇 Social: 6/20</div>
+                            <div>📰 News: 20/20</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CrashHunter Signals -->
+                <div style="margin-top: 20px;">
+                    <span style="display: inline-block; background: #ef4444; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">🔴 Panic 84/100</span><span style="display: inline-block; background: #3b82f6; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">⏰ Too Early</span><span style="display: inline-block; background: #64748b; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">❓ Conf 35</span>
+                </div>
+                
+                <!-- Opportunity Flag -->
+                <div style="margin-top: 20px; padding: 16px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 10px; color: white; font-weight: 700; font-size: 16px;">🎯 🔥 EXTREME PANIC + Intact timing = Prime contrarian entry zone</div>
+            </div>
+            
+            <!-- Contrarian Compression Energy Panel -->
+            
+            <!-- Contrarian Compression Energy Panel -->
+            <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); padding: 24px; border-radius: 14px; margin-bottom: 20px; border: 3px solid #10b981;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <span style="font-size: 32px;">⚡</span>
+                    <div style="flex: 1;">
+                        <div style="font-size: 20px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">
+                            CONTRARIAN COMPRESSION SCORE
+                        </div>
+                        <div style="font-size: 13px; color: #475569; font-weight: 600;">
+                            Signal Congestion Framework • Compression = Explosive Potential
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Score Display -->
+                <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 30px;">
+                        <!-- Circular gauge -->
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: conic-gradient(#10b981 129.6deg, #e5e7eb 129.6deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                            <div style="width: 110px; height: 110px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <div style="font-size: 42px; font-weight: 800; color: #10b981;">36</div>
+                                <div style="font-size: 11px; color: #64748b; font-weight: 600;">/ 100</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Key metrics -->
+                        <div style="text-align: left;">
+                            <div style="font-size: 16px; font-weight: 700; color: #10b981; margin-bottom: 12px;">🟢 MILD COMPRESSION (Top 50% - WATCHLIST)</div>
+                            <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                                <div><strong>0.4</strong> signals/week</div>
+                                <div><strong>3</strong> RSI &lt; 20 events</div>
+                                <div><strong>0</strong> escalations detected</div>
+                                <div style="color: #10b981; font-weight: 700; margin-top: 6px;">
+                                    💎 Historical pop: <strong>+245%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Component Breakdown -->
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 15px;">
+                        📊 5-COMPONENT BREAKDOWN
+                    </div>
+                    
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">compression</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #eab308;">16/40</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #eab308; height: 100%; width: 40.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">0.4 signals/week | 3 RSI<20 | 📊 MODERATE COMPRESSION</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">intensification</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">5/20</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 25.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;"></div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">volume death</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #eab308;">8/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #eab308; height: 100%; width: 53.333333333333336%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">High volume - Panic spike or interest</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">pop potential</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #eab308;">7/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #eab308; height: 100%; width: 46.666666666666664%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">Moderate performer (245%)</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">accumulation</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">0/10</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">No accumulation</div>
+                </div>
+                
+                </div>
+                
+                <!-- Contrarian Philosophy -->
+                <div style="background: rgba(255,255,255,0.7); padding: 16px; border-radius: 10px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #0f172a; margin-bottom: 8px; font-size: 14px;">
+                        🎯 CONTRARIAN WISDOM
+                    </div>
+                    <div style="font-size: 13px; color: #334155; line-height: 1.6;">
+                        <strong>Signal congestion = Compression energy = Explosive potential.</strong><br>
+                        When multiple crash signals cluster together with extreme RSI and proven rally history, 
+                        it creates a compressed spring effect. More panic = More opportunity for contrarians.
+                        <div style="margin-top: 8px; padding: 10px; background: rgba(239,68,68,0.1); border-radius: 6px; font-size: 12px;">
+                            <strong style="color: #10b981;">Theory:</strong> High compression scores (60+) historically precede 
+                            explosive 10-20x moves when catalysts arrive. This is the foundation of crash hunting.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Fear vs Facts Contrarian View -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                <div style="background: #fee2e2; padding: 18px; border-radius: 12px; border-left: 4px solid #ef4444;">
+                    <div style="font-weight: 700; color: #991b1b; margin-bottom: 12px; font-size: 15px;">😱 FEAR (What Panic Shows)</div>
+                    <div style="color: #7f1d1d;">
+                        <div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 💔 Price destruction: 40/40 points</div><div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 📉 Volume death: 18/20 points</div><div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 📰 Negative news: 20/20 points</div>
+                    </div>
+                </div>
+                <div style="background: #dcfce7; padding: 18px; border-radius: 12px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #065f46; margin-bottom: 12px; font-size: 15px;">📊 FACTS (What Data Shows)</div>
+                    <div style="color: #064e3b;">
+                        <div style="color: #64748b; font-size: 14px;">Limited historical data</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contrarian Verdict -->
+            <div style="background: white; padding: 18px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #6366f1;">
+                <div style="font-weight: 700; color: #4338ca; margin-bottom: 10px; font-size: 15px;">⚖️ Contrarian Verdict</div>
+                <div style="font-size: 15px; color: #1e293b; line-height: 1.6; font-weight: 600;">
+                    🎯 CONTRARIAN OPPORTUNITY - Fear dominates but facts support recovery potential
+                </div>
+            </div>
+            
+            <!-- Industry Crash Patterns -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">⚠️ Crash Patterns (Industrials)</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book decline or cancellations</div><div>• Margin compression (input costs)</div><div>• Cyclical demand weakness</div>
+                    </div>
+                    <div style="margin-top: 12px; padding: 10px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e; font-weight: 600;">🚨 Active: Project delays or overruns</div>
+                </div>
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">🚀 Recovery Paths</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book growth or new contracts</div><div>• Margin recovery (efficiency gains)</div><div>• Cyclical upturn (capex recovery)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Catalyst Pipeline -->
+            <div style="background: rgba(255,255,255,0.5); padding: 18px; border-radius: 12px; margin-bottom: 20px;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 14px; font-size: 15px;">📅 Catalyst Pipeline</div>
+                
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Contract won with Bradford City Council</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Holding(s) in Company</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Holding(s) in Company</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Result of GM, Issue of Equity & Directorate Change</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Holding(s) in Company</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+            
+            <!-- CrashDash Decision Matrix -->
+            <div style="background: white; padding: 20px; border-radius: 12px; border: 3px solid #ef4444;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 16px; text-align: center;">
+                    🎯 CRASHDASH DECISION: <span style="color: #ef4444; font-size: 20px;">WATCH</span>
+                </div>
+                <div style="font-size: 15px; color: #475569; text-align: center; margin-bottom: 20px; font-weight: 600;">
+                    ⏳ Monitor for timing regime change or panic escalation
+                </div>
+                <div style="background: #f8fafc; padding: 16px; border-radius: 10px;">
+                    <div style="font-weight: 700; color: #64748b; margin-bottom: 12px; font-size: 13px;">CHECKLIST (3/5 pass)</div>
+                    
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🔴</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Panic Score</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">84/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">✅</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Timing Regime</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">TOO_EARLY</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">⚠️</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">APEX Quality</div>
+                    <div style="font-size: 13px; color: #ef4444; font-weight: 600;">26/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">❓</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Data Confidence</div>
+                    <div style="font-size: 13px; color: #ef4444; font-weight: 600;">35/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🏭</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Industry Pattern</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">1 active</div>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
+        
+
+        <!-- Decision Summary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◆</span>
+                Why This Matters
+            </div>
+            <div class="stat-row"><span>• APEX 26/100 indicates moderate opportunity quality</span></div><div class="stat-row"><span>• Timing regime: TOO_EARLY</span></div><div class="stat-row"><span>• Historical profile: 0 rallies, 3% best run</span></div>
+            
+            <div class="alert-box" style="margin-top: 20px;">
+                <strong>△ Main Risk:</strong> Confidence 35/100 - full data loaded
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong>◉ Watch Next:</strong>
+                <div style="padding: 8px 0;">• RNS catalysts (funding/operational updates)</div><div style="padding: 8px 0;">• Volume expansion confirmation</div><div style="padding: 8px 0;">• Timing regime change signals</div>
+            </div>
+        </div>
+
+        <!-- ==================== TECHNICAL DETAILS (COLLAPSIBLE) ==================== -->
+        
+        <div class="card">
+          <details style="cursor:pointer;">
+            <summary style="font-weight:800; font-size:16px; list-style:none; padding: 10px; background: #f9fafb; border-radius: 8px;">
+              🔧 Technical Analysis & Scoring Details
+            </summary>
+            <div style="margin-top:14px;">
+              
+            <!-- Scoring Breakdown -->
+            <div class="card-title" style="margin-top: 20px;">
+                <span class="card-icon">▣</span>
+                APEX Score Breakdown
+            </div>
+            <div class="factors-list">
+                <div class="factor-item"><span class="factor-icon">◆</span><span><strong>Strong Technical Setup</strong><br><small>Chart quality: 10/20 • Score: 12/25 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Massive recovery potential</strong><br><small>Down 83.6% from peak • Score: 17/20 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Explosive volume</strong><br><small>8.2x average • Score: 10/10 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>No history</strong><br><small>0 previous rallies • Score: 0/15 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Modest upside</strong><br><small>Historical best: +3% • Score: 2/20 points</small></span></div>
+
+            </div>
+            
+            <div style="margin-top: 40px;"></div>
+            
+            <!-- Exhaustion Metrics -->
+            <div class="card-title">
+                <span class="card-icon">📈</span>
+                Rally Cycle Position
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Current Position</div>
+                    <div style="font-size: 32px; font-weight: 800;">-19%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
+                    <div style="font-size: 32px; font-weight: 800;">3%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
+                    <div style="font-size: 32px; font-weight: 800;">-1.2x</div>
+                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
+                </div>
+            </div>
+        
+            </div>
+          </details>
+        </div>
+        
+
+        <!-- Reasons Buy/Sell -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #10b981;">▲</span>
+                    Reasons to Buy
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Early stage positioning offers best R:R if catalysts appear</span>
+                    <span class="tag" style="background: #f59e0b; color: white;">⚡ Medium Strength</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">timing=TOO EARLY • current return=-18.8%</div>
+            </div>
+            
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Proven winner - previously hit lock-in target</span>
+                    <span class="tag" style="background: #f59e0b; color: white;">⚡ Medium Strength</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">profit target reached: True</div>
+            </div>
+            
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #ef4444;">▼</span>
+                    Reasons to Sell / Avoid
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Stale signal - not for active trading</span>
+                    <span class="tag" style="background: #ef4444; color: white;">🚨 High Risk</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">historical • signal date=2024-11-15</div>
+            </div>
+            
+            </div>
+        </div>
+
+        <!-- Trade Plans -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">📊</span>
+                    Short-Term Trader Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 20%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <div style="font-size: 18px; font-weight: 600; margin-bottom: 5px;">Watch / Starter</div>
+                    <div style="font-size: 14px; opacity: 0.9;">Wait for base + catalyst confirmation; starter position only</div>
+                </div>
+                <div style="padding: 12px; background: #f9fafb; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Position Size</div>
+                    <div style="font-weight: 600;">0-1% until CONFIRMED</div>
+                </div>
+                <div style="padding: 12px; background: #fef2f2; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Risk Management</div>
+                    <div style="font-weight: 600; color: #dc2626;">Invalidation = breaks recent lows / dilution / suspension</div>
+                </div>
+                <div style="padding: 12px; background: #f0fdf4; border-radius: 6px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Exit Strategy</div>
+                    <div style="font-weight: 600; color: #059669;">Scale out 25% at +15%, 25% at +50%, runner above</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">💼</span>
+                    Long-Term Investor Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center;">
+                    <div style="font-size: 32px; margin-bottom: 5px;">✗</div>
+                    <div style="font-size: 18px; font-weight: 600;">Not Recommended for Investors</div>
+                </div>
+                <div style="padding: 15px; background: #f9fafb; border-radius: 8px; font-size: 14px; line-height: 1.6;">
+                    <strong style="color: #667eea;">📋 Investment Thesis:</strong><br>
+                    Unlock after AI triangulation + CONFIRMED timing<br><br>
+                    <strong style="color: #667eea;">⏳ Time Horizon:</strong><br>
+                    N/A<br><br>
+                    <strong style="color: #ef4444;">🛡️ Exit Rule:</strong><br>
+                    N/A
+                </div>
+            </div>
+        </div>
+
+        <!-- Commentary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◐</span>
+                Executive Commentary
+            </div>
+            <div style="line-height: 1.6; margin-bottom: 20px;">
+                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows TOO_EARLY timing with 26/100 APEX score. Historical data shows 0 rallies averaging 3% upside. Current position: -18.8%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #10b981;">▲ Bull Case:</strong>
+                <div style="padding: 8px 0;">• Early regime often offers best risk/reward</div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #ef4444;">▼ Bear Case:</strong>
+                <div style="padding: 8px 0;">• TOO_EARLY means you can get chopped before real move</div>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
+                <strong>◷ Timing Translation:</strong><br>
+                It might be starting, but not proven yet. Wait for base + volume + catalysts.
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
+                <strong>◎ Confidence Explained:</strong><br>
+                Confidence 35/100 reflects full data quality with triangulation loaded.
+            </div>
+        </div>
+
+        <!-- Data Quality Warning -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">△</span>
+                Data Quality Notice
+            </div>
+            <div class="alert-box">
+                <strong>Analysis Mode:</strong> HISTORICAL_ONLY<br>
+                <strong>Impact:</strong> HIGH
+            </div>
+            <div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">AI insights from Groq LLM</div></div></div>
+
+            <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk.
+            </div>
+        </div>
+
+        <!-- ==================== TOP 5 RECENT RNS NEWS ==================== -->
+        
+        <div class="card" style="border-top: 3px solid #3b82f6;">
+            <div class="card-title" style="margin-bottom: 20px;">
+                <span class="card-icon">📰</span>
+                Top 5 Recent RNS Announcements
+            </div>
+            <div style="margin-top: 15px;">
+                
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Contract won with Bradford City Council</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 75/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    BUSINESS WIN: Contract won or partnership announced | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">6th Oct 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">75/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">BUSINESS WIN: Contract won or partnership announced</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #10b981; font-weight: 600;">🟢 LOW RISK: Positive signals, minimal concerns</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📈 IMPROVING: Company demonstrating strength and growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">European Union</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+6 Oct 2025 07:00
+RNS Number : 0837C
+Earnz PLC
+06 October 2025
+RNS
+6 October 2025
+This announcement contains inside information for the purposes of Article 7 of the UK version of Regulation (EU) No 596/2014 which is part of UK law by virtue of the European Union (Withdrawal) Act 2018, as amended ("MAR"). Upon the publication of this announcement via a Regulatory Information Service, this inside information is now considered to be in the public domain.
+EARNZ plc
+("EARNZ", the "Company" or the "Group")
+Warm Homes Phase One Contract won with Bradford City Council
+EARNZ (AIM:
+EARN
+), the energy services company whose objective is to capitalise on the drive for global decarbonisation
+, is pleased to announce
+that it has secured a one-year £1.2million contract with the sustainable regeneration specialist Equans, to supply and install insulation, ventilation upgrades, and renewable energy solutions to 92 privately owned homes in Bradford, West Yorkshire.
+The contract has been awarded on the back of a £7.1 million Warm Homes: Local Authority Grant from Bradford City Council to increase the energy efficiency of privately owned homes in the city. Further phases of the initial one year contract are expected to follow over the next 2 years, with a maximum value of £7.1 million.
+Commenting on this contract, Earnz CEO Peter Smith, said: "
+We are delighted to have secured such a significant contract. Working for Equans and Bradford City Council, we will be helping residents make their homes cheaper to heat, healthier to live in and lower in carbon emissions. We will also be supporting the local community with employment opportunities."
+Steve Batty, Director of Sustainability at Equans, said: "
+Equans is looking forward to working in partnership with Earnz on the delivery of this scheme. This project, supported by Government funding, will help to reduce residents' energy bills in what are challenging times due to the rising costs of living, whilst also helping the environment by reducing carbon emissions across the city
+."
+Considering this significant contract win, Earnz PLC has set up a new business, Warm Low Living Ltd, based in Yorkshire and is pleased to welcome the new team into the Group. We are particularly delighted that two of our businesses, Warm Low Living Ltd and A&D Carbon Solutions Ltd, are working together to deliver this project, demonstrating that collaboration is the key to delivering Net Zero objectives in the UK's housing stock.
+Enquiries:
+EARNZ plc
+Bob Holt / Peter Smith / Elizabeth Lake
++44 (0) 7778 798 816
++44 (0) 7736 77 7790
++44 (0) 7901 514268
+Zeus Capital Limited - Nominated Adviser and Broker
+Antonio Bossi / Dominic King/Andrew de Andrade
++44 (0) 203 829 5000
+Camarco - Financial PR
+Ginny Pulbrook/Rachel Scott
++44 (0) 7961 315138
+EARNZ@camarco.co.uk
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+CNTEAKEDELKSFFA
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Holding(s) in Company</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 100/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    HOLDING DISCLOSURE: Holding disclosed | 📊 NEUTRAL: Significant holder at 5.674791% - potential price setter or activist.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">4th Oct 2024</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">3:52 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">100/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">HOLDING DISCLOSURE: Holding disclosed</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 NEUTRAL: Significant holder at 5.674791% - potential price setter or activist.</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📊 ANALYZE: Determine offer price, arbitrage opportunity if discount</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Conversion Period</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">5.676891%, 0.000000%, 5.676891%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+4 Oct 2024 15:52
+RNS Number : 0554H
+Earnz PLC
+04 October 2024
+Please note that from 22 March 2021, the Standard TR-1 Form should be completed and submitted to the FCA via our Electronic Submission System (ESS) in relation to notifications of voting rights held in issuers whose shares are admitted to trading on UK regulated markets.
+Holders of voting rights in issuers whose shares are admitted to trading on UK prescribed markets such as AIM market, can continue to use this form to send their notifications to those issuers. Alternatively, if they wish they can register on ESS to be able to notify to us, produce a TR-1 Form via ESS and submit the downloaded version to issuers with shares admitted to trading on prescribed markets.
+More information on how to submit a TR-1 Form via ESS is available
+here
+TR-1: S
+tandard form for notification of major holdings
+NOTIFICATION OF MAJOR HOLDINGS
+(to be sent to the relevant issuer
+and
+to the FCA in Microsoft Word format if possible)
+i
+1a. Identity of the issuer or the underlying issuer of existing shares to which voting rights are attached
+ii
+:
+Earnz PLC
+GB00BRC2TB67
+1b. Please indicate if the issuer is a non-UK issuer
+(please mark with an "X" if appropriate)
+2. Reason for the notification
+(please mark the appropriate box or boxes with an "X")
+An acquisition or disposal of voting rights
+X
+An acquisition or disposal of financial instruments
+An event changing the breakdown of voting rights
+Other (please specify) iii:
+3. Details of person subject to the notification obligation
+iv
+Name
+UBS Group AG - Investment Bank & Global Wealth Management
+City and country of registered office (if applicable)
+Z
+ürich
+Switzerland
+4. Full name of shareholder(s)
+(if different from 3.)
+v
+Name
+UBS AG
+City and country of registered office (if applicable)
+London, United Kingdom
+5. Date on which the threshold was crossed or reached
+vi
+:
+02 October 2024
+6.
+Date on which issuer notified (DD/MM/YYYY):
+04 October 2024
+7. Total positions of person(s) subject to the notification obligation
+% of voting rights attached to shares (total of 8. A)
+% of
+voting rights through
+financial instruments(total of 8.B 1 + 8.B 2)
+Total of both in % (8.A + 8.B)
+Total number of voting rights held in issuer (8.A + 8.B)
+vii
+Resulting situation on the date on which threshold was crossed or reached
+5.676891%
+0.000000%
+5.676891%
+5,802,146
+Position of previous notification (if
+applicable)
+0.000000%
+0.000000%
+0.000000%
+8. Notified details of the resulting situation on the date on which the threshold was crossed or reached
+viii
+A: Voting rights attached to shares
+Class/type ofshares
+ISIN code (if possible)
+Number of voting rights
+ix
+% of voting rights
+Direct
+(DTR5.1)
+Indirect
+(DTR5.2.1)
+Direct
+(DTR5.1)
+Indirect
+(DTR5.2.1)
+GB00BRC2TB67
+5,802,146
+5.676891%
+SUBTOTAL 8. A
+5,802,146
+5.676891%
+B 1: Financial Instruments according to DTR5.3.1R (1) (a)
+Type of financial instrument
+Expirationdate
+x
+Exercise/Conversion Period
+xi
+Number of voting rights that may be acquired if the instrument is
+exercised/converted.
+% of voting rights
+SUBTOTAL 8. B 1
+B 2: Financial Instruments with similar economic effect according to DTR5.3.1R (1) (b)
+Type of financial instrument
+Expirationdate
+x
+Exercise/Conversion Period
+xi
+Physical or cash
+Settlement
+xii
+Number of voting rights
+% of voting rights
+SUBTOTAL 8.B.2
+9. Information in relation to the person subject to the notification obligation
+(please mark the
+applicable box with an "X")
+Person subject to the notification obligation is not controlled by any natural person or legal entity and does not control any other undertaking(s) holding directly or indirectly an interest in the (underlying) issuer
+xiii
+Full
+chain of controlled undertakings through which the voting rights and/or thefinancial instruments are effectively held starting with the ultimate controlling natural person or legal entity
+(please add additional rows as necessary)
+xiv
+X
+Name
+xv
+% of voting rights if it equals or is higher than the notifiable threshold
+% of voting rights through financial instruments if it equals or is higher than the notifiable threshold
+Total of both if it equals or is higher than the notifiable threshold
+UBS Group AG
+UBS AG
+5.676891%
+5.676891%
+10.
+In case of proxy voting, please identify:
+Name of the proxy holder
+The number and % of voting rights held
+The date until which the voting rights will be held
+11. Additional information
+xvi
+Place of completion
+Zurich, Switzerland
+Date of completion
+04.10.2024
+Notes
+i
+Please note this form should be read jointly with the applicable Disclosure Guidance and Transparency Rules Chapter 5 (DTR5) available on the following link:
+https://www.handbook.fca.org.uk/handbook/DTR/5/?view=chapter
+ii
+Full name of the legal entity and further specification of the issuer or underlying issuer, provided it is reliable and accurate (e.g. address, LEI, domestic number identity). Indicate in the relevant section whether the issuer is a non UK issuer.
+iii
+Other reason for the notification could be voluntary notifications, changes of attribution of the nature of the holding (e.g. expiring of financial instruments) or acting in concert.
+iv
+This should be the full name of (a) the shareholder; (b) the natural person or legal entity acquiring, disposing of or exercising voting rights in the cases provided for in DTR5.2.1 (b) to (h); (c) all parties to the agreement referred to in DTR5.2.1 (a) or (d) the holder of financial instruments referred to in DTR5.3.1.
+As the disclosure of cases of acting in concert may vary due to the specific circumstances (e.g. same or different total positions of the parties, entering or exiting of acting in concert by a single party) the standard form does not provide for a specific method how to notify cases of acting in concert.
+In relation to the transactions referred to in DTR5.2.1 (b) to (h), the following list is provided as indication of the persons who should be mentioned:
+- in the circumstances foreseen in DTR5.2.1 (b), the natural person or legal entity that acquires the voting rights and is entitled to exercise them under the agreement and the natural person or legal entity who is transferring temporarily for consideration the voting rights;
+- in the circumstances foreseen in DTR5.2.1 (c), the natural person or legal entity holding the collateral, provided the person or entity controls the voting rights and declares its intention of exercising them, and natural person or legal entity lodging the collateral under these conditions;
+- in the circumstances foreseen in DTR5.2.1 (d), the natural person or legal entity who has a life interest in shares if that person or entity is entitled to exercise the voting rights attached to the shares and the natural person or legal entity who is disposing of the voting rights when the life interest is created;
+- in the circumstances foreseen in DTR5.2.1 (e), the controlling natural person or legal entity and, provided it has a notification duty at an individual level under DTR 5.1, under DTR5.2.1 (a) to (d) or under a combination of any of those situations, the controlled undertaking;
+- in the circumstances foreseen in DTR5.2.1 (f), the deposit taker of the shares, if he can exercise the voting rights attached to the shares deposited with him at his discretion, and the depositor of the shares allowing the deposit taker to exercise the voting rights at his discretion;
+- in the circumstances foreseen in DTR5.2.1 (g), the natural person or legal entity that controls the voting rights;
+- in the circumstances foreseen in DTR5.2.1 (h), the proxy holder, if he can exercise the voting rights at his discretion, and the shareholder who has given his proxy to the proxy holder allowing the latter to exercise the voting rights at his discretion (e.g. management companies).
+v
+Applicable in the cases provided for in DTR5.2.1 (b) to (h). This should be the full name of the shareholder who is the counterparty to the natural person or legal entity referred to DTR5.2 unless the percentage of voting rights held by the shareholder is lower than the lowest notifiable threshold for the disclosure of voting rights holdings in accordance with national practices (e.g. identification of funds managed by management companies).
+vi
+The date on which threshold is crossed or reached should be the date on which the acquisition or disposal took place or the other reason triggered the notification obligation. For passive crossings, the date when the corporate event took effect.
+vii
+The total number of voting rights held in the issuer shall be composed of all the shares, including depository receipts representing shares, to which voting rights are attached even if the exercise thereof is suspended.
+viii
+If the holding has fallen below the lowest applicable threshold, please note that it might not be necessary to disclose the extent of the holding, only that the new holding is below that threshold.
+ix
+In case of combined holdings of shares with voting rights attached "direct holding" and voting rights "indirect holding", please split the voting rights number and percentage into the direct and indirect columns - if there is no combined holdings, please leave the relevant box blank.
+x
+Date of maturity/expiration of the financial instrument i.e. the date when right to acquire shares ends.
+xi
+If the financial instrument has such a period - please specify this period - for example once every 3 months starting from [date].
+xii
+In case of cash settled instruments the number and percentages of voting rights is to be presented on a delta-adjusted basis (DTR 5.3.3.A).
+xiii
+If the person subject to the notification obligation is either controlled and/or does control another undertaking then the second option applies.
+xiv
+The full chain of controlled undertakings starting with the ultimate controlling natural person or legal entity has to be presented also in the cases, in which only on subsidiary level a threshold is crossed or reached and the subsidiary undertaking discloses the notification as only in this way will the markets get always the full picture of the group holdings. In case of multiple chains through which the voting rights and/or financial instruments are effectively held the chains have to be presented chain by chain by numbering each chain accordingly. Please see the below example:
+Name of ultimate controlling person A (chain 1)
+Name of controlled undertaking B
+Name of controlled undertaking C
+Name of ultimate controlling person A (chain 2)
+Name of controlled undertaking B
+Name of controlled undertaking D
+Name of ultimate controlling person A (chain3)
+Name of controlled undertaking E
+Name of controlled undertaking F
+xv
+The names of controlled undertakings through which the voting rights and/or financial instruments are effectively held have to be presented irrespectively whether the controlled undertakings cross or reach the lowest applicable threshold themselves.
+xvi
+Example: Correction of a previous notification.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+HOLMIBITMTAMBMI
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Holding(s) in Company</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 100/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    HOLDING DISCLOSURE: Holding disclosed | 📊 NEUTRAL: Significant holder at 5.674791% - potential price setter or activist.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">3rd Oct 2024</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">5:05 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">100/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">HOLDING DISCLOSURE: Holding disclosed</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 NEUTRAL: Significant holder at 5.674791% - potential price setter or activist.</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📊 ANALYZE: Determine offer price, arbitrage opportunity if discount</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Conversion Period</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">5%, 0.000000%, 0.000000%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+3 Oct 2024 17:05
+RNS Number : 8907G
+Earnz PLC
+03 October 2024
+Please note that from 22 March 2021, the Standard TR-1 Form should be completed and submitted to the FCA via our Electronic Submission System (ESS) in relation to notifications of voting rights held in issuers whose shares are admitted to trading on UK regulated markets.
+Holders of voting rights in issuers whose shares are admitted to trading on UK prescribed markets such as AIM market, can continue to use this form to send their notifications to those issuers. Alternatively, if they wish they can register on ESS to be able to notify to us, produce a TR-1 Form via ESS and submit the downloaded version to issuers with shares admitted to trading on prescribed markets.
+More information on how to submit a TR-1 Form via ESS is available
+here
+TR-1: S
+tandard form for notification of major holdings
+NOTIFICATION OF MAJOR HOLDINGS
+(to be sent to the relevant issuer
+and
+to the FCA in Microsoft Word format if possible)
+i
+1a. Identity of the issuer or the underlying issuer of existing shares to which voting rights are attached
+ii
+:
+Earnz PLC
+GB00BRC2TB67
+1b. Please indicate if the issuer is a non-UK issuer
+(please mark with an "X" if appropriate)
+2. Reason for the notification
+(please mark the appropriate box or boxes with an "X")
+An acquisition or disposal of voting rights
+X
+An acquisition or disposal of financial instruments
+An event changing the breakdown of voting rights
+Other (please specify) iii:
+UBS trading book holdings in
+Earnz PLC
+fell below 5% and are therefore exempt from reporting
+X
+3. Details of person subject to the notification obligation
+iv
+Name
+UBS Group AG - Investment Bank & Global Wealth Management
+City and country of registered office (if applicable)
+Z
+ürich
+Switzerland
+4. Full name of shareholder(s)
+(if different from 3.)
+v
+Name
+City and country of registered office (if applicable)
+5. Date on which the threshold was crossed or reached
+vi
+:
+01 October 2024
+6.
+Date on which issuer notified (DD/MM/YYYY):
+03 October 2024
+7. Total positions of person(s) subject to the notification obligation
+% of voting rights attached to shares (total of 8. A)
+% of
+voting rights through
+financial instruments(total of 8.B 1 + 8.B 2)
+Total of both in % (8.A + 8.B)
+Total number of voting rights held in issuer (8.A + 8.B)
+vii
+Resulting situation on the date on which threshold was crossed or reached
+0.000000%
+0.000000%
+0.000000%
+0
+Position of previous notification (if
+applicable)
+6.933870%
+0.000000%
+6.933870%
+8. Notified details of the resulting situation on the date on which the threshold was crossed or reached
+viii
+A: Voting rights attached to shares
+Class/type ofshares
+ISIN code (if possible)
+Number of voting rights
+ix
+% of voting rights
+Direct
+(DTR5.1)
+Indirect
+(DTR5.2.1)
+Direct
+(DTR5.1)
+Indirect
+(DTR5.2.1)
+GB00BRC2TB67
+0
+0.000000%
+SUBTOTAL 8. A
+0
+0.000000%
+B 1: Financial Instruments according to DTR5.3.1R (1) (a)
+Type of financial instrument
+Expirationdate
+x
+Exercise/Conversion Period
+xi
+Number of voting rights that may be acquired if the instrument is
+exercised/converted.
+% of voting rights
+SUBTOTAL 8. B 1
+B 2: Financial Instruments with similar economic effect according to DTR5.3.1R (1) (b)
+Type of financial instrument
+Expirationdate
+x
+Exercise/Conversion Period
+xi
+Physical or cash
+Settlement
+xii
+Number of voting rights
+% of voting rights
+SUBTOTAL 8.B.2
+9. Information in relation to the person subject to the notification obligation
+(please mark the
+applicable box with an "X")
+Person subject to the notification obligation is not controlled by any natural person or legal entity and does not control any other undertaking(s) holding directly or indirectly an interest in the (underlying) issuer
+xiii
+Full
+chain of controlled undertakings through which the voting rights and/or thefinancial instruments are effectively held starting with the ultimate controlling natural person or legal entity
+(please add additional rows as necessary)
+xiv
+X
+Name
+xv
+% of voting rights if it equals or is higher than the notifiable threshold
+% of voting rights through financial instruments if it equals or is higher than the notifiable threshold
+Total of both if it equals or is higher than the notifiable threshold
+UBS Group AG
+UBS AG
+10.
+In case of proxy voting, please identify:
+Name of the proxy holder
+The number and % of voting rights held
+The date until which the voting rights will be held
+11. Additional information
+xvi
+UBS trading book holdings in
+Earnz PLC
+fell below 5% and are therefore exempt from reporting
+Place of completion
+Zurich, Switzerland
+Date of completion
+03.10.2024
+Notes
+i
+Please note this form should be read jointly with the applicable Disclosure Guidance and Transparency Rules Chapter 5 (DTR5) available on the following link:
+https://www.handbook.fca.org.uk/handbook/DTR/5/?view=chapter
+ii
+Full name of the legal entity and further specification of the issuer or underlying issuer, provided it is reliable and accurate (e.g. address, LEI, domestic number identity). Indicate in the relevant section whether the issuer is a non UK issuer.
+iii
+Other reason for the notification could be voluntary notifications, changes of attribution of the nature of the holding (e.g. expiring of financial instruments) or acting in concert.
+iv
+This should be the full name of (a) the shareholder; (b) the natural person or legal entity acquiring, disposing of or exercising voting rights in the cases provided for in DTR5.2.1 (b) to (h); (c) all parties to the agreement referred to in DTR5.2.1 (a) or (d) the holder of financial instruments referred to in DTR5.3.1.
+As the disclosure of cases of acting in concert may vary due to the specific circumstances (e.g. same or different total positions of the parties, entering or exiting of acting in concert by a single party) the standard form does not provide for a specific method how to notify cases of acting in concert.
+In relation to the transactions referred to in DTR5.2.1 (b) to (h), the following list is provided as indication of the persons who should be mentioned:
+- in the circumstances foreseen in DTR5.2.1 (b), the natural person or legal entity that acquires the voting rights and is entitled to exercise them under the agreement and the natural person or legal entity who is transferring temporarily for consideration the voting rights;
+- in the circumstances foreseen in DTR5.2.1 (c), the natural person or legal entity holding the collateral, provided the person or entity controls the voting rights and declares its intention of exercising them, and natural person or legal entity lodging the collateral under these conditions;
+- in the circumstances foreseen in DTR5.2.1 (d), the natural person or legal entity who has a life interest in shares if that person or entity is entitled to exercise the voting rights attached to the shares and the natural person or legal entity who is disposing of the voting rights when the life interest is created;
+- in the circumstances foreseen in DTR5.2.1 (e), the controlling natural person or legal entity and, provided it has a notification duty at an individual level under DTR 5.1, under DTR5.2.1 (a) to (d) or under a combination of any of those situations, the controlled undertaking;
+- in the circumstances foreseen in DTR5.2.1 (f), the deposit taker of the shares, if he can exercise the voting rights attached to the shares deposited with him at his discretion, and the depositor of the shares allowing the deposit taker to exercise the voting rights at his discretion;
+- in the circumstances foreseen in DTR5.2.1 (g), the natural person or legal entity that controls the voting rights;
+- in the circumstances foreseen in DTR5.2.1 (h), the proxy holder, if he can exercise the voting rights at his discretion, and the shareholder who has given his proxy to the proxy holder allowing the latter to exercise the voting rights at his discretion (e.g. management companies).
+v
+Applicable in the cases provided for in DTR5.2.1 (b) to (h). This should be the full name of the shareholder who is the counterparty to the natural person or legal entity referred to DTR5.2 unless the percentage of voting rights held by the shareholder is lower than the lowest notifiable threshold for the disclosure of voting rights holdings in accordance with national practices (e.g. identification of funds managed by management companies).
+vi
+The date on which threshold is crossed or reached should be the date on which the acquisition or disposal took place or the other reason triggered the notification obligation. For passive crossings, the date when the corporate event took effect.
+vii
+The total number of voting rights held in the issuer shall be composed of all the shares, including depository receipts representing shares, to which voting rights are attached even if the exercise thereof is suspended.
+viii
+If the holding has fallen below the lowest applicable threshold, please note that it might not be necessary to disclose the extent of the holding, only that the new holding is below that threshold.
+ix
+In case of combined holdings of shares with voting rights attached "direct holding" and voting rights "indirect holding", please split the voting rights number and percentage into the direct and indirect columns - if there is no combined holdings, please leave the relevant box blank.
+x
+Date of maturity/expiration of the financial instrument i.e. the date when right to acquire shares ends.
+xi
+If the financial instrument has such a period - please specify this period - for example once every 3 months starting from [date].
+xii
+In case of cash settled instruments the number and percentages of voting rights is to be presented on a delta-adjusted basis (DTR 5.3.3.A).
+xiii
+If the person subject to the notification obligation is either controlled and/or does control another undertaking then the second option applies.
+xiv
+The full chain of controlled undertakings starting with the ultimate controlling natural person or legal entity has to be presented also in the cases, in which only on subsidiary level a threshold is crossed or reached and the subsidiary undertaking discloses the notification as only in this way will the markets get always the full picture of the group holdings. In case of multiple chains through which the voting rights and/or financial instruments are effectively held the chains have to be presented chain by chain by numbering each chain accordingly. Please see the below example:
+Name of ultimate controlling person A (chain 1)
+Name of controlled undertaking B
+Name of controlled undertaking C
+Name of ultimate controlling person A (chain 2)
+Name of controlled undertaking B
+Name of controlled undertaking D
+Name of ultimate controlling person A (chain3)
+Name of controlled undertaking E
+Name of controlled undertaking F
+xv
+The names of controlled undertakings through which the voting rights and/or financial instruments are effectively held have to be presented irrespectively whether the controlled undertakings cross or reach the lowest applicable threshold themselves.
+xvi
+Example: Correction of a previous notification.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+HOLMJBFTMTMMBII
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #10b98140;
+                    ">4</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #4
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📈</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Result of GM, Issue of Equity & Directorate Change</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 100/100 • BULLISH</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    INSIDER TRANSACTION: Director shareholding change | ✅ BULLISH: Positive results typically drive price increases. Check guidance for future expectations.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Jun 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">11:19 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #10b981;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #10b981;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">100/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">INSIDER TRANSACTION: Director shareholding change</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #10b981; font-weight: 600;">✅ BULLISH: Positive results typically drive price increases. Check guidance for future expectations.</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #10b981; font-weight: 600;">🟢 LOW RISK: Positive signals, minimal concerns</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📊 ANALYZE: Determine offer price, arbitrage opportunity if discount</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📈 IMPROVING: Company demonstrating strength and growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Consideration Shares</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">0.84%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+30 Jun 2025 11:19
+RNS Number : 9960O
+Earnz PLC
+30 June 2025
+30 June 2025
+EARNZ plc
+(
+"EARNZ"
+or the "
+Company"
+)
+Result of General Meeting,
+Issue of Equity
+and
+Directorate Changes
+EARNZ plc (AIM: EARN), an energy services company whose objective is to capitalise on the drive for global decarbonisation, is pleased to announce that the Resolutions put to its General Meeting held earlier today were duly passed.
+Following the passing of the Resolutions, the Board has allotted 3,611,111 new ordinary shares of 4 pence each in the Company as part of the initial consideration payable for the acquisition of A&D Carbon Solutions LTD ("A&D"), as announced on 12 June 2025 ("Consideration Shares").
+Application has been made to the London Stock Exchange for the Consideration Shares to be admitted to trading on AIM. Admission of the Consideration Shares to trading on AIM is expected to become effective at 8.00 a.m. on 1 July 2025 which is when completion of the acquisition of A&D becomes effective ("Completion").
+The Consideration Shares will rank
+pari passu
+in all respects with the Existing Shares and will rank in full for all dividends and other distributions declared, made or paid on the Consideration Shares after Second Admission. Definitive share certificates in respect of the Consideration Shares will be despatched within 10 business days of the Second Admission.
+In addition, as previously announced, on Completion, Peter Smith will be appointed as Chief Executive Officer, Bob Holt will become Non-Executive Chair, and John Charlton will resign as a director but remain as Company Secretary. Further details relating to Peter Smith pursuant to AIM Rule 17 and Schedule Two (g) of the AIM Rules for Companies ("AIM Rules") are set out in the Appendix below.
+Capitalised terms not defined in this announcement have the meanings given to them in the Company's circular dated 12 June 2025.
+Enquiries:
+EARNZ plc
++44 (0) 7778 798 816
++44 (0) 77 3677 7790
+Bob Holt / Elizabeth Lake / John Charlton
+Shore Capital - Nominated Adviser and Broker
++44 (0) 20 7408 4090
+Tom Griffiths / Tom Knibbs / Lucy Bowden
+Zeus Capital - Joint Broker
++44 (0) 203 829 5000
+Antonio Bossi / Andrew de Andrade
+Appendix - AIM Rule 17
+Save for the information set out below, there are no further disclosures to be made in accordance with Rule 17, Schedule Two (g) of the AIM Rules in respect of the appointment of Peter David Mawby Smith, aged 54. Peter owns 1,013,888 Ordinary Shares which, following Second Admission, will represent approximately 0.84% of the Company's issued share capital.
+Current Directorships/Partnerships
+Datanomy Technologies Limited
+Past Directorships/Partnerships (within 5 years)
+Aaron Heating Services Limited
+Bury Metering Services Limited
+Cap10 4Netzero Bidco Limited
+Corenergy Limited
+F J Jones Heating Engineers Limited
+F J Jones Holdings Limited
+Just Energy Solutions Limited
+Mawby Smith Finance Limited
+P L S Holdings Limited
+P L S Industries LTD.
+PLS GRP Ltd
+Precision Lift Services Limited
+Smart Metering Limited
+Speedfit Limited
+Sure Maintenance Group Limited
+Sureserve Asset Services Limited
+Sureserve Compliance Fire Limited
+Sureserve Compliance Central Limited
+Sureserve Compliance Holdings Limited
+Sureserve Compliance Northwest Limited
+Sureserve Compliance South Limited
+Sureserve Compliance Water Limited
+Sureserve Design & Build Limited
+Sureserve Energy Holdings Limited
+Sureserve Energy Services Meters Limited
+Sureserve Energy Services UK Limited
+Sureserve Group Limited
+Sureserve Holdings Limited
+Sureserve Property Investments Limited
+Sureserve VGS Limited
+Vinshire Gas Services Limited
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+ROMEAEKEDFPSEFA
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">5</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #5
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Holding(s) in Company</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 100/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    HOLDING DISCLOSURE: Holding disclosed | 📊 NEUTRAL: Significant holder at 5.674791% - potential price setter or activist.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Jun 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">9:51 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">100/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">HOLDING DISCLOSURE: Holding disclosed</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 NEUTRAL: Significant holder at 5.674791% - potential price setter or activist.</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📊 ANALYZE: Determine offer price, arbitrage opportunity if discount</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Conversion Period</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">6.773980%, 0.000000%, 6.773980%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+30 Jun 2025 09:51
+RNS Number : 9625O
+Earnz PLC
+30 June 2025
+TR-1: S
+tandard form for notification of major holdings
+NOTIFICATION OF MAJOR HOLDINGS
+(to be sent to the relevant issuer
+and
+to the FCA in Microsoft Word format if possible)
+i
+1a. Identity of the issuer or the underlying issuer of existing shares to which voting rights are attached
+ii
+:
+Earnz PLC
+GB00BRC2TB67
+1b. Please indicate if the issuer is a non-UK issuer
+(please mark with an "X" if appropriate)
+2. Reason for the notification
+(please mark the appropriate box or boxes with an "X")
+An acquisition or disposal of voting rights
+X
+An acquisition or disposal of financial instruments
+An event changing the breakdown of voting rights
+Other (please specify) iii:
+3. Details of person subject to the notification obligation
+iv
+Name
+UBS Group AG - Investment Bank & Global Wealth Management
+City and country of registered office (if applicable)
+Z
+ürich
+Switzerland
+4. Full name of shareholder(s)
+(if different from 3.)
+v
+Name
+UBS AG
+City and country of registered office (if applicable)
+London, United Kingdom
+5. Date on which the threshold was crossed or reached
+vi
+:
+26 June 2025
+6.
+Date on which issuer notified (DD/MM/YYYY):
+30 June 2025
+7. Total positions of person(s) subject to the notification obligation
+% of voting rights attached to shares (total of 8. A)
+% of
+voting rights through
+financial instruments(total of 8.B 1 + 8.B 2)
+Total of both in % (8.A + 8.B)
+Total number of voting rights held in issuer (8.A + 8.B)
+vii
+Resulting situation on the date on which threshold was crossed or reached
+6.773980%
+0.000000%
+6.773980%
+7,885,479
+Position of previous notification (if
+applicable)
+0.000000%
+0.000000%
+0.000000%
+8. Notified details of the resulting situation on the date on which the threshold was crossed or reached
+viii
+A: Voting rights attached to shares
+Class/type ofshares
+ISIN code (if possible)
+Number of voting rights
+ix
+% of voting rights
+Direct
+(DTR5.1)
+Indirect
+(DTR5.2.1)
+Direct
+(DTR5.1)
+Indirect
+(DTR5.2.1)
+GB00BRC2TB67
+7,885,479
+6.773980%
+SUBTOTAL 8. A
+7,885,479
+6.773980%
+B 1: Financial Instruments according to DTR5.3.1R (1) (a)
+Type of financial instrument
+Expirationdate
+x
+Exercise/Conversion Period
+xi
+Number of voting rights that may be acquired if the instrument is
+exercised/converted.
+% of voting rights
+SUBTOTAL 8. B 1
+B 2: Financial Instruments with similar economic effect according to DTR5.3.1R (1) (b)
+Type of financial instrument
+Expirationdate
+x
+Exercise/Conversion Period
+xi
+Physical or cash
+Settlement
+xii
+Number of voting rights
+% of voting rights
+SUBTOTAL 8.B.2
+9. Information in relation to the person subject to the notification obligation
+(please mark the
+applicable box with an "X")
+Person subject to the notification obligation is not controlled by any natural person or legal entity and does not control any other undertaking(s) holding directly or indirectly an interest in the (underlying) issuer
+xiii
+Full
+chain of controlled undertakings through which the voting rights and/or thefinancial instruments are effectively held starting with the ultimate controlling natural person or legal entity
+(please add additional rows as necessary)
+xiv
+X
+Name
+xv
+% of voting rights if it equals or is higher than the notifiable threshold
+% of voting rights through financial instruments if it equals or is higher than the notifiable threshold
+Total of both if it equals or is higher than the notifiable threshold
+UBS Group AG
+UBS AG
+6.773980%
+6.773980%
+10.
+In case of proxy voting, please identify:
+Name of the proxy holder
+The number and % of voting rights held
+The date until which the voting rights will be held
+11. Additional information
+xvi
+Place of completion
+Zurich, Switzerland
+Date of completion
+30.06.2025
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+HOLFMMPTMTAJMMA
+                </div>
+            </details>
+            
+            </div>
+            
+            </div>
+            <div style="
+                margin-top: 20px;
+                padding: 14px 16px;
+                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+                border-radius: 10px;
+                font-size: 12px;
+                color: #78350f;
+                border-left: 3px solid #f59e0b;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            ">
+                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
+                <div style="line-height: 1.5;">
+                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
+                    Each RNS includes sentiment classification, key data extraction, and trading context. 
+                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
+                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                    </strong>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            details[open] > summary {
+                background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%) !important;
+                border-left-color: #0369a1 !important;
+            }
+            summary::-webkit-details-marker {
+                display: none;
+            }
+            
+            /* ========== MOBILE RESPONSIVE ========== */
+            @media (max-width: 768px) {
+                body {
+                    padding: 10px;
+                    font-size: 14px;
+                }
+                
+                .container {
+                    margin: 0 auto;
+                }
+                
+                .header-card {
+                    padding: 14px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .company-name {
+                    font-size: 22px;
+                    margin-bottom: 8px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 13px;
+                    padding: 6px 12px;
+                }
+                
+                .company-meta {
+                    gap: 8px;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+                
+                .meta-item {
+                    padding: 6px 12px;
+                    font-size: 12px;
+                    gap: 6px;
+                }
+                
+                .meta-icon {
+                    font-size: 14px;
+                }
+                
+                .score-hero {
+                    padding: 20px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .action-display {
+                    font-size: 18px !important;
+                    margin-bottom: 12px;
+                }
+                
+                .scores-row {
+                    gap: 16px;
+                    margin: 20px 0;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    display: flex;
+                }
+                
+                .score-circle {
+                    width: 110px;
+                    height: 110px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 32px;
+                }
+                
+                .score-label {
+                    font-size: 10px;
+                    margin-top: 4px;
+                }
+                
+                .timing-badge-large {
+                    padding: 10px 20px;
+                    font-size: 14px;
+                    margin: 12px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 14px;
+                    padding: 12px;
+                    margin-top: 12px;
+                }
+                
+                .factors-list {
+                    grid-template-columns: 1fr;
+                    gap: 10px;
+                    margin-top: 12px;
+                }
+                
+                .factor-item {
+                    padding: 12px;
+                    font-size: 12px;
+                    gap: 8px;
+                }
+                
+                .factor-icon {
+                    font-size: 16px;
+                }
+                
+                .cards-grid {
+                    grid-template-columns: 1fr;
+                    gap: 12px;
+                    margin-bottom: 12px;
+                }
+                
+                .card {
+                    padding: 16px;
+                    border-radius: 12px;
+                }
+                
+                .card-title {
+                    font-size: 14px;
+                    margin-bottom: 12px;
+                    gap: 8px;
+                }
+                
+                .card-icon {
+                    font-size: 18px;
+                }
+                
+                .stat-row {
+                    padding: 8px 0;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+                
+                .stat-label {
+                    font-size: 12px;
+                }
+                
+                .stat-value {
+                    font-size: 14px;
+                }
+                
+                .rally-badge {
+                    padding: 4px 10px;
+                    font-size: 10px;
+                }
+                
+                .risk-indicator {
+                    gap: 10px;
+                    padding: 12px;
+                    flex-wrap: wrap;
+                }
+                
+                .risk-icon {
+                    font-size: 20px;
+                }
+                
+                .reason-item {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                }
+                
+                .tag {
+                    padding: 3px 8px;
+                    font-size: 10px;
+                }
+                
+                .footer {
+                    padding: 12px;
+                    font-size: 11px;
+                    margin-top: 12px;
+                    border-radius: 12px;
+                }
+                
+                .alert-box {
+                    padding: 12px;
+                    margin: 10px 0;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                body {
+                    padding: 8px 6px;
+                }
+                
+                .header-card {
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    border-radius: 8px;
+                }
+                
+                .company-name {
+                    font-size: 18px;
+                    margin-bottom: 6px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 11px;
+                    padding: 3px 8px;
+                }
+                
+                .company-meta {
+                    gap: 4px;
+                    flex-direction: column;
+                }
+                
+                .meta-item {
+                    padding: 4px 6px;
+                    font-size: 11px;
+                    background: rgba(247, 250, 252, 0.7);
+                }
+                
+                .score-hero {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                    border-radius: 12px;
+                }
+                
+                .score-circle {
+                    width: 70px;
+                    height: 70px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 22px;
+                    font-weight: 800;
+                }
+                
+                .score-label {
+                    font-size: 7px;
+                    margin-top: 2px;
+                }
+                
+                .scores-row {
+                    flex-direction: column;
+                    gap: 10px;
+                    margin: 12px 0;
+                    align-items: center;
+                }
+                
+                .timing-badge-large {
+                    padding: 6px 12px;
+                    font-size: 11px;
+                    margin: 10px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 11px;
+                    padding: 8px;
+                    line-height: 1.3;
+                }
+                
+                .card {
+                    padding: 10px;
+                    margin-bottom: 8px;
+                    border-radius: 8px;
+                }
+                
+                .card-title {
+                    font-size: 12px;
+                    margin-bottom: 8px;
+                    font-weight: 700;
+                }
+            }
+        </style>
+        
+
+        <!-- Footer -->
+        <div class="footer">
+            Report generated: 2026-01-17 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            <strong>△ Not financial advice. Do your own research.</strong>
+            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
+                <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

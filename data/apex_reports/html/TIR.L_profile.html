@@ -1,0 +1,2737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrashDash • TIR.L APEX Profile</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .header-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .ticker-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .company-name { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .company-meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f7fafc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .meta-icon { font-size: 18px; }
+        
+        .score-hero {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        .action-display {
+            margin-bottom: 20px;
+        }
+        .scores-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .score-number {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .score-label { font-size: 12px; color: #666; margin-top: 5px; }
+        .timing-badge-large {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 24px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            margin: 20px 0;
+        }
+        .thesis-line {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .factors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .factor-item {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        .factor-icon { font-size: 20px; }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-icon { font-size: 24px; }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-label { color: #666; font-size: 14px; }
+        .stat-value { font-weight: 600; font-size: 16px; }
+        
+        .rally-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .risk-indicator {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .risk-high { background: #fee2e2; }
+        .risk-icon { font-size: 24px; }
+        
+        .reason-item {
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .tag {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .footer {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-top: 20px;
+        }
+        
+        .alert-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Header Card -->
+        <div class="header-card">
+            <div class="ticker-badge">TIR.L</div>
+            <div class="company-name">Unknown</div>
+            <div class="company-meta">
+                <div class="meta-item">
+                    <span class="meta-icon">■</span>
+                    <span><strong>Sector:</strong> Unknown</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">£</span>
+                    <span><strong>Market Cap:</strong> £2,420,884</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">◷</span>
+                    <span><strong>Days Active:</strong> 27 days</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action & Score Hero Section -->
+        <div class="score-hero">
+            <div class="action-display">
+                <span style="font-size: 32px; font-weight: 800; color: white;">◉ WATCH</span>
+            </div>
+            
+            <div class="scores-row">
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">34</div>
+                    <div class="score-label">APEX SCORE</div>
+                </div>
+                <div class="score-circle">
+                    <div class="score-number" style="color: #f59e0b;">55</div>
+                    <div class="score-label">CONFIDENCE</div>
+                </div>
+            </div>
+            
+            <div class="timing-badge-large">
+                Timing: <span class="rally-badge" style="background: #fef3c7; color: #92400e;">EARLY BUILD</span>
+            </div>
+            
+            <div class="thesis-line">
+                WATCH - EARLY_BUILD timing with 34/100 opportunity score
+            </div>
+        </div>
+
+        <!-- ==================== CRASHDASH INTELLIGENCE - PANIC HUNTER VIEW ==================== -->
+        
+        <div class="card" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b;">
+            <div class="card-title" style="color: #0f172a;">
+                <span class="card-icon">🏭</span>
+                CrashDash Intelligence • Industrials
+            </div>
+            
+            <!-- Fear Meter -->
+            <div style="background: white; padding: 24px; border-radius: 14px; margin-bottom: 20px; text-align: center;">
+                <div style="font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 16px;">🔥 PANIC METER</div>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 16px;">
+                    <div style="width: 160px; height: 160px; border-radius: 50%; background: conic-gradient(#f59e0b 266.40000000000003deg, #e5e7eb 266.40000000000003deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                        <div style="width: 130px; height: 130px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <div style="font-size: 48px; font-weight: 800; color: #f59e0b;">74</div>
+                            <div style="font-size: 12px; color: #64748b; font-weight: 600;">PANIC SCORE</div>
+                        </div>
+                    </div>
+                    <div style="text-align: left; max-width: 400px;">
+                        <div style="font-size: 18px; font-weight: 700; color: #f59e0b; margin-bottom: 12px;">HIGH PANIC</div>
+                        <div style="font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 12px;">🟠 Fear dominant - watch for reversal signs</div>
+                        <div style="font-size: 13px; color: #64748b;">
+                            <div>💔 Price: 40/40</div>
+                            <div>📉 Volume: 18/20</div>
+                            <div>🔇 Social: 6/20</div>
+                            <div>📰 News: 10/20</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CrashHunter Signals -->
+                <div style="margin-top: 20px;">
+                    <span style="display: inline-block; background: #f59e0b; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">🟠 Fear 74/100</span><span style="display: inline-block; background: #10b981; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">📊 Building</span>
+                </div>
+                
+                <!-- Opportunity Flag -->
+                <div style="margin-top: 20px; padding: 16px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 10px; color: white; font-weight: 700; font-size: 16px;">🎯 ⚠️ HIGH PANIC + Early timing = Potential accumulation phase</div>
+            </div>
+            
+            <!-- Contrarian Compression Energy Panel -->
+            
+            <!-- Contrarian Compression Energy Panel -->
+            <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); padding: 24px; border-radius: 14px; margin-bottom: 20px; border: 3px solid #10b981;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <span style="font-size: 32px;">⚡</span>
+                    <div style="flex: 1;">
+                        <div style="font-size: 20px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">
+                            CONTRARIAN COMPRESSION SCORE
+                        </div>
+                        <div style="font-size: 13px; color: #475569; font-weight: 600;">
+                            Signal Congestion Framework • Compression = Explosive Potential
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Score Display -->
+                <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 30px;">
+                        <!-- Circular gauge -->
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: conic-gradient(#10b981 82.8deg, #e5e7eb 82.8deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                            <div style="width: 110px; height: 110px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <div style="font-size: 42px; font-weight: 800; color: #10b981;">23</div>
+                                <div style="font-size: 11px; color: #64748b; font-weight: 600;">/ 100</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Key metrics -->
+                        <div style="text-align: left;">
+                            <div style="font-size: 16px; font-weight: 700; color: #10b981; margin-bottom: 12px;">⚪ LOW COMPRESSION (Early/Weak)</div>
+                            <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                                <div><strong>0.2</strong> signals/week</div>
+                                <div><strong>3</strong> RSI &lt; 20 events</div>
+                                <div><strong>0</strong> escalations detected</div>
+                                <div style="color: #10b981; font-weight: 700; margin-top: 6px;">
+                                    💎 Historical pop: <strong>+18%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Component Breakdown -->
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 15px;">
+                        📊 5-COMPONENT BREAKDOWN
+                    </div>
+                    
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">compression</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">10/40</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 25.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">0.2 signals/week | 3 RSI<20 | 🎯 MILD COMPRESSION</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">intensification</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">5/20</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 25.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;"></div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">volume death</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #eab308;">8/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #eab308; height: 100%; width: 53.333333333333336%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">High volume - Panic spike or interest</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">pop potential</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">0/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">Weak history (18%)</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">accumulation</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">0/10</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">No accumulation</div>
+                </div>
+                
+                </div>
+                
+                <!-- Contrarian Philosophy -->
+                <div style="background: rgba(255,255,255,0.7); padding: 16px; border-radius: 10px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #0f172a; margin-bottom: 8px; font-size: 14px;">
+                        🎯 CONTRARIAN WISDOM
+                    </div>
+                    <div style="font-size: 13px; color: #334155; line-height: 1.6;">
+                        <strong>Signal congestion = Compression energy = Explosive potential.</strong><br>
+                        When multiple crash signals cluster together with extreme RSI and proven rally history, 
+                        it creates a compressed spring effect. More panic = More opportunity for contrarians.
+                        <div style="margin-top: 8px; padding: 10px; background: rgba(239,68,68,0.1); border-radius: 6px; font-size: 12px;">
+                            <strong style="color: #10b981;">Theory:</strong> High compression scores (60+) historically precede 
+                            explosive 10-20x moves when catalysts arrive. This is the foundation of crash hunting.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Fear vs Facts Contrarian View -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                <div style="background: #fee2e2; padding: 18px; border-radius: 12px; border-left: 4px solid #ef4444;">
+                    <div style="font-weight: 700; color: #991b1b; margin-bottom: 12px; font-size: 15px;">😱 FEAR (What Panic Shows)</div>
+                    <div style="color: #7f1d1d;">
+                        <div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 💔 Price destruction: 40/40 points</div><div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 📉 Volume death: 18/20 points</div>
+                    </div>
+                </div>
+                <div style="background: #dcfce7; padding: 18px; border-radius: 12px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #065f46; margin-bottom: 12px; font-size: 15px;">📊 FACTS (What Data Shows)</div>
+                    <div style="color: #064e3b;">
+                        <div style="color: #64748b; font-size: 14px;">Limited historical data</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contrarian Verdict -->
+            <div style="background: white; padding: 18px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #6366f1;">
+                <div style="font-weight: 700; color: #4338ca; margin-bottom: 10px; font-size: 15px;">⚖️ Contrarian Verdict</div>
+                <div style="font-size: 15px; color: #1e293b; line-height: 1.6; font-weight: 600;">
+                    🎯 CONTRARIAN OPPORTUNITY - Fear dominates but facts support recovery potential
+                </div>
+            </div>
+            
+            <!-- Industry Crash Patterns -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">⚠️ Crash Patterns (Industrials)</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book decline or cancellations</div><div>• Margin compression (input costs)</div><div>• Cyclical demand weakness</div>
+                    </div>
+                    <div style="margin-top: 12px; padding: 10px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e; font-weight: 600;">🚨 Active: Project delays or overruns</div>
+                </div>
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">🚀 Recovery Paths</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book growth or new contracts</div><div>• Margin recovery (efficiency gains)</div><div>• Cyclical upturn (capex recovery)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Catalyst Pipeline -->
+            <div style="background: rgba(255,255,255,0.5); padding: 18px; border-radius: 12px; margin-bottom: 20px;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 14px; font-size: 15px;">📅 Catalyst Pipeline</div>
+                
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Development of Tiger Alpha Subnet</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Board Changes</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Launch of Staking Strategy</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Half-year Report</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Change of Name</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+            
+            <!-- CrashDash Decision Matrix -->
+            <div style="background: white; padding: 20px; border-radius: 12px; border: 3px solid #f59e0b;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 16px; text-align: center;">
+                    🎯 CRASHDASH DECISION: <span style="color: #f59e0b; font-size: 20px;">WATCH</span>
+                </div>
+                <div style="font-size: 15px; color: #475569; text-align: center; margin-bottom: 20px; font-weight: 600;">
+                    ⏳ Monitor for timing regime change or panic escalation
+                </div>
+                <div style="background: #f8fafc; padding: 16px; border-radius: 10px;">
+                    <div style="font-weight: 700; color: #64748b; margin-bottom: 12px; font-size: 13px;">CHECKLIST (4/5 pass)</div>
+                    
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🔴</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Panic Score</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">74/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">✅</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Timing Regime</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">EARLY_BUILD</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">⚠️</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">APEX Quality</div>
+                    <div style="font-size: 13px; color: #ef4444; font-weight: 600;">34/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🎯</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Data Confidence</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">55/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🏭</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Industry Pattern</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">1 active</div>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
+        
+
+        <!-- Decision Summary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◆</span>
+                Why This Matters
+            </div>
+            <div class="stat-row"><span>• APEX 34/100 indicates moderate opportunity quality</span></div><div class="stat-row"><span>• Timing regime: EARLY_BUILD</span></div><div class="stat-row"><span>• Historical profile: 2 rallies, 10% best run</span></div>
+            
+            <div class="alert-box" style="margin-top: 20px;">
+                <strong>△ Main Risk:</strong> Confidence 55/100 - full data loaded
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong>◉ Watch Next:</strong>
+                <div style="padding: 8px 0;">• RNS catalysts (funding/operational updates)</div><div style="padding: 8px 0;">• Volume expansion confirmation</div><div style="padding: 8px 0;">• Timing regime change signals</div>
+            </div>
+        </div>
+
+        <!-- ==================== TECHNICAL DETAILS (COLLAPSIBLE) ==================== -->
+        
+        <div class="card">
+          <details style="cursor:pointer;">
+            <summary style="font-weight:800; font-size:16px; list-style:none; padding: 10px; background: #f9fafb; border-radius: 8px;">
+              🔧 Technical Analysis & Scoring Details
+            </summary>
+            <div style="margin-top:14px;">
+              
+            <!-- Scoring Breakdown -->
+            <div class="card-title" style="margin-top: 20px;">
+                <span class="card-icon">▣</span>
+                APEX Score Breakdown
+            </div>
+            <div class="factors-list">
+                <div class="factor-item"><span class="factor-icon">◆</span><span><strong>Strong Technical Setup</strong><br><small>Chart quality: 11/20 • Score: 14/25 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Massive recovery potential</strong><br><small>Down 90.9% from peak • Score: 18/20 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Explosive volume</strong><br><small>3.1x average • Score: 10/10 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Limited history</strong><br><small>2 previous rallies • Score: 5/15 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Modest upside</strong><br><small>Historical best: +10% • Score: 2/20 points</small></span></div>
+
+            </div>
+            
+            <div style="margin-top: 40px;"></div>
+            
+            <!-- Exhaustion Metrics -->
+            <div class="card-title">
+                <span class="card-icon">📈</span>
+                Rally Cycle Position
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Current Position</div>
+                    <div style="font-size: 32px; font-weight: 800;">10%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
+                    <div style="font-size: 32px; font-weight: 800;">10%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
+                    <div style="font-size: 32px; font-weight: 800;">0.7x</div>
+                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
+                </div>
+            </div>
+        
+            </div>
+          </details>
+        </div>
+        
+
+        <!-- Reasons Buy/Sell -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #10b981;">▲</span>
+                    Reasons to Buy
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Early stage positioning offers best R:R if catalysts appear</span>
+                    <span class="tag" style="background: #f59e0b; color: white;">⚡ Medium Strength</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">timing=EARLY BUILD • current return=10.0%</div>
+            </div>
+            
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #ef4444;">▼</span>
+                    Reasons to Sell / Avoid
+                </div>
+                <div style="color: #666; font-style: italic;">No major sell signals.</div>
+            </div>
+        </div>
+
+        <!-- Trade Plans -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">📊</span>
+                    Short-Term Trader Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 20%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <div style="font-size: 18px; font-weight: 600; margin-bottom: 5px;">Watch / Starter</div>
+                    <div style="font-size: 14px; opacity: 0.9;">Wait for base + catalyst confirmation; starter position only</div>
+                </div>
+                <div style="padding: 12px; background: #f9fafb; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Position Size</div>
+                    <div style="font-weight: 600;">0-1% until CONFIRMED</div>
+                </div>
+                <div style="padding: 12px; background: #fef2f2; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Risk Management</div>
+                    <div style="font-weight: 600; color: #dc2626;">Invalidation = breaks recent lows / dilution / suspension</div>
+                </div>
+                <div style="padding: 12px; background: #f0fdf4; border-radius: 6px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Exit Strategy</div>
+                    <div style="font-weight: 600; color: #059669;">Scale out 25% at +15%, 25% at +50%, runner above</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">💼</span>
+                    Long-Term Investor Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center;">
+                    <div style="font-size: 32px; margin-bottom: 5px;">✗</div>
+                    <div style="font-size: 18px; font-weight: 600;">Not Recommended for Investors</div>
+                </div>
+                <div style="padding: 15px; background: #f9fafb; border-radius: 8px; font-size: 14px; line-height: 1.6;">
+                    <strong style="color: #667eea;">📋 Investment Thesis:</strong><br>
+                    Unlock after AI triangulation + CONFIRMED timing<br><br>
+                    <strong style="color: #667eea;">⏳ Time Horizon:</strong><br>
+                    N/A<br><br>
+                    <strong style="color: #ef4444;">🛡️ Exit Rule:</strong><br>
+                    N/A
+                </div>
+            </div>
+        </div>
+
+        <!-- Commentary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◐</span>
+                Executive Commentary
+            </div>
+            <div style="line-height: 1.6; margin-bottom: 20px;">
+                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows EARLY_BUILD timing with 34/100 APEX score. Historical data shows 2 rallies averaging 10% upside. Current position: +10.0%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #10b981;">▲ Bull Case:</strong>
+                <div style="padding: 8px 0;">• Early regime often offers best risk/reward</div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #ef4444;">▼ Bear Case:</strong>
+                <div style="padding: 8px 0;">• Monitor for breakdown signals</div>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
+                <strong>◷ Timing Translation:</strong><br>
+                Early accumulation phase. Watch for confirmation before committing size.
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
+                <strong>◎ Confidence Explained:</strong><br>
+                Confidence 55/100 reflects full data quality with triangulation loaded.
+            </div>
+        </div>
+
+        <!-- Data Quality Warning -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">△</span>
+                Data Quality Notice
+            </div>
+            <div class="alert-box">
+                <strong>Analysis Mode:</strong> HISTORICAL_ONLY<br>
+                <strong>Impact:</strong> HIGH
+            </div>
+            <div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">AI insights from Groq LLM</div></div></div>
+
+            <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk.
+            </div>
+        </div>
+
+        <!-- ==================== TOP 5 RECENT RNS NEWS ==================== -->
+        
+        <div class="card" style="border-top: 3px solid #3b82f6;">
+            <div class="card-title" style="margin-bottom: 20px;">
+                <span class="card-icon">📰</span>
+                Top 5 Recent RNS Announcements
+            </div>
+            <div style="margin-top: 15px;">
+                
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Development of Tiger Alpha Subnet</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 70/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Development of Tiger Alpha Subnet | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">18th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">70/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Development of Tiger Alpha Subnet</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📈 IMPROVING: Company demonstrating strength and growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Nominated Adviser</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">100%, 80%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+18 Dec 2025 07:00
+RNS Number : 9756L
+Tiger Alpha Plc
+18 December 2025
+​
+18 December 2025
+TIGER ALPHA PLC
+("Tiger" or the "Company")
+Development of Tiger Alpha Subnet
+Tiger Alpha plc
+, the investment vehicle focused on incubating technology and mining projects,
+is pleased to provide an update on its 100%-owned Bittensor subnet, Tiger Alpha, acquired in May 2025 for 200 TAO, to be re-named the
+Knowledge Delivery Network ("KDN-1")
+and scheduled to become operational under the new name in Q1 2026.
+Work is progressing on developing the subnet which, once operational, will
+·
+Enable participants to contribute to a decentralised AI infrastructure network
+·
+Earn rewards for storing and supplying useful AI knowledge
+·
+Support faster, more scalable AI applications
+·
+Strengthen Tiger Alpha's presence within the rapidly expanding decentralised AI sector
+Strategic Importance
+The Company believes KDN-1 represents an important step forward in Tiger Alpha's long-term strategy within the Bittensor ecosystem.
+KDN-1 is being designed to make artificial intelligence systems faster and more cost-efficient by allowing AI models to re-use previously processed information, rather than recomputing it each time. This approach has the potential to significantly reduce AI operating costs for businesses and improve performance for a wide range of applications.
+The Company will update the market on events to include technical development and testing and outreach to early users and partners.
+Part Two below sets out the technical benefits and background as to why the Company believes this new subset represents a substantial long-term growth opportunity.
+Revenue will be based on successful take-up and will be in the form of Tiger's Alpha Token.
+"We are encouraged by the steady progress of the KDN-1 subnet and are pleased to confirm that it is on track for full operational launch in Q1 2026. This marks a key milestone for Tiger Alpha as we continue to build practical, revenue-generating infrastructure within the Bittensor ecosystem. The Company believes KDN-1 will support long-term growth as demand for efficient AI solutions continues to rise."
+Jonathan Bixby CEO
+For further information please contact:
+Tiger Alpha Plc
+Jonathan Bixby
++44 (0) 20 7581 4477
+Beaumont Cornish (Nomad)
+Roland Cornish & Felicity Geidt
++44 (0) 20 7628 3369
+Fortified Securities
+(Broker)
+Guy Wheatley
+Email:
+guy.wheatley@fortifiedsecurities.com
++44 (0) 7493 989014
+Novum Securities
+(Broker)
+Jon Belliss
++44 (0) 20 7399 9425
+Beaumont Cornish Limited ("Beaumont Cornish") is the Company's Nominated Adviser and is authorised and regulated by the FCA. Beaumont Cornish's responsibilities as the Company's Nominated Adviser, including a responsibility to advise and guide the Company on its responsibilities under the AIM Rules for Companies and AIM Rules for Nominated Advisers, are owed solely to the London Stock Exchange. Beaumont Cornish is not acting for and will not be responsible to any other persons for providing protections afforded to customers of Beaumont Cornish nor for advising them in relation to the proposed arrangements described in this announcement or any matter referred to in it.
+This announcement contains inside information for the purposes of Article 7 of Regulation 2014/596/EU as it forms part of the UK law pursuant to the European Union (Withdrawal) Act 2018
+PART TWO
+Technical Benefits: Cost Cutting and Reduced Latency
+AI inference, the process of running a trained model to generate output (such as answers, predictions, or classification) in response to user queries or new data, is currently expensive because models continually reprocess the same documents, queries, and content. KDN-1 helps to solve this industry-wide issue.
+Cost Reduction
+By re-using previously processed information, KDN-1 can theoretically:
+·
+Lower AI compute costs for businesses by
+50-80%
+·
+Reduce the amount of GPU time needed for common tasks
+·
+Enable organisations to run more AI workloads without increasing budget
+For many companies, AI cost is becoming a major operational expense. KDN-1 directly addresses this challenge.
+Latency Reduction
+Latency is the time delay between a user making a request and the AI system delivering a usable response but with users increasingly expecting real-time interactions with AI.
+KDN-1 can theoretically improve performance by:
+·
+Reducing "time to first answer" by
+5-10×
+·
+Making AI chatbots and search tools feel instant
+·
+Supporting more interactive and responsive applications
+Fast, inexpensive AI is crucial for mainstream adoption, and KDN-1 aims to deliver both.
+Market Overview and Growth Potential
+The AI Market
+The global AI market is expanding rapidly, with industry forecasts projecting spending to reach
+hundreds of billions of dollars
+over the coming years. A significant portion of this spending is on cloud-based compute for operating large language models (LLMs).
+As AI adoption continues to accelerate, the need for cost-efficient and scalable infrastructure becomes increasingly important. KDN-1 aims to position Tiger Alpha within this fast-growing segment.
+The CDN Analogy
+Content Delivery Networks (CDNs) transformed the internet by storing and delivering commonly used content quickly and efficiently. Today, the CDN industry is worth
+over $20-30 billion annually
+.
+KDN-1 applies this same principle to AI:
+instead of caching images and webpages, it caches AI knowledge.
+This creates the opportunity for a new, AI-focused infrastructure market that could grow alongside - or even outpace - traditional CDNs as model usage becomes central to every digital product.
+Long-Term Potential
+If knowledge caching becomes a standard part of AI deployment (as CDNs became for websites), KDN-1 could ultimately support:
+·
+Large enterprise AI systems
+·
+Global consumer applications
+·
+AI search, assistants, and agent workflows
+·
+High-volume AI services across multiple industries
+.
+About Tiger Alpha PLC
+Tiger Alpha PLC (formerly
+Tiger Royalties and Investments PLC
+) is an AIM traded investment vehicle focused on incubating high-growth technology and mining ventures. High-growth technology focuses on frontier technologies, including artificial intelligence, decentralized infrastructure, and digital asset networks. The Company's strategy centres on building long-term value through participation in distributed computing, liquidity, and data networks.
+Following the acquisition of Bixby Technology Inc. in early 2025, the Company will focus on identifying technology enterprises to invest in and incubate by providing incubation services and strategic guidance to technology entrepreneurs whilst continuing in its existing investing policy of identifying and investing in the global natural resources sector.
+Bixby Technology Inc. will be focused on targeting new fast-growth technology products and projects, these may include equity, securities, meme coins and other form of beneficial interests or digital assets.
+For more information, please visit:
+https://www.tigerinvests.com
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+UPDGPGUCPUPAGGM
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Board Changes</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    MANAGEMENT CHANGE: Management change | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">11th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">MANAGEMENT CHANGE: Management change</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📊 ANALYZE: Determine offer price, arbitrage opportunity if discount</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📈 IMPROVING: Company demonstrating strength and growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Nominated Adviser</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+11 Dec 2025 07:00
+RNS Number : 0813L
+Tiger Alpha Plc
+11 December 2025
+11 December 2025
+Tiger Alpha Plc
+('Tiger' or 'the Company')
+Board Changes
+Tiger Alpha Plc (AIM: TIR), an investment vehicle focused on incubating technology and mining projects, announces that Colin Bird, Non-Executive Chair, has tendered his resignation and Brian Stockbridge, currently Non-Executive Director, will take up the post on an interim basis when the resignation takes effect, being 31 December 2025.
+Jonathan Bixby, Chief Executive Officer comments: "the Board would like to thank Colin for his experience and guidance directed towards the natural resource sector. Whilst the Company continues to hold a portfolio relating to mining projects - on which Colin has agreed to provide future advice if requested - Tiger
+is increasingly focussed on identifying and investing in specific technology enterprises. We look forward to welcoming Brian to his interim role at the Company; however we will be working towards identifying and appointing a full time Chair by the end of Q1, 2026".
+The Board has awarded Mr Stockbridge options over 2,500,000 shares with an exercise price of 0.1 pence and vesting for 3 years from 31 December 2025.
+For further information please contact:
+Tiger Alpha Plc
+Jonathan Bixby
++44 (0) 20 7581 4477
+Beaumont Cornish (Nomad)
+Roland Cornish & Felicity Geidt
++44 (0) 20 7628 3369
+Fortified Securities
+(Broker)
+Guy Wheatley
+Email:
+guy.wheatley@fortifiedsecurities.com
++44 (0) 7493 989014
+Novum Securities
+(Broker)
+Jon Belliss
++44 (0) 20 7399 9425
+Beaumont Cornish Limited ("Beaumont Cornish") is the Company's Nominated Adviser and is authorised and regulated by the FCA. Beaumont Cornish's responsibilities as the Company's Nominated Adviser, including a responsibility to advise and guide the Company on its responsibilities under the AIM Rules for Companies and AIM Rules for Nominated Advisers, are owed solely to the London Stock Exchange. Beaumont Cornish is not acting for and will not be responsible to any other persons for providing protections afforded to customers of Beaumont Cornish nor for advising them in relation to the proposed arrangements described in this announcement or any matter referred to in it.
+This announcement contains inside information for the purposes of Article 7 of Regulation 2014/596/EU as it forms part of the UK law pursuant to the European Union (Withdrawal) Act 2018
+About Tiger Alpha PLC
+Tiger Alpha PLC (formerly
+Tiger Royalties and Investments PLC
+) is an AIM traded investment vehicle focused on incubating high-growth technology and mining ventures. High-growth technology focuses on frontier technologies, including artificial intelligence, decentralized infrastructure, and digital asset networks. The Company's strategy centres on building long-term value through participation in distributed computing, liquidity, and data networks.
+Following the acquisition of Bixby Technology Inc. in early 2025, the Company will focus on identifying technology enterprises to invest in and incubate by providing incubation services and strategic guidance to technology entrepreneurs whilst continuing in its existing investing policy of identifying and investing in the global natural resources sector.
+Bixby Technology Inc. will be focused on targeting new fast-growth technology products and projects, these may include equity, securities, meme coins and other form of beneficial interests or digital assets.
+For more information, please visit:
+https://www.tigerinvests.com
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+BOAEAXAEFELSFFA
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Launch of Staking Strategy</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 55/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Launch of Staking Strategy | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">13th Oct 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">55/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Launch of Staking Strategy</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📈 IMPROVING: Company demonstrating strength and growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Nominated Adviser</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">2.27%, 4.50%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+13 Oct 2025 07:00
+RNS Number : 0764D
+Tiger Alpha Plc
+13 October 2025
+13 October 2025
+Tiger Alpha PLC
+Launch of
+Staking Strategy
+on Hyperliquid (HYPE)
+Investment will mark a complementary addition to Tiger Alpha's current
+decentralized infrastructure strategy
+Tiger Alpha PLC ("Tiger Alpha" or "the Company",
+an investment vehicle focused on incubating high-growth technology and mining ventures,
+is pleased to announce the launch of its staking strategy on the Hyperliquid (HYPE) network (the "Strategy"). The Company has initially allocated £250,000 towards the Strategy and technical implementation is expected to begin in Q4 2025, with early yield and participation metrics to be reported in the Company's year-end update.
+Background
+Staking refers to the process by which participants lock digital assets within a blockchain protocol to secure the network, validate transactions, and earn yield or governance rights in return. It underpins most proof-of-stake and delegated consensus systems, aligning network security with participant incentives.
+On the HYPE network, staking extends beyond traditional security provision. Participants stake assets to supply liquidity, support trading depth, and govern protocol parameters, effectively powering the decentralized exchange itself. This structure allows stakers to share in transaction fees and yield streams generated by market activity, aligning liquidity provision with network value creation.
+Hyperliquid is a next-generation, fully on-chain decentralized exchange (DEX) designed to deliver institutional-grade trading performance within a permissionless environment. Operating as a Layer-1 blockchain with native order book infrastructure, Hyperliquid enables high-speed, transparent derivatives and spot trading without intermediaries. Participants provide liquidity, secure the network through staking, and earn HYPE tokens proportional to their contribution to market depth, governance, and trading activity.
+Rationale for Strategy
+This initiative complements the Company's Bittensor subnets, most recently announced on 30 June 2025, deepening Tiger Alpha's commitment to investing in core infrastructure across decentralized artificial intelligence (AI) and finance.
+Building on the Company's growing investment presence within the Bittensor ecosystem, the Strategy as described above has been designed to establish to complement the Bittensor strategy by building an addiontal flexible, staking framework across select decentralized liquidity protocols.
+Implementation of the Strategy
+The Company's initial plan is to acquire HYPE tokens and stake them on a third party staking service. The expected staking return fluctuates and is based on the amount of HYPE staked with rewards decreasing as more tokens are staked. The return has fluctuated over time but based on recent data it is around 2.27% to 4.50% annually. The Company can elect to re-stake the rewarded HYPE or to convert the HYPE to fiat at any time.
+Jonathan Bixby, Chief Executive Officer of Tiger Alpha PLC, commented:
+"The launch of our staking strategy on
+HYPE
+marks a pivotal evolution in Tiger Alpha's journey. Our dedicated Tao subnets established Tiger Alpha as a public gateway into decentralized artificial intelligence - this new strategy into
+HYPE
+expands that vision into decentralized liquidity. If Tao represents the
+intelligence layer
+of the decentralized economy, then HYPE represents its
+liquidity layer
+- the neural bloodstream that enables intelligence, computation, and value to move and compound across digital networks.By combining AI computation with on-chain capital efficiency, we are building a foundation that mirrors the dual structure of the internet itself: intelligence and liquidity, working in concert. We believe this positions Tiger Alpha uniquely at the convergence of two of the most transformative forces in the digital economy."
+About Tiger Alpha PLC
+Tiger Alpha PLC (formerly
+Tiger Royalties and Investments PLC
+) is an AIM traded
+investment vehicle focused on incubating high-growth technology and mining ventures. High-growth technology
+focuses on frontier technologies, including artificial intelligence, decentralized infrastructure, and digital asset networks . The Company's strategy centres on building long-term value through participation in distributed computing, liquidity, and data networks..
+Glossary
+Blockchain protocol
+- A set of digital rules and mechanisms that define how data, transactions, and value are securely recorded and verified on a blockchain network.
+Proof-of-stake system
+- A blockchain consensus model where participants validate transactions and secure the network by locking ("staking") their tokens instead of using energy-intensive mining.
+Consensus systems
+- The processes by which decentralized networks agree on a single, verified version of data or transactions without a central authority.
+Layer-1 blockchain
+- A base blockchain network (such as Bitcoin, Ethereum, or Hyperliquid) that processes and finalizes transactions directly on its main ledger without relying on another chain.
+For further information, please visit
+www.tigerinvests.com
+.
+Enquiries:
+Tiger Alpha PLC
+Website:
+www.tigerinvests.com
+Email: info@tigerinvests.com
+Tiger Royalties and Investments Plc
+Jonathan Bixby
++44 (0) 20 7581 4477
+Beaumont Cornish (Nomad)
+Roland Cornish & Felicity Geidt
++44 (0) 20 7628 3369
+Fortified Securities
+(Broker)
+Guy Wheatley
+Email:
+guy.wheatley@fortifiedsecurities.com
++44 (0) 7493 989014
+Beaumont Cornish Limited ("Beaumont Cornish") is the Company's Nominated Adviser and is authorised and regulated by the FCA. Beaumont Cornish's responsibilities as the Company's Nominated Adviser, including a responsibility to advise and guide the Company on its responsibilities under the AIM Rules for Companies and AIM Rules for Nominated Advisers, are owed solely to the London Stock Exchange. Beaumont Cornish is not acting for and will not be responsible to any other persons for providing protections afforded to customers of Beaumont Cornish nor for advising them in relation to the proposed arrangements described in this announcement or any matter referred to in it.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+MSCUUUURVVURAUA
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">4</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #4
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Half-year Report</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 70/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Half-year Report | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Sep 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">70/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Half-year Report</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Nominated Adviser</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">100%, 81.05%, 4.15%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+30 Sep 2025 07:00
+RNS Number : 3094B
+Tiger Alpha Plc
+30 September 2025
+For immediate release 30 September 2025
+Tiger Alpha Plc (the "Company")
+(formerly known as Tiger Royalties and Investments Plc)
+Half-yearly results for the six months
+ended 30 June 2025
+Chief Executive Officer's Statement
+2025 has been a period of significant activity and continued strategic progress for Tiger Alpha plc. Our focus has remained on positioning the Company, with shares trading on AIM, a market regulated by the London Stock Exchange with
+TIDM - TIR,
+within areas of high growth potential, particularly in technology, artificial intelligence, and blockchain infrastructure, while maintaining sound governance and prudent capital discipline.
+During the period, we advanced a number of new investments that reinforce our thematic priorities with a total of £837,567 being invested. These included strategic commitments to Satsuma Technology, Standard Strategies, and AROK.VC, alongside the completion of our transaction with Tao Strategies. We also expanded our presence in the Bittensor ecosystem, securing a second subnet and strengthening our operational capabilities in decentralised AI infrastructure. Collectively, these developments reflect our determination to build a diversified portfolio aligned with structural shifts in global markets.
+Our legacy mineral assets remain and we have made no further investment in this sector.
+At the corporate level, we implemented board changes to support our evolving mandate, executed governance measures around voting rights and share capital, and formalised option arrangements in line with market practice. Our name change and updated communications platform underline Tiger's evolution into a forward-looking investment company, responsive to new opportunities while mindful of shareholder value.
+The outlook for the remainder of the year is one of cautious optimism. Market conditions remain uncertain, yet the areas in which we are investing continue to attract growing interest and demonstrate long-term promise. We will continue to balance innovation with discipline, nurturing early-stage opportunities while remaining focused on financial resilience and clear exit strategies.
+On behalf of the Board, I would like to thank our shareholders for their continued confidence and support. We believe that the foundations laid during 2025 position Tiger for further progress and sustainable value creation in the years ahead.
+Jonathan Bixby
+Chief Executive Officer
+For further information, please contact:
+Tiger Alphaplc Jonathan Bixby
++44 (0) 20 7581 4477
+Beaumont Cornish (Nominated Adviser) Roland Cornish/Felicity Geidt
++44 (0) 20 7628 3369
+Fortified Securities (Broker) Guy Wheatley +44 (0) 7493 989014
+Email:
+guy.wheatley@fortifiedsecurities.com
+Novum Securities (Broker) Jon Bellis +44 (0) 7399 9425
+Beaumont Cornish Limited ("Beaumont Cornish") is the Company's Nominated Adviser and is authorised and regulated by the FCA.
+Beaumont Cornish's responsibilities as the Company's Nominated Adviser, including a responsibility to advise and guide the
+Company on its responsibilities under the AIM Rules for Companies and AIM Rules for Nominated Advisers, are owed solely to the
+London Stock Exchange. Beaumont Cornish is not acting for and will not be responsible to any other persons for providing protections
+afforded to customers of Beaumont Cornish nor for advising them in relation to the proposed arrangements described in this
+announcement or any matter referred to in it.
+Consolidated Statement of Comprehensive Income
+For the six months ended 30 June 2025
+Unaudited
+Audited
+Note
+Six months ended 30 June
+Year ended 31 December
+2025
+2024
+2024
+£
+£
+£
+Revenue
+-
+-
+-
+Other income
+-
+-
+14,980
+Fair valuation movement in digital assets and tokens
+38,106
+-
+-
+Fair valuation movement in investments
+295,051
+14,886
+(100,257)
+333,157
+14,886
+(85,277)
+Share based payment
+(123,265)
+-
+-
+Administrative expenses
+(617,711)
+(132,356)
+(305,302)
+Operating Loss
+(407,819)
+(117,470)
+(390,579)
+Finance income
+18,334
+Loss before taxation
+(389,485)
+(117,470)
+(390,579)
+Taxation
+-
+-
+-
+Loss after taxation and total comprehensive loss for the year
+(389,485)
+(117,470)
+(390,579)
+Loss per ordinary share:
+Basic loss per share (pence)
+4
+(0.09)
+(0.22)
+(0.73)
+Diluted loss per share (pence)
+4
+(0.09)
+(0.22)
+(0.73)
+\* The Basic and Diluted loss per share for the year ended 31 December 2024 and six months ended 30 June 2024 have been restated reflect the consolidation
+and exclude treasury shares. Refer to Note 3.
+Consolidated Statement of Financial Position
+As at 30 June 2025
+Unaudited
+Audited
+Note
+Six months ended 30 June
+Year ended 31 December
+2025
+2024
+2024
+£
+£
+£
+Non-Current Assets
+Intangible assets
+5
+777,793
+-
+-
+Investments
+6
+994,911
+366,364
+197,704
+Total non-current assets
+1,772,704
+366,364
+197,704
+Current Assets
+Trade and other receivables
+31,158
+21,403
+5,106
+Cash and cash equivalents
+1,302,341
+50,990
+23,457
+Total current assets
+1,333,499
+72,393
+28,563
+Total assets
+3,106,203
+438,757
+226,267
+Shareholders' equity
+Share capital
+7
+5,691,595
+1,825,116
+1,825,116
+Share premium
+1,730,107
+2,078,107
+2,078,107
+Share based payments reserve
+8
+123,265
+-
+-
+Retained earnings
+(5,630,121)
+(5,027,674)
+(5,240,636)
+Capital redemption reserve
+1,100,000
+1,100,000
+1,100,000
+Total shareholders' equity
+3,014,846
+(24,451)
+(237,413)
+Current Liabilities
+Trade and other payables
+91,357
+463,208
+463,680
+Total current liabilities
+91,357
+463,208
+463,680
+Total liabilities
+91,357
+463,208
+463,680
+Total equity and liabilities
+3,106,203
+438,757
+226,267
+Consolidated Statement of Changes in Equity
+For the six months ended 30 June 2025
+Share capital
+Share Premium
+Share-based payments reserve
+Retained earnings
+Capital redemption reserve
+Total
+£
+£
+£
+£
+£
+£
+Unaudited
+Six months ended 30 June 2025
+At 1 January 2025
+1,825,116
+2,078,107
+-
+(5,240,636)
+1,100,000
+(237,413)
+Loss for the period and total comprehensive loss
+-
+-
+-
+(389,485)
+-
+(389,485)
+Shares issued in the period
+3,866,479
+-
+-
+-
+-
+3,866,479
+Share issue costs
+-
+(348,000)
+-
+-
+-
+(348,000)
+Share based payment
+-
+-
+123,265
+-
+-
+123,265
+At 30 June 2025
+5,691,595
+1,730,107
+123,265
+(5,630,121)
+1,100,000
+3,014,846
+Unaudited
+Six months ended 30 June 2024
+At 1 January 2024
+1,825,116
+2,078,107
+-
+(4,910,204)
+1,100,000
+93,019
+Loss for the period and total comprehensive loss
+-
+-
+-
+(117,470)
+-
+(117,470)
+At 30 June 2024
+1,825,116
+2,078,107
+-
+(5,027,674)
+1,100,000
+(24,451)
+Audited
+Year ended 31 December 2024
+At 1 January 2024
+1,825,116
+2,078,107
+-
+(4,910,204)
+1,100,000
+93,019
+Prior year adjustment
+-
+-
+-
+60,147
+-
+60,147
+Loss for the period and total comprehensive loss
+-
+-
+-
+(390,579)
+-
+(390,579)
+At 31 December 2024
+1,825,116
+2,078,107
+-
+(5,240,636)
+1,100,000
+(237,413)
+Consolidated Statement of Cash Flows
+Unaudited
+Audited
+For the six months ended 30 June 2025
+Six months ended 30 June
+Year ended 31 December
+2025
+2024
+2024
+£
+£
+£
+Operating activities
+Loss for the period
+(389,485)
+(117,470)
+(390,579)
+Adjustments:
+Fair value (gain)/loss on investments
+(295,051)
+(14,886)
+100,257
+Fair value gain on cryptocurrencies
+(38,106)
+-
+-
+Share based payment
+123,265
+-
+-
+Other income
+-
+-
+(14,980)
+Finance income
+(18,334)
+-
+-
+Working capital adjustments:
+(Increase)/decrease in trade and other receivables
+(26,052)
+(15,813)
+487
+(Decrease)/increase in trade and other payables*
+(181,781)
+111,248
+171,864
+Net cash used in operating activities
+(825,544)
+(36,921)
+(132,951)
+Investing activities
+Purchase of investments
+(502,156)
+-
+-
+Disposal of investments
+-
+34,035
+87,552
+Purchase of intangible assets - cryptocurrencies
+(400,000)
+-
+-
+Other income
+-
+-
+14,980
+Interest received
+6,584
+-
+Net cash used in investing activities
+(895,572)
+34,035
+102,532
+Financing activities
+Proceeds from issue of shares
+3,000,000
+-
+-
+Net cash from financing activities
+3,000,000
+-
+-
+Net decrease in cash and cash equivalents
+1,278,884
+(2,886)
+(30,419)
+Cash and cash equivalents at start of financial period
+23,457
+53,876
+53,876
+Cash and cash equivalents at end of financial period
+1,302,341
+50,990
+23,457
+* Non-cash movements have been excluded
+Notes to the Interim Financial Statements for the six months ended 30 June 2025
+1.
+Basis of preparation
+These condensed consolidated interim financial statements of Tiger Alpha Plc, (formerly known as Tiger Royalties and Investments Plc), ("the Company"), have been prepared in accordance with IAS 34 'Interim Financial Reporting' as adopted in the UK, and the AIM Rules for Companies.
+They do not include all the information required for full annual financial statements and should be read in conjunction with the financial statements of Tiger Royalties and Investments Plc for the year ended 31 December 2024 which were prepared in accordance with UK-adopted International Financial Reporting Standards ("IFRS").
+The interim financial statements comprise the Company and its wholly owned subsidiary, Bixby Technology Inc., together referred to as "the Group". In line with IFRS requirements, only consolidated results are presented; company-only financial statements are not required at the interim stage. Parent company financial statements will be presented in the Company's annual report for the year ending 31 December 2025, as required by the Companies Act 2006.
+The accounting policies applied are consistent with those applied in the 2024 annual financial statements, except for the adoption of any new standards or interpretations effective in the current period. Management has reviewed these new pronouncements and concluded that they have not had a material impact on the Group's results for the period.
+The ﬁnancial information for the six months ended 30 June 2025 and for the six months ended 30 June 2024 have neither been audited nor reviewed by the Company's auditors. The comparative financial information for the year ended 31 December 2024 has been derived from the audited financial statements for that period.
+2.
+Critical accounting estimates and judgements
+The preparation of the financial statements requires management to make judgements, estimates and assumptions
+that affect the application of accounting policies and the reported amounts of assets, liabilities, income and expense.
+Actual results may differ from these estimates. Estimates and underlying assumptions are reviewed on an ongoing
+basis. Revisions to accounting estimates are recognised in the period in which the estimates are revised and in any
+periods that will materially affect the accuracy of the financial statements. The areas involving a higher degree of
+judgement or complexity, or areas where assumptions and estimates are significant to the financial statements, have been disclosed in the last financial statements for the year ended 31 December 2024.
+There are no additional judgements, estimates and assumptions that have a significant risk of causing a material adjustment to the carrying amounts of assets and liabilities within the next financial year.
+3.
+Acquisition of Bixby Technology Inc.
+On 9 January 2025, the Group completed the acquisition of Bixby Technology Inc. for a total consideration of £325,000. The consideration was satisfied through the issue of 325,000,000 ordinary shares of 0.1 pence each in Tiger Investments plc, subscribed for by Toro Consulting Ltd under a set-off arrangement. Accordingly, no cash consideration was paid.
+Accounting treatment
+Management has assessed the transaction under IFRS 3 'Business Combinations'. Bixby did not meet the definition of a business at the acquisition date, as it had no processes or outputs capable of generating returns. Accordingly, the transaction has been accounted for as an asset acquisition:
+• The consideration of £325,000 has been recognised as an investment in subsidiary in the Company's parent-only accounts.
+• On consolidation, the £325,000 investment has been reclassified to an intangible asset representing platform rights and incubation capabilities (Refer to Note 5).
+• No goodwill has been recognised.
+4.
+Loss per ordinary share
+The basic and diluted loss per share is calculated by dividing the loss attributable to the owners of the Company by the weighted average number of ordinary shares outstanding during the period, excluding treasury shares. The weighted average number of shares has been retrospectively adjusted to reflect the 1-for-10 share consolidation that became effective on 28 July 2025.
+The loss and number of shares used in the calculation of loss per ordinary share are set out below:
+Unaudited
+Audited
+Six months ended 30 June
+Year ended 31 December
+2025
+2024
+(restated)
+2024
+(restated)
+Basic:
+Loss for the financial period
+£ (389,485)
+£ (117,470)
+£ (390,579)
+Weighted average number of shares
+423,071,361
+53,512,855
+53,512,855
+Loss per share
+(0.09)p
+(0.22)p
+(0.73)p
+Fully Diluted:
+Loss for the financial period
+£ (389,485)
+£ (117,470)
+£ (390,579)
+Weighted average number of shares
+423,071,361
+53,512,855
+53,512,855
+Loss per share
+(0.09)p
+(0.22)p
+(0.73)p
+At 30 June 2025, the Company had 4,406,107,719 issued shares, of which 4,500,000 were held in treasury, resulting in 4,401,607,719 shares outstanding. For EPS purposes, the weighted average number of shares in H1 2025 was 423,071,361 on a post-consolidation basis.
+The prior period comparatives (H1 2024 and FY 2024) have been restated to reflect the consolidation and exclude treasury shares.
+Diluted EPS equals basic EPS as the effect of potential ordinary shares (options and warrants) would be anti-dilutive, given the loss in all periods presented.
+5.
+Intangible Assets
+In addition to the acquisition of Bixby Technology Inc., which has been reclassified as an intangible asset on consolidation (refer to Note 3). during the six months ended 30 June 2025, the Company acquired a number of digital assets and token as well as Subnets.
+These digital assets and token and Subnets as presented in the tables below.
+These balances were nil for the year-ended 31 December 2024 and 30 June 2024.
+Platform rights (Bixby)
+£
+Digital assets and tokens
+£
+Subnets
+£
+Total
+£
+Cost
+Balance at 1 January 2025
+-
+-
+-
+-
+Additions
+325,000
+414,687
+85,411
+825,098
+Disposals
+-
+(85,411)
+-
+(85,411)
+Net fair value gain for the period
+-
+38,106
+-
+38,106
+As at 30 June 2025
+325,000
+367,382
+85,411
+777 793
+Net book value as at 30 June 2025
+325,000
+367,382
+85,411
+777 793
+The breakdown for all digital assets and tokens held at 30 June 2025 are listed below:
+Token name
+Number of tokens
+£
+TAO
+170
+42,923
+Tiger Token
+36288
+14,687
+BTC
+3.092
+244,191
+AROK
+100M
+65,580
+367,382
+The fair value breakdown for all Subnets held at 30 June 2025 are listed below:
+Subnet name
+£
+TAO Subnet/Subnet 107
+68,721
+Tiger Beta subnet/Subnet 126
+16,690
+85,411
+6.
+Investments
+Six months ended 30 June
+Year ended 31 December
+2025
+£
+2024
+£
+2024
+£
+At start of the period
+197,704
+385,513
+385,513
+Additions
+502,156
+-
+-
+Disposals
+-
+(34,035)
+(87,552)
+Net fair value gain/(loss)
+290,051
+14,886
+(100,257)
+At end of the period
+994,911
+366,364
+197,704
+The country of incorporation and investment class for investments held by the Group at 30 June 2025 are listed below:
+£
+Country of Incorporation
+Investment class
+TAO Strategies
+250,000
+Singapore
+Unlisted
+Standard Strategies Inc
+599,625
+Canada
+Listed
+African Pioneer PLC
+59,468
+United Kingdom
+Listed
+Kendrick Resources plc
+233
+United Kingdom
+Listed
+Bezant Resource PLC
+30,193
+United Kingdom
+Listed
+Galileo Resources plc
+55,392
+United Kingdom
+Listed
+994,911
+The Company has the following investment directly in subsidiaries at 30 June 2025:
+Name and registered address of company
+Share-
+holding
+Value of share-holding
+£
+Country of incorporation
+Nature of business
+Bixby Technology Inc.
+2592 Bowker Avenue,
+Victoria, B.C., Canada
+100%
+325,000
+Canada
+Technology consultancy and incubator company
+7.
+Issued share capital
+Six months ended
+30 June
+Year ended 31 December
+2025
+£
+2024
+£
+2024
+£
+Opening Ordinary shares - 539,628,554 shares of 0.1p each
+(30 June 2024 & 31 December 2024: 539,628,554
+Ordinary Shares of 0.1p each)
+539,629
+539,629
+539,629
+Shares issued in the period
+3,866,479
+-
+-
+Total ordinary shares in issue at period end 4,406,107,719
+Ordinary shares 0.1p (30 June 2024 & 31 December 2024:
+539,628,554 Ordinary shares of 0.1p each)
+4,406,108
+539,629
+539,629
+142,831,939 deferred shares of 0.9p each
+(30 June 2024 & 31 December 2024: 142,831,939
+deferred shares of 0.9p each)
+1,285,487
+1,285,487
+1,285,487
+5,691,595
+1,825,116
+1,825,116
+Included in allotted called and fully paid share capital are 4,500,000 shares with a nominal value of £4,500 held by the company in treasury. Treasury shares carry no voting rights and are excluded from the EPS calculation.
+The
+3,866,479,165 shares issued in the period were all issued on 9 January at 0.1 pence per share.
+8.
+Share based payments
+Share options
+During the six months ended 30 June 2025, the Company granted 880,252,544 options over its ordinary shares to directors, employees and advisors.
+All options were outstanding and unexercised at 30 June 2025.
+.
+Date of grant
+24 January 2024
+Number outstanding (post 1-for-10 consolidation, effective 28 July 2025)
+88,252,544
+Expected life (years)
+1.04
+Exercise price (£)
+0.01
+Volatility
+81.05%
+Risk free rate
+4.15%
+The fair value of share options is determined using the Black-Scholes valuation model. The charge to the profit and loss was £123,265 (Year ended 31 December 2024: £nil and six months ended 30 June 2024: £nil).
+9.
+Events after the reporting period
+On 28 July 2025, the Company completed a 1-for-10 share consolidation, whereby every 10 existing ordinary shares of 0.1 pence each were consolidated into 1 new ordinary share of 1.0 pence. Following the consolidation, the Company's issued share capital comprised 440,610,772 ordinary shares, of which 450,000 were held in treasury, resulting in 440,160,772 ordinary shares outstanding.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+IR UKAARVUUKUUR
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">5</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #5
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Change of Name</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 70/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Change of Name | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">8th Sep 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">70/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Change of Name</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📊 ANALYZE: Determine offer price, arbitrage opportunity if discount</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📈 IMPROVING: Company demonstrating strength and growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">The Company</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+8 Sep 2025 07:00
+RNS Number : 3781Y
+Tiger Royalties and Investments PLC
+08 September 2025
+8 September 2025
+Tiger Alpha Plc
+(formerly Tiger Royalties and Investments Plc)
+('Tiger' or 'the Company')
+Change of Name
+Further to shareholder approval given at the Annual General Meeting on 28 July 2025, the Company (AIM: TIR) is pleased to announce that it has changed its name from
+Tiger Royalties and Investments Plc
+to Tiger Alpha Plc.
+The change of name will take effect on the AIM Market of the London Stock Exchange from 8.00 a.m. on
+9 September 2025.
+The Company's London Stock Exchange TIDM, ISIN and SEDOL remain unchanged.
+The Company's website will also remain unchanged as
+https://www.tigerinvests.com/
+For further information, please contact:
+Tiger Alpha Plc
+Jonathan Bixby
++44 (0) 20 7581 4477
+Beaumont Cornish (Nomad)
+Roland Cornish & Felicity Geidt
++44 (0) 20 7628 3369
+Fortified Securities
+(Broker)
+Guy Wheatley
+Email:
+guy.wheatley@fortifiedsecurities.com
++44 (0) 7493 989014
+Novum Securities
+(Broker)
+Jon Belliss
++44 (0) 20 7399 9425
+About Tiger Alpha Plc
+Tiger Alpha Plc (AIM: TIG) is an investment vehicle focused on incubating technology projects. Following the acquisition of Bixby Technology Inc. in early 2025, the Company will focus on identifying technology enterprises to invest in and incubate by providing incubation services and strategic guidance to technology entrepreneurs whilst continuing in its existing investing policy of identifying and investing in the global natural resources sector. Bixby Technology Inc. will be focused on targeting new fast-growth technology products and projects, these may include equity, securities, meme coins and other forms of beneficial interests or digital assets.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+CANFLFVAALIDIIE
+                </div>
+            </details>
+            
+            </div>
+            
+            </div>
+            <div style="
+                margin-top: 20px;
+                padding: 14px 16px;
+                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+                border-radius: 10px;
+                font-size: 12px;
+                color: #78350f;
+                border-left: 3px solid #f59e0b;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            ">
+                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
+                <div style="line-height: 1.5;">
+                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
+                    Each RNS includes sentiment classification, key data extraction, and trading context. 
+                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
+                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                    </strong>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            details[open] > summary {
+                background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%) !important;
+                border-left-color: #0369a1 !important;
+            }
+            summary::-webkit-details-marker {
+                display: none;
+            }
+        </style>
+        
+
+        <!-- Footer -->
+        <div class="footer">
+            Report generated: 2026-01-13 • CrashDash APEX Engine<br>
+            <strong>△ Not financial advice. Do your own research.</strong>
+        </div>
+
+    </div>
+</body>
+</html>

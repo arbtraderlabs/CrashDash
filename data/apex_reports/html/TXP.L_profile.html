@@ -1,0 +1,2397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrashDash • TXP.L APEX Profile</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .header-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .ticker-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .company-name { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .company-meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f7fafc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .meta-icon { font-size: 18px; }
+        
+        .score-hero {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        .action-display {
+            margin-bottom: 20px;
+        }
+        .scores-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .score-number {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .score-label { font-size: 12px; color: #666; margin-top: 5px; }
+        .timing-badge-large {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 24px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            margin: 20px 0;
+        }
+        .thesis-line {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .factors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .factor-item {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        .factor-icon { font-size: 20px; }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-icon { font-size: 24px; }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-label { color: #666; font-size: 14px; }
+        .stat-value { font-weight: 600; font-size: 16px; }
+        
+        .rally-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .risk-indicator {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .risk-high { background: #fee2e2; }
+        .risk-icon { font-size: 24px; }
+        
+        .reason-item {
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .tag {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .footer {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-top: 20px;
+        }
+        
+        .alert-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Header Card -->
+        <div class="header-card">
+            <div class="ticker-badge">TXP.L</div>
+            <div class="company-name">Touchstone Exploration Inc.</div>
+            <div class="company-meta">
+                <div class="meta-item">
+                    <span class="meta-icon">■</span>
+                    <span><strong>Sector:</strong> Energy</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">£</span>
+                    <span><strong>Market Cap:</strong> £31,499,159</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">◷</span>
+                    <span><strong>Days Active:</strong> 60 days</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action & Score Hero Section -->
+        <div class="score-hero">
+            <div class="action-display">
+                <span style="color: white;">UNKNOWN</span>
+            </div>
+            
+            <div class="scores-row">
+                <div class="score-circle">
+                    <div class="score-number" style="color: #f59e0b;">58</div>
+                    <div class="score-label">APEX SCORE</div>
+                </div>
+                <div class="score-circle">
+                    <div class="score-number" style="color: #f59e0b;">60</div>
+                    <div class="score-label">CONFIDENCE</div>
+                </div>
+            </div>
+            
+            <div class="timing-badge-large">
+                Timing: <span class="rally-badge" style="background: #dcfce7; color: #166534;">CONFIRMED</span>
+            </div>
+            
+            <div class="thesis-line">
+                HOLD/WATCH - CONFIRMED timing with 58/100 opportunity score
+            </div>
+        </div>
+
+        <!-- ==================== CRASHDASH INTELLIGENCE - PANIC HUNTER VIEW ==================== -->
+        
+        <div class="card" style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); border: 2px solid #ef4444;">
+            <div class="card-title" style="color: #0f172a;">
+                <span class="card-icon">🏭</span>
+                CrashDash Intelligence • Industrials
+            </div>
+            
+            <!-- Fear Meter -->
+            <div style="background: white; padding: 24px; border-radius: 14px; margin-bottom: 20px; text-align: center;">
+                <div style="font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 16px;">🔥 PANIC METER</div>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 16px;">
+                    <div style="width: 160px; height: 160px; border-radius: 50%; background: conic-gradient(#ef4444 302.40000000000003deg, #e5e7eb 302.40000000000003deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                        <div style="width: 130px; height: 130px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <div style="font-size: 48px; font-weight: 800; color: #ef4444;">84</div>
+                            <div style="font-size: 12px; color: #64748b; font-weight: 600;">PANIC SCORE</div>
+                        </div>
+                    </div>
+                    <div style="text-align: left; max-width: 400px;">
+                        <div style="font-size: 18px; font-weight: 700; color: #ef4444; margin-bottom: 12px;">EXTREME PANIC</div>
+                        <div style="font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 12px;">🔴 Capitulation zone - contrarian opportunity if fundamentals intact</div>
+                        <div style="font-size: 13px; color: #64748b;">
+                            <div>💔 Price: 40/40</div>
+                            <div>📉 Volume: 18/20</div>
+                            <div>🔇 Social: 6/20</div>
+                            <div>📰 News: 20/20</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CrashHunter Signals -->
+                <div style="margin-top: 20px;">
+                    <span style="display: inline-block; background: #ef4444; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">🔴 Panic 84/100</span><span style="display: inline-block; background: #10b981; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">✅ Confirmed</span><span style="display: inline-block; background: #3b82f6; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">🌟 APEX 58</span>
+                </div>
+                
+                <!-- Opportunity Flag -->
+                <div style="margin-top: 20px; padding: 16px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 10px; color: white; font-weight: 700; font-size: 16px;">🎯 🔥 EXTREME PANIC + Intact timing = Prime contrarian entry zone</div>
+            </div>
+            
+            <!-- Contrarian Compression Energy Panel -->
+            
+            <!-- Contrarian Compression Energy Panel -->
+            <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); padding: 24px; border-radius: 14px; margin-bottom: 20px; border: 3px solid #10b981;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <span style="font-size: 32px;">⚡</span>
+                    <div style="flex: 1;">
+                        <div style="font-size: 20px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">
+                            CONTRARIAN COMPRESSION SCORE
+                        </div>
+                        <div style="font-size: 13px; color: #475569; font-weight: 600;">
+                            Signal Congestion Framework • Compression = Explosive Potential
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Score Display -->
+                <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 30px;">
+                        <!-- Circular gauge -->
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: conic-gradient(#10b981 129.6deg, #e5e7eb 129.6deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                            <div style="width: 110px; height: 110px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <div style="font-size: 42px; font-weight: 800; color: #10b981;">36</div>
+                                <div style="font-size: 11px; color: #64748b; font-weight: 600;">/ 100</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Key metrics -->
+                        <div style="text-align: left;">
+                            <div style="font-size: 16px; font-weight: 700; color: #10b981; margin-bottom: 12px;">🟢 MILD COMPRESSION (Top 50% - WATCHLIST)</div>
+                            <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                                <div><strong>2.0</strong> signals/week</div>
+                                <div><strong>2</strong> RSI &lt; 20 events</div>
+                                <div><strong>0</strong> escalations detected</div>
+                                <div style="color: #10b981; font-weight: 700; margin-top: 6px;">
+                                    💎 Historical pop: <strong>+79%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Component Breakdown -->
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 15px;">
+                        📊 5-COMPONENT BREAKDOWN
+                    </div>
+                    
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">compression</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #eab308;">19/40</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #eab308; height: 100%; width: 47.5%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">2.0 signals/week | 2 RSI<20 | 📊 MODERATE COMPRESSION</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">intensification</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">5/20</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 25.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;"></div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">volume death</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #eab308;">8/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #eab308; height: 100%; width: 53.333333333333336%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">High volume - Panic spike or interest</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">pop potential</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">4/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 26.666666666666668%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">Baseline mover (79%)</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">accumulation</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">0/10</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">No accumulation</div>
+                </div>
+                
+                </div>
+                
+                <!-- Contrarian Philosophy -->
+                <div style="background: rgba(255,255,255,0.7); padding: 16px; border-radius: 10px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #0f172a; margin-bottom: 8px; font-size: 14px;">
+                        🎯 CONTRARIAN WISDOM
+                    </div>
+                    <div style="font-size: 13px; color: #334155; line-height: 1.6;">
+                        <strong>Signal congestion = Compression energy = Explosive potential.</strong><br>
+                        When multiple crash signals cluster together with extreme RSI and proven rally history, 
+                        it creates a compressed spring effect. More panic = More opportunity for contrarians.
+                        <div style="margin-top: 8px; padding: 10px; background: rgba(239,68,68,0.1); border-radius: 6px; font-size: 12px;">
+                            <strong style="color: #10b981;">Theory:</strong> High compression scores (60+) historically precede 
+                            explosive 10-20x moves when catalysts arrive. This is the foundation of crash hunting.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Fear vs Facts Contrarian View -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                <div style="background: #fee2e2; padding: 18px; border-radius: 12px; border-left: 4px solid #ef4444;">
+                    <div style="font-weight: 700; color: #991b1b; margin-bottom: 12px; font-size: 15px;">😱 FEAR (What Panic Shows)</div>
+                    <div style="color: #7f1d1d;">
+                        <div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 💔 Price destruction: 40/40 points</div><div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 📉 Volume death: 18/20 points</div><div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 📰 Negative news: 20/20 points</div>
+                    </div>
+                </div>
+                <div style="background: #dcfce7; padding: 18px; border-radius: 12px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #065f46; margin-bottom: 12px; font-size: 15px;">📊 FACTS (What Data Shows)</div>
+                    <div style="color: #064e3b;">
+                        <div style="color: #64748b; font-size: 14px;">Limited historical data</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contrarian Verdict -->
+            <div style="background: white; padding: 18px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #6366f1;">
+                <div style="font-weight: 700; color: #4338ca; margin-bottom: 10px; font-size: 15px;">⚖️ Contrarian Verdict</div>
+                <div style="font-size: 15px; color: #1e293b; line-height: 1.6; font-weight: 600;">
+                    🎯 CONTRARIAN OPPORTUNITY - Fear dominates but facts support recovery potential
+                </div>
+            </div>
+            
+            <!-- Industry Crash Patterns -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">⚠️ Crash Patterns (Industrials)</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book decline or cancellations</div><div>• Margin compression (input costs)</div><div>• Cyclical demand weakness</div>
+                    </div>
+                    <div style="margin-top: 12px; padding: 10px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e; font-weight: 600;">🚨 Active: Project delays or overruns</div>
+                </div>
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">🚀 Recovery Paths</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book growth or new contracts</div><div>• Margin recovery (efficiency gains)</div><div>• Cyclical upturn (capex recovery)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Catalyst Pipeline -->
+            <div style="background: rgba(255,255,255,0.5); padding: 18px; border-radius: 12px; margin-bottom: 20px;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 14px; font-size: 15px;">📅 Catalyst Pipeline</div>
+                
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">APPOINTMENT OF NON-EXECUTIVE DIRECTOR</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">CARAPAL RIDGE-3 DRILLING RESULTS</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">PURCHASE OF SHARES & DIRECTOR / PDMR SHAREHOLDING</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">DIRECTOR SHARE PURCHASE</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">DIRECTOR SHARE PURCHASE</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+            
+            <!-- CrashDash Decision Matrix -->
+            <div style="background: white; padding: 20px; border-radius: 12px; border: 3px solid #ef4444;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 16px; text-align: center;">
+                    🎯 CRASHDASH DECISION: <span style="color: #ef4444; font-size: 20px;">BUY</span>
+                </div>
+                <div style="font-size: 15px; color: #475569; text-align: center; margin-bottom: 20px; font-weight: 600;">
+                    🎯 CrashHunter Signal: 🔥 EXTREME PANIC + Intact timing = Prime contrarian entry zone
+                </div>
+                <div style="background: #f8fafc; padding: 16px; border-radius: 10px;">
+                    <div style="font-weight: 700; color: #64748b; margin-bottom: 12px; font-size: 13px;">CHECKLIST (5/5 pass)</div>
+                    
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🔴</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Panic Score</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">84/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">✅</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Timing Regime</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">CONFIRMED</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">⭐</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">APEX Quality</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">58/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🎯</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Data Confidence</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">60/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🏭</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Industry Pattern</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">1 active</div>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
+        
+
+        <!-- Decision Summary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◆</span>
+                Why This Matters
+            </div>
+            <div class="stat-row"><span>• APEX 58/100 indicates strong opportunity quality</span></div><div class="stat-row"><span>• Timing regime: CONFIRMED</span></div><div class="stat-row"><span>• Historical profile: 1 rallies, 79% best run</span></div>
+            
+            <div class="alert-box" style="margin-top: 20px;">
+                <strong>△ Main Risk:</strong> Confidence 60/100 - full data loaded
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong>◉ Watch Next:</strong>
+                <div style="padding: 8px 0;">• RNS catalysts (funding/operational updates)</div><div style="padding: 8px 0;">• Volume expansion confirmation</div><div style="padding: 8px 0;">• Timing regime change signals</div>
+            </div>
+        </div>
+
+        <!-- ==================== TECHNICAL DETAILS (COLLAPSIBLE) ==================== -->
+        
+        <div class="card">
+          <details style="cursor:pointer;">
+            <summary style="font-weight:800; font-size:16px; list-style:none; padding: 10px; background: #f9fafb; border-radius: 8px;">
+              🔧 Technical Analysis & Scoring Details
+            </summary>
+            <div style="margin-top:14px;">
+              
+            <!-- Scoring Breakdown -->
+            <div class="card-title" style="margin-top: 20px;">
+                <span class="card-icon">▣</span>
+                APEX Score Breakdown
+            </div>
+            <div class="factors-list">
+                <div class="factor-item"><span class="factor-icon">◆</span><span><strong>Excellent Technical Setup</strong><br><small>Chart quality: 15/20 • Score: 19/25 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Massive recovery potential</strong><br><small>Down 80.4% from peak • Score: 16/20 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Explosive volume</strong><br><small>3.7x average • Score: 10/10 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Limited history</strong><br><small>1 previous rallies • Score: 5/15 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Modest upside</strong><br><small>Historical best: +79% • Score: 8/20 points</small></span></div>
+
+            </div>
+            
+            <div style="margin-top: 40px;"></div>
+            
+            <!-- Exhaustion Metrics -->
+            <div class="card-title">
+                <span class="card-icon">📈</span>
+                Rally Cycle Position
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Current Position</div>
+                    <div style="font-size: 32px; font-weight: 800;">59%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
+                    <div style="font-size: 32px; font-weight: 800;">79%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
+                    <div style="font-size: 32px; font-weight: 800;">0.7x</div>
+                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
+                </div>
+            </div>
+        
+            </div>
+          </details>
+        </div>
+        
+
+        <!-- Reasons Buy/Sell -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #10b981;">▲</span>
+                    Reasons to Buy
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Proven winner - previously hit lock-in target</span>
+                    <span class="tag" style="background: #f59e0b; color: white;">⚡ Medium Strength</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">profit target reached: True</div>
+            </div>
+            
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #ef4444;">▼</span>
+                    Reasons to Sell / Avoid
+                </div>
+                <div style="color: #666; font-style: italic;">No major sell signals.</div>
+            </div>
+        </div>
+
+        <!-- Trade Plans -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">📊</span>
+                    Short-Term Trader Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 20%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <div style="font-size: 18px; font-weight: 600; margin-bottom: 5px;">Active trade</div>
+                    <div style="font-size: 14px; opacity: 0.9;">HOLD/WATCH</div>
+                </div>
+                <div style="padding: 12px; background: #f9fafb; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Position Size</div>
+                    <div style="font-weight: 600;">1-3% position based on conviction</div>
+                </div>
+                <div style="padding: 12px; background: #fef2f2; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Risk Management</div>
+                    <div style="font-weight: 600; color: #dc2626;">Stop below recent support / invalidation level</div>
+                </div>
+                <div style="padding: 12px; background: #f0fdf4; border-radius: 6px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Exit Strategy</div>
+                    <div style="font-weight: 600; color: #059669;">Scale out into strength: 25% @ +15%, 50% @ +50%, trail runner</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">💼</span>
+                    Long-Term Investor Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center;">
+                    <div style="font-size: 32px; margin-bottom: 5px;">✗</div>
+                    <div style="font-size: 18px; font-weight: 600;">Not Recommended for Investors</div>
+                </div>
+                <div style="padding: 15px; background: #f9fafb; border-radius: 8px; font-size: 14px; line-height: 1.6;">
+                    <strong style="color: #667eea;">📋 Investment Thesis:</strong><br>
+                    Unlock after AI triangulation + CONFIRMED timing<br><br>
+                    <strong style="color: #667eea;">⏳ Time Horizon:</strong><br>
+                    N/A<br><br>
+                    <strong style="color: #ef4444;">🛡️ Exit Rule:</strong><br>
+                    N/A
+                </div>
+            </div>
+        </div>
+
+        <!-- Commentary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◐</span>
+                Executive Commentary
+            </div>
+            <div style="line-height: 1.6; margin-bottom: 20px;">
+                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows CONFIRMED timing with 58/100 APEX score. Historical data shows 1 rallies averaging 79% upside. Current position: +58.5%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #10b981;">▲ Bull Case:</strong>
+                <div style="padding: 8px 0;">• Limited upside case without catalysts</div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #ef4444;">▼ Bear Case:</strong>
+                <div style="padding: 8px 0;">• Monitor for breakdown signals</div>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
+                <strong>◷ Timing Translation:</strong><br>
+                Momentum confirmed. This is the trade zone if thesis holds.
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
+                <strong>◎ Confidence Explained:</strong><br>
+                Confidence 60/100 reflects full data quality with triangulation loaded.
+            </div>
+        </div>
+
+        <!-- Data Quality Warning -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">△</span>
+                Data Quality Notice
+            </div>
+            <div class="alert-box">
+                <strong>Analysis Mode:</strong> HISTORICAL_ONLY<br>
+                <strong>Impact:</strong> HIGH
+            </div>
+            <div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">AI insights from Groq LLM</div></div></div>
+
+            <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk.
+            </div>
+        </div>
+
+        <!-- ==================== TOP 5 RECENT RNS NEWS ==================== -->
+        
+        <div class="card" style="border-top: 3px solid #3b82f6;">
+            <div class="card-title" style="margin-bottom: 20px;">
+                <span class="card-icon">📰</span>
+                Top 5 Recent RNS Announcements
+            </div>
+            <div style="margin-top: 15px;">
+                
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #ef4444 0%, #ef4444dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #ef444440;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #ef4444 0%, #ef4444dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📉</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">APPOINTMENT OF NON-EXECUTIVE DIRECTOR</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">DIRECTOR SELL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Insider selling - management reducing exposure, watch for continued disposals.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">8th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">8:15 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #ef4444;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #ef4444;">BEARISH</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Touchstone Exploration</td>
+                    </tr>
+                    
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">ACTION:</td>
+                            <td style="padding: 8px; font-weight: 600; font-size: 12px; color: #ef4444;">DISPOSAL</td>
+                        </tr>
+                        
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">15.4%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+8 Jan 2026 08:15
+RNS Number : 1585O
+Touchstone Exploration Inc.
+08 January 2026
+APPOINTMENT OF NON-EXECUTIVE DIRECTOR
+CALGARY, ALBERTA (January 8, 2026) - Touchstone Exploration Inc.
+("Touchstone", "we", "our" or the
+"
+Company
+"
+) (TSX, LSE: TXP)
+announces the appointment of Mr. Bhupendra Kansagra to the Company's Board of Directors (the "Board") as a Non-Executive Director, effective immediately.
+The appointment follows the Company's completion of the private placement with Purebond Limited ("Purebond") previously announced on October 24, 2025. Pursuant to an investor rights agreement, Purebond has exercised its right to nominate a director to the Board. Mr. Kansagra, a director of Purebond, is a UK-based executive with extensive experience in the resource sector and international capital markets.
+The Company has been informed that, as of October 30, 2025, Purebond holds 50,000,000 shares in the Company, representing 15.4% of voting rights. Purebond Limited is a UK registered entity controlled and managed by, and for the benefit of, the Kansagra family pursuant to a discretionary trust. Mr. Bhupendra Kansagra therefore has a partial indirect economic interest in Purebond.
+Kenneth McKinnon, Chair of the Board, commented:
+"We are very pleased to welcome Bhupendra to the Board. As we continue to execute our growth strategy in Trinidad, his deep knowledge of capital markets and the energy sector will be invaluable. We look forward to his strategic insights and the perspective he brings as a representative of our new significant shareholder, Purebond."
+Bhupendra Kansagra, Director, commented:
+"I am honoured to join Touchstone's Board at this pivotal stage in the Company's development. Touchstone has built an impressive asset base with significant potential, and I look forward to working with the team to support the Company's continued success and the delivery of long-term value for all shareholders."
+Further Information on the Appointment
+The following details in relation to the appointment of Bhupendra Kansagra is disclosed in accordance with AIM Rule 17 and Schedule 2(g) of the AIM Rules:
+Bhupendra (Bhulo) Shantilal Kansagra
+(aged 69) has held the following directorships and/or partnerships in the past five years.
+Current Directorships/Partnerships
+Past Directorships/Partnerships (last five years)
+UML ALBERT PARK LIMITED
+UML HOLDCO LIMITED
+UML SEPANG LIMITED
+FESTATES LIMITED
+UML MARINA BAY LIMITED
+OCEAN GIANT SECURITY SERVICES (UK) LIMITED
+UML BAKU LIMITED
+WELLINGTON MARITIME LIMITED
+UML HUDSON LIMITED
+UMLNB 20 LIMITED
+UML GOODWOOD LIMITED
+UMLNB 19 LIMITED
+UMLNB 38 LIMITED
+UMLNB 7 LIMITED
+UMLNB 39 LIMITED
+TOP MARINE PAINTS LIMITED
+UML GOODWILL LIMITED
+MARULA VENTURES LIMITED
+UML INTERLAGOS LIMITED
+FULTON ST JAMES LIMITED
+UML WITHAM LIMITED
+FULTON GRAND LIMITED
+UML MERCURY LIMITED
+UNION DATA SERVICES LIMITED
+UML GREEN EAGLE LIMITED
+PORT MOODY LIMITED
+UML HOLMES LIMITED
+PORT UNION LIMITED
+UMLNB 37 LIMITED
+PORT STANLEY LIMITED
+UML ALKEBULAN LIMITED
+UML WINCHESTER LIMITED
+EAGLE MARITIME LIMITED
+FULTON HYDE LIMITED
+UMLNB 35 LIMITED
+FULTON LINCOLN LIMITED
+UMLNB 36 LIMITED
+FULTON REGENT LIMITED
+HEALTHILY LTD
+UCL HARROW LIMITED
+UMLNB 33 LIMITED
+UML PORTMAN LIMITED
+UMLNB 34 LIMITED
+UML HINDE LIMITED
+UMLNB 31 LIMITED
+TOP FENDERS 4 LIMITED
+SEALABS LIMITED
+CONONISH MINING LIMITED
+UML EVO LIMITED
+FOCUS TANKERS LIMITED
+VENOIL LIMITED
+UMLNB 2 LIMITED
+UML AVON LIMITED
+PORT SAID LIMITED
+UML CLYDE LIMITED
+UML KNOX LIMITED
+UML BRANDS HATCH LIMITED
+UMLNB 4 LIMITED
+UML BURAN LIMITED
+UMLNB 3 LIMITED
+UML ZONDA LIMITED
+UMLNB 1 LIMITED
+UML TRADING LIMITED
+UML WEMBLEY LIMITED
+OAKFIELD COURT (WELWYN) MANAGEMENT COMPANY LIMITED
+UML DORSET LIMITED
+UML MONZA LIMITED
+UML CHILTERN LIMITED
+UML SPA LIMITED
+UML MARLIN LIMITED
+UML BALHAM LIMITED
+UML EAGLE LIMITED
+UMLNB 14 LIMITED
+OSPIRIT LIMITED
+UMLNB 15 LIMITED
+OFORCE LIMITED
+UMLNB 13 LIMITED
+TOP FENDERS 1 LIMITED
+UMLNB 16 LIMITED
+HUXLEY GLOBAL LIMITED
+UML DART LIMITED
+11 HOSPITALITY (LUTON) LIMITED
+UML OSTRO LIMITED
+PESTATES LIMITED
+UML NOTUS LIMITED
+KESTATES LET LIMITED
+UMLNB 12 LIMITED
+XESTATES LIMITED
+UML CHINOOK LIMITED
+GESTATES LIMITED
+UML SEVERN LIMITED
+PROXIMITY HOMES LIMITED
+UML BEDFORD LIMITED
+NESTATES LET LIMITED
+UML TWEED LIMITED
+HEATHFIELD HOUSE CAMBRIDGE LIMITED
+UML MERSEY LIMITED
+BAGSHOT SHIPPING LIMITED
+UML SHERLOCK LIMITED
+UML WATSON LIMITED
+UNION MARITIME SERVICES LIMITED
+PINARELLO SHIPPING LIMITED
+MATEL LIMITED
+VISTEC ESTATES LIMITED
+UML BERNERS LIMITED
+ARCT OCEAN LIMITED
+UML BONDI LIMITED
+IND OCEAN LIMITED
+33 HOSPITALITY LIMITED
+ANTA OCEAN LIMITED
+FULMAR HOLDCO LIMITED
+PACIF OCEAN LIMITED
+ANAVATOS HOLDCO LIMITED
+ATL OCEAN LIMITED
+ATLANTAS BULK SHIP MANAGEMENT LTD
+ULTRA MOUNT ATHOS LIMITED
+UML PICTON LIMITED
+PETIT CHAM LIMITED
+UML WESTMORE LIMITED
+FLEET TRADER LIMITED
+UML ABBEY LIMITED
+KALIXENOS LIMITED
+UML BRUNSWICK LIMITED
+KAMSAR MONT FORT LIMITED
+UML GLIFA LIMITED
+CAPE SANDRA LIMITED
+GLIFA HOLDCO LIMITED
+UMLNB 6 LIMITED
+UMLNB 5 LIMITED
+UMLNB HOLDINGS LIMITED
+GORDON SHIPPING LIMITED
+UML CARLTON LIMITED
+UML WELLINGTON LIMITED
+UNION MARINE SERVICES LIMITED
+UML AMPLEFORTH LIMITED
+UML BRYANSTON LIMITED
+BDP SPIRIT LIMITED
+UCL SPRINGFIELD LIMITED
+UCL ASTON LIMITED
+ICEPORT TWO LIMITED
+UML WEYMOUTH LIMITED
+11 HOSPITALITY LIMITED
+NELSON HOUSE CAMBRIDGE LIMITED
+UNION MARITIME HOLDINGS LIMITED
+73WHR LIMITED
+TEMPSFORD ESTATES LIMITED
+SOLAI HOUSE LIMITED
+BISH 1 LIMITED
+BISH 2 LIMITED
+TPT SHIPBROKERS INT. LIMITED
+TUNE CHEMICAL TANKERS (UK) LIMITED
+UML VICTORIA LIMITED
+HUDSON ALMERE LIMITED
+HUDSON CHEMICAL TANKERS LIMITED
+HUDSON KENSINGTON LIMITED
+HUDSON ARNHEM LIMITED
+HUDSON LISSE LIMITED
+HUDSON RICHMOND LIMITED
+HUDSON BRENT LIMITED
+HUDSON CAMDEN LIMITED
+HCT PORTLAND LIMITED
+ATLANTAS TECHNICAL SERVICES LIMITED
+ATLANTAS SHIP GROUP LIMITED
+UML BAKERLOO LIMITED
+UNION COMMERCIAL SERVICES LIMITED
+ICEPORT ONE LIMITED
+UNION CARRIERS LIMITED
+UML MAYFAIR LIMITED
+UML WESTMINSTER LIMITED
+UESTATES LIMITED
+DUNE RESOURCES LET LIMITED
+CESTATES LET LIMITED
+WAITE DAVIES LET LIMITED
+UML WIMPOLE LIMITED
+UML BLANDFORD LIMITED
+UML MOXON LIMITED
+UML WIGMORE LIMITED
+ATLANTAS SHIP MANAGEMENT LIMITED
+TMS OFFSHORE LIMITED
+CESTATES LIMITED
+WAITE DAVIES LIMITED
+CLION LIMITED
+P ENERGY LIMITED
+B EMERALD LIMITED
+B CRYSTAL LIMITED
+OSTRIDER LIMITED
+DUNE RESOURCES LIMITED
+OBLUE LIMITED
+UNION BUNKERING LIMITED
+SOLAI USA LIMITED
+ICEPORT LIMITED
+KERIO LIMITED
+UNION GLORY LIMITED
+UNION INVESTCORP LIMITED
+TOP FENDERS LIMITED
+UNION MARITIME LIMITED
+PUREBOND LIMITED
+BISHOPSWOOD ESTATES LIMITED
+SOLAI SERVICES LIMITED
+SOLAI HOLDINGS LIMITED
+AGRI-CHEMICALS LIMITED
+MYDIRECTIVES, INC.
+UMLNB 32 LIMITED
+BC BROKERS LIMITED
+UMLNB 30 LIMITED
+UMLNB 29 LIMITED
+UML MORIARTY LIMITED
+UML SILVERSTONE LIMITED
+UML EBISU LIMITED
+UML SUSANOO LIMITED
+UMLNB 23 LIMITED
+UMLNB 24 LIMITED
+UML EDEN LIMITED
+LAND REGENERATION LTD
+UML BROMLEY LTD
+ANAVATOS LIMITED
+UML CHAPEL LIMITED
+11 HOSPITALITY (BIRMINGHAM) LIMITED
+MARYLEBONE HOLDCO LIMITED
+KESTATES LIMITED
+ONE ALDWYCH LIMITED
+ATLANTAS TECHNICAL SERVICES INDIA PRIVATE LIMITED
+ATLANTAS CREW MANAGEMENT PRIVATE LIMITED
+Bhupendra Kansagra was a director of Nandan Cleantech PLC ("Nandan") when administrators were appointed on 30 December 2014. Nandan was subsequently dissolved following liquidation on 21 March 2016 with no shortfall to creditors.
+Bhupendra Kansagra was a director of Chessum Plants Ltd ("Chessum") within 12 months of administrators being appointed on 25 April 2018. Chessum was subsequently dissolved following liquidation on 16 December 2023 with no shortfall to secured creditors but a shortfall to unsecured creditors.
+There is no further information to be disclosed in relation to Bhupendra Kansagra' appointment pursuant to AIM Rule 17 or Schedule Two, paragraph (g) (i)-(viii) of the AIM Rules for Companies.
+Touchstone Exploration Inc.
+Touchstone Exploration Inc. is a Calgary, Alberta-based company engaged in the business of acquiring interests in petroleum and natural gas rights and the exploration, development, production and sale of petroleum and natural gas. Touchstone is currently active in onshore properties located in the Republic of Trinidad and Tobago. The Company's common shares are traded on the Toronto Stock Exchange and the AIM market of the London Stock Exchange under the symbol
+"
+TXP
+"
+.
+For further information about Touchstone, please visit our website at
+www.touchstoneexploration.com
+or contact:
+Touchstone Exploration Inc.
+Paul R. Baay, President and Chief Executive Officer Tel: +1 (403) 750-4487
+Scott Budau, Chief Financial Officer
+Brian Hollingshead, EVP Engineering and BD
+Canaccord Genuity Limited (Nominated Advisor and Joint Broker)
+Adam James / Charlie Hammond
+Tel: +44 (0) 207 523 8000
+Cavendish Capital Markets Limited (Joint Broker)
+Neil McDonald / Derrick Lee / Graham Hall
+Tel: +44 (0) 131 220 6939
+FTI Consulting (Financial PR)
+Nick Hennis / Ben Brewerton Tel: +44 (0) 203 727 1000;
+touchstone@fticonsulting.com
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+BOAMZGGMRRZGVZG
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">CARAPAL RIDGE-3 DRILLING RESULTS</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">5th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Heritage Petroleum</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+5 Jan 2026 07:00
+RNS Number : 6215N
+Touchstone Exploration Inc.
+05 January 2026
+carapal ridge-3 DRILLING RESULTS
+CALGARY, ALBERTA (January 5, 2026) - Touchstone Exploration Inc. ("Touchstone", "we", "our" or the "Company") (TSX, LSE: TXP)
+provides an operational update on the Carapal Ridge-3 development well ("CR-3"), located on the Central block onshore in the Republic of Trinidad and Tobago.
+Touchstone holds a 65 percent operating working interest in the well, with Heritage Petroleum Company Limited holding the remaining 35 percent.
+Highlights
+CR-3 is the first well drilled into the Carapal Ridge pool in the past 17 years and encountered approximately 1,082 feet of net sand, including approximately 1,000 feet of net Herrera sand.
+Open-hole wireline logging, mud logging, and drilling data collectively indicate the presence of hydrocarbon-bearing sands throughout the Herrera interval.
+The well encountered a thick pay zone across multiple Herrera horizons, both above and below a shale marker.
+Completion operations are underway, with tie-in to the Central block natural gas processing facility targeted for the first quarter of 2026.
+The well results support the potential for up to three additional Herrera development wells on the Central block.
+CR-3 also established a second, uphole, gas-charged play in the Karamat formation, which is being evaluated as a stand-alone prospect for potential drilling.
+The CR-3 well was spud on November 23, 2025, using Star Valley Drilling Rig #205 and was drilled to a total depth of 8,200 feet over a 35-day period. Following open-hole logging operations, the well was cased for future production. Based on initial field-level cost estimates, the well was approximately 25 percent over budget and did not require any sidetrack operations. The additional time and costs were primarily attributable to efforts required to control natural gas flows from the Karamat sands, which have not previously been produced on the Central block.
+The primary target of the CR-3 well was the Herrera sands, which are prevalent within the Carapal Ridge pool. CR-3 is the first well drilled into the Carapal Ridge pool in the past 17 years and encountered approximately 1,000 feet of net Herrera sand. The well targeted Herrera sands within the developed reservoir section currently on production above a 30-foot shale marker, as well as unproduced Herrera sands below the shale marker. The lower sands were previously completed and tested, but not produced, by a prior operator in the offsetting Carapal Ridge-1 well. These completion tests, known as tests 4, 5 and 6, flow tested at combined peak average daily test rates of over 20 million cubic feet of natural gas and 500 barrels of condensate for periods of approximately one to two days.
+CR-3 encountered approximately 635 feet of net sand in the developed Herrera reservoir at depths between 6,930 feet and 7,770 feet above the shale marker and approximately 365 feet of net Herrera sand below the shale marker within the unproduced reservoir at depths between 7,770 feet and 8,200 feet. Although drilling was terminated at 8,200 feet, the well remained within clean sand at total depth. In addition to the Herrera sands, approximately 82 feet of net Karamat sands were also encountered directly above the Herrara formation at depths between 6,530 feet and 6,760 feet. These Karamat sands are also present in the Carapal Ridge-1 and Carapal Ridge-2 wells.
+The well was originally planned as a deviated well targeting the Herrera sands; however, during drilling, the well naturally built angle in the production section and approximately 341 feet was drilled horizontally into the unproduced Herrera sand package, optimizing reservoir exposure. Open-hole wireline logging, mud logging, and drilling data collectively indicate the presence of hydrocarbon-bearing sands throughout the Herrera interval, extending to and including the end of the horizontal section.
+Completion operations are underway at CR-3. The Company intends to initially produce the undeveloped Herrera sands from the horizontal section of the well below the shale marker, while the uphole developed Herrera sands may be perforated at a later date. Much of the CR-3 facility tie-in equipment has been procured and is currently in Trinidad, with tie-in to the Central block natural gas processing facility targeted for the first quarter of 2026.
+Paul R. Baay, President and Chief Executive Officer, commented:
+"
+The CR-3 well is our inaugural development well on the Central block and the first well drilled on the field in over 17 years. The well was executed successfully by our drilling team and represents our first horizontal well drilled into the Herrera reservoir.
+As anticipated, CR-3 encountered hydrocarbon-bearing sands both below and above a key shale marker. We intend to initially produce from the lower horizontal section of the well, with significant volumes of uphole sands available for potential future perforation. While the well has resulted in thick pay zone across multiple horizons, the ultimate deliverability will not be known until the well is completed and tied into the facility. Several variables will influence performance, including the fact that the formation has not previously been produced from a horizontal well and the management of downhole pressures.
+Importantly, the well has confirmed both the seismic model and the areal extent of a thick Herrera section. These results are encouraging and support the potential for three additional Herrera wells on the block. The well has also established a second gas-charged play in the Karamat formation at approximately 6,700 feet, which is now being evaluated as a stand-alone prospect for future drilling. We look forward to tying CR-3 into our Central block facility in the quarter to enhance our natural gas sales volumes and realized pricing under our two liquefied natural gas marketing arrangements.
+"
+Touchstone Exploration Inc.
+Touchstone Exploration Inc. is a Calgary, Alberta-based company engaged in the business of acquiring interests in petroleum and natural gas rights and the exploration, development, production and sale of petroleum and natural gas. Touchstone is currently active in onshore properties located in the Republic of Trinidad and Tobago. The Company's common shares are traded on the Toronto Stock Exchange and the AIM market of the London Stock Exchange under the symbol
+"
+TXP
+"
+.
+For further information about Touchstone, please visit our website at
+www.touchstoneexploration.com
+or contact:
+Touchstone Exploration Inc.
+Paul R. Baay, President and Chief Executive Officer Tel: +1 (403) 750-4487
+Brian Hollingshead, EVP Engineering and Business Development
+Canaccord Genuity (Nominated Advisor and Joint Broker)
+Adam James / Charlie Hammond
+Tel: +44 (0) 207 523 8000
+Cavendish Capital Markets Limited (Joint Broker)
+Neil McDonald / Derrick Lee / Graham Hall
+Tel: +44 (0) 131 220 6939
+Touchstone Exploration Inc.
+Paul R. Baay, President and Chief Executive Officer Tel: +1 (403) 750-4487
+Brian Hollingshead, EVP Engineering and Business Development
+Canaccord Genuity (Nominated Advisor and Joint Broker)
+Adam James / Charlie Hammond Tel: +44 (0) 207 523 8000
+Cavendish Capital Markets Limited (Joint Broker)
+Neil McDonald / Derrick Lee / Graham Hall Tel: +44 (0) 131 220 6939
+FTI Consulting (Financial PR)
+Nick Hennis / Ben Brewerton Tel: +44 (0) 203 727 1000
+touchstone@fticonsulting.com
+Advisories
+Certain information contained in this announcement would have been deemed inside information as stipulated under the UK version of the EU Market Abuse Regulation (2014/596) which is part of UK law by virtue of the European Union (Withdrawal) Act 2018, as amended and supplemented from time to time, until the release of this announcement.
+Forward-looking Statements
+The information provided in this announcement contains certain forward-looking statements and information (collectively, "forward-looking statements") within the meaning of applicable securities laws. Such forward-looking statements include, without limitation, forecasts, estimates, expectations and objectives for future operations that are subject to assumptions, risks and uncertainties, many of which are beyond the control of the Company. Forward-looking statements are statements that are not historical facts and are generally, but not always, identified by the words "expect", "believe", "estimate", "potential", "anticipate", "forecast", "pursue", "aim", "intends", and similar expressions, or are events or conditions that "will", "would", "may", "could" or "should" occur or be achieved. The forward-looking statements contained in this announcement speak only as of the date hereof and are expressly qualified by this cautionary statement.
+Specifically, this announcement includes, but is not limited to, forward-looking statements relating to: the
+Company's business plans, strategies, priorities and development plans;
+the quality and quantity of prospective hydrocarbon accumulations based on wireline logs, including the Company's interpretations thereof; the Company's expectations regarding timing and results of future drilling, completion, and tie-in operations at including anticipated production rates and commercial outcomes therefrom
+; the Company's initial field estimates of CR-3 drilling costs;
+and Touchstone's current and future financial position, including the Company's liquidity and the sufficiency of resources to fund future capital expenditures.
+The Company's actual decisions, activities, results, performance, or achievement could differ materially from those expressed in, or implied by, such forward-looking statements and accordingly, no assurances can be given that any of the events anticipated by the forward-looking statements will transpire or occur or, if any of them do, what benefits Touchstone will derive from them.
+Although the Company believes that the expectations and assumptions on which the forward-looking statements are based are reasonable, undue reliance should not be placed on the forward-looking statements because the Company can give no assurance that they will prove to be correct. Since forward-looking statements address future events and conditions, by their very nature they involve inherent risks and uncertainties. Actual results could differ materially from those currently anticipated due to a number of factors and risks. Certain of these risks are set out in more detail in the Company's 2024 Annual Information Form dated March 19, 2025 which is available online on the Company's profile on SEDAR+ (
+www.sedarplus.ca
+) and website (
+www.touchstoneexploration.com
+). The forward-looking statements contained in this
+announcement
+are made as of the date hereof, and except as may be required by applicable securities laws, the Company assumes no obligation or intent to update publicly or revise any forward-looking statements made herein or otherwise, whether as a result of new information, future events or otherwise.
+Competent Persons Statement
+In accordance with the AIM Rules for Companies, the technical information contained in this announcement has been reviewed and approved by
+Brian Hollingshead, Executive Vice President, Engineering and Business Development
+of Touchstone Exploration Inc. Mr. Hollingshead is a qualified person as defined in the London Stock Exchange's Guidance Note for Mining and Oil and Gas Companies and is a member of the Association of Professional Engineers and Geoscientists of Alberta. Mr. Hollingshead holds a Bachelor of Science in Electrical Engineering from the University of Alberta and has over 20 years of oil and gas exploration and development experience. For the purposes of UK MAR and Article 2 of the binding technical standards published by the Financial Conduct Authority in relation to MAR as regards Commission Implementing Regulation (EU) 2016/1055, the person responsible for the release of this announcement is Paul Baay, President and Chief Executive Officer.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+UPDAKQBPFBKDBDK
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #10b98140;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📈</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">PURCHASE OF SHARES & DIRECTOR / PDMR SHAREHOLDING</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">DIRECTOR BUY</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Insider buying - management showing confidence in company prospects.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">2nd Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Touchstone Exploration</td>
+                    </tr>
+                    
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">ACTION:</td>
+                            <td style="padding: 8px; font-weight: 600; font-size: 12px; color: #10b981;">PURCHASE</td>
+                        </tr>
+                        
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+2 Dec 2025 07:00
+RNS Number : 7813J
+Touchstone Exploration Inc.
+02 December 2025
+PURCHASE OF COMMON SHARES AND DIRECTOR / PDMR SHAREHOLDING
+CALGARY, ALBERTA (December 2, 2025) - Touchstone Exploration Inc. (the "Company") (TSX, LSE: TXP) announces the following purchase of Company common shares.
+The notification below, made in accordance with the requirements of the UK Market Abuse Regulation, provides further detail regarding the applicable transaction.
+1.
+Details of the person discharging managerial responsibilities / person closely associated
+a)
+Name
+Peter Nicol
+2.
+Reason for the notification
+a)
+Position/status
+Non-Executive Director
+b)
+Initial notification /Amendment
+Initial notification
+3.
+Details of the issuer, emission allowance market participant, auction platform, auctioneer or auction monitor
+a)
+Name
+Touchstone Exploration Inc.
+b)
+LEI
+2138008URBSUC1J24J73
+4.
+Details of the transaction(s): section to be repeated for (i) each type of instrument; (ii) each type of transaction; (iii) each date; and (iv) each place where transactions have been conducted
+a)
+Description of the financial instrument, type of instrument
+Identification code
+Common shares of Touchstone Exploration Inc.
+CA89156L1085
+b)
+Nature of the transactions
+Purchase of common shares on the open market
+c)
+Prices and volumes
+Effective price
+Volume
+£0.069
+650,000
+d)
+Aggregated information
+- Aggregated volume
+- Price
+N/A (single transaction)
+e)
+Date of the transaction
+December 1, 2025
+f)
+Place of the transaction
+AIM
+Touchstone Exploration Inc.
+Touchstone Exploration Inc. is a Calgary, Alberta based company engaged in the business of acquiring interests in petroleum and natural gas rights and the exploration, development, production and sale of petroleum and natural gas. Touchstone is currently active in onshore properties located in the Republic of Trinidad and Tobago. The Company's common shares are traded on the Toronto Stock Exchange and the AIM market of the London Stock Exchange under the symbol "TXP".
+For further information about Touchstone, please visit
+www.touchstoneexploration.com
+or contact:
+Touchstone Exploration Inc.
+Paul Baay, President and Chief Executive Officer Tel: +1 (403) 750-4487
+Scott Budau, Chief Financial Officer
+Canaccord Genuity Limited
+(Nominated Advisor and Joint Broker)
+Adam James / Charlie Hammond
+Tel: +44 (0) 20 7523 8000
+Cavendish Capital Markets Limited (Joint Broker)
+Neil McDonald / Derrick Lee / Graham Hall
+Tel: +44 (0) 131 220 6939
+FTI Consulting (Financial PR)
+Nick Hennis / Ben Brewerton Tel: +44 (0) 20 3727 1000
+Email:
+touchstone@fticonsulting.com
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+DSHUPGAWPUPAPUG
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #10b98140;
+                    ">4</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #4
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📈</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">DIRECTOR SHARE PURCHASE</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">DIRECTOR BUY</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Insider buying - management showing confidence in company prospects.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">21st Nov 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:16 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Touchstone Exploration</td>
+                    </tr>
+                    
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">ACTION:</td>
+                            <td style="padding: 8px; font-weight: 600; font-size: 12px; color: #10b981;">PURCHASE</td>
+                        </tr>
+                        
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+21 Nov 2025 07:16
+RNS Number : 5223I
+Touchstone Exploration Inc.
+21 November 2025
+PURCHASE OF COMMON SHARES AND DIRECTOR / PDMR SHAREHOLDING
+CALGARY, ALBERTA (November 21, 2025) - Touchstone Exploration Inc. (the "Company") (TSX, LSE: TXP) announces the following purchases of Company common shares.
+The notification below, made in accordance with the requirements of the UK Market Abuse Regulation, provides further detail regarding the applicable transactions.
+1.
+Details of the person discharging managerial responsibilities / person closely associated
+a)
+Name
+Stanley T. Smith
+2.
+Reason for the notification
+a)
+Position/status
+Non-Executive Director
+b)
+Initial notification /Amendment
+Initial notification
+3.
+Details of the issuer, emission allowance market participant, auction platform, auctioneer or auction monitor
+a)
+Name
+Touchstone Exploration Inc.
+b)
+LEI
+2138008URBSUC1J24J73
+4.
+Details of the transaction(s): section to be repeated for (i) each type of instrument; (ii) each type of transaction; (iii) each date; and (iv) each place where transactions have been conducted
+a)
+Description of the financial instrument, type of instrument
+Identification code
+Common shares of Touchstone Exploration Inc.
+CA89156L1085
+b)
+Nature of the transactions
+Purchase of common shares on the open market
+c)
+Prices and volumes
+Effective prices
+Volumes
+1.
+C$0.12
+220,000
+2.
+C$0.13
+50,000
+3.
+C$0.135
+130,000
+d)
+Aggregated information
+- Aggregated volume
+- Price
+Aggregate volume: 400,000 common shares
+Aggregate price: C$0.126
+e)
+Date of the transaction
+1. November 18, 2025
+2. November 19, 2025
+3. November 20, 2025
+f)
+Place of the transaction
+1. Toronto Stock Exchange
+2. Toronto Stock Exchange
+3. Toronto Stock Exchange
+Touchstone Exploration Inc.
+Touchstone Exploration Inc. is a Calgary, Alberta based company engaged in the business of acquiring interests in petroleum and natural gas rights and the exploration, development, production and sale of petroleum and natural gas. Touchstone is currently active in onshore properties located in the Republic of Trinidad and Tobago. The Company's common shares are traded on the Toronto Stock Exchange and the AIM market of the London Stock Exchange under the symbol "TXP".
+For further information about Touchstone, please visit
+www.touchstoneexploration.com
+or contact:
+Touchstone Exploration Inc.
+Paul Baay, President and Chief Executive Officer Tel: +1 (403) 750-4487
+Scott Budau, Chief Financial Officer
+Canaccord Genuity Limited
+(Nominated Advisor and Joint Broker)
+Adam James / Charlie Hammond
+Tel: +44 (0) 20 7523 8000
+Cavendish Capital Markets Limited (Joint Broker)
+Neil McDonald / Derrick Lee / Graham Hall
+Tel: +44 (0) 131 220 6939
+FTI Consulting (Financial PR)
+Nick Hennis / Ben Brewerton Tel: +44 (0) 20 3727 1000
+Email:
+touchstone@fticonsulting.com
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+DSHPKDBDOBDKNDB
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #10b98140;
+                    ">5</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #5
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📈</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">DIRECTOR SHARE PURCHASE</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">DIRECTOR BUY</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Insider buying - management showing confidence in company prospects.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">19th Nov 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Touchstone Exploration</td>
+                    </tr>
+                    
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">ACTION:</td>
+                            <td style="padding: 8px; font-weight: 600; font-size: 12px; color: #10b981;">PURCHASE</td>
+                        </tr>
+                        
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+19 Nov 2025 07:00
+RNS Number : 0681I
+Touchstone Exploration Inc.
+19 November 2025
+DIRECTOR SHARE PURCHASE
+CALGARY, ALBERTA (November 19, 2025) - Touchstone Exploration Inc. (the "Company") (TSX, LSE: TXP) announces the following purchases of Company common shares.
+The notification below, made in accordance with the requirements of the EU Market Abuse Regulation, provides further detail on the applicable transactions.
+1.
+Details of the person discharging managerial responsibilities / person closely associated
+a)
+Name
+Kenneth R. McKinnon
+2.
+Reason for the notification
+a)
+Position/status
+Non-Executive Director
+b)
+Initial notification /Amendment
+Initial notification
+3.
+Details of the issuer, emission allowance market participant, auction platform, auctioneer or auction monitor
+a)
+Name
+Touchstone Exploration Inc.
+b)
+LEI
+2138008URBSUC1J24J73
+4.
+Details of the transaction(s): section to be repeated for (i) each type of instrument; (ii) each type of transaction; (iii) each date; and (iv) each place where transactions have been conducted
+a)
+Description of the financial instrument, type of instrument
+Identification code
+Common shares of Touchstone Exploration Inc.
+CA89156L1085
+b)
+Nature of the transactions
+Purchase of common shares on the open market
+c)
+Prices and volumes
+Effective prices
+Volumes
+C$0.115
+5,000
+C$0.115
+865,000
+d)
+Aggregated information
+- Aggregated volume
+- Price
+Aggregate volume: 870,000 common shares
+Aggregate price: C$0.115
+e)
+Date of the transaction
+November 17, 2025 & November 18, 2025
+f)
+Place of the transaction
+Toronto Stock Exchange
+Touchstone Exploration Inc.
+Touchstone Exploration Inc. is a Calgary, Alberta based company engaged in the business of acquiring interests in petroleum and natural gas rights and the exploration, development, production and sale of petroleum and natural gas. Touchstone is currently active in onshore properties located in the Republic of Trinidad and Tobago. The Company's common shares are traded on the Toronto Stock Exchange and the AIM market of the London Stock Exchange under the symbol "TXP".
+For further information about Touchstone, please visit
+www.touchstoneexploration.com
+or contact:
+Touchstone Exploration Inc.
+Paul Baay, President and Chief Executive Officer Tel: +1 (403) 750-4487
+Scott Budau, Chief Financial Officer
+Brian Hollingshead, EVP Engineering and BD
+Canaccord Genuity Limited
+(Nominated Advisor and Joint Broker)
+Adam James / Charlie Hammond
+Tel: +44 (0) 20 7523 8000
+Cavendish Capital Markets Limited (Joint Broker)
+Neil McDonald / Derrick Lee / Graham Hall
+Tel: +44 (0) 131 220 6939
+FTI Consulting (Financial PR)
+Nick Hennis / Ben Brewerton Tel: +44 (0) 20 3727 1000
+Email:
+touchstone@fticonsulting.com
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+DSHPKFBDFBDDPDD
+                </div>
+            </details>
+            
+            </div>
+            
+            </div>
+            <div style="
+                margin-top: 20px;
+                padding: 14px 16px;
+                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+                border-radius: 10px;
+                font-size: 12px;
+                color: #78350f;
+                border-left: 3px solid #f59e0b;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            ">
+                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
+                <div style="line-height: 1.5;">
+                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
+                    Each RNS includes sentiment classification, key data extraction, and trading context. 
+                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
+                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                    </strong>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            details[open] > summary {
+                background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%) !important;
+                border-left-color: #0369a1 !important;
+            }
+            summary::-webkit-details-marker {
+                display: none;
+            }
+            
+            /* ========== MOBILE RESPONSIVE ========== */
+            @media (max-width: 768px) {
+                body {
+                    padding: 10px;
+                    font-size: 14px;
+                }
+                
+                .container {
+                    margin: 0 auto;
+                }
+                
+                .header-card {
+                    padding: 14px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .company-name {
+                    font-size: 22px;
+                    margin-bottom: 8px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 13px;
+                    padding: 6px 12px;
+                }
+                
+                .company-meta {
+                    gap: 8px;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+                
+                .meta-item {
+                    padding: 6px 12px;
+                    font-size: 12px;
+                    gap: 6px;
+                }
+                
+                .meta-icon {
+                    font-size: 14px;
+                }
+                
+                .score-hero {
+                    padding: 20px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .action-display {
+                    font-size: 18px !important;
+                    margin-bottom: 12px;
+                }
+                
+                .scores-row {
+                    gap: 16px;
+                    margin: 20px 0;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    display: flex;
+                }
+                
+                .score-circle {
+                    width: 110px;
+                    height: 110px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 32px;
+                }
+                
+                .score-label {
+                    font-size: 10px;
+                    margin-top: 4px;
+                }
+                
+                .timing-badge-large {
+                    padding: 10px 20px;
+                    font-size: 14px;
+                    margin: 12px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 14px;
+                    padding: 12px;
+                    margin-top: 12px;
+                }
+                
+                .factors-list {
+                    grid-template-columns: 1fr;
+                    gap: 10px;
+                    margin-top: 12px;
+                }
+                
+                .factor-item {
+                    padding: 12px;
+                    font-size: 12px;
+                    gap: 8px;
+                }
+                
+                .factor-icon {
+                    font-size: 16px;
+                }
+                
+                .cards-grid {
+                    grid-template-columns: 1fr;
+                    gap: 12px;
+                    margin-bottom: 12px;
+                }
+                
+                .card {
+                    padding: 16px;
+                    border-radius: 12px;
+                }
+                
+                .card-title {
+                    font-size: 14px;
+                    margin-bottom: 12px;
+                    gap: 8px;
+                }
+                
+                .card-icon {
+                    font-size: 18px;
+                }
+                
+                .stat-row {
+                    padding: 8px 0;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+                
+                .stat-label {
+                    font-size: 12px;
+                }
+                
+                .stat-value {
+                    font-size: 14px;
+                }
+                
+                .rally-badge {
+                    padding: 4px 10px;
+                    font-size: 10px;
+                }
+                
+                .risk-indicator {
+                    gap: 10px;
+                    padding: 12px;
+                    flex-wrap: wrap;
+                }
+                
+                .risk-icon {
+                    font-size: 20px;
+                }
+                
+                .reason-item {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                }
+                
+                .tag {
+                    padding: 3px 8px;
+                    font-size: 10px;
+                }
+                
+                .footer {
+                    padding: 12px;
+                    font-size: 11px;
+                    margin-top: 12px;
+                    border-radius: 12px;
+                }
+                
+                .alert-box {
+                    padding: 12px;
+                    margin: 10px 0;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                body {
+                    padding: 8px 6px;
+                }
+                
+                .header-card {
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    border-radius: 8px;
+                }
+                
+                .company-name {
+                    font-size: 18px;
+                    margin-bottom: 6px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 11px;
+                    padding: 3px 8px;
+                }
+                
+                .company-meta {
+                    gap: 4px;
+                    flex-direction: column;
+                }
+                
+                .meta-item {
+                    padding: 4px 6px;
+                    font-size: 11px;
+                    background: rgba(247, 250, 252, 0.7);
+                }
+                
+                .score-hero {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                    border-radius: 12px;
+                }
+                
+                .score-circle {
+                    width: 70px;
+                    height: 70px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 22px;
+                    font-weight: 800;
+                }
+                
+                .score-label {
+                    font-size: 7px;
+                    margin-top: 2px;
+                }
+                
+                .scores-row {
+                    flex-direction: column;
+                    gap: 10px;
+                    margin: 12px 0;
+                    align-items: center;
+                }
+                
+                .timing-badge-large {
+                    padding: 6px 12px;
+                    font-size: 11px;
+                    margin: 10px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 11px;
+                    padding: 8px;
+                    line-height: 1.3;
+                }
+                
+                .card {
+                    padding: 10px;
+                    margin-bottom: 8px;
+                    border-radius: 8px;
+                }
+                
+                .card-title {
+                    font-size: 12px;
+                    margin-bottom: 8px;
+                    font-weight: 700;
+                }
+            }
+        </style>
+        
+
+        <!-- Footer -->
+        <div class="footer">
+            Report generated: 2026-01-17 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            <strong>△ Not financial advice. Do your own research.</strong>
+            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
+                <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

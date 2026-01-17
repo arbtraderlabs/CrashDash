@@ -1,0 +1,2760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrashDash • POLB.L APEX Profile</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .header-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .ticker-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .company-name { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .company-meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f7fafc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .meta-icon { font-size: 18px; }
+        
+        .score-hero {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        .action-display {
+            margin-bottom: 20px;
+        }
+        .scores-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .score-number {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .score-label { font-size: 12px; color: #666; margin-top: 5px; }
+        .timing-badge-large {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 24px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            margin: 20px 0;
+        }
+        .thesis-line {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .factors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .factor-item {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        .factor-icon { font-size: 20px; }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-icon { font-size: 24px; }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-label { color: #666; font-size: 14px; }
+        .stat-value { font-weight: 600; font-size: 16px; }
+        
+        .rally-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .risk-indicator {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .risk-high { background: #fee2e2; }
+        .risk-icon { font-size: 24px; }
+        
+        .reason-item {
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .tag {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .footer {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-top: 20px;
+        }
+        
+        .alert-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Header Card -->
+        <div class="header-card">
+            <div class="ticker-badge">POLB.L</div>
+            <div class="company-name">Poolbeg Pharma PLC</div>
+            <div class="company-meta">
+                <div class="meta-item">
+                    <span class="meta-icon">■</span>
+                    <span><strong>Sector:</strong> Healthcare</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">£</span>
+                    <span><strong>Market Cap:</strong> £35,208,601</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">◷</span>
+                    <span><strong>Days Active:</strong> 161 days</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action & Score Hero Section -->
+        <div class="score-hero">
+            <div class="action-display">
+                <span style="color: white;">UNKNOWN</span>
+            </div>
+            
+            <div class="scores-row">
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">47</div>
+                    <div class="score-label">APEX SCORE</div>
+                </div>
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">40</div>
+                    <div class="score-label">CONFIDENCE</div>
+                </div>
+            </div>
+            
+            <div class="timing-badge-large">
+                Timing: <span class="rally-badge" style="background: #dbeafe; color: #1e40af;">CROWDED</span>
+            </div>
+            
+            <div class="thesis-line">
+                SELL/TAKE_PROFITS - CROWDED timing with 47/100 opportunity score
+            </div>
+        </div>
+
+        <!-- ==================== CRASHDASH INTELLIGENCE - PANIC HUNTER VIEW ==================== -->
+        
+        <div class="card" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b;">
+            <div class="card-title" style="color: #0f172a;">
+                <span class="card-icon">🏭</span>
+                CrashDash Intelligence • Industrials
+            </div>
+            
+            <!-- Fear Meter -->
+            <div style="background: white; padding: 24px; border-radius: 14px; margin-bottom: 20px; text-align: center;">
+                <div style="font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 16px;">🔥 PANIC METER</div>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 16px;">
+                    <div style="width: 160px; height: 160px; border-radius: 50%; background: conic-gradient(#f59e0b 237.6deg, #e5e7eb 237.6deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                        <div style="width: 130px; height: 130px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <div style="font-size: 48px; font-weight: 800; color: #f59e0b;">66</div>
+                            <div style="font-size: 12px; color: #64748b; font-weight: 600;">PANIC SCORE</div>
+                        </div>
+                    </div>
+                    <div style="text-align: left; max-width: 400px;">
+                        <div style="font-size: 18px; font-weight: 700; color: #f59e0b; margin-bottom: 12px;">HIGH PANIC</div>
+                        <div style="font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 12px;">🟠 Fear dominant - watch for reversal signs</div>
+                        <div style="font-size: 13px; color: #64748b;">
+                            <div>💔 Price: 40/40</div>
+                            <div>📉 Volume: 10/20</div>
+                            <div>🔇 Social: 6/20</div>
+                            <div>📰 News: 10/20</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CrashHunter Signals -->
+                <div style="margin-top: 20px;">
+                    <span style="display: inline-block; background: #f59e0b; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">🟠 Fear 66/100</span><span style="display: inline-block; background: #f59e0b; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">⚠️ Crowded</span>
+                </div>
+                
+                <!-- Opportunity Flag -->
+                
+            </div>
+            
+            <!-- Contrarian Compression Energy Panel -->
+            
+            <!-- Contrarian Compression Energy Panel -->
+            <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); padding: 24px; border-radius: 14px; margin-bottom: 20px; border: 3px solid #10b981;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <span style="font-size: 32px;">⚡</span>
+                    <div style="flex: 1;">
+                        <div style="font-size: 20px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">
+                            CONTRARIAN COMPRESSION SCORE
+                        </div>
+                        <div style="font-size: 13px; color: #475569; font-weight: 600;">
+                            Signal Congestion Framework • Compression = Explosive Potential
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Score Display -->
+                <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 30px;">
+                        <!-- Circular gauge -->
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: conic-gradient(#10b981 57.6deg, #e5e7eb 57.6deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                            <div style="width: 110px; height: 110px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <div style="font-size: 42px; font-weight: 800; color: #10b981;">16</div>
+                                <div style="font-size: 11px; color: #64748b; font-weight: 600;">/ 100</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Key metrics -->
+                        <div style="text-align: left;">
+                            <div style="font-size: 16px; font-weight: 700; color: #10b981; margin-bottom: 12px;">⚪ LOW COMPRESSION (Early/Weak)</div>
+                            <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                                <div><strong>0.3</strong> signals/week</div>
+                                <div><strong>2</strong> RSI &lt; 20 events</div>
+                                <div><strong>0</strong> escalations detected</div>
+                                <div style="color: #10b981; font-weight: 700; margin-top: 6px;">
+                                    💎 Historical pop: <strong>+90%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Component Breakdown -->
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 15px;">
+                        📊 5-COMPONENT BREAKDOWN
+                    </div>
+                    
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">compression</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">7/40</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 17.5%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">0.3 signals/week | 2 RSI<20 | Early stage</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">intensification</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">5/20</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 25.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;"></div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">volume death</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">0/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">Normal volume</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">pop potential</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">4/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 26.666666666666668%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">Baseline mover (90%)</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">accumulation</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">0/10</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">No accumulation</div>
+                </div>
+                
+                </div>
+                
+                <!-- Contrarian Philosophy -->
+                <div style="background: rgba(255,255,255,0.7); padding: 16px; border-radius: 10px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #0f172a; margin-bottom: 8px; font-size: 14px;">
+                        🎯 CONTRARIAN WISDOM
+                    </div>
+                    <div style="font-size: 13px; color: #334155; line-height: 1.6;">
+                        <strong>Signal congestion = Compression energy = Explosive potential.</strong><br>
+                        When multiple crash signals cluster together with extreme RSI and proven rally history, 
+                        it creates a compressed spring effect. More panic = More opportunity for contrarians.
+                        <div style="margin-top: 8px; padding: 10px; background: rgba(239,68,68,0.1); border-radius: 6px; font-size: 12px;">
+                            <strong style="color: #10b981;">Theory:</strong> High compression scores (60+) historically precede 
+                            explosive 10-20x moves when catalysts arrive. This is the foundation of crash hunting.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Fear vs Facts Contrarian View -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                <div style="background: #fee2e2; padding: 18px; border-radius: 12px; border-left: 4px solid #ef4444;">
+                    <div style="font-weight: 700; color: #991b1b; margin-bottom: 12px; font-size: 15px;">😱 FEAR (What Panic Shows)</div>
+                    <div style="color: #7f1d1d;">
+                        <div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 💔 Price destruction: 40/40 points</div>
+                    </div>
+                </div>
+                <div style="background: #dcfce7; padding: 18px; border-radius: 12px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #065f46; margin-bottom: 12px; font-size: 15px;">📊 FACTS (What Data Shows)</div>
+                    <div style="color: #064e3b;">
+                        <div style="color: #64748b; font-size: 14px;">Limited historical data</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contrarian Verdict -->
+            <div style="background: white; padding: 18px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #6366f1;">
+                <div style="font-weight: 700; color: #4338ca; margin-bottom: 10px; font-size: 15px;">⚖️ Contrarian Verdict</div>
+                <div style="font-size: 15px; color: #1e293b; line-height: 1.6; font-weight: 600;">
+                    🎯 CONTRARIAN OPPORTUNITY - Fear dominates but facts support recovery potential
+                </div>
+            </div>
+            
+            <!-- Industry Crash Patterns -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">⚠️ Crash Patterns (Industrials)</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book decline or cancellations</div><div>• Margin compression (input costs)</div><div>• Cyclical demand weakness</div>
+                    </div>
+                    <div style="margin-top: 12px; padding: 10px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e; font-weight: 600;">🚨 Active: Project delays or overruns</div>
+                </div>
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">🚀 Recovery Paths</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book growth or new contracts</div><div>• Margin recovery (efficiency gains)</div><div>• Cyclical upturn (capex recovery)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Catalyst Pipeline -->
+            <div style="background: rgba(255,255,255,0.5); padding: 18px; border-radius: 12px; margin-bottom: 20px;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 14px; font-size: 15px;">📅 Catalyst Pipeline</div>
+                
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Letter to Shareholders – 2025 a year of progress</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">POLB 001 to feature in CRS research programme</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">POLB 001 European Patent granted</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Interim Results for the six months to 30 June 2025</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">POLB 001 Phase 2a Trial Update</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+            
+            <!-- CrashDash Decision Matrix -->
+            <div style="background: white; padding: 20px; border-radius: 12px; border: 3px solid #f59e0b;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 16px; text-align: center;">
+                    🎯 CRASHDASH DECISION: <span style="color: #f59e0b; font-size: 20px;">AVOID</span>
+                </div>
+                <div style="font-size: 15px; color: #475569; text-align: center; margin-bottom: 20px; font-weight: 600;">
+                    ❌ SELL/TAKE_PROFITS - timing CROWDED
+                </div>
+                <div style="background: #f8fafc; padding: 16px; border-radius: 10px;">
+                    <div style="font-weight: 700; color: #64748b; margin-bottom: 12px; font-size: 13px;">CHECKLIST (3/5 pass)</div>
+                    
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🔴</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Panic Score</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">66/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">✅</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Timing Regime</div>
+                    <div style="font-size: 13px; color: #ef4444; font-weight: 600;">CROWDED</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">⚠️</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">APEX Quality</div>
+                    <div style="font-size: 13px; color: #ef4444; font-weight: 600;">47/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🎯</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Data Confidence</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">40/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🏭</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Industry Pattern</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">1 active</div>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
+        
+
+        <!-- Decision Summary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◆</span>
+                Why This Matters
+            </div>
+            <div class="stat-row"><span>• APEX 47/100 indicates moderate opportunity quality</span></div><div class="stat-row"><span>• Timing regime: CROWDED</span></div><div class="stat-row"><span>• Historical profile: 1 rallies, 90% best run</span></div>
+            
+            <div class="alert-box" style="margin-top: 20px;">
+                <strong>△ Main Risk:</strong> Confidence 40/100 - full data loaded
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong>◉ Watch Next:</strong>
+                <div style="padding: 8px 0;">• RNS catalysts (funding/operational updates)</div><div style="padding: 8px 0;">• Volume expansion confirmation</div><div style="padding: 8px 0;">• Timing regime change signals</div>
+            </div>
+        </div>
+
+        <!-- ==================== TECHNICAL DETAILS (COLLAPSIBLE) ==================== -->
+        
+        <div class="card">
+          <details style="cursor:pointer;">
+            <summary style="font-weight:800; font-size:16px; list-style:none; padding: 10px; background: #f9fafb; border-radius: 8px;">
+              🔧 Technical Analysis & Scoring Details
+            </summary>
+            <div style="margin-top:14px;">
+              
+            <!-- Scoring Breakdown -->
+            <div class="card-title" style="margin-top: 20px;">
+                <span class="card-icon">▣</span>
+                APEX Score Breakdown
+            </div>
+            <div class="factors-list">
+                <div class="factor-item"><span class="factor-icon">◆</span><span><strong>Strong Technical Setup</strong><br><small>Chart quality: 10/20 • Score: 12/25 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Massive recovery potential</strong><br><small>Down 80.7% from peak • Score: 16/20 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Above average volume</strong><br><small>2.0x average • Score: 6/10 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Limited history</strong><br><small>1 previous rallies • Score: 5/15 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Modest upside</strong><br><small>Historical best: +90% • Score: 8/20 points</small></span></div>
+
+            </div>
+            
+            <div style="margin-top: 40px;"></div>
+            
+            <!-- Exhaustion Metrics -->
+            <div class="card-title">
+                <span class="card-icon">📈</span>
+                Rally Cycle Position
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Current Position</div>
+                    <div style="font-size: 32px; font-weight: 800;">88%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
+                    <div style="font-size: 32px; font-weight: 800;">90%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
+                    <div style="font-size: 32px; font-weight: 800;">1.0x</div>
+                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
+                </div>
+            </div>
+        
+            </div>
+          </details>
+        </div>
+        
+
+        <!-- Reasons Buy/Sell -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #10b981;">▲</span>
+                    Reasons to Buy
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Proven winner - previously hit lock-in target</span>
+                    <span class="tag" style="background: #f59e0b; color: white;">⚡ Medium Strength</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">profit target reached: True</div>
+            </div>
+            
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #ef4444;">▼</span>
+                    Reasons to Sell / Avoid
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Stale signal - not for active trading</span>
+                    <span class="tag" style="background: #ef4444; color: white;">🚨 High Risk</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">historical • signal date=2025-08-08</div>
+            </div>
+            
+            </div>
+        </div>
+
+        <!-- Trade Plans -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">📊</span>
+                    Short-Term Trader Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 20%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <div style="font-size: 18px; font-weight: 600; margin-bottom: 5px;">Active trade</div>
+                    <div style="font-size: 14px; opacity: 0.9;">SELL/TAKE_PROFITS</div>
+                </div>
+                <div style="padding: 12px; background: #f9fafb; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Position Size</div>
+                    <div style="font-weight: 600;">1-3% position based on conviction</div>
+                </div>
+                <div style="padding: 12px; background: #fef2f2; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Risk Management</div>
+                    <div style="font-weight: 600; color: #dc2626;">Stop below recent support / invalidation level</div>
+                </div>
+                <div style="padding: 12px; background: #f0fdf4; border-radius: 6px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Exit Strategy</div>
+                    <div style="font-weight: 600; color: #059669;">Scale out into strength: 25% @ +15%, 50% @ +50%, trail runner</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">💼</span>
+                    Long-Term Investor Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center;">
+                    <div style="font-size: 32px; margin-bottom: 5px;">✗</div>
+                    <div style="font-size: 18px; font-weight: 600;">Not Recommended for Investors</div>
+                </div>
+                <div style="padding: 15px; background: #f9fafb; border-radius: 8px; font-size: 14px; line-height: 1.6;">
+                    <strong style="color: #667eea;">📋 Investment Thesis:</strong><br>
+                    Unlock after AI triangulation + CONFIRMED timing<br><br>
+                    <strong style="color: #667eea;">⏳ Time Horizon:</strong><br>
+                    N/A<br><br>
+                    <strong style="color: #ef4444;">🛡️ Exit Rule:</strong><br>
+                    N/A
+                </div>
+            </div>
+        </div>
+
+        <!-- Commentary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◐</span>
+                Executive Commentary
+            </div>
+            <div style="line-height: 1.6; margin-bottom: 20px;">
+                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows CROWDED timing with 47/100 APEX score. Historical data shows 1 rallies averaging 90% upside. Current position: +88.2%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #10b981;">▲ Bull Case:</strong>
+                <div style="padding: 8px 0;">• Limited upside case without catalysts</div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #ef4444;">▼ Bear Case:</strong>
+                <div style="padding: 8px 0;">• Monitor for breakdown signals</div>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
+                <strong>◷ Timing Translation:</strong><br>
+                Late stage. Consider taking profits as risk/reward deteriorates.
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
+                <strong>◎ Confidence Explained:</strong><br>
+                Confidence 40/100 reflects full data quality with triangulation loaded.
+            </div>
+        </div>
+
+        <!-- Data Quality Warning -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">△</span>
+                Data Quality Notice
+            </div>
+            <div class="alert-box">
+                <strong>Analysis Mode:</strong> HISTORICAL_ONLY<br>
+                <strong>Impact:</strong> HIGH
+            </div>
+            <div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">AI insights from Groq LLM</div></div></div>
+
+            <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk.
+            </div>
+        </div>
+
+        <!-- ==================== TOP 5 RECENT RNS NEWS ==================== -->
+        
+        <div class="card" style="border-top: 3px solid #3b82f6;">
+            <div class="card-title" style="margin-bottom: 20px;">
+                <span class="card-icon">📰</span>
+                Top 5 Recent RNS Announcements
+            </div>
+            <div style="margin-top: 15px;">
+                
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Letter to Shareholders – 2025 a year of progress</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">18th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS-R</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Cathal Friel</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">70%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+18 Dec 2025 07:00
+RNS Number : 0140M
+Poolbeg Pharma PLC
+18 December 2025
+Poolbeg Pharma plc
+Letter to Shareholders - 2025 a year of great progress, with momentum maintained into 2026 when multiple value inflection points are expected
+18 December 2025 -
+Poolbeg Pharma
+(AIM: POLB, 'Poolbeg' or the 'Company'), a clinical-stage biopharmaceutical company with a core focus on transforming the cancer immunotherapy field, publishes an end of year letter from the Company's Executive Chair, Cathal Friel, providing an overview of the significant progress made by the Company in 2025 and outlook for 2026.
+Dear Shareholders,
+As 2025 draws to a close, we wanted to reflect on the substantial progress made by Poolbeg this year, as we move POLB 001 into the clinic and anticipate data readouts from multiple clinical trials in 2026.
+Our oversubscribed and upsized fundraise in June 2025 raised gross proceeds of £4.865 million, extending our cash runway into 2027. The Company's cash balance of £10.0 million (as at 30 June 2025) will support the delivery of multiple key clinical milestones. To align resourcing with these near-term clinical priorities, the Company implemented a series of operational efficiency measures, including selective headcount reductions during the year.
+POLB 001 - Upcoming TOPICAL trial
+Preparations for the forthcoming POLB 001 TOPICAL trial have advanced at pace, with multiple key milestones achieved in rapid succession:
+·
+Secured the approved bispecific antibody, teclistamab, for the study from Johnson & Johnson, a top-five global pharmaceutical company, at no cost to the Company
+·
+Signed an agreement for Accelerating Clinical Trials (ACT) to conduct the trial, led by Dr Emma Searle, Consultant Haematologist at The Christie NHS Foundation Trust
+·
+Confirmed participation from a number of additional cancer centres, including the NHS Foundation Trusts at The Royal Marsden, University College London Hospitals, and University Hospitals Birmingham
+·
+Finalised the protocol and preparing POLB 001 shipment to trial sites
+·
+Single-arm, open-label design enables early insights and safety assessment; interim data expected in summer 2026
+In December 2025, we announced that the TOPICAL trial will play a key role in the RISE programme, led by University of Manchester and The Christie, which is investigating cancer immunotherapy-induced CRS and the safer delivery of these treatments to patients. Poolbeg is the lead business partner alongside Johnson & Johnson and others. Greatly improved response and survival rates are turning the focus to how these truly lifesaving cancer immunotherapies can be made more widely available, with CRS being one of the largest bottlenecks. The continued growth and dominance of these CRS inducing cancer immunotherapies further enhances the value proposition of POLB 001.
+Partnering focused
+We are continuing to progress partnering discussions with several major and mid-sized pharmaceutical companies regarding POLB 001 which, the directors believe, addresses a potential market opportunity of >US$10 billion1. We secured Orphan Drug Designation from the FDA earlier this year and also strengthened our intellectual property position with the granting of multiple new patents.
+Oral GLP-1 programme
+Topline data from
+the proof-of-concept clinical trial for our oral GLP-1 programme in up to 20 obese subjects is expected in H1 2026. The trial is due to take place at the University of Ulster, led by a team that includes Professor Carel le Roux, a notable figure in the field of metabolic medicine.
+Whilst we are currently prioritising the upcoming clinical trials for POLB 001 and our oral GLP-1 programme, we are seeking to progress potential collaborations in our AI-led programmes. AI-driven drug discovery is seeing continued global interest due to its potential in accelerating target identification, reducing costs, de-risking development, and improving success rates.
+Outlook
+2025 has been a remarkable year of significant achievement, positioning Poolbeg strongly to deliver on a series of exciting clinical milestones in 2026. We are well-funded through a catalyst-rich period, with a cash runway into 2027.
+We would like to thank our shareholders for their continued support, and we look forward to reporting on our progress in 2026.
+Cathal Friel,
+Executive Chair
+Enquiries
+Poolbeg Pharma Plc
+Jeremy Skillington, CEO
+Ian O'Connell, CFO
++44 (0) 207 183 1499
+ir@poolbegpharma.com
+Cavendish Capital Markets Ltd (NOMAD & Joint Broker)
+Geoff Nash, Trisyia Jamaludin (Corporate Finance)
+Nigel Birks (Life Science Specialist Sales)
+Harriet Ward (ECM)
++44 (0) 207 220 0500
+Shore Capital Stockbrokers Ltd (Joint Broker)
+David Coaten, Harry Davies-Ball (Corporate Advisory)Malachy McEntyre (Corporate Broking)
++44 (0) 207 408 4090
+J&E Davy (Joint Broker)
+Anthony Farrell, Niall Gilchrist
++353 (0) 1 679 6363
+Optimum Strategic Communications
+Nick Bastin, Vici Rabbetts, Elena Bates
++44 (0) 208 078 4357
+poolbeg@optimumcomms.com
+About POLB 001
+POLB 001 has the potential to transform the lives of late-stage cancer patients by preventing cancer immunotherapy-induced CRS, a life-threatening side effect that >70% of patients experience2. Due to the risk of CRS, patients have to travel long distances to specialist cancer hospitals and stay for weeks at a time. By preventing CRS, POLB 001 has the potential to allow administration of these drugs to take place in local community hospitals and in an outpatient setting, vastly improving patient quality of life, transforming healthcare systems, and increasing the addressable market for pharma companies.
+About Poolbeg Pharma plc
+Poolbeg Pharma plc (AIM: POLB) is a clinical-stage biopharmaceutical company with a core focus on transforming the cancer immunotherapy field. The Company's lead asset, POLB 001, has the potential to expand administration of cancer immunotherapies from centralised specialist cancer centres into community hospitals by making the treatments safer through the prevention of the life-threatening side effect, Cytokine Release Syndrome (CRS). As such, POLB 001 could increase the number of patients that can receive these life-saving treatments, thereby increasing the market opportunity. Poolbeg is also advancing the development of a patient-friendly therapy for obesity with an oral encapsulated GLP-1, offering a differentiated approach within one of the world's largest markets. With multiple near-term clinical value inflection points, and an experienced team with a proven track record, Poolbeg is focussed on partnering its high value programmes that are targeting large markets and addressing critical unmet medical needs.
+Stay updated:
+Website
+|
+Sign up for RNS alerts
+|
+Presentation
+|
+X
+|
+LinkedIn
+Forward-Looking Statements
+This announcement may contain forward-looking statements and the words "expect", "anticipate", "intends", "plan", "estimate", "aim", "forecast", "project" and similar expressions (or their negative) identify certain of these forward-looking statements. The forward-looking statements in this announcement are based on numerous assumptions and Poolbeg's present and future business strategies and the environment in which Poolbeg expects to operate in the future. Forward-looking statements involve inherent known and unknown risks, uncertainties and contingencies because they relate to events and depend on circumstances that may or may not occur in the future and may cause the actual results, performance or achievements to be materially different from those expressed or implied by such forward-looking statements. These statements are not guarantees of future performance or the ability to identify and consummate investments. Many of these risks and uncertainties relate to factors that are beyond Poolbeg's ability to control or estimate precisely, such as future market conditions, currency fluctuations, the behaviour of other market participants, the outcome of clinical trials, the actions of regulators and other factors such as Poolbeg's ability to obtain financing, changes in the political, social and regulatory framework in which Poolbeg operates or in economic, technological or consumer trends or conditions. Past performance should not be taken as an indication or guarantee of future results, and no representation or warranty, express or implied, is made regarding future performance. No person is under any obligation to update or keep current the information contained in this announcement or to provide the recipient of it with access to any additional relevant information.
+References
+1. Independent research by Decisive Consulting Limited.
+2. Average rate from Summary of Product Characteristics (SmPCs) for Yescarta, Tecartus, Abecma, Kymriah, Carvykti, Breyanzi, Elrexfio, Columvi, Epkinly, Tecvayli and Talvey.
+This information is provided by Reach, the non-regulatory press release distribution service of RNS, part of the London Stock Exchange. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+NRABRBDDCDBDGUR
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">POLB 001 to feature in CRS research programme</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">8th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS-R</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Dr Glenn</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">70%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+8 Dec 2025 07:00
+RNS Number : 5250K
+Poolbeg Pharma PLC
+08 December 2025
+Poolbeg Pharma plc
+POLB 001 trial to feature in groundbreaking cancer immunotherapy-induced CRS research programme
+RISE programme led by The University of Manchester and The Christie NHS Foundation Trust and funded in part by MRC grant
+Poolbeg will act as the lead business partner
+alongside Johnson & Johnson and other partners
+8 December 2025 -
+Poolbeg Pharma
+(AIM: POLB, 'Poolbeg' or the 'Company'), a clinical-stage biopharmaceutical company with a core focus on transforming the cancer immunotherapy field, announces that the POLB 001 TOPICAL trial is to feature in a groundbreaking cancer immunotherapy-induced cytokine release syndrome ("CRS") research programme.
+Poolbeg will act as the lead business partner,
+alongside Johnson & Johnson and other partners,
+on The University of Manchester and The Christie NHS Foundation Trust research programme supported by a £3.4 million Prosperity Partnership grant from the Medical Research Council ("MRC")
+.
+The programme, titled RISE (Reducing Immune Stress from Excess cytokine release in advanced therapies), will facilitate wider research into cancer immunotherapy-induced CRS and the safer delivery of these treatments.
+Central to the RISE programme will be the
+previously announced POLB 001 TOPICAL trial
+, for which Johnson & Johnson will provide the approved bispecific antibody, teclistamab. RISE will not impact the delivery of data from
+the POLB 001 clinical trial, anticipated in
+summer 2026. Poolbeg's participation in this programme will not impact the Company's cash runway into 2027.
+The programme includes
+the collection of clinical data from patients treated with bispecific antibodies and CAR T-cell therapies and will involve additional research beyond the TOPICAL trial into the potential of POLB 001 to prevent cancer immunotherapy-induced CRS. The programme reflects the growing recognition of the unmet medical need in the management of CRS and other serious adverse effects, which is a significant bottleneck to the broader availability and uptake of these breakthrough cancer immunotherapies.
+The RISE programme will be under the leadership of Dr Jonathan Lim, Clinical Senior Lecturer and Honorary Consultant Medical Oncologist in Advanced Immunotherapy and Cell Therapy and conducted at The University of Manchester and The Christie.
+Jeremy Skillington, PhD, Chief Executive Officer of Poolbeg Pharma, said:
+"
+Advanced immunotherapies are the future of cancer treatment but can come with some severe adverse effects, such as CRS.
+This programme will deepen the understanding of CRS and could be beneficial for POLB 001, as we seek to bring its potential benefits to patients.
+Poolbeg is delighted to be working alongside
+The University of Manchester, The Christie, Johnson & Johnson and other leading partners, who are focussed on finding a solution for CRS. The Christie has an ambition to position the UK as a global leader in research focused on the safe delivery of cancer immunotherapies and we are very proud that POLB 001 can play a key part in this."
+Dr Jonathan Lim, Clinical Senior Lecturer and Honorary Consultant Medical Oncologist in Advanced Immunotherapy and Cell Therapy at the Christie said
+"RISE harnesses Manchester's multidisciplinary strengths to explore the biology behind both the power and the risks of modern cancer immunotherapies. Supported by the MRC Prosperity Partnership, this initiative exemplifies how academic-industry collaboration can accelerate discovery and ensure these therapies are delivered safely and responsibly."
+Dr Glenn Wells, MRC Deputy Executive Chair, said:
+"This project is part of a £9 million public sector investment through MRC's first Prosperity Partnerships. With
+additional contribution
+from industry and close collaboration with key regulatory bodies, we are addressing the safety and toxicity of advanced therapies. This research is critical to improving how gene, cell-based, and nucleic acid-dependent therapies are developed for conditions such as cancers and rare genetic disorders, so we can make meaningful improvements to patient outcomes."
+Enquiries
+Poolbeg Pharma Plc
+Jeremy Skillington, CEO
+Ian O'Connell, CFO
++44 (0) 207 183 1499
+ir@poolbegpharma.com
+Cavendish Capital Markets Ltd (NOMAD & Joint Broker)
+Geoff Nash, Trisyia Jamaludin (Corporate Finance)
+Nigel Birks (Life Science Specialist Sales)
+Harriet Ward (ECM)
++44 (0) 207 220 0500
+Shore Capital Stockbrokers Ltd (Joint Broker)
+David Coaten, Harry Davies-Ball (Corporate Advisory)Malachy McEntyre (Corporate Broking)
++44 (0) 207 408 4090
+J&E Davy (Joint Broker)
+Anthony Farrell, Niall Gilchrist
++353 (0) 1 679 6363
+Optimum Strategic Communications
+Nick Bastin, Vici Rabbetts, Elena Bates
++44 (0) 208 078 4357
+poolbeg@optimumcomms.com
+About CRS
+Cytokine Release Syndrome (CRS) is a severe and potentially life-threatening side effect of cancer immunotherapies. Over 70% of patients undergoing treatment with certain T-cell engaging bispecific antibodies or CAR T-cell therapies are affected.1
+About Poolbeg Pharma plc
+Poolbeg Pharma plc (AIM: POLB) is a clinical-stage biopharmaceutical company with a core focus on transforming the cancer immunotherapy field. The Company's lead asset, POLB 001, has the potential to expand administration of cancer immunotherapies from centralised specialist cancer centres into community hospitals by making the treatments safer through the prevention of the life-threatening side effect, Cytokine Release Syndrome (CRS). As such, POLB 001 could increase the number of patients that can receive these life-saving treatments, thereby increasing the market opportunity. Poolbeg is also advancing the development of a patient-friendly therapy for obesity with an oral encapsulated GLP-1, offering a differentiated approach within one of the world's largest markets. With multiple near-term clinical value inflection points, and an experienced team with a proven track record, Poolbeg is focussed on partnering its high value programmes that are targeting large markets and addressing critical unmet medical needs.
+Stay updated:
+Website
+|
+Sign up for RNS alerts
+|
+Presentation
+|
+X
+|
+LinkedIn
+Forward-Looking Statements
+This announcement may contain forward-looking statements and the words "expect", "anticipate", "intends", "plan", "estimate", "aim", "forecast", "project" and similar expressions (or their negative) identify certain of these forward-looking statements. The forward-looking statements in this announcement are based on numerous assumptions and Poolbeg's present and future business strategies and the environment in which Poolbeg expects to operate in the future. Forward-looking statements involve inherent known and unknown risks, uncertainties and contingencies because they relate to events and depend on circumstances that may or may not occur in the future and may cause the actual results, performance or achievements to be materially different from those expressed or implied by such forward-looking statements. These statements are not guarantees of future performance or the ability to identify and consummate investments. Many of these risks and uncertainties relate to factors that are beyond Poolbeg's ability to control or estimate precisely, such as future market conditions, currency fluctuations, the behaviour of other market participants, the outcome of clinical trials, the actions of regulators and other factors such as Poolbeg's ability to obtain financing, changes in the political, social and regulatory framework in which Poolbeg operates or in economic, technological or consumer trends or conditions. Past performance should not be taken as an indication or guarantee of future results, and no representation or warranty, express or implied, is made regarding future performance. No person is under any obligation to update or keep current the information contained in this announcement or to provide the recipient of it with access to any additional relevant information.
+About The Christie NHS Foundation Trust
+The Christie is a specialist cancer centre in Manchester and has more than 120 years of expertise in cancer care, research and education. It is one of Europe's leading cancer centres, treating over 60,000 patients a year. It is the largest provider of radiotherapy in the NHS (including high energy proton beam therapy and MR guided radiotherapy); it is home to the largest chemotherapy unit in the UK; and is a specialist surgical centre concentrating on rare cancers and complex procedures. The Christie is one of Europe's largest experimental cancer medicine centres and an international leader in research and development with around 750 clinical studies ongoing at any one time.
+The Christie charity provides enhanced services for patients over and above what the NHS funds.
+Visit
+www.christie.nhs.uk
+to find out more or follow The Christie on social media @TheChristieNHS
+[1]
+Average rate from Summary of Product Characteristics (SmPCs) for Yescarta, Tecartus, Abecma, Kymriah, Carvykti, Breyanzi, Elrexfio, Columvi, Epkinly, Tecvayli and Talvey;
+This information is provided by Reach, the non-regulatory press release distribution service of RNS, part of the London Stock Exchange. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+NRAFSUFMIEISELE
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">POLB 001 European Patent granted</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">20th Nov 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Optimum Strategic</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+20 Nov 2025 07:00
+RNS Number : 2434I
+Poolbeg Pharma PLC
+20 November 2025
+Poolbeg Pharma plc
+POLB 001 European Patent granted
+Further strengthens Poolbeg's global intellectual property portfolio
+20 November 2025 -
+Poolbeg Pharma
+(AIM: POLB, 'Poolbeg' or the 'Company'), a clinical-stage biopharmaceutical company with a core focus on transforming the cancer immunotherapy field, announces that the European Patent Office has granted Poolbeg's European Immunomodulator II patent application covering POLB 001 for the treatment of severe influenza.
+POLB 001 is a potent and selective p38 MAP kinase inhibitor with strong potential across multiple disease areas, including the prevention and treatment of cancer immunotherapy-induced Cytokine Release Syndrome ("CRS"), a potential market opportunity of over US$10 billion, and the treatment of severe influenza. POLB 001 holds the potential to address significant unmet needs affecting patients and healthcare systems globally.
+Poolbeg is actively building a comprehensive, worldwide IP portfolio, with patents covering use of p38 MAPK inhibitors in patients with severe influenza and for the prevention and treatment of cancer immunotherapy-induced CRS. This patent grant further strengthens the Company's robust intellectual property portfolio, enhancing POLB 001's value and appeal to potential partners.
+Jeremy Skillington, PhD, Chief Executive Officer of Poolbeg Pharma, said:
+"
+This patent grant from the European Patent Office highlights the strong progress we continue to make in developing and strengthening our IP portfolio for POLB 001 across multiple disease indications. This further enhances the value and attractiveness of POLB 001 for potential partners.
+"
+Enquiries
+Poolbeg Pharma Plc
+Jeremy Skillington, CEO
+Ian O'Connell, CFO
++44 (0) 207 183 1499
+ir@poolbegpharma.com
+Cavendish Capital Markets Ltd (NOMAD & Joint Broker)
+Geoff Nash, Trisyia Jamaludin (Corporate Finance)
+Nigel Birks (Life Science Specialist Sales)
+Harriet Ward (ECM)
++44 (0) 207 220 0500
+Shore Capital Stockbrokers Ltd (Joint Broker)
+David Coaten, Harry Davies-Ball (Corporate Advisory)Malachy McEntyre (Corporate Broking)
++44 (0) 207 408 4090
+J&E Davy (Joint Broker)
+Anthony Farrell, Niall Gilchrist
++353 (0) 1 679 6363
+Optimum Strategic Communications
+Nick Bastin, Vici Rabbetts, Elena Bates
++44 (0) 208 078 4357
+poolbeg@optimumcomms.com
+About Poolbeg Pharma plc
+Poolbeg Pharma plc (AIM: POLB) is a clinical-stage biopharmaceutical company with a core focus on transforming the cancer immunotherapy field. The Company's lead asset, POLB 001, has the potential to expand administration of cancer immunotherapies from centralised specialist cancer centres into community hospitals by making the treatments safer through the prevention of the life-threatening side effect, Cytokine Release Syndrome (CRS). As such, POLB 001 could increase the number of patients that can receive these life-saving treatments, thereby increasing the market opportunity. Poolbeg is also advancing the development of a patient-friendly therapy for obesity with an oral encapsulated GLP-1, offering a differentiated approach within one of the world's largest markets. With multiple near-term clinical value inflection points, and an experienced team with a proven track record, Poolbeg is focussed on partnering its high value programmes that are targeting large markets and addressing critical unmet medical needs.
+Stay updated:
+Website
+|
+Sign up for RNS alerts
+|
+Presentation
+|
+X
+|
+LinkedIn
+Forward-Looking Statements
+This announcement may contain forward-looking statements and the words "expect", "anticipate", "intends", "plan", "estimate", "aim", "forecast", "project" and similar expressions (or their negative) identify certain of these forward-looking statements. The forward-looking statements in this announcement are based on numerous assumptions and Poolbeg's present and future business strategies and the environment in which Poolbeg expects to operate in the future. Forward-looking statements involve inherent known and unknown risks, uncertainties and contingencies because they relate to events and depend on circumstances that may or may not occur in the future and may cause the actual results, performance or achievements to be materially different from those expressed or implied by such forward-looking statements. These statements are not guarantees of future performance or the ability to identify and consummate investments. Many of these risks and uncertainties relate to factors that are beyond Poolbeg's ability to control or estimate precisely, such as future market conditions, currency fluctuations, the behaviour of other market participants, the outcome of clinical trials, the actions of regulators and other factors such as Poolbeg's ability to obtain financing, changes in the political, social and regulatory framework in which Poolbeg operates or in economic, technological or consumer trends or conditions. Past performance should not be taken as an indication or guarantee of future results, and no representation or warranty, express or implied, is made regarding future performance. No person is under any obligation to update or keep current the information contained in this announcement or to provide the recipient of it with access to any additional relevant information.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+MSCBLBFTMTABBIA
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #10b98140;
+                    ">4</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #4
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Interim Results for the six months to 30 June 2025</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">POSITIVE RESULTS</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Positive development - monitor for follow-through in share price.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">29th Sep 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Companies House</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">70%, 42%, 65%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+29 Sep 2025 07:00
+RNS Number : 0910B
+Poolbeg Pharma PLC
+29 September 2025
+Poolbeg Pharma plc
+Interim Results for the six months to 30 June 2025
+Well-funded with multiple upcoming clinical milestones
+29 September 2025 -
+Poolbeg Pharma
+(AIM: POLB, 'Poolbeg' or the 'Company'), a clinical-stage biopharmaceutical company with a core focus on transforming the cancer immunotherapy field, announces its unaudited interim results for the six months to 30 June 2025.
+Highlights & Updates
+•
+Cash balance of £10.0 million as at 30 June 2025, including £4.865 million gross proceeds raised as part of an oversubscribed and upsized fundraise
+•
+Cash runway extended into 2027, supporting the delivery of multiple key clinical milestones
+•
+Specialist blood cancer trials organisation Accelerating Clinical Trials Limited appointed to conduct POLB 001 Phase 2a trial, and supply of an approved bispecific antibody drug secured for the trial at no cost to the Company
+•
+Trial due to take place at The Christie NHS Foundation Trust and other leading UK specialist cancer centres, with interim data expected summer 2026
+•
+POLB 001 granted Orphan Drug Designation by FDA as an oral preventative therapy for T-cell engager bispecific antibody-induced Cytokine Release Syndrome ("CRS"), further validating POLB 001's scientific rationale and enhancing its commercial appeal
+•
+Positive data from an
+in vivo
+animal study in H1 2025 supported the use of POLB 001 to prevent CRS induced by T-cell engaging bispecific antibody therapies
+•
+Progress made towards commencement of oral GLP-1 proof of concept trial at University of Ulster, led by Prof Carel le Roux with up to 20 obese subjects, with
+topline data expected H1 2026
+•
+The Company's pipeline programmes are in areas of significant interest to the pharmaceutical industry and as such, Poolbeg anticipates strong potential for partnering on positive data from the forthcoming clinical trials
+Jeremy Skillington, PhD, Chief Executive Officer of Poolbeg, commented:
+"We have made excellent progress this year and have entered a catalyst-rich period for Poolbeg. Preparations for the POLB 001 Phase 2a trial are well advanced, with the approved bispecific antibody secured at no cost to the Company. The data from this study will further strengthen our extensive preclinical and clinical package, supported by the recent FDA Orphan Drug Designation, which underscores the strong scientific rationale behind POLB 001 and enhances its commercial appeal with prospective partners.
+"Looking ahead, we anticipate a series of potential value-creating milestones as data emerges from our POLB 001 and Oral GLP-1 trials in 2026. This, combined with a robust cash runway and a team with proven expertise in clinical trial execution and deal-making, means that we believe we are well positioned to deliver value for shareholders. We look forward to providing further updates to the market in due course."
+Enquiries
+Poolbeg Pharma Plc
+Jeremy Skillington, CEO
+Ian O'Connell, CFO
++44 (0) 207 183 1499
+ir@poolbegpharma.com
+Cavendish Capital Markets Ltd (NOMAD & Joint Broker)
+Geoff Nash, Trisyia Jamaludin (Corporate Finance)
+Nigel Birks (Life Science Specialist Sales)
+Harriet Ward (ECM)
++44 (0) 207 220 0500
+Shore Capital Stockbrokers Ltd (Joint Broker)
+David Coaten, Harry Davies-Ball (Corporate Advisory)Malachy McEntyre
+(Corporate Broking)
++44 (0) 207 408 4090
+J&E Davy (Joint Broker)
+Anthony Farrell, Niall Gilchrist
++353 (0) 1 679 6363
+Optimum Strategic Communications
+Nick Bastin, Vici Rabbetts, Elena Bates
++44 (0) 208 078 4357
+poolbeg@optimumcomms.com
+About Poolbeg Pharma plc
+Poolbeg Pharma plc (AIM: POLB) is a clinical-stage biopharmaceutical company with a core focus on transforming the cancer immunotherapy field. The Company's lead asset, POLB 001, has the potential to expand administration of cancer immunotherapies from centralised specialist cancer centres into community hospitals by making the treatments safer through the prevention of the life-threatening side effect, Cytokine Release Syndrome (CRS). As such, POLB 001 could increase the number of patients that can receive these life-saving treatments, thereby increasing the market opportunity. Poolbeg is also advancing the development of a patient-friendly therapy for obesity with an oral encapsulated GLP-1, offering a differentiated approach within one of the world's largest markets. With multiple near-term clinical value inflection points, and an experienced team with a proven track record, Poolbeg is focussed on partnering its high value programmes that are targeting large markets and addressing critical unmet medical needs.
+Stay updated:
+Website
+|
+Sign up for RNS alerts
+|
+Presentation
+|
+X
+|
+LinkedIn
+Forward-Looking Statements
+This announcement may contain forward-looking statements and the words "expect", "anticipate", "intends", "plan", "estimate", "aim", "forecast", "project" and similar expressions (or their negative) identify certain of these forward-looking statements. The forward-looking statements in this announcement are based on numerous assumptions and Poolbeg's present and future business strategies and the environment in which Poolbeg expects to operate in the future. Forward-looking statements involve inherent known and unknown risks, uncertainties and contingencies because they relate to events and depend on circumstances that may or may not occur in the future and may cause the actual results, performance or achievements to be materially different from those expressed or implied by such forward-looking statements. These statements are not guarantees of future performance or the ability to identify and consummate investments. Many of these risks and uncertainties relate to factors that are beyond Poolbeg's ability to control or estimate precisely, such as future market conditions, currency fluctuations, the behaviour of other market participants, the outcome of clinical trials, the actions of regulators and other factors such as Poolbeg's ability to obtain financing, changes in the political, social and regulatory framework in which Poolbeg operates or in economic, technological or consumer trends or conditions. Past performance should not be taken as an indication or guarantee of future results, and no representation or warranty, express or implied, is made regarding future performance. No person is under any obligation to update or keep current the information contained in this announcement or to provide the recipient of it with access to any additional relevant information.
+CEO Statement
+I am delighted to present the unaudited Interim Financial Statements of Poolbeg Pharma plc for the six months to 30 June 2025.
+We made strong progress across our pipeline in H1 2025, and were pleased to have seen such significant interest from investors in
+our oversubscribed and upsized fundraise
+. The £4.865 million gross proceeds raised,
+together with our existing resources,
+extends our cash runway into 2027 and
+will support the delivery of multiple key clinical milestones
+in oncology and obesity - two areas of high strategic value and growing interest within the pharmaceutical industry - as we continue to progress toward partnering our programmes.
+Strong progress across the pipeline
+POLB 001 - potential US$10 billion market opportunity1
+POLB 001 is potentially a breakthrough, orally delivered, p38 MAPK inhibitor to prevent cancer immunotherapy-induced Cytokine Release Syndrome ("CRS"), with further life cycle opportunities, including severe influenza. CRS is a severe and potentially life-threatening side effect of cancer immunotherapies. Over 70% of patients undergoing treatment with certain T-cell engaging bispecific antibodies or CAR T-cell therapies are affected.
+2
+Due to the risk of CRS, treatment is restricted to specialist cancer centres causing extended hospitalisation, high consumption of healthcare resources, and ultimately a reduced uptake of treatment due to accessibility or capacity limitations. With no approved therapies for the prevention of cancer immunotherapy-induced CRS, POLB 001 represents a significant opportunity to transform the field of cancer immunotherapies. By making the treatments safer, through the prevention of CRS, administration of cancer immunotherapies can be expanded from centralised specialist cancer centres into community hospitals. As such, POLB 001 could increase the number of patients that can receive these life-saving treatments, further increasing the market opportunity.
+As a preventative therapy for cancer immunotherapy-induced CRS, we believe that POLB 001 has a market opportunity exceeding US$10 billion. This estimate accounts for multiple myeloma and diffuse large B-cell lymphoma patients alone, two indications in which cancer immunotherapies have a dominant position for the treatment of late-stage disease. However, we believe this is a conservative estimate, as the demand for CRS management may increase as immunotherapies are developed for a wider range of haematological malignancies (blood cancers) and solid tumours.
+In May 2025, the US Food and Drug Administration ("FDA") granted Orphan Drug Designation to POLB 001 as an oral preventative therapy for T-cell engager bispecific antibody-induced CRS. Orphan Drug Designation provides Poolbeg with potential clinical development and commercialisation benefits, including a seven-year period of US market exclusivity following regulatory approval of POLB 001, waiver of Prescription Drug User Fee Act application fees (valued at over US$4 million), earlier access to Special Protocol Assessment to agree on pivotal trial designs, and the potential for tax credits for qualifying clinical trials.
+POLB 001 has demonstrated a compelling safety and efficacy profile in both preclinical and clinical settings. Results from the 2023 human LPS challenge trial and 2024
+in vivo
+animal study have significantly de-risked the upcoming Phase 2a trial. Further favourable data in a new
+in vivo
+animal study in H1 2025 supported the use of POLB 001 as a preventative for CRS induced by T-cell engaging bispecific antibody therapies such as approved breakthrough therapeutics teclistamab, elranatamab, talquetamab and others.
+POLB 001 has a favourable safety and tolerability profile and, importantly, it selectively prevents excessive inflammation without immunosuppression, particularly pertinent in vulnerable patient populations, like cancer patients, who must maintain functional immune responses.
+We signed an agreement for a specialist blood cancer trials organisation, Accelerating Clinical Trials Limited ("ACT"), to conduct the upcoming POLB 001 Phase 2a trial
+. We are pleased to have secured
+the supply of an approved bispecific antibody drug for the trial at no cost to the Company and are now
+at an advanced stage of trial preparations. The study
+will be led by Dr Emma Searle, Consultant Haematologist at The Christie NHS Foundation Trust, Honorary Senior Lecturer at the University of Manchester, as well as Chair of the British Society of Haematology Research and Grants Committee. The Christie, a leading cancer research institute based in Manchester, and a number of other leading UK specialist cancer centres will participate.
+This open-label, single-arm trial will evaluate POLB 001 in approximately 30 relapsed, refractory, multiple myeloma patients receiving an approved bispecific antibody. We are encouraged by the interest from leading myeloma clinicians that have expressed interest in participating in the upcoming trial, which reinforces the positive feedback received to date from key opinion leaders in the space.
+We are on track to deliver clinical data in 2026 and look forward to sharing this data with prospective partners, we see
+strong potential for partnering on positive data from the forthcoming trial
+. The demand for effective CRS prevention solutions is driven by rapid growth of CRS-inducing cancer immunotherapies, a market which is expected to grow to US$120 billion by 2030.
+3,4,5
+In addition, the recent FDA Orphan Drug Designation further validates POLB 001's scientific rationale and enhances its commercial appeal for prospective partners. If approved, POLB 001 has the potential to revolutionise cancer immunotherapy delivery by making it safer, enabling administration in community hospitals, reducing healthcare burden, and ultimately expanding patient access to these life-saving treatments.
+Oral encapsulated GLP-1 programme targeting the obesity market
+Our oral encapsulated GLP-1 programme leverages a proprietary delivery system that encapsulates APIs (active pharmaceutical ingredients) using Generally Recognised as Safe (GRAS) components. This approach targets delivery to specific areas of the gut and into systemic circulation, with the potential to improve convenience and bioavailability, for the treatment of metabolic disorders, such as obesity. The effectiveness of the technology has already been validated via the commercialisation of encapsulated oral probiotics and nutraceuticals by our partner, AnaBio Technologies.
+Obesity has been recognised by the World Health Organization (WHO) as a major global health challenge, reaching epidemic levels. According to the US Centers for Disease Control and Prevention (CDC), approximately 42% of the US population is currently affected
+6
+. In 2023, obesity-related issues were estimated to have cost US businesses and their employees around US$347.5 billion
+7
+. These factors have contributed to the rapid rise in demand for prescription weight loss treatments, notably glucagon-like peptide 1 receptor agonists ("GLP-1R"). The global GLP-1R market is forecast to grow significantly, expected to reach US$150 billion by 2031 across obesity and diabetes indications alone
+8
+.
+Oral GLP-1R options remain limited yet highly sought after owing to their non-invasiveness, ease of access and greater patient compliance, particularly those with chronic conditions who require long-term treatment. There are major shortcomings within currently approved injectable treatment options, with 65% of patients who discontinued GLP-1s within one year stating they would prefer oral alternatives
+9
+. There is currently only one oral GLP-1R agonist on the market with a bioavailability of just c.1%
+10
+. Our licensed technology has the potential to overcome challenges associated with oral delivery of peptide-based biologics, offering a differentiated approach within one of the world's largest markets.
+Our proof-of-concept clinical trial will take place at the University of Ulster, led by a team that includes Professor Carel le Roux, a notable figure in the field of metabolic medicine. The trial is designed to generate impactful data, expected in H1 2026, that demonstrates the ability to safely and efficiently deliver our oral GLP-1 in up to 20 obese subjects. We continue to keep potential pharma partners updated on the progress of this trial and we believe there is potential for partnering on positive data. As Poolbeg holds a licence to this proprietary oral encapsulation technology across all metabolic conditions, there is also further partnering opportunities beyond GLP-1 and the successful results from the trial may provide technology validation to support multiple opportunities for value creation.
+Artificial Intelligence ("AI") Programmes
+Whilst we are currently prioritising the upcoming clinical trials for POLB 001 and our Oral GLP-1 programme, discussions in respect to potential collaborations of our AI-led programmes are ongoing. AI-driven drug discovery is seeing continued global interest as it has the potential to accelerate target identification, reduce costs, de-risk development, and improve success rates. We successfully identified multiple novel drug targets and new potential drug candidates for Influenza and Respiratory Syncytial Virus ("RSV") respectively - with multiple partnering opportunities from each programme.
+Financial
+During the period, the Company strengthened its financial position by completing a
+£4.865m (before expenses) fundraise at 2.5p per share. This resulted in a
+cash balance of £10.0 million as at 30 June 2025 (30 June 2024: £10.1 million) and extends Poolbeg's financial runway into 2027
+supporting the delivery of multiple key clinical milestones
+. To align resourcing with these near-term clinical priorities, the Company implemented a series of operational efficiency measures, including selective headcount reductions. These changes are expected to streamline the cost base and maintain focus on the delivery of key clinical milestones through 2026 and into 2027.
+The loss for the period amounted to £2.2 million (H1 24: £2.3 million) comprised of R&D expenses of £0.5 million (H1 24: £0.7 million), administrative expenses £2.0 million (H1 24: £2.1 million), and tax rebates and other income & charges of £0.4 million (H1 24: £0.6 million).
+Outlook
+Our programmes are in areas of high interest within the pharmaceutical industry. We are optimistic about the potential of POLB 001 to transform the delivery of cancer immunotherapies by moving administration away from specialist centralised cancer centres and into the community setting, closer to patients' homes and, as a result, making these life-saving treatments available to more patients. POLB 001 has the potential to make cancer immunotherapies safer by reducing the incidence of cancer immunotherapy-CRS which can be potentially life threatening.
+This is
+supported by strong pre-clinical and clinical data generated to date, robust intellectual property, global rights, and FDA Orphan Drug Designation for POLB 001.
+In addition, our patient-friendly oral encapsulated GLP-1 for obesity offers a differentiated approach within one of the world's largest markets.
+I am excited about Poolbeg's future; we've entered a catalyst-rich period, supported by a robust cash balance that provides runway through to 2027. With a clear plan to deliver shareholder value through our clinical programmes, we are led by a proven team with expertise in clinical execution and deal-making and we see strong potential to secure partnerships based on positive data from our upcoming trials.
+Jeremy Skillington
+CEO
+26 September 2025
+References
+1.Independent research by Decisive Consulting Limited.
+2.
+Average rate from Summary of Product Characteristics (SmPCs) for Yescarta, Tecartus, Abecma, Kymriah, Carvykti, Breyanzi, Elrexfio, Columvi, Epkinly, Tecvayli and Talvey;
+3. Grand View Research. CAR T-Cell Therapy Market Analysis 2023-2030.
+4. Grand View Research. Bispecific Antibodies Market Size, Share & Trends Analysis Report.
+5.Datamonitor Healthcare. Forecast: Diffuse Large B-Cell Lymphoma and Multiple Myeloma, 2023.
+6. Stierman B, Afful J, Carroll MD, et al. National Health and Nutrition Examination Survey 2017-March 2020 prepandemic data files development of files and prevalence estimates for selected health outcomes. Natl Health Stat Report. 2021;158.
+7. Global Data, Assessing the Economic Impact of Obesity and Overweight on Employers, Feb 2024.
+8. The Economist, March 2023.
+9. PMID: 29033597.
+10. EMA Product information 2020
+Consolidated Statement of Comprehensive Income
+For the six months to 30 June 2025
+Unaudited
+Six months to
+30 June 2025
+Unaudited
+Six months to
+30 June 2024
+Audited
+Year ended
+31 December 2024
+Note
+£'000
+£'000
+£'000
+Revenue
+-
+-
+-
+Cost of sales
+-
+-
+-
+Gross profit
+-
+-
+-
+Administrative expenses
+(2,031)
+(2,113)
+(5,258)
+Other operating income
+209
+285
+530
+Research and development expenses
+(527)
+(701)
+(1,383)
+Net losses on disposal of assets
+-
+-
+(261)
+Operating loss
+(2,349)
+(2,529)
+(6,372)
+Finance income
+116
+246
+428
+Loss before income tax
+(2,233)
+(2,283)
+(5,944)
+Taxation
+55
+25
+154
+Loss and total comprehensive loss for the period attributable to the equity holders of the Company
+(2,178)
+(2,258)
+(5,790)
+Loss per share:
+Loss per share - basic and diluted, attributable to ordinary equity holders of the parent
+3
+(0.43)p
+(0.45)p
+(1.16)p
+Consolidated Statement of Financial Position
+As at 30 June 2025
+Unaudited
+Unaudited
+Audited
+30 June 2025
+30 June 2024
+31 December 2024
+Note
+£'000
+£'000
+£'000
+Assets
+Non-current assets
+Intangible assets
+4
+1,662
+2,011
+1,684
+Total non-current assets
+1,662
+2,011
+1,684
+Current assets
+Trade and other receivables
+5
+738
+938
+739
+Cash and cash equivalents
+9,961
+10,061
+7,824
+Total current assets
+10,699
+10,999
+8,563
+Total assets
+12,361
+13,010
+10,247
+Equity and liabilities
+Equity attributable to owners of the parent
+Share capital
+139
+100
+100
+Share premium
+27,548
+23,100
+23,100
+Other reserves
+3,166
+2,460
+2,816
+Accumulated deficit
+(18,921)
+(13,211)
+(16,743)
+Total equity
+11,932
+12,449
+9,273
+Current liabilities
+Trade and other payables
+429
+561
+974
+Total current liabilities
+429
+561
+974
+Total liabilities
+429
+561
+974
+Total equity and liabilities
+12,361
+13,010
+10,247
+Consolidated Statement of Changes in Equity
+For the six months to 30 June 2025
+Share
+capital
+Share
+premium
+Share based payment reserve
+Merger
+reserve
+Accumulated deficit
+Total
+Note
+£'000
+£'000
+£'000
+£'000
+£'000
+£'000
+At 1 January 2024
+100
+23,100
+740
+1,455
+(10,953)
+14,442
+Loss and total comprehensive loss for the period
+-
+-
+-
+-
+(2,258)
+(2,258)
+Share based payments
+-
+-
+265
+-
+-
+265
+Balance at 30 June 2024
+100
+23,100
+1,005
+1,455
+(13,211)
+12,449
+Loss and total comprehensive loss for the period
+-
+-
+-
+-
+(3,532)
+(3,532)
+Share based payments
+-
+-
+356
+-
+-
+356
+Balance at 31 December 2024
+100
+23,100
+1,361
+1,455
+(16,743)
+9,273
+Loss and total comprehensive loss for the period
+-
+-
+-
+-
+(2,178)
+(2,178)
+Issue of fee shares
+3
+-
+65
+-
+-
+-
+65
+Issue of shares for cash
+3
+39
+4,826
+-
+-
+-
+4,865
+Costs charged against share premium
+-
+(443)
+-
+-
+-
+(443)
+Share based payments
+-
+-
+350
+-
+-
+350
+Balance at 30 June 2025
+139
+27,548
+1,711
+1,455
+(18,921)
+11,932
+Consolidated Statement of Cash Flows
+For the six months to 30 June 2025
+Unaudited
+Six months to
+30 June 2025
+Unaudited
+Six months to
+30 June 2024
+Audited
+Year ended
+31 December 2024
+Note
+£'000
+£'000
+£'000
+Cash flows from operating activities
+Loss on ordinary activities before taxation
+(2,233)
+(2,283)
+(5,944)
+Amortisation
+4
+26
+13
+114
+Disposal of intangible assets
+-
+-
+261
+Share based payment expense
+350
+265
+621
+Finance income
+(116)
+(246)
+(428)
+R&D tax credits
+-
+424
+595
+Movements in working capital and other adjustments:
+Change in trade and other receivables
+5
+56
+(10)
+147
+Change in trade and other payables
+(545)
+(425)
+(12)
+Net cash flow used in operating activities
+(2,462)
+(2,262)
+(4,646)
+Cash flow from investing activities
+Payments for intangible assets
+4
+(4)
+(94)
+(129)
+Interest received from bank
+116
+246
+428
+Net cash flow from investing activities
+112
+152
+299
+Cash flow from financing activities
+Net proceeds from issue of equity instruments
+4,487
+-
+-
+Net cash flow from financing activities
+4,487
+-
+-
+Net change in cash and cash equivalents
+2,137
+(2,110)
+(4,347)
+Cash and cash equivalents at beginning of period
+7,824
+12,171
+12,171
+Cash and cash equivalents at end of period
+9,961
+10,061
+7,824
+Notes to the Interim Results
+1. General information
+Poolbeg Pharma plc ("Poolbeg" or the "Company") is a public limited company incorporated in England and Wales with company number 13279507. The Company is listed on the AIM market of the London Stock Exchange (ticker: POLB.L, ISIN: GB00BKPG7Z60).
+Poolbeg is a clinical-stage biopharmaceutical company focussed on acquiring, developing and commercialising innovative medicines that will help improve the lives of patients with serious diseases and where there is a high unmet medical need.
+2. Basis of preparation
+The Interim Results of the Company for the six months to 30 June 2025 comprise those of the Company and its subsidiaries (together the "Group"). The Interim Results have been prepared on the going concern basis under the historical cost convention in accordance with the recognition and measurement requirements of United Kingdom adopted
+International Accounting Standards ("IFRS") and their interpretations issued by the International Accounting
+Standards Board ("IASB"), and in accordance with those parts of the Companies Act 2006 applicable to companies reporting under IFRS
+. As is permitted by the AIM rules, the Directors have not adopted the requirements of IAS 34 "Interim Financial Reporting" in preparing the financial statements. Accordingly, the financial statements are not in full compliance with IFRS and have neither been audited nor reviewed pursuant to guidance issued by the Auditing Practices Board.
+The financial information for the six months to 30 June 2025 and 30 June 2024 is unaudited. The
+information for the year ended 31 December 2024 has been extracted from the Company's audited accounts on which the auditors issued an unqualified audit opinion. The information presented for that period does not constitute full accounts for that period. The 31 December 2024 audited accounts have been delivered to the Companies House.
+The financial information is presented in £ which is the functional and presentational currency of the Company. Balances are rounded to the nearest thousand (£'000) except where otherwise indicated.
+The Interim Results were approved by the Board of Directors on 26 September 2025.
+The accounting policies used in the preparation of the Interim Results are consistent with those used in the Company's audited financial statements for the year to 31 December 2024.
+3. Loss per share - basic and diluted
+The Group presents basic and diluted loss per share ("LPS") data for its ordinary shares. Basic LPS is calculated by dividing the loss attributable to ordinary shareholders of the Company by the weighted average number of ordinary shares outstanding during the period. Diluted LPS is determined by adjusting the loss attributable to ordinary shareholders and the weighted average number of ordinary shares outstanding for the effects of all dilutive potential ordinary shares, which comprise warrants and share options granted by the Company.
+Issued share capital - ordinary shares of 0.02p each
+Share Issue Details
+Number of shares
+Weighted average shares
+30 June 2024 & 31 December 2024
+500,000,000
+500,000,000
+25 June 2025 - share placing & fee shares
+197,200,000
+30 June 2025
+697,200,000
+506,537,017
+On 25 June 2025, 194,600,000 ordinary shares of 0.02p were issued at 2.5p per share as part of a £4,865,000 (before expenses) fund raising. In addition, as part of the fundraising arrangements, the Company issued 2,600,000 ordinary shares at the issue price to advisors in lieu of advisory fees.
+The calculation of loss per share is based on the following:
+Unaudited
+Six months ended
+30 June 2025
+Unaudited
+Six months ended
+30 June 2024
+Audited
+Year ended
+31 December 2024
+Loss after tax attributable to equity holders of the Company (£'000)
+(2,178)
+(2,258)
+(5,790)
+Weighted average number of ordinary shares in issue
+506,537,017
+500,000,000
+500,000,000
+Fully diluted average number of ordinary shares in issue
+506,537,017
+500,000,000
+500,000,000
+Basic and diluted loss per share
+(0.43)p
+(0.45)p
+(1.16)p
+Under IAS 33.43 "Earnings per Share", the calculation of loss per share does not assume conversion, exercise, or other issue of potential shares that would have an antidilutive effect on LPS. For the current and comparative periods, the effect of options would be to reduce the loss per share and as such the basic and diluted LPS are the same. There were 65,076,600 share options and warrants outstanding as at 30 June 2025 (30 June 2024 and 31 December 2024: 65,076,600) and these are potentially dilutive.
+4. Intangible assets
+Acquired Licences & Data
+Patents & Trademarks
+Total
+£'000
+£'000
+£'000
+Cost
+At 31 December 2023
+1,964
+389
+2,353
+Additions
+-
+129
+129
+Disposals
+(443)
+(171)
+(614)
+At 31 December 2024
+1,521
+347
+1,868
+Additions
+-
+4
+4
+At 30 June 2025
+1,521
+351
+1,872
+Amortisation and impairment
+At 31 December 2023
+318
+105
+423
+Amortisation charge
+25
+89
+114
+Disposals
+(250)
+(103)
+(353)
+At 31 December 2024
+93
+91
+184
+Amortisation charge
+12
+14
+26
+At 30 June 2025
+105
+105
+210
+Net book value
+Net book value at 30 June 2025
+1,416
+246
+1,662
+Net book value at 31 December 2024
+1,428
+256
+1,684
+5. Trade and other receivables
+Unaudited
+30 June 2025
+Unaudited
+30 June 2024
+Audited
+31 December 2024
+£'000
+£'000
+£'000
+Accounts receivables
+3
+11
+20
+Prepayments and accrued income
+395
+627
+465
+Grant receivable
+61
+75
+34
+VAT recoverable
+91
+50
+87
+R&D tax credit
+188
+175
+133
+Trade and other receivables
+738
+938
+739
+6. Events after the reporting period
+On 25 September 2025, Poolbeg announced that it had signed an agreement for a specialist blood cancer trials organisation, Accelerating Clinical Trials Limited ("ACT"), to conduct the upcoming POLB 001 Phase 2a trial
+. The
+trial is due to take place at The Christie NHS Foundation Trust and other leading UK specialist cancer centres, with interim data expected in summer 2026.
+7. Copy of the interim results
+A copy of the Company's Interim Results for the six months to 30 June 2025 is available on the Company's website,
+www.poolbegpharma.com/investors/documents/
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+IR PPURCBUPAGQQ
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">5</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #5
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">POLB 001 Phase 2a Trial Update</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">25th Sep 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Optimum Strategic</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">70%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+25 Sep 2025 07:00
+RNS Number : 7038A
+Poolbeg Pharma PLC
+25 September 2025
+Poolbeg Pharma plc
+ACT appointed for POLB 001 Phase 2a Trial and supply of approved bispecific antibody drug secured at no cost
+Trial to take place at
+The
+Christie NHS Foundation Trust
+and other leading UK specialist cancer centres
+25 September 20
+25 -
+Poolbeg Pharma
+(AIM: POLB, 'Poolbeg' or the 'Company'), a clinical-stage biopharmaceutical company with a core focus on transforming the cancer immunotherapy field, announces that the Company has signed an agreement for a specialist blood cancer trials organisation,
+Accelerating Clinical Trials Limited
+("ACT"), to conduct the upcoming POLB 001 Phase 2a trial and has also secured the supply of an approved bispecific antibody drug for the trial at no cost to the Company.
+The trial will be led by Dr Emma Searle, Consultant Haematologist at The Christie NHS Foundation Trust, Honorary Senior Lecturer at the University of Manchester, as well as Chair of the British Society of Haematology Research and Grants Committee. The Christie, a leading cancer research institute based in Manchester, and a number of other leading UK specialist cancer centres will participate.
+The Phase 2a first-in-patient
+open-label, single-arm trial is titled TOPICAL (Trial of Prevention of ImmunoCytokine Adverse events in Myeloma). The study aims to investigate the safety and efficacy of POLB 001, in particular its ability to reduce the incidence of
+Cytokine Release Syndrome ("CRS")
+in approximately 30 relapsed/refractory multiple myeloma patients receiving an approved bispecific antibody.
+T
+he Company already has sufficient supply of Good Manufacturing Practice ("GMP") grade POLB 001 and this agreement represents an advanced stage of trial preparation, with interim data anticipated in summer 2026. The Company's forecast cash runway extends into 2027, providing more than adequate funding to achieve key clinical development milestones.
+The Directors believe that POLB 001 has the potential to transform the cancer immunotherapy field by expanding administration from centralised specialist cancer centres into community hospitals by making the treatments safer through the prevention of the life-threatening side effect, CRS. As such, POLB 001 could increase the number of patients that can receive these life-saving treatments, thereby increasing the market opportunity.
+Jeremy Skillington, PhD, Chief Executive Officer of Poolbeg Pharma, said:
+"The signing of this agreement, and the supply of the approved bispecific antibody at no cost to the Company, are major milestones for the upcoming POLB 001 Phase 2a trial. The trial is at an advanced stage of preparation and remains on track to deliver data in 2026, we look forward to sharing the data with prospective partners. With a cash runway into 2027, and multiple near-term clinical inflection points, we believe that we are well positioned to deliver value for our shareholders."
+"We are optimistic about the potential of POLB 001 to transform the delivery of cancer immunotherapies by expanding administration away from specialist centralised cancer centres and into the community setting, closer to patients' homes. This shift could make these life-saving treatments more widely accessible. POLB 001 has the potential to make cancer immunotherapies safer by reducing the incidence of potentially life-threatening cancer immunotherapy-induced cytokine release syndrome."
+Dr Emma Searle, MBChB MA MRCP FRCPath PhD, Consultant Haematologist at The Christie NHS Foundation Trust, and Chief Investigator of the forthcoming POLB 001 trial said:
+"I have seen first-hand the challenges that CRS presents to the delivery of cancer immunotherapies, requiring many of our patients to be hospitalised for treatment. These transformative therapies will continue to be restricted until there is a way to administer them more safely. POLB 001 holds great promise in tackling this issue; potentially leading to improved patient wellbeing, reducing the strain on healthcare systems while making these treatments more accessible to a broader patient population."
+Dr Paul Sherrington, CEO of Accelerating Clinical Trials Ltd said:
+"At ACT we work hand-in-hand with the haematological community to accelerate the delivery of clinical trials of new therapies, leveraging our wide network of research centres in the UK. We look forward to completing this study with POLB 001 which holds great potential to transform the cancer immunotherapy field and address this critical unmet medical need."
+Market Opportunity
+The demand for effective CRS prevention solutions is driven by the rapid growth of CRS-inducing cancer immunotherapies with more than 70% of patients receiving certain cancer immunotherapies affected. Independent research has identified a market opportunity of >US$10 billion for POLB 001 and as such, the Company sees
+strong potential for partnering on positive data from the forthcoming trial
+. The recent FDA Orphan Drug Designation further validates POLB 001's scientific rationale and enhances its commercial appeal for prospective partners.
+Investor presentation
+Poolbeg Pharma will provide a live presentation via the Investor Meet Company platform on Monday 29 September 2025 at 5pm.
+The presentation is open to analysts and investors, those who already follow Poolbeg on the Investor Meet Company platform will automatically be invited. Investors can sign up to Investor Meet for free and add Poolbeg Pharma plc to their company dashboard
+here
+.
+Enquiries
+Poolbeg Pharma Plc
+Jeremy Skillington, CEO
+Ian O'Connell, CFO
++44 (0) 207 183 1499
+ir@poolbegpharma.com
+Cavendish Capital Markets Ltd (NOMAD & Joint Broker)
+Geoff Nash, Trisyia Jamaludin (Corporate Finance)
+Nigel Birks (Life Science Specialist Sales)
+Harriet Ward (ECM)
++44 (0) 207 220 0500
+Shore Capital Stockbrokers Ltd (Joint Broker)
+David Coaten, Harry Davies-Ball (Corporate Advisory)Malachy McEntyre
+(Corporate Broking)
++44 (0) 207 408 4090
+J&E Davy (Joint Broker)
+Anthony Farrell, Niall Gilchrist
++353 (0) 1 679 6363
+Optimum Strategic Communications
+Nick Bastin, Vici Rabbetts, Elena Bates
++44 (0) 208 078 4357
+poolbeg@optimumcomms.com
+About Poolbeg Pharma plc
+Poolbeg Pharma plc (AIM: POLB) is a clinical-stage biopharmaceutical company with a core focus on transforming the cancer immunotherapy field. The Company's lead asset, POLB 001, has the potential to expand administration of cancer immunotherapies from centralised specialist cancer centres into community hospitals by making the treatments safer through the prevention of the life-threatening side effect, Cytokine Release Syndrome (CRS). As such, POLB 001 could increase the number of patients that can receive these life-saving treatments, thereby increasing the market opportunity. Poolbeg is also advancing the development of a patient-friendly therapy for obesity with an oral encapsulated GLP-1, offering a differentiated approach within one of the world's largest markets. With multiple near-term clinical value inflection points, and an experienced team with a proven track record, Poolbeg is focussed on partnering its high value programmes that are targeting large markets and addressing critical unmet medical needs.
+Stay updated:
+Website
+|
+Sign up for RNS alerts
+|
+Presentation
+|
+X
+|
+LinkedIn
+Forward-Looking Statements
+This announcement may contain forward-looking statements and the words "expect", "anticipate", "intends", "plan", "estimate", "aim", "forecast", "project" and similar expressions (or their negative) identify certain of these forward-looking statements. The forward-looking statements in this announcement are based on numerous assumptions and Poolbeg's present and future business strategies and the environment in which Poolbeg expects to operate in the future. Forward-looking statements involve inherent known and unknown risks, uncertainties and contingencies because they relate to events and depend on circumstances that may or may not occur in the future and may cause the actual results, performance or achievements to be materially different from those expressed or implied by such forward-looking statements. These statements are not guarantees of future performance or the ability to identify and consummate investments. Many of these risks and uncertainties relate to factors that are beyond Poolbeg's ability to control or estimate precisely, such as future market conditions, currency fluctuations, the behaviour of other market participants, the outcome of clinical trials, the actions of regulators and other factors such as Poolbeg's ability to obtain financing, changes in the political, social and regulatory framework in which Poolbeg operates or in economic, technological or consumer trends or conditions. Past performance should not be taken as an indication or guarantee of future results, and no representation or warranty, express or implied, is made regarding future performance. No person is under any obligation to update or keep current the information contained in this announcement or to provide the recipient of it with access to any additional relevant information.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+UPDEAKNLAADSEFA
+                </div>
+            </details>
+            
+            </div>
+            
+            </div>
+            <div style="
+                margin-top: 20px;
+                padding: 14px 16px;
+                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+                border-radius: 10px;
+                font-size: 12px;
+                color: #78350f;
+                border-left: 3px solid #f59e0b;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            ">
+                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
+                <div style="line-height: 1.5;">
+                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
+                    Each RNS includes sentiment classification, key data extraction, and trading context. 
+                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
+                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                    </strong>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            details[open] > summary {
+                background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%) !important;
+                border-left-color: #0369a1 !important;
+            }
+            summary::-webkit-details-marker {
+                display: none;
+            }
+            
+            /* ========== MOBILE RESPONSIVE ========== */
+            @media (max-width: 768px) {
+                body {
+                    padding: 10px;
+                    font-size: 14px;
+                }
+                
+                .container {
+                    margin: 0 auto;
+                }
+                
+                .header-card {
+                    padding: 14px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .company-name {
+                    font-size: 22px;
+                    margin-bottom: 8px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 13px;
+                    padding: 6px 12px;
+                }
+                
+                .company-meta {
+                    gap: 8px;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+                
+                .meta-item {
+                    padding: 6px 12px;
+                    font-size: 12px;
+                    gap: 6px;
+                }
+                
+                .meta-icon {
+                    font-size: 14px;
+                }
+                
+                .score-hero {
+                    padding: 20px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .action-display {
+                    font-size: 18px !important;
+                    margin-bottom: 12px;
+                }
+                
+                .scores-row {
+                    gap: 16px;
+                    margin: 20px 0;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    display: flex;
+                }
+                
+                .score-circle {
+                    width: 110px;
+                    height: 110px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 32px;
+                }
+                
+                .score-label {
+                    font-size: 10px;
+                    margin-top: 4px;
+                }
+                
+                .timing-badge-large {
+                    padding: 10px 20px;
+                    font-size: 14px;
+                    margin: 12px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 14px;
+                    padding: 12px;
+                    margin-top: 12px;
+                }
+                
+                .factors-list {
+                    grid-template-columns: 1fr;
+                    gap: 10px;
+                    margin-top: 12px;
+                }
+                
+                .factor-item {
+                    padding: 12px;
+                    font-size: 12px;
+                    gap: 8px;
+                }
+                
+                .factor-icon {
+                    font-size: 16px;
+                }
+                
+                .cards-grid {
+                    grid-template-columns: 1fr;
+                    gap: 12px;
+                    margin-bottom: 12px;
+                }
+                
+                .card {
+                    padding: 16px;
+                    border-radius: 12px;
+                }
+                
+                .card-title {
+                    font-size: 14px;
+                    margin-bottom: 12px;
+                    gap: 8px;
+                }
+                
+                .card-icon {
+                    font-size: 18px;
+                }
+                
+                .stat-row {
+                    padding: 8px 0;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+                
+                .stat-label {
+                    font-size: 12px;
+                }
+                
+                .stat-value {
+                    font-size: 14px;
+                }
+                
+                .rally-badge {
+                    padding: 4px 10px;
+                    font-size: 10px;
+                }
+                
+                .risk-indicator {
+                    gap: 10px;
+                    padding: 12px;
+                    flex-wrap: wrap;
+                }
+                
+                .risk-icon {
+                    font-size: 20px;
+                }
+                
+                .reason-item {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                }
+                
+                .tag {
+                    padding: 3px 8px;
+                    font-size: 10px;
+                }
+                
+                .footer {
+                    padding: 12px;
+                    font-size: 11px;
+                    margin-top: 12px;
+                    border-radius: 12px;
+                }
+                
+                .alert-box {
+                    padding: 12px;
+                    margin: 10px 0;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                body {
+                    padding: 8px 6px;
+                }
+                
+                .header-card {
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    border-radius: 8px;
+                }
+                
+                .company-name {
+                    font-size: 18px;
+                    margin-bottom: 6px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 11px;
+                    padding: 3px 8px;
+                }
+                
+                .company-meta {
+                    gap: 4px;
+                    flex-direction: column;
+                }
+                
+                .meta-item {
+                    padding: 4px 6px;
+                    font-size: 11px;
+                    background: rgba(247, 250, 252, 0.7);
+                }
+                
+                .score-hero {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                    border-radius: 12px;
+                }
+                
+                .score-circle {
+                    width: 70px;
+                    height: 70px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 22px;
+                    font-weight: 800;
+                }
+                
+                .score-label {
+                    font-size: 7px;
+                    margin-top: 2px;
+                }
+                
+                .scores-row {
+                    flex-direction: column;
+                    gap: 10px;
+                    margin: 12px 0;
+                    align-items: center;
+                }
+                
+                .timing-badge-large {
+                    padding: 6px 12px;
+                    font-size: 11px;
+                    margin: 10px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 11px;
+                    padding: 8px;
+                    line-height: 1.3;
+                }
+                
+                .card {
+                    padding: 10px;
+                    margin-bottom: 8px;
+                    border-radius: 8px;
+                }
+                
+                .card-title {
+                    font-size: 12px;
+                    margin-bottom: 8px;
+                    font-weight: 700;
+                }
+            }
+        </style>
+        
+
+        <!-- Footer -->
+        <div class="footer">
+            Report generated: 2026-01-17 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            <strong>△ Not financial advice. Do your own research.</strong>
+            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
+                <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

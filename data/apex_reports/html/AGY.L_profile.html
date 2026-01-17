@@ -1,0 +1,4192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrashDash • AGY.L APEX Profile</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .header-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .ticker-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .company-name { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .company-meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f7fafc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .meta-icon { font-size: 18px; }
+        
+        .score-hero {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        .action-display {
+            margin-bottom: 20px;
+        }
+        .scores-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .score-number {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .score-label { font-size: 12px; color: #666; margin-top: 5px; }
+        .timing-badge-large {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 24px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            margin: 20px 0;
+        }
+        .thesis-line {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .factors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .factor-item {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        .factor-icon { font-size: 20px; }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-icon { font-size: 24px; }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-label { color: #666; font-size: 14px; }
+        .stat-value { font-weight: 600; font-size: 16px; }
+        
+        .rally-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .risk-indicator {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .risk-high { background: #fee2e2; }
+        .risk-icon { font-size: 24px; }
+        
+        .reason-item {
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .tag {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .footer {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-top: 20px;
+        }
+        
+        .alert-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Header Card -->
+        <div class="header-card">
+            <div class="ticker-badge">AGY.L</div>
+            <div class="company-name">Allergy Therapeutics plc</div>
+            <div class="company-meta">
+                <div class="meta-item">
+                    <span class="meta-icon">■</span>
+                    <span><strong>Sector:</strong> Healthcare</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">£</span>
+                    <span><strong>Market Cap:</strong> £743,114,257</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">◷</span>
+                    <span><strong>Days Active:</strong> 814 days</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action & Score Hero Section -->
+        <div class="score-hero">
+            <div class="action-display">
+                <span style="color: white;">UNKNOWN</span>
+            </div>
+            
+            <div class="scores-row">
+                <div class="score-circle">
+                    <div class="score-number" style="color: #f59e0b;">55</div>
+                    <div class="score-label">APEX SCORE</div>
+                </div>
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">40</div>
+                    <div class="score-label">CONFIDENCE</div>
+                </div>
+            </div>
+            
+            <div class="timing-badge-large">
+                Timing: <span class="rally-badge" style="background: #dbeafe; color: #1e40af;">CROWDED</span>
+            </div>
+            
+            <div class="thesis-line">
+                SELL/TAKE_PROFITS - CROWDED timing with 55/100 opportunity score
+            </div>
+        </div>
+
+        <!-- ==================== CRASHDASH INTELLIGENCE - PANIC HUNTER VIEW ==================== -->
+        
+        <div class="card" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b;">
+            <div class="card-title" style="color: #0f172a;">
+                <span class="card-icon">🏭</span>
+                CrashDash Intelligence • Industrials
+            </div>
+            
+            <!-- Fear Meter -->
+            <div style="background: white; padding: 24px; border-radius: 14px; margin-bottom: 20px; text-align: center;">
+                <div style="font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 16px;">🔥 PANIC METER</div>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 16px;">
+                    <div style="width: 160px; height: 160px; border-radius: 50%; background: conic-gradient(#f59e0b 237.6deg, #e5e7eb 237.6deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                        <div style="width: 130px; height: 130px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <div style="font-size: 48px; font-weight: 800; color: #f59e0b;">66</div>
+                            <div style="font-size: 12px; color: #64748b; font-weight: 600;">PANIC SCORE</div>
+                        </div>
+                    </div>
+                    <div style="text-align: left; max-width: 400px;">
+                        <div style="font-size: 18px; font-weight: 700; color: #f59e0b; margin-bottom: 12px;">HIGH PANIC</div>
+                        <div style="font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 12px;">🟠 Fear dominant - watch for reversal signs</div>
+                        <div style="font-size: 13px; color: #64748b;">
+                            <div>💔 Price: 40/40</div>
+                            <div>📉 Volume: 10/20</div>
+                            <div>🔇 Social: 6/20</div>
+                            <div>📰 News: 10/20</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CrashHunter Signals -->
+                <div style="margin-top: 20px;">
+                    <span style="display: inline-block; background: #f59e0b; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">🟠 Fear 66/100</span><span style="display: inline-block; background: #f59e0b; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">⚠️ Crowded</span><span style="display: inline-block; background: #3b82f6; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">🌟 APEX 55</span>
+                </div>
+                
+                <!-- Opportunity Flag -->
+                
+            </div>
+            
+            <!-- Contrarian Compression Energy Panel -->
+            
+            <!-- Contrarian Compression Energy Panel -->
+            <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 24px; border-radius: 14px; margin-bottom: 20px; border: 3px solid #f59e0b;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <span style="font-size: 32px;">⚡</span>
+                    <div style="flex: 1;">
+                        <div style="font-size: 20px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">
+                            CONTRARIAN COMPRESSION SCORE
+                        </div>
+                        <div style="font-size: 13px; color: #475569; font-weight: 600;">
+                            Signal Congestion Framework • Compression = Explosive Potential
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Score Display -->
+                <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 30px;">
+                        <!-- Circular gauge -->
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: conic-gradient(#f59e0b 237.6deg, #e5e7eb 237.6deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                            <div style="width: 110px; height: 110px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <div style="font-size: 42px; font-weight: 800; color: #f59e0b;">66</div>
+                                <div style="font-size: 11px; color: #64748b; font-weight: 600;">/ 100</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Key metrics -->
+                        <div style="text-align: left;">
+                            <div style="font-size: 16px; font-weight: 700; color: #f59e0b; margin-bottom: 12px;">🟠 HIGH COMPRESSION (Top 15% - STRONG OPPORTUNITY)</div>
+                            <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                                <div><strong>0.7</strong> signals/week</div>
+                                <div><strong>5</strong> RSI &lt; 20 events</div>
+                                <div><strong>2</strong> escalations detected</div>
+                                <div style="color: #f59e0b; font-weight: 700; margin-top: 6px;">
+                                    💎 Historical pop: <strong>+1052%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Component Breakdown -->
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 15px;">
+                        📊 5-COMPONENT BREAKDOWN
+                    </div>
+                    
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">compression</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #f59e0b;">28/40</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #f59e0b; height: 100%; width: 70.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">0.7 signals/week | 5 RSI<20 | 2 escalations | ⚡ HIGH COMPRESSION</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">intensification</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #f59e0b;">15/20</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #f59e0b; height: 100%; width: 75.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;"></div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">volume death</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">0/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">Normal volume</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">pop potential</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #ef4444;">15/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #ef4444; height: 100%; width: 100.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">MONSTER POPPER - Historical 10x+ (1052%)</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">accumulation</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #ef4444;">8/10</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #ef4444; height: 100%; width: 80.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">Accum 1 bars ago</div>
+                </div>
+                
+                </div>
+                
+                <!-- Contrarian Philosophy -->
+                <div style="background: rgba(255,255,255,0.7); padding: 16px; border-radius: 10px; border-left: 4px solid #f59e0b;">
+                    <div style="font-weight: 700; color: #0f172a; margin-bottom: 8px; font-size: 14px;">
+                        🎯 CONTRARIAN WISDOM
+                    </div>
+                    <div style="font-size: 13px; color: #334155; line-height: 1.6;">
+                        <strong>Signal congestion = Compression energy = Explosive potential.</strong><br>
+                        When multiple crash signals cluster together with extreme RSI and proven rally history, 
+                        it creates a compressed spring effect. More panic = More opportunity for contrarians.
+                        <div style="margin-top: 8px; padding: 10px; background: rgba(239,68,68,0.1); border-radius: 6px; font-size: 12px;">
+                            <strong style="color: #f59e0b;">Theory:</strong> High compression scores (60+) historically precede 
+                            explosive 10-20x moves when catalysts arrive. This is the foundation of crash hunting.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Fear vs Facts Contrarian View -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                <div style="background: #fee2e2; padding: 18px; border-radius: 12px; border-left: 4px solid #ef4444;">
+                    <div style="font-weight: 700; color: #991b1b; margin-bottom: 12px; font-size: 15px;">😱 FEAR (What Panic Shows)</div>
+                    <div style="color: #7f1d1d;">
+                        <div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 💔 Price destruction: 40/40 points</div>
+                    </div>
+                </div>
+                <div style="background: #dcfce7; padding: 18px; border-radius: 12px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #065f46; margin-bottom: 12px; font-size: 15px;">📊 FACTS (What Data Shows)</div>
+                    <div style="color: #064e3b;">
+                        <div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 📈 Historical upside: 777% proven capacity</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contrarian Verdict -->
+            <div style="background: white; padding: 18px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #6366f1;">
+                <div style="font-weight: 700; color: #4338ca; margin-bottom: 10px; font-size: 15px;">⚖️ Contrarian Verdict</div>
+                <div style="font-size: 15px; color: #1e293b; line-height: 1.6; font-weight: 600;">
+                    ⚖️ Mixed signals - Fear and facts balanced, wait for clarity
+                </div>
+            </div>
+            
+            <!-- Industry Crash Patterns -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">⚠️ Crash Patterns (Industrials)</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book decline or cancellations</div><div>• Margin compression (input costs)</div><div>• Cyclical demand weakness</div>
+                    </div>
+                    
+                </div>
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">🚀 Recovery Paths</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book growth or new contracts</div><div>• Margin recovery (efficiency gains)</div><div>• Cyclical upturn (capex recovery)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Catalyst Pipeline -->
+            <div style="background: rgba(255,255,255,0.5); padding: 18px; border-radius: 12px; margin-bottom: 20px;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 14px; font-size: 15px;">📅 Catalyst Pipeline</div>
+                
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Primary Safety Endpoint Met in PROTECT trial</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Further detail from G306 Phase III field trial</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Company to Evaluate Dual Listing on HKEX</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Audited Preliminary Results 2024</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Notice of 2025 Annual General Meeting</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+            
+            <!-- CrashDash Decision Matrix -->
+            <div style="background: white; padding: 20px; border-radius: 12px; border: 3px solid #f59e0b;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 16px; text-align: center;">
+                    🎯 CRASHDASH DECISION: <span style="color: #f59e0b; font-size: 20px;">AVOID</span>
+                </div>
+                <div style="font-size: 15px; color: #475569; text-align: center; margin-bottom: 20px; font-weight: 600;">
+                    ❌ SELL/TAKE_PROFITS - timing CROWDED
+                </div>
+                <div style="background: #f8fafc; padding: 16px; border-radius: 10px;">
+                    <div style="font-weight: 700; color: #64748b; margin-bottom: 12px; font-size: 13px;">CHECKLIST (4/5 pass)</div>
+                    
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🔴</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Panic Score</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">66/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">✅</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Timing Regime</div>
+                    <div style="font-size: 13px; color: #ef4444; font-weight: 600;">CROWDED</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">⭐</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">APEX Quality</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">55/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🎯</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Data Confidence</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">40/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🏭</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Industry Pattern</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">0 active</div>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
+        
+
+        <!-- Decision Summary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◆</span>
+                Why This Matters
+            </div>
+            <div class="stat-row"><span>• APEX 55/100 indicates strong opportunity quality</span></div><div class="stat-row"><span>• Timing regime: CROWDED</span></div><div class="stat-row"><span>• Historical profile: 1 rallies, 777% best run</span></div>
+            
+            <div class="alert-box" style="margin-top: 20px;">
+                <strong>△ Main Risk:</strong> Confidence 40/100 - full data loaded
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong>◉ Watch Next:</strong>
+                <div style="padding: 8px 0;">• RNS catalysts (funding/operational updates)</div><div style="padding: 8px 0;">• Volume expansion confirmation</div><div style="padding: 8px 0;">• Timing regime change signals</div>
+            </div>
+        </div>
+
+        <!-- ==================== TECHNICAL DETAILS (COLLAPSIBLE) ==================== -->
+        
+        <div class="card">
+          <details style="cursor:pointer;">
+            <summary style="font-weight:800; font-size:16px; list-style:none; padding: 10px; background: #f9fafb; border-radius: 8px;">
+              🔧 Technical Analysis & Scoring Details
+            </summary>
+            <div style="margin-top:14px;">
+              
+            <!-- Scoring Breakdown -->
+            <div class="card-title" style="margin-top: 20px;">
+                <span class="card-icon">▣</span>
+                APEX Score Breakdown
+            </div>
+            <div class="factors-list">
+                <div class="factor-item"><span class="factor-icon">◆</span><span><strong>Moderate Technical Setup</strong><br><small>Chart quality: 8/20 • Score: 10/25 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Massive recovery potential</strong><br><small>Down 92.2% from peak • Score: 18/20 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Above average volume</strong><br><small>1.6x average • Score: 6/10 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Limited history</strong><br><small>1 previous rallies • Score: 5/15 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Monster potential</strong><br><small>Historical best: +777% • Score: 16/20 points</small></span></div>
+
+            </div>
+            
+            <div style="margin-top: 40px;"></div>
+            
+            <!-- Exhaustion Metrics -->
+            <div class="card-title">
+                <span class="card-icon">📈</span>
+                Rally Cycle Position
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Current Position</div>
+                    <div style="font-size: 32px; font-weight: 800;">777%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
+                    <div style="font-size: 32px; font-weight: 800;">777%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
+                    <div style="font-size: 32px; font-weight: 800;">1.0x</div>
+                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
+                </div>
+            </div>
+        
+            </div>
+          </details>
+        </div>
+        
+
+        <!-- Reasons Buy/Sell -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #10b981;">▲</span>
+                    Reasons to Buy
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Historically strong runner - massive upside when it moves</span>
+                    <span class="tag" style="background: #10b981; color: white;">🔥 High Conviction</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">best run=777% • rally history=1.0</div>
+            </div>
+            
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Proven winner - previously hit lock-in target</span>
+                    <span class="tag" style="background: #f59e0b; color: white;">⚡ Medium Strength</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">profit target reached: True</div>
+            </div>
+            
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #ef4444;">▼</span>
+                    Reasons to Sell / Avoid
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Stale signal - not for active trading</span>
+                    <span class="tag" style="background: #ef4444; color: white;">🚨 High Risk</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">historical • signal date=2023-10-25</div>
+            </div>
+            
+            </div>
+        </div>
+
+        <!-- Trade Plans -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">📊</span>
+                    Short-Term Trader Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 20%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <div style="font-size: 18px; font-weight: 600; margin-bottom: 5px;">Active trade</div>
+                    <div style="font-size: 14px; opacity: 0.9;">SELL/TAKE_PROFITS</div>
+                </div>
+                <div style="padding: 12px; background: #f9fafb; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Position Size</div>
+                    <div style="font-weight: 600;">1-3% position based on conviction</div>
+                </div>
+                <div style="padding: 12px; background: #fef2f2; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Risk Management</div>
+                    <div style="font-weight: 600; color: #dc2626;">Stop below recent support / invalidation level</div>
+                </div>
+                <div style="padding: 12px; background: #f0fdf4; border-radius: 6px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Exit Strategy</div>
+                    <div style="font-weight: 600; color: #059669;">Scale out into strength: 25% @ +15%, 50% @ +50%, trail runner</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">💼</span>
+                    Long-Term Investor Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center;">
+                    <div style="font-size: 32px; margin-bottom: 5px;">✗</div>
+                    <div style="font-size: 18px; font-weight: 600;">Not Recommended for Investors</div>
+                </div>
+                <div style="padding: 15px; background: #f9fafb; border-radius: 8px; font-size: 14px; line-height: 1.6;">
+                    <strong style="color: #667eea;">📋 Investment Thesis:</strong><br>
+                    Unlock after AI triangulation + CONFIRMED timing<br><br>
+                    <strong style="color: #667eea;">⏳ Time Horizon:</strong><br>
+                    N/A<br><br>
+                    <strong style="color: #ef4444;">🛡️ Exit Rule:</strong><br>
+                    N/A
+                </div>
+            </div>
+        </div>
+
+        <!-- Commentary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◐</span>
+                Executive Commentary
+            </div>
+            <div style="line-height: 1.6; margin-bottom: 20px;">
+                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows CROWDED timing with 55/100 APEX score. Historical data shows 1 rallies averaging 777% upside. Current position: +776.8%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #10b981;">▲ Bull Case:</strong>
+                <div style="padding: 8px 0;">• Strong historical rally behavior (777% best run)</div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #ef4444;">▼ Bear Case:</strong>
+                <div style="padding: 8px 0;">• Monitor for breakdown signals</div>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
+                <strong>◷ Timing Translation:</strong><br>
+                Late stage. Consider taking profits as risk/reward deteriorates.
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
+                <strong>◎ Confidence Explained:</strong><br>
+                Confidence 40/100 reflects full data quality with triangulation loaded.
+            </div>
+        </div>
+
+        <!-- Data Quality Warning -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">△</span>
+                Data Quality Notice
+            </div>
+            <div class="alert-box">
+                <strong>Analysis Mode:</strong> HISTORICAL_ONLY<br>
+                <strong>Impact:</strong> HIGH
+            </div>
+            <div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">AI insights from Groq LLM</div></div></div>
+
+            <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk.
+            </div>
+        </div>
+
+        <!-- ==================== TOP 5 RECENT RNS NEWS ==================== -->
+        
+        <div class="card" style="border-top: 3px solid #3b82f6;">
+            <div class="card-title" style="margin-bottom: 20px;">
+                <span class="card-icon">📰</span>
+                Top 5 Recent RNS Announcements
+            </div>
+            <div style="margin-top: 15px;">
+                
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Primary Safety Endpoint Met in PROTECT trial</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 70/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Primary Safety Endpoint Met in PROTECT trial | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">9th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">70/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Primary Safety Endpoint Met in PROTECT trial</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">David Daley</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+9 Dec 2025 07:00
+RNS Number : 7153K
+Allergy Therapeutics PLC
+09 December 2025
+Allergy Therapeutics plc
+("Allergy Therapeutics", "ATL" or the "Group")
+PROTECT Phase I/IIa trial meets primary safety endpoint at highest planned dose
+·
+PROTECT trial achieves final dosing of the minimum anticipated number of patients at the highest planned treatment dose
+·
+Preliminary safety data from 48 participants demonstrate that a 2000-fold increase in dose of VLP Peanut has been safe and well tolerated
+·
+Data from the second interim biomarker analysis in peanut-allergic patients receiving the highest doses is expected in Q1 2026, following the previously announced initial interim analysis data from lower doses
+09 December 2025
+Allergy Therapeutics (AIM: AGY), the fully integrated commercial biotechnology company specialising in allergy immunotherapies, today announces that
+its Phase I/IIa PROTECT trial has completed final
+dosing of the minimum
+required
+number of patients at the highest
+planned
+treatment
+dose, meeting the trial's primary safety endpoint. Preliminary safety data from 48 participants demonstrate that a 2000-fold increase in dose from the starting dose
+has been
+safe
+and
+well tolerated, including in both
+peanut
+-allergic patients and healthy participants
+.
+As previously reported, a benign safety profile of VLP Peanut is supported by the observed dose-dependent
+reduction
+in wheal size
+following
+skin prick testing for the
+two
+lowest doses evaluated. In addition, peanut
+-
+allergic patients showed a strong immune-protective dose response in biomarkers at low cumulative doses, with dose
+-
+dependent suppression of basophil activation and a dose-dependent increase in protective Ara h2 IgG
+,
+aligned with a dose
+-
+dependent reduction
+in
+IgE binding to B-cells.
+Data from
+healthy
+participants support the proposed mechanism of action of VLP Peanut. In addition,
+preliminary blinded biomarker data collected
+three
+months after last dosing of peanut allergic patients
+indicate
+a sustained biomarker response
+. The Company intends to carry out a second interim analysis in peanut-allergic patients receiving the highest doses in due course.
+The trial is currently progressing to deliver the planned group unblinded skin prick test and biomarker results
+, together with
+longer-term biomarker and scheduled safety assessments
+for
+up to
+one
+year after last dosing
+.
+Preparations are also underway for the Phase IIb trial, with the doses of VLP Peanut being informed by
+the
+combined safety and efficacy information generated in the PROTECT trial.
+Manuel Llobet, Chief Executive Officer of Allergy Therapeutics, commented:
+""The PROTECT trial has now reached a key regulatory milestone with the primary safety endpoint achieved at the highest planned treatment dose. Safety and tolerability at these dose levels remain supportive, reinforcing our confidence in the short-course approach underpinning VLP Peanut.
+"As we move into the final stages of follow-up and biomarker assessment, our focus is on translating these data into the next phase of clinical development. We thank all participants, investigators and clinical teams involved in the study."
+More information about the PROTECT trial can be found on
+ClinicalTrials.gov
+under the identifier
+NCT05476497
+.
+This announcement contains inside information for the purposes of the UK Market Abuse Regulations.
+- ENDS -
+Allergy Therapeutics
+Manuel Llobet, Chief Executive Officer
+Shaun Furlong, Chief Financial Officer
++44 (0)1903 845 820
+Cavendish Capital Markets Limited (Nominated Adviser and Broker)
+Geoff Nash /Giles Balleny/ Seamus Fricker
+Nigel Birks - Life Science Specialist Sales
++44 (0)20 7220 0500
+ICR Healthcare
+Mary-Jane Elliott / David Daley / Davide Salvi
++44 (0)20 3709 5700
+allergytherapeutics@icrhealthcare.com
+Notes for editors:
+About Allergy Therapeutics
+Allergy Therapeutics is an international commercial biotechnology company, headquartered in the UK, focussed on the treatment and diagnosis of allergic disorders, including aluminium free immunotherapies that have the potential to cure disease. The Group sells proprietary and third-party products from its subsidiaries in nine major European countries and via distribution agreements in an additional ten countries. For more information, please see
+www.allergytherapeutics.com
+.
+About the PROTECT Trial
+The trial is evaluating the safety and tolerability, and exploring preliminary proof of efficacy, of the Group's innovative, short-course peanut allergy drug candidate, VLP Peanut.
+The PROTECT trial, across multiple clinical trial sites in the US, is being conducted in both healthy subjects and peanut allergic patients and consists of Part A and Part B. Part A involved subcutaneous immunotherapy (SCIT) dosing in healthy subjects (Group A1) and skin-prick testing in peanut allergic patients (Group A2). Part B of the clinical trial is double-blind, placebo-controlled and in patients with peanut allergy.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+MSCFLFIDFSLTIIE
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Further detail from G306 Phase III field trial</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 70/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Further detail from G306 Phase III field trial | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7th May 2024</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">70/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Further detail from G306 Phase III field trial</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">David Daley</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">20.3%, 95%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+7 May 2024 07:00
+RNS Number : 3370N
+Allergy Therapeutics PLC
+07 May 2024
+Allergy Therapeutics plc
+("Allergy Therapeutics", "ATL" or the "Group")
+Allergy Therapeutics provides further detail from positive top line results from G306 Phase III field trial to evaluate efficacy and safety of Grass MATA MPL
+-
+Statistically significant reduction in Combined Symptom Medication Score (CSMS) seen in active treatment group compared to placebo
+-
+Sensitivity analyses of primary endpoint and secondary endpoints show high consistency with primary endpoint results
+-
+The Group is preparing marketing authorisation application (MAA) for planned submission in Q4 2024
+7 May 2024
+Allergy Therapeutics plc (AIM: AGY), the fully integrated commercial biotechnology company specialising in allergy vaccines, today provided further detail from the positive top line results from its pivotal Phase III field study G306 to evaluate the efficacy and safety of Grass MATA MPL, the Group's short-course subcutaneous allergen-specific immunotherapy (SCIT) candidate that aims to address the cause of symptoms of allergic rhinoconjunctivitis due to grass pollen.
+The trial successfully met its primary endpoint as previously announced on 14 November 2023.
+An evaluation was conducted in both the EU and US to assess the impact of a treatment regimen consisting of six pre-seasonal injections given over a span of 14 weeks. The key findings from this evaluation are as follows:
+·
+The primary endpoint of the trial, "
+Combined Symptom & Medication Score (
+CSMS) averaged over the peak pollen season", demonstrated a statistically significant improvement of 20.3% (p=0.00024) for Grass MATA MPL compared to placebo, providing evidence of a substantial reduction in daily symptoms and use of relief medication among participants receiving Grass MATA MPL
+·
+A highly statistically significant improvement in the rhinoconjunctivitis quality of life questionnaire (RQLQ) (p=0.0003) was observed during the peak season
+·
+The protective biomarker immunoglobulin (IgG4), measured during the grass pollen season, showed a large increase of approximately five-fold after treatment with Grass MATA MPL compared to placebo which achieved high statistical significance (p
+·
+555 subjects with allergic conjunctivitis and/or rhinitis were randomised and 528 (95%) completed all six injections of Grass MATA MPL or placebo. Demographics, allergic history and immunoglobulins were generally well-balanced at baseline between the Grass MATA MPL and placebo groups. In total, 278 and 277 patients received Grass MATA MPL and placebo, respectively.
+As previously communicated, the treatment was well tolerated with no unexpected safety signals. Further exploratory endpoint analyses (including an extensive biomarker evaluation) of the G306 trial are now underway. Full results, including secondary and exploratory endpoints, will be presented at the upcoming European Academy of Allergy & Clinical Immunology conference in June 2024 and submitted for peer-reviewed publication later this year. The Group's preparation for the marketing authorisation application (MAA) is well underway, with a planned submission in Q4 2024.
+Manuel Llobet, CEO at Allergy Therapeutics, stated:
+"
+The findings announced today further demonstrate the beneficial treatment effect of our Grass MATA MPL immunotherapy candidate. Grass pollen, a common cause of seasonal allergy, significantly impacts the lives of many people, necessitating the development of new treatment options.
+"The results of our G306 study, alongside the results of our earlier G309 exploratory field study, provide a strong and consistent data package for progression to an MAA submission. This affords us the potential to provide a unique offering to the market as the only Grass SCIT product registered through the TAV programme in Germany. I would like to express my gratitude to our team at Allergy Therapeutics and our partners at multiple trial sites and countries for their exceptional work and dedication to this trial. A special thank you goes to the patients who participated in our trial programme. Without their involvement, we would not be able to bring these urgently needed treatments to the market."
+This announcement contains inside information for the purposes of Article 7 of Regulatory (EU) No596/2014.
+- ENDS -
+For further information, please contact:
+Allergy Therapeutics
+Manuel Llobet, Chief Executive Officer
+Shaun Furlong
+, Chief Financial Officer
++44 (0)1903 845 820
+Panmure Gordon
+Emma Earl, Mark Rogers, Freddy Crossley, Corporate Finance
+Rupert Dearden, Corporate Broking
++44 (0) 20 7886 2500
+ICR Consilium
+Mary-Jane Elliott / David Daley / Davide Salvi
++44 20 3709 5700
+allergytherapeutics@consilium-comms.com
+Notes for editors:
+About Allergy Therapeutics
+Allergy Therapeutics is an international commercial biotechnology company, headquartered in the UK, focussed on the treatment and diagnosis of allergic disorders, including aluminium free immunotherapy vaccines that have the potential to cure disease. The Group sells proprietary and third-party products from its subsidiaries in nine major European countries and via distribution agreements in an additional ten countries. Its broad pipeline of products in clinical development includes vaccines for grass, tree, house dust mite and peanut. For more information, please see
+www.allergytherapeutics.com
+.
+About Allergic Rhinitis
+Allergic rhinitis and/or rhinoconjunctivitis is a type I allergic disease to common aeroallergens such as pollen, mould spores and house dust mite residue. Seasonal allergic rhinitis is most commonly caused by allergy to pollen from tree, grasses or weeds, while perennial allergic rhinitis is most commonly associated with allergy to dust mite residue, mould spores or animal dander
+About Grass MATA MPL
+Grass MATA MPL is being developed as a pre-seasonal subcutaneous immunotherapy product for the treatment of allergic rhinitis and/or rhinoconjunctivitis.
+Grass MATA MPL contains an extract of 13 grass pollens modified with glutaraldehyde (allergoid) to reduce the reactivity with immunoglobulin E (IgE) antibodies without a reduction in other important immunological properties, such as T-cell reactivity. The allergoid is adsorbed to L-tyrosine as a depot adjuvant system formulation. Monophosphoryl lipid-A (MPL), is included as an adjuvant to increase the immunogenic effect of the immunotherapy and to enhance the switch from an allergen specific helper T-cell Type 2 (Th2) to helper T-cell Type 1 (Th1) like immune response.
+More information about the Phase III G306 Grass MATA MPL trial can be found on
+ClinicalTrials.gov
+under the identifier
+NCT05540717
+.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+MSCBCGDUBDGDGSL
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Company to Evaluate Dual Listing on HKEX</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 55/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Company to Evaluate Dual Listing on HKEX | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">6th Nov 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:22 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">55/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Company to Evaluate Dual Listing on HKEX</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">European Union</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+6 Nov 2025 07:22
+RNS Number : 4682G
+Allergy Therapeutics PLC
+06 November 2025
+Allergy Therapeutics plc
+("
+Allergy Therapeutics
+" or the "
+Company
+")
+Company to Evaluate Dual Listing on HKEX
+Worthing, UK - 6 November 2025:
+Allergy Therapeutics plc, the fully integrated commercial biotechnology company specialising in allergy immunotherapies, announces that it is exploring a dual primary listing of its ordinary shares on the Main Board of The Stock Exchange of Hong Kong Limited ("
+HKEX
+").
+This potential listing in Hong Kong, alongside the Company's existing listing on the London Stock Exchange's AIM market, reflects Allergy Therapeutics' desire to expand its presence in Asia and become a global leader in allergy treatments, while also enhancing trading liquidity in its ordinary shares. The Board believes that an HKEX listing and an associated equity offering would broaden the Company's investor base to include Hong Kong and mainland Chinese investors, aligning with the Company's growth ambitions in the region.
+Preparatory work to explore the possible dual listing is underway, and if the Company decides to proceed with these plans, it would be targeting the HKEX listing becoming effective during the course of the first half of 2026, depending on market conditions. An application for listing of the Company's shares on HKEX would be subject to review and approval by the HKEX and the Securities and Futures Commission of Hong Kong, and there is no guarantee that the Company will proceed with such listing application.
+Manuel Llobet, CEO of Allergy Therapeutics
+, commented:
+"We believe that a dual listing in Hong Kong could be an important step forwards for the Company. This initiative aligns well with our Asia expansion strategy and our aim to become a truly global player in the allergy immunotherapy field. By establishing a presence on HKEX, we would be able to engage more directly with Asian investors and support our growth in Asian markets, which we see as a key driver for Allergy Therapeutics' future success."
+Allergy Therapeutics will make further announcements as appropriate to keep the market informed of material developments.
+Regulatory Notices
+:
+The information contained within this announcement is deemed to constitute inside information as stipulated under the Market Abuse Regulations (EU No. 596/2014) which is part of UK law by virtue of the European Union (Withdrawal) Act 2018. Upon the publication of this announcement, this inside information is now considered to be in the public domain. The person responsible for arranging for the release of this announcement on behalf of the Company is Shaun Furlong, Chief Financial Officer.
+This announcement is being issued for information purposes only and does not constitute an offer to sell or issue, or the solicitation of an offer to buy, any securities of the Company in any jurisdiction. In particular, no securities of the Company have been or will be registered under the U.S. Securities Act of 1933, and no public offering is being made in the United States.
+For further information, please contact:
+Allergy Therapeutics
+Manuel Llobet, Chief Executive Officer
+Shaun Furlong, Chief Financial Officer
++44 (0)1903 845 820
+Cavendish Capital Markets Limited (Nominated Adviser and Broker)
+Geoff Nash /Giles Balleny/Seamus Fricker
+Nigel Birks - Life Science Specialist Sales
++44 (0)20 7220 0500
+ICR Healthcare
+Mary-Jane Elliott / David Daley / Davide Salvi
++44 (0)20 3709 5700
+allergytherapeutics@icrhealthcare.com
+About Allergy Therapeutics
+Allergy Therapeutics is an international commercial biotechnology company, headquartered in the UK, focussed on the treatment and diagnosis of allergic disorders. The Group sells proprietary and third-party products from its subsidiaries in nine major European countries and via distribution agreements in an additional ten countries. For more information, please see
+www.allergytherapeutics.com
+.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+MSCBFBRTMTTMMMA
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #10b98140;
+                    ">4</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #4
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📈</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Audited Preliminary Results 2024</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 85/100 • BULLISH</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    FINANCIAL RESULTS: Revenue , m | ✅ BULLISH: Positive results typically drive price increases. Check guidance for future expectations.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">6th Nov 2024</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #10b981;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #10b981;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">85/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">FINANCIAL RESULTS: Revenue , m</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #10b981; font-weight: 600;">✅ BULLISH: Positive results typically drive price increases. Check guidance for future expectations.</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📊 ANALYZE: Determine offer price, arbitrage opportunity if discount</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📈 IMPROVING: Company demonstrating strength and growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Mercer Deutschland</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">36%, 2.7%, 20.3%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+6 Nov 2024 07:00
+RNS Number : 0821L
+Allergy Therapeutics PLC
+06 November 2024
+Allergy
+Therapeutics
+PLC
+("Allergy
+Therapeutics"
+or
+the
+"Group")
+Audited
+Preliminary
+Results
+for
+the
+Year
+ended
+30
+June
+2024
+-
+Financial turnaround progressing with revenue growth in the second half, marking the first period of half year growth since 2021
+-
+EBITDA pre-R&D and exceptionals loss of £6.8m for the year (2023: loss £10.6m), an improvement of 36%
+-
+Post period, strengthened cash position through new £40m Hayfin facility, comprising £20m committed five-year term loan and £20m uncommitted incremental facility
+-
+Pivotal Phase III Grass MATA MPL trial (G306) successfully meets primary endpoint; clinical development expanded to paediatric population with commencement of G308 Phase III trial and positive discussions with regulators on pathway to marketing authorisation application (MAA) submission
+-
+Phase I/IIa VLP Peanut PROTECT trial remains on target with healthy and peanut allergic patients receiving subcutaneous doses with no unexpected safety signals
+6 November 2024
+Allergy Therapeutics (AIM: AGY), the fully integrated specialty pharmaceutical company specialising in allergy vaccines, today announces its
+audited
+preliminary results for the year ended 30 June 2024.
+Highlights
+(including post-period events)
+Financial
+-
+Revenue of £55.2m (2023: £59.6m) from commercial portfolio, with encouraging H2 performance showing first period of half-year growth since 2021. Full year revenue impacted by supply constraints to key markets of Germany and Spain.
+-
+Operating loss pre-R&D and exceptional costs improved to £11.1m (2023: £14.8m loss), reflecting successful implementation of cost control initiatives which have significantly reduced the Group's cost base pre-R&D.
+-
+Exceptional costs of £1.2m consisting of one-off restructuring costs in connection with implementing the cost control initiatives.
+-
+R&D investment increased to £22.9m (2023: £20.1m), reflecting continued advancement of key clinical programmes including pivotal Phase III G306 trial for Grass MATA MPL and VLP Peanut PROTECT study.
+-
+Full year net loss of £40.2m (2023: net loss of £43.1m) despite the reduction in revenue and strategic increase in R&D costs.
+-
+Completed a £40.75m equity financing in October 2023, the proceeds of which were used to repay amounts drawn at that time under the original shareholder loan facility ("Loan Facility") arranged with ZQ Capital Management Limited (acting through its affiliate SkyGem International Holdings Limited) and Southern Fox Investments. At 30 June 2024, £22.5m of the secured facility had been drawn with £17.5m of the uncommitted facility remaining
+-
+Cash balance of £12.9m at 30 June 2024 (2023: £14.8m).
+Post Period Financial Events
+-
+Secured additional £5m funding support from major shareholders SkyGem Acquisition Limited and Southern Fox Investments Limited through existing amended loan facility.
+-
+Strengthened cash position with new £40m Hayfin Healthcare Opportunities facility, comprising £20m committed five-year term loan and £20m uncommitted incremental facility. Arrangement includes issuance of warrants representing 2.7% of issued share capital.
+-
+Increase of the amended Loan Facility from £40m to £50m.
+-
+Implemented new Long Term Incentive Plan to align key leadership interests with long-term shareholder value creation and strategic objectives.
+Operational
+-
+Pivotal G306 Phase III trial to evaluate efficacy and safety of Grass MATA MPL met primary endpoint; positive discussions held with Paul Ehrlich Institut (PEI) on pathway to MAA submission in Q4 2024 under the TAV programme in Germany.
+-
+Post period, commencement of G308, long term Phase III paediatric trial for Grass MATA MPL underway following the success of the pivotal G306 Phase III trial.
+-
+Second cohort of peanut allergic patients in the Phase I/IIa VLP Peanut PROTECT trial completed dosing in September 2024 with up to 50-fold dose increase from initial dose. No relevant safety or tolerability findings observed in either peanut allergy patients or healthy subjects at higher doses. Preliminary biomarker analysis of efficacy expected by end of 2024.
+Manuel Llobet, CEO of Allergy Therapeutics,
+stated:
+"This year has been one of
+continued resilience, progress, and commitment
+. While navigating our challenges, we've remained laser-focused on what matters most - advancing our critical R&D programmes and strengthening our core operations.
+"
+I'm particularly proud of what we've achieved with our Grass MATA MPL programme, where our pivotal Phase III G306 trial delivered exceptional results, showing a 20.3% improvement over placebo. Our VLP Peanut PROTECT trial is also progressing well, with safety data that continues to reinforce our confidence in the programme, and we look forward to our first biomarker-led efficacy data expected in Q4 2024.
+"
+On the operational side, we've made significant strides in enhancing our manufacturing capabilities and implementing effective cost controls across the business. Meanwhile, our commercial performance has shown encouraging signs, with revenue growth in the second half - our first such growth since 2021. With the recent Hayfin facility and continued backing from our major shareholders, we now have the financial foundation to advance our key R&D programmes, particularly the upcoming regulatory submission for Grass MATA MPL and the continued development of our VLP Peanut programme. Looking ahead, Allergy Therapeutics is in its strongest strategic position in years, and I'm excited about what we can achieve."
+This announcement contains inside information for the purposes of the market abuse regulation (EU) no. 596/2014 as it forms part of United Kingdom domestic law by virtue of the European (withdrawal) act 2018, as amended ("MAR").
+- ENDS
+-
+For further information, please contact: Allergy Therapeutics
++44 (0) 1903 845
+820
+Manuel
+Llobet,
+Chief
+Executive
+Officer
+Shaun Furlong, Chief Financial
+Officer
+Cavendish Capital Markets Limited (Nominated Adviser and Broker)
+Geoff Nash /Giles Balleny/ Seamus Fricker / Rory Sale
+Nigel Birks - Life Science Specialist Sales
+Harriet Ward/Tamar Cranford Smith - ECM/Sales
++44 (0)20 7220 0500
+ICR Healthcare
++44 20 3709
+5700
+Mary-Jane
+Elliott
+/
+David
+Daley
+/
+Davide
+Salvi
+allergytherapeutics@consilium-comms.com
+Notes for
+editors:
+About Allergy
+Therapeutics
+Allergy Therapeutics is an international commercial biotechnology
+Group
+, headquartered in the UK, focused on the treatment and diagnosis of allergic disorders, including aluminium free immunotherapy vaccines that have the potential to cure disease. The Group sells proprietary and third-party products from its subsidiaries in nine major European countries and via distribution agreements in an additional ten countries. Its broad pipeline of products in clinical development includes vaccines for grass, tree, house dust mite and peanut. For more information, please see
+www.allergytherapeutics.com
+.
+Chairman and Chief Executive Officer Review
+Introduction
+This past year has been one of continued resilience, progress, and commitment.
+Through our highly focused approach to the Group's business priorities and a steadfast commitment to our Grass and Peanut allergy R&D programmes, we have continued our financial recovery and achieved notable clinical progress. Both showcase our determination in the face of adversity and demonstrate how we live our values everyday.
+We have committed to enhance the Group's manufacturing capabilities and reduce operating costs in all areas
+, pre-R&D and exceptionals,
+to ensure Allergy Therapeutics is on a strong footing for the future. Alongside these commitments and considering our challenges, our commercial business in Europe has performed well in its fundamentals. The second half of the year brought the first period of half year revenue growth seen since 2021, which the board believe signals the return to sustainable growth.
+Board Composition
+Throughout the year, there were changes in our Board composition. We were pleased to appoint Dr. Shaun Furlong as an Executive Director. Shaun has proven himself to be an invaluable asset to us since his appointment as Group Financial Controller in April 2022 and more recently as Chief Financial Officer in August 2023. We also welcomed David Ball as an independent Non-Executive Director and Chair of the Board's Audit and Risk Committee, bringing over 25 years of financial markets expertise to our team. Additionally, we bid farewell to Mary Tavener, who resigned from her position as a Non-Executive Director after five years of dedicated service, and we thank her for her contributions. As a result of these changes, we reviewed the membership of our Committees
+.
+Financial Performance and Clinical Development - Two Halves
+Two Halves - Financial Performance
+This year was a year of two halves. On one side, financially, the Company continued to face challenges. Nonetheless, it continued to extend its cash runway with cost saving initiatives and by securing investment. On the other side, we have celebrated success in the clinical development of our products.
+Following the satisfaction of FDI clearance conditions the open offer and subscription was launched. This led to the mandatory cash offer by SkyGem. These events saw a dramatic change to our shareholder base, approximately 93% of which now sits with SkyGem and Southern Fox. The loan facility provided by SkyGem and Southern Fox was amended twice in the period. In December 2023 we announced a £40m loan facility with SkyGem and Southern Fox, of which £7.5m was initially committed. Through successful discussions with our major shareholders, we have secured a further £15m drawdown from our existing facility. This additional funding extended our cash runway into Q1 FY2025, providing us with the financial flexibility to advance our innovative R&D pipeline. We would like to express our gratitude to our shareholders for their continued support and trust in Allergy Therapeutics, which has been instrumental in our ability to pursue our growth objectives.
+We have experienced two years of extraordinary events and acknowledge the effect this has had, particularly on minority shareholders, our employees who have navigated the financial constraints together with the Company every day and our communities, who we have had to support in a different way based on our cash runway.
+Two Halves - Clinical development
+Successes in our clinical development initiatives provide further drive to continue the pursuit of our goals.
+Grass MATA MPL - a new approach to managing allergic rhinoconjunctivitis due to grass pollen
+The successful completion of the pivotal Phase III G306 trial for Grass MATA MPL in November 2023 provided further evidence demonstrating the beneficial treatment effect of our grass pollen allergy immunotherapy candidate supporting our strategy to register the product with the Paul Ehrlich Institute (PEI) under the TAV programme in Germany.
+The primary endpoint of G306 demonstrated a statistically significant improvement of 20.3% (p=0.00024) for Grass MATA MPL compared to placebo, providing evidence of a substantial reduction in daily symptoms and use of relief medication among participants receiving the immunotherapy candidate. A highly statistically significant improvement in the rhinoconjunctivitis quality of life questionnaire (p=0.0003) was also observed during the peak season and the protective biomarker immunoglobulin (IgG4), measured during the grass pollen season, showed an approximately five-fold increase after treatment with Grass MATA MPL compared to placebo (p
+These robust results support our plans for regulatory submission, with discussions progressing well with the PEI on the clinical data package and also in chemistry, manufacturing, and controls. We are on track for submission in Germany in calendar Q4 2024, positioning Grass MATA MPL as the first subcutaneous grass allergy immunotherapy registered via the TAV programme. Concurrently, we are exploring US registration opportunities, with plans to engage with the FDA regarding the clinical programme to meet US requirements.
+Our long term paediatric trial, G308, has commenced marking another milestone toward regulatory approval. We are excited to bring this innovative therapy to market, addressing a critical need for new treatments for grass pollen allergies, which significantly impact the quality of life for many individuals.
+Bringing Grass MATA MPL to this point in its development has been a huge undertaking for the Group, with significant investment. We are extremely encouraged by the possibility of bringing this state-of-the-art immunotherapy to the market. Grass pollen, a common cause of seasonal allergy, significantly impacts the lives of many people, and new treatment options are desperately needed. The continued investment, particularly over the last two years, has, of course, been challenging and we would like to especially thank the major shareholders SkyGem and Southern Fox for their support.
+VLP Peanut - Delivering a paradigm shift in the treatment of peanut allergy
+The clinical development of the Group's innovative, short-course peanut allergy vaccine candidate, VLP Peanut, via subcutaneous injection, is progressing well. We believe this product has the potential to be a ground-breaking, disease-modifying immunotherapy that could bring a significant positive impact to the lives of patients, families and health systems affected by peanut allergy,. As one of the most common food allergies, peanut allergies affect approximately 1-2% of the US population.
+The Phase I/IIa PROTECT trial, our first-in-human study evaluating the safety and tolerability of VLP Peanut in healthy and peanut allergic adult subjects, has progressed over the past 12 months.
+Our promising safety and tolerability data have provided a solid basis for the design of our upcoming Phase IIb study. Ahead of that, the PROTECT trial will generate the first biomarker-led efficacy data, among higher-dose peanut allergic patients. This data is expected to be available in Q4 2024.
+Post Period Funding
+Post period, on 15 October 2024, the Group entered into a £40m secured senior loan facility (the "Hayfin Facility") with Hayfin Healthcare Opportunities LuxCo S.a.r.l., a fund advised by Hayfin Capital Management LLP ("Hayfin").
+Also on 15 October 2024, following discussions with major shareholders, SkyGem Acquisition Limited (an affiliate of ZQ Capital Management Limited) and Southern Fox Investments Limited (together the "Shareholder Lenders"), the existing loan facility of £40m, details of which were announced on 27 December 2023, has been increased to £50m and its term extended to October 2030. For further information please see Note 21 below.
+Outlook
+Looking ahead, we remain focused on advancing our pipeline of innovative allergy vaccines, expanding our market presence, and delivering value to patients and shareholders alike. As we navigate the path forward, we remain committed to our mission of transforming the lives of people affected by allergies through our immunotherapy treatments.
+Financial review
+Overview
+The financial turnaround of the Group continues to progress well, in line with expectations, with the Group experiencing revenue growth in the second half of the financial year, marking the first period of half year growth since 2021. Revenue for H2 increased by 2% to £21.6m (H2 2023: £21.2m).
+Effective cost controls implemented during the year have significantly reduced the cost base of the Group. Total administrative expenses, pre-R&D and exceptionals, decreased by 13% to £42.4m (2023: £48.9m).
+The Group has continued to selectively invest in its programme of clinical trials, with spend increasing by 14% to £22.9m (2023: £20.1m), which has delivered successful progression of patient cohorts in the VLP Peanut PROTECT trial and positive primary and secondary endpoints for the G306 Phase III Grass MATA MPL trial.
+The Group made an operating loss pre-R&D and exceptional costs of £11.1m (2023: £14.8m loss). The loss is a consequence of the manufacturing capacity allocated to investigational medicinal product batches for use in clinical trials, and the ongoing programme of continuous improvement across the supply chain and quality systems paving the way for increased capacity.
+The Group measures the commercial performance of the business by monitoring EBITDA pre-R&D and exceptionals (see Note 4), the Group achieved an EBITDA pre-R&D and exceptionals loss of £6.8m for the year (2023: loss £10.6m), an improvement of 36%.
+The Company completed the £40.75m equity financing on 13 October 2023, proceeds of which were used to repay amounts drawn at that time under the shareholder loan facility with SkyGem Acquisition and Southern Fox, this restructured the Group's balance sheet enhancing financial stability and improving the net asset position.
+Subsequent to the equity financing a further £40m secured loan facility was agreed with the shareholders, of which £7.5m was initially committed. As at 30 June 2024 £22.5m had been drawn from the facility, following further amounts becoming committed, and was used to fund the ongoing clinical trials, capital expenditure and working capital.
+Thank you to our major shareholders, SkyGem Acquisition and Southern Fox, who have remained supportive of the Company throughout the period.
+Revenue
+Reported revenue decreased by 7% to £55.2m (2023: £59.6m). Revenue was down in Germany and Spain as a consequence of supply constraints, with sales outside of Germany and Spain remaining relatively flat or growing slightly. Germany continues to be our largest sales market which accounted for 49% (2023: 53%) of total revenue.
+Revenue in H2 increased by 2% to £21.6m (H2 2023: £21.2m), representing the first period of half year growth seen since 2021, with higher sales of Pollinex and Pollinex Quattro compared to the prior period.
+Gross profit
+Cost of sales decreased to £25.5m (2023: £26.3m) reflecting the lower volume of sales. The gross margin was 54% (2023: 56%) reflecting the slightly lower sales contribution from Germany and Spain as a proportion of total sales, resulting in a gross profit of £29.7m (2023: £33.2m).
+Operating expenses
+Sales, marketing and distribution costs decreased by £4.1m to £19.6m (2023: £23.7m) mainly as a result of cost control activities.
+Total administrative expenses were £6.5m lower than the prior year at £42.4m (2023: £48.9m) mainly due to the ongoing effective cost controls that have been implemented and have significantly reduced the cost base of the Group, a strong performance given the backdrop of continued elevated levels of inflation earlier in the year. The Group incurred £1.2m of one-off restructuring costs in connection with implementing the cost control initiatives, these have been treated as exceptional costs (see Note 6).
+R&D expenditure rose by £2.8m due to investment in the G306 and G308 trials for Grass MATA MPL and the VLP Peanut PROTECT study.
+Other income in the year of £1.5m (2023: £0.9m) was due to R&D tax credits in the UK and Spain.
+Financing costs
+Financing costs increased by £1.8m to £4.2m (2023: £2.4m) as a result of the greater usage of shareholder loans in the year primarily to fund its R&D program, capital expenditure and working capital.
+Earnings per share
+Basic loss per share for the year was (1.07) pence (2023: (6.43) pence), the main change being due to the issue of new shares in the year as a result of the completion of the £40.75m equity conversion in October 2023 which increased the number of issued ordinary shares.
+Tax
+The current year tax charge is predominantly comprised of liabilities for tax in the Spanish and German subsidiaries. The overall charge in the income statement is £1.1m (2023: £1.3m). As at 30 June 2024, the Group had approximately £170m of unutilised tax losses (2023: approximately £130m) available for offset against future profits.
+Balance sheet
+The Group has continued to develop the Energy Centre in Worthing to strengthen business continuity and establish independence from GSK. The Energy Centre is expected to be commissioned for use later in 2024. Property, plant and equipment additions in the year were £4.1m (2023: £6.3m) primarily reflecting investment in the Worthing Energy Centre and upgrade of plant in the UK.
+Inventories have increased to £12.7m (2023: £11.6m) as the Company continues to stock build ahead of the next peak season following the impact of the temporary manufacturing pause in 2022.
+Cash and cash equivalents decreased to £12.9m (2023: £14.8m). The operating cash outflow
+was £32.0m (2023: £28.4m) and £1.2m investing outflow (2023: £4.6m) offse
+t by a net £31.4m inflow from financing activities (2023: £27.8m).
+Retirement benefit obligations, which relate solely to the German pension scheme, increased to £8.6m (2023: £7.9m).
+The increase in the liability was mainly driven by changes to financial assumptions with the discount rate at the end of the year decreasing to 3.85% from 4.16%
+Net assets of the Group increased from £2.1m to £3.7m primarily reflecting the equity financing offset by the trading losses.
+Currency
+Group Treasury Policy mandates the use of forward exchange contracts to mitigate exposure to the effects of exchange rates where expenditure/income is committed and/or reasonably certain, however, throughout the financial year previous hedge contracts were allowed to complete and all hedging contracts came to an end in or around September 2023. This was due to security being transferred from our primary banking provider to the shareholders as security for the loans.
+With over 85% of revenues and approximately 40% of costs (excluding research and development costs) denominated in Euros, and approximately 40% of research and development costs denominated in US dollars, movements in the currency markets may have an effect on the Group's operational finances. It is the Group's intention to reinstate its hedging policy as soon as practicable.
+Financing
+The Group completed a £40.75m equity financing on 13 October 2023 the proceeds of which were used to repay amounts drawn at that time under the original shareholder loan facility ("Loan Facility") arranged with ZQ Capital Management Limited (acting through its affiliate SkyGem International Holdings Limited) and Southern Fox Investments.
+The Loan Facility agreement was amended twice (the "Amended Loan Facility"), on 27 September 2023 and subsequently on 27 December 2023.
+The Amended Loan Facility provided the Group with a £40.0m secured loan facility of which £7.5m was committed from the outset and £32.5m initially uncommitted. The Amended Loan Facility was available to be drawn down until 15 January 2026 with interest payable semi-annually at 12% per annum and a repayment date of 15 January 2027. The Company issued warrants to the Lenders following each drawdown under the Amended Loan Facility entitling the holders to subscribe for new ordinary shares at a price of 4 pence per share. The entitlement to warrants is 25 warrants for each £1 drawn down up to a maximum of 1,000,000,000 warrants. The warrants are exercisable in whole or in part from 1 July 2024 until 15 January 2027. The Company has agreed that the proceeds of the warrants will be used to repay the principal amounts outstanding under the Amended Loan Facility.
+At 30 June 2024, £22.5m of the secured facility had been drawn with £17.5m of the uncommitted facility remaining.
+On 15 October the Group entered into a £40m secured senior loan facility (the "Hayfin Facility") with Hayfin Healthcare Opportunities LuxCo S.a.r.l., a fund advised by Hayfin Capital Management LLP ("Hayfin"). The Hayfin Facility consists of a committed £20m five year term loan and an additional uncommitted £20m incremental facility. As part of these financing arrangements, the Company also issued to Hayfin 131,603,616 warrants to subscribe for new ordinary shares, representing approximately 2.7% of the issued share capital of the Company, with a nominal exercise price of 0.1 pence per warrant and exercisable for a period of ten years from the date of issue. The committed Hayfin £20m loan is subject to an upfront arrangement fee and has a variable interest rate based on SONIA plus 9.5% per annum with interest payable based on Company selected interest periods.
+Also on 15 October, the Amended Loan Facility, was increased to £50m and its term extended to October 2030. The Amended Loan Facility has been further amended to be unsecured and is subordinate in ranking to the Hayfin Facility. In addition, interest will no longer be paid and instead interest will be rolled up into capital.
+As explained more fully in Note 1, basis of preparation, the Directors have adopted the Going Concern basis in preparing the audited consolidated financial statements.
+Post balance sheet events
+Please refer to Note 21 for details of events after the balance sheet date.
+Consolidated income statement
+for the year ended 30 June 2024
+Note
+Year to
+30 June 2024
+£'000
+Year to
+30 June
+2024
+£'000
+Year to
+30 June 2023
+£'000
+Year to
+30 June
+2023
+£'000
+Revenue
+3
+55,199
+59,587
+Cost of sales
+(25,462)
+(26,342)
+Gross profit
+29,737
+33,245
+Sales, marketing and distribution costs
+(19,591)
+(23,705)
+Administration expenses - other
+(22,790)
+(25,179)
+Total administrative expenses
+(42,381)
+(48,884)
+Other income
+7
+1,526
+856
+Operating loss pre-R&D and exceptional costs
+(11,118)
+(14,783)
+Research and development costs
+(22,900)
+(20,121)
+Exceptional costs
+6
+(1,239)
+(4,750)
+Operating loss
+(35,257)
+(39,654)
+Finance income
+9
+285
+329
+Finance expense
+8
+(4,194)
+(2,441)
+Loss before taxes
+(39,166)
+(41,766)
+Income tax
+(1,050)
+(1,305)
+Loss for the year
+(40,216)
+(43,071)
+Loss per share
+10
+Basic (pence per share)
+(1.07)p
+(6.43)p
+Diluted (pence per share)
+(1.07)p
+(6.43)p
+Consolidated statement of comprehensive income
+for the year ended 30 June 2024
+Note
+Year to
+30 June 2024
+£'000
+Year to
+30 June 2023
+£'000
+Loss for the year
+(40,216)
+(43,071)
+Items that will not be reclassified subsequently to profit or loss:
+Remeasurement of retirement benefit obligations
+18
+(617)
+603
+Remeasurement of investments - retirement benefit assets
+12
+549
+(867)
+Revaluation gains -land and buildings
+11
+281
+428
+Deferred tax movement -land and buildings
+(30)
+-
+Total other comprehensive income
+183
+164
+Items that may be reclassified subsequently to profit or loss:
+Exchange differences on translation of foreign operations
+(86)
+193
+Total comprehensive loss
+(40,119)
+(42,714)
+Consolidated statement of financial position
+as at 30 June 2024
+Note
+30 June 2024
+£'000
+30 June 2023
+£'000
+Assets
+Non-current assets
+Property, plant and equipment - right-of-use assets
+11
+7,457
+8,465
+Property, plant and equipment - other
+11
+16,288
+14,776
+Intangible assets - goodwill
+3,317
+3,346
+Intangible assets - other
+1,370
+1,790
+Investments - retirement benefit assets
+12
+2,913
+4,866
+Total non-current assets
+31,345
+33,243
+Current assets
+Inventories
+13
+12,744
+11,593
+Trade and other receivables
+14
+7,823
+7,088
+Cash and cash equivalents
+12,915
+14,845
+Total current assets
+33,482
+33,526
+Total assets
+64,827
+66,769
+Liabilities
+Current liabilities
+Trade and other payables
+15
+(15,940)
+(16,683)
+Borrowings
+16
+(600)
+(648)
+Provisions
+17
+(2,489)
+-
+Lease liabilities
+(1,516)
+(1,155)
+Derivative financial instruments
+-
+(79)
+Total current liabilities
+(20,545)
+(18,565)
+Net current assets
+12,937
+14,961
+Non-current liabilities
+Retirement benefit obligations
+18
+(8,611)
+(7,917)
+Deferred taxation liability
+(382)
+(454)
+Provisions
+17
+(2,708)
+(3,581)
+Lease liabilities
+(6,372)
+(7,747)
+Long-term borrowings
+16
+(22,500)
+(26,439)
+Total non-current liabilities
+(40,573)
+(46,138)
+Total liabilities
+(61,118)
+(64,703)
+Net assets
+3,709
+2,066
+Equity
+Capital and reserves
+Issued share capital
+19
+4,776
+689
+Share premium
+154,639
+119,030
+Merger reserve
+40,128
+40,128
+Reserve - share-based payments
+408
+2,906
+Revaluation reserve
+1,782
+1,501
+Reserve - warrants
+1,719
+412
+Foreign exchange reserve
+(816)
+(730)
+Retained earnings
+(198,927)
+(161,870)
+Total equity
+3,709
+2,066
+Consolidated statement of changes in equity
+for the year ended 30 June 2024
+Issued capital
+£'000
+Share premium
+£'000
+Merger reserve
+£'000
+Reserve - share -
+based payment
+£'000
+Revaluation reserve
+£'000
+Reserve - warrants
+£'000
+Foreign exchange
+reserve
+£'000
+Retained earnings
+£'000
+Total equity
+£'000
+At 30 June 2022
+654
+112,576
+40,128
+2,799
+1,073
+-
+(923)
+(118,542)
+37,765
+Exchange differences on translation of foreign operations
+-
+-
+-
+-
+-
+-
+193
+-
+193
+Valuation gains taken to equity (land and buildings)
+-
+-
+-
+-
+428
+-
+-
+-
+428
+Remeasurement of net defined benefit liability
+-
+-
+-
+-
+-
+-
+-
+603
+603
+Remeasurement of investments - retirement benefit assets
+-
+-
+-
+-
+-
+-
+-
+(867)
+(867)
+Total other comprehensive (loss)/income
+-
+-
+-
+-
+428
+-
+193
+(264)
+357
+Loss for the period after tax
+-
+-
+-
+-
+-
+-
+-
+(43,071)
+(43,071)
+Total comprehensive loss
+-
+-
+-
+-
+428
+-
+193
+(43,335)
+(42,714)
+Transactions with owners:
+Share-based payments
+-
+-
+-
+114
+-
+-
+-
+-
+114
+Shares issued
+35
+6,454
+-
+-
+-
+-
+-
+-
+6,489
+Transfer of exercised/lapsed options to retained earnings
+-
+-
+-
+(7)
+-
+-
+-
+7
+-
+Warrants issued
+-
+-
+-
+-
+-
+412
+-
+-
+412
+At 30 June 2023
+689
+119,030
+40,128
+2,906
+1,501
+412
+(730)
+(161,870)
+2,066
+Exchange differences on translation of foreign operations
+-
+-
+-
+-
+-
+-
+(86)
+-
+(86)
+Valuation gains taken to equity (land and buildings)
+-
+-
+-
+-
+281
+-
+-
+-
+281
+Deferred tax - land and buildings
+-
+-
+-
+-
+-
+-
+-
+(30)
+(30)
+Remeasurement of net defined benefit liability
+-
+-
+-
+-
+-
+-
+-
+(617)
+(617)
+Remeasurement of investments - retirement benefit assets
+-
+-
+-
+-
+-
+-
+-
+549
+549
+Total other comprehensive income
+-
+-
+-
+-
+281
+-
+(86)
+(98)
+97
+Loss for the period after tax
+-
+-
+-
+-
+-
+-
+-
+(40,216)
+(40,216)
+Total comprehensive loss
+-
+-
+-
+-
+281
+-
+(86)
+(40,314)
+(40,119)
+Transactions with owners:
+Share-based payments
+-
+-
+-
+759
+-
+-
+-
+-
+759
+Shares issued
+4,087
+36,672
+-
+-
+-
+-
+-
+-
+40,759
+Share issue costs
+-
+(1,063)
+-
+-
+-
+-
+-
+-
+(1,063)
+Transfer of exercised/lapsed options to retained earnings
+-
+-
+-
+(3,257)
+-
+-
+-
+3,257
+-
+Warrants issued
+-
+-
+-
+-
+-
+1,307
+-
+-
+1,307
+At 30 June 2024
+4,776
+154,639
+40,128
+408
+1,782
+1,719
+(816)
+(198,927)
+3,709
+Consolidated cash flow statement
+for the year ended 30 June 2024
+Note
+Year to
+30 June 2024
+£'000
+Year to
+30 June 2023
+£'000
+Cash flows from operating activities
+Loss before tax
+(39,166)
+(41,766)
+Adjustments for:
+Finance income
+9
+(285)
+(329)
+Finance expense
+8
+4,194
+2,441
+Non-cash movement on defined benefit pension scheme
+121
+(79)
+Depreciation and amortisation
+4,319
+4,224
+R&D tax credit
+7
+(1,526)
+(856)
+Charge for share-based payments
+759
+114
+Payments for retirement benefit investments
+12
+(19)
+(159)
+Movement in fair valuation of derivative financial instruments
+(79)
+(37)
+Decrease in trade and other receivables
+144
+3,380
+Increase in inventories
+(1,239)
+(183)
+Increase in trade and other payables
+788
+4,818
+Net cash used by operations
+(31,989)
+(28,432)
+Income tax paid
+(149)
+(449)
+Net cash used by operating activities
+(32,138)
+(28,881)
+Cash flows from investing activities
+Interest received
+135
+82
+Payments for property, plant and equipment
+(3,401)
+(4,669)
+Receipts from disposal of investment assets
+2,067
+-
+Net cash used in investing activities
+(1,199)
+(4,587)
+Cash flows from financing activities
+Proceeds from issue of equity shares
+2,417
+7,000
+Share issue expenses
+(
+1,062)
+(511)
+Proceeds of bank borrowings
+514
+-
+Repayment of bank loan borrowings
+(647)
+(961)
+Interest paid on bank loan borrowings
+(86)
+(2,117)
+Repayment of principal on lease liabilities
+(1,734)
+(1,281)
+Interest paid on lease liabilities
+(295)
+(334)
+Proceeds from shareholder loan
+36,575
+36,000
+Repayment of shareholder loan
+(2,135)
+(9,288)
+Interest paid on shareholder loan
+(2,116)
+(712)
+Net cash generated from financing activities
+31,431
+27,796
+Net decrease in cash and cash equivalents
+(1,906)
+(5,672)
+Effects of exchange rates on cash and cash equivalents
+(24)
+2
+Cash and cash equivalents at the start of the period
+14,845
+20,515
+Cash and cash equivalents at the end of the period
+12,915
+14,845
+Cash at bank and in hand
+12,915
+14,845
+Notes to the financial statements
+For the year ended 30 June 2024
+1. Basis of preparation
+The financial information in this announcement has been extracted from the Group's Annual Report and Accounts for the year ended 30 June 2024 and is prepared in accordance with UK-adopted International Accounting Standards.
+Whist the financial information included in this preliminary announcement has been prepared in accordance with International Financial Reporting Standards (IFRS), this announcement itself does not contain sufficient information to comply with IFRS. The financial information set out in this preliminary announcement does not constitute statutory accounts as defined in Section 435 of the Companies Act 2006.
+Statutory accounts for the years ended 30 June 2024 and 30 June 2023 have been reported on by the independent auditor. The independent auditor's report for the years ended 30 June 2024 and 30 June 2023 were unqualified. The report for the year ended 30 June 2023 drew attention to a material uncertainty related to going concern, the report for the year ended 30 June 2024 did not draw attention to any matters by way of emphasis. The reports for the years ended 30 June 2024 and 30 June 2023 did not contain a statement under section 498(2) or (3) Companies Act 2006. Statutory accounts for the year ended 30 June 2023 have been delivered to the Registrar of Companies and those for the year to 30 June 2024 will be delivered following the Company's annual general meeting.
+The consolidated financial statements for the year ended 30 June 2024 (including comparatives) have been prepared under the historical cost convention modified by the revaluation of certain items, as stated in the accounting policies.
+New standards adopted
+There are no IFRS or IAS interpretations that are effective for the first time in this financial period that have had a material impact on the Group.
+Standards, amendments and interpretations to existing standards that are not yet effective and have not been adopted early by the Group
+At the date of authorisation of these financial statements, several new, but not yet effective, standards and amendments to existing standards and interpretations have been published by the IASB. None of these standards or amendments to existing standards have been adopted early by the Group.
+Management anticipates that all relevant pronouncements will be adopted for the first period beginning on or after the effective date of the pronouncement. New standards, amendments and interpretations not adopted in the current year have not been disclosed as they are not expected to have a material impact on the Group's financial statements.
+Going concern
+The going concern period has been assessed as the period from the date of approval of the financial statements to 30 November 2025. The financial statements have been prepared on a going concern basis after considering the Group's and the Company's current cash position and reviewing budgets and cash flow forecasts for a period of at least 12 months from the date of approval of these financial statements.
+On 15 October 2024 the Group entered into a £40m secured senior loan facility (the "Hayfin Facility") with Hayfin Healthcare Opportunities LuxCo S.a.r.l., a fund advised by Hayfin Capital Management LLP. The Hayfin Facility consists of a committed £20m five year term loan which has been fully drawn and an additional uncommitted £20m incremental facility.
+Furthermore, following discussions with the major shareholders, SkyGem Acquisition and Southern Fox (together the "Shareholder Lenders"), the existing loan facility of £40m (the "Shareholder Facility"), details of which were announced on 27 December 2023, has been increased to £50m and its term extended to October 2030. To date, £27.5m has been drawn and is outstanding under the Shareholder Facility, leaving an undrawn but uncommitted balance of £22.5m. The Shareholder Facility has been amended ("the Amended Shareholder Facility") to be unsecured and rank behind the Hayfin Facility. In addition, interest under the Shareholder Facility will no longer be paid and instead interest will be rolled up into capital.
+The Group continues to require funding for the foreseeable future, in particular to fund the ongoing R&D programme. With the £20m committed Hayfin funding and £42.5m of uncommitted facilities, from both Hayfin and the Shareholder Lenders, the Group has access to sufficient funding. The Directors have confidence in the ability to access at least £20m of the uncommitted funding during the next twelve months with the shareholders undertaking that funding would be available from them including under the Amended Shareholder Facility in the event that it was required. Furthermore, in severe but plausible downside scenarios the group has the ability to preserve cash through the deferral of capital expenditure and other spend items.
+The Directors have prepared cash flow forecasts for the period to 30 November 2025 based on the binding arrangements in place for funding with Hayfin and representations provided by the Shareholder Lenders over the Group's ability to access funding under the Amended Shareholder Facility. These forecasts show that the Group has access to sufficient funds for the 12 month going concern review period.
+2. Use of accounting estimates and judgements
+The Group makes certain estimates and assumptions regarding the future. Estimates and judgements are continually evaluated based on historical experience and other factors, including expectations of future events that are believed to be reasonable under the circumstances. In the future, actual experience may differ from these estimates and assumptions. The estimates and assumptions that have a significant risk of causing a material adjustment to the carrying amounts of assets and liabilities within the next financial year are discussed below.
+Judgements
+a) Deferred tax assets are only recognised to the extent that it is probable that taxable profit will be available against which the deductible temporary difference can be utilised. At 30 June 2024 the Group had £170m (2023: £130m) of unutilised tax losses available for offset against future profits. At the UK's current rate of corporation tax the unutilised tax losses equate to a potential deferred tax asset of £40.8m; all of this potential deferred tax asset is unrecognised at the balance sheet date as there is not currently sufficient convincing evidence that taxable profits will be available against which these losses will be utilised in the foreseeable future. Management reassesses the probable availability of future taxable profits on a regular basis.
+Estimates and assumptions
+a) The Group operates equity-settled share-based compensation plans for remuneration of its employees comprising LTIP schemes. As explained in Note 30, employee services received in exchange for the grant of any share-based compensation are measured at their fair values and expensed over the vesting period. The fair value of this compensation is dependent on whether the provisional share awards will ultimately vest, which in turn is dependent on future events which are uncertain. The Directors use their judgement and experience of previous awards to estimate the probability that the awards will vest, which impacts the fair valuation of the compensation.
+The key variables to be estimated are the number of awards that will lapse before the vesting date due to leavers, and the number of awards that will vest in relation to the non-market condition performance tests. The sensitivity to these variables can be seen in the table in Note 30.
+b) The Group operates a partly funded non-contributory defined benefit pension scheme for certain employees in Germany. The defined assets and liabilities of this scheme and the related investments - retirement benefit assets are estimated using actuarial methods by third party experts. The net defined benefit liability is most sensitive to changes in the discount rate applied, see Note 28 for sensitivity analysis.
+3. Revenue
+An analysis of revenue by category is set out in the table below:
+2024
+£'000
+2023
+£'000
+Sale of goods at a point in time
+55,199
+59,587
+55,199
+59,587
+All revenue recognised in the income statement is from contracts with customers. No assets were recognised from costs to obtain or fulfil a contract with any customer.
+4. Alternative performance measures ("APMs")
+The Group's APMs are not defined by IFRS and therefore may not be directly comparable with other companies' APMs. These measures are not intended to be a substitute for, or superior to, IFRS measurements.
+EBITDA
+Earnings before interest, tax, depreciation and amortisation (EBITDA) is included as an alternative performance measure in order to aid users in understanding the underlying operating performance of the Group.
+Note
+2024
+£'000
+2023
+£'000
+Loss before taxation
+(39,166)
+(41,766)
+Net finance expense
+11,12
+3,909
+2,112
+Depreciation
+18
+3,787
+3,670
+Amortisation
+17
+532
+554
+EBITDA
+(30,938)
+(35,430)
+EBITDA pre-R&D and exceptionals
+Earnings before interest, tax, depreciation, amortisation, research and development and exceptionals (EBITDA pre-R&D and exceptionals) is included as an alternative performance measure in order to aid users in understanding the underlying operating performance of the Group.
+These can be reconciled to the IFRS measure of loss before taxation as below:
+2024
+£'000
+2023
+£'000
+EBITDA
+(30,938)
+(35,430)
+Research and development
+22,900
+20,121
+Exceptional costs
+1,239
+4,750
+EBITDA pre-R&D and exceptionals
+(6,799)
+(10,559)
+5. Segmental reporting
+The Group's operating segments are reported based on the financial information provided to the Executive Directors, who are defined as the CODM, to enable them to allocate resources and make strategic decisions. In the opinion of the Directors, there is one class of business, being the manufacture and sale of allergy-related medicines.
+The CODM reviews information based on geographical market sectors and assesses performance at an EBITDA (operating loss before interest, tax, depreciation and amortisation) and operating loss level. Management have identified that the reportable segments are Central Europe (which includes the following operating segments: Germany, Austria, Switzerland and the Netherlands), Southern Europe (Italy, Spain and Other), the Rest of the World (including the UK).
+For all material regions that have been aggregated, management consider that they share similar economic characteristics. They are also similar in respect of the products sold, types of customer, distribution channels and regulatory environments.
+Revenue by segment
+Revenue from external customers
+2024
+£'000
+Inter- segment revenue
+2024
+£'000
+Total segment revenue
+2024
+£'000
+Revenue from external customers
+2023
+£'000
+Inter- segment revenue
+2023
+£'000
+Total segment revenue
+2023
+£'000
+Central Europe
+--Germany
+27,298
+-
+27,298
+31,755
+-
+31,755
+--Austria
+4,947
+-
+4,947
+4,903
+-
+4,903
+--Netherlands
+4,062
+-
+4,062
+4,017
+-
+4,017
+--Switzerland
+2,864
+-
+2,864
+2,838
+-
+2,838
+39,171
+-
+39,171
+43,513
+-
+43,513
+Southern Europe
+--Italy
+3,074
+-
+3,074
+3,053
+-
+3,053
+--Spain
+8,878
+-
+8,878
+9,379
+-
+9,379
+--Other
+368
+-
+368
+396
+-
+396
+12,320
+-
+12,320
+12,828
+-
+12,828
+Rest of World (including UK)
+3,708
+30,412
+34,120
+3,246
+28,731
+31,977
+55,199
+30,412
+85,611
+59,587
+28,731
+88,318
+Revenues from external customers in all segments are derived principally from the sale of a range of pharmaceutical products designed for the immunological treatment of the allergic condition.
+Rest of World (including UK) revenues include sales through distributors and agents in several markets including the Czech Republic, Slovakia and South Korea. Inter-segment revenues represent sales of product from the UK to the operating subsidiaries. The price is set on an arm's-length basis which is eliminated on consolidation.
+The CODM also reviews revenue by segment on a budgeted constant currency basis, to provide relevant year-on-year comparisons.
+The Group has no customers which individually account for 10% or more of the Group's revenue.
+Depreciation and amortisation by segment
+2024
+£'000
+2023
+£'000
+Central Europe
+1,265
+1,217
+Southern Europe
+831
+740
+Rest of World (including UK)
+2,223
+2,267
+4,319
+4,224
+EBITDA by segment
+2024
+£'000
+2023
+£'000
+Allocated EBITDA
+Central Europe
+2,079
+(252)
+Southern Europe
+1,585
+1,362
+Rest of World (including UK)
+(34,602)
+(36,540)
+Allocated EBITDA
+(30,938)
+(35,430)
+Depreciation and amortisation
+(4,319)
+(4,224)
+Operating loss
+(35,257)
+(39,654)
+Finance income
+285
+329
+Finance expense
+(4,194)
+(2,441)
+Loss before tax
+(39,166)
+(41,766)
+Total assets by segment
+2024
+£'000
+2023
+£'000
+Central Europe
+31,031
+25,522
+Southern Europe
+13,815
+10,555
+Rest of World (including UK)
+77,788
+75,041
+122,634
+111,118
+Inter-segment assets
+(20,518)
+(11,558)
+Inter-segment investments
+(37,289)
+(32,791)
+Total assets per balance sheet
+64,827
+66,769
+Included within Central Europe are non-current assets to the value of £2.5m (2023: £2.6m) relating to goodwill and within Southern Europe assets to the value of £3.0m (2023: £3.7m) relating to land and buildings and £0.8m goodwill (2023: £0.8m). There were no material additions (excluding foreign exchange differences) to non-current assets in any country except the UK where non-current asset additions totalled £3.0m and comprised plant and machinery £2.9m, fixtures and fittings £0.05m and computer equipment £0.05m, (2023: £4.3m total).
+Total liabilities by segment
+2024
+£'000
+2023
+£'000
+Central Europe
+(23,290)
+(22,234)
+Southern Europe
+(7,204)
+(6,553)
+Rest of World (including UK)
+(51,142)
+(47,474)
+(81,636)
+(76,261)
+Inter-segment liabilities
+20,518
+11,558
+Total liabilities per balance sheet
+(61,118)
+(64,703)
+6. Exceptional items
+2024
+£'000
+2023
+£'000
+Restructuring costs
+1,239
+-
+Fundraising costs
+-
+2,681
+German rebate provision
+-
+2,069
+1,239
+4,750
+Restructuring costs
+During the year ended 30 June 2024, the Group incurred £1.2m of one-off costs, predominantly for the payment of termination benefits, in connection with implementing a number of cost control initiatives aimed at significantly reducing the ongoing cost base of the Group.
+Fundraising costs
+For the year ended 30 June 2023, the Group incurred costs of £2.7m relating to consultancy in connection with a material gap in funding caused by a short-term pause in production which occurred during October and November 2022. A number of debt and equity transactions were carried out during the period; where costs met the definition of transaction costs as set out in IFRS9 they were included as part of the initial recognition of the relevant liability or equity instrument. Where costs were one-off and exceptional in nature but were not directly attributable to the acquisition of a specific financial liability or equity issuance they were taken to the consolidated income statements as exceptional expenses.
+German rebate provision
+In the prior year, the Group's German subsidiary received notification from the German national health insurance association that manufacturers' rebates were due for the sale of certain products. Whilst the legal situation was still being clarified, the Group made a provision for the best
+possible estimate of the amounts to be reimbursed. Amounts in respect of the year ended 30 June 2023 were taken to the consolidated income statement as a reduction of revenue, amounts in respect of earlier periods were taken to the consolidated income statement as an exceptional expense so as not to distort 2023 revenue
+.
+7. Other income
+2024
+£'000
+2023
+£'000
+R&D tax credit
+1,526
+856
+8. Finance expense
+2024
+£'000
+2023
+£'000
+Interest on shareholder loans
+3,495
+1,824
+Net interest expenses on defined benefit pension liability
+317
+283
+Interest on lease liabilities
+295
+334
+Other
+87
+-
+4,194
+2,441
+9. Finance income
+2024
+£'000
+2023
+£'000
+Bank interest
+135
+82
+Interest on investment assets
+150
+247
+285
+329
+10. Loss per share
+2024
+£'000
+2023
+£'000
+Loss after tax attributable to equity shareholders
+(40,216)
+(43,071)
+Shares
+'000
+Shares
+'000
+Issued Ordinary Shares at start of the period
+679,105
+644,105
+Ordinary Shares issued in the period
+4,087,335
+35,000
+Issued Ordinary Shares at end of the period
+4,766,440
+679,105
+Weighted average number of Ordinary Shares for the period
+3,743,332
+670,355
+Potentially dilutive share options
+-
+-
+Weighted average number of Ordinary Shares for diluted
+earnings per share
+3,743,332
+670,355
+Basic earnings per Ordinary Share (pence)
+(1.07)p
+(6.43)p
+Diluted earnings per Ordinary Share (pence)
+(1.07)p
+(6.43)p
+The diluted loss per share for 2024 does not differ from the basic loss per share as the exercise of share options would have the effect of reducing the loss per share and is therefore not dilutive under the terms of IAS 33.
+11. Property, plant and equipment
+Right-of-use
+assets
+£'000
+Plant and
+machinery
+£'000
+Fixtures and
+fittings
+£'000
+Motor
+vehicles
+£'000
+Computer
+equipment
+£'000
+Land and
+buildings
+£'000
+Total
+£'000
+Cost or valuation
+At 1 July 2022
+12,233
+16,843
+8,230
+23
+4,565
+3,079
+44,973
+Reclassification (see Note 17)
+-
+(7)
+-
+-
+(22)
+-
+(29)
+Additions
+2,247
+3,602
+147
+-
+308
+-
+6,304
+Foreign exchange
+-
+3
+(1)
+(3)
+-
+(2)
+(3)
+Revaluations
+-
+-
+-
+-
+-
+(32)
+(32)
+Disposals
+(557)
+(2)
+(2)
+-
+(3)
+-
+(564)
+At 30 June 2023
+13,923
+20,439
+8,374
+20
+4,848
+3,045
+50,649
+Reclassification (see Note 17)
+-
+-
+-
+-
+35
+-
+35
+Additions
+765
+3,160
+95
+-
+61
+-
+4,081
+Foreign exchange
+(104)
+(23)
+(26)
+-
+(18)
+(44)
+(215)
+Revaluations
+-
+-
+-
+-
+-
+9
+9
+Disposals
+(293)
+-
+(1)
+-
+(1)
+-
+(295)
+At 30 June 2024
+14,291
+23,576
+8,442
+20
+4,925
+3,010
+54,264
+Depreciation
+At 1 July 2022
+4,342
+9,261
+6,794
+21
+4,060
+305
+24,783
+Reclassification
+-
+-
+-
+-
+-
+-
+-
+Charge for the year
+1,681
+1,032
+482
+-
+316
+159
+3,670
+Revaluations
+-
+-
+-
+-
+-
+(460)
+(460)
+Foreign exchange
+(8)
+(4)
+(2)
+(1)
+(2)
+(4)
+(21)
+Disposals
+(557)
+(2)
+(2)
+-
+(3)
+-
+(564)
+At 30 June 2023
+5,458
+10,287
+7,272
+20
+4,371
+-
+27,408
+Reclassification
+-
+-
+-
+-
+-
+-
+-
+Charge for the year
+1,728
+1,109
+389
+-
+286
+275
+3,787
+Revaluations
+-
+-
+-
+-
+-
+(272)
+(272)
+Foreign exchange
+(59)
+(12)
+(18)
+-
+(17)
+(3)
+(109)
+Disposals
+(293)
+-
+(1)
+-
+(1)
+-
+(295)
+At 30 June 2024
+6,834
+11,384
+7,642
+20
+4,639
+-
+30,519
+Net book value
+At 1 July 2022
+7,891
+7,582
+1,436
+2
+505
+2,774
+20,190
+At 30 June 2023
+8,465
+10,152
+1,102
+-
+477
+3,045
+23,241
+At 30 June 2024
+7,457
+12,192
+800
+-
+286
+3,010
+23,745
+Included in Plant and machinery is £5.8m (2023: £2.5m) relating to assets under the course of construction upon which no depreciation has been charged. These are expected to be commissioned before June 2025.
+12. Investments - retirement benefit asset
+The Group carries insurance policies which are designed to contribute towards the obligations in respect of the German defined benefit pension scheme (see Note 28). Some of these policies include a right to reimbursement and therefore do not meet the definition of a qualifying insurance policy under IAS 19.8. Accordingly, the assets have been recognised separately on the balance sheet. They are valued at fair value by Mercer Deutschland GmbH each year. Mercer Deutschland GmbH value the insurance policies according to contractual arrangements.
+2024
+£'000
+2023
+£'000
+At 1 July
+4,866
+5,330
+Additions
+19
+159
+Finance income
+150
+247
+Disposal of retirement benefit asset
+(2,598)
+-
+Remeasurement of investment
+549
+(867)
+Loss on foreign exchange
+(73)
+(3)
+2,913
+4,866
+The valuation of the retirement benefit asset involves a number of complex calculations and assumptions and as a result is subject to inherent uncertainty.
+13. Inventories
+2024
+£'000
+2023
+£'000
+Raw materials and consumables
+4,056
+3,819
+Work in progress
+5,672
+4,775
+Finished goods
+3,016
+2,999
+12,744
+11,593
+The value of inventories measured at fair value less cost to sell was £182,000 (2023: £303,000). The movement in the value of inventories measured at fair value less cost to sell during the year gave rise to a charge of £121,000 which was included within the costs of goods sold in the consolidated income statement.
+14. Trade and other receivables
+2024
+£'000
+2023
+£'000
+Trade receivables
+3,198
+2,733
+Less: provision for impairment of trade receivables
+(336)
+(367)
+Trade receivables - net
+2,862
+2,366
+Other receivables
+2,808
+2,150
+VAT
+538
+542
+Prepayments and accrued revenue
+1,615
+2,030
+7,823
+7,088
+All amounts due as shown above are short term. The carrying value of trade receivables is considered a reasonable approximation of fair value. All trade and other receivables have been reviewed for indicators of impairment. During the year, £25,000 of trade receivables were provided for and £22,000 of the provision utilised. The impaired trade receivables are mostly due from private customers in the Italian market who are experiencing financial difficulties.
+15. Trade and other payables
+2024
+£'000
+2023
+£'000
+Due within one year
+Trade payables
+4,015
+4,090
+Social security and other taxes
+4,734
+4,443
+Other creditors
+102
+99
+Accrued expenses and deferred income
+7,089
+8,051
+15,940
+16,683
+16. Borrowings
+2024
+£'000
+2023
+£'000
+Due within one year
+Bank loans
+600
+648
+600
+648
+2024
+£'000
+2023
+£'000
+Due in more than one year
+Shareholder loans
+21,755
+25,591
+Bank loans
+745
+848
+22,500
+26,439
+The Group completed a £40.75m equity financing on 13 October 2023 the proceeds of which were used to repay amounts drawn at that time under the shareholder loan facility entered into on 6 April 2023 ("Loan Facility") arranged with ZQ Capital Management Limited (acting through its affiliate SkyGem International Holdings Limited) and Southern Fox Investments.
+The Loan Facility agreement was amended twice (the "Amended Loan Facility"), on 27 September 2023 and subsequently on 27 December 2023.
+The Amended Loan Facility provides the Group with a £40.0m loan facility, secured against the shares held by Allergy Therapeutics Plc in other Group companies (i.e. all the major assets of the Group), of which £7.5m was committed from the outset and £32.5m initially uncommitted. The Amended Loan Facility is available to drawn down from 15 January 2024 until 15 January 2026 with interest payable semi-annually at 12% per annum and a repayment date of 15 January 2027. The Company issues warrants to the Lenders following each drawdown under the Amended Loan Facility entitling the holders to subscribe for new ordinary shares at a price of 4 pence per share. The entitlement to warrants is 25 warrants for each £1 drawn down up to a maximum of 1,000,000,000 warrants. The warrants entitle the holders to subscribe for new ordinary shares at a price of 4 pence per warrant. The warrants are exercisable in whole or in part from 1 July 2024 until 15 January 2027. The Company has agreed that the proceeds of the warrants will be used to repay the principal amounts outstanding under the Amended Loan Facility.
+At 30 June 2024, £22.5m of the secured facility had been drawn, of which £1.3m was allocated to the warrants on initial recognition (in line with the Group's accounting policy the debt component was valued first by discounting the contractual cash flows using a market rate of interest that would be payable on a similar debt instrument which did not include the warrants, the remainder of the proceeds is allocated to the warrants and recognised in the "Warrants reserve" within shareholders' equity).
+17. Provisions
+2024
+£'000
+2023
+£'000
+Italian Leaving indemnity
+111
+148
+German rebate provision
+5,086
+3,433
+5,197
+3,581
+Current
+2,489
+-
+Non-current
+2,708
+3,581
+5,197
+3,581
+German Rebate Provision
+The movement in the German rebate provision during the year was as follows:
+2024
+Total
+£'000
+2023
+Total
+£'000
+At 1 July
+3,433
+-
+Additions
+1,732
+3,433
+Foreign exchange movement
+(79)
+-
+At 30 June
+5,086
+3,433
+Current
+2,489
+-
+Non-current
+2,597
+3,433
+5,086
+3,433
+In the previous year, the Group's German subsidiary received notification from the German national health insurance association ("GKV-Spitzenverband") that manufacturers' rebates were due for the sale of certain products. In agreement with the GKV-Spitzenverband, adjusted discounts for the future were published in the Lauertaxe from 1 March 2024. The legal situation for past periods is still being clarified, but the best possible estimate of the amounts to be reimbursed has been recognised as a provision.
+18. Retirement benefit obligations
+Defined contribution scheme
+The Group operates a defined contribution pension scheme for all employees in the UK except those that have opted out of the scheme. The assets of the scheme are held separately from those of the Group in an independently administered fund. A salary sacrifice scheme is in operation at Allergy Therapeutics (UK) Ltd. The effect of the scheme is to transfer a proportion of the payroll cost to pension contributions; see Note 9, Employees for further details.
+Defined benefit scheme
+The Group operates a partly funded non-contributory defined benefit pension scheme for certain employees in Germany. The actuarial valuation was carried out by Mercer Deutschland GmbH at 30 June 2024.
+The assets and liabilities in the scheme were as follows:
+2024
+£'000
+2023
+£'000
+Fair value of plan assets
+1,002
+1,022
+Present value of scheme liabilities
+(9,613)
+(8,939)
+Deficit in the scheme
+(8,611)
+(7,917)
+The weighted average duration of liabilities at 30 June 2024 is 13.2 years (2023: 14.0 years).
+Movement in assets during the year
+2024
+£'000
+2023
+£'000
+Balance as at 1 July
+1,022
+1,215
+Foreign currency differences
+(14)
+(1)
+Interest income on plan assets
+47
+40
+Remeasurement of defined benefit asset
+32
+(146)
+Contributions from employer
+-
+-
+Assets transferred to finance benefits paid
+(85)
+(86)
+Balance as at 30 June
+1,002
+1,022
+The expected contributions to linked investment asset products over the forthcoming year are £nil (2023: £172,000)
+Movement in liabilities in the year
+2024
+£'000
+2023
+£'000
+Balance as at 1 July
+(8,939)
+(9,534)
+Foreign currency differences
+136
+3
+Current service costs
+(122)
+(134)
+Interest cost
+(364)
+(323)
+Remeasurement of defined benefit liability
+- arising from changes in financial assumptions and experience losses/(gains)
+(649)
+750
+Benefits paid by employer
+240
+215
+Benefits paid from assets
+85
+84
+Balance as at 30 June
+(9,613)
+(8,939)
+19. Issued share capital
+2024
+2023
+Shares
+£'000
+Shares
+£'000
+Authorised share capital
+Ordinary Shares of 0.10 pence each
+1 July and 30 June
+790,151,667
+790
+790,151,667
+790
+Deferred shares of 0.10 pence each
+1 July and 30 June
+9,848,333
+10
+9,848,333
+10
+Issued and fully paid
+Ordinary Shares of 0.10 pence
+At 1 July
+679,104,621
+679
+644,104,621
+644
+Issued during the year:
+Issue of shares
+4,087,335,317
+4,087
+35,000,000
+35
+At 30 June
+4,766,439,938
+4,766
+679,104,621
+679
+Issued and fully paid
+Deferred shares of 0.10 pence
+At 1 July
+9,848,333
+10
+9,848,333
+10
+Issued during the year
+-
+-
+-
+-
+At 30 June
+9,848,333
+10
+9,848,333
+10
+Issued share capital
+4,776,288,271
+4,776
+688,952,954
+689
+The deferred shares have no voting rights, dividend rights or value attached to them.
+20. Related party transactions and ultimate control
+Allergy Therapeutics plc's related parties include its subsidiary companies its key management and its shareholders.
+The Group's ultimate controlling party at 30 June 2024 was SkyGem Acquisition Limited (ZQ Capital) by virtue of its 65% holding of voting rights in the share capital of Company. Prior to completion of the £40.75m Equity Financing, announced on 13 October 2023, there was no single ultimate controlling party.
+21. Events after the balance sheet date
+Hayfin Facility
+On 15 October the Group entered into a £40m secured senior loan facility (the "Hayfin Facility") with Hayfin Healthcare Opportunities LuxCo S.a.r.l., a fund advised by Hayfin Capital Management LLP ("Hayfin"). The Hayfin Facility consists of a committed £20m five year term loan and an additional uncommitted £20m incremental facility. As part of these financing arrangements, the Company has also issued to Hayfin 131,603,616 warrants to subscribe for new ordinary shares, representing approximately 2.7% of the issued share capital of the Company, with a nominal exercise price of 0.1 pence per warrant and exercisable for a period of ten years from the date of issue. The Hayfin £20m loan is subject to an upfront arrangement fee and has a variable interest rate based on SONIA plus 9.5% per annum with interest payable based on Company selected interest periods.
+Also on 15 October, following discussions with major shareholders, SkyGem Acquisition Limited (an affiliate of ZQ Capital Management Limited) and Southern Fox Investments Limited (together the "Shareholder Lenders"), the existing loan facility of £40m, details of which were announced on 27 December 2023, has been increased to £50m and its term extended to October 2030. To date, £27.5m has been drawn and is outstanding under the Shareholder Facility (£5m of which was drawn after the balance sheet date), leaving an undrawn but uncommitted balance of £22.5m. The Shareholder Facility has been amended ("the Amended Shareholder Facility") to be unsecured and rank behind the Hayfin Facility. In addition, interest under the Shareholder Facility will no longer be paid and instead interest will be rolled up into capital.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+FR QKPBKNBDBPDK
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #10b98140;
+                    ">5</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #5
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📈</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Notice of 2025 Annual General Meeting</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 75/100 • BULLISH</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    FINANCIAL RESULTS: Financial results released | ✅ BULLISH: Positive results typically drive price increases. Check guidance for future expectations.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">6th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #10b981;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #10b981;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">75/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">FINANCIAL RESULTS: Financial results released</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #10b981; font-weight: 600;">✅ BULLISH: Positive results typically drive price increases. Check guidance for future expectations.</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #10b981; font-weight: 600;">🟢 LOW RISK: Positive signals, minimal concerns</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📈 IMPROVING: Company demonstrating strength and growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Stock Exchange</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+6 Jan 2026 07:00
+RNS Number : 7235N
+Allergy Therapeutics PLC
+06 January 2026
+Al
+l
+e
+r
+g
+y
+Th
+e
+r
+a
+p
+e
+u
+ti
+cs
+p
+l
+c
+("
+A
+l
+l
+e
+r
+gy
+T
+he
+r
+a
+peu
+t
+i
+cs" or the "
+C
+o
+m
+p
+a
+n
+y
+"
+)
+Notice of 2025 Annual General Meeting
+06 January 2026
+- Allergy Therapeutics plc (AIM: AGY), the fully integrated commercial biotechnology company specialising in allergy immunotherapies, has today published its Notice of Annual General Meeting following publication of the Annual Report and Accounts for the year ended 30 June 2025 (the "
+2025 Accounts
+"). The Notice of Annual General Meeting has been posted to shareholders of the Company (the "
+Shareholders
+") today and is available to view on, and download from, the Company's website at
+https://www.allergytherapeutics.com/investors/shareholder-services/agm-information/
+.
+Approval of new appointments to Board
+The Company is seeking shareholder approval to appoint two additional directors to the Board, as detailed below, each of whom brings decades of expertise in their respective fields. The Board believes these appointments will directly support the Group's current explorations of a potential dual primary listing on the Hong Kong Stock Exchange, alongside its existing listing on the London Stock Exchange's AIM market, and the ambition to expand Allergy Therapeutics' presence in Asia and become a global leader in allergy treatments. The proposed appointments of the additional directors remain subject to completion of customary due diligence and will be effective upon receipt of shareholder approval at the Annual General Meeting. A further announcement will be made in due course, as required.
+Helge Weiner-Trapness - Executive Director and Chief Strategy Officer
+Until 2025, Mr Weiner-Trapness held the role of Vice Chairman, Global Banking, at HSBC, one of the world's largest financial organisations which is dual-listed on the London Stock Exchange and the Hong Kong Stock Exchange. Prior to this, he was a Founding Partner of Hong Kong-based Quintus Partners, an independent financial advisory firm offering investment banking, strategic advisory and capital raising, particularly in the US and Asia. With earlier, senior positions at Barclays Bank, Asia Pacific Land, JP Morgan Securities and Goldman Sachs, Mr Weiner-Trapness brings more than 30 years of experience across some of the world's biggest investment banks in the US and Asia.
+In the newly created role of Chief Strategy Officer, Mr Weiner-Trapness will drive the Group's long-term growth strategy, including corporate development, partnership strategy and portfolio prioritisation, as Allergy Therapeutics advances its next-generation pipeline and explores opportunities to deliver on its global ambitions.
+Lawrence Allen Wang - Non-Executive Director
+Lawrence Allen Wang is the Chief Financial Officer of Adicon (HKG: 9860) one of China's leading independent clinical laboratory service providers. Mr Wang led and executed the company's $88 million share financing in 2020, bringing in an international, blue-chip investor syndicate and, in 2023, successfully listed the company on the Hong Kong Stock Exchange. Later that year the company qualified for entry into the Hong Kong Stock Exchange's Stock Connect mutual market access programme, that links the Hong Kong Stock Exchange with Mainland China's two main exchanges. Mr Wang has more than 20 years of healthcare and investment experience. He qualified as a Doctor of Medicine from Boston University School of Medicine in 2003 and has an MBA from MIT Sloan School of Management.
+For further information, please contact:
+Allergy Therapeutics
+Manuel Llobet, Chief Executive Officer
+Shaun Furlong, Chief Financial Officer
++44 (0)1903 845 820
+Cavendish Capital Markets Limited (Nominated Adviser and Broker)
+Geoff Nash /Giles Balleny/ Seamus Fricker
+Nigel Birks - Life Science Specialist Sales
++44 (0)20 7220 0500
+ICR Healthcare
+Mary-Jane Elliott / David Daley / Davide Salvi
++44 (0)20 3709 5700
+allergytherapeutics@icrhealthcare.com
+Notes for editors:
+About Allergy Therapeutics
+Allergy Therapeutics is an international commercial biotechnology company, headquartered in the UK, focussed on the treatment and diagnosis of allergic disorders, including aluminium free immunotherapies that have the potential to cure disease. The Group sells proprietary and third-party products from its subsidiaries and branches in nine major European countries and via distribution agreements in an additional four countries. For more information, please see
+www.allergytherapeutics.com
+.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+NOAFZGGMMKLGVZZ
+                </div>
+            </details>
+            
+            </div>
+            
+            </div>
+            <div style="
+                margin-top: 20px;
+                padding: 14px 16px;
+                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+                border-radius: 10px;
+                font-size: 12px;
+                color: #78350f;
+                border-left: 3px solid #f59e0b;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            ">
+                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
+                <div style="line-height: 1.5;">
+                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
+                    Each RNS includes sentiment classification, key data extraction, and trading context. 
+                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
+                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                    </strong>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            details[open] > summary {
+                background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%) !important;
+                border-left-color: #0369a1 !important;
+            }
+            summary::-webkit-details-marker {
+                display: none;
+            }
+            
+            /* ========== MOBILE RESPONSIVE ========== */
+            @media (max-width: 768px) {
+                body {
+                    padding: 10px;
+                    font-size: 14px;
+                }
+                
+                .container {
+                    margin: 0 auto;
+                }
+                
+                .header-card {
+                    padding: 14px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .company-name {
+                    font-size: 22px;
+                    margin-bottom: 8px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 13px;
+                    padding: 6px 12px;
+                }
+                
+                .company-meta {
+                    gap: 8px;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+                
+                .meta-item {
+                    padding: 6px 12px;
+                    font-size: 12px;
+                    gap: 6px;
+                }
+                
+                .meta-icon {
+                    font-size: 14px;
+                }
+                
+                .score-hero {
+                    padding: 20px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .action-display {
+                    font-size: 18px !important;
+                    margin-bottom: 12px;
+                }
+                
+                .scores-row {
+                    gap: 16px;
+                    margin: 20px 0;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    display: flex;
+                }
+                
+                .score-circle {
+                    width: 110px;
+                    height: 110px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 32px;
+                }
+                
+                .score-label {
+                    font-size: 10px;
+                    margin-top: 4px;
+                }
+                
+                .timing-badge-large {
+                    padding: 10px 20px;
+                    font-size: 14px;
+                    margin: 12px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 14px;
+                    padding: 12px;
+                    margin-top: 12px;
+                }
+                
+                .factors-list {
+                    grid-template-columns: 1fr;
+                    gap: 10px;
+                    margin-top: 12px;
+                }
+                
+                .factor-item {
+                    padding: 12px;
+                    font-size: 12px;
+                    gap: 8px;
+                }
+                
+                .factor-icon {
+                    font-size: 16px;
+                }
+                
+                .cards-grid {
+                    grid-template-columns: 1fr;
+                    gap: 12px;
+                    margin-bottom: 12px;
+                }
+                
+                .card {
+                    padding: 16px;
+                    border-radius: 12px;
+                }
+                
+                .card-title {
+                    font-size: 14px;
+                    margin-bottom: 12px;
+                    gap: 8px;
+                }
+                
+                .card-icon {
+                    font-size: 18px;
+                }
+                
+                .stat-row {
+                    padding: 8px 0;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+                
+                .stat-label {
+                    font-size: 12px;
+                }
+                
+                .stat-value {
+                    font-size: 14px;
+                }
+                
+                .rally-badge {
+                    padding: 4px 10px;
+                    font-size: 10px;
+                }
+                
+                .risk-indicator {
+                    gap: 10px;
+                    padding: 12px;
+                    flex-wrap: wrap;
+                }
+                
+                .risk-icon {
+                    font-size: 20px;
+                }
+                
+                .reason-item {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                }
+                
+                .tag {
+                    padding: 3px 8px;
+                    font-size: 10px;
+                }
+                
+                .footer {
+                    padding: 12px;
+                    font-size: 11px;
+                    margin-top: 12px;
+                    border-radius: 12px;
+                }
+                
+                .alert-box {
+                    padding: 12px;
+                    margin: 10px 0;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                body {
+                    padding: 8px 6px;
+                }
+                
+                .header-card {
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    border-radius: 8px;
+                }
+                
+                .company-name {
+                    font-size: 18px;
+                    margin-bottom: 6px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 11px;
+                    padding: 3px 8px;
+                }
+                
+                .company-meta {
+                    gap: 4px;
+                    flex-direction: column;
+                }
+                
+                .meta-item {
+                    padding: 4px 6px;
+                    font-size: 11px;
+                    background: rgba(247, 250, 252, 0.7);
+                }
+                
+                .score-hero {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                    border-radius: 12px;
+                }
+                
+                .score-circle {
+                    width: 70px;
+                    height: 70px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 22px;
+                    font-weight: 800;
+                }
+                
+                .score-label {
+                    font-size: 7px;
+                    margin-top: 2px;
+                }
+                
+                .scores-row {
+                    flex-direction: column;
+                    gap: 10px;
+                    margin: 12px 0;
+                    align-items: center;
+                }
+                
+                .timing-badge-large {
+                    padding: 6px 12px;
+                    font-size: 11px;
+                    margin: 10px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 11px;
+                    padding: 8px;
+                    line-height: 1.3;
+                }
+                
+                .card {
+                    padding: 10px;
+                    margin-bottom: 8px;
+                    border-radius: 8px;
+                }
+                
+                .card-title {
+                    font-size: 12px;
+                    margin-bottom: 8px;
+                    font-weight: 700;
+                }
+            }
+        </style>
+        
+
+        <!-- Footer -->
+        <div class="footer">
+            Report generated: 2026-01-17 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            <strong>△ Not financial advice. Do your own research.</strong>
+            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
+                <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

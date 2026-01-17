@@ -1,0 +1,2670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrashDash • TMO.L APEX Profile</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .header-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .ticker-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .company-name { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .company-meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f7fafc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .meta-icon { font-size: 18px; }
+        
+        .score-hero {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        .action-display {
+            margin-bottom: 20px;
+        }
+        .scores-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .score-number {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .score-label { font-size: 12px; color: #666; margin-top: 5px; }
+        .timing-badge-large {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 24px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            margin: 20px 0;
+        }
+        .thesis-line {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .factors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .factor-item {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        .factor-icon { font-size: 20px; }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-icon { font-size: 24px; }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-label { color: #666; font-size: 14px; }
+        .stat-value { font-weight: 600; font-size: 16px; }
+        
+        .rally-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .risk-indicator {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .risk-high { background: #fee2e2; }
+        .risk-icon { font-size: 24px; }
+        
+        .reason-item {
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .tag {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .footer {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-top: 20px;
+        }
+        
+        .alert-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Header Card -->
+        <div class="header-card">
+            <div class="ticker-badge">TMO.L</div>
+            <div class="company-name">Time Out Group plc</div>
+            <div class="company-meta">
+                <div class="meta-item">
+                    <span class="meta-icon">■</span>
+                    <span><strong>Sector:</strong> Consumer Cyclical</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">£</span>
+                    <span><strong>Market Cap:</strong> £46,254,106</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">◷</span>
+                    <span><strong>Days Active:</strong> 0 days</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action & Score Hero Section -->
+        <div class="score-hero">
+            <div class="action-display">
+                <span style="font-size: 32px; font-weight: 800; color: white;">◉ WATCH</span>
+            </div>
+            
+            <div class="scores-row">
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">45</div>
+                    <div class="score-label">APEX SCORE</div>
+                </div>
+                <div class="score-circle">
+                    <div class="score-number" style="color: #f59e0b;">50</div>
+                    <div class="score-label">CONFIDENCE</div>
+                </div>
+            </div>
+            
+            <div class="timing-badge-large">
+                Timing: <span class="rally-badge" style="background: #fef3c7; color: #92400e;">EARLY BUILD</span>
+            </div>
+            
+            <div class="thesis-line">
+                WATCH - EARLY_BUILD timing with 45/100 opportunity score
+            </div>
+        </div>
+
+        <!-- ==================== CRASHDASH INTELLIGENCE - PANIC HUNTER VIEW ==================== -->
+        
+        <div class="card" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b;">
+            <div class="card-title" style="color: #0f172a;">
+                <span class="card-icon">🏭</span>
+                CrashDash Intelligence • Industrials
+            </div>
+            
+            <!-- Fear Meter -->
+            <div style="background: white; padding: 24px; border-radius: 14px; margin-bottom: 20px; text-align: center;">
+                <div style="font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 16px;">🔥 PANIC METER</div>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 16px;">
+                    <div style="width: 160px; height: 160px; border-radius: 50%; background: conic-gradient(#f59e0b 252.0deg, #e5e7eb 252.0deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                        <div style="width: 130px; height: 130px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <div style="font-size: 48px; font-weight: 800; color: #f59e0b;">70</div>
+                            <div style="font-size: 12px; color: #64748b; font-weight: 600;">PANIC SCORE</div>
+                        </div>
+                    </div>
+                    <div style="text-align: left; max-width: 400px;">
+                        <div style="font-size: 18px; font-weight: 700; color: #f59e0b; margin-bottom: 12px;">HIGH PANIC</div>
+                        <div style="font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 12px;">🟠 Fear dominant - watch for reversal signs</div>
+                        <div style="font-size: 13px; color: #64748b;">
+                            <div>💔 Price: 40/40</div>
+                            <div>📉 Volume: 14/20</div>
+                            <div>🔇 Social: 6/20</div>
+                            <div>📰 News: 10/20</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CrashHunter Signals -->
+                <div style="margin-top: 20px;">
+                    <span style="display: inline-block; background: #f59e0b; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">🟠 Fear 70/100</span><span style="display: inline-block; background: #10b981; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">📊 Building</span>
+                </div>
+                
+                <!-- Opportunity Flag -->
+                <div style="margin-top: 20px; padding: 16px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 10px; color: white; font-weight: 700; font-size: 16px;">🎯 ⚠️ HIGH PANIC + Early timing = Potential accumulation phase</div>
+            </div>
+            
+            <!-- Contrarian Compression Energy Panel -->
+            
+            <!-- Contrarian Compression Energy Panel -->
+            <div style="background: linear-gradient(135deg, #fef9c3 0%, #fde047 100%); padding: 24px; border-radius: 14px; margin-bottom: 20px; border: 3px solid #eab308;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <span style="font-size: 32px;">⚡</span>
+                    <div style="flex: 1;">
+                        <div style="font-size: 20px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">
+                            CONTRARIAN COMPRESSION SCORE
+                        </div>
+                        <div style="font-size: 13px; color: #475569; font-weight: 600;">
+                            Signal Congestion Framework • Compression = Explosive Potential
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Score Display -->
+                <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 30px;">
+                        <!-- Circular gauge -->
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: conic-gradient(#eab308 212.4deg, #e5e7eb 212.4deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                            <div style="width: 110px; height: 110px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <div style="font-size: 42px; font-weight: 800; color: #eab308;">59</div>
+                                <div style="font-size: 11px; color: #64748b; font-weight: 600;">/ 100</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Key metrics -->
+                        <div style="text-align: left;">
+                            <div style="font-size: 16px; font-weight: 700; color: #eab308; margin-bottom: 12px;">🟡 MODERATE COMPRESSION (Top 30% - GOOD SETUP)</div>
+                            <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                                <div><strong>1.2</strong> signals/week</div>
+                                <div><strong>5</strong> RSI &lt; 20 events</div>
+                                <div><strong>1</strong> escalations detected</div>
+                                <div style="color: #eab308; font-weight: 700; margin-top: 6px;">
+                                    💎 Historical pop: <strong>+1%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Component Breakdown -->
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 15px;">
+                        📊 5-COMPONENT BREAKDOWN
+                    </div>
+                    
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">compression</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #f59e0b;">29/40</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #f59e0b; height: 100%; width: 72.5%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">1.2 signals/week | 5 RSI<20 | 1 escalations | ⚡ HIGH COMPRESSION</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">intensification</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #ef4444;">20/20</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #ef4444; height: 100%; width: 100.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;"></div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">volume death</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">5/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 33.33333333333333%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">Elevated volume - Some activity</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">pop potential</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">0/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">Weak history (1%)</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">accumulation</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #eab308;">5/10</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #eab308; height: 100%; width: 50.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">Accum 3 bars ago</div>
+                </div>
+                
+                </div>
+                
+                <!-- Contrarian Philosophy -->
+                <div style="background: rgba(255,255,255,0.7); padding: 16px; border-radius: 10px; border-left: 4px solid #eab308;">
+                    <div style="font-weight: 700; color: #0f172a; margin-bottom: 8px; font-size: 14px;">
+                        🎯 CONTRARIAN WISDOM
+                    </div>
+                    <div style="font-size: 13px; color: #334155; line-height: 1.6;">
+                        <strong>Signal congestion = Compression energy = Explosive potential.</strong><br>
+                        When multiple crash signals cluster together with extreme RSI and proven rally history, 
+                        it creates a compressed spring effect. More panic = More opportunity for contrarians.
+                        <div style="margin-top: 8px; padding: 10px; background: rgba(239,68,68,0.1); border-radius: 6px; font-size: 12px;">
+                            <strong style="color: #eab308;">Theory:</strong> High compression scores (60+) historically precede 
+                            explosive 10-20x moves when catalysts arrive. This is the foundation of crash hunting.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Fear vs Facts Contrarian View -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                <div style="background: #fee2e2; padding: 18px; border-radius: 12px; border-left: 4px solid #ef4444;">
+                    <div style="font-weight: 700; color: #991b1b; margin-bottom: 12px; font-size: 15px;">😱 FEAR (What Panic Shows)</div>
+                    <div style="color: #7f1d1d;">
+                        <div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 💔 Price destruction: 40/40 points</div>
+                    </div>
+                </div>
+                <div style="background: #dcfce7; padding: 18px; border-radius: 12px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #065f46; margin-bottom: 12px; font-size: 15px;">📊 FACTS (What Data Shows)</div>
+                    <div style="color: #064e3b;">
+                        <div style="color: #64748b; font-size: 14px;">Limited historical data</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contrarian Verdict -->
+            <div style="background: white; padding: 18px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #6366f1;">
+                <div style="font-weight: 700; color: #4338ca; margin-bottom: 10px; font-size: 15px;">⚖️ Contrarian Verdict</div>
+                <div style="font-size: 15px; color: #1e293b; line-height: 1.6; font-weight: 600;">
+                    🎯 CONTRARIAN OPPORTUNITY - Fear dominates but facts support recovery potential
+                </div>
+            </div>
+            
+            <!-- Industry Crash Patterns -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">⚠️ Crash Patterns (Industrials)</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book decline or cancellations</div><div>• Margin compression (input costs)</div><div>• Cyclical demand weakness</div>
+                    </div>
+                    <div style="margin-top: 12px; padding: 10px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e; font-weight: 600;">🚨 Active: Project delays or overruns, Working capital strain</div>
+                </div>
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">🚀 Recovery Paths</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book growth or new contracts</div><div>• Margin recovery (efficiency gains)</div><div>• Cyclical upturn (capex recovery)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Catalyst Pipeline -->
+            <div style="background: rgba(255,255,255,0.5); padding: 18px; border-radius: 12px; margin-bottom: 20px;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 14px; font-size: 15px;">📅 Catalyst Pipeline</div>
+                
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Standard form for notification of major holdings</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Director/PDMR Shareholding</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Standard form for notification of major holdings</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Standard form for notification of major holdings</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Result of GM and Completion of Capital Raising</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+            
+            <!-- CrashDash Decision Matrix -->
+            <div style="background: white; padding: 20px; border-radius: 12px; border: 3px solid #f59e0b;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 16px; text-align: center;">
+                    🎯 CRASHDASH DECISION: <span style="color: #f59e0b; font-size: 20px;">WATCH</span>
+                </div>
+                <div style="font-size: 15px; color: #475569; text-align: center; margin-bottom: 20px; font-weight: 600;">
+                    ⏳ Monitor for timing regime change or panic escalation
+                </div>
+                <div style="background: #f8fafc; padding: 16px; border-radius: 10px;">
+                    <div style="font-weight: 700; color: #64748b; margin-bottom: 12px; font-size: 13px;">CHECKLIST (4/5 pass)</div>
+                    
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🔴</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Panic Score</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">70/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">✅</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Timing Regime</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">EARLY_BUILD</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">⚠️</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">APEX Quality</div>
+                    <div style="font-size: 13px; color: #ef4444; font-weight: 600;">45/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🎯</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Data Confidence</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">50/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🏭</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Industry Pattern</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">2 active</div>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
+        <div class="card" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 2px solid #0ea5e9;">
+            <div class="card-title" style="color: #0369a1;">
+                <span class="card-icon">🤖</span>
+                APEX Trader Brief v2
+            </div>
+            
+            <!-- Bottom Line (Most Important) -->
+            <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #0ea5e9;">
+                <div style="font-size: 16px; font-weight: 700; color: #0369a1; margin-bottom: 10px;">📝 Bottom Line</div>
+                <div style="font-size: 15px; line-height: 1.7; color: #1e293b;">
+                    Pass – the story has no momentum, no clear catalyst, and the price is essentially a zero‑value asset. Better to focus on setups with stronger fundamentals and market interest.
+                </div>
+            </div>
+            
+            <!-- Company in 30 Seconds -->
+            <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #6366f1;">
+                <div style="font-weight: 700; color: #6366f1; margin-bottom: 12px; font-size: 15px;">🏢 Company in 30 Seconds</div>
+                <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                    <div style="margin-bottom: 8px;"><strong>What they do:</strong> TMO Ltd is a micro‑cap listed on the AIM; its core business is not disclosed in the public filings we have.</div>
+                    <div style="margin-bottom: 8px;"><strong>Why they matter:</strong> Its listing provides a liquidity venue for small‑cap investors, but the company offers no clear strategic edge in a known market.</div>
+                    <div><strong>Current state:</strong> The stock is struggling – down 83.2% from its peak, trading at 0.00p with no revenue or clear growth story.</div>
+                </div>
+            </div>
+            
+            <!-- Buy vs Sell Decision -->
+            <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #ef4444;">
+                <div style="font-weight: 700; color: #ef4444; margin-bottom: 12px; font-size: 15px;">
+                    📉 
+                    Buy vs Sell — Lean: BEARISH
+                </div>
+                <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                    <div style="margin-bottom: 10px;"><strong style="color: #10b981;">Bull Case:</strong> If TMO suddenly announces positive revenue or a viable product line, the price could recover from its current floor. This would require a clear, credible business model and evidence of cash generation.</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: #ef4444;">Bear Case:</strong> The company has no revenue, no growth story, and no social or search traction. The price is flat at 0.00p and has already dropped 83% from its peak, signalling a weak base for upside.</div>
+                    <div><strong>Risk/Reward:</strong> Low upside, high downside – the risk/reward profile is unattractive. The potential upside is limited to a small bounce if a surprise catalyst appears; the downside is essentially the current price.</div>
+                </div>
+            </div>
+            
+            <!-- What's Happening Now -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-bottom: 15px;">
+                <div style="background: white; padding: 18px; border-radius: 10px; border-left: 4px solid #8b5cf6;">
+                    <div style="font-weight: 700; color: #8b5cf6; margin-bottom: 12px; font-size: 15px;">📰 RNS Narrative</div>
+                    <div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• Listing events: AIM admission, placement and PDMR filings all clustered in the last two weeks – a standard set of regulatory updates.</div><div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• Financial updates: Full‑Year results released on 30 October 2024 – no revenue figures disclosed, just a summary of the company’s cash position.</div><div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• Trading updates: A 20 June 2024 announcement promises a new trading update but offers no forward guidance or operational highlights.</div>
+                </div>
+                
+                <div style="background: white; padding: 18px; border-radius: 10px; border-left: 4px solid #ec4899;">
+                    <div style="font-weight: 700; color: #ec4899; margin-bottom: 12px; font-size: 15px;">💬 Crowd Tape</div>
+                    <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                        <div style="margin-bottom: 8px;"><strong>Theme:</strong> The community is essentially silent – no posts, no debate, no visible sentiment.</div>
+                        <div style="margin-bottom: 8px;"><strong style="color: #10b981;">Bulls:</strong> There is no bullish chatter; traders have not identified any catalyst to rally the price.</div>
+                        <div style="margin-bottom: 8px;"><strong style="color: #ef4444;">Bears:</strong> No bearish commentary either – the lack of activity simply reflects a lack of story.</div>
+                        <div><strong>Shift:</strong> No shift – the silence has persisted from the first announcement to today.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Attention Check -->
+            <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #f59e0b;">
+                <div style="font-weight: 700; color: #f59e0b; margin-bottom: 12px; font-size: 15px;">👀 Attention Check</div>
+                <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                    Google Trends shows a flat line at 0/100 interest, and ShareChat activity is nil. The story has lost all oxygen; no search or social signal is keeping it alive.
+                </div>
+            </div>
+            
+            <!-- What to Expect Next -->
+            <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #14b8a6;">
+                <div style="font-weight: 700; color: #14b8a6; margin-bottom: 12px; font-size: 15px;">🔮 What to Expect Next</div>
+                <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                    <div style="margin-bottom: 10px;"><strong>Catalysts:</strong></div>
+                    <div style="padding: 4px 0; padding-left: 15px;">• Full‑Year results (30 October 2024) – the next release could include a first revenue print or a cash‑flow update that would give the market something to react to.</div><div style="padding: 4px 0; padding-left: 15px;">• Trading update (20 June 2024) – if the company expands on that announcement with guidance or a new product launch, it could spark a short‑term rally.</div>
+                    <div style="margin-top: 10px;"><strong>Watch for:</strong> Any sign of revenue, a clear product pipeline, or a change in the board composition. Director sales or further placement rumors would be red flags.</div>
+                    <div style="margin-top: 8px;"><strong>Timing:</strong> Early – the company is still in the infancy stage of its narrative, and the price is highly speculative with no proven track record.</div>
+                </div>
+            </div>
+            
+            <!-- Playbook -->
+            <div style="background: white; padding: 18px; border-radius: 10px; border-left: 4px solid #0ea5e9;">
+                <div style="font-weight: 700; color: #0ea5e9; margin-bottom: 12px; font-size: 15px;">📋 Playbook</div>
+                <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                    <div style="margin-bottom: 10px;"><strong style="color: #10b981;">If Bullish:</strong> Not recommended – there is no bullish case to support an entry.</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: #f59e0b;">If Watching:</strong> Hold off until the next financial release. If the company delivers a revenue print or a clear product roadmap, consider a small position with a tight stop at 0.01p.</div>
+                    <div><strong style="color: #ef4444;">If Passing:</strong> Stay out. The story lacks traction, the price has no support, and there are no catalysts to justify a speculative bet.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Decision Summary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◆</span>
+                Why This Matters
+            </div>
+            <div class="stat-row"><span>• APEX 45/100 indicates moderate opportunity quality</span></div><div class="stat-row"><span>• Timing regime: EARLY_BUILD</span></div><div class="stat-row"><span>• Historical profile: 0 rallies, 0% best run</span></div>
+            
+            <div class="alert-box" style="margin-top: 20px;">
+                <strong>△ Main Risk:</strong> Confidence 50/100 - full data loaded
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong>◉ Watch Next:</strong>
+                <div style="padding: 8px 0;">• RNS catalysts (funding/operational updates)</div><div style="padding: 8px 0;">• Volume expansion confirmation</div><div style="padding: 8px 0;">• Timing regime change signals</div>
+            </div>
+        </div>
+
+        <!-- ==================== TECHNICAL DETAILS (COLLAPSIBLE) ==================== -->
+        
+        <div class="card">
+          <details style="cursor:pointer;">
+            <summary style="font-weight:800; font-size:16px; list-style:none; padding: 10px; background: #f9fafb; border-radius: 8px;">
+              🔧 Technical Analysis & Scoring Details
+            </summary>
+            <div style="margin-top:14px;">
+              
+            <!-- Scoring Breakdown -->
+            <div class="card-title" style="margin-top: 20px;">
+                <span class="card-icon">▣</span>
+                APEX Score Breakdown
+            </div>
+            <div class="factors-list">
+                <div class="factor-item"><span class="factor-icon">◆</span><span><strong>Strong Technical Setup</strong><br><small>Chart quality: 13/20 • Score: 16/25 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Massive recovery potential</strong><br><small>Down 83.2% from peak • Score: 17/20 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Strong volume</strong><br><small>2.7x average • Score: 10/10 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>No history</strong><br><small>0 previous rallies • Score: 0/15 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Modest upside</strong><br><small>Historical best: +0% • Score: 2/20 points</small></span></div>
+
+            </div>
+            
+            <div style="margin-top: 40px;"></div>
+            
+            <!-- Exhaustion Metrics -->
+            <div class="card-title">
+                <span class="card-icon">📈</span>
+                Rally Cycle Position
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Current Position</div>
+                    <div style="font-size: 32px; font-weight: 800;">0%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
+                    <div style="font-size: 32px; font-weight: 800;">0%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
+                    <div style="font-size: 32px; font-weight: 800;">0.0x</div>
+                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
+                </div>
+            </div>
+        
+            </div>
+          </details>
+        </div>
+        
+
+        <!-- Reasons Buy/Sell -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #10b981;">▲</span>
+                    Reasons to Buy
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Early stage positioning offers best R:R if catalysts appear</span>
+                    <span class="tag" style="background: #f59e0b; color: white;">⚡ Medium Strength</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">timing=EARLY BUILD • current return=0.0%</div>
+            </div>
+            
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #ef4444;">▼</span>
+                    Reasons to Sell / Avoid
+                </div>
+                <div style="color: #666; font-style: italic;">No major sell signals.</div>
+            </div>
+        </div>
+
+        <!-- Trade Plans -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">📊</span>
+                    Short-Term Trader Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 20%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <div style="font-size: 18px; font-weight: 600; margin-bottom: 5px;">Watch / Starter</div>
+                    <div style="font-size: 14px; opacity: 0.9;">Wait for base + catalyst confirmation; starter position only</div>
+                </div>
+                <div style="padding: 12px; background: #f9fafb; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Position Size</div>
+                    <div style="font-weight: 600;">0-1% until CONFIRMED</div>
+                </div>
+                <div style="padding: 12px; background: #fef2f2; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Risk Management</div>
+                    <div style="font-weight: 600; color: #dc2626;">Invalidation = breaks recent lows / dilution / suspension</div>
+                </div>
+                <div style="padding: 12px; background: #f0fdf4; border-radius: 6px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Exit Strategy</div>
+                    <div style="font-weight: 600; color: #059669;">Scale out 25% at +15%, 25% at +50%, runner above</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">💼</span>
+                    Long-Term Investor Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center;">
+                    <div style="font-size: 32px; margin-bottom: 5px;">✗</div>
+                    <div style="font-size: 18px; font-weight: 600;">Not Recommended for Investors</div>
+                </div>
+                <div style="padding: 15px; background: #f9fafb; border-radius: 8px; font-size: 14px; line-height: 1.6;">
+                    <strong style="color: #667eea;">📋 Investment Thesis:</strong><br>
+                    Unlock after AI triangulation + CONFIRMED timing<br><br>
+                    <strong style="color: #667eea;">⏳ Time Horizon:</strong><br>
+                    N/A<br><br>
+                    <strong style="color: #ef4444;">🛡️ Exit Rule:</strong><br>
+                    N/A
+                </div>
+            </div>
+        </div>
+
+        <!-- Commentary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◐</span>
+                Executive Commentary
+            </div>
+            <div style="line-height: 1.6; margin-bottom: 20px;">
+                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows EARLY_BUILD timing with 45/100 APEX score. Historical data shows 0 rallies averaging 0% upside. Current position: +0.0%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #10b981;">▲ Bull Case:</strong>
+                <div style="padding: 8px 0;">• Early regime often offers best risk/reward</div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #ef4444;">▼ Bear Case:</strong>
+                <div style="padding: 8px 0;">• Monitor for breakdown signals</div>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
+                <strong>◷ Timing Translation:</strong><br>
+                Early accumulation phase. Watch for confirmation before committing size.
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
+                <strong>◎ Confidence Explained:</strong><br>
+                Confidence 50/100 reflects full data quality with triangulation loaded.
+            </div>
+        </div>
+
+        <!-- Data Quality Warning -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">△</span>
+                Data Quality Notice
+            </div>
+            <div class="alert-box">
+                <strong>Analysis Mode:</strong> HISTORICAL_ONLY<br>
+                <strong>Impact:</strong> HIGH
+            </div>
+            <div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">AI insights from Groq LLM</div></div></div>
+
+            <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk.
+            </div>
+        </div>
+
+        <!-- ==================== TOP 5 RECENT RNS NEWS ==================== -->
+        
+        <div class="card" style="border-top: 3px solid #3b82f6;">
+            <div class="card-title" style="margin-bottom: 20px;">
+                <span class="card-icon">📰</span>
+                Top 5 Recent RNS Announcements
+            </div>
+            <div style="margin-top: 15px;">
+                
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">🏛️</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Standard form for notification of major holdings</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">HOLDINGS</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Major holder disclosure - routine regulatory filing.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">8th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">6:02 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Time Out</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">25.73%, 25.73%, 26.73%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+8 Jan 2026 18:02
+RNS Number : 2434O
+Time Out Group plc
+08 January 2026
+TR-1: S
+tandard form for notification of major holdings
+NOTIFICATION OF MAJOR HOLDINGS
+(to be sent to the relevant issuer
+and
+to the FCA in Microsoft Word format if possible)
+i
+1a. Identity of the issuer or the underlying issuer of existing shares to which voting rights are attached
+ii
+:
+Time Out Group PLC
+1b. Please indicate if the issuer is a non-UK issuer
+(please mark with an "X" if appropriate)
+Non-UK issuer
+2. Reason for the notification
+(please mark the appropriate box or boxes with an "X")
+An acquisition or disposal of voting rights
+X
+An acquisition or disposal of financial instruments
+An event changing the breakdown of voting rights
+X
+Other (please specify) iii:
+3. Details of person subject to the notification obligation
+iv
+Name
+Lombard Odier Asset Management (Europe) Limited
+City and country of registered office (if applicable)
+London, United Kingdom
+4. Full name of shareholder(s)
+(if different from 3.)
+v
+Name
+Disclosure on behalf of accounts managed on a discretionary basis by Lombard Odier Investment Managers group.
+City and country of registered office (if applicable)
+5. Date on which the threshold was crossed or reached
+vi
+:
+07.01.2026
+6.
+Date on which issuer notified (DD/MM/YYYY):
+08.01.2026
+7. Total positions of person(s) subject to the notification obligation
+% of voting rights attached to shares (total of 8. A)
+% of
+voting rights through
+financial instruments(total of 8.B 1 + 8.B 2)
+Total of both in % (8.A + 8.B)
+Total number of voting rights held in issuer (8.A + 8.B)
+vii
+Resulting situation on the date on which threshold was crossed or reached
+25.73%
+25.73%
+134,493,476
+Position of previous notification (if
+applicable)
+26.73%
+26.73%
+8. Notified details of the resulting situation on the date on which the threshold was crossed or reached
+viii
+A: Voting rights attached to shares
+Class/type ofshares
+ISIN code (if possible)
+Number of voting rights
+ix
+% of voting rights
+Direct
+(DTR5.1)
+Indirect
+(DTR5.2.1)
+Direct
+(DTR5.1)
+Indirect
+(DTR5.2.1)
+GB00BYYV0629
+134,493,476
+25.73%
+SUBTOTAL 8. A
+134,493,476
+25.73%
+B 1: Financial Instruments according to DTR5.3.1R (1) (a)
+Type of financial instrument
+Expirationdate
+x
+Exercise/Conversion Period
+xi
+Number of voting rights that may be acquired if the instrument is
+exercised/converted.
+% of voting rights
+SUBTOTAL 8. B 1
+B 2: Financial Instruments with similar economic effect according to DTR5.3.1R (1) (b)
+Type of financial instrument
+Expirationdate
+x
+Exercise/Conversion Period
+xi
+Physical or cash
+Settlement
+xii
+Number of voting rights
+% of voting rights
+SUBTOTAL 8.B.2
+9. Information in relation to the person subject to the notification obligation
+(please mark the
+applicable box with an "X")
+Person subject to the notification obligation is not controlled by any natural person or legal entity and does not control any other undertaking(s) holding directly or indirectly an interest in the (underlying) issuer
+xiii
+X
+Full
+chain of controlled undertakings through which the voting rights and/or thefinancial instruments are effectively held starting with the ultimate controlling natural person or legal entity
+(please add additional rows as necessary)
+xiv
+Name
+xv
+% of voting rights if it equals or is higher than the notifiable threshold
+% of voting rights through financial instruments if it equals or is higher than the notifiable threshold
+Total of both if it equals or is higher than the notifiable threshold
+10.
+In case of proxy voting, please identify:
+Name of the proxy holder
+The number and % of voting rights held
+The date until which the voting rights will be held
+11. Additional information
+xvi
+Place of completion
+London, United Kingdom
+Date of completion
+08.01.2026
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+HOLBIGDBGGGDGLI
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">🏛️</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Director/PDMR Shareholding</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">HOLDINGS</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Major holder disclosure - routine regulatory filing.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">8th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">4:59 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Edward Thomas</td>
+                    </tr>
+                    
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">ACTION:</td>
+                            <td style="padding: 8px; font-weight: 600; font-size: 12px; color: #3b82f6;">PURCHASE</td>
+                        </tr>
+                        
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">0.2774%, 0.0593%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+8 Jan 2026 16:59
+RNS Number : 2342O
+Time Out Group plc
+08 January 2026
+8 January 2026
+Time Out Group plc
+("Time Out" or the "Company")
+Notification and public disclosure of transactions by persons discharging managerial responsibilities and persons closely associated with them
+The following Director/PDMR notifications are made in connection with the successful completion of the placing announced by the Company on 18 December 2025 (the "Placing") and the participation in that Placing by a number of Directors of the Company (the "Participations").
+Following the Participations, Chris Ohlund, Chief Executive Officer, holds 0.2774% and Matt Pritchard, Chief Financial Officer, holds 0.0593%
+1
+Details of the person discharging managerial responsibilities/person closely associated
+a)
+Name
+Chris Ohlund
+2
+Reason for the notification
+a)
+Position/status
+Chief Executive Officer
+b)
+Initial notification/Amendment
+Initial Notification
+3
+Details of the issuer, UK emission allowance market participant, auction platform or auctioneer
+a)
+Name
+Time Out Group PLC
+b)
+LEI
+213800BWH4OF8S4R8K10
+4
+Details of the transaction(s): section to be repeated for (i) each type of instrument; (ii) each type of transaction; (iii) each date; and (iv) each place where transactions have been conducted
+a)
+Description of the financial instrument, type of instrument
+Identification code
+Ordinary shares of 0.001p each
+ISIN: GB00BYYV0629
+b)
+Nature of the transaction
+Purchase of Shares
+c)
+Price(s) and volume(s)
+Price(s)
+£0.08
+Volume(s)
+1,250,000
+d)
+Aggregated information
+●
+Aggregated Volume
+●
+Price
+●
+1,250,000
+●
+£100,000
+e)
+Date of the transaction
+07 January 2026
+f)
+Place of the transaction
+Off-market trade
+1
+Details of the person discharging managerial responsibilities/person closely associated
+a)
+Name
+Matthew Pritchard
+2
+Reason for the notification
+a)
+Position/status
+Chief Financial Officer
+b)
+Initial notification/Amendment
+Initial Notification
+3
+Details of the issuer, UK emission allowance market participant, auction platform or auctioneer
+a)
+Name
+Time Out Group PLC
+b)
+LEI
+213800BWH4OF8S4R8K10
+4
+Details of the transaction(s): section to be repeated for (i) each type of instrument; (ii) each type of transaction; (iii) each date; and (iv) each place where transactions have been conducted
+a)
+Description of the financial instrument, type of instrument
+Identification code
+Ordinary shares of 0.001p each
+ISIN: GB00BYYV0629
+b)
+Nature of the transaction
+Purchase of Shares
+c)
+Price(s) and volume(s)
+Price(s)
+£0.08
+Volume(s)
+250,000
+d)
+Aggregated information
+●
+Aggregated Volume
+●
+Price
+●
+250,000
+●
+£20,000
+e)
+Date of the transaction
+07 January 2026
+f)
+Place of the transaction
+Off-market trade
+1
+Details of the person discharging managerial responsibilities/person closely associated
+a)
+Name
+Oakley Capital Limited - PCA: Peter Dubens
+2
+Reason for the notification
+a)
+Position/status
+Oakley Capital Limited is controlled by Peter Dubens, Non-Executive Chairman of Time Out Group PLC
+b)
+Initial notification/Amendment
+Initial Notification
+3
+Details of the issuer, UK emission allowance market participant, auction platform or auctioneer
+a)
+Name
+Time Out Group PLC
+b)
+LEI
+213800BWH4OF8S4R8K10
+4
+Details of the transaction(s): section to be repeated for (i) each type of instrument; (ii) each type of transaction; (iii) each date; and (iv) each place where transactions have been conducted
+a)
+Description of the financial instrument, type of instrument
+Identification code
+Ordinary shares of 0.001p each
+ISIN: GB00BYYV0629
+b)
+Nature of the transaction
+Purchase of Shares & Debt Conversion to Equity
+c)
+Price(s) and volume(s)
+Price(s)
+£0.08
+Volume(s)
+72,280,288
+d)
+Aggregated information
+●
+Aggregated Volume
+●
+Price
+●
+72,280,288
+●
+£5,782,423.04
+e)
+Date of the transaction
+07 January 2026
+f)
+Place of the transaction
+Off-market trade
+For further information, please contact:
+Time Out Group plc
+Tel: +44 (0)207 813 3000
+Chris Ohlund, CEO
+Matt Pritchard, CFO
+Steven Tredget, Investor Relations Director
+Panmure Liberum (Nominated Adviser and Broker)
+Tel: +44 (0)203 100 2222
+Andrew Godber / Edward Thomas
+FTI Consulting LLP
+Tel: +44 (0)203 727 1000
+Edward Bridges / Ben Fletcher
+Notes to editors
+About Time Out Group
+Time Out Group is a global brand that inspires and enables people to experience the best of the city. Time Out launched in London in 1968 to help people discover the best of the city - today it is the only global brand dedicated to city life. Expert journalists curate and create content about the best things to Do, See and Eat across over 350 cities in over 50 countries and across a unique multi-platform model spanning both digital and physical channels. Time Out Market is the world's first editorially curated food and cultural market, bringing a city's best chefs, restaurateurs and unique cultural experiences together under one roof. The portfolio includes open Markets in 13 cities such as Lisbon, New York and Dubai, several new locations with expected opening dates in 2026 and beyond, in addition to a pipeline of further locations in advanced discussions. Time Out Group PLC, listed on AIM, is headquartered in London (UK).
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+DSHFLFERLRITIIR
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">🏛️</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Standard form for notification of major holdings</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">HOLDINGS</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Major holder disclosure - routine regulatory filing.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">5:49 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Conversion Period</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">33.32%, 33.32%, 43.70%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+7 Jan 2026 17:49
+RNS Number : 0689O
+Time Out Group plc
+07 January 2026
+TR-1: S
+tandard form for notification of major holdings
+NOTIFICATION OF MAJOR HOLDINGS
+(to be sent to the relevant issuer
+and
+to the FCA in Microsoft Word format if possible)
+i
+1a. Identity of the issuer or the underlying issuer of existing shares to which voting rights are attached
+ii
+:
+Time Out Group PLCLEI: 213800BWH4OF8S4R8K10
+1b. Please indicate if the issuer is a non-UK issuer
+(please mark with an "X" if appropriate)
+UK issuer
+2. Reason for the notification
+(please mark the appropriate box or boxes with an "X")
+An acquisition or disposal of voting rights
+X
+An acquisition or disposal of financial instruments
+An event changing the breakdown of voting rights
+Other (please specify) iii:
+3. Details of person subject to the notification obligation
+iv
+Name
+Oakley Capital Investments Limited
+City and country of registered office (if applicable)
+Rosebank Centre, 11 Bermudiana Road, Pembroke, HM 08, Bermuda.
+4. Full name of shareholder(s)
+(if different from 3.)
+v
+Name
+City and country of registered office (if applicable)
+5. Date on which the threshold was crossed or reached
+vi
+:
+07-01-2026
+6.
+Date on which issuer notified (DD/MM/YYYY):
+07-01-2026
+7. Total positions of person(s) subject to the notification obligation
+% of voting rights attached to shares (total of 8. A)
+% of
+voting rights through
+financial instruments(total of 8.B 1 + 8.B 2)
+Total of both in % (8.A + 8.B)
+Total number of voting rights held in issuer (8.A + 8.B)
+vii
+Resulting situation on the date on which threshold was crossed or reached
+33.32%
+0
+33.32%
+174,157,477
+Position of previous notification (if
+applicable)
+43.70%
+0
+43.70%
+8. Notified details of the resulting situation on the date on which the threshold was crossed or reached
+viii
+A: Voting rights attached to shares
+Class/type ofshares
+ISIN code (if possible)
+Number of voting rights
+ix
+% of voting rights
+Direct
+(DTR5.1)
+Indirect
+(DTR5.2.1)
+Direct
+(DTR5.1)
+Indirect
+(DTR5.2.1)
+Ordinary GB00BYYV0629
+174,157,477
+0
+33.32%
+0%
+SUBTOTAL 8. A
+174,157,477
+33.32%
+B 1: Financial Instruments according to DTR5.3.1R (1) (a)
+Type of financial instrument
+Expirationdate
+x
+Exercise/Conversion Period
+xi
+Number of voting rights that may be acquired if the instrument is
+exercised/converted.
+% of voting rights
+SUBTOTAL 8. B 1
+B 2: Financial Instruments with similar economic effect according to DTR5.3.1R (1) (b)
+Type of financial instrument
+Expirationdate
+x
+Exercise/Conversion Period
+xi
+Physical or cash
+Settlement
+xii
+Number of voting rights
+% of voting rights
+SUBTOTAL 8.B.2
+9. Information in relation to the person subject to the notification obligation
+(please mark the
+applicable box with an "X")
+Person subject to the notification obligation is not controlled by any natural person or legal entity and does not control any other undertaking(s) holding directly or indirectly an interest in the (underlying) issuer
+xiii
+X
+Full
+chain of controlled undertakings through which the voting rights and/or thefinancial instruments are effectively held starting with the ultimate controlling natural person or legal entity
+(please add additional rows as necessary)
+xiv
+Name
+xv
+% of voting rights if it equals or is higher than the notifiable threshold
+% of voting rights through financial instruments if it equals or is higher than the notifiable threshold
+Total of both if it equals or is higher than the notifiable threshold
+Oakley Capital Investments Limited
+33.32%
+0
+33.32%
+10.
+In case of proxy voting, please identify:
+Name of the proxy holder
+The number and % of voting rights held
+N/A
+The date until which the voting rights will be held
+N/A
+11. Additional information
+xvi
+polaris.brighterir.com/public/time_out/news/rns/story/w10p66r
+"
+Time Out Group plc (AIM: TMO) (the "
+Company
+"), the global media and hospitality business, is pleased to announce that, following the announcement made earlier today (the "
+Launch Announcement
+") regarding the launch of a Firm Placing, a Conditional Placing and a Retail Offer (together, the "
+Capital Raising
+"), the accelerated Bookbuild process has completed and the Company has successfully placed 100,000,000 Placing Shares of £0.001 each in the capital of the Company at an Issue Price of 8 pence per New Ordinary Share, raising gross proceeds of approximately £8.0 million.
+Pursuant to the Firm Placing, a total of 35,726,000 New Ordinary Shares have been placed with Oakley Capital Investments Limited, raising gross proceeds of approximately £2.9 million.
+Pursuant to the Conditional Placing, a total of 64,274,000 New Ordinary Shares have been placed with investors, raising gross proceeds of approximately £5.1 million.
+As detailed in the Launch Announcement, Oakley Capital Investments Limited ("
+OCI
+") agreed to subscribe for, and has been allocated, 35,726,000 Firm Placing Shares and 2,348,855 Conditional Placing Shares."
+Place of completion
+London
+Date of completion
+07-01-2026
+Notes
+i
+Please note this form should be read jointly with the applicable Disclosure Guidance and Transparency Rules Chapter 5 (DTR5) available on the following link:
+https://www.handbook.fca.org.uk/handbook/DTR/5/?view=chapter
+ii
+Full name of the legal entity and further specification of the issuer or underlying issuer, provided it is reliable and accurate (e.g. address, LEI, domestic number identity). Indicate in the relevant section whether the issuer is a non UK issuer.
+iii
+Other reason for the notification could be voluntary notifications, changes of attribution of the nature of the holding (e.g. expiring of financial instruments) or acting in concert.
+iv
+This should be the full name of (a) the shareholder; (b) the natural person or legal entity acquiring, disposing of or exercising voting rights in the cases provided for in DTR5.2.1 (b) to (h); (c) all parties to the agreement referred to in DTR5.2.1 (a) or (d) the holder of financial instruments referred to in DTR5.3.1.
+As the disclosure of cases of acting in concert may vary due to the specific circumstances (e.g. same or different total positions of the parties, entering or exiting of acting in concert by a single party) the standard form does not provide for a specific method how to notify cases of acting in concert.
+In relation to the transactions referred to in DTR5.2.1 (b) to (h), the following list is provided as indication of the persons who should be mentioned:
+- in the circumstances foreseen in DTR5.2.1 (b), the natural person or legal entity that acquires the voting rights and is entitled to exercise them under the agreement and the natural person or legal entity who is transferring temporarily for consideration the voting rights;
+- in the circumstances foreseen in DTR5.2.1 (c), the natural person or legal entity holding the collateral, provided the person or entity controls the voting rights and declares its intention of exercising them, and natural person or legal entity lodging the collateral under these conditions;
+- in the circumstances foreseen in DTR5.2.1 (d), the natural person or legal entity who has a life interest in shares if that person or entity is entitled to exercise the voting rights attached to the shares and the natural person or legal entity who is disposing of the voting rights when the life interest is created;
+- in the circumstances foreseen in DTR5.2.1 (e), the controlling natural person or legal entity and, provided it has a notification duty at an individual level under DTR 5.1, under DTR5.2.1 (a) to (d) or under a combination of any of those situations, the controlled undertaking;
+- in the circumstances foreseen in DTR5.2.1 (f), the deposit taker of the shares, if he can exercise the voting rights attached to the shares deposited with him at his discretion, and the depositor of the shares allowing the deposit taker to exercise the voting rights at his discretion;
+- in the circumstances foreseen in DTR5.2.1 (g), the natural person or legal entity that controls the voting rights;
+- in the circumstances foreseen in DTR5.2.1 (h), the proxy holder, if he can exercise the voting rights at his discretion, and the shareholder who has given his proxy to the proxy holder allowing the latter to exercise the voting rights at his discretion (e.g. management companies).
+v
+Applicable in the cases provided for in DTR5.2.1 (b) to (h). This should be the full name of the shareholder who is the counterparty to the natural person or legal entity referred to DTR5.2 unless the percentage of voting rights held by the shareholder is lower than the lowest notifiable threshold for the disclosure of voting rights holdings in accordance with national practices (e.g. identification of funds managed by management companies).
+vi
+The date on which threshold is crossed or reached should be the date on which the acquisition or disposal took place or the other reason triggered the notification obligation. For passive crossings, the date when the corporate event took effect.
+vii
+The total number of voting rights held in the issuer shall be composed of all the shares, including depository receipts representing shares, to which voting rights are attached even if the exercise thereof is suspended.
+viii
+If the holding has fallen below the lowest applicable threshold, please note that it might not be necessary to disclose the extent of the holding, only that the new holding is below that threshold.
+ix
+In case of combined holdings of shares with voting rights attached "direct holding" and voting rights "indirect holding", please split the voting rights number and percentage into the direct and indirect columns - if there is no combined holdings, please leave the relevant box blank.
+x
+Date of maturity/expiration of the financial instrument i.e. the date when right to acquire shares ends.
+xi
+If the financial instrument has such a period - please specify this period - for example once every 3 months starting from [date].
+xii
+In case of cash settled instruments the number and percentages of voting rights is to be presented on a delta-adjusted basis (DTR 5.3.3.A).
+xiii
+If the person subject to the notification obligation is either controlled and/or does control another undertaking then the second option applies.
+xiv
+The full chain of controlled undertakings starting with the ultimate controlling natural person or legal entity has to be presented also in the cases, in which only on subsidiary level a threshold is crossed or reached and the subsidiary undertaking discloses the notification as only in this way will the markets get always the full picture of the group holdings. In case of multiple chains through which the voting rights and/or financial instruments are effectively held the chains have to be presented chain by chain by numbering each chain accordingly. Please see the below example:
+Name of ultimate controlling person A (chain 1)
+Name of controlled undertaking B
+Name of controlled undertaking C
+Name of ultimate controlling person A (chain 2)
+Name of controlled undertaking B
+Name of controlled undertaking D
+Name of ultimate controlling person A (chain3)
+Name of controlled undertaking E
+Name of controlled undertaking F
+xv
+The names of controlled undertakings through which the voting rights and/or financial instruments are effectively held have to be presented irrespectively whether the controlled undertakings cross or reach the lowest applicable threshold themselves.
+xvi
+Example: Correction of a previous notification.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+HOLDZGGMNNNGVZM
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">4</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #4
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">🏛️</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Standard form for notification of major holdings</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">HOLDINGS</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Major holder disclosure - routine regulatory filing.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">5:47 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Conversion Period</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">14.77%, 14.77%, 14.77%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+7 Jan 2026 17:47
+RNS Number : 0685O
+Time Out Group plc
+07 January 2026
+TR-1: S
+tandard form for notification of major holdings
+NOTIFICATION OF MAJOR HOLDINGS
+(to be sent to the relevant issuer
+and
+to the FCA in Microsoft Word format if possible)
+i
+1a. Identity of the issuer or the underlying issuer of existing shares to which voting rights are attached
+ii
+:
+Time Out Group PLCLEI: 213800BWH4OF8S4R8K10
+1b. Please indicate if the issuer is a non-UK issuer
+(please mark with an "X" if appropriate)
+UK issuer
+2. Reason for the notification
+(please mark the appropriate box or boxes with an "X")
+An acquisition or disposal of voting rights
+X
+An acquisition or disposal of financial instruments
+An event changing the breakdown of voting rights
+Other (please specify) iii:
+3. Details of person subject to the notification obligation
+iv
+Name
+Oakley Capital Limited
+City and country of registered office (if applicable)
+3 Cadogan Gate, London SW1X 0AS, UK
+4. Full name of shareholder(s)
+(if different from 3.)
+v
+Name
+City and country of registered office (if applicable)
+5. Date on which the threshold was crossed or reached
+vi
+:
+07-01-2026
+6.
+Date on which issuer notified (DD/MM/YYYY):
+07-01-2026
+7. Total positions of person(s) subject to the notification obligation
+% of voting rights attached to shares (total of 8. A)
+% of
+voting rights through
+financial instruments(total of 8.B 1 + 8.B 2)
+Total of both in % (8.A + 8.B)
+Total number of voting rights held in issuer (8.A + 8.B)
+vii
+Resulting situation on the date on which threshold was crossed or reached
+14.77%
+0
+14.77%
+77,218,937
+Position of previous notification (if
+applicable)
+n/a
+n/a
+n/a
+8. Notified details of the resulting situation on the date on which the threshold was crossed or reached
+viii
+A: Voting rights attached to shares
+Class/type ofshares
+ISIN code (if possible)
+Number of voting rights
+ix
+% of voting rights
+Direct
+(DTR5.1)
+Indirect
+(DTR5.2.1)
+Direct
+(DTR5.1)
+Indirect
+(DTR5.2.1)
+Ordinary GB00BYYV0629
+77,218,937
+0
+14.77%
+0%
+SUBTOTAL 8. A
+77,218,937
+14.77%
+B 1: Financial Instruments according to DTR5.3.1R (1) (a)
+Type of financial instrument
+Expirationdate
+x
+Exercise/Conversion Period
+xi
+Number of voting rights that may be acquired if the instrument is
+exercised/converted.
+% of voting rights
+SUBTOTAL 8. B 1
+B 2: Financial Instruments with similar economic effect according to DTR5.3.1R (1) (b)
+Type of financial instrument
+Expirationdate
+x
+Exercise/Conversion Period
+xi
+Physical or cash
+Settlement
+xii
+Number of voting rights
+% of voting rights
+SUBTOTAL 8.B.2
+9. Information in relation to the person subject to the notification obligation
+(please mark the
+applicable box with an "X")
+Person subject to the notification obligation is not controlled by any natural person or legal entity and does not control any other undertaking(s) holding directly or indirectly an interest in the (underlying) issuer
+xiii
+X
+Full
+chain of controlled undertakings through which the voting rights and/or thefinancial instruments are effectively held starting with the ultimate controlling natural person or legal entity
+(please add additional rows as necessary)
+xiv
+Name
+xv
+% of voting rights if it equals or is higher than the notifiable threshold
+% of voting rights through financial instruments if it equals or is higher than the notifiable threshold
+Total of both if it equals or is higher than the notifiable threshold
+Oakley Capital Limited
+14.77%
+0
+14.77%
+10.
+In case of proxy voting, please identify:
+Name of the proxy holder
+The number and % of voting rights held
+N/A
+The date until which the voting rights will be held
+N/A
+11. Additional information
+xvi
+polaris.brighterir.com/public/time_out/news/rns/story/w10p66r
+"
+Time Out Group plc (AIM: TMO) (the "
+Company
+"), the global media and hospitality business, is pleased to announce that, following the announcement made earlier today (the "
+Launch Announcement
+") regarding the launch of a Firm Placing, a Conditional Placing and a Retail Offer (together, the "
+Capital Raising
+"), the accelerated Bookbuild process has completed and the Company has successfully placed 100,000,000 Placing Shares of £0.001 each in the capital of the Company at an Issue Price of 8 pence per New Ordinary Share, raising gross proceeds of approximately £8.0 million.
+Oakley Capital Limited ("OCL") has been allocated 9,250,226 Conditional Placing Shares pursuant to the Conditional Placing and will subscribe for 63,030,062 Conversion Shares pursuant to the Debt for Equity Conversion."
+Place of completion
+London
+Date of completion
+07-01-2026
+Notes
+i
+Please note this form should be read jointly with the applicable Disclosure Guidance and Transparency Rules Chapter 5 (DTR5) available on the following link:
+https://www.handbook.fca.org.uk/handbook/DTR/5/?view=chapter
+ii
+Full name of the legal entity and further specification of the issuer or underlying issuer, provided it is reliable and accurate (e.g. address, LEI, domestic number identity). Indicate in the relevant section whether the issuer is a non UK issuer.
+iii
+Other reason for the notification could be voluntary notifications, changes of attribution of the nature of the holding (e.g. expiring of financial instruments) or acting in concert.
+iv
+This should be the full name of (a) the shareholder; (b) the natural person or legal entity acquiring, disposing of or exercising voting rights in the cases provided for in DTR5.2.1 (b) to (h); (c) all parties to the agreement referred to in DTR5.2.1 (a) or (d) the holder of financial instruments referred to in DTR5.3.1.
+As the disclosure of cases of acting in concert may vary due to the specific circumstances (e.g. same or different total positions of the parties, entering or exiting of acting in concert by a single party) the standard form does not provide for a specific method how to notify cases of acting in concert.
+In relation to the transactions referred to in DTR5.2.1 (b) to (h), the following list is provided as indication of the persons who should be mentioned:
+- in the circumstances foreseen in DTR5.2.1 (b), the natural person or legal entity that acquires the voting rights and is entitled to exercise them under the agreement and the natural person or legal entity who is transferring temporarily for consideration the voting rights;
+- in the circumstances foreseen in DTR5.2.1 (c), the natural person or legal entity holding the collateral, provided the person or entity controls the voting rights and declares its intention of exercising them, and natural person or legal entity lodging the collateral under these conditions;
+- in the circumstances foreseen in DTR5.2.1 (d), the natural person or legal entity who has a life interest in shares if that person or entity is entitled to exercise the voting rights attached to the shares and the natural person or legal entity who is disposing of the voting rights when the life interest is created;
+- in the circumstances foreseen in DTR5.2.1 (e), the controlling natural person or legal entity and, provided it has a notification duty at an individual level under DTR 5.1, under DTR5.2.1 (a) to (d) or under a combination of any of those situations, the controlled undertaking;
+- in the circumstances foreseen in DTR5.2.1 (f), the deposit taker of the shares, if he can exercise the voting rights attached to the shares deposited with him at his discretion, and the depositor of the shares allowing the deposit taker to exercise the voting rights at his discretion;
+- in the circumstances foreseen in DTR5.2.1 (g), the natural person or legal entity that controls the voting rights;
+- in the circumstances foreseen in DTR5.2.1 (h), the proxy holder, if he can exercise the voting rights at his discretion, and the shareholder who has given his proxy to the proxy holder allowing the latter to exercise the voting rights at his discretion (e.g. management companies).
+v
+Applicable in the cases provided for in DTR5.2.1 (b) to (h). This should be the full name of the shareholder who is the counterparty to the natural person or legal entity referred to DTR5.2 unless the percentage of voting rights held by the shareholder is lower than the lowest notifiable threshold for the disclosure of voting rights holdings in accordance with national practices (e.g. identification of funds managed by management companies).
+vi
+The date on which threshold is crossed or reached should be the date on which the acquisition or disposal took place or the other reason triggered the notification obligation. For passive crossings, the date when the corporate event took effect.
+vii
+The total number of voting rights held in the issuer shall be composed of all the shares, including depository receipts representing shares, to which voting rights are attached even if the exercise thereof is suspended.
+viii
+If the holding has fallen below the lowest applicable threshold, please note that it might not be necessary to disclose the extent of the holding, only that the new holding is below that threshold.
+ix
+In case of combined holdings of shares with voting rights attached "direct holding" and voting rights "indirect holding", please split the voting rights number and percentage into the direct and indirect columns - if there is no combined holdings, please leave the relevant box blank.
+x
+Date of maturity/expiration of the financial instrument i.e. the date when right to acquire shares ends.
+xi
+If the financial instrument has such a period - please specify this period - for example once every 3 months starting from [date].
+xii
+In case of cash settled instruments the number and percentages of voting rights is to be presented on a delta-adjusted basis (DTR 5.3.3.A).
+xiii
+If the person subject to the notification obligation is either controlled and/or does control another undertaking then the second option applies.
+xiv
+The full chain of controlled undertakings starting with the ultimate controlling natural person or legal entity has to be presented also in the cases, in which only on subsidiary level a threshold is crossed or reached and the subsidiary undertaking discloses the notification as only in this way will the markets get always the full picture of the group holdings. In case of multiple chains through which the voting rights and/or financial instruments are effectively held the chains have to be presented chain by chain by numbering each chain accordingly. Please see the below example:
+Name of ultimate controlling person A (chain 1)
+Name of controlled undertaking B
+Name of controlled undertaking C
+Name of ultimate controlling person A (chain 2)
+Name of controlled undertaking B
+Name of controlled undertaking D
+Name of ultimate controlling person A (chain3)
+Name of controlled undertaking E
+Name of controlled undertaking F
+xv
+The names of controlled undertakings through which the voting rights and/or financial instruments are effectively held have to be presented irrespectively whether the controlled undertakings cross or reach the lowest applicable threshold themselves.
+xvi
+Example: Correction of a previous notification.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+HOLBRGDBSSGDGLR
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">5</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #5
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Result of GM and Completion of Capital Raising</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">6th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">2:12 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Edward Thomas</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+Today 14:12
+RNS Number : 8675N
+Time Out Group plc
+06 January 2026
+THIS ANNOUNCEMENT IS RESTRICTED AND IS NOT FOR RELEASE, PUBLICATION, DISTRIBUTION OR FORWARDING, IN WHOLE OR IN PART, DIRECTLY OR INDIRECTLY, IN OR INTO THE UNITED STATES, AUSTRALIA, CANADA, JAPAN, NEW ZEALAND, THE REPUBLIC OF SOUTH AFRICA OR ANY OTHER JURISDICTION IN WHICH SUCH RELEASE, PUBLICATION OR DISTRIBUTION WOULD BE UNLAWFUL.
+THIS ANNOUNCEMENT IS FOR INFORMATION PURPOSES ONLY AND IS NOT AN OFFER OF SECURITIES IN ANY JURISDICTION. PLEASE SEE THE IMPORTANT NOTICES AT THE END OF THIS ANNOUNCEMENT.
+6 January 2026
+Time Out Group plc("Time Out" or the "Company")
+Result of General MeetingandCompletion of Conditional Placing, Retail Offer and Debt for Equity Conversion
+Time Out Group plc (AIM: TMO), the global media and hospitality business, is pleased to announce that at its General Meeting, held on 6 January 2026, all Resolutions put to Shareholders were duly passed.
+Further to this, the Company is pleased to confirm that the Conditional Placing, the Retail Offer and the Debt for Equity Conversion (as detailed further in the Company's announcements released on 18 December 2025) will proceed to completion. Application has been made for 129,511,131 New Ordinary Shares to be admitted to trading on AIM and it is expected that Second Admission will become effective and trading will commence in these New Ordinary Shares at 8.00 a.m. on 7 January 2026.
+Total Voting Rights
+Following Second Admission, the Company's enlarged issued ordinary share capital will be 522,645,248. With effect from Second Admission, this figure may be used by Shareholders as the denominator for the calculations by which they will determine if they are required to notify their interest in, or a change to their interest in, the Company under the Disclosure Guidance and Transparency Rules of the FCA.
+Capitalised terms used but not defined in this Announcement shall have the meaning given to them in the announcement titled "Launch of Firm Placing, Conditional Placing and Retail Offer" released by the Company on 18 December 2025, save where context otherwise dictates.
+For further information, please contact:
+Time Out Group plc
+Tel: +44 (0)207 813 3000
+Chris Ohlund, CEO
+Matt Pritchard, CFO
+Steven Tredget, Investor Relations Director
+Panmure Liberum (Nominated Adviser and Broker)
+Tel: +44 (0)203 100 2222
+Andrew Godber / Edward Thomas
+FTI Consulting LLP
+Tel: +44 (0)203 727 1000
+Edward Bridges /
+Ben Fletcher
+Notes to editors
+About Time Out Group
+Time Out Group is a global brand that inspires and enables people to experience the best of the city. Time Out launched in London in 1968 to help people discover the best of the city - today it is the only global brand dedicated to city life. Expert journalists curate and create content about the best things to Do, See and Eat across over 350 cities in over 50 countries and across a unique multi-platform model spanning both digital and physical channels. Time Out Market is the world's first editorially curated food and cultural market, bringing a city's best chefs, restaurateurs and unique cultural experiences together under one roof. The portfolio includes open Markets in 13 cities such as Lisbon, New York and Dubai, several new locations with expected opening dates in 2026 and beyond, in addition to a pipeline of further locations in advanced discussions. Time Out Group PLC, listed on AIM, is headquartered in London (UK).
+Important Notices
+This Announcement contains (or may contain) certain forward-looking statements with respect to certain of the Company's plans and its current goals and expectations relating to its future financial condition and performance and which involve a number of risks and uncertainties. The Company cautions readers that no forward-looking statement is a guarantee of future performance and that actual results could differ materially from those contained in the forward-looking statements. These forward-looking statements can be identified by the fact that they do not relate only to historical or current facts. Forward-looking statements sometimes use words such as "aim", "anticipate", "target", "expect", "estimate", "intend", "plan", "goal", "believe", or other words of similar meaning. By their nature, forward-looking statements involve risk and uncertainty because they relate to future events and circumstances, including, but not limited to, economic and business conditions, the effects of continued volatility in credit markets, market-related risks such as changes in the price of commodities or changes in interest rates and foreign exchange rates, the policies and actions of governmental and regulatory authorities, changes in legislation, the further development of standards and interpretations under International Financial Reporting Standards ("
+IFRS
+") applicable to past, current and future periods, evolving practices with regard to the interpretation and application of standards under IFRS, the outcome of pending and future litigation or regulatory investigations, the success of future explorations, acquisitions and other strategic transactions and the impact of competition. A number of these factors are beyond the Company's control. As a result, the Company's actual future results may differ materially from the plans, goals, and expectations set forth in the Company's forward-looking statements. You should not place undue reliance on forward-looking statements. Any forward-looking statements made in this Announcement by or on behalf of the Company speak only as of the date they are made. Except as required by the FCA, the London Stock Exchange or applicable law, the Company expressly disclaims any obligation or undertaking to release publicly any updates or revisions to any forward-looking statements contained in this Announcement to reflect any changes in the Company's expectations with regard thereto or any changes in events, conditions or circumstances on which any such statement is based.
+This Announcement is for information purposes only and shall not constitute an offer to buy, sell, issue, or subscribe for, or the solicitation of an offer to buy, sell, issue, or subscribe for any securities, nor shall there be any offer, solicitation or sale of securities in any jurisdiction in which such offer, solicitation or sale would be unauthorised or unlawful prior to registration or qualification under the securities laws of any such jurisdiction. Any failure to comply with these restrictions may constitute a violation of the securities law of any such jurisdiction.
+This Announcement is not an offer of securities for sale in or into the United States. The New Ordinary Shares have not been and will not be registered under the US Securities Act 1933, as amended (the "
+US Securities Act
+"), or with any securities regulatory authority of any state or other jurisdiction of the United States and may not be offered, sold, delivered or transferred, directly or indirectly, in or into the United States except pursuant to an exemption from, or in a transaction not subject to, the registration requirements of the US Securities Act and in compliance with any applicable securities laws of any state or other jurisdiction of the United States. The Company does not intend to register any portion of the Capital Raising in the United States or to conduct a public offering of securities in the United States. The New Ordinary Shares are being offered and sold pursuant to the Transactions only outside the United States in "offshore transactions" as defined in and pursuant to Regulation S under the US Securities Act.
+This Announcement does not contain an offer or constitute any part of an offer to the public within the meaning of Sections 85 and 102B of the FSMA or otherwise. This Announcement is not an "approved prospectus" within the meaning of Section 85(7) of the FSMA and a copy of it has not been, and will not be, delivered to the FCA in accordance with the Prospectus Rules or delivered to any other authority which could be a competent authority for the purpose of the Prospectus Regulation (EU) 2017/1129 (the "
+EU Prospectus Regulation
+") or Prospectus Regulation (EU) 2017/1129 as it forms part of UK domestic law by virtue of the European Union (Withdrawal) Act 2018, as amended (the "
+UK Prospectus Regulation
+"). Its contents have not been examined or approved by the London Stock Exchange, nor has it been approved by an "authorised person" for the purposes of Section 21 of the FSMA. This Announcement is being distributed to persons in the United Kingdom only in circumstances in which section 21(1) of the FSMA does not apply.
+This Announcement is directed only at: (a) persons in member states of the European Economic Area who are qualified investors within the meaning of article 2(e) of the EU Prospectus Regulation and (b) if in the United Kingdom, persons who (i) have professional experience in matters relating to investments who fall within the definition of "investment professionals" in article 19(5) of the Financial Services and Markets Act 2000 (Financial Promotion) Order 2005, as amended (the "
+Order
+"), or are high net worth companies, unincorporated associations or partnerships or trustees of high value trusts as described in article 49(2) of the Order and (ii) are qualified investors as defined in article 2(e) of the UK Prospectus Regulation and (c) otherwise, to persons to whom it may otherwise be lawful to communicate it (all such persons together being referenced to as "
+Relevant Persons
+"). Any investment in connection with the Capital Raising will only be available to, and will only be engaged with, Relevant Persons. Any person who is not a Relevant Person should not act or rely on this Announcement or any of its contents.
+This Announcement has been issued by and is the sole responsibility of the Company. No representation or warranty, express or implied, is or will be made as to, or in relation to, and no responsibility or liability is or will be accepted by Panmure Liberum (apart from the responsibilities or liabilities that may be imposed by the FSMA or other regulatory regime established thereunder) or by any of its affiliates or agents as to, or in relation to, the accuracy or completeness of this Announcement or any other written or oral information made available to or publicly available to any interested party or its advisers, and any liability therefor is expressly disclaimed.
+Panmure Liberum, which is authorised and regulated in the United Kingdom by the FCA, is acting as nominated adviser and sole bookrunner for the Company and for no-one else in connection with the Capital Raising, and Panmure Liberum will not be responsible to anyone other than the Company for providing the protections afforded to its customers or for providing advice to any other person in relation to the Capital Raising or any other matter referred to herein.
+The distribution of this Announcement and the offering of the New Ordinary Shares in certain jurisdictions may be restricted by law. No action has been taken by the Company or Panmure Liberum that would permit an offering of such shares or possession or distribution of this Announcement or any other offering or publicity material relating to such shares in any jurisdiction where action for that purpose is required. Persons into whose possession this Announcement comes are required to inform themselves about, and to observe, such restrictions.
+The Announcement does not constitute a recommendation concerning any investor's options with respect to the Capital Raising. The New Ordinary Shares to which this Announcement relates may be illiquid and/or subject to restrictions on their resale. Prospective purchasers of the New Ordinary Shares should conduct their own due diligence, analysis and evaluation of the business and date described in this Announcement, including the New Ordinary Shares. The pricing and value of securities can go down as well as up. Past performance is not a guide to future performance. The contents of this Announcement are not to be construed as financial, legal, business or tax advice. If you do not understand the contents of this Announcement you should consult an authorised financial adviser, legal adviser, business adviser or tax adviser for financial, legal, business or tax advice.
+The information in this Announcement may not be forwarded or distributed to any other person and may not be reproduced in any manner whatsoever. Any forwarding, distribution, dissemination, reproduction, or disclosure of this information in whole or in part is unauthorised. Failure to comply with this directive may result in a violation of the Securities Act or the applicable laws of other jurisdictions.
+Neither the content of the Company's website nor any website accessible by hyperlinks on the Company's website is incorporated in, or forms part of, this Announcement.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+ROMFLFISLTIRIIR
+                </div>
+            </details>
+            
+            </div>
+            
+            </div>
+            <div style="
+                margin-top: 20px;
+                padding: 14px 16px;
+                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+                border-radius: 10px;
+                font-size: 12px;
+                color: #78350f;
+                border-left: 3px solid #f59e0b;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            ">
+                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
+                <div style="line-height: 1.5;">
+                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
+                    Each RNS includes sentiment classification, key data extraction, and trading context. 
+                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
+                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                    </strong>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            details[open] > summary {
+                background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%) !important;
+                border-left-color: #0369a1 !important;
+            }
+            summary::-webkit-details-marker {
+                display: none;
+            }
+            
+            /* ========== MOBILE RESPONSIVE ========== */
+            @media (max-width: 768px) {
+                body {
+                    padding: 10px;
+                    font-size: 14px;
+                }
+                
+                .container {
+                    margin: 0 auto;
+                }
+                
+                .header-card {
+                    padding: 14px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .company-name {
+                    font-size: 22px;
+                    margin-bottom: 8px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 13px;
+                    padding: 6px 12px;
+                }
+                
+                .company-meta {
+                    gap: 8px;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+                
+                .meta-item {
+                    padding: 6px 12px;
+                    font-size: 12px;
+                    gap: 6px;
+                }
+                
+                .meta-icon {
+                    font-size: 14px;
+                }
+                
+                .score-hero {
+                    padding: 20px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .action-display {
+                    font-size: 18px !important;
+                    margin-bottom: 12px;
+                }
+                
+                .scores-row {
+                    gap: 16px;
+                    margin: 20px 0;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    display: flex;
+                }
+                
+                .score-circle {
+                    width: 110px;
+                    height: 110px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 32px;
+                }
+                
+                .score-label {
+                    font-size: 10px;
+                    margin-top: 4px;
+                }
+                
+                .timing-badge-large {
+                    padding: 10px 20px;
+                    font-size: 14px;
+                    margin: 12px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 14px;
+                    padding: 12px;
+                    margin-top: 12px;
+                }
+                
+                .factors-list {
+                    grid-template-columns: 1fr;
+                    gap: 10px;
+                    margin-top: 12px;
+                }
+                
+                .factor-item {
+                    padding: 12px;
+                    font-size: 12px;
+                    gap: 8px;
+                }
+                
+                .factor-icon {
+                    font-size: 16px;
+                }
+                
+                .cards-grid {
+                    grid-template-columns: 1fr;
+                    gap: 12px;
+                    margin-bottom: 12px;
+                }
+                
+                .card {
+                    padding: 16px;
+                    border-radius: 12px;
+                }
+                
+                .card-title {
+                    font-size: 14px;
+                    margin-bottom: 12px;
+                    gap: 8px;
+                }
+                
+                .card-icon {
+                    font-size: 18px;
+                }
+                
+                .stat-row {
+                    padding: 8px 0;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+                
+                .stat-label {
+                    font-size: 12px;
+                }
+                
+                .stat-value {
+                    font-size: 14px;
+                }
+                
+                .rally-badge {
+                    padding: 4px 10px;
+                    font-size: 10px;
+                }
+                
+                .risk-indicator {
+                    gap: 10px;
+                    padding: 12px;
+                    flex-wrap: wrap;
+                }
+                
+                .risk-icon {
+                    font-size: 20px;
+                }
+                
+                .reason-item {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                }
+                
+                .tag {
+                    padding: 3px 8px;
+                    font-size: 10px;
+                }
+                
+                .footer {
+                    padding: 12px;
+                    font-size: 11px;
+                    margin-top: 12px;
+                    border-radius: 12px;
+                }
+                
+                .alert-box {
+                    padding: 12px;
+                    margin: 10px 0;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                body {
+                    padding: 8px 6px;
+                }
+                
+                .header-card {
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    border-radius: 8px;
+                }
+                
+                .company-name {
+                    font-size: 18px;
+                    margin-bottom: 6px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 11px;
+                    padding: 3px 8px;
+                }
+                
+                .company-meta {
+                    gap: 4px;
+                    flex-direction: column;
+                }
+                
+                .meta-item {
+                    padding: 4px 6px;
+                    font-size: 11px;
+                    background: rgba(247, 250, 252, 0.7);
+                }
+                
+                .score-hero {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                    border-radius: 12px;
+                }
+                
+                .score-circle {
+                    width: 70px;
+                    height: 70px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 22px;
+                    font-weight: 800;
+                }
+                
+                .score-label {
+                    font-size: 7px;
+                    margin-top: 2px;
+                }
+                
+                .scores-row {
+                    flex-direction: column;
+                    gap: 10px;
+                    margin: 12px 0;
+                    align-items: center;
+                }
+                
+                .timing-badge-large {
+                    padding: 6px 12px;
+                    font-size: 11px;
+                    margin: 10px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 11px;
+                    padding: 8px;
+                    line-height: 1.3;
+                }
+                
+                .card {
+                    padding: 10px;
+                    margin-bottom: 8px;
+                    border-radius: 8px;
+                }
+                
+                .card-title {
+                    font-size: 12px;
+                    margin-bottom: 8px;
+                    font-weight: 700;
+                }
+            }
+        </style>
+        
+
+        <!-- Footer -->
+        <div class="footer">
+            Report generated: 2026-01-17 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            <strong>△ Not financial advice. Do your own research.</strong>
+            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
+                <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

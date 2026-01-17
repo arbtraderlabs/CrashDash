@@ -1,0 +1,4079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrashDash • KRPZ.L APEX Profile</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .header-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .ticker-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .company-name { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .company-meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f7fafc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .meta-icon { font-size: 18px; }
+        
+        .score-hero {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        .action-display {
+            margin-bottom: 20px;
+        }
+        .scores-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .score-number {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .score-label { font-size: 12px; color: #666; margin-top: 5px; }
+        .timing-badge-large {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 24px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            margin: 20px 0;
+        }
+        .thesis-line {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .factors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .factor-item {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        .factor-icon { font-size: 20px; }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-icon { font-size: 24px; }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-label { color: #666; font-size: 14px; }
+        .stat-value { font-weight: 600; font-size: 16px; }
+        
+        .rally-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .risk-indicator {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .risk-high { background: #fee2e2; }
+        .risk-icon { font-size: 24px; }
+        
+        .reason-item {
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .tag {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .footer {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-top: 20px;
+        }
+        
+        .alert-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Header Card -->
+        <div class="header-card">
+            <div class="ticker-badge">KRPZ.L</div>
+            <div class="company-name">Kropz plc</div>
+            <div class="company-meta">
+                <div class="meta-item">
+                    <span class="meta-icon">■</span>
+                    <span><strong>Sector:</strong> Basic Materials</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">£</span>
+                    <span><strong>Market Cap:</strong> £11,756,934</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">◷</span>
+                    <span><strong>Days Active:</strong> 279 days</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action & Score Hero Section -->
+        <div class="score-hero">
+            <div class="action-display">
+                <span style="color: white;">UNKNOWN</span>
+            </div>
+            
+            <div class="scores-row">
+                <div class="score-circle">
+                    <div class="score-number" style="color: #f59e0b;">55</div>
+                    <div class="score-label">APEX SCORE</div>
+                </div>
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">40</div>
+                    <div class="score-label">CONFIDENCE</div>
+                </div>
+            </div>
+            
+            <div class="timing-badge-large">
+                Timing: <span class="rally-badge" style="background: #dbeafe; color: #1e40af;">CROWDED</span>
+            </div>
+            
+            <div class="thesis-line">
+                SELL/TAKE_PROFITS - CROWDED timing with 55/100 opportunity score
+            </div>
+        </div>
+
+        <!-- ==================== CRASHDASH INTELLIGENCE - PANIC HUNTER VIEW ==================== -->
+        
+        <div class="card" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b;">
+            <div class="card-title" style="color: #0f172a;">
+                <span class="card-icon">🏭</span>
+                CrashDash Intelligence • Industrials
+            </div>
+            
+            <!-- Fear Meter -->
+            <div style="background: white; padding: 24px; border-radius: 14px; margin-bottom: 20px; text-align: center;">
+                <div style="font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 16px;">🔥 PANIC METER</div>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 16px;">
+                    <div style="width: 160px; height: 160px; border-radius: 50%; background: conic-gradient(#f59e0b 266.40000000000003deg, #e5e7eb 266.40000000000003deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                        <div style="width: 130px; height: 130px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <div style="font-size: 48px; font-weight: 800; color: #f59e0b;">74</div>
+                            <div style="font-size: 12px; color: #64748b; font-weight: 600;">PANIC SCORE</div>
+                        </div>
+                    </div>
+                    <div style="text-align: left; max-width: 400px;">
+                        <div style="font-size: 18px; font-weight: 700; color: #f59e0b; margin-bottom: 12px;">HIGH PANIC</div>
+                        <div style="font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 12px;">🟠 Fear dominant - watch for reversal signs</div>
+                        <div style="font-size: 13px; color: #64748b;">
+                            <div>💔 Price: 40/40</div>
+                            <div>📉 Volume: 18/20</div>
+                            <div>🔇 Social: 6/20</div>
+                            <div>📰 News: 10/20</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CrashHunter Signals -->
+                <div style="margin-top: 20px;">
+                    <span style="display: inline-block; background: #f59e0b; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">🟠 Fear 74/100</span><span style="display: inline-block; background: #f59e0b; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">⚠️ Crowded</span><span style="display: inline-block; background: #3b82f6; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">🌟 APEX 55</span>
+                </div>
+                
+                <!-- Opportunity Flag -->
+                
+            </div>
+            
+            <!-- Contrarian Compression Energy Panel -->
+            
+            <!-- Contrarian Compression Energy Panel -->
+            <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); padding: 24px; border-radius: 14px; margin-bottom: 20px; border: 3px solid #10b981;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <span style="font-size: 32px;">⚡</span>
+                    <div style="flex: 1;">
+                        <div style="font-size: 20px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">
+                            CONTRARIAN COMPRESSION SCORE
+                        </div>
+                        <div style="font-size: 13px; color: #475569; font-weight: 600;">
+                            Signal Congestion Framework • Compression = Explosive Potential
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Score Display -->
+                <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 30px;">
+                        <!-- Circular gauge -->
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: conic-gradient(#10b981 126.0deg, #e5e7eb 126.0deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                            <div style="width: 110px; height: 110px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <div style="font-size: 42px; font-weight: 800; color: #10b981;">35</div>
+                                <div style="font-size: 11px; color: #64748b; font-weight: 600;">/ 100</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Key metrics -->
+                        <div style="text-align: left;">
+                            <div style="font-size: 16px; font-weight: 700; color: #10b981; margin-bottom: 12px;">🟢 MILD COMPRESSION (Top 50% - WATCHLIST)</div>
+                            <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                                <div><strong>0.1</strong> signals/week</div>
+                                <div><strong>1</strong> RSI &lt; 20 events</div>
+                                <div><strong>0</strong> escalations detected</div>
+                                <div style="color: #10b981; font-weight: 700; margin-top: 6px;">
+                                    💎 Historical pop: <strong>+11340%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Component Breakdown -->
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 15px;">
+                        📊 5-COMPONENT BREAKDOWN
+                    </div>
+                    
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">compression</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">7/40</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 17.5%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">0.1 signals/week | 1 RSI<20 | Early stage</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">intensification</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">5/20</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 25.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;"></div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">volume death</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #eab308;">8/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #eab308; height: 100%; width: 53.333333333333336%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">High volume - Panic spike or interest</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">pop potential</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #ef4444;">15/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #ef4444; height: 100%; width: 100.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">MONSTER POPPER - Historical 10x+ (11340%)</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">accumulation</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">0/10</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">No accumulation</div>
+                </div>
+                
+                </div>
+                
+                <!-- Contrarian Philosophy -->
+                <div style="background: rgba(255,255,255,0.7); padding: 16px; border-radius: 10px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #0f172a; margin-bottom: 8px; font-size: 14px;">
+                        🎯 CONTRARIAN WISDOM
+                    </div>
+                    <div style="font-size: 13px; color: #334155; line-height: 1.6;">
+                        <strong>Signal congestion = Compression energy = Explosive potential.</strong><br>
+                        When multiple crash signals cluster together with extreme RSI and proven rally history, 
+                        it creates a compressed spring effect. More panic = More opportunity for contrarians.
+                        <div style="margin-top: 8px; padding: 10px; background: rgba(239,68,68,0.1); border-radius: 6px; font-size: 12px;">
+                            <strong style="color: #10b981;">Theory:</strong> High compression scores (60+) historically precede 
+                            explosive 10-20x moves when catalysts arrive. This is the foundation of crash hunting.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Fear vs Facts Contrarian View -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                <div style="background: #fee2e2; padding: 18px; border-radius: 12px; border-left: 4px solid #ef4444;">
+                    <div style="font-weight: 700; color: #991b1b; margin-bottom: 12px; font-size: 15px;">😱 FEAR (What Panic Shows)</div>
+                    <div style="color: #7f1d1d;">
+                        <div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 💔 Price destruction: 40/40 points</div><div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 📉 Volume death: 18/20 points</div>
+                    </div>
+                </div>
+                <div style="background: #dcfce7; padding: 18px; border-radius: 12px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #065f46; margin-bottom: 12px; font-size: 15px;">📊 FACTS (What Data Shows)</div>
+                    <div style="color: #064e3b;">
+                        <div style="color: #64748b; font-size: 14px;">Limited historical data</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contrarian Verdict -->
+            <div style="background: white; padding: 18px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #6366f1;">
+                <div style="font-weight: 700; color: #4338ca; margin-bottom: 10px; font-size: 15px;">⚖️ Contrarian Verdict</div>
+                <div style="font-size: 15px; color: #1e293b; line-height: 1.6; font-weight: 600;">
+                    🎯 CONTRARIAN OPPORTUNITY - Fear dominates but facts support recovery potential
+                </div>
+            </div>
+            
+            <!-- Industry Crash Patterns -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">⚠️ Crash Patterns (Industrials)</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book decline or cancellations</div><div>• Margin compression (input costs)</div><div>• Cyclical demand weakness</div>
+                    </div>
+                    <div style="margin-top: 12px; padding: 10px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e; font-weight: 600;">🚨 Active: Project delays or overruns</div>
+                </div>
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">🚀 Recovery Paths</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book growth or new contracts</div><div>• Margin recovery (efficiency gains)</div><div>• Cyclical upturn (capex recovery)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Catalyst Pipeline -->
+            <div style="background: rgba(255,255,255,0.5); padding: 18px; border-radius: 12px; margin-bottom: 20px;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 14px; font-size: 15px;">📅 Catalyst Pipeline</div>
+                
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Unaudited Results for Six Months end 30 Sept 2025</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Legal Claim Update</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Drawdown on Bridge Loan Facilities</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Loan Facility and Related Party Transaction</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Trading Update</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+            
+            <!-- CrashDash Decision Matrix -->
+            <div style="background: white; padding: 20px; border-radius: 12px; border: 3px solid #f59e0b;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 16px; text-align: center;">
+                    🎯 CRASHDASH DECISION: <span style="color: #f59e0b; font-size: 20px;">AVOID</span>
+                </div>
+                <div style="font-size: 15px; color: #475569; text-align: center; margin-bottom: 20px; font-weight: 600;">
+                    ❌ SELL/TAKE_PROFITS - timing CROWDED
+                </div>
+                <div style="background: #f8fafc; padding: 16px; border-radius: 10px;">
+                    <div style="font-weight: 700; color: #64748b; margin-bottom: 12px; font-size: 13px;">CHECKLIST (4/5 pass)</div>
+                    
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🔴</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Panic Score</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">74/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">✅</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Timing Regime</div>
+                    <div style="font-size: 13px; color: #ef4444; font-weight: 600;">CROWDED</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">⭐</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">APEX Quality</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">55/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🎯</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Data Confidence</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">40/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🏭</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Industry Pattern</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">1 active</div>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
+        
+
+        <!-- Decision Summary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◆</span>
+                Why This Matters
+            </div>
+            <div class="stat-row"><span>• APEX 55/100 indicates strong opportunity quality</span></div><div class="stat-row"><span>• Timing regime: CROWDED</span></div><div class="stat-row"><span>• Historical profile: 1 rallies, 25% best run</span></div>
+            
+            <div class="alert-box" style="margin-top: 20px;">
+                <strong>△ Main Risk:</strong> Confidence 40/100 - full data loaded
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong>◉ Watch Next:</strong>
+                <div style="padding: 8px 0;">• RNS catalysts (funding/operational updates)</div><div style="padding: 8px 0;">• Volume expansion confirmation</div><div style="padding: 8px 0;">• Timing regime change signals</div>
+            </div>
+        </div>
+
+        <!-- ==================== TECHNICAL DETAILS (COLLAPSIBLE) ==================== -->
+        
+        <div class="card">
+          <details style="cursor:pointer;">
+            <summary style="font-weight:800; font-size:16px; list-style:none; padding: 10px; background: #f9fafb; border-radius: 8px;">
+              🔧 Technical Analysis & Scoring Details
+            </summary>
+            <div style="margin-top:14px;">
+              
+            <!-- Scoring Breakdown -->
+            <div class="card-title" style="margin-top: 20px;">
+                <span class="card-icon">▣</span>
+                APEX Score Breakdown
+            </div>
+            <div class="factors-list">
+                <div class="factor-item"><span class="factor-icon">◆</span><span><strong>Strong Technical Setup</strong><br><small>Chart quality: 14/20 • Score: 18/25 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Massive recovery potential</strong><br><small>Down 85.4% from peak • Score: 17/20 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Explosive volume</strong><br><small>9.8x average • Score: 10/10 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Limited history</strong><br><small>1 previous rallies • Score: 5/15 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Modest upside</strong><br><small>Historical best: +25% • Score: 5/20 points</small></span></div>
+
+            </div>
+            
+            <div style="margin-top: 40px;"></div>
+            
+            <!-- Exhaustion Metrics -->
+            <div class="card-title">
+                <span class="card-icon">📈</span>
+                Rally Cycle Position
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Current Position</div>
+                    <div style="font-size: 32px; font-weight: 800;">25%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
+                    <div style="font-size: 32px; font-weight: 800;">25%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
+                    <div style="font-size: 32px; font-weight: 800;">1.0x</div>
+                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
+                </div>
+            </div>
+        
+            </div>
+          </details>
+        </div>
+        
+
+        <!-- Reasons Buy/Sell -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #10b981;">▲</span>
+                    Reasons to Buy
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Proven winner - previously hit lock-in target</span>
+                    <span class="tag" style="background: #f59e0b; color: white;">⚡ Medium Strength</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">profit target reached: True</div>
+            </div>
+            
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #ef4444;">▼</span>
+                    Reasons to Sell / Avoid
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Stale signal - not for active trading</span>
+                    <span class="tag" style="background: #ef4444; color: white;">🚨 High Risk</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">historical • signal date=2025-04-11</div>
+            </div>
+            
+            </div>
+        </div>
+
+        <!-- Trade Plans -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">📊</span>
+                    Short-Term Trader Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 20%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <div style="font-size: 18px; font-weight: 600; margin-bottom: 5px;">Active trade</div>
+                    <div style="font-size: 14px; opacity: 0.9;">SELL/TAKE_PROFITS</div>
+                </div>
+                <div style="padding: 12px; background: #f9fafb; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Position Size</div>
+                    <div style="font-weight: 600;">1-3% position based on conviction</div>
+                </div>
+                <div style="padding: 12px; background: #fef2f2; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Risk Management</div>
+                    <div style="font-weight: 600; color: #dc2626;">Stop below recent support / invalidation level</div>
+                </div>
+                <div style="padding: 12px; background: #f0fdf4; border-radius: 6px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Exit Strategy</div>
+                    <div style="font-weight: 600; color: #059669;">Scale out into strength: 25% @ +15%, 50% @ +50%, trail runner</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">💼</span>
+                    Long-Term Investor Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center;">
+                    <div style="font-size: 32px; margin-bottom: 5px;">✗</div>
+                    <div style="font-size: 18px; font-weight: 600;">Not Recommended for Investors</div>
+                </div>
+                <div style="padding: 15px; background: #f9fafb; border-radius: 8px; font-size: 14px; line-height: 1.6;">
+                    <strong style="color: #667eea;">📋 Investment Thesis:</strong><br>
+                    Unlock after AI triangulation + CONFIRMED timing<br><br>
+                    <strong style="color: #667eea;">⏳ Time Horizon:</strong><br>
+                    N/A<br><br>
+                    <strong style="color: #ef4444;">🛡️ Exit Rule:</strong><br>
+                    N/A
+                </div>
+            </div>
+        </div>
+
+        <!-- Commentary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◐</span>
+                Executive Commentary
+            </div>
+            <div style="line-height: 1.6; margin-bottom: 20px;">
+                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows CROWDED timing with 55/100 APEX score. Historical data shows 1 rallies averaging 25% upside. Current position: +25.0%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #10b981;">▲ Bull Case:</strong>
+                <div style="padding: 8px 0;">• Limited upside case without catalysts</div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #ef4444;">▼ Bear Case:</strong>
+                <div style="padding: 8px 0;">• Monitor for breakdown signals</div>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
+                <strong>◷ Timing Translation:</strong><br>
+                Late stage. Consider taking profits as risk/reward deteriorates.
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
+                <strong>◎ Confidence Explained:</strong><br>
+                Confidence 40/100 reflects full data quality with triangulation loaded.
+            </div>
+        </div>
+
+        <!-- Data Quality Warning -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">△</span>
+                Data Quality Notice
+            </div>
+            <div class="alert-box">
+                <strong>Analysis Mode:</strong> HISTORICAL_ONLY<br>
+                <strong>Impact:</strong> HIGH
+            </div>
+            <div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">AI insights from Groq LLM</div></div></div>
+
+            <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk.
+            </div>
+        </div>
+
+        <!-- ==================== TOP 5 RECENT RNS NEWS ==================== -->
+        
+        <div class="card" style="border-top: 3px solid #3b82f6;">
+            <div class="card-title" style="margin-bottom: 20px;">
+                <span class="card-icon">📰</span>
+                Top 5 Recent RNS Announcements
+            </div>
+            <div style="margin-top: 15px;">
+                
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #ef4444 0%, #ef4444dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #ef444440;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #ef4444 0%, #ef4444dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📉</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Unaudited Results for Six Months end 30 Sept 2025</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 70/100 • BEARISH</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    FINANCIAL RESULTS: Revenue 15.4 million | 📉 BEARISH: Poor results likely cause selling. Assess if bottom is in.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">18th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #ef4444;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #ef4444;">BEARISH</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #ef4444;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #ef4444;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">70/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">FINANCIAL RESULTS: Revenue 15.4 million</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #ef4444; font-weight: 600;">📉 BEARISH: Poor results likely cause selling. Assess if bottom is in.</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Saharan Africa</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">6%, 6%, 6%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+18 Dec 2025 07:00
+RNS Number : 0087M
+Kropz PLC
+18 December 2025
+18 December 2025
+Kropz plc ("Kropz", the "Company") and its subsidiaries (the "Group")
+Unaudited Results for the Six Months ended 30 September 2025
+Kropz plc (AIM: KRPZ), an emerging African phosphate developer and producer, is pleased to announce its unaudited results for the six months ended 30 September 2025.
+The financial report is available online at the Company's website
+www.kropz.com
+.
+FINANCIAL AND OPERATIONAL HIGHLIGHTS
+Operational highlights
+The Group recorded revenue of US$ 15.4 million for the six months ended 30 September 2025. Throughout the six months, Elandsfontein continued operating in trial production while ramping up production.
+The production ramp-up has been delayed due to the need to re-engineer components of the fines flotation circuit based on actual particle size distribution (PSD) observed in the orebody. Mining and processing have also been affected by early, unpredicted ore variability which led to implementation of more complex mining processes and challenged by limited operator experience in these changing conditions. Kropz Elandsfontein is assessing the hard bank and other challenging ore variants identified with high phosphate content within the ore body, to select the appropriate method of mining and processing to extract phosphate. This includes the need to assess the current Milling and Crushing unit.
+In order to address the fine flotation challenges and the PSD shift observed in the ore body, the mine has partnered with a flotation equipment supplier and installed a new flotation cell ("Turbocell") with specific performance guarantees. The Turbocell has been installed in the period under review and has yielded good results.
+Production throughput is also being limited by the excessive amount of slimes (ultra fine) material encountered in the ore deposit. Kropz Elandsfontein has invested in new equipment ("centrifuge unit") to improve its ability to handle the high quantities of slimes material which is yielding positive results.
+Although the centrifuge unit described above, was primarily installed to de-bottleneck throughput capacity and to provide relief in the tailings handling circuit it has unlocked an additional revenue stream, this being Nanophos.
+Kropz Elandsfontein has identified an additional value opportunity within the ore body through the production of "Nanophos," a sub 38-micron phosphate product that has historically been underutilised.
+Various additional projects are being investigated to explore even more opportunities that had not previously been taken into consideration
+.
+Nanophos had previously been considered a waste stream; however, with minimal processing cost it can also be granulated and positioned as a more attractive marketable product together with the ungranulated product that is currently being sold. The granulation provides additional higher sales value per tonne and opportunities to grow Nanophos, a previously disregarded fraction of the ore body and broaden the Company's product offering. The first Nanophos sales of $0.3 million were recognised during the period under review.
+A particular challenging ore variant called "Pink Ore" found within the ore deposit, is receiving major ongoing focus. The "Pink Ore" wash plant project was launched during the previous financial year and was successfully commissioned and aims to address some of the challenges that "Pink Ore" presents to the processing of the ore through the existing plant. Initial results show that the wash plant has had positive results and improved production yield.
+Management is intently focused on addressing the various challenges.
+The Elandsfontein mine is still in its trial production phase and further challenges may rise as it progresses towards full production.
+The Company adheres to strict health and safety standards and international best practices. The safety of the Company's employees and other stakeholders remains a key focus point of management. Kropz continues to give back to local communities through various projects.
+Key financial indicators
+·
+Elandsfontein recognised trial revenue during the six month period under review. In total, Elandsfontein achieved total sales of US$ 15.4 million for the six months ended 30 September 2025 (six months ended 30 September 2024: US$ 14.1 million).
+Sales volumes are below expectations due to the lack of available stock on hand. Production has been negatively impacted by continued ore variability,
+fine flotation challenges, an excessive amount of slimes
+and lower than expected production yields. Yield has notably improved in recent months.
+·
+As the Company is still ramping up to steady-state production, a gross loss has been recognised in the period of US$ 7.4 million (six months ended 30 September 2024: US$ 6.4 million). The loss was largely due to Elandsfontein having to discount its sales prices as a new market entrant and to consider lower grades being achieved as part of the ramp-up process, coupled with higher production costs per tonne. With Elandsfontein operating below planned production levels operational costs per tonne remain elevated.
+·
+Property, plant, equipment and exploration assets carrying value is US$
+144
+million as at 30 September 2025 (31 March 2025: US$ 133 million).
+·
+Cash at 30 September 2025 of US$ 3.5 million (31 March 2025: US$ 3.0 million);
+·
+Inventory at 30 September 2025 of US$ 9.5 million (31 March 2025: US$ 6.1 million);
+·
+Shareholder loans
+and derivatives
+at 30 September 2025 of US$ 80.1 million (31 March 2025: US$ 64 million).
+·
+Trade and other payables at 30 September 2025 of US$ 14.5 million (31 March 2025: US$ 11.7 million).
+·
+On 25 April 2025, Kropz Elandsfontein and ARC Fund ("ARC") agreed to a ZAR 130 million (approximately US$ 6.7 million) loan facility (the "Loan") to meet cash requirements at Kropz Elandsfontein.
+Interest is payable on the Loan at the South African prime overdraft interest rate plus 6%, nominal per annum and compounded monthly. The Loan is repayable on the earlier of a date as agreed between the Parties or on demand from ARC, on no less than 15 business days' notice. There is no fixed term.
+The Loan has been fully drawn.
+·
+On 14 July 2025, Kropz Elandsfontein and ARC Fund ("ARC") agreed to a ZAR 200 million (approximately US$ 11.4 million) loan facility (the "Second Loan") to meet cash requirements at Kropz Elandsfontein.
+Interest is payable on the Second Loan at the South African prime overdraft interest rate plus 6%, nominal per annum and compounded monthly. The Second Loan is repayable on the earlier of a date as agreed between the Parties or on demand from ARC, on no less than 15 business days' notice. There is no fixed term.
+The
+Second
+Loan has been fully drawn.
+Key corporate and operational developments during the period
+Elandsfontein
+·
+Bulk shipments and trial sales have been recorded with a total of 128,708 tonnes of phosphate concentrate sales over the six months ending 30 September 2025 from Elandsfontein. Elandsfontein
+, however, achieved lower sales prices compared to the prevailing market price. As a new entrant in the market, in order to gain market share Elandsfontein was required to offer discounted pricing to market participants. Furthermore, Elandsfontein produced lower grade phosphate product as part of its ramp-up operations, which also impacted the sales price. Elandsfontein is aiming to achieve better prices going forward in the market as both quality and market reputation improves.
+·
+Sales volumes are below expectations due to the lack of available stock on hand. Production has been negatively impacted by continued ore variability,
+fine flotation challenges, an excessive amount of slimes
+and lower than expected production yields.
+·
+As announced on 19 March 2025, a lawsuit has been lodged by the World Wildlife Fund South Africa ("WWF-SA") against South Africa's Ministry of Forestry, Fisheries and Environment ("DFFE") over its decision to dismiss appeals against an environmental offset exemption granted to the Elandsfontein mine, which is owned by the Company. Kropz Elandsfontein intends to oppose the WWF-SA motion as the third Respondent and is taking legal advice regarding the matter.
+Hinda
+·
+The Company is still in the process of identifying potential funding solutions for the development of Hinda.
+·
+Engagement is ongoing with local government regarding project development and progress.
+·
+A reduced-sized project is being assessed to propose a fit-for-purpose low capex project to prove the concept of producing phosphate concentrate in the Congo and exporting it.
+·
+The Company is also engaging with possible suppliers and third parties to investigate possible efficiencies and capital expenditure reductions in the proposed feasibility study.
+Key developments post the period end
+Elandsfontein
+·
+Post period end, Elandsfontein achieved a new record production of 35,565 tonnes for the month of November 2025. Production of 64,925 tonnes of phosphate concentrate and sales of 71,500 tonnes of phosphate concentrate were recognised occurred during October 2025 to November 2025 amounting to US$8.0 million. A further sale of 38,500 tonnes was loaded during the first half December 2025.
+·
+The Company's rock phosphate has been qualified at customers in South Korea, Australia,
+New Zealand
+and Brazil at both single superphosphate ('SSP") and Phosphoric acid producers.
+·
+Kropz's core customer base was narrowed down to focus on South Korea, Australia, New Zealand and
+Brazil
+, where the special properties of Kropz Rock Phosphate (Low levels of: - Cadmium, - toxic metals, - moisture, - odour and - CaO levels) are complementary to country rules dictating the final product properties.
+·
+As Elandsfontein has yet to achieve break-even production levels and production ramp up is still ongoing the Group may be dependent on future fund raisings to meet any costs that cannot be met from existing cash resources and sales revenue.
+·
+On 8 December 2025, Kropz Elandsfontein and ARC Fund ("ARC") agreed to a ZAR 250 million (approximately US$ 14.4 million) loan facility (the "Third Loan") to meet cash requirements at Kropz Elandsfontein.
+Interest is payable on the
+Third
+Loan at the South African prime overdraft interest rate plus 6%, nominal per annum and compounded monthly. The
+Third
+Loan is repayable on the earlier of a date as agreed between the Parties or on demand from ARC, on no less than 15 business days' notice. There is no fixed term.
+ZAR 150 million remains available to draw down on the Third Loan at the date of this report.
+Hinda
+·
+The reduced sized project continues to be assessed to propose a fit-for-purpose low capex project to prove the concept of producing phosphate concentrate in the Congo and exporting it. The update of the project feasibility is ongoing. Cominco has engaged with two engineering firms and local contractors.
+·
+The Company continues to invest in and prioritise ongoing community projects.
+The information contained within this announcement is deemed to constitute inside information as stipulated under the retained EU law version of the Market Abuse Regulation (EU) No. 596/2014 (the "UK MAR") which is part of UK law by virtue of the European Union (Withdrawal) Act 2018. The information is disclosed in accordance with the Company's obligations under Article 17 of the UK MAR. Upon the publication of this announcement, this inside information is now considered to be in the public domain.
+For further information visit
+www.kropz.com
+or contact:
+Kropz Plc
+Via Tavistock
+Louis Loubser (CEO)
++44 (0) 207 920 3150
+Grant Thornton UK LLP
+Nominated Adviser
+Samantha Harrison
+Harrison Clarke
+Ciara Donnelly
++44 (0) 20 7383 5100
+Hannam & Partners
+Broker
+Andrew Chubb
++44 (0) 20 7907 8500
+Tavistock
+Financial PR & IR (UK)
+Nick Elwes
+Jos Simson
++44 (0) 207 920 3150
+kropz@tavistock.co.uk
+R&A Strategic Communications
+PR (South Africa)
+Charmane Russell
+Marion Brower
++27 (0) 11 880 3924
+charmane@rasc.co.za
+marion@rasc.co.za
+About Kropz plc
+Kropz is an emerging African phosphate developer and producer with phosphate projects in South Africa and the Republic of Congo ("RoC"). The vision of the Group is to become a leading independent phosphate rock producer and to develop into an integrated, mine-to-market plant nutrient company focusing on sub-Saharan Africa.
+CONDENSED INTERIM CONSOLIDATED STATEMENT OF FINANCIAL POSITION AS AT 30 SEPTEMBER 2025
+Notes
+30 September
+2025
+Unaudited
+US$'000
+31 March
+2025
+Audited
+US$'000
+Non-current assets
+Property, plant, equipment and mine development
+7
+96,590
+89,382
+Exploration assets
+8
+47,497
+43,589
+Other financial assets
+2,140
+1,937
+Inventories
+2,376
+1,957
+148,603
+136,865
+Current assets
+Inventories
+7,162
+4,139
+Trade and other receivables
+3,028
+1,665
+Cash and cash equivalents
+3,453
+2,989
+13,643
+8,793
+TOTAL ASSETS
+162,246
+145,658
+Current liabilities
+Trade and other payables
+14,518
+11,655
+Shareholder loans
+and derivatives
+9
+80,112
+64,028
+Other financial liabilities
+10
+500
+471
+Current taxation liabilities
+-
+31
+95,130
+76,185
+Non-current liabilities
+Provisions
+1,529
+1,324
+1,529
+1,324
+TOTAL LIABILITIES
+96,659
+77,509
+NET ASSETS
+65,587
+68,149
+Shareholders' equity
+Share capital
+2,053
+2,053
+Share premium
+204,890
+204,890
+Merger reserve
+(20,517)
+(20,517)
+Foreign exchange translation reserve
+(12,082)
+(14,380)
+Share-based payment reserve
+-
+-
+Accumulated losses
+(101,959)
+(99,469)
+Total equity attributable to the owners of the Company
+72,385
+72,577
+Non-controlling interests
+(6,798)
+(4,428)
+65,587
+68,149
+The accompanying notes form part of the Condensed Consolidated Financial Statements.
+CONDENSED INTERIM CONSOLIDATED STATEMENT OF COMPREHENSIVE INCOME
+FOR THE SIX MONTHS ENDED 30 SEPTEMBER 2025
+Six months ended
+30 September
+Six months ended
+30 September
+Notes
+2025
+Unaudited
+US$'000
+2024
+Unaudited
+US$'000
+Revenue
+11
+15,435
+14,130
+Cost of Sales
+(22,824)
+(20,569)
+Gross loss
+(7,389)
+(6,439)
+Other income
+13
+33
+Selling and distribution expenses
+(2,520)
+(2,052)
+Operating expenses
+(2,790)
+(2,661)
+Operating loss
+(12,686)
+(11,119)
+Finance income
+12
+120
+129
+Finance expense
+13
+(6,984)
+(8,462)
+Fair value gain / (loss) from derivative liability
+14
+13,322
+(2,597)
+Loss before taxation
+(6,228)
+(22,049)
+Taxation
+15
+85
+595
+Loss for the period
+(6,143)
+(21,454)
+Loss attributable to:
+Owners of the Company
+(2,490)
+(17,201)
+Non-controlling interests
+(3,653)
+(4,253)
+(6,143)
+(21,454)
+Other comprehensive income:
+Items that may be subsequently reclassified to profit or loss:
+Exchange differences on translating foreign operations
+3,581
+(2,730)
+Total comprehensive loss
+(2,562)
+(24,184)
+Loss attributable to:
+Owners of the Company
+(192)
+(18,903)
+Non-controlling interests
+(2,370)
+(5,281)
+(2,562)
+(24,184)
+Loss per share attributable to owners of the Company
+:
+Basic and diluted (US cents)
+16
+(0.16)
+(1.86)
+The accompanying notes form part of the Condensed Consolidated Financial Statements.
+CONDENSED INTERM CONSOLIDATED STATEMENT OF CHANGES IN EQUITY
+FOR THE SIX MONTHS ENDED 30 SEPTEMBER 2025
+Share
+capital
+Share premium
+Merger
+reserve
+Foreign currency translation
+reserve
+Share-based payment reserve
+Retained earnings
+Total attributable
+to owners
+Non-controlling interest
+Total equity
+US$'000
+US$'000
+US$'000
+US$'000
+US$'000
+US$'000
+US$'000
+US$'000
+US$'000
+Unaudited - Six months ended 30 September 2025
+Balance at 1 April 2025
+2,053
+204,890
+(20,517)
+(14,380)
+-
+(99,469)
+72,577
+(4,428)
+68,149
+Total comprehensive loss for the period
+-
+-
+-
+2,298
+-
+(2,490)
+(192)
+(2,370)
+(2,562)
+Share based payment charges
+-
+-
+-
+-
+-
+-
+-
+-
+-
+Transactions with owners
+-
+-
+-
+2,298
+-
+(2,490)
+(192)
+(2,370)
+(2,562)
+Balance at 30 September 2025
+2,053
+204,890
+(20,517)
+(12,082)
+-
+(101,959)
+72,385
+(6,798)
+65,587
+Audited - Six months ended 30 September 2024
+Balance at 1 April 2024
+1,212
+194,063
+(20,523)
+(12,132)
+295
+(108,577)
+54,338
+(27,314)
+27,024
+Total comprehensive loss for the period
+-
+-
+-
+(1,702)
+-
+(17,201)
+(18,903)
+(5,281)
+(24,184)
+Share options exercised
+-
+-
+-
+-
+-
+-
+-
+-
+Share based payment charges
+-
+-
+-
+-
+21
+-
+21
+-
+21
+Transactions with owners
+-
+-
+-
+(1,702)
+21
+(17,201)
+(18,882)
+(5,281)
+(24,163)
+Balance at 30 September 2024
+1,212
+194,063
+(20,523)
+(13,834)
+316
+(125,778)
+35,456
+(32,595)
+2,861
+The accompanying notes form part of the Condensed Consolidated Financial Statements.
+CONDENSED INTERIM CONSOLIDATED STATEMENT OF CASH FLOWS
+FOR THE SIX MONTHS ENDED 30 SEPTEMBER 2025
+Six months ended
+30 September
+Six months ended
+30 September
+2025
+Unaudited
+US$'000
+2024
+Unaudited
+US$'000
+Cash flows from operating activities
+Loss before taxation
+(6,228)
+(22,049)
+Adjustments for:
+Depreciation of property, plant and equipment
+404
+395
+Share-based payment
+-
+12
+Interest income
+(120)
+(129)
+Interest expense
+8,461
+11,996
+Fair value (gain) / loss from derivative liability
+(13,322)
+2,597
+Debt Modification Present value adjustment
+-
+(105)
+Foreign currency exchange differences
+(785)
+(2,895)
+Fair value (gain) / loss on game animals
+(23)
+32
+Operating cash flows before working capital changes
+(11,613)
+(10,146)
+(Increase) / decrease in trade and other receivables
+(1,214)
+4,418
+Increase in inventories
+(2,913)
+(2,179)
+Increase in payables
+1,981
+3,493
+Net cash flows used in operating activities
+(13,759)
+(4,414)
+Cash flows used in investing activities
+Purchase of property, plant and equipment
+(2,696)
+(1,532)
+Exploration and evaluation expenditure
+(105)
+(89)
+Other financial assets
+(78)
+(56)
+Interest received
+1209
+129
+Net cash flows used in investing activities
+(2,759)
+(1,548)
+Cash flows from financing activities
+Finance cost paid
+(24)
+(366)
+Shareholder loan received
+16,700
+13,690
+Repayment of other financial liabilities
+-
+(7,564)
+Net cash flows from financing activities
+16,676
+5,760
+Net decrease in cash and cash equivalents
+(158)
+(202)
+Cash and cash equivalents at beginning of the period
+2,989
+968
+Foreign currency exchange gains on cash
+306
+264
+Cash and cash equivalents at end of the period
+3,453
+1,030
+The accompanying notes form part of the Condensed Consolidated Financial Statements.
+NOTES TO THE INTERIM CONDENSED CONSOLIDATED FINANCIAL STATEMENTS
+FOR THE SIX MONTHS ENDED 30 SEPTEMBER 2025
+1. General information
+Kropz and its subsidiaries (together "the Group") is an emerging plant nutrient producer with an advanced stage phosphate mining project in South Africa, Elandsfontein, and a phosphate project in the RoC, Hinda. The principal activity of the Company is that of a holding company for the Group, as well as performing all administrative, corporate finance, strategic and governance functions of the Group and providing services to Group companies.
+The Company was incorporated on 10 January 2018 and is a public limited company, with its ordinary shares admitted to the AIM Market of the London Stock Exchange on 30 November 2018 trading under the symbol, "KRPZ". The Company is domiciled in England and incorporated and registered in England and Wales. The address of its registered office is 35 Verulam Road, Hitchin, SG5 1QE. The registered number of the Company is 11143400.
+2.
+Basis of preparation
+These interim consolidated financial statements have been prepared in accordance with IAS 34 Interim Financial Reporting and the AIM rules and in accordance with the accounting policies of the consolidated financial statements for the period ended 31 March 2025. They do not include all disclosures that would otherwise be required in a complete set of financial statements and should be read in conjunction with the 2025 annual report. The statutory financial statements for the period ended 31 March 2025 were prepared in accordance with UK adopted international accounting standards and the Companies Act 2006 applicable to companies reporting under the International Financial Reporting Standards ("IFRS").
+The interim consolidated financial statements have been prepared under the historical cost convention unless otherwise stated in the accounting policies. They are presented in United States Dollars, the presentation currency of the Group and figures have been rounded to the nearest thousand.
+The interim financial information is unaudited and does not constitute statutory accounts as defined in the Companies Act 2006.
+The interim financial information was approved and authorised for issue by the Board of Directors on 19 December 2025.
+3. Going concern
+During the six month interim period ended 30 September 2025, the Group incurred a loss of US$ 6.1 million (12 months ended 31 March 2025: Loss of US$ 7.9 million) and experienced net cash outflows from operating activities. Cash and cash equivalents totalled US$ 3.5 million as at 30 September 2025 (31 March 2025: US$ 3.0 million).
+Elandsfontein is currently the Group's only operating asset and source of revenue. As Elandsfontein is still ramping up its operations and has yet to achieve break-even production levels, an operating loss is also expected in the year following the date of these accounts. Although the Elandsfontein production levels are expected to increase over the next 12 months, there remains a risk that these improvements could be delayed or not result in sufficient increases in production levels to achieve break even. As such, the Group may consequently be dependent on future fundraisings to meet any production costs, overheads, future development and exploration requirements that cannot be met from existing cash resources and sales revenue.
+The Group announced on 3 September 2024, a restructuring of its debt obligations ("Restructuring") and a fundraising. As a result of the Restructuring, Kropz Elandsfontein (Pty) Ltd and Kropz Elandsfontein Land Holdings (Pty) Ltd (the "Elandsfontein Subsidiaries") extinguished their debt obligations to ARC through a combination of new issuances of equity and convertible debt instruments. Kropz has a convertible debt of £105.4 million (including accumulated interest) outstanding with ARC, being the aggregate of a new Convertible Loan Note ("CLN") issued as part of the restructuring and existing equity facilities (the "Existing Equity Facilities"). Additionally, Kropz completed a capital raise of £8.9 million from ARC and other shareholders before expenses through the issue of new ordinary shares at an issue price of 1.387 pence per new ordinary share in the capital of the Company (the "Fundraising"). The issue price represented a discount of approximately 5 per cent to the 30-day volume weighted average share price per existing ordinary share to 23 August 2024. In aggregate 643,873,018 new ordinary shares were allotted and issued pursuant to the Fundraising. Both the Restructuring and Fundraising were concluded during the year ended 31 March 2025.
+Operational cash flows
+No impairment reversal or impairment has been recognised as at 30 September 2025.
+The going concern assessment was performed using the Group's 12-month cash flow forecast. The Group's going concern assessment and forecast cash flows are largely driven by Elandsfontein, as the Group's only operating asset. Elandsfontein's forecast cashflows are based on its latest mine plan.
+Elandsfontein's forecast cashflows were estimated using market-based commodity prices, exchange rate assumptions, estimated quantities of recoverable minerals, production levels, operating costs and capital requirements over a 12-month period. The going concern assessment only considered Elandsfontein's resources defined as "measured" and "indicated" per the MRE. The resource classified as "inferred" was not considered part of the mine plan for purposes of the going concern assessment. However, it is expected that as mining and drilling activities progress, progressively more of the total resource will be reclassified from inferred to measured and indicated.
+The critical estimates in the forecast cashflows expected to be generated can be summarised as follows:
+·
+Phosphate rock prices and grade;
+·
+Phosphate recoveries;
+·
+Operating costs;
+·
+Foreign exchange rates;
+The going concern assessment and forecast cashflows are highly sensitive to these estimates.
+Phosphate rock prices and grade
+: Forecast phosphate rock prices are based on management's estimates of quality of production and selling price and are derived from forward price curves and long-term views of global supply and demand in a changing environment, particularly with respect to climate risk, building on past experience of the industry and consistent with external sources.
+In total Elandsfontein managed to achieve trial production sales totalling US$ 15.4 million during the interim period (
+Period ended 31 March 2025: US$ 37.2 million)
+. Since 30 September 2025 and up to 30 November 2025 an additional US$ 8.0 million sales have been made.
+Kropz is and remains a new entrant to the phosphate market and has to date sold its shipments at a discount to prevailing market prices. The discount was taken into account in the going concern testing models. The discount is, however, expected to unwind as Elandsfontein builds its reputation, establishes itself in the global market and improves its production quality and stability. As modifications are planned and efficiency improvements are implemented at Elandsfontein, Elandsfontein should see a gradual improvement in both grade and quality, some of which have already materialised.
+Phosphate recoveries:
+Estimated production volumes are based on detailed LOM plans of the measured and indicated resource as defined in the MRE and take into account development plans for the mine agreed upon by management as part of the long-term planning process. Production volumes are dependent on a number of variables, such as the recoverable quantities; the production profile; the cost of the development of the infrastructure necessary to extract the reserves; the production costs; the contractual duration of mining rights; and the selling price of the commodities extracted.
+Estimated production volumes are subject to significant uncertainty given the ongoing ramp-up. The production ramp-up has been delayed largely by the need to re-engineer parts of the fine flotation circuit proposed by the vendor. Mining and processing have also been affected by early unpredicted ore variability and lack of operator experience. The Company is in the process of assessing the hard bank and pink ore material to identify the appropriate method of mining and processing to improve production yield. Production throughput is also being limited by the nature of slimes material and the Company has invested in new equipment to seek to overcome this and aims to increase production throughput.
+Reserves and resources:
+The LOM plan includes only the
+measured and indicated resources as defined in the MRE which represents only around 9 years of forecast production. The Directors believe that the inferred resources in the MRE are capable of being accessed giving a mine life of around 12 years, but this has not been taken into account in the cashflows.
+Exchange rates
+: Foreign exchange rates are estimated with reference to external market forecasts. The assumed long-term US dollar/ZAR exchange rate is based
+on a consensus for the period to year 2028. Future years' exchange rates were estimated using the prevailing inflation and interest rate differential between USD and ZAR.
+Operating cost
+: Operating costs are estimated with reference to contractual and actual current costs adjusted for inflation. Key operating cost estimates are mine and plant operating costs and transportation and port costs. The forecast mine and plant costs were based on the contracted rates with the current mine and plant operators. Production cost per tonne currently is higher than sales price per tonne as full production has not been reached to date, leading to a gross loss per tonne. The forecast assumes that as production volumes increase the average production cost per tonne of phosphate will decrease with economies of scale and further efficiency gains.
+Mine and plant operating costs:
+The forecast mine and plant costs were based on the contracted rates with the current mine and plant operators.
+Port costs
+: The Group has a draft port access agreement with Transnet for Saldanha port but this has not yet been signed. The Group has paid guest port charges (the higher rates were used in the forecast) for Saldanha for the shipments to date.
+Funding
+The Group is dependent on future fundraisings to meet production costs, overheads, future development and exploration requirements that cannot be met from existing cash resources and sales revenue alone.
+The ARC Fund, on various occasions in the past, provided funding to support the Group's operations. During the period ending 30 September 2025, Kropz Elandsfontein and ARC Fund ("ARC") agreed to ZAR 330 million (approximately US$ 18.1 million)
+bridge loan facilities.
+Subsequent to the period ending, Kropz Elandsfontein and ARC Fund agreed to a further ZAR 250 million (approximately US$ 14.4 million) bridge loan facility.
+Management has successfully raised money in the past from its supportive major shareholder, but there is no guarantee that any additional funds that might be required will be available if needed in the future. Management have also obtained confirmation from the ARC fund that they do not intend to recall their loans within 12 months from the date of this report.
+Going concern basis
+Based on the Group's current available reserves, recent operational performance, forecast production and sales coupled with Management's track record to successfully raise additional funds as and when required, to meet its working capital and capital expenditure requirements and the ARC Fund stating that the loans due will not be recalled within 12 months from the interim financial statements, the Board have concluded that they have a reasonable expectation that the Group will continue in operational existence for the foreseeable future and at least for a period of 12 months from the date of approval of these interim financial statements.
+For these reasons, the interim financial statements have been prepared on the going concern basis, which contemplates the continuity of normal business activities and the realisation of assets and discharge of liabilities in the normal course of business.
+As there can be no guarantee that any additional funding that might be required can be raised in the necessary timeframe, a material uncertainty exists that may cast significant doubt on the Group's ability to continue as a going concern and therefore it may be unable to realise its assets and discharge its liabilities in the normal course of business.
+The interim financial statements do not include adjustments relating to the recoverability and classification of recorded asset amounts or to the amounts and classification of liabilities that might be necessary should the Group not continue as a going concern.
+4.
+Significant accounting policies
+The Company has applied the same accounting policies, presentation, methods of computation, significant judgements and the key sources of estimation uncertainties in its interim consolidated financial statements as in its audited financial statements for the year ended 31 March 2025.
+(i)
+New standards, interpretations and amendments adopted from 1 April 2025
+The following new standards and amendments are effective for the period beginning on or after 1 January 2025
+:
+·
+Amendments to IAS 21 The Effects of Changes in Foreign Exchange Rate: Lack of Exchangeability
+The Group has considered the above new standards and amendments and has concluded that they are either not relevant to the Group or they do not have a significant impact on the Group's interim financial statements.
+(ii) New standards, interpretations and amendments not yet effective
+At the date of authorisation of these consolidated Group financial statements, the following standards and interpretations, which have not been applied in these financial statements, were in issue but not yet effective. Management is currently assessing the impact of these new standards on the Group.
+Effective annual periods beginning before or after
+Amendments to the Measurement and Classification of Financial Instruments (Amendments to IFRS 9 Financial Instruments and IFRS 7)
+1st January 2026
+Contracts Referencing Nature-Dependent Electricity (Amendments to IFRS 9 and IFRS 7)
+1st January 2026
+IFRS 18 Presentation and Disclosure in Financial Statements
+1st January 2027
+IFRS 19 Subsidiaries without Public Accountability: Disclosures
+1st January 2027
+5. Production start date
+The Group assesses the stage of each mine under development/construction to determine when a mine moves into the production phase, this being when the mine is substantially complete and ready for its intended use. The criteria used to assess the start date are determined based on the unique nature of the mine development. The Group considers various relevant criteria to assess when the production phase is considered to have commenced. At this point, all related amounts are reclassified from "trial production" to "steady state production".
+Some of the criteria used to identify the production start date include, but are not limited to:
+• The percentage grade (phosphate concentrate) and volume of ore being mined is sufficiently economic and consistent with the plant design specifications;
+• Ability to produce phosphate in saleable form (within specifications); and
+• Ability to sustain ongoing production of phosphate.
+When the mine moves into the steady state production, the capitalisation of certain mine development costs ceases and costs are either regarded as forming part of the cost of inventory or expensed, except for the costs that qualify for capitalisation relating to mining asset additions or improvements, or mineable reserve development. It is also at this point that depreciation/amortisation commences. Refer to Note 7.
+6.
+Segmental information
+Operating segments
+The Board of Directors consider that the Group has one operating segment, being that of phosphate mining and exploration. Accordingly, all revenues, operating results, assets and liabilities are allocated to this activity.
+Geographical segments
+The Group operates in two principal geographical areas - South Africa and the RoC.
+The Group's revenues and non-current assets by location of assets are detailed below.
+Six months to 30 September 2025
+Revenues
+US$'000
+Non-Current Assets
+US$'000
+South Africa
+15,435
+100,901
+Republic of Congo
+-
+47,702
+15,435
+148,603
+Twelve months to 31 March 2025
+Revenues
+US$'000
+Non-Current Assets
+US$'000
+South Africa
+37,211
+93,061
+Republic of Congo
+-
+43,804
+37,211
+136,865
+7. Tangible assets - Property, plant, equipment and mine development
+30 Sep
+2025
+30 Sep
+2025
+30 Sep
+2025
+31 Mar 2025
+31 Mar
+2025
+31 Mar
+2025
+Cost
+Accumulated
+depreciation and impairment
+Carrying value
+Cost
+Accumulated
+depreciation and impairment
+Carrying value
+US$'000
+US$'000
+US$'000
+US$'000
+US$'000
+US$'000
+Buildings and infrastructure
+Land
+1,397
+(615)
+782
+1,315
+(615)
+700
+Buildings
+10,342
+(4,438)
+5,904
+9,731
+(4,115)
+5,616
+Capitalised road costs
+7,491
+(6,141)
+1,350
+7,050
+(5,526)
+1,524
+Capitalised electrical sub-station costs
+3,250
+(2,623)
+627
+3,059
+(2,358)
+701
+Machinery, plant and equipment
+Critical spare parts
+2,692
+(842)
+1,850
+1,874
+(782)
+1,092
+Plant and machinery
+98,506
+(40,374)
+58,132
+91,337
+(37,514)
+53,823
+Water treatment plant
+3,761
+(1,361)
+2,400
+3,540
+(1,265)
+2,275
+Furniture and fittings
+62
+(49)
+13
+54
+(44)
+10
+Geological equipment
+78
+(69)
+9
+73
+(61)
+12
+Office equipment
+145
+(139)
+6
+134
+(128)
+6
+Other fixed assets
+535
+(1)
+534
+1
+(1)
+-
+Motor vehicles
+287
+(158)
+129
+255
+(140)
+115
+Computer equipment
+153
+(143)
+10
+138
+(130)
+8
+Mine development
+19,543
+(7,987)
+11,556
+18,307
+(7,406)
+10,901
+Stripping activity costs
+22,520
+(9,463)
+13,057
+21,194
+(8,790)
+12,404
+Game animals
+231
+-
+231
+195
+-
+195
+Total
+170,993
+(74,403)
+96,590
+158,257
+(68,875)
+89,382
+Reconciliation of property, plant, equipment and mine development - Period ended 30 September 2025
+Opening
+Balance
+US$'000
+Additions
+US$'000
+Fair value gain
+US$'000
+Deprecia-tion charge
+US$'000
+Foreign exchange loss
+US$'000
+Closing balance
+US$'000
+Buildings and infrastructure
+Land
+700
+-
+-
+-
+82
+782
+Buildings
+5,616
+-
+-
+(19)
+307
+5,904
+Capitalised road costs
+1,524
+-
+-
+(240)
+66
+1,350
+Capitalised electrical sub-station costs
+701
+-
+-
+(104)
+30
+627
+Machinery, plant and equipment
+Critical spare parts
+1,092
+674
+-
+-
+84
+1,850
+Plant and machinery
+53,823
+1,392
+-
+(6)
+2,923
+58,132
+Water treatment plant
+2,275
+-
+-
+-
+125
+2,400
+Furniture and fittings
+10
+4
+-
+(2)
+1
+13
+Geological equipment
+12
+-
+-
+(4)
+1
+9
+Office equipment
+6
+1
+-
+(1)
+-
+6
+Other fixed assets
+-
+513
+-
+-
+21
+534
+Motor vehicles
+115
+28
+-
+(24)
+10
+129
+Computer equipment
+8
+4
+-
+(4)
+2
+10
+Mine development
+10,901
+86
+-
+-
+569
+11,556
+Stripping activity costs
+12,404
+-
+-
+-
+653
+13,057
+Game animals
+195
+-
+23
+-
+13
+231
+Total
+89,382
+2,702
+23
+(404)
+4,887
+96,590
+Reconciliation of property, plant, equipment and mine development - Year ended 31 March 2025
+Opening
+Balance
+US$'000
+Additions
+US$'000
+Disposals
+US$'000
+Fair value gain/ (loss)
+US$'000
+Impair-
+ment
+US$'000
+Depreciation charge
+US$'000
+Foreign exchange loss
+US$'000
+Closing balance
+US$'000
+Buildings and infrastructure
+Land
+663
+-
+-
+-
+-
+-
+37
+700
+Buildings
+5,430
+84
+-
+-
+-
+(32)
+134
+5,616
+Capitalised road costs
+1,947
+-
+-
+-
+-
+(473)
+50
+1,524
+Capitalised electrical sub-station costs
+883
+-
+-
+-
+-
+(205)
+23
+701
+Machinery, plant and equipment
+Critical spare parts
+1,069
+-
+(3)
+-
+-
+-
+26
+1,092
+Plant and machinery
+50,594
+2,042
+(7)
+-
+-
+(11)
+1,205
+53,823
+Water treatment plant
+1,719
+517
+-
+-
+-
+-
+39
+2,275
+Furniture and fittings
+11
+2
+-
+-
+-
+(3)
+-
+10
+Geological equipment
+19
+-
+-
+-
+-
+(7)
+-
+12
+Office equipment
+5
+3
+-
+-
+-
+(2)
+-
+6
+Other fixed assets
+-
+-
+-
+-
+-
+-
+-
+-
+Motor vehicles
+159
+-
+-
+-
+-
+(44)
+-
+115
+Computer equipment
+17
+4
+-
+-
+-
+(13)
+-
+8
+Mine development
+10,614
+38
+-
+-
+-
+-
+249
+10,901
+Stripping activity costs
+12,044
+71
+-
+-
+-
+-
+289
+12,404
+Game animals
+237
+-
+-
+(49)
+-
+-
+7
+195
+Total
+85,411
+2,761
+(10)
+(49)
+-
+(790)
+2,059
+89,382
+8. Intangible assets - exploration and evaluation costs
+30 September
+2025
+US$'000
+31 March
+2025
+US$'000
+Capitalised exploration costs
+Cost
+47,497
+43,589
+Amortisation
+-
+-
+Carrying value
+47,497
+43,589
+Reconciliation of exploration assets
+Opening
+Balance
+US$'000
+Additions
+US$'000
+Disposals
+US$'000
+Foreign exchange Gain
+US$'000
+Closing balance
+US$'000
+Period ended 30 September 2025
+Capitalised exploration costs
+43,589
+105
+-
+3,803
+47,497
+Reconciliation of exploration assets
+Opening
+Balance
+US$'000
+Additions
+US$'000
+Disposals
+US$'000
+Foreign exchange loss
+US$'000
+Closing balance
+US$'000
+Year ended 31 March 2025
+Capitalised exploration costs
+43,172
+298
+-
+119
+43,589
+The costs of mineral resources acquired and associated exploration and evaluation costs are not subject to amortisation until they are included in the life-of-the-mine plan and production has commenced.
+Where assets are dedicated to a mine, the useful lives are subject to the lesser of the asset category's useful life and the life of the mine, unless those assets are readily transferable to another productive mine. In accordance with the requirements of IFRS 6, the Board of Directors assessed whether there were any indicators of impairment. No indicators were identified.
+9. Shareholder loans and derivative liability
+30 September
+2025
+US$'000
+31 March
+2025
+US$'000
+Demand Loan facility - ARC Fund
+18,112
+-
+Convertible debt - ARC Fund
+49,083
+38,754
+Derivative liability
+12,917
+25,274
+80,112
+64,028
+Maturity
+Non-current
+-
+-
+Current
+80,112
+64,028
+Total
+80,112
+64,028
+Demand Loan facility - ARC Fund
+The loans are unsecured, repayable
+on the earlier of a date as agreed between the Parties or on demand
+, and interest accruing at SA prime overdraft rate plus 6%.
+Convertible debt - ARC Fund
+On 20 October 2021, the Company entered into a new convertible equity facility of up to ZAR 200 million ("ZAR 200 Million Equity Facility") with ARC, the Company's major shareholder. Interest is payable at 14% nominal, compounded monthly. At any time during the term of the ZAR 200 Million Equity Facility, repayment of the ZAR 200 Million Equity Facility capital amount will, at the election of ARC, either be in the form of the conversion into ordinary shares of 0.1 pence each ("Ordinary Shares") in the Company and issued to ARC, at a conversion price of 4.5058 pence per Ordinary Share each, representing the 30-day Volume Weighted Average Price ("VWAP") on 21 September 2021, and at fixed exchange rate of GBP 1 = ZAR 20.24 ("Conversion"), or payable in cash by the Company at the end of the term of the ZAR 200 Million Equity Facility which is 16 October 2027. The Company made a drawdown of ZAR 90 million of the ZAR 200 Million Equity Facility on 26 October 2021 and a further ZAR 37 million on 9 December 2021. Two further draw downs were made in 2022, one on 25 March 2022 for ZAR 40 million and ZAR 33 million on 26 April 2022. The ZAR 200 Million Equity Facility is fully
+drawn at the date of this report.
+As announced on 11 May 2022, the Company entered into a new conditional convertible equity facility of up to ZAR 177 million ("ZAR 177 Million Equity Facility") with ARC. Interest is payable at 14% nominal, compounded monthly. At any time during the term of the ZAR 177 Million Equity Facility, repayment of the ZAR 177 Million Equity Facility capital amount will, at the election of ARC, either be in the form of the conversion into Ordinary Shares in the Company and issued to ARC, at a conversion price of 9.256 pence per Ordinary Share each, representing the 30-day Volume Weighted Average Price ("VWAP") on 4 May 2022, and at fixed exchange rate of ZAR 1 = GBP 0.0504 ("Conversion"), or payable in cash by the Company
+at the end of the term of the ZAR 177 Million Equity Facility which is 16 October 2027
+. The first drawdown on the ZAR 177 Million Equity Facility occurred on 2 June 2022 for ZAR 103.5 million. The second drawdown on the ZAR 177 Million Equity Facility was made on 7 July 2022 for ZAR 60 million. On 9 August 2022, a final drawdown on the ZAR 177 Million Equity Facility was made for ZAR 13.5 million.
+The ZAR 177 Million Equity Facility is fully drawn at the date of this report.
+As announced on 14 November 2022, the Company entered into a new conditional convertible equity facility of up to ZAR 550 million ("ZAR 550 Million Equity Facility") with ARC. Interest is payable at the South African prime overdraft interest rate plus 6%, nominal per annum and compounded monthly. At any time during the term of the ZAR 550 Million Equity Facility, repayment of the ZAR 550 Million Equity Facility capital amount will, at the election of ARC, either be in the form of the conversion into Ordinary Shares in the Company and issued to ARC, at a conversion price of 4.579 pence per Ordinary Share each, representing the 30-day Volume Weighted Average Price ("VWAP") on 21 October 2022 and at fixed exchange rate of ZAR 1 = GBP 0.048824 ("Conversion"), or payable in cash by the Company at the end of the term of the ZAR 550 Million Equity Facility which is 16 October 2027. The Company drew down a further ZAR 107.5 million during the 15-month period
+and
+wa
+s fully drawn
+at the date of this report
+.
+The Company entered into a new conditional convertible equity facility of up to ZAR 821 million ("ZAR 821 Million Equity Facility") with ARC on 17 October 2024. Interest is payable at the South African prime overdraft interest rate plus 6%, nominal per annum and compounded monthly. At any time during the term of the ZAR 821 Million Equity Facility, repayment of the ZAR 821 Million Equity Facility capital amount will, at the election of ARC, either be in the form of the conversion into Ordinary Shares in the Company and issued to ARC, at a conversion price of 1.46 pence per Ordinary Share each, representing the 30-day Volume Weighted Average Price ("VWAP") on 23 August 2024 and at fixed exchange rate of ZAR 1 = GBP 0.0427 ("Conversion"), or payable in cash by the Company at the end of the term of the ZAR 821 Million Equity Facility which is 16 October 2029. The Company accessed the full loan on 17 October 2024
+and it has been fully drawn
+at the date of this report
+.
+Derivative liability
+It was determined that the conversion option embedded in the convertible debt equity facility be accounted for separately as a derivative liability. Although the amount to be settled is fixed in ZAR, when converted back to Kropz's functional currency will result in a variable amount of cash based on the exchange rate at the date of conversion. The value of the liability component and the derivative conversion component were determined at the date of draw down using a Monte Carlo simulation. The debt host liability was bifurcated based on the determined value of the option. Subsequently, the embedded derivative liability is adjusted to reflect fair value at each period end with changes in fair value recorded in profit and loss (refer to Note 19).
+Fair value of shareholder loans
+The carrying value of the loans approximates their fair value.
+10. Other financial liabilities
+30 September
+2025
+US$'000
+31 March
+2025
+US$'000
+Greenheart Foundation
+500
+471
+Total
+500
+471
+Greenheart Foundation
+A loan has been made to the Group by Greenheart Foundation which is interest-free and repayable on demand. Louis Loubser, a Director of Kropz plc, is a Director of Greenheart Foundation.
+Fair value of other ﬁnancial liabilities
+The carrying value of the loans approximate their fair value.
+11. Revenue
+Six months ended
+30 September
+2025
+US$'000
+Six months ended
+30 September
+2024
+US$'000
+Sales to region/country
+South Africa
+325
+27
+Australia
+5,980
+2,174
+Brazil
+-
+1
+New Zealand
+2,260
+4,117
+South Korea
+6,870
+7,811
+15,435
+14,130
+Timing of transfer of Goods
+Delivery to port of departure
+15,435
+14,130
+15,435
+14,130
+All 2025 revenue from phosphate is trial revenue. All 2025 revenue from phosphate is recognised at a point in time when control transfers.
+12. Finance income
+Six months ended
+30 September
+2025
+US$'000
+Six months ended
+30 September
+2024
+US$'000
+Interest income
+120
+129
+Total
+120
+129
+13. Finance expense
+Six months ended
+30 September
+2025
+US$'000
+Six months ended
+30 September
+2024
+US$'000
+Shareholder loans
+8,321
+11,434
+Foreign exchange (gains) / losses
+(1,478)
+(3,429)
+Bank debt
+-
+356
+BNP Paribas - Debt modification present value adjustment amortisation
+-
+(105)
+BNP Paribas amendment fee amortisation
+-
+92
+Other
+141
+114
+Total
+6,984
+8,462
+14. Fair value gain / (loss) from derivative liability
+Six months ended
+30 September
+2025
+US$'000
+Six months ended
+30 September
+2024
+US$'000
+Fair value gain / (loss) from derivative liability
+13,322
+(2,597)
+Total
+13,322
+(2,597)
+The Company has entered into four convertible equity facilities with the ARC Fund. On 20 October 2021, the Company entered into the first a convertible equity facility of up to ZAR 200 million ("ZAR 200 Million Equity Facility"). The second convertible equity facility was entered into on 11 May 2022 of up to ZAR 177 million ("ZAR 177 Million Equity Facility"). On 14 November 2022, the Company entered into its third conditional convertible equity facility of up to ZAR 550 million ("ZAR 550 Million Equity Facility.") On 17 October 2024, the Company entered into its fourth conditional convertible equity facility of up to ZAR 821 million ("ZAR 821 Million Equity Facility.") (refer to Note 9).
+15. Taxation
+Major components of tax charge
+Six months ended
+30 September
+2025
+US$'000
+Six months ended
+30 September
+2024
+US$'000
+Deferred
+Originating and reversing temporary differences
+-
+-
+Current tax
+UK tax in respect of the prior period
+85
+595
+UK tax in respect of the current period
+-
+-
+Total
+85
+595
+The Group had losses for tax purposes of approximately US$ 131.3 million (30 September 2024: US$ 92.2 million) which, subject to agreement with taxation authorities, are available to carry forward against future profits. A net deferred tax asset arising from these losses has not been recognised as steady state production has not been reached and therefore the reversal of any potential deferred tax asset remains uncertain.
+16. Earnings per share
+There
+are no dilutive amounts in issue.
+The calculations of basic and diluted earnings per share have been based on the following loss attributable to ordinary shareholders and the weighted average number of ordinary shares outstanding:
+Six months ended
+30 September
+2025
+US$'000
+Six months ended
+30 September
+2024
+US$'000
+Loss attributable to ordinary shareholders
+(2,490)
+(17,201)
+Weighted average number of ordinary shares in Kropz plc
+1,539,366,670
+925,818,223
+Basic and diluted loss per share (US cents)
+(0.16)
+(1.86)
+17. Related party transactions
+Details of share issues and shareholder and related party loans are explained in Notes 9 and 10. The following transactions were carried out with related parties:
+Related party balances
+Loan accounts - Owed to related parties
+30 September
+2025
+US$'000
+31 March
+2025
+US$'000
+Shareholder loans - ARC Fund
+-
+-
+Demand Loan facility - ARC Fund
+18,112
+-
+Convertible debt - ARC Fund
+49,083
+38,754
+Derivative liability
+12,917
+25,274
+Greenheart Foundation
+500
+471
+Total
+80,612
+64,499
+Related party balances
+Interest accrued to related parties
+Six months ended
+30 September
+2025
+US$'000
+Six months ended
+30 September
+2024
+US$'000
+ARC Fund
+8,321
+11,434
+Total
+8,321
+11,434
+18.
+Seasonality of the Group's business
+There are no seasonal factors which materially affect the operations of any company in the Group.
+19.
+Fair value
+The following table compares the carrying amounts and fair values of the Group's financial assets and financial liabilities as at 30 September 2025.
+The Group considers that the carrying amount of the following financial assets and financial liabilities are a reasonable approximation of their fair value:
+·
+Trade receivables;
+·
+Trade payables;
+·
+Restricted cash; and
+·
+Cash and cash equivalents.
+As at 30 September 2025
+As at 31 March 2025
+Carrying amount
+US$'000
+Fair
+value
+US$'000
+Carrying amount
+US$'000
+Fair
+value
+US$'000
+Financial Assets
+Other financial assets
+2,140
+2,140
+1,937
+1,937
+Total
+2,140
+2,140
+1,937
+1,937
+Financial Liabilities
+Shareholder loans
+67,195
+67,195
+38,754
+38,754
+Derivative liability
+12,917
+12,917
+25,274
+25,274
+Other financial liabilities
+500
+500
+471
+471
+Total
+80,612
+80,612
+64,499
+64,499
+This note provides an update on the judgements and estimates made by the Group in determining the fair values of the financial instruments.
+(i) Financial instruments Measured at Fair Value
+The financial instruments recognised at fair value in the Statement of Financial Position have been analysed and classified using a fair value hierarchy reflecting the significance of the inputs used in making the measurements.
+(ii) Fair value hierarchy
+The fair value hierarchy consists of the following levels
+• Quoted prices in active markets for identical assets and liabilities (Level 1);
+• Inputs other than quoted prices included within Level 1 that are observable for the asset or liability, either directly (as prices) or indirectly (derived from prices) (Level 2); and
+• Inputs for the asset and liability that are not based on observable market date (unobservable inputs) (Level 3).
+Level 1
+US$'000
+Level 2
+US$'000
+Level 3
+US$'000
+Total
+US$'000
+30 September 2025
+Derivative liability
+-
+-
+12,917
+12,917
+31 March 2025
+Derivative liability
+-
+-
+25,274
+25,274
+There were no transfers between levels for recurring fair value measurements during the year.
+(iii) Reconciliation: Level 3 fair value measurement
+Six months ended
+30 September
+2025
+US$'000
+Period ended
+31 March
+2025
+US$'000
+Derivative liability
+Opening balance
+(25,274)
+(6,476)
+Fair value at initial recognition
+-
+(45,652)
+Fair value gain recognised in profit and loss
+13,322
+27,277
+Foreign exchange
+(965)
+(423)
+Closing balance
+(12,917)
+(25,274)
+(iv) Valuation technique used to determine fair value
+Derivative liability:
+The fair value is calculated with reference to market rates using industry valuation techniques and appropriate models from a third-party provider. The Monte-Carlo model utilised includes a high level of complexity and the main inputs are share price volatility, risk margin, foreign exchange volatility and UK risk-free rate. A number of factors are considered in determining these inputs, including assessing historical experience but also considering future expectations. The determined fair value of the option is multiplied by the number of shares available for issue pursuant to the ZAR 200 Million Equity Facility, ZAR 177 Million Equity Facility and the ZAR 550 Million Equity Facility ZAR 177 Million Equity Facility and the ZAR 821 Million Equity Facility (refer to Note 9).
+Valuation results (as at 30 September 2025)
+Total loan
+amount
+Value
+per
+Number
+of
+Total
+Value
+Facility
+(ZAR)
+share
+(p)
+Shares
+(GBP)
+ZAR200m
+facility
+200,000,000
+0.04
+219,272,939
+85,745
+ZAR177m
+facility
+177,000,000
+0.01
+96,378,567
+8.737
+ZAR550m
+facility
+550,000,000
+0.04
+586,442,458
+218,524
+ZAR821m
+facility
+821,250,125
+0.39
+2,401,875,366
+9,296,741
+Total
+3,303,969,330
+9,609,747
+Sensitivity Valuation results (as at 30 September 2025) -
+Volatility
+Total
+Value
+(GBP) -
+75%
+Base
+volatility
+historical
+Facility
+assumption
+volatility
+ZAR200m
+facility
+84.73%
+15,307
+ZAR177m
+facility
+84.73%
+587
+ZAR550m
+facility
+84.73%
+237,579
+ZAR821m
+facility
+84.73%
+5,122,110
+Total
+5,175,593
+Sensitivity Valuation results (as at 30 September 2025) - Risk
+Margin
+Total
+Value
+Total
+Value
+Base risk
+margin
+(GBP) -
+7%
+(GBP) - 3%
+Facility
+assumption
+risk
+margin
+risk
+margin
+ZAR200m
+facility
+5%
+85,873
+85,613
+ZAR177m
+facility
+5%
+8,753
+8,721
+ZAR550m
+facility
+5%
+218,837
+218,197
+ZAR821m
+facility
+5%
+9,334,771
+9,256,263
+Total
+9,648,234
+9,568,794
+Sensitivity Valuation results (as at 30 September 2025) - FX
+volatility
+Total
+Value
+Total
+Value
+(GBP) -
+20%
+(GBP) - 10%
+Facility
+Base FX
+volatility
+FX
+volatility
+FX volatility
+ZAR200m
+facility
+13.78%
+89,540
+84,497
+ZAR177m
+facility
+13.78%
+9,393
+8,636
+ZAR550m
+facility
+13.78%
+228,467
+215,429
+ZAR821m
+facility
+13.78%
+9,307,994
+9,298,297
+Total
+9,635,394
+9,606,758
+Sensitivity Valuation results (as at 30 September 2025) - UK risk-free
+rate
+Total
+Value
+Total
+Value
+(GBP) - UK
+rf
+(GBP) - UK rf
+Facility
+Base UK risk-free
+rate
++
+2%
+-2%
+ZAR200m
+facility
+4.7%
+91,245
+80,429
+ZAR177m
+facility
+4.7%
+9,546
+7,963
+ZAR 550m
+facility
+4.7%
+232,936
+205,143
+ZAR 550m
+facility
+4.7%
+9,606,045
+8,985,176
+Total
+9,939,772
+9,278,710
+20.
+Events after the reporting period
+Further shipments and sales of 33,000 tonnes of phosphate concentrate from Kropz Elandsfontein were recorded in October 2025, 38,500 tonnes in November and 38,500 tonnes in December.
+As announced on 08 December 2025, Kropz Elandsfontein and ARC Fund ("ARC") agreed to a ZAR 250 million (approximately US$ 14.4 million) bridge loan facility (the "Third Loan") to meet immediate cash requirements at Kropz Elandsfontein, ZAR 100 million have been drawn at the date of this report.
+As announced on 26 February 2025, Teh Hong Eng Investments Holding Limited ("THE") and Meridian Investment Group PTE. Limited ("Meridian") have served Particulars of Claim in litigation in the English High Court to which Kropz and its subsidiary company, Cominco, are defendants. Kropz and Cominco have notified the court that they intend to fully defend the litigation. The litigation relates to an alleged breach of THE's right of first refusal to acquire Cominco shares at the time of Kropz's offer to Cominco's shareholders in November 2018 which resulted in the acquisition by Kropz of the entire issued and to be issued share capital of Cominco. A legal stay with THE and Meridian in respect of the litigation has been agreed and will expire on 31 March 2026.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+IR GPGWUPUPAGMM
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Legal Claim Update</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 85/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Legal Claim Update | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">17th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">85/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Legal Claim Update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📊 ANALYZE: Determine offer price, arbitrage opportunity if discount</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Saharan Africa</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+17 Dec 2025 07:00
+RNS Number : 8230L
+Kropz PLC
+17 December 2025
+17 December 2025
+Kropz Plc
+("
+Kropz
+" or the "
+Company
+")
+Legal Claim Update
+Kropz Plc (AIM: KRPZ), an emerging African phosphate producer and developer, announces the
+extension of a legal stay on the claim which Kropz and its subsidiary company, Cominco Resources Limited ("Cominco"), are defendants (the "Claim").
+Legal Claim Update
+On 26 February 2025, Kropz announced that Teh Hong Eng Investments Holding Limited ("THE") and Meridian Investment Group PTE. Limited ("Meridian") had served Particulars of Claim in litigation in the English High Court to which Kropz and its subsidiary company, Cominco, are defendants. The litigation relates to an alleged breach of THE's right of first refusal to acquire Cominco shares at the time of Kropz's offer to Cominco's shareholders in November 2018 which resulted in the acquisition by Kropz of the entire issued and to be issued share capital of Cominco, including the acceptance of the offer by THE and Meridian as shareholders of Cominco.
+On 22 July 2025, Kropz announced that a legal stay with THE and Meridian in respect of the litigation had been agreed and would expire 31 December 2025. The stay has now been extended and will expire on 31 March 2026.
+Further updates will be made if necessary in due course.
+For further information visit
+www.kropz.com
+or contact:
+Kropz Plc
+Via Tavistock
+Louis Loubser (CEO)
++44 (0) 207 920 3150
+Grant Thornton UK LLP
+Nominated Adviser
+Samantha Harrison
+Harrison Clarke
+Ciara Donnelly
++44 (0) 20 7383 5100
+Hannam & Partners
+Broker
+Andrew Chubb
++44 (0) 20 7907 8500
+Tavistock
+Financial PR & IR (UK)
+Nick Elwes
+Jos Simson
++44 (0) 207 920 3150
+kropz@tavistock.co.uk
+R&A Strategic Communications
+PR (South Africa)
+Charmane Russell
+Marion Brower
++27 (0) 11 880 3924
+charmane@rasc.co.za
+marion@rasc.co.za
+About Kropz Plc
+Kropz is an emerging African phosphate producer and developer with projects in South Africa and in the Republic of Congo. The vision of the Group is to become a leading independent phosphate rock producer and to develop into an integrated, mine-to-market plant nutrient company focusing on sub-Saharan Africa.
+-ENDS-
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+MSCDZMMZVVGGKZM
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Drawdown on Bridge Loan Facilities</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 55/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Drawdown on Bridge Loan Facilities | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">9th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">1:08 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">55/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Drawdown on Bridge Loan Facilities</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Saharan Africa</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+9 Dec 2025 13:08
+RNS Number : 8722K
+Kropz PLC
+09 December 2025
+The information contained within this announcement is deemed to constitute inside information as stipulated under the retained EU law version of the Market Abuse Regulation (EU) No. 596/2014 (the "
+UK MAR
+") which is part of UK law by virtue of the European Union (Withdrawal) Act 2018. The information is disclosed in accordance with the Company's obligations under Article 17 of the UK MAR. Upon the publication of this announcement, this inside information is now considered to be in the public domain.
+09 December 2025
+Kropz Plc
+("
+Kropz
+" or the "
+Company
+")
+Drawdown on Bridge Loan Facilities
+Kropz Plc (AIM: KRPZ), an emerging African phosphate producer and developer, announced on 8 December 2025 that Kropz Elandsfontein (Pty) Ltd ("
+Elandsfontein
+") and ARC Fund ("
+ARC
+") (together the "
+Parties
+") have agreed to a ZAR 250 million (approximately US$ 14.4 million) loan facility (the "
+Loan
+")
+The first draw down on the Loan for an amount of ZAR 100 million has been made.
+For further information visit
+www.kropz.com
+or contact:
+Kropz Plc
+Via Tavistock
+Louis Loubser (CEO)
++44 (0) 207 920 3150
+Grant Thornton UK LLP
+Nominated Adviser
+Samantha Harrison
+Harrison Clarke
+Ciara Donnelly
++44 (0) 20 7383 5100
+Hannam & Partners
+Broker
+Andrew Chubb
++44 (0) 20 7907 8500
+Tavistock
+Financial PR & IR (UK)
+Nick Elwes
+Jos Simson
++44 (0) 207 920 3150
+kropz@tavistock.co.uk
+R&A Strategic Communications
+PR (South Africa)
+Charmane Russell
+Marion Brower
++27 (0) 11 880 3924
+charmane@rasc.co.za
+marion@rasc.co.za
+About Kropz Plc
+Kropz is an emerging African phosphate producer and developer with projects in South Africa and in the Republic of Congo. The vision of the Group is to become a leading independent phosphate rock producer and to develop into an integrated, mine-to-market plant nutrient company focusing on sub-Saharan Africa.
+-ENDS-
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+MSCFLFIVFSLAIIE
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">4</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #4
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Loan Facility and Related Party Transaction</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 75/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Loan Facility and Related Party Transaction | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">8th Dec 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">75/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Loan Facility and Related Party Transaction</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Saharan Africa</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">6%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+8 Dec 2025 07:00
+RNS Number : 6169K
+Kropz PLC
+08 December 2025
+The information contained within this announcement is deemed to constitute inside information as stipulated under the retained EU law version of the Market Abuse Regulation (EU) No. 596/2014 (the "
+UK MAR
+") which is part of UK law by virtue of the European Union (Withdrawal) Act 2018. The information is disclosed in accordance with the Company's obligations under Article 17 of the UK MAR. Upon the publication of this announcement, this inside information is now considered to be in the public domain.
+08 December 2025
+Kropz Plc
+("
+Kropz
+" or the "
+Company
+")
+Loan Facility and
+Related Party Transaction
+Kropz Plc (AIM: KRPZ), an emerging African phosphate producer and developer, that Kropz Elandsfontein (Pty) Ltd ("
+Elandsfontein
+") and ARC Fund ("
+ARC
+") (together the "
+Parties
+") have agreed to a ZAR 250 million (approximately US$ 14.4 million) (the "
+Loan
+"), which constitutes a related party transaction.
+The Loan
+Elandsfontein has seen improvements in production levels from Q2 2025 to Q3 2025 as announced on 24 November 2025, however as Elandsfontein is still ramping up its operations and has yet to achieve break-even production levels, working capital remains a requirement.
+Consequently, Elandsfontein and ARC have agreed terms for a loan facility of ZAR 250 million (approximately US$ 14.4 million). Interest is payable on the Loan at the South African prime overdraft interest rate plus 6%, nominal per annum and compounded monthly. The Loan is repayable on the earlier of a date as agreed between the Parties or on demand from ARC, on no less than 15 business days' notice. There is no fixed term.
+As announced on 21 May 2025 and 28 May 2025, Kropz SA (Pty) Ltd has issued a Guarantee, Security Cession and Pledge in favour of ARC, and Kropz Plc has issued a Limited Indemnity, Security Cession and Pledge in favour of ARC for all current and future loan facilities made to Elandsfontein, which are applicable to the Loan.
+The Loan will be used by Elandsfontein to fund its cashflow and operational expenditure needs.
+The Company will update the market on drawdown of the Loan in due course.
+Related Party Transaction
+The Loan is a related party transaction pursuant to Rule 13 of the AIM Rules for Companies. Gerrit Duminy, a director of the Company, is the representative of ARC. Accordingly, Gerrit Duminy has not been involved in the approval of the Loan by the Company's board. The directors of the Company, who are considered independent for the purposes of the Loan, having consulted with the Company's nominated adviser, consider the terms of the Loan to be fair and reasonable insofar as the Company's shareholders are concerned.
+For further information visit
+www.kropz.com
+or contact:
+Kropz Plc
+Via Tavistock
+Louis Loubser (CEO)
++44 (0) 207 920 3150
+Grant Thornton UK LLP
+Nominated Adviser
+Samantha Harrison
+Harrison Clarke
+Ciara Donnelly
++44 (0) 20 7383 5100
+Hannam & Partners
+Broker
+Andrew Chubb
++44 (0) 20 7907 8500
+Tavistock
+Financial PR & IR (UK)
+Nick Elwes
+Jos Simson
++44 (0) 207 920 3150
+kropz@tavistock.co.uk
+R&A Strategic Communications
+PR (South Africa)
+Charmane Russell
+Marion Brower
++27 (0) 11 880 3924
+charmane@rasc.co.za
+marion@rasc.co.za
+About Kropz Plc
+Kropz is an emerging African phosphate producer and developer with projects in South Africa and in the Republic of Congo. The vision of the Group is to become a leading independent phosphate rock producer and to develop into an integrated, mine-to-market plant nutrient company focusing on sub-Saharan Africa.
+-ENDS-
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+MSCPKOBKKBDBDBK
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">5</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #5
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Trading Update</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 55/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Trading Update | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">24th Nov 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">55/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Trading Update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">European Union</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">17%, 28%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+24 Nov 2025 07:00
+RNS Number : 6060I
+Kropz PLC
+24 November 2025
+24 November 2025
+Kropz Plc
+("
+Kropz
+" or the "
+Company
+")
+Trading Update
+Kropz Plc (AIM: KRPZ), an emerging African phosphate producer and developer, announces a trading update for the period to 30 September 2025 and that Kropz Elandsfontein (Pty) Ltd ("
+Elandsfontein
+")
+Trading Update
+Elandsfontein produced 87,496 tonnes of phosphate concentrate in Q3 2025, representing a 17% increase compared to the previous quarter. Sales for the period totalled 72,408 tonnes, a 28% increase quarter on quarter.
+The quarter closed with a record production month in September 2025, during which 34,070 tonnes of phosphate concentrate were produced.
+The mine remains in its trial production phase.
+For further information visit
+www.kropz.com
+or contact:
+Kropz Plc
+Via Tavistock
+Louis Loubser (CEO)
++44 (0) 207 920 3150
+Grant Thornton UK LLP
+Nominated Adviser
+Samantha Harrison
+Harrison Clarke
+Ciara Donnelly
++44 (0) 20 7383 5100
+Hannam & Partners
+Broker
+Andrew Chubb
++44 (0) 20 7907 8500
+Tavistock
+Financial PR & IR (UK)
+Nick Elwes
+Jos Simson
++44 (0) 207 920 3150
+kropz@tavistock.co.uk
+R&A Strategic Communications
+PR (South Africa)
+Charmane Russell
+Marion Brower
++27 (0) 11 880 3924
+charmane@rasc.co.za
+marion@rasc.co.za
+The information contained within this announcement is deemed to constitute inside information as stipulated under the retained EU law version of the Market Abuse Regulation (EU) No. 596/2014 (the "
+UK MAR
+") which is part of UK law by virtue of the European Union (Withdrawal) Act 2018. The information is disclosed in accordance with the Company's obligations under Article 17 of the UK MAR. Upon the publication of this announcement, this inside information is now considered to be in the public domain.
+-ENDS-
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+TSTFEFFMFEISELF
+                </div>
+            </details>
+            
+            </div>
+            
+            </div>
+            <div style="
+                margin-top: 20px;
+                padding: 14px 16px;
+                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+                border-radius: 10px;
+                font-size: 12px;
+                color: #78350f;
+                border-left: 3px solid #f59e0b;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            ">
+                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
+                <div style="line-height: 1.5;">
+                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
+                    Each RNS includes sentiment classification, key data extraction, and trading context. 
+                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
+                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                    </strong>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            details[open] > summary {
+                background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%) !important;
+                border-left-color: #0369a1 !important;
+            }
+            summary::-webkit-details-marker {
+                display: none;
+            }
+            
+            /* ========== MOBILE RESPONSIVE ========== */
+            @media (max-width: 768px) {
+                body {
+                    padding: 10px;
+                    font-size: 14px;
+                }
+                
+                .container {
+                    margin: 0 auto;
+                }
+                
+                .header-card {
+                    padding: 14px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .company-name {
+                    font-size: 22px;
+                    margin-bottom: 8px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 13px;
+                    padding: 6px 12px;
+                }
+                
+                .company-meta {
+                    gap: 8px;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+                
+                .meta-item {
+                    padding: 6px 12px;
+                    font-size: 12px;
+                    gap: 6px;
+                }
+                
+                .meta-icon {
+                    font-size: 14px;
+                }
+                
+                .score-hero {
+                    padding: 20px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .action-display {
+                    font-size: 18px !important;
+                    margin-bottom: 12px;
+                }
+                
+                .scores-row {
+                    gap: 16px;
+                    margin: 20px 0;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    display: flex;
+                }
+                
+                .score-circle {
+                    width: 110px;
+                    height: 110px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 32px;
+                }
+                
+                .score-label {
+                    font-size: 10px;
+                    margin-top: 4px;
+                }
+                
+                .timing-badge-large {
+                    padding: 10px 20px;
+                    font-size: 14px;
+                    margin: 12px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 14px;
+                    padding: 12px;
+                    margin-top: 12px;
+                }
+                
+                .factors-list {
+                    grid-template-columns: 1fr;
+                    gap: 10px;
+                    margin-top: 12px;
+                }
+                
+                .factor-item {
+                    padding: 12px;
+                    font-size: 12px;
+                    gap: 8px;
+                }
+                
+                .factor-icon {
+                    font-size: 16px;
+                }
+                
+                .cards-grid {
+                    grid-template-columns: 1fr;
+                    gap: 12px;
+                    margin-bottom: 12px;
+                }
+                
+                .card {
+                    padding: 16px;
+                    border-radius: 12px;
+                }
+                
+                .card-title {
+                    font-size: 14px;
+                    margin-bottom: 12px;
+                    gap: 8px;
+                }
+                
+                .card-icon {
+                    font-size: 18px;
+                }
+                
+                .stat-row {
+                    padding: 8px 0;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+                
+                .stat-label {
+                    font-size: 12px;
+                }
+                
+                .stat-value {
+                    font-size: 14px;
+                }
+                
+                .rally-badge {
+                    padding: 4px 10px;
+                    font-size: 10px;
+                }
+                
+                .risk-indicator {
+                    gap: 10px;
+                    padding: 12px;
+                    flex-wrap: wrap;
+                }
+                
+                .risk-icon {
+                    font-size: 20px;
+                }
+                
+                .reason-item {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                }
+                
+                .tag {
+                    padding: 3px 8px;
+                    font-size: 10px;
+                }
+                
+                .footer {
+                    padding: 12px;
+                    font-size: 11px;
+                    margin-top: 12px;
+                    border-radius: 12px;
+                }
+                
+                .alert-box {
+                    padding: 12px;
+                    margin: 10px 0;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                body {
+                    padding: 8px 6px;
+                }
+                
+                .header-card {
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    border-radius: 8px;
+                }
+                
+                .company-name {
+                    font-size: 18px;
+                    margin-bottom: 6px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 11px;
+                    padding: 3px 8px;
+                }
+                
+                .company-meta {
+                    gap: 4px;
+                    flex-direction: column;
+                }
+                
+                .meta-item {
+                    padding: 4px 6px;
+                    font-size: 11px;
+                    background: rgba(247, 250, 252, 0.7);
+                }
+                
+                .score-hero {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                    border-radius: 12px;
+                }
+                
+                .score-circle {
+                    width: 70px;
+                    height: 70px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 22px;
+                    font-weight: 800;
+                }
+                
+                .score-label {
+                    font-size: 7px;
+                    margin-top: 2px;
+                }
+                
+                .scores-row {
+                    flex-direction: column;
+                    gap: 10px;
+                    margin: 12px 0;
+                    align-items: center;
+                }
+                
+                .timing-badge-large {
+                    padding: 6px 12px;
+                    font-size: 11px;
+                    margin: 10px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 11px;
+                    padding: 8px;
+                    line-height: 1.3;
+                }
+                
+                .card {
+                    padding: 10px;
+                    margin-bottom: 8px;
+                    border-radius: 8px;
+                }
+                
+                .card-title {
+                    font-size: 12px;
+                    margin-bottom: 8px;
+                    font-weight: 700;
+                }
+            }
+        </style>
+        
+
+        <!-- Footer -->
+        <div class="footer">
+            Report generated: 2026-01-17 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            <strong>△ Not financial advice. Do your own research.</strong>
+            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
+                <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

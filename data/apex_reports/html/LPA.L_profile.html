@@ -1,0 +1,2946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrashDash • LPA.L APEX Profile</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .header-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .ticker-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .company-name { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .company-meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f7fafc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .meta-icon { font-size: 18px; }
+        
+        .score-hero {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        .action-display {
+            margin-bottom: 20px;
+        }
+        .scores-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .score-number {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .score-label { font-size: 12px; color: #666; margin-top: 5px; }
+        .timing-badge-large {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 24px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            margin: 20px 0;
+        }
+        .thesis-line {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .factors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .factor-item {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        .factor-icon { font-size: 20px; }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-icon { font-size: 24px; }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-label { color: #666; font-size: 14px; }
+        .stat-value { font-weight: 600; font-size: 16px; }
+        
+        .rally-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .risk-indicator {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .risk-high { background: #fee2e2; }
+        .risk-icon { font-size: 24px; }
+        
+        .reason-item {
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .tag {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .footer {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-top: 20px;
+        }
+        
+        .alert-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Header Card -->
+        <div class="header-card">
+            <div class="ticker-badge">LPA.L</div>
+            <div class="company-name">LPA Group Plc</div>
+            <div class="company-meta">
+                <div class="meta-item">
+                    <span class="meta-icon">■</span>
+                    <span><strong>Sector:</strong> Industrials</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">£</span>
+                    <span><strong>Market Cap:</strong> £6,276,283</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">◷</span>
+                    <span><strong>Days Active:</strong> 182 days</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action & Score Hero Section -->
+        <div class="score-hero">
+            <div class="action-display">
+                <span style="font-size: 32px; font-weight: 800; color: white;">◉ AVOID</span>
+            </div>
+            
+            <div class="scores-row">
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">49</div>
+                    <div class="score-label">APEX SCORE</div>
+                </div>
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">25</div>
+                    <div class="score-label">CONFIDENCE</div>
+                </div>
+            </div>
+            
+            <div class="timing-badge-large">
+                Timing: <span class="rally-badge" style="background: #fee2e2; color: #991b1b;">BROKEN</span>
+            </div>
+            
+            <div class="thesis-line">
+                AVOID - BROKEN timing with 49/100 opportunity score
+            </div>
+        </div>
+
+        <!-- ==================== CRASHDASH INTELLIGENCE - PANIC HUNTER VIEW ==================== -->
+        
+        <div class="card" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b;">
+            <div class="card-title" style="color: #0f172a;">
+                <span class="card-icon">🏭</span>
+                CrashDash Intelligence • Industrials
+            </div>
+            
+            <!-- Fear Meter -->
+            <div style="background: white; padding: 24px; border-radius: 14px; margin-bottom: 20px; text-align: center;">
+                <div style="font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 16px;">🔥 PANIC METER</div>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 16px;">
+                    <div style="width: 160px; height: 160px; border-radius: 50%; background: conic-gradient(#f59e0b 237.6deg, #e5e7eb 237.6deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                        <div style="width: 130px; height: 130px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <div style="font-size: 48px; font-weight: 800; color: #f59e0b;">66</div>
+                            <div style="font-size: 12px; color: #64748b; font-weight: 600;">PANIC SCORE</div>
+                        </div>
+                    </div>
+                    <div style="text-align: left; max-width: 400px;">
+                        <div style="font-size: 18px; font-weight: 700; color: #f59e0b; margin-bottom: 12px;">HIGH PANIC</div>
+                        <div style="font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 12px;">🟠 Fear dominant - watch for reversal signs</div>
+                        <div style="font-size: 13px; color: #64748b;">
+                            <div>💔 Price: 40/40</div>
+                            <div>📉 Volume: 18/20</div>
+                            <div>🔇 Social: 6/20</div>
+                            <div>📰 News: 2/20</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CrashHunter Signals -->
+                <div style="margin-top: 20px;">
+                    <span style="display: inline-block; background: #f59e0b; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">🟠 Fear 66/100</span><span style="display: inline-block; background: #ef4444; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">❌ Broken</span><span style="display: inline-block; background: #64748b; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">❓ Conf 25</span>
+                </div>
+                
+                <!-- Opportunity Flag -->
+                
+            </div>
+            
+            <!-- Contrarian Compression Energy Panel -->
+            
+            <!-- Contrarian Compression Energy Panel -->
+            <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); padding: 24px; border-radius: 14px; margin-bottom: 20px; border: 3px solid #10b981;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <span style="font-size: 32px;">⚡</span>
+                    <div style="flex: 1;">
+                        <div style="font-size: 20px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">
+                            CONTRARIAN COMPRESSION SCORE
+                        </div>
+                        <div style="font-size: 13px; color: #475569; font-weight: 600;">
+                            Signal Congestion Framework • Compression = Explosive Potential
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Score Display -->
+                <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 30px;">
+                        <!-- Circular gauge -->
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: conic-gradient(#10b981 108.0deg, #e5e7eb 108.0deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                            <div style="width: 110px; height: 110px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <div style="font-size: 42px; font-weight: 800; color: #10b981;">30</div>
+                                <div style="font-size: 11px; color: #64748b; font-weight: 600;">/ 100</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Key metrics -->
+                        <div style="text-align: left;">
+                            <div style="font-size: 16px; font-weight: 700; color: #10b981; margin-bottom: 12px;">🟢 MILD COMPRESSION (Top 50% - WATCHLIST)</div>
+                            <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                                <div><strong>0.1</strong> signals/week</div>
+                                <div><strong>1</strong> RSI &lt; 20 events</div>
+                                <div><strong>0</strong> escalations detected</div>
+                                <div style="color: #10b981; font-weight: 700; margin-top: 6px;">
+                                    💎 Historical pop: <strong>+9900%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Component Breakdown -->
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 15px;">
+                        📊 5-COMPONENT BREAKDOWN
+                    </div>
+                    
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">compression</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">7/40</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 17.5%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">0.1 signals/week | 1 RSI<20 | Early stage</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">intensification</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">0/20</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;"></div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">volume death</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #eab308;">8/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #eab308; height: 100%; width: 53.333333333333336%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">High volume - Panic spike or interest</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">pop potential</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #ef4444;">15/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #ef4444; height: 100%; width: 100.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">MONSTER POPPER - Historical 10x+ (9900%)</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">accumulation</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">0/10</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">No accumulation</div>
+                </div>
+                
+                </div>
+                
+                <!-- Contrarian Philosophy -->
+                <div style="background: rgba(255,255,255,0.7); padding: 16px; border-radius: 10px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #0f172a; margin-bottom: 8px; font-size: 14px;">
+                        🎯 CONTRARIAN WISDOM
+                    </div>
+                    <div style="font-size: 13px; color: #334155; line-height: 1.6;">
+                        <strong>Signal congestion = Compression energy = Explosive potential.</strong><br>
+                        When multiple crash signals cluster together with extreme RSI and proven rally history, 
+                        it creates a compressed spring effect. More panic = More opportunity for contrarians.
+                        <div style="margin-top: 8px; padding: 10px; background: rgba(239,68,68,0.1); border-radius: 6px; font-size: 12px;">
+                            <strong style="color: #10b981;">Theory:</strong> High compression scores (60+) historically precede 
+                            explosive 10-20x moves when catalysts arrive. This is the foundation of crash hunting.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Fear vs Facts Contrarian View -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                <div style="background: #fee2e2; padding: 18px; border-radius: 12px; border-left: 4px solid #ef4444;">
+                    <div style="font-weight: 700; color: #991b1b; margin-bottom: 12px; font-size: 15px;">😱 FEAR (What Panic Shows)</div>
+                    <div style="color: #7f1d1d;">
+                        <div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 💔 Price destruction: 40/40 points</div><div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 📉 Volume death: 18/20 points</div>
+                    </div>
+                </div>
+                <div style="background: #dcfce7; padding: 18px; border-radius: 12px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #065f46; margin-bottom: 12px; font-size: 15px;">📊 FACTS (What Data Shows)</div>
+                    <div style="color: #064e3b;">
+                        <div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 📈 Historical upside: 9900% proven capacity</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contrarian Verdict -->
+            <div style="background: white; padding: 18px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #6366f1;">
+                <div style="font-weight: 700; color: #4338ca; margin-bottom: 10px; font-size: 15px;">⚖️ Contrarian Verdict</div>
+                <div style="font-size: 15px; color: #1e293b; line-height: 1.6; font-weight: 600;">
+                    🎯 CONTRARIAN OPPORTUNITY - Fear dominates but facts support recovery potential
+                </div>
+            </div>
+            
+            <!-- Industry Crash Patterns -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">⚠️ Crash Patterns (Industrials)</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book decline or cancellations</div><div>• Margin compression (input costs)</div><div>• Cyclical demand weakness</div>
+                    </div>
+                    <div style="margin-top: 12px; padding: 10px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e; font-weight: 600;">🚨 Active: Project delays or overruns</div>
+                </div>
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">🚀 Recovery Paths</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book growth or new contracts</div><div>• Margin recovery (efficiency gains)</div><div>• Cyclical upturn (capex recovery)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Catalyst Pipeline -->
+            <div style="background: rgba(255,255,255,0.5); padding: 18px; border-radius: 12px; margin-bottom: 20px;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 14px; font-size: 15px;">📅 Catalyst Pipeline</div>
+                
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Trading Update & Property Disposal</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">LPA wins SME Exporter in Rail Award</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">New Contract Awards</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Interim Results</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Notice of Interim Results</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+            
+            <!-- CrashDash Decision Matrix -->
+            <div style="background: white; padding: 20px; border-radius: 12px; border: 3px solid #f59e0b;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 16px; text-align: center;">
+                    🎯 CRASHDASH DECISION: <span style="color: #f59e0b; font-size: 20px;">AVOID</span>
+                </div>
+                <div style="font-size: 15px; color: #475569; text-align: center; margin-bottom: 20px; font-weight: 600;">
+                    ❌ AVOID - timing BROKEN
+                </div>
+                <div style="background: #f8fafc; padding: 16px; border-radius: 10px;">
+                    <div style="font-weight: 700; color: #64748b; margin-bottom: 12px; font-size: 13px;">CHECKLIST (2/5 pass)</div>
+                    
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🔴</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Panic Score</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">66/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">❌</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Timing Regime</div>
+                    <div style="font-size: 13px; color: #ef4444; font-weight: 600;">BROKEN</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">⚠️</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">APEX Quality</div>
+                    <div style="font-size: 13px; color: #ef4444; font-weight: 600;">49/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">❓</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Data Confidence</div>
+                    <div style="font-size: 13px; color: #ef4444; font-weight: 600;">25/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🏭</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Industry Pattern</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">1 active</div>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
+        
+
+        <!-- Decision Summary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◆</span>
+                Why This Matters
+            </div>
+            <div class="stat-row"><span>• APEX 49/100 indicates moderate opportunity quality</span></div><div class="stat-row"><span>• Timing regime: BROKEN</span></div><div class="stat-row"><span>• Historical profile: 1 rallies, 9900% best run</span></div>
+            
+            <div class="alert-box" style="margin-top: 20px;">
+                <strong>△ Main Risk:</strong> Confidence 25/100 - full data loaded
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong>◉ Watch Next:</strong>
+                <div style="padding: 8px 0;">• RNS catalysts (funding/operational updates)</div><div style="padding: 8px 0;">• Volume expansion confirmation</div><div style="padding: 8px 0;">• Timing regime change signals</div>
+            </div>
+        </div>
+
+        <!-- ==================== TECHNICAL DETAILS (COLLAPSIBLE) ==================== -->
+        
+        <div class="card">
+          <details style="cursor:pointer;">
+            <summary style="font-weight:800; font-size:16px; list-style:none; padding: 10px; background: #f9fafb; border-radius: 8px;">
+              🔧 Technical Analysis & Scoring Details
+            </summary>
+            <div style="margin-top:14px;">
+              
+            <!-- Scoring Breakdown -->
+            <div class="card-title" style="margin-top: 20px;">
+                <span class="card-icon">▣</span>
+                APEX Score Breakdown
+            </div>
+            <div class="factors-list">
+                <div class="factor-item"><span class="factor-icon">◆</span><span><strong>Excellent Technical Setup</strong><br><small>Chart quality: 15/20 • Score: 19/25 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Massive recovery potential</strong><br><small>Down 99.3% from peak • Score: 20/20 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Explosive volume</strong><br><small>5.8x average • Score: 10/10 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Limited history</strong><br><small>1 previous rallies • Score: 5/15 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Monster potential</strong><br><small>Historical best: +9900% • Score: 20/20 points</small></span></div>
+
+            </div>
+            
+            <div style="margin-top: 40px;"></div>
+            
+            <!-- Exhaustion Metrics -->
+            <div class="card-title">
+                <span class="card-icon">📈</span>
+                Rally Cycle Position
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Current Position</div>
+                    <div style="font-size: 32px; font-weight: 800;">6991%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
+                    <div style="font-size: 32px; font-weight: 800;">9900%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
+                    <div style="font-size: 32px; font-weight: 800;">0.7x</div>
+                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
+                </div>
+            </div>
+        
+            </div>
+          </details>
+        </div>
+        
+
+        <!-- Reasons Buy/Sell -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #10b981;">▲</span>
+                    Reasons to Buy
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Historically strong runner - massive upside when it moves</span>
+                    <span class="tag" style="background: #10b981; color: white;">🔥 High Conviction</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">best run=9900% • rally history=1.0</div>
+            </div>
+            
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Proven winner - previously hit lock-in target</span>
+                    <span class="tag" style="background: #f59e0b; color: white;">⚡ Medium Strength</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">profit target reached: True</div>
+            </div>
+            
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #ef4444;">▼</span>
+                    Reasons to Sell / Avoid
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Split risk HIGH - price integrity compromised</span>
+                    <span class="tag" style="background: #ef4444; color: white;">🚨 High Risk</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">split risk level=HIGH</div>
+            </div>
+            
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Stale signal - not for active trading</span>
+                    <span class="tag" style="background: #ef4444; color: white;">🚨 High Risk</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">historical • signal date=2025-07-18</div>
+            </div>
+            
+            </div>
+        </div>
+
+        <!-- Trade Plans -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">📊</span>
+                    Short-Term Trader Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 20%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <div style="font-size: 18px; font-weight: 600; margin-bottom: 5px;">Avoid</div>
+                    <div style="font-size: 14px; opacity: 0.9;">Do not trade - thesis invalidated</div>
+                </div>
+                <div style="padding: 12px; background: #f9fafb; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Position Size</div>
+                    <div style="font-weight: 600;">0%</div>
+                </div>
+                <div style="padding: 12px; background: #fef2f2; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Risk Management</div>
+                    <div style="font-weight: 600; color: #dc2626;">N/A</div>
+                </div>
+                <div style="padding: 12px; background: #f0fdf4; border-radius: 6px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Exit Strategy</div>
+                    <div style="font-weight: 600; color: #059669;">N/A</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">💼</span>
+                    Long-Term Investor Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center;">
+                    <div style="font-size: 32px; margin-bottom: 5px;">✗</div>
+                    <div style="font-size: 18px; font-weight: 600;">Not Recommended for Investors</div>
+                </div>
+                <div style="padding: 15px; background: #f9fafb; border-radius: 8px; font-size: 14px; line-height: 1.6;">
+                    <strong style="color: #667eea;">📋 Investment Thesis:</strong><br>
+                    Unlock after AI triangulation + CONFIRMED timing<br><br>
+                    <strong style="color: #667eea;">⏳ Time Horizon:</strong><br>
+                    N/A<br><br>
+                    <strong style="color: #ef4444;">🛡️ Exit Rule:</strong><br>
+                    N/A
+                </div>
+            </div>
+        </div>
+
+        <!-- Commentary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◐</span>
+                Executive Commentary
+            </div>
+            <div style="line-height: 1.6; margin-bottom: 20px;">
+                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows BROKEN timing with 49/100 APEX score. Historical data shows 1 rallies averaging 9900% upside. Current position: +6990.9%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #10b981;">▲ Bull Case:</strong>
+                <div style="padding: 8px 0;">• Strong historical rally behavior (9900% best run)</div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #ef4444;">▼ Bear Case:</strong>
+                <div style="padding: 8px 0;">• Monitor for breakdown signals</div>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
+                <strong>◷ Timing Translation:</strong><br>
+                Thesis invalidated. Avoid or exit.
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
+                <strong>◎ Confidence Explained:</strong><br>
+                Confidence 25/100 reflects full data quality with triangulation loaded.
+            </div>
+        </div>
+
+        <!-- Data Quality Warning -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">△</span>
+                Data Quality Notice
+            </div>
+            <div class="alert-box">
+                <strong>Analysis Mode:</strong> HISTORICAL_ONLY<br>
+                <strong>Impact:</strong> HIGH
+            </div>
+            <div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">AI insights from Groq LLM</div></div></div>
+
+            <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk.
+            </div>
+        </div>
+
+        <!-- ==================== TOP 5 RECENT RNS NEWS ==================== -->
+        
+        <div class="card" style="border-top: 3px solid #3b82f6;">
+            <div class="card-title" style="margin-bottom: 20px;">
+                <span class="card-icon">📰</span>
+                Top 5 Recent RNS Announcements
+            </div>
+            <div style="margin-top: 15px;">
+                
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Trading Update & Property Disposal</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">26th Sep 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">European Union</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+26 Sep 2025 07:00
+RNS Number : 9208A
+LPA Group PLC
+26 September 2025
+26 September 2025
+LPA GROUP PLC
+("LPA", the "Company" or the "Group")
+Trading Update & Property Disposal
+LPA Group plc, the innovation-led engineering specialist in electronic and electro-mechanical components and systems,
+provides a trading update for the current financial year ending 30 September 2025, and provides details of a property disposal. The Company now has reduced revenue and earnings expectations which can be attributed to lower sales at Martek Power, and to the customer led delayed delivery of an aerospace contract. These events have resulted in changes to management expectations as follows.
+For the current financial year ending 30 September 2025, full year Group revenues are expected to reduce by c.£3.0m to c.£21.5m. This would result in full year adjusted PBT reducing to a loss of c.£1.3m.
+2025 Reported PBT of c.£0.5m loss remains in line with previous expectations due to various exceptional income: negative goodwill on the Martek acquisition and, profit on sale of property details of which are provided below.
+For the financial year ending 30 September 2026, revenues are expected to reduce slightly by c.£1.5m to c.£27m. However, because of our accelerated organisational restructuring, earnings expectations for adjusted PBT of £0.6m are maintained.
+As previously communicated, we have had an extremely strong order intake this financial year to date, of c.£27m, which gives us a solid foundation for our future growth plans.
+Property Disposal
+The Company is pleased to announce the sale of freehold premises in Thatcham, Berkshire, having exchanged on 25 September 2025 and completion expected during 26 September 2025. The consideration payable at completion is £355,000 and the cash proceeds will be used to reduce net debt. Net book value was c.£86,000 as at 31 March 2025. Previous LPA operations at these premises have been relocated to other existing LPA sites, with the addition of a smaller leased office in the area. The profit on disposal net of sale costs is expected to be recognised as exceptional income in the current year's results, as referred to above.
+Robert B Horvath, Chairman of LPA Group, commented:
+"Our strong order intake of £27m for this financial year underpins our ability to deliver on our future growth plans and further endorses our strategic decision to accelerate the restructuring of the organisation into 'One LPA'. The restructuring of LPA is near to completion, and I am confident that we are already seeing the business benefits.
+It is widely acknowledged that UK manufacturing output has contracted over the last three months and is attributed to global issues including US import tariffs and domestic uncertainty around economic and government policies. It is fair to assume we are not immune from this as we are an integral part of the supply chains of large manufacturing organisations. However, we have seen a more positive output in September."
+Enquires:
+LPA Group plc
++44 (0) 1799 512 800
+Robert B Horvath,
+Chairman
+Philo Daniel-Tran
+,
+Chief Executive Officer
+Stuart Stanyard,
+Chief Financial Officer
+Cavendish Capital Markets Ltd (Nominated Advisor and Broker)
++44 (0) 20 7220 0500
+Corporate Finance
+Ed Frisby / Issac Hooper / Elysia Bough
+Corporate Broking
+Tim Redfern
+About LPA
+LPA Group plc (AIM: LPA) is an
+innovation-led engineering specialist in electronic and electro-mechanical components and systems
+.
+Focused on transport (rail and aviation), aerospace, defence, infrastructure and industrial markets and supplying into hostile and challenging environments, LPA is known for engineering solutions to improve product reliability, reducing maintenance and life cycle costs.
+The Group has four sites across the UK, selling to customers in the UK and overseas. Three of these are design and manufacturing sites: Saffron Walden, Essex - electro-mechanical systems for rail, aviation and industrial; Knapwell, Cambridge - power supplies for the rail market, Normanton, Yorkshire - LED lighting and electronic systems for rail and infrastructure. The fourth site is Thatcham, Berkshire - value-added distribution of engineered components for rail, aerospace and defence.
+With over 150 years of UK design and manufacture, and with origins in the first ever light installed in 'Electric Avenue', Brixton; innovation is core to LPA and to the products and services supplied to our customers worldwide.
+For more information visit
+www.lpa-group.com
+The information contained within this announcement is deemed to constitute inside information as stipulated under the retained EU law version of the Market Abuse Regulation (EU) No. 596/2014 (the "UK MAR") which is part of UK law by virtue of the European Union (Withdrawal) Act 2018. The information is disclosed in accordance with the Company's obligations under Article 17 of the UK MAR. Upon the publication of this announcement, this inside information is now considered to be in the public domain.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+TSTKZGZLZKRGKZZ
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #10b98140;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">🤝</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">LPA wins SME Exporter in Rail Award</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">CONTRACT WIN</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Positive development - monitor for follow-through in share price.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">10th Jul 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS-R</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Saffron Walden</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+10 Jul 2025 07:00
+RNS Number : 4476Q
+LPA Group PLC
+10 July 2025
+10 July 2025
+LPA GROUP PLC
+("LPA Group", the "Company" or the "Group")
+LPA wins SME Exporter in Rail Award
+LPA Group plc, the innovation-led engineering specialist in electronic and electro-mechanical components and systems, is delighted to announce that it won the SME Exporter in Rail Award at the Railway Industry Association (RIA) RISE Awards 2025.
+The Railway Industry Supplier Excellence (RISE) Awards celebrate the very best of the UK rail supply chain, bringing together key organisations and individuals from across the sector.
+Philo Daniel-Tran, Chief Executive Officer, commented:
+"I am delighted to share our win of the SME Exporter in Rail Award at this year's RISE Awards. LPA Group exports to over 50 countries. This Award reflects the progress we continue to make in the global rail market and is a celebration of the team's commitment to help drive our leading position in what is a key sector for us."
+For further information, please contact:
+​
+LPA Group plc
+Robert B Horvath, Chairman
+Philo Daniel-Tran, Chief Executive Officer
+Stuart Stanyard, Chief Financial Officer
+Tel: +44 (0) 1799 512800
+www.lpa-group.com
+Cavendish Capital Markets Limited
+(Nominated Adviser & Broker)
+Ed Frisby / Isaac Hooper / Elysia Bough - Corporate Finance
+Tim Redfern - Corporate Broking
+Tel: +44 (0) 20 7220 0500
+Hudson Sandler
+(Financial PR)
+Dan de Belder
+Nick Moore
+Francesca Rosser
+Tel: +44 (0) 20 7796 4133
+About LPA
+LPA Group plc (AIM: LPA) is an innovation-led engineering specialist in electronic and electro-mechanical components and systems.
+Focused on transport (rail and aviation), defence, infrastructure and industrial markets and supplying into hostile and challenging environments, LPA is known for engineering solutions to improve product reliability, reducing maintenance and life cycle costs.
+The Group has four sites across the UK, selling to customers in the UK and overseas. Three of these are design and manufacturing sites: Saffron Walden, Essex - electro-mechanical systems for rail, aviation and industrial; Knapwell, Cambridge - power supplies for the rail market, Normanton, Yorkshire - LED lighting and electronic systems for rail and infrastructure. The fourth site is Thatcham, Berkshire - value-added distribution of engineered components for rail, aerospace and defence.
+With over 160 years of UK design and manufacture, and with origins in the first ever light installed in 'Electric Avenue', Brixton; innovation is core to LPA and to the products and services supplied to our customers worldwide.
+For more information visit
+www.lpa-group.com
+This information is provided by Reach, the non-regulatory press release distribution service of RNS, part of the London Stock Exchange. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+NRAUPUBUMUPAGBB
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #10b98140;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">🤝</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">New Contract Awards</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">CONTRACT WIN</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    New business win - potential revenue uplift for future quarters.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">2nd Jul 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS-R</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Saffron Walden</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+2 Jul 2025 07:00
+RNS Number : 2990P
+LPA Group PLC
+02 July 2025
+2 July 2025
+LPA GROUP PLC
+("LPA Group", the "Company" or the "Group")
+New Contract Awards
+LPA Group plc, the innovation-led engineering specialist in electronic and electro-mechanical components and systems, is pleased to announce new contract awards for the supply of interior lighting retrofit solutions for two rail refurbishment projects with a major UK-based train builder and one with a Dutch train operator.
+The total value of these combined contracts is just over £1.4m with customer deliveries expected to start in September and October 2025.
+Alstom
+LPA Group will
+supply circa 9,000 LED tubes and 9,000 inverter bypass units for Alstom Class 357 trains, a contract which will start in September 2025, and will also supply LED tubes and step lights for Alstom Class 222, a contract which will commence in October 2025 and end in June 2027. These contracts form part of Alstom's broader fleet modernisation programme.
+Alstom is a multinational train manufacturer which operates in rail transport markets around the world.
+Nederlandse Spoorwegen
+LPA Group
+will supply circa 20,000 LED tubes and bypass harnesses for Dutch Railways, with full delivery expected by end of September 2025.
+Nederlandse Spoorwegen is the major passenger railway operator in the Netherlands.
+Philo Daniel-Tran, Chief Executive Officer, commented:
+"These contract awards represent a significant boost to our manufacturing site in Yorkshire and further reinforces our position in the UK and European rail aftercare market which remains a key strategic focus for the Group."
+For further information, please contact:
+​
+LPA Group plc
+Robert B Horvath, Chairman
+Philo Daniel-Tran, Chief Executive Officer
+Tel: +44 (0) 1799 512800
+www.lpa-group.com
+Stuart Stanyard, Chief Financial Officer
+Cavendish Capital Markets Limited
+(Nominated Adviser & Broker)
+Ed Frisby / Issac Hooper / Elysia Bough - Corporate Finance
+Tim Redfern - Corporate Broking
+​
+Tel: +44 (0) 20 7220 0500
+Hudson Sandler
+(Financial PR)
+Dan de Belder
+Nick Moore
+Francesca Rosser
+Tel: +44 (0) 20 7796 4133
+About LPA
+LPA Group plc (AIM: LPA) is an innovation-led engineering specialist in electronic and electro-mechanical components and systems.
+Focused on transport (rail and aviation), defence, infrastructure and industrial markets and supplying into hostile and challenging environments, LPA is known for engineering solutions to improve product reliability, reducing maintenance and life cycle costs.
+The Group has four sites across the UK, selling to customers in the UK and overseas. Three of these are design and manufacturing sites: Saffron Walden, Essex - electro-mechanical systems for rail, aviation and industrial; Knapwell, Cambridge - power supplies for the rail market, Normanton, Yorkshire - LED lighting and electronic systems for rail and infrastructure. The fourth site is Thatcham, Berkshire - value-added distribution of engineered components for rail, aerospace and defence.
+With over 160 years of UK design and manufacture, and with origins in the first ever light installed in 'Electric Avenue', Brixton; innovation is core to LPA and to the products and services supplied to our customers worldwide.
+For more information visit
+www.lpa-group.com
+This information is provided by Reach, the non-regulatory press release distribution service of RNS, part of the London Stock Exchange. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+NRAPKDBQABKDKOK
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #10b98140;
+                    ">4</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #4
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Interim Results</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">POSITIVE RESULTS</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Positive development - monitor for follow-through in share price.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">19th Jun 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Deferred Consideration</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">24.1%, 8.6%, 13.1%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+19 Jun 2025 07:00
+RNS Number : 4770N
+LPA Group PLC
+19 June 2025
+19 June 2025
+LPA Group Plc
+("LPA", the "Company" or the "Group")
+Interim Unaudited Group Results for the six months ended 31 March 2025
+LPA Group plc ("LPA" or the "Group"), the
+innovation-led engineering specialist in electronic and electro-mechanical components and systems
+,
+announces its results for the six months to 31 March 2025.
+KEY POINTS
+6 months to
+31 March 2025
+6 months to
+31 March 2024
+Year to
+30 Sept 2024
+Unaudited
+Unaudited
+Audited
+Order Entry *
+£17.0m
+£8.0m
+£17.3m
+Order Book *
+£32.8m
+£28.0m
+£25.3m
+Revenue
+£9.5m
+£11.6m
+£23.5m
+Underlying Operating Loss**
+£(1.1)m
+£(0.3)m
+£(0.2)m
+Share Based Payments, Negative Goodwill and Exceptional Items
+£0.6m
+£(0.1)m
+£(0.4)m
+Loss Before Tax
+£(0.5)m
+£(0.4)m
+£(0.6)m
+Basic Loss Per Share
+(1.49)p
+(2.27)p
+(2.46)p
+Proposed Dividend
+Nil
+Nil
+Nil
+Gearing ***
+24.1%
+8.6%
+13.1%
+* Order entry and Order Book are unaudited
+** Operating Profit before Share Based Payments, Negative Goodwill and Exceptional Items
+*** Net Debt as a % of Total Equity
+Robert Horvath, Chairman, commented:
+"Notwithstanding challenging conditions, I am pleased to report that our order intake exceeded our expectations for the first half of the financial year proving that demand for our product solutions remains robust.
+We continue to make progress in strategically repositioning the Group and its customer base, with aviation, aerospace and defence now representing 31% of our business. Despite delays on certain rail contracts as previously announced, we are confident in delivering a profitable second half and long-term growth. We expect to deliver results for the full year in line with current market expectations."
+Enquiries:
+LPA Group plc
++44 (0) 1799 512 800
+Robert B Horvath,
+Chairman
+Philo Daniel-Tran,
+Chief Executive Officer
+www.lpa-group.com
+Stuart Stanyard,
+Chief Financial Officer
+Cavendish Capital Markets Limited
+(Nominated Advisor & Broker)
++44 (0) 20 7220 0500
+Corporate Finance
+Ed Frisby / Isaac Hooper / Elysia Bough
+Corporate Broking
+Tim Redfern
+Hudson Sandler (Financial PR)
++44 (0) 20 7796 4133
+Dan de Belder
+Nick Moore
+Francesca Rosser
+About LPA
+LPA Group plc (AIM: LPA) is an innovation-led engineering specialist in electronic and electro-mechanical components and systems.
+Focused on transport (rail and aviation), defence, infrastructure and industrial markets and supplying into hostile and challenging environments, LPA is known for engineering solutions to improve product reliability, reducing maintenance and life cycle costs.
+The Group has four sites across the UK, selling to customers in the UK and overseas. Three of these are design and manufacturing sites: Saffron Walden, Essex - electro-mechanical systems for rail, aviation and industrial; Knapwell, Cambridge - power supplies for the rail market, Normanton, Yorkshire - LED lighting and electronic systems for rail and infrastructure. The fourth site is Thatcham, Berkshire - value-added distribution of engineered components for rail, aerospace and defence.
+With over 160 years of UK design and manufacture, and with origins in the first ever light installed in 'Electric Avenue', Brixton; innovation is core to LPA and to the products and services supplied to our customers worldwide.
+For more information visit
+www.lpa-group.com
+CHAIRMAN'S STATEMENT
+Last year I reported that the Group is growing its revenue in line with our strategy and 5-year plan and we expect organic revenue growth to be 50% larger in 2028 than it was in 2024. In the last six months we have continued to see strength in the order book and additional opportunities arising particularly through our two most recent acquisitions. Importantly, I stated that we will supplement our journey with new opportunities to acquire product lines or businesses, but always with resilient intellectual property rights embedded into them. This will enable us to leverage our technical engineering skills to best effect and diversify across complementary sectors such as industrial and aviation. The acquisition of the former Martek power supply business in March 2025 is a good example of our strategy coming together.
+The first half of this year has been extremely challenging for the business, which as previously flagged has been largely impacted by the UK passenger rail market and the indecision that we are seeing in the industry around the re-nationalisation and formation of Great British Railways ("GBR"). The safe and reliable operation of rolling stock rests with the operating companies. On 25 May 2025 the Southwest rail operating franchise was terminated and handed back to the control of GBR soon to be followed by C2C and then Anglia. These are the start of a series of quarterly 'hand backs' that will see all 14 franchises being run by GBR. Each franchise has operated with rolling stock provided under operating leases from the Rolling Stock Companies ("ROSCOs"); often designed to be coterminous with the franchise period. These leases will now need commercial audit. While our sales have been slowed we have nevertheless won good orders and the Group is pleased to report that there are further good opportunities and prospects that will arise in the rail industry in the foreseeable future as these new operating lease arrangements and the responsibility for the life and maintenance regimes of the fleets falls to GBR as the Entity in Charge of Maintenance.
+Enquiry levels for Aerospace and Aviation products have generally been strong for us over the last six months, albeit our Red Box sales programme into our distribution network has been affected by slower certification and release of newly developed products. Red Box has not met its budget sales aspirations in the six months, but this is not due to lack of demand. We are however pleased to have completed the integration of Red Box International and see long term opportunities within general aviation.
+In March 2024 we announced that we had pushed back our budget assumptions for sales of inter-car jumper connectors to certain UK and EU end customers. Originally planned to be supplied in five phases, the programme has now been modified and spread out over an 8-year period with a small ramp up starting in September 2025. Whilst this clearly spreads the revenue income for the Saffron Walden facility over a substantially longer period, we expect this will bear fruit under the new re-nationalised programme.
+We started a process a year ago of looking at the size of our overheads, the number of manufacturing locations, what we could outsource overseas and how we can create engineering excellence in design and innovation. Software skills are such an important aspect of modern-day electrical engineering, and we will continue to focus on this as one of our core strengths. We believe that we have competitive advantage for many of our products in our local manufacturing facilities and can deliver quality product both in the UK and overseas.
+I was delighted to welcome Dr Philo Daniel-Tran, our new Chief Executive Officer to the Board in January this year and to hand over the responsibility for delivering the Board's vision for the business to her. As the new CEO Philo Daniel, will shape the strategy with her own ideas and bring in skills to support her. This first half year has been a busy period of transformation with a particular emphasis on sales and marketing, engineering capability and operational excellence.
+As an exporter, macroeconomic factors are dominated by world events not just the UK government and policy. This ranges from transport to tariffs to interest rates and currency exchange, but most of all consumer confidence and the decision making of our customers wishing to invest in the underlying transport infrastructure. We have put in place hedging strategies to safeguard our profitability vis a vis Euro-denominated order book activity most notably in our Normanton business. We continue to focus on sales, quality and delivery and have made substantial changes to our management teams and the way we run the business to support the delivery of our strategic goals. Our people are integral to our success, and we will continue to invest in them and their ability to deliver the strategy.
+Robert B Horvath
+Chairman
+19 June 2025
+CEO Review
+I took up the leadership of this business in January recognising that the business required change, both structural and pace. Since taking up the helm I have engaged with the existing leadership team to understand the business and the root causes of our challenges.
+At the end of my first month in post, I announced a reorganisation to eliminate the divisional structure and create a unified Company with a "One-LPA" vision. I am confident that this approach will enable functional teams to share knowledge and resources across all sites, deliver cost efficiencies and become more customer-centric. Together we have redefined our Vision, Mission, and Values, and launched strategic action plans focused on empowering our teams to deliver effectively, enabling us to achieve growth in both new and existing market segments and portfolios.
+The One-LPA structure has provided me with the opportunity to reshape and energise our new executive team and we expect that all changes will be in place by the end of FY25. Together, we will deliver the transformation needed to change the status quo. While the reorganisation will take time to settle, I am confident that establishing a strong foundation is essential for building future growth.
+I recognise that we currently have too many manufacturing sites in the Group. To address this, I have initiated the process of moving the production from Thatcham to the Saffron Walden site by the end of FY25. This transition will help streamline and consolidate our operations, to become a more operationally effective business. We also have several strategic optimisation projects in place to generate cost savings and maximise the Group's capabilities.
+We have begun streamlining our existing portfolio of products to align with our short-term goals, which includes margin enhancement. To achieve our long-term vision, we will develop a pipeline of customer-centric innovations in new product development across Aviation, Aerospace and Defence, Rail and other related markets.
+Rail
+- The Board recognised that the first half trading would be challenging. However, I am encouraged by the strong order intake across our rail portfolio, in particular growth in our DACH market. Despite recent schedule changes for the UK market, I am confident that the work will materialise in due course.
+Aviation, Aerospace and Defence
+- Our Red Box acquisition is becoming more embedded and new product development will drive our future growth and diversification; however, our performance has been slightly impacted by protracted certification on new products in the first half. Our next generation Quad Plane Power cable carrier has immense potential and prototypes are currently being tested at major customers. Additionally, our product solutions are being embedded by our customers in a number of high-profile exciting aircraft designs.
+Industrial and other
+- We are reassessing our ability to develop the next generation of current products, whilst talking to prospective customers to leverage our capabilities into new applications.
+LPA is a global leader in the design and manufacture of engineered product solutions, and I am excited to build and guide my team through this crucial phase. As we embed our refined strategy and vision, I am confident in LPA's capabilities and professional heritage, which will help us remain competitive in our existing market segments and expand into new markets.
+Since joining the Company earlier this year, I have been pleased to see that we have a strong business with a number of attractive growth opportunities. The measures that have been implemented so far will create a stronger foundation for future growth, underpinned by a more streamlined and operationally excellent business. Whilst the first half has had its challenges, I am confident in our prospects for the future.
+Philo Daniel-Tran
+19 June 2025
+​
+​
+​
+​
+CONSOLIDATED INCOME STATEMENT
+6 months to
+6 months to
+Year to
+31 Mar 25
+31 Mar 24
+30 Sept 24
+Unaudited
+Unaudited
+Audited
+£000
+£000
+£000
+Revenue
+5
+9,523
+11,557
+23,546
+Cost of Sales
+(7,881)
+(9,249)
+(18,068)
+Gross Profit
+1,642
+2,308
+5,478
+Distribution Costs
+(1,067)
+(1,109)
+(2,424)
+Administrative Expenses - exceptional
+(49)
+(78)
+(376)
+Administrative Expenses - other
+(1,644)
+(1,548)
+(3,304)
+Negative Goodwill
+3
+640
+Underlying Operating Loss
+(1,069)
+(349)
+(246)
+Share Based Payments
+-
+-
+(4)
+Negative Goodwill 3
+640
+-
+-
+Exceptional Items 6
+(49)
+(78)
+(376)
+Operating Loss
+(478)
+(427)
+(626)
+Finance Income
+123
+113
+225
+Financing Costs
+(120)
+(86)
+(192)
+Loss Before Tax
+(475)
+(400)
+(593)
+Taxation
+278
+100
+268
+Loss for the Period
+(197)
+(300)
+(325)
+Attributable to:
+- Equity Holders of the Parent
+(197)
+(300)
+(325)
+Loss per Share
+7
+- Basic
+(1.49)p
+(2.27)p
+(2.46)p
+- Diluted
+(1.49)p
+(2.27)p
+(2.46)p
+CONSOLIDATED STATEMENT OF COMPREHENSIVE INCOME
+6 months to
+6 months to
+Year to
+31 Mar 25
+31 Mar 24
+30 Sept 24
+Unaudited
+Unaudited
+Audited
+£000
+£000
+£000
+Loss for the Period
+(197)
+(300)
+(325)
+Other Comprehensive Income
+Items that will not be reclassified to profit or loss:
+Actuarial (Loss)/Gain on Pension Scheme
+(297)
+435
+767
+Decrease/(Increase) of Restriction of Pension Asset
+55
+283
+183
+Other Comprehensive Income
+(242)
+718
+950
+Total Comprehensive Income for the Period
+(439)
+418
+625
+CONSOLIDATED BALANCE SHEET
+As at
+As at
+As at
+31 Mar 25
+31 Mar 24
+30 Sept 24
+Unaudited
+Unaudited
+Audited
+£000
+£000
+£000
+Non-Current Assets
+Intangible Assets
+4,213
+3,743
+4,317
+Plant property and equipment
+5,094
+5,290
+5,018
+Right of Use Assets
+572
+497
+518
+Deferred Tax Asset
+123
+-
+-
+Retirement Benefits
+3,619
+3,484
+3,782
+13,621
+13,014
+13,635
+Current Assets
+Inventories
+6,288
+4,894
+5,749
+Trade and Other Receivables
+5,546
+5,550
+5,389
+Derivative Asset
+80
+-
+80
+Current Tax Receivable
+34
+131
+34
+Cash and Cash Equivalents
+-
+1,456
+715
+11,948
+12,031
+11,967
+Total Assets
+25,569
+25,045
+25,602
+Current Liabilities
+Bank Loan
+(105)
+(500)
+(96)
+Bank overdraft
+(1,020)
+-
+-
+Lease Liabilities
+(229)
+(173)
+(203)
+Deferred Consideration
+(275)
+(550)
+(275)
+Trade and Other Payables
+(5,701)
+(4,896)
+(5,835)
+(7,330)
+(6,119)
+(6,409)
+Non-Current Liabilities
+Bank Loan
+(2,300)
+(2,000)
+(2,359)
+Deferred Consideration
+-
+(275)
+(275)
+Deferred Tax Liabilities
+-
+(332)
+(155)
+Lease Liabilities
+(149)
+(169)
+(175)
+(2,449)
+(2,776)
+(2,964)
+Total Liabilities
+(9,779)
+(8,895)
+(9,373)
+Net Assets
+15,790
+16,150
+16,229
+Equity
+Share Capital
+1,351
+1,351
+1,351
+Investment in Own Shares
+(324)
+(324)
+(324)
+Share Premium Account
+959
+959
+959
+Share Based Payment Reserve
+62
+58
+62
+Merger Reserve
+230
+230
+230
+Retained Earnings
+13,512
+13,876
+13,951
+Equity Attributable to Shareholders of the Parent
+15,790
+16,150
+16,229
+CONSOLIDATED STATEMENT OF CHANGES IN EQUITY
+Share Capital
+Investment in Own Shares
+Share Premium Account
+Share Based Payment Reserve
+Merger
+Reserve
+Retained Earnings
+Total
+2025 - 6 months (Unaudited)
+£000
+£000
+£000
+£000
+£000
+£000
+£000
+At 1 October 2024
+1,351
+(324)
+959
+62
+230
+13,951
+16,229
+Loss for the Period
+-
+-
+-
+-
+-
+(197)
+(197)
+Other Comprehensive Income
+-
+-
+-
+-
+-
+(242)
+(242)
+Total Comprehensive Income
+-
+-
+-
+-
+-
+(439)
+(439)
+Transactions with Owners
+-
+-
+-
+-
+-
+-
+-
+At 31 March 2025
+1,351
+(324)
+959
+62
+230
+13,512
+15,790
+Share Capital
+Investment in Own Shares
+Share Premium Account
+Share Based Payment Reserve
+Merger
+Reserve
+Retained Earnings
+Total
+2024 - 6 months (Unaudited)
+£000
+£000
+£000
+£000
+£000
+£000
+£000
+At 1 October 2023
+1,348
+(324)
+943
+62
+230
+13,454
+15,713
+Loss for the Period
+-
+-
+-
+-
+-
+(300)
+(300)
+Other Comprehensive Income
+-
+-
+-
+-
+-
+718
+718
+Total Comprehensive Income
+-
+-
+-
+-
+-
+418
+418
+Proceeds from Issue of Shares
+3
+-
+16
+-
+-
+-
+19
+Transfer on Exercise of Share Options
+-
+-
+-
+(4)
+-
+4
+-
+Transactions with Owners
+3
+-
+16
+(4)
+-
+4
+19
+At 31 March 2024
+1,351
+(324)
+959
+58
+230
+13,876
+16,150
+Share Capital
+Investment in Own Shares
+Share Premium Account
+Share Based Payment Reserve
+Merger
+Reserve
+Retained Earnings
+Total
+2024 -Year Audited
+£000
+£000
+£000
+£000
+£000
+£000
+£000
+At 1 October 2023
+1,348
+(324)
+943
+62
+230
+13,454
+15,713
+Loss for the Year
+-
+-
+-
+-
+-
+(325)
+(325)
+Other Comprehensive Income
+-
+-
+-
+-
+-
+950
+950
+Total Comprehensive Income
+-
+-
+-
+-
+-
+625
+625
+Share Based Payments
+-
+-
+-
+4
+-
+-
+4
+Dividends
+-
+-
+-
+-
+-
+(132)
+(132)
+Transfer on exercise of Share Options
+-
+-
+-
+(4)
+-
+4
+-
+Proceeds from Issue of Shares
+3
+-
+16
+-
+-
+-
+19
+Transactions with Owners
+3
+-
+16
+-
+-
+(128)
+(109)
+At 30 September 2024
+1,351
+(324)
+959
+62
+230
+13,951
+16,229
+CONSOLIDATED CASH FLOW STATEMENT
+6 months to
+6 months to
+Year to
+31 Mar 25
+31 Mar 24
+30 Sept 24
+Unaudited
+Unaudited
+Audited
+£000
+£000
+£000
+Loss Before Tax
+(475)
+(400)
+(593)
+Financing costs
+120
+86
+192
+Finance Income
+(123)
+(113)
+(225)
+Operating Loss
+(478)
+(427)
+(626)
+Adjustments for:
+Amortisation of Intangible Assets
+235
+132
+346
+Depreciation of Tangible Assets
+243
+269
+547
+Depreciation of Right of Use Assets
+75
+79
+193
+Loss on disposal of Tangible Assets
+-
+-
+80
+Negative Goodwill
+(640)
+-
+-
+Equity settled Share Based Payments
+-
+-
+4
+Operating cash flow before movements inworking capital
+(565)
+53
+544
+Movements in Working Capital:
+Increase in Inventories
+(107)
+(37)
+(986)
+Decrease in Trade and Other Receivables
+182
+405
+511
+(Decrease)/ Increase in Trade and Other Payables
+(457)
+249
+1,138
+Cash inflow/(outflow) generated from operations
+(947)
+670
+1,207
+Income Taxes Received
+-
+-
+47
+Net cash (outflow)/inflow from operating activities
+(947)
+670
+1,254
+Purchase of Product Line
+-
+(250)
+(250)
+Purchase of Business
+(351)
+(275)
+(503)
+Purchase of Property, Plant & Equipment
+(32)
+(223)
+(218)
+Expenditure on Intangible Assets
+(125)
+-
+(615)
+Capitalised Development Costs
+(6)
+(52)
+(63)
+Net cash outflow in investing activities
+(514)
+(800)
+(1,649)
+New Bank Loan
+-
+2,500
+2,500
+Repayment of Bank Loan
+(50)
+(1,949)
+(2,046)
+Principal elements of Lease Liabilities
+(104)
+(115)
+(241)
+Interest Paid
+(120)
+(71)
+(192)
+Dividend Paid
+-
+-
+(132)
+Proceeds from Issue of Share Capital
+-
+19
+19
+Net cash (outflow)/inflow in financing activities
+(274)
+384
+(92)
+Net (Decrease)/Increase in Cash and Cash Equivalents
+(1,735)
+254
+(487)
+Cash and Cash Equivalents at start of the period
+715
+1,202
+1,202
+Cash and Cash Equivalents at end of the Period
+(1,020)
+1,456
+715
+NET DEBT
+An analysis of the change in net debt is shown below:
+Bank Loan
+Lease Liabilities
+Cash and Cash Equivalents
+Net Debt
+£000
+£000
+£000
+£000
+At 1 October 2024
+2,455
+378
+(715)
+2,118
+Interest Costs
+116
+4
+-
+120
+New Lease Obligations
+-
+104
+-
+104
+Repayment of Borrowings/Lease Liabilities
+(166)
+(108)
+-
+(274)
+Other Cash Absorbed
+-
+-
+1,735
+1,735
+At 31 March 2025
+2,405
+378
+1,020
+3,803
+Notes to the financial statements
+Note 1
+BASIS OF PREPARATION
+These interim financial statements are for the six months ended 31 March 2025. They do not include all the information required for full annual financial statements and should be read in conjunction with the consolidated financial statements of the Group for the year ended 30 September 2024.
+These interim financial statements have been prepared in accordance with
+the requirements of UK-adopted International Accounting Standards
+.
+These financial statements have been prepared under the historical cost convention with the exception of certain items which are measured at fair value.
+These interim financial statements have been prepared in accordance with the accounting policies adopted in the last annual financial statements for the year to 30 September 2024. The accounting policies have been applied consistently throughout the Group for the purposes of preparation of these interim financial statements and are expected to be followed throughout the year ending 30 September 2025.
+Note 2 Summary of Significant Accounting Policies
+Use of judgements and estimates
+In preparing these interim financial statements management is required to make judgements on the application of the Group's accounting policies and make estimates about the future. Actual results may differ from these assumptions. The significant judgements made by management in applying the Group's accounting policies and the key sources of estimation uncertainty were the same as those described in the consolidated financial statements for the year ended 30 September 2024.
+New standards and interpretation adopted by the Group
+There has been no impact of new standards and interpretations adopted in the period.
+NOTE 3 ACQUISITION OF BUSINESS
+As announced on 17 March 2025, LPA acquired UK trade and assets of a power supply provider from Eaton Electrical Products Limited. The book value of assets acquired was £716,000. A fair value exercise has been carried out and negative goodwill of £640,000 has been recognised. The consideration of £76,000 was paid in full on acquisition.
+NOTE
+4 GOING CONCERN
+The Group's business activities and the factors likely to affect its future performance together with the Group's treasury policy, its approach to the management of financial risk, and its exposure to liquidity and credit risks are outlined fully in the Annual Report & Accounts 2024 which details trading, new financing and to a lesser extent supply chain shortages and inflationary pressures.
+In assessing going concern the Directors note that the Group: (i) is expected to return to profitability through the second half of its 2025 financial year and continue to trade profitably in the near term; (ii) has in place adequate working capital facilities for its forecast needs; (iii) has a strong current order book with significant further opportunities in its market place; and (iv) has proven adaptable in past periods of adversity over many years. Therefore, the Directors believe that it is well placed to manage its business risks successfully.
+The directors continue to develop its strong working relationship with its bank that provides for the funding and working capital facilities. Should there be additional delays in our project-based work then there are actions available to management to mitigate any cash need. We expect if required the bank would remain supportive and a suitable agreement would be reached to provide the Group with sufficient financing.
+Having assessed all aspects of the business and the likely effectiveness of mitigating actions that the Directors would consider undertaking or have undertaken, the going concern basis has been adopted in preparing these interim financial statements.
+In reaching this conclusion, the Directors, after making enquiries, inclusive but not limited to updated forecasts and expectations, liabilities and risks and ongoing support from the Group's bank, have a reasonable expectation that the Group has adequate resources to continue in operational existence for the foreseeable future.
+NOTE 5 Operating Segments
+All the Group's operations and activities are based in, and its assets located in, the United Kingdom. For management purposes the Group comprises three product groups (in accordance with IFRS 8) - LPA Connection Systems (electro-mechanical), LPA Lighting Systems (lighting & electronics) systems and LPA Channel Electric (engineered component distribution), which collectively design, manufacture and market industrial electrical and electronic products. They operate across three market segments - Rail; Aerospace & Defence and Other. It is on this basis that the Board of Directors assess Group performance. The split is as follows:
+6 months to
+6 months to
+Year to
+31 Mar 25
+31 Mar 24
+30 Sept 24
+Unaudited
+Unaudited
+Audited
+LPA Connection Systems
+3,883
+4,532
+8,620
+LPA Lighting Systems
+3,546
+4,280
+9,126
+LPA Channel Electric
+2,094
+2,745
+5,800
+Operational Revenue
+9,523
+11,557
+23,546
+All revenue originates in the UK. An analysis by market segments and geographical markets is given below:
+6 months to
+6 months to
+Year to
+31 Mar 25
+31 Mar 24
+30 Sept 24
+Unaudited
+Unaudited
+Audited
+Rail
+64%
+69%
+69%
+Aviation, Aerospace & Defence
+31%
+26%
+25%
+Industrial & Other
+5%
+5%
+6%
+100%
+100%
+100%
+United Kingdom
+57%
+61%
+59%
+Rest of Europe
+33%
+26%
+27%
+Rest of the World
+10%
+13%
+14%
+100%
+100%
+100%
+NOTE 6 EXCEPTIONAL ITEMS
+The exceptional item of £49,000 relates to non-recurring cost relating to the acquisition of the trading assets of Martek Power and group reorganisation / staff changes costs. The exceptional item in the year to 30 September 2024 related to the non-recurring acquisition costs of Red Box International and group reorganisation / staff changes costs.
+NOTE 7 Loss PER SHARE
+The calculations of loss per share are based upon the loss after tax attributable to ordinary equity shareholders and the weighted average number of ordinary shares in issue during the period, less investment in own shares.
+Details are as follows:
+6 months to
+6 months to
+Year to
+31 Mar 25
+31 Mar 24
+30 Sept 23
+Unaudited
+Unaudited
+Audited
+Loss for the period - £000
+(197)
+(300)
+(325)
+Weighted average number of ordinary shares in issue during the period (million)
+13,203
+13,192
+13,203
+Dilutive effect of share options (million)
+-
+-
+-
+Number of shares for diluted earnings per share (million)
+13,203
+13,192
+13,203
+Basic loss per share
+(1.49)p
+(2.27)p
+(2.46)p
+Diluted loss per share
+(1.49)p
+(2.27)p
+(2.46)p
+Basic and diluted earnings per share are based on the weighted average number of ordinary shares and share options in issue during the period. For the period ended 31 March 2024 and 31 March 2025, the basic and diluted loss per share are equal since where a loss is incurred the effect of outstanding share options and warrants is considered anti-dilutive and is ignored for the purpose of the loss per share calculation.
+NOTE 8 INFORMATION
+LPA Group Plc is the Group's ultimate parent company. It is incorporated in England and Wales and domiciled in the UK, Company Number 686429. The address of LPA Group Plc's registered office, which is also its principal place of business, is Light & Power House, Shire Hill, Saffron Walden, CB11 3AQ, UK. LPA Group Plc's shares are quoted on the AIM market of the London Stock Exchange.
+LPA Group Plc's consolidated interim financial statements are presented in Pounds Sterling (£000), which is also the functional currency of the parent company. These interim financial statements have been approved for issue by the Board of Directors on 19 June 2025. The financial information set out in this interim report does not constitute statutory accounts as defined in Section 434 of the Companies Act 2006. The Group's statutory financial statements for the year ended 30 September 2024 have been filed with the Registrar of Companies. The auditor's report on those financial statements was unmodified and did not contain statements under Section 498(2) or Section 498(3) of the Companies Act 2006.
+Copies of this Interim Report are being sent today to shareholders who have requested to receive a hard copy. Shareholders are encouraged to access copies which are available on the Company's website (
+www.lpa-group.com
+). Interim Reports will no longer be published as the Company continues to focus on the reduction of waste and carbon footprint. A printout of the Interim Report will also be available by request from the Company's Registrar, or the Company's registered office, address as above or by email:
+investors@lpa-group.com
+.
+Shareholders are encouraged to visit our website where useful links and assistance have been provided including our Registrars to assist utilisation of digital channels and receipt of future dividends and our Brokers who provide equity research.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+IR GPUQCQUPAPGR
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">5</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #5
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Notice of Interim Results</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">12th Jun 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Saffron Walden</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+12 Jun 2025 07:00
+RNS Number : 4605M
+LPA Group PLC
+12 June 2025
+12 June 2025
+LPA Group plc
+Notice of Interim Results
+LPA Group plc, the innovation-led engineering specialist in electronic and electro-mechanical components and systems, will announce its Interim Results for the six months ended 31 March 2025 on 19 June 2025.
+For further information, please contact:
+LPA Group plc
+Tel: +44 (0) 1799 512800
+Robert B Horvath, Chairman
+Philo Daniel-Tran, Chief Executive Officer
+Stuart Stanyard, Chief Financial Officer
+Cavendish Capital Markets Limited
+Tel: +44 (0) 20 7220 0500
+(Nominated Adviser & Broker)
+Corporate Finance
+Ed Frisby / Isaac Hooper / Elysia Bough
+Corporate Broking
+Tim Redfern
+Hudson Sandler (Financial PR)
+Tel: +44 (0) 20 7796 4133
+Dan de Belder
+Nick Moore
+Francesca Rosser
+About LPA
+LPA Group plc (AIM: LPA) is an innovation-led engineering specialist in electronic and electro-mechanical components and systems.
+Focused on transport (rail and aviation), aerospace, defence, infrastructure and industrial markets and supplying into hostile and challenging environments, LPA is known for engineering solutions to improve product reliability, reducing maintenance and life cycle costs.
+The Group has four sites across the UK, selling to customers in the UK and overseas. Three of these are design and manufacturing sites: Saffron Walden, Essex - electro-mechanical systems for rail, aviation and industrial; Knapwell, Cambridge - power supplies for the rail market, Normanton, Yorkshire - LED lighting and electronic systems for rail and infrastructure. The fourth site is Thatcham, Berkshire - value-added distribution of engineered components for rail, aerospace and defence.
+With over 150 years of UK design and manufacture, and with origins in the first ever light installed in 'Electric Avenue', Brixton; innovation is core to LPA and to the products and services supplied to our customers worldwide.
+For more information visit
+www.lpa-group.com
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+NORGPUWWQUPAGAG
+                </div>
+            </details>
+            
+            </div>
+            
+            </div>
+            <div style="
+                margin-top: 20px;
+                padding: 14px 16px;
+                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+                border-radius: 10px;
+                font-size: 12px;
+                color: #78350f;
+                border-left: 3px solid #f59e0b;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            ">
+                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
+                <div style="line-height: 1.5;">
+                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
+                    Each RNS includes sentiment classification, key data extraction, and trading context. 
+                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
+                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                    </strong>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            details[open] > summary {
+                background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%) !important;
+                border-left-color: #0369a1 !important;
+            }
+            summary::-webkit-details-marker {
+                display: none;
+            }
+            
+            /* ========== MOBILE RESPONSIVE ========== */
+            @media (max-width: 768px) {
+                body {
+                    padding: 10px;
+                    font-size: 14px;
+                }
+                
+                .container {
+                    margin: 0 auto;
+                }
+                
+                .header-card {
+                    padding: 14px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .company-name {
+                    font-size: 22px;
+                    margin-bottom: 8px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 13px;
+                    padding: 6px 12px;
+                }
+                
+                .company-meta {
+                    gap: 8px;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+                
+                .meta-item {
+                    padding: 6px 12px;
+                    font-size: 12px;
+                    gap: 6px;
+                }
+                
+                .meta-icon {
+                    font-size: 14px;
+                }
+                
+                .score-hero {
+                    padding: 20px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .action-display {
+                    font-size: 18px !important;
+                    margin-bottom: 12px;
+                }
+                
+                .scores-row {
+                    gap: 16px;
+                    margin: 20px 0;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    display: flex;
+                }
+                
+                .score-circle {
+                    width: 110px;
+                    height: 110px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 32px;
+                }
+                
+                .score-label {
+                    font-size: 10px;
+                    margin-top: 4px;
+                }
+                
+                .timing-badge-large {
+                    padding: 10px 20px;
+                    font-size: 14px;
+                    margin: 12px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 14px;
+                    padding: 12px;
+                    margin-top: 12px;
+                }
+                
+                .factors-list {
+                    grid-template-columns: 1fr;
+                    gap: 10px;
+                    margin-top: 12px;
+                }
+                
+                .factor-item {
+                    padding: 12px;
+                    font-size: 12px;
+                    gap: 8px;
+                }
+                
+                .factor-icon {
+                    font-size: 16px;
+                }
+                
+                .cards-grid {
+                    grid-template-columns: 1fr;
+                    gap: 12px;
+                    margin-bottom: 12px;
+                }
+                
+                .card {
+                    padding: 16px;
+                    border-radius: 12px;
+                }
+                
+                .card-title {
+                    font-size: 14px;
+                    margin-bottom: 12px;
+                    gap: 8px;
+                }
+                
+                .card-icon {
+                    font-size: 18px;
+                }
+                
+                .stat-row {
+                    padding: 8px 0;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+                
+                .stat-label {
+                    font-size: 12px;
+                }
+                
+                .stat-value {
+                    font-size: 14px;
+                }
+                
+                .rally-badge {
+                    padding: 4px 10px;
+                    font-size: 10px;
+                }
+                
+                .risk-indicator {
+                    gap: 10px;
+                    padding: 12px;
+                    flex-wrap: wrap;
+                }
+                
+                .risk-icon {
+                    font-size: 20px;
+                }
+                
+                .reason-item {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                }
+                
+                .tag {
+                    padding: 3px 8px;
+                    font-size: 10px;
+                }
+                
+                .footer {
+                    padding: 12px;
+                    font-size: 11px;
+                    margin-top: 12px;
+                    border-radius: 12px;
+                }
+                
+                .alert-box {
+                    padding: 12px;
+                    margin: 10px 0;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                body {
+                    padding: 8px 6px;
+                }
+                
+                .header-card {
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    border-radius: 8px;
+                }
+                
+                .company-name {
+                    font-size: 18px;
+                    margin-bottom: 6px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 11px;
+                    padding: 3px 8px;
+                }
+                
+                .company-meta {
+                    gap: 4px;
+                    flex-direction: column;
+                }
+                
+                .meta-item {
+                    padding: 4px 6px;
+                    font-size: 11px;
+                    background: rgba(247, 250, 252, 0.7);
+                }
+                
+                .score-hero {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                    border-radius: 12px;
+                }
+                
+                .score-circle {
+                    width: 70px;
+                    height: 70px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 22px;
+                    font-weight: 800;
+                }
+                
+                .score-label {
+                    font-size: 7px;
+                    margin-top: 2px;
+                }
+                
+                .scores-row {
+                    flex-direction: column;
+                    gap: 10px;
+                    margin: 12px 0;
+                    align-items: center;
+                }
+                
+                .timing-badge-large {
+                    padding: 6px 12px;
+                    font-size: 11px;
+                    margin: 10px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 11px;
+                    padding: 8px;
+                    line-height: 1.3;
+                }
+                
+                .card {
+                    padding: 10px;
+                    margin-bottom: 8px;
+                    border-radius: 8px;
+                }
+                
+                .card-title {
+                    font-size: 12px;
+                    margin-bottom: 8px;
+                    font-weight: 700;
+                }
+            }
+        </style>
+        
+
+        <!-- Footer -->
+        <div class="footer">
+            Report generated: 2026-01-17 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            <strong>△ Not financial advice. Do your own research.</strong>
+            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
+                <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

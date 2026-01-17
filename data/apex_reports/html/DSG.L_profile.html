@@ -1,0 +1,3007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrashDash • DSG.L APEX Profile</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .header-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .ticker-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .company-name { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .company-meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f7fafc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .meta-icon { font-size: 18px; }
+        
+        .score-hero {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        .action-display {
+            margin-bottom: 20px;
+        }
+        .scores-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .score-number {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .score-label { font-size: 12px; color: #666; margin-top: 5px; }
+        .timing-badge-large {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 24px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            margin: 20px 0;
+        }
+        .thesis-line {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .factors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .factor-item {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        .factor-icon { font-size: 20px; }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-icon { font-size: 24px; }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-label { color: #666; font-size: 14px; }
+        .stat-value { font-weight: 600; font-size: 16px; }
+        
+        .rally-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .risk-indicator {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .risk-high { background: #fee2e2; }
+        .risk-icon { font-size: 24px; }
+        
+        .reason-item {
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .tag {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .footer {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-top: 20px;
+        }
+        
+        .alert-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Header Card -->
+        <div class="header-card">
+            <div class="ticker-badge">DSG.L</div>
+            <div class="company-name">Dillistone Group Plc</div>
+            <div class="company-meta">
+                <div class="meta-item">
+                    <span class="meta-icon">■</span>
+                    <span><strong>Sector:</strong> Technology</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">£</span>
+                    <span><strong>Market Cap:</strong> £1,735,531</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">◷</span>
+                    <span><strong>Days Active:</strong> 212 days</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action & Score Hero Section -->
+        <div class="score-hero">
+            <div class="action-display">
+                <span style="font-size: 32px; font-weight: 800; color: white;">◉ AVOID</span>
+            </div>
+            
+            <div class="scores-row">
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">49</div>
+                    <div class="score-label">APEX SCORE</div>
+                </div>
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">25</div>
+                    <div class="score-label">CONFIDENCE</div>
+                </div>
+            </div>
+            
+            <div class="timing-badge-large">
+                Timing: <span class="rally-badge" style="background: #fee2e2; color: #991b1b;">BROKEN</span>
+            </div>
+            
+            <div class="thesis-line">
+                AVOID - BROKEN timing with 49/100 opportunity score
+            </div>
+        </div>
+
+        <!-- ==================== CRASHDASH INTELLIGENCE - PANIC HUNTER VIEW ==================== -->
+        
+        <div class="card" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b;">
+            <div class="card-title" style="color: #0f172a;">
+                <span class="card-icon">🏭</span>
+                CrashDash Intelligence • Industrials
+            </div>
+            
+            <!-- Fear Meter -->
+            <div style="background: white; padding: 24px; border-radius: 14px; margin-bottom: 20px; text-align: center;">
+                <div style="font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 16px;">🔥 PANIC METER</div>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 16px;">
+                    <div style="width: 160px; height: 160px; border-radius: 50%; background: conic-gradient(#f59e0b 266.40000000000003deg, #e5e7eb 266.40000000000003deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                        <div style="width: 130px; height: 130px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <div style="font-size: 48px; font-weight: 800; color: #f59e0b;">74</div>
+                            <div style="font-size: 12px; color: #64748b; font-weight: 600;">PANIC SCORE</div>
+                        </div>
+                    </div>
+                    <div style="text-align: left; max-width: 400px;">
+                        <div style="font-size: 18px; font-weight: 700; color: #f59e0b; margin-bottom: 12px;">HIGH PANIC</div>
+                        <div style="font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 12px;">🟠 Fear dominant - watch for reversal signs</div>
+                        <div style="font-size: 13px; color: #64748b;">
+                            <div>💔 Price: 40/40</div>
+                            <div>📉 Volume: 18/20</div>
+                            <div>🔇 Social: 6/20</div>
+                            <div>📰 News: 10/20</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CrashHunter Signals -->
+                <div style="margin-top: 20px;">
+                    <span style="display: inline-block; background: #f59e0b; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">🟠 Fear 74/100</span><span style="display: inline-block; background: #ef4444; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">❌ Broken</span><span style="display: inline-block; background: #64748b; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">❓ Conf 25</span>
+                </div>
+                
+                <!-- Opportunity Flag -->
+                
+            </div>
+            
+            <!-- Contrarian Compression Energy Panel -->
+            
+            <!-- Contrarian Compression Energy Panel -->
+            <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); padding: 24px; border-radius: 14px; margin-bottom: 20px; border: 3px solid #10b981;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <span style="font-size: 32px;">⚡</span>
+                    <div style="flex: 1;">
+                        <div style="font-size: 20px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">
+                            CONTRARIAN COMPRESSION SCORE
+                        </div>
+                        <div style="font-size: 13px; color: #475569; font-weight: 600;">
+                            Signal Congestion Framework • Compression = Explosive Potential
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Score Display -->
+                <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 30px;">
+                        <!-- Circular gauge -->
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: conic-gradient(#10b981 108.0deg, #e5e7eb 108.0deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                            <div style="width: 110px; height: 110px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <div style="font-size: 42px; font-weight: 800; color: #10b981;">30</div>
+                                <div style="font-size: 11px; color: #64748b; font-weight: 600;">/ 100</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Key metrics -->
+                        <div style="text-align: left;">
+                            <div style="font-size: 16px; font-weight: 700; color: #10b981; margin-bottom: 12px;">🟢 MILD COMPRESSION (Top 50% - WATCHLIST)</div>
+                            <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                                <div><strong>0.1</strong> signals/week</div>
+                                <div><strong>1</strong> RSI &lt; 20 events</div>
+                                <div><strong>0</strong> escalations detected</div>
+                                <div style="color: #10b981; font-weight: 700; margin-top: 6px;">
+                                    💎 Historical pop: <strong>+10456%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Component Breakdown -->
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 15px;">
+                        📊 5-COMPONENT BREAKDOWN
+                    </div>
+                    
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">compression</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">7/40</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 17.5%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">0.1 signals/week | 1 RSI<20 | Early stage</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">intensification</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">0/20</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;"></div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">volume death</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #eab308;">8/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #eab308; height: 100%; width: 53.333333333333336%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">High volume - Panic spike or interest</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">pop potential</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #ef4444;">15/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #ef4444; height: 100%; width: 100.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">MONSTER POPPER - Historical 10x+ (10456%)</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">accumulation</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">0/10</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">No accumulation</div>
+                </div>
+                
+                </div>
+                
+                <!-- Contrarian Philosophy -->
+                <div style="background: rgba(255,255,255,0.7); padding: 16px; border-radius: 10px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #0f172a; margin-bottom: 8px; font-size: 14px;">
+                        🎯 CONTRARIAN WISDOM
+                    </div>
+                    <div style="font-size: 13px; color: #334155; line-height: 1.6;">
+                        <strong>Signal congestion = Compression energy = Explosive potential.</strong><br>
+                        When multiple crash signals cluster together with extreme RSI and proven rally history, 
+                        it creates a compressed spring effect. More panic = More opportunity for contrarians.
+                        <div style="margin-top: 8px; padding: 10px; background: rgba(239,68,68,0.1); border-radius: 6px; font-size: 12px;">
+                            <strong style="color: #10b981;">Theory:</strong> High compression scores (60+) historically precede 
+                            explosive 10-20x moves when catalysts arrive. This is the foundation of crash hunting.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Fear vs Facts Contrarian View -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                <div style="background: #fee2e2; padding: 18px; border-radius: 12px; border-left: 4px solid #ef4444;">
+                    <div style="font-weight: 700; color: #991b1b; margin-bottom: 12px; font-size: 15px;">😱 FEAR (What Panic Shows)</div>
+                    <div style="color: #7f1d1d;">
+                        <div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 💔 Price destruction: 40/40 points</div><div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 📉 Volume death: 18/20 points</div>
+                    </div>
+                </div>
+                <div style="background: #dcfce7; padding: 18px; border-radius: 12px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #065f46; margin-bottom: 12px; font-size: 15px;">📊 FACTS (What Data Shows)</div>
+                    <div style="color: #064e3b;">
+                        <div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 📈 Historical upside: 10456% proven capacity</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contrarian Verdict -->
+            <div style="background: white; padding: 18px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #6366f1;">
+                <div style="font-weight: 700; color: #4338ca; margin-bottom: 10px; font-size: 15px;">⚖️ Contrarian Verdict</div>
+                <div style="font-size: 15px; color: #1e293b; line-height: 1.6; font-weight: 600;">
+                    🎯 CONTRARIAN OPPORTUNITY - Fear dominates but facts support recovery potential
+                </div>
+            </div>
+            
+            <!-- Industry Crash Patterns -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">⚠️ Crash Patterns (Industrials)</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book decline or cancellations</div><div>• Margin compression (input costs)</div><div>• Cyclical demand weakness</div>
+                    </div>
+                    <div style="margin-top: 12px; padding: 10px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e; font-weight: 600;">🚨 Active: Project delays or overruns</div>
+                </div>
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">🚀 Recovery Paths</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book growth or new contracts</div><div>• Margin recovery (efficiency gains)</div><div>• Cyclical upturn (capex recovery)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Catalyst Pipeline -->
+            <div style="background: rgba(255,255,255,0.5); padding: 18px; border-radius: 12px; margin-bottom: 20px;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 14px; font-size: 15px;">📅 Catalyst Pipeline</div>
+                
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Interim Results & Investor Presentation</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Notice of Interim Results & Investor Presentation</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Result of AGM</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">AGM Statement</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Related party loan</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+            
+            <!-- CrashDash Decision Matrix -->
+            <div style="background: white; padding: 20px; border-radius: 12px; border: 3px solid #f59e0b;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 16px; text-align: center;">
+                    🎯 CRASHDASH DECISION: <span style="color: #f59e0b; font-size: 20px;">AVOID</span>
+                </div>
+                <div style="font-size: 15px; color: #475569; text-align: center; margin-bottom: 20px; font-weight: 600;">
+                    ❌ AVOID - timing BROKEN
+                </div>
+                <div style="background: #f8fafc; padding: 16px; border-radius: 10px;">
+                    <div style="font-weight: 700; color: #64748b; margin-bottom: 12px; font-size: 13px;">CHECKLIST (2/5 pass)</div>
+                    
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🔴</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Panic Score</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">74/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">❌</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Timing Regime</div>
+                    <div style="font-size: 13px; color: #ef4444; font-weight: 600;">BROKEN</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">⚠️</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">APEX Quality</div>
+                    <div style="font-size: 13px; color: #ef4444; font-weight: 600;">49/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">❓</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Data Confidence</div>
+                    <div style="font-size: 13px; color: #ef4444; font-weight: 600;">25/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🏭</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Industry Pattern</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">1 active</div>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
+        
+
+        <!-- Decision Summary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◆</span>
+                Why This Matters
+            </div>
+            <div class="stat-row"><span>• APEX 49/100 indicates moderate opportunity quality</span></div><div class="stat-row"><span>• Timing regime: BROKEN</span></div><div class="stat-row"><span>• Historical profile: 2 rallies, 10456% best run</span></div>
+            
+            <div class="alert-box" style="margin-top: 20px;">
+                <strong>△ Main Risk:</strong> Confidence 25/100 - full data loaded
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong>◉ Watch Next:</strong>
+                <div style="padding: 8px 0;">• RNS catalysts (funding/operational updates)</div><div style="padding: 8px 0;">• Volume expansion confirmation</div><div style="padding: 8px 0;">• Timing regime change signals</div>
+            </div>
+        </div>
+
+        <!-- ==================== TECHNICAL DETAILS (COLLAPSIBLE) ==================== -->
+        
+        <div class="card">
+          <details style="cursor:pointer;">
+            <summary style="font-weight:800; font-size:16px; list-style:none; padding: 10px; background: #f9fafb; border-radius: 8px;">
+              🔧 Technical Analysis & Scoring Details
+            </summary>
+            <div style="margin-top:14px;">
+              
+            <!-- Scoring Breakdown -->
+            <div class="card-title" style="margin-top: 20px;">
+                <span class="card-icon">▣</span>
+                APEX Score Breakdown
+            </div>
+            <div class="factors-list">
+                <div class="factor-item"><span class="factor-icon">◆</span><span><strong>Excellent Technical Setup</strong><br><small>Chart quality: 15/20 • Score: 19/25 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Massive recovery potential</strong><br><small>Down 99.2% from peak • Score: 20/20 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Explosive volume</strong><br><small>6.7x average • Score: 10/10 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Limited history</strong><br><small>2 previous rallies • Score: 5/15 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Monster potential</strong><br><small>Historical best: +10456% • Score: 20/20 points</small></span></div>
+
+            </div>
+            
+            <div style="margin-top: 40px;"></div>
+            
+            <!-- Exhaustion Metrics -->
+            <div class="card-title">
+                <span class="card-icon">📈</span>
+                Rally Cycle Position
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Current Position</div>
+                    <div style="font-size: 32px; font-weight: 800;">9344%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
+                    <div style="font-size: 32px; font-weight: 800;">10456%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
+                    <div style="font-size: 32px; font-weight: 800;">0.9x</div>
+                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
+                </div>
+            </div>
+        
+            </div>
+          </details>
+        </div>
+        
+
+        <!-- Reasons Buy/Sell -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #10b981;">▲</span>
+                    Reasons to Buy
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Historically strong runner - massive upside when it moves</span>
+                    <span class="tag" style="background: #10b981; color: white;">🔥 High Conviction</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">best run=10456% • rally history=2.0</div>
+            </div>
+            
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Proven winner - previously hit lock-in target</span>
+                    <span class="tag" style="background: #f59e0b; color: white;">⚡ Medium Strength</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">profit target reached: True</div>
+            </div>
+            
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #ef4444;">▼</span>
+                    Reasons to Sell / Avoid
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Split risk HIGH - price integrity compromised</span>
+                    <span class="tag" style="background: #ef4444; color: white;">🚨 High Risk</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">split risk level=HIGH</div>
+            </div>
+            
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Stale signal - not for active trading</span>
+                    <span class="tag" style="background: #ef4444; color: white;">🚨 High Risk</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">historical • signal date=2025-06-17</div>
+            </div>
+            
+            </div>
+        </div>
+
+        <!-- Trade Plans -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">📊</span>
+                    Short-Term Trader Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 20%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <div style="font-size: 18px; font-weight: 600; margin-bottom: 5px;">Avoid</div>
+                    <div style="font-size: 14px; opacity: 0.9;">Do not trade - thesis invalidated</div>
+                </div>
+                <div style="padding: 12px; background: #f9fafb; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Position Size</div>
+                    <div style="font-weight: 600;">0%</div>
+                </div>
+                <div style="padding: 12px; background: #fef2f2; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Risk Management</div>
+                    <div style="font-weight: 600; color: #dc2626;">N/A</div>
+                </div>
+                <div style="padding: 12px; background: #f0fdf4; border-radius: 6px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Exit Strategy</div>
+                    <div style="font-weight: 600; color: #059669;">N/A</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">💼</span>
+                    Long-Term Investor Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center;">
+                    <div style="font-size: 32px; margin-bottom: 5px;">✗</div>
+                    <div style="font-size: 18px; font-weight: 600;">Not Recommended for Investors</div>
+                </div>
+                <div style="padding: 15px; background: #f9fafb; border-radius: 8px; font-size: 14px; line-height: 1.6;">
+                    <strong style="color: #667eea;">📋 Investment Thesis:</strong><br>
+                    Unlock after AI triangulation + CONFIRMED timing<br><br>
+                    <strong style="color: #667eea;">⏳ Time Horizon:</strong><br>
+                    N/A<br><br>
+                    <strong style="color: #ef4444;">🛡️ Exit Rule:</strong><br>
+                    N/A
+                </div>
+            </div>
+        </div>
+
+        <!-- Commentary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◐</span>
+                Executive Commentary
+            </div>
+            <div style="line-height: 1.6; margin-bottom: 20px;">
+                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows BROKEN timing with 49/100 APEX score. Historical data shows 2 rallies averaging 10456% upside. Current position: +9344.4%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #10b981;">▲ Bull Case:</strong>
+                <div style="padding: 8px 0;">• Strong historical rally behavior (10456% best run)</div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #ef4444;">▼ Bear Case:</strong>
+                <div style="padding: 8px 0;">• Monitor for breakdown signals</div>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
+                <strong>◷ Timing Translation:</strong><br>
+                Thesis invalidated. Avoid or exit.
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
+                <strong>◎ Confidence Explained:</strong><br>
+                Confidence 25/100 reflects full data quality with triangulation loaded.
+            </div>
+        </div>
+
+        <!-- Data Quality Warning -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">△</span>
+                Data Quality Notice
+            </div>
+            <div class="alert-box">
+                <strong>Analysis Mode:</strong> HISTORICAL_ONLY<br>
+                <strong>Impact:</strong> HIGH
+            </div>
+            <div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">AI insights from Groq LLM</div></div></div>
+
+            <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk.
+            </div>
+        </div>
+
+        <!-- ==================== TOP 5 RECENT RNS NEWS ==================== -->
+        
+        <div class="card" style="border-top: 3px solid #3b82f6;">
+            <div class="card-title" style="margin-bottom: 20px;">
+                <span class="card-icon">📰</span>
+                Top 5 Recent RNS Announcements
+            </div>
+            <div style="margin-top: 15px;">
+                
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #10b98140;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Interim Results & Investor Presentation</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">POSITIVE RESULTS</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Positive development - monitor for follow-through in share price.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Sep 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Companies Act</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">14%, 91%, 91%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+30 Sep 2025 07:00
+RNS Number : 2980B
+Dillistone Group PLC
+30 September 2025
+30 September 2025
+Dillistone Group Plc
+("Dillistone", the "Company" or the "Group")
+Interim Results & Investor Presentation
+Dillistone Group PLC, the AIM quoted supplier of software for the international recruitment industry, announces Interim Results for the six months to 30 June 2025.
+Summary
+·
+Group H1 adjusted operating profit down at £0.079m (H1 2024: £0.133m).
+·
+Total revenue of £2.173m (H1 2024: £2.519m), down 14% in a tough recruitment market.
+·
+H1 New business sales for mature products exceed the total for all of FY 2024.
+·
+Recurring revenues represented 91% (H1 2024: 91%) of Group revenue.
+·
+Net cash generated from operating activities stable at £0.528m (2024: £0.529m).
+·
+Utilisation of bank facility at period end of £0.080m (2024: utilisation £0.172m) reflecting ongoing repayment of Government support loans. Final repayment due in July 2026.
+·
+Board expects to deliver full year results in line with adjusted PTP market expectations.
+Post Period
+·
+Talentis showing strong improvement in performance in Q3, with significant growth of more than 30% in ARR and a contract win which, once live, will be our largest executive search competitive displacement in more than five years.
+·
+Strong feedback from migrating customers, with multiple 5* Talentis executive search software reviews on G2:
+https://www.g2.com/products/talentis-executive-search-software/reviews
+Commenting on the results and prospects, Giles Fearnley, Non-Executive Chairman, said:
+"I am pleased to confirm that the Group expects to deliver results in line with expectations for EBITDA and adjusted pre-tax profit in 2025
+I am also pleased to report that we now expect 2026 to be our first year of revenue growth since 2022 and only our second since 2016. We believe that much of that growth will be driven by Talentis."
+*
+Note: "Adjusted" refers to activities before acquisition, reorganisation and one-off costs
+Investor Presentation: 15:00 BST on Thursday 2 October 2025
+Dillistone is pleased to announce that Jason Starr and Ian Mackin will provide a live presentation relating to the Interim Results via the Investor Meet Company platform on 02 October 2025, 15:00 BST.
+The
+presentation is open to all existing and prospective investors. Questions can be submitted
+at any time during the live presentation.
+Investors can sign up to Investor Meet Company for free and can join the Dillistone presentation via the following link:
+https://www.investormeetcompany.com/dillistone-group-plc/register-investor
+Investors who already follow Dillistone on the Investor Meet Company platform will automatically be invited.
+This announcement contains inside information for the purposes of Article 7 of the UK version of Regulation (EU) No 596/2014 which is part of UK law by virtue of the European Union (Withdrawal) Act 2018, as amended ("MAR"). Upon the publication of this announcement via a Regulatory Information Service, this inside information is now considered to be in the public domain.
+Enquiries:
+Dillistone Group Plc
+Giles Fearnley
+Chairman
+01256 297 000
+Jason Starr
+Chief Executive Officer
+Ian Mackin
+Finance Director
+Zeus (Nominated adviser and Broker)
+Mike Coe
+Director, Investment Banking
+020 3829 5000
+Chairman's Statement
+Over the last few years, I've found myself reporting on a fairly consistent theme. A challenging market for recruitment software, improvements in EBITDA margin, acceptable performance for our contingency targeted products, let down by disappointing performance for our executive search solutions.
+At face value, H1 2025 represents more of the same. EBITDA margin has improved once again (H1 2025 26.8% vs H1 2024 25.8%), our executive search performance has been poor, while our contingency products report both positive and negative results.
+The bulk of our executive search revenue comes from our FileFinder platform and this has unquestionably lost market share over recent years. Our Talentis product was designed to be its successor and, until recently, revenue has disappointed. I am delighted to report, however, that recent months have seen a dramatic upturn in performance for this platform, and I take pleasure in providing more details on this transformation below.
+Executive search review:
+As noted above, our executive search business has struggled over recent years, but we are pleased to report signs of real progress, driven by our flagship Talentis product.
+Talentis was conceived as an all-in-one candidate sourcing / CRM platform for executive search. When initially launched, it had primary strengths as a sourcing tool, but CRM functionality was considered light by many buyers.
+As a result, many of the early buyers of Talentis purchased it primarily for its sourcing functionality. The revenue associated with this was of low quality, with many of the subscriptions being on a month-to-month basis and of low value.
+In Q4 of last year, we reached the conclusion that the product had reached a level where it was feature rich enough to be marketed as a successor platform to FileFinder and competitor CRMs. As a result, we subsequently positioned the product differently and increased its prices.
+During the period in review, we saw our first "full" migrations into Talentis. Client feedback has been very positive, with a number of 5* executive search software reviews for Talentis appearing on G2:
+https://www.g2.com/products/talentis-executive-search-software/reviews
+During 2025, the mix of clients has changed away from sourcing customers paying on a month to month basis, towards CRM customers on annually recurring contracts. Indeed, while only 22% of new users signed in 2024 were under annual (or longer) commitments, the figure in 2025 M1-M8 has risen to 59%, and with the figure for M6-M8 up to 85%.
+These new customers often have more users and often pay a higher price.
+The change in positioning has caused the number of clients on the platform to fall during the early part of the year. However, since then, the number of licenced users and MRR have both increased with much of that increase happening in Q3. Exit MRR at the end of Q3 is likely be 19% up on the equivalent figure at the end of Q4 2024, and well over 30% up on the end of Q2 2025.
+Talentis remains a low part of our overall revenue, but it is now our fastest growing product - both in terms of new customer logos and migrations. While much of the revenue growth in Q2-Q3 came from FileFinder migrations into Talentis, our contracted orders for Q4 indicates a far higher percentage of revenue coming from clients that are new to the Group. This includes our largest competitive displacement in the executive search sector for over five years.
+Our Talentis B2C product, which trades under the name "GatedTalent", continues to make a contribution.
+Contingency review:
+As has been previously mentioned, the recruitment market in general has struggled over the past few years and the contingent space has been no exception. Organisations across the globe have been reducing their permanent and temporary headcount requirements.
+The majority of our contingency clients are based in the UK which specifically has shown a significant and sustained downturn since the 2022 post-Covid peak. The ONS reports a drop of roughly 45% in vacancies over the past three years. This directly impacts the recruitment agency market and this is felt by us through clients reducing their own staff and hence licence numbers.
+Whilst a nervous economic background has led to an overall reduction in user numbers over the last 12 months, there is some early evidence of recovery. We have seen a recent small upturn in the number of customers purchasing additional licences for our Infinity product as well as the number of licences in each transaction. On a rolling 6-month basis, additional licence sales from existing customers are up just under 50% compared to June 2024.
+In the period we rolled out first phase of our Mid-Office Online Timesheet solution to positive feedback from the users. The second phase which expands its functional capability to appeal to a wider user base was put on general release towards the end of Q3.
+We are pleased to report the continued adoption of our Candidate Portal add-on for our Infinity product and a further significant update to this portal adding functionality to support shift offers and selection is due to be released by the end of the year. In August, we also released an improved version of our consultant mobile app, Infinity Connect, and in addition we are looking forward to releasing the further enhancements to the AI features for the core Infinity product in Q4.
+The above additions, along with our ongoing development of these products, have enabled our contingent new business sales in H1 to exceed those in the whole of FY24.
+Our ISV product has seen a number of enhancements delivered to the customer base along with a significant improvement to the test score and results systems. Furthermore, the previous work undertaken to enhance our content creation infrastructure has meant we have been able to efficiently deliver a number of bespoke client requests in the period. Whilst not directly attributable to these product enhancements we have seen increased order volumes for ISV in comparison to prior year.
+Financial performance
+Revenue
+Group revenue in H1 FY2025 reduced to £2.173m from £2.519m in H1 FY2024.
+Recurring revenues decreased by 14% to £1.966m over the comparable period last year (2024: £2.293m).
+Recurring revenues represented 91% of total revenues (2024: 91%). Non-recurring revenues were down 14% at £0.150m (2024: £0.175m).
+Adjusted EBITDA*
+The adjusted EBITDA* decreased by 10% to £0.583m from £0.650m in H1 FY2024. This however still resulted in another increase in EBITDA margin to 26.8%, compared to 25.8% in H1 FY2024.
+Operating profit/(loss) and profit/(loss) before tax
+The Group operating profit, before acquisition related, reorganisation and other items, decreased by 41% to stand at £0.079m from £0.133m in H1 FY2024.
+Inclusive of acquisition related and other items, the operating profit was £0.024m compared to a profit of £0.065m in H1 FY2024.
+The loss before tax increased to (£0.048m) from (£0.015m) in H1 FY2024.
+Taxation
+The net tax credit for H1 is £0.028m (H1 FY2024: £0.006m).
+Balance sheet
+The Group's net assets increased slightly to £3.288m (H1 FY2024: £3.206m) with trade and other receivables decreasing to £0.310m (H1 FY2024: £0.493m). Trade and other payables also decreased to £1.509m (H1 FY2024: £2.005m).
+R&D development
+The Group capitalised £0.414m in development costs in the period (H1 FY2024: £0.436m) as the business continued its commitment to developing its products. Amortisation of development costs was £0.485m (H1 FY2024: £0.489m)
+Financing
+The CBIL loan balance stands at £0.300m (31 December 2024: £0.450m) and, on the current payment profile, will be repaid by June 2026.
+The Group also has two convertible loans totalling £0.700m (31 December 2024: £0.700m), which will not be repaid until the CBIL loan has been repaid. The two convertible loans were made by current and former Directors of the Group.
+The Group also added in FY2025 H1 a loan agreement to a related party totalling £0.120m (31 December 2024: £nil).
+Cashflow
+Net cash generated from operating activities was broadly unchanged at £0.528m (2024: £0.529m).
+Net change in cash improved by 97% to (£0.004m) (H1 FY2024: (£0.153m)).
+At 30 June 2025, we had a utilisation of our bank facility of (£0.080m) (2024: utilisation £0.172m).
+Summarised cashflow
+H1 FY2025
+H1 FY2024
+£'000
+£'000
+Adjusted net cash from normalised operating activities
+528
+529
+Investing Activities - net
+(419)
+(441)
+Financial Activities - net
+(113)
+(241)
+Net change in cash and cash equivalents
+(4)
+(153)
+Cash and cash equivalents at beginning of year
+(74)
+(19)
+Effect of foreign exchange rate changes
+(2)
+-
+Cash and cash equivalents at 30th June
+(80)
+(172)
+Outlook
+We are now seeing positive momentum with our Talentis product. While this momentum will come too late to change the shape of our numbers in 2025, I am pleased to confirm that the Group expects to deliver results in line with expectations for EBITDA and adjusted pre-tax profit in 2025
+I am also pleased to report that we now expect 2026 to be our first year of revenue growth since 2022 and only our second since 2016. We believe that much of that growth will be driven by Talentis.
+Giles Fearnley
+CONSOLIDATED STATEMENT OF COMPREHENSIVE INCOME
+Note
+6 Months ended 30 June
+Year ended 31 Dec
+2025
+2024
+2024
+Unaudited
+Unaudited
+Audited
+£'000
+£'000
+£'000
+Revenue
+4
+2,173
+2,519
+4,903
+Cost of sales
+(224)
+(269)
+(503)
+Gross profit
+1,949
+2,250
+4,400
+Administrative expenses
+(1,925)
+(2,185)
+(4,235)
+Result from operating activities
+4
+24
+65
+165
+Analysed as:
+Result from operating activities before acquisition related, reorganisation and other items
+79
+133
+269
+Acquisition related, reorganisation and other items
+5
+(55)
+(68)
+(104)
+Result after acquisition related items
+24
+65
+165
+Financial cost
+(72)
+(80)
+(152)
+(Loss) / Profit before tax
+(48)
+(15)
+13
+Tax income
+6
+28
+6
+27
+(Loss) / Profit for the period
+(20)
+(9)
+40
+Other comprehensive income net of tax:
+Currency translation differences
+(7)
+(2)
+(4)
+Total comprehensive (loss) / income for period net of tax
+(27)
+(11)
+36
+Earnings per share (pence)
+Basic
+8
+(0.10)
+(0.05)
+0.20
+Diluted
+(0.10)
+(0.05)
+0.20
+CONSOLIDATED STATEMENT OF FINANCIAL POSITION
+As at 30 June 2025
+As at 30 June 2024
+As at 31 Dec 2024
+Unaudited
+Unaudited
+Audited
+ASSETS
+£'000
+£'000
+£'000
+Non-current assets
+Goodwill
+3,415
+3,415
+3,415
+Intangible assets
+2,520
+2,700
+2,618
+Right of use assets
+193
+219
+206
+Property plant & equipment
+13
+19
+14
+6,141
+6,353
+6,253
+Current assets
+Trade and other receivables
+310
+493
+430
+Current tax receivable
+-
+-
+1
+Cash and cash equivalents
+-
+-
+-
+310
+493
+431
+Total assets
+6,451
+6,846
+6,684
+EQUITY AND LIABILITIES
+Equity
+Share capital
+1,021
+983
+1,021
+Share premium
+1,653
+1,631
+1,653
+Merger reserve
+365
+365
+365
+Convertible loan reserve
+14
+14
+14
+Retained earnings
+150
+91
+170
+Share option reserve
+29
+57
+29
+Translation reserve
+56
+65
+63
+Total equity
+3,288
+3,206
+3,315
+Liabilities
+Non current liabilities
+Trade and other payables
+116
+169
+148
+Lease liabilities
+181
+3
+182
+Borrowings
+820
+700
+850
+Deferred tax
+223
+236
+223
+Total
+non-current liabilities
+1,340
+1,108
+1,403
+Current liabilities
+Trade and other payables
+1,393
+1,836
+1,564
+Lease liabilities
+18
+218
+28
+Borrowings
+300
+300
+300
+Current tax payable
+32
+6
+-
+Utilisation of bank facility
+80
+172
+74
+Total
+non-current liabilities
+1,823
+2,532
+1,966
+Total liabilities
+3,163
+3,640
+3,369
+Total liabilities and equity
+6,451
+6,846
+6,684
+The interim report was approved by the Board of directors and authorised for issue on 29 September 2025. They were signed on its behalf by:
+JS Starr IJ Mackin
+CONSOLIDATED STATEMENT OF CASH FLOWS
+As at 30 June
+As at 31 December
+2025
+2024
+2024
+Unaudited
+Unaudited
+Audited
+£'000
+£'000
+£'000
+Operating Activities
+(Loss) before tax
+(48)
+(9)
+13
+Adjustment for
+Financial cost
+72
+80
+152
+Depreciation and amortisation
+531
+584
+1,131
+Share option expense
+-
+-
+2
+Other including foreign exchange adjustments arising from operations
+(5)
+(2)
+14
+Operating cash flows before movements in working capital
+550
+653
+1,312
+Decrease / (Increase) in receivables
+120
+66
+129
+(Decrease) in payables
+(203)
+(184)
+(483)
+Net taxation (Paid) / repaid
+61
+(6)
+1
+Net cash generated from operating activities
+528
+529
+959
+Investing Activities
+Purchases of property plant and equipment
+(5)
+(5)
+(8)
+Sale of fixed assets
+-
+-
+1
+Investment in development costs
+(414)
+(436)
+(881)
+Net cash used in investing activities
+(419)
+(441)
+(888)
+Financing Activities
+Finance cost
+(72)
+(80)
+(152)
+Lease payments made
+(11)
+(11)
+(16)
+Issue of Shares
+-
+60
+Proceeds from loan notes
+120
+300
+Bank loan repayments
+(150)
+(150)
+(300)
+Net cash generated from financing activities
+(113)
+(241)
+(108)
+Net change in cash and cash equivalents
+(4)
+(153)
+(37)
+Cash and cash equivalents at beginning of the period
+(74)
+(19)
+(19)
+Effect of foreign exchange rate changes
+(2)
+-
+(18)
+Cash and cash equivalents at end of period
+(80)
+(172)
+(74)
+CONSOLIDATED STATEMENT OF CHANGES IN EQUITY
+Share
+Share
+Merger
+Retained
+Convertible
+Share
+Foreign
+Total
+capital
+premium
+Reserve
+earnings
+loan reserve
+option
+exchange
+£'000
+£'000
+£'000
+£'000
+£'000
+£'000
+£'000
+£'000
+Balance at 31 December 2024
+1,021
+1,653
+365
+170
+14
+29
+63
+3,315
+Comprehensive income
+Loss for the 6 months ended 30 June 2025
+-
+-
+-
+(20)
+-
+-
+-
+(20)
+Other comprehensive income
+-
+Exchange differences on translation of overseas operations
+-
+-
+-
+-
+-
+-
+(7)
+(7)
+Total comprehensive profit
+-
+-
+-
+(20)
+-
+-
+(7)
+(27)
+Transactions with owners
+Share option charge
+-
+-
+-
+-
+-
+-
+-
+-
+Balance at 30 June 2025
+1,021
+1,653
+365
+150
+14
+29
+56
+3,288
+Balance at 31 December 2023
+983
+1,631
+365
+100
+14
+57
+67
+3,217
+Comprehensive income
+Loss for the 6 months ended 30 June 2024
+-
+-
+-
+(9)
+-
+-
+-
+(9)
+Other comprehensive income
+-
+Exchange differences on translation of overseas operations
+-
+-
+-
+-
+-
+-
+(2)
+(2)
+Total comprehensive profit
+-
+-
+-
+(9)
+-
+-
+(2)
+(11)
+Transactions with owners
+Share option charge
+-
+-
+-
+-
+-
+-
+-
+-
+Balance at 30 June 2024
+983
+1,631
+365
+91
+14
+57
+65
+3,206
+OTES TO THE INTERIM
+NOTES TO THE UNAUDITED INTERIM REPORT
+CONSOLIDATED STATEMENT OF
+1. Basis of Preparation
+The financial information for the six months ended 30 June 2025 included in this condensed interim report comprises the consolidated statement of comprehensive income, the consolidated statement of financial position, the consolidated statement of cash flows, the consolidated statement of changes in equity and the related notes.
+The financial information in these interim results is that of the holding company and all of its subsidiaries (the Group). It has been prepared
+in accordance with UK adopted international accounting standards
+but does not include all of the disclosures that would be required under International Financial Reporting Standards (IFRSs). The accounting policies applied by the Group in this financial information are the same as those applied by the Group in its financial statements for the year ended 31 December 2024 and are those which will form the basis of the 2025 financial statements.
+The comparative financial information presented herein for the year ended 31 December 2024 does not constitute full statutory accounts for that period. The Group's annual report and accounts for the year ended 31 December 2024 have been delivered to the Registrar of Companies. The Group's independent auditor's report on those statutory accounts was unqualified, did not draw attention to any matters by way of emphasis, and did not contain a statement under 498(2) or 498(3) of the Companies Act 2006.
+Going concern
+The directors have continued to perform detailed forecasting on a regular basis taking into account current trading and expectations and cash balances and, having reflected upon these forecasts, the directors of the Company continue to adopt the going concern basis of accounting in preparing the financial statements.
+Dillistone Group Plc is the Group's ultimate parent company. It is a public listed company and is domiciled in the United Kingdom. The address of its registered office and principal place of business is 9 Cedarwood, Crockford Lane, Chineham Business Park, Basingstoke, RG24 8WD. Dillistone Group Plc's shares are listed on the Alternative Investment Market (AIM).
+2. Share Based Payments
+The Company operates two share option schemes. The fair value of the options granted under these schemes is recognised as an employee expense with a corresponding increase in equity. The fair value is measured at grant date and spread over the period at the end of which the option holder may exercise the option. The fair value of the options granted is measured using the Black-Scholes model.
+3. Reconciliation of adjusted operating profits to consolidated statement of comprehensive income
+6 months ended 30 June 2025 and 30 June 2024
+Adjusted operating profits
+Acquisition and reorganisation related items
+Adjusted operating profits
+Acquisition and reorganisation related items
+30-Jun-2025
+2025*
+30-Jun-2025
+30-Jun-2024
+2024*
+30-Jun-2024
+£'000
+£'000
+£'000
+£'000
+£'000
+£'000
+Revenue
+2,173
+-
+2,173
+2,519
+-
+2,519
+Cost of sales
+(224)
+-
+(224)
+(269)
+-
+(269)
+Gross profit
+1,949
+-
+1,949
+2,250
+-
+2,250
+Administrative expenses
+(1,870)
+(55)
+(1,925)
+(2,117)
+(68)
+(2,185)
+Results from operating activities
+79
+(55)
+24
+133
+(68)
+65
+Financial cost
+(72)
+-
+(72)
+(80)
+-
+(80)
+(Loss) before tax
+7
+(55)
+(48)
+53
+(68)
+(15)
+Tax (charge) / income
+23
+5
+28
+(7)
+13
+6
+Profit / (loss) for the period
+30
+(50)
+(20)
+46
+(55)
+(9)
+Other comprehensive income net of tax:
+Currency translation differences
+(7)
+-
+(7)
+(2)
+-
+(2)
+Total comprehensive (loss) / profit for the year net of tax
+23
+(50)
+(27)
+44
+(55)
+(11)
+* see accounts note 5
+Earnings per share - from continuing activities
+Basic
+0.15p
+(0.10p)
+0.23p
+(0.05p)
+Diluted
+0.15p
+(0.10p)
+0.23p
+(0.05p)
+Year Ended 31 December 2024
+Adjusted operating profits
+Acquisition
+and reorganisation
+related items
+31 December
+2024
+2024*
+31 December 2024
+£'000
+£'000
+£'000
+Revenue
+4,903
+-
+4,903
+Cost of sales
+(503)
+-
+(503)
+Gross profit
+4,400
+-
+4,400
+Administrative expenses
+(4,131)
+(104)
+(4,235)
+Results from operating activities (inc furlough)
+269
+(104)
+165
+Financial cost
+(152)
+-
+(152)
+Profit / (Loss) before tax
+117
+(104)
+13
+Tax income
+5
+22
+27
+Profit / (Loss) for the year
+122
+(82)
+40
+Other comprehensive income net of tax:
+Currency translation differences
+(4)
+-
+(4)
+Total comprehensive Profit / (Loss) for the year net of tax
+118
+(82)
+36
+* see accounts note 5
+Earnings per share - from continuing activities
+Basic
+0.61p
+0.20p
+Diluted
+0.61p
+0.20p
+4. Segment reporting
+Results
+Year ended
+6 months ended 30 June
+31 Dec
+2025
+2024
+2024
+£'000
+£'000
+£'000
+Results from operating activities
+Ikiru People
+59
+112
+237
+Central
+20
+21
+32
+Reorganisation and other costs
+(28)
+-
+12
+Amortisation of acquisition intangibles and other one off costs or income
+(27)
+(68)
+(116)
+Result from operating activities
+24
+65
+165
+Geographical segments
+The following table provides an analysis of the Group's revenues by geographical market.
+Year ended
+6 months ended 30 June
+31 Dec
+2025
+2024
+2024
+£'000
+£'000
+£'000
+UK
+1,730
+1,941
+3,750
+Europe
+179
+250
+464
+Americas
+151
+189
+382
+Australia
+71
+68
+131
+ROW
+42
+71
+176
+2,173
+2,519
+4,903
+4. Segment reporting (continued)
+Business Segment
+The following table provides an analysis of the Group's revenues by products and services.
+Year ended
+6 months ended 30 June
+31 Dec
+2025
+2024
+2024
+£'000
+£'000
+£'000
+Recurring
+1,966
+2,293
+4,394
+Non recurring
+150
+175
+395
+Third party revenues
+57
+51
+114
+2,173
+2,519
+4,903
+'Recurring income' represents all income recognised over time, whereas 'Non-recurring income' represents all income recognised at a point in time. Recurring income includes all support services, software as a service income (SaaS) and hosting income. Non-recurring income includes sales of new licenses, and income derived from installing those licenses including training, installation, and data translation. Third party revenues arise from the sale of third party software.
+Business Sector
+The following table provides an analysis of the Group's revenues by market sector.
+Year ended
+6 months ended 30 June
+31 Dec
+2025
+2024
+2024
+£'000
+£'000
+£'000
+Contingent
+1,486
+1,620
+3,460
+Executive Search
+687
+899
+2,135
+2,173
+2,519
+5,595
+5. Acquisition related items and other one off costs
+Year ended
+6 months ended 30 June
+31 Dec
+2025
+2024
+2024
+£'000
+£'000
+£'000
+Reorganisation and other costs
+28
+-
+-
+Lease Termination
+-
+-
+-
+Grants received from overseas jurisdictions
+-
+-
+(12)
+Amortisation of acquisition intangibles
+27
+68
+116
+Total
+55
+68
+104
+6. Tax
+Year ended
+6 months ended 30 June
+31 Dec
+2025
+2024
+2024
+£'000
+£'000
+£'000
+Current tax
+(8)
+(1)
+(1)
+Prior year adjustment - current tax
+-
+-
+(5)
+Deferred tax release
+(13)
+(9)
+(9)
+Prior year adjustment - deferred tax
+-
+17
+17
+Deferred tax rate change
+(2)
+-
+(7)
+Deferred tax re acquisition intangibles
+(5)
+(13)
+(22)
+Tax credit for the period
+(28)
+(6)
+(27)
+The tax charge is calculated for each jurisdiction based on the estimated position for the year. Deferred tax has been provided at a rate of 25%
+(2024: 25%).
+7. Dividends
+The Board has decided not to pay an interim dividend (2024: nil per share).
+8. Earnings per Share
+Year ended
+6 months ended 30 June
+31 Dec
+2025
+2024
+2024
+Basic earnings per share
+Profit / (Loss) attributable to ordinary shareholders
+(£20,000)
+(£9,000)
+£40,000
+Weighted average number of shares
+20,418,021
+19,668,021
+19,922,119
+Basic earnings / (loss) per share (pence)
+(0.10)
+(0.05)
+0.20
+9. Related party transactions
+The Company has related party relationships with its subsidiaries, its directors, and other employees of the Company with management responsibility. The Group issued £120,000 in loan notes which carry interest at 10.85% per annum payable quarterly in arrears to a related party during the period.
+The Directors participated in the issue of convertible loan notes in 2017 which carry interest at 8.15% per annum payable quarterly in arrears.
+The Directors participated in the issue of convertible loan notes in 2024 which carry interest at 9.85% per annum payable quarterly in arrears.
+There were no transactions with any other related parties.
+10. Cautionary statement
+This Interim Report has been prepared solely to provide additional information to
+shareholders to assess the Company's strategies and the potential for these strategies to succeed. The Interim Report should not be relied on by any other party or for any other purpose. The Interim Report contains certain forward-looking statements with respect to the financial condition, results of operations and businesses of the Company. These statements are made in good faith based on the information available to them up to the time of their approval of this report. However, such statements should be treated with caution as they involve risk and uncertainty because they relate to events and depend upon circumstances that will occur in the future. There are a number of factors that could cause actual results or developments to differ materially from those expressed or implied by these forward-looking statements. The continuing uncertainty in global economic outlook inevitably increases the economic and business risks to which the Company is exposed. Nothing in this announcement should be construed as a profit forecast.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+IR EAPNNAEFSEFA
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Notice of Interim Results & Investor Presentation</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">11th Sep 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Talentis Software</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+11 Sep 2025 07:00
+RNS Number : 8334Y
+Dillistone Group PLC
+11 September 2025
+11 September 2025
+Dillistone Group Plc
+("Dillistone", the "Company" or the "Group")
+Notice of Interim Results & Investor Presentation
+Dillistone Group Plc (AIM:DSG), the supplier of software and services for recruiters, expects to announce its interim results for the six months to 30 June 2025 on Tuesday 30 September 2025.
+Investor Presentation: 15:00 BST on Tuesday 2 October 2025
+Dillistone is pleased to announce that Jason Starr and Ian Mackin will provide a live presentation relating to the Interim Results via the Investor Meet Company platform on 02 October 2025, 15:00 BST.
+The
+presentation is open to all existing and prospective investors. Questions can be submitted
+pre-event via your Investor Meet Company dashboard up until 01 Oct 2025, 09:00 BST, or at any time during the live presentation.
+Investors can sign up to Investor Meet Company for free and can join the Dillistone presentation via the following link:
+https://www.investormeetcompany.com/dillistone-group-plc/register-investor
+Investors who already follow Dillistone on the Investor Meet Company platform will automatically be invited.
+Enquiries:
+Dillistone Group Plc
+Giles Fearnley
+Chairman
+01256 297 000
+Jason Starr
+Chief Executive Officer
+Ian Mackin
+Finance Director
+Zeus (Nominated adviser and Broker)
+Mike Coe
+Director, Investment Banking
+020 3829 5000
+Notes to Editors:
+Dillistone Group Plc
+is a leader in the supply and support of software and services to the recruitment industry. Dillistone operates through the Ikiru People (
+www.IkiruPeople.com
+) brand
+.
+The Group develops, markets and supports the Talentis, FileFinder, Infinity, Mid-Office, ISV and GatedTalent products.
+Dillistone was admitted to AIM, a market operated by the London Stock Exchange plc, in June 2006.
+Learn about our products:
+Talentis Software:
+https://www.talentis.global/recruitment-software/
+Voyager Software:
+https://www.voyagersoftware.com
+Online Timesheets:
+https://www.voyagersoftware.com/online-timesheets/
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+NOREADNEFLLSEFA
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Result of AGM</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">4th Jun 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">11:50 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Talentis Software</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+4 Jun 2025 11:50
+RNS Number : 4280L
+Dillistone Group PLC
+04 June 2025
+04 June 2025
+Dillistone Group Plc
+("Dillistone", the "Company" or the "Group")
+Result of AGM
+Dillistone is pleased to announce that all resolutions put to its Annual General Meeting held today were duly passed.
+The votes cast are set out below:
+Enquiries:
+Dillistone Group Plc
+Giles Fearnley
+Chairman
+01256 297 000
+Jason Starr
+Chief Executive Officer
+Ian Mackin
+Finance Director
+Zeus (Nominated adviser and Broker)
+Mike Coe
+Director, Investment Banking
+020 3829 5000
+Notes to Editors:
+Dillistone Group Plc
+is a leader in the supply and support of software and services to the recruitment industry. Dillistone operates through the Ikiru People (
+www.IkiruPeople.com
+) brand
+.
+The Group develops, markets and supports the Talentis, FileFinder, Infinity, Mid-Office, ISV and GatedTalent products.
+Dillistone was admitted to AIM, a market operated by the London Stock Exchange plc, in June 2006.
+Learn about our products:
+Talentis Software:
+https://www.talentis.global/recruitment-software/about-us/
+Voyager Software:
+https://www.voyagersoftware.com
+Online Timesheets:
+https://www.voyagersoftware.com/online-timesheets/
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+RAGSSUFSLEISELM
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">4</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #4
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">AGM Statement</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">4th Jun 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:01 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Talentis Software</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">60%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+4 Jun 2025 07:01
+RNS Number : 2954L
+Dillistone Group PLC
+04 June 2025
+04 June 2025
+Dillistone Group Plc
+("Dillistone", the "Company" or the "Group")
+Annual General Meeting statement
+At today's Annual General Meeting ('AGM') of Dillistone Group Plc, the AIM quoted supplier of software and services to the recruitment industry, Giles Fearnley, Chairman of Dillistone, will make the following AGM statement:
+"We are pleased to report that trading is in line with management expectations for H1.
+Cash generation has also been in line with expectations for the period and has been further strengthened by today's announcement of a new loan from a related party.
+In the Outlook section of our Annual Report 2024, we stated that "our improving competitiveness allowed us to achieve our best quarter for new business contract wins since Q1 2023". While the market remains challenging, we are pleased to report that by the end of May 2025 we had already secured new orders equivalent to over 60% of the total value of all new orders received in the previous year.
+We believe this validates our ongoing investment in product development and our belief that our competitive performance is improving.
+The Group remains confident in its ability to deliver performance for the full year in line with market expectations."
+Enquiries:
+Dillistone Group Plc
+Giles Fearnley
+Chairman
+01256 297 000
+Jason Starr
+Chief Executive Officer
+Ian Mackin
+Finance Director
+Zeus (Nominated adviser and Broker)
+Mike Coe
+Director, Investment Banking
+020 3829 5000
+Notes to Editors:
+Dillistone Group Plc
+is a leader in the supply and support of software and services to the recruitment industry. Dillistone operates through the Ikiru People (
+www.IkiruPeople.com
+) brand
+.
+The Group develops, markets and supports the Talentis, FileFinder, Infinity, Mid-Office, ISV and GatedTalent products.
+Dillistone was admitted to AIM, a market operated by the London Stock Exchange plc, in June 2006.
+Learn about our products:
+Talentis Software:
+https://www.talentis.global/recruitment-software/about-us/
+Voyager Software:
+https://www.voyagersoftware.com
+Online Timesheets:
+https://www.voyagersoftware.com/online-timesheets/
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+AGMSSFFWDEISEDM
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">5</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #5
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Related party loan</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">4th Jun 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">The Loan</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+4 Jun 2025 07:00
+RNS Number : 2870L
+Dillistone Group PLC
+04 June 2025
+04 June 2025
+Dillistone Group Plc
+("Dillistone", the "Company" or the "Group")
+Related party loan
+The Group is pleased to announce that it has agreed to raise a further GBP120,000 pursuant to a loan agreement ("Loan", "Loan Agreement", "Fundraising").
+The Board considers the Fundraising to be a prudent course of action in case the Group's markets continue to be challenging for an extended period. The proceeds from the Loan will therefore be used to provide the Group with additional working capital.
+The Loan Agreement, which will be drawn down fully when required by the Company, will be provided by Yuriko Starr, the wife of the Group CEO.
+The Loan is unsecured and ranks behind the Company's other existing debt in terms of capital repayments. The Loan carries an interest coupon of 10.85 percent pa over the term of 48 months. Interest will be payable quarterly in arrears and will be satisfied in cash. Capital and interest may be paid in full or in part at the discretion of the Company at any time during the term of the loan.
+The issue of the Loan Agreement constitutes a related party transaction under AIM Rule 13. The independent Directors of the Company, having consulted with Zeus Capital Limited, the Company's nominated adviser, consider that the terms of the Loan Agreement are fair and reasonable insofar as Dillistone shareholders are concerned.
+Enquiries:
+Dillistone Group Plc
+Giles Fearnley
+Chairman
+01256 297 000
+Jason Starr
+Chief Executive Officer
+Ian Mackin
+Finance Director
+Zeus (Nominated adviser and Broker)
+Mike Coe
+Director,
+Investment Banking
+020 3829 5000
+This announcement contains inside information for the purposes of Article 7 of the UK version of Regulation (EU) No 596/2014 which is part of UK law by virtue of the European Union (Withdrawal) Act 2018, as amended ("MAR"). Upon the publication of this announcement via a Regulatory Information Service, this inside information is now considered to be in the public domain.
+Notes to Editors:
+Dillistone Group Plc
+is a leader in the supply and support of software and services to the recruitment industry. Dillistone operates through the Ikiru People (
+www.IkiruPeople.com
+) brand
+.
+The Group develops, markets and supports the Talentis, FileFinder, Infinity, Mid-Office, ISV and GatedTalent products.
+Dillistone was admitted to AIM, a market operated by the London Stock Exchange plc, in June 2006.
+Learn about our products:
+Talentis Software:
+https://www.talentis.global/recruitment-software/
+Voyager Software:
+https://www.voyagersoftware.com
+Online Timesheets:
+https://www.voyagersoftware.com/online-timesheets/
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+IODUPUQGQUPAGQW
+                </div>
+            </details>
+            
+            </div>
+            
+            </div>
+            <div style="
+                margin-top: 20px;
+                padding: 14px 16px;
+                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+                border-radius: 10px;
+                font-size: 12px;
+                color: #78350f;
+                border-left: 3px solid #f59e0b;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            ">
+                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
+                <div style="line-height: 1.5;">
+                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
+                    Each RNS includes sentiment classification, key data extraction, and trading context. 
+                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
+                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                    </strong>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            details[open] > summary {
+                background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%) !important;
+                border-left-color: #0369a1 !important;
+            }
+            summary::-webkit-details-marker {
+                display: none;
+            }
+            
+            /* ========== MOBILE RESPONSIVE ========== */
+            @media (max-width: 768px) {
+                body {
+                    padding: 10px;
+                    font-size: 14px;
+                }
+                
+                .container {
+                    margin: 0 auto;
+                }
+                
+                .header-card {
+                    padding: 14px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .company-name {
+                    font-size: 22px;
+                    margin-bottom: 8px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 13px;
+                    padding: 6px 12px;
+                }
+                
+                .company-meta {
+                    gap: 8px;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+                
+                .meta-item {
+                    padding: 6px 12px;
+                    font-size: 12px;
+                    gap: 6px;
+                }
+                
+                .meta-icon {
+                    font-size: 14px;
+                }
+                
+                .score-hero {
+                    padding: 20px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .action-display {
+                    font-size: 18px !important;
+                    margin-bottom: 12px;
+                }
+                
+                .scores-row {
+                    gap: 16px;
+                    margin: 20px 0;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    display: flex;
+                }
+                
+                .score-circle {
+                    width: 110px;
+                    height: 110px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 32px;
+                }
+                
+                .score-label {
+                    font-size: 10px;
+                    margin-top: 4px;
+                }
+                
+                .timing-badge-large {
+                    padding: 10px 20px;
+                    font-size: 14px;
+                    margin: 12px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 14px;
+                    padding: 12px;
+                    margin-top: 12px;
+                }
+                
+                .factors-list {
+                    grid-template-columns: 1fr;
+                    gap: 10px;
+                    margin-top: 12px;
+                }
+                
+                .factor-item {
+                    padding: 12px;
+                    font-size: 12px;
+                    gap: 8px;
+                }
+                
+                .factor-icon {
+                    font-size: 16px;
+                }
+                
+                .cards-grid {
+                    grid-template-columns: 1fr;
+                    gap: 12px;
+                    margin-bottom: 12px;
+                }
+                
+                .card {
+                    padding: 16px;
+                    border-radius: 12px;
+                }
+                
+                .card-title {
+                    font-size: 14px;
+                    margin-bottom: 12px;
+                    gap: 8px;
+                }
+                
+                .card-icon {
+                    font-size: 18px;
+                }
+                
+                .stat-row {
+                    padding: 8px 0;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+                
+                .stat-label {
+                    font-size: 12px;
+                }
+                
+                .stat-value {
+                    font-size: 14px;
+                }
+                
+                .rally-badge {
+                    padding: 4px 10px;
+                    font-size: 10px;
+                }
+                
+                .risk-indicator {
+                    gap: 10px;
+                    padding: 12px;
+                    flex-wrap: wrap;
+                }
+                
+                .risk-icon {
+                    font-size: 20px;
+                }
+                
+                .reason-item {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                }
+                
+                .tag {
+                    padding: 3px 8px;
+                    font-size: 10px;
+                }
+                
+                .footer {
+                    padding: 12px;
+                    font-size: 11px;
+                    margin-top: 12px;
+                    border-radius: 12px;
+                }
+                
+                .alert-box {
+                    padding: 12px;
+                    margin: 10px 0;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                body {
+                    padding: 8px 6px;
+                }
+                
+                .header-card {
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    border-radius: 8px;
+                }
+                
+                .company-name {
+                    font-size: 18px;
+                    margin-bottom: 6px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 11px;
+                    padding: 3px 8px;
+                }
+                
+                .company-meta {
+                    gap: 4px;
+                    flex-direction: column;
+                }
+                
+                .meta-item {
+                    padding: 4px 6px;
+                    font-size: 11px;
+                    background: rgba(247, 250, 252, 0.7);
+                }
+                
+                .score-hero {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                    border-radius: 12px;
+                }
+                
+                .score-circle {
+                    width: 70px;
+                    height: 70px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 22px;
+                    font-weight: 800;
+                }
+                
+                .score-label {
+                    font-size: 7px;
+                    margin-top: 2px;
+                }
+                
+                .scores-row {
+                    flex-direction: column;
+                    gap: 10px;
+                    margin: 12px 0;
+                    align-items: center;
+                }
+                
+                .timing-badge-large {
+                    padding: 6px 12px;
+                    font-size: 11px;
+                    margin: 10px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 11px;
+                    padding: 8px;
+                    line-height: 1.3;
+                }
+                
+                .card {
+                    padding: 10px;
+                    margin-bottom: 8px;
+                    border-radius: 8px;
+                }
+                
+                .card-title {
+                    font-size: 12px;
+                    margin-bottom: 8px;
+                    font-weight: 700;
+                }
+            }
+        </style>
+        
+
+        <!-- Footer -->
+        <div class="footer">
+            Report generated: 2026-01-17 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            <strong>△ Not financial advice. Do your own research.</strong>
+            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
+                <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,3322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrashDash • GEMR.L APEX Profile</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .header-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .ticker-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .company-name { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .company-meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f7fafc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .meta-icon { font-size: 18px; }
+        
+        .score-hero {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        .action-display {
+            margin-bottom: 20px;
+        }
+        .scores-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .score-number {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .score-label { font-size: 12px; color: #666; margin-top: 5px; }
+        .timing-badge-large {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 24px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            margin: 20px 0;
+        }
+        .thesis-line {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .factors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .factor-item {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        .factor-icon { font-size: 20px; }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-icon { font-size: 24px; }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-label { color: #666; font-size: 14px; }
+        .stat-value { font-weight: 600; font-size: 16px; }
+        
+        .rally-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .risk-indicator {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .risk-high { background: #fee2e2; }
+        .risk-icon { font-size: 24px; }
+        
+        .reason-item {
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .tag {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .footer {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-top: 20px;
+        }
+        
+        .alert-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Header Card -->
+        <div class="header-card">
+            <div class="ticker-badge">GEMR.L</div>
+            <div class="company-name">Gem Resources Plc</div>
+            <div class="company-meta">
+                <div class="meta-item">
+                    <span class="meta-icon">■</span>
+                    <span><strong>Sector:</strong> Basic Materials</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">£</span>
+                    <span><strong>Market Cap:</strong> £2,469,264</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">◷</span>
+                    <span><strong>Days Active:</strong> 158 days</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action & Score Hero Section -->
+        <div class="score-hero">
+            <div class="action-display">
+                <span style="font-size: 32px; font-weight: 800; color: white;">◉ WATCH</span>
+            </div>
+            
+            <div class="scores-row">
+                <div class="score-circle">
+                    <div class="score-number" style="color: #f59e0b;">55</div>
+                    <div class="score-label">APEX SCORE</div>
+                </div>
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">40</div>
+                    <div class="score-label">CONFIDENCE</div>
+                </div>
+            </div>
+            
+            <div class="timing-badge-large">
+                Timing: <span class="rally-badge" style="background: #fef3c7; color: #92400e;">EARLY BUILD</span>
+            </div>
+            
+            <div class="thesis-line">
+                WATCH - EARLY_BUILD timing with 55/100 opportunity score
+            </div>
+        </div>
+
+        <!-- ==================== CRASHDASH INTELLIGENCE - PANIC HUNTER VIEW ==================== -->
+        
+        <div class="card" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b;">
+            <div class="card-title" style="color: #0f172a;">
+                <span class="card-icon">🏭</span>
+                CrashDash Intelligence • Industrials
+            </div>
+            
+            <!-- Fear Meter -->
+            <div style="background: white; padding: 24px; border-radius: 14px; margin-bottom: 20px; text-align: center;">
+                <div style="font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 16px;">🔥 PANIC METER</div>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 16px;">
+                    <div style="width: 160px; height: 160px; border-radius: 50%; background: conic-gradient(#f59e0b 252.0deg, #e5e7eb 252.0deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                        <div style="width: 130px; height: 130px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <div style="font-size: 48px; font-weight: 800; color: #f59e0b;">70</div>
+                            <div style="font-size: 12px; color: #64748b; font-weight: 600;">PANIC SCORE</div>
+                        </div>
+                    </div>
+                    <div style="text-align: left; max-width: 400px;">
+                        <div style="font-size: 18px; font-weight: 700; color: #f59e0b; margin-bottom: 12px;">HIGH PANIC</div>
+                        <div style="font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 12px;">🟠 Fear dominant - watch for reversal signs</div>
+                        <div style="font-size: 13px; color: #64748b;">
+                            <div>💔 Price: 40/40</div>
+                            <div>📉 Volume: 14/20</div>
+                            <div>🔇 Social: 6/20</div>
+                            <div>📰 News: 10/20</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CrashHunter Signals -->
+                <div style="margin-top: 20px;">
+                    <span style="display: inline-block; background: #f59e0b; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">🟠 Fear 70/100</span><span style="display: inline-block; background: #10b981; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">📊 Building</span><span style="display: inline-block; background: #3b82f6; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">🌟 APEX 55</span>
+                </div>
+                
+                <!-- Opportunity Flag -->
+                <div style="margin-top: 20px; padding: 16px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 10px; color: white; font-weight: 700; font-size: 16px;">🎯 ⚠️ HIGH PANIC + Early timing = Potential accumulation phase</div>
+            </div>
+            
+            <!-- Contrarian Compression Energy Panel -->
+            
+            <!-- Contrarian Compression Energy Panel -->
+            <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 24px; border-radius: 14px; margin-bottom: 20px; border: 3px solid #f59e0b;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <span style="font-size: 32px;">⚡</span>
+                    <div style="flex: 1;">
+                        <div style="font-size: 20px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">
+                            CONTRARIAN COMPRESSION SCORE
+                        </div>
+                        <div style="font-size: 13px; color: #475569; font-weight: 600;">
+                            Signal Congestion Framework • Compression = Explosive Potential
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Score Display -->
+                <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 30px;">
+                        <!-- Circular gauge -->
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: conic-gradient(#f59e0b 219.6deg, #e5e7eb 219.6deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                            <div style="width: 110px; height: 110px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <div style="font-size: 42px; font-weight: 800; color: #f59e0b;">61</div>
+                                <div style="font-size: 11px; color: #64748b; font-weight: 600;">/ 100</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Key metrics -->
+                        <div style="text-align: left;">
+                            <div style="font-size: 16px; font-weight: 700; color: #f59e0b; margin-bottom: 12px;">🟠 HIGH COMPRESSION (Top 15% - STRONG OPPORTUNITY)</div>
+                            <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                                <div><strong>0.5</strong> signals/week</div>
+                                <div><strong>3</strong> RSI &lt; 20 events</div>
+                                <div><strong>2</strong> escalations detected</div>
+                                <div style="color: #f59e0b; font-weight: 700; margin-top: 6px;">
+                                    💎 Historical pop: <strong>+418%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Component Breakdown -->
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 15px;">
+                        📊 5-COMPONENT BREAKDOWN
+                    </div>
+                    
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">compression</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #eab308;">17/40</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #eab308; height: 100%; width: 42.5%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">0.5 signals/week | 3 RSI<20 | 2 escalations | 📊 MODERATE COMPRESSION</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">intensification</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #ef4444;">20/20</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #ef4444; height: 100%; width: 100.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;"></div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">volume death</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">5/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 33.33333333333333%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">Elevated volume - Some activity</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">pop potential</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #f59e0b;">11/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #f59e0b; height: 100%; width: 73.33333333333333%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">SOLID MOVER - Historical 3x+ (419%)</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">accumulation</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #ef4444;">8/10</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #ef4444; height: 100%; width: 80.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">Accum 1 bars ago</div>
+                </div>
+                
+                </div>
+                
+                <!-- Contrarian Philosophy -->
+                <div style="background: rgba(255,255,255,0.7); padding: 16px; border-radius: 10px; border-left: 4px solid #f59e0b;">
+                    <div style="font-weight: 700; color: #0f172a; margin-bottom: 8px; font-size: 14px;">
+                        🎯 CONTRARIAN WISDOM
+                    </div>
+                    <div style="font-size: 13px; color: #334155; line-height: 1.6;">
+                        <strong>Signal congestion = Compression energy = Explosive potential.</strong><br>
+                        When multiple crash signals cluster together with extreme RSI and proven rally history, 
+                        it creates a compressed spring effect. More panic = More opportunity for contrarians.
+                        <div style="margin-top: 8px; padding: 10px; background: rgba(239,68,68,0.1); border-radius: 6px; font-size: 12px;">
+                            <strong style="color: #f59e0b;">Theory:</strong> High compression scores (60+) historically precede 
+                            explosive 10-20x moves when catalysts arrive. This is the foundation of crash hunting.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Fear vs Facts Contrarian View -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                <div style="background: #fee2e2; padding: 18px; border-radius: 12px; border-left: 4px solid #ef4444;">
+                    <div style="font-weight: 700; color: #991b1b; margin-bottom: 12px; font-size: 15px;">😱 FEAR (What Panic Shows)</div>
+                    <div style="color: #7f1d1d;">
+                        <div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 💔 Price destruction: 40/40 points</div>
+                    </div>
+                </div>
+                <div style="background: #dcfce7; padding: 18px; border-radius: 12px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #065f46; margin-bottom: 12px; font-size: 15px;">📊 FACTS (What Data Shows)</div>
+                    <div style="color: #064e3b;">
+                        <div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 📈 Historical upside: 250% proven capacity</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contrarian Verdict -->
+            <div style="background: white; padding: 18px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #6366f1;">
+                <div style="font-weight: 700; color: #4338ca; margin-bottom: 10px; font-size: 15px;">⚖️ Contrarian Verdict</div>
+                <div style="font-size: 15px; color: #1e293b; line-height: 1.6; font-weight: 600;">
+                    ⚖️ Mixed signals - Fear and facts balanced, wait for clarity
+                </div>
+            </div>
+            
+            <!-- Industry Crash Patterns -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">⚠️ Crash Patterns (Industrials)</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book decline or cancellations</div><div>• Margin compression (input costs)</div><div>• Cyclical demand weakness</div>
+                    </div>
+                    <div style="margin-top: 12px; padding: 10px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e; font-weight: 600;">🚨 Active: Project delays or overruns</div>
+                </div>
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">🚀 Recovery Paths</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Order book growth or new contracts</div><div>• Margin recovery (efficiency gains)</div><div>• Cyclical upturn (capex recovery)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Catalyst Pipeline -->
+            <div style="background: rgba(255,255,255,0.5); padding: 18px; border-radius: 12px; margin-bottom: 20px;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 14px; font-size: 15px;">📅 Catalyst Pipeline</div>
+                
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Results of General Meeting</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Notice of GM</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Adoption of Cryptocurrency Treasury Policy</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Total Voting Rights</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Half-year Report</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+            
+            <!-- CrashDash Decision Matrix -->
+            <div style="background: white; padding: 20px; border-radius: 12px; border: 3px solid #f59e0b;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 16px; text-align: center;">
+                    🎯 CRASHDASH DECISION: <span style="color: #f59e0b; font-size: 20px;">BUY</span>
+                </div>
+                <div style="font-size: 15px; color: #475569; text-align: center; margin-bottom: 20px; font-weight: 600;">
+                    🎯 CrashHunter Signal: ⚠️ HIGH PANIC + Early timing = Potential accumulation phase
+                </div>
+                <div style="background: #f8fafc; padding: 16px; border-radius: 10px;">
+                    <div style="font-weight: 700; color: #64748b; margin-bottom: 12px; font-size: 13px;">CHECKLIST (5/5 pass)</div>
+                    
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🔴</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Panic Score</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">70/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">✅</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Timing Regime</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">EARLY_BUILD</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">⭐</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">APEX Quality</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">55/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🎯</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Data Confidence</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">40/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🏭</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Industry Pattern</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">1 active</div>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
+        
+
+        <!-- Decision Summary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◆</span>
+                Why This Matters
+            </div>
+            <div class="stat-row"><span>• APEX 55/100 indicates strong opportunity quality</span></div><div class="stat-row"><span>• Timing regime: EARLY_BUILD</span></div><div class="stat-row"><span>• Historical profile: 1 rallies, 250% best run</span></div>
+            
+            <div class="alert-box" style="margin-top: 20px;">
+                <strong>△ Main Risk:</strong> Confidence 40/100 - full data loaded
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong>◉ Watch Next:</strong>
+                <div style="padding: 8px 0;">• RNS catalysts (funding/operational updates)</div><div style="padding: 8px 0;">• Volume expansion confirmation</div><div style="padding: 8px 0;">• Timing regime change signals</div>
+            </div>
+        </div>
+
+        <!-- ==================== TECHNICAL DETAILS (COLLAPSIBLE) ==================== -->
+        
+        <div class="card">
+          <details style="cursor:pointer;">
+            <summary style="font-weight:800; font-size:16px; list-style:none; padding: 10px; background: #f9fafb; border-radius: 8px;">
+              🔧 Technical Analysis & Scoring Details
+            </summary>
+            <div style="margin-top:14px;">
+              
+            <!-- Scoring Breakdown -->
+            <div class="card-title" style="margin-top: 20px;">
+                <span class="card-icon">▣</span>
+                APEX Score Breakdown
+            </div>
+            <div class="factors-list">
+                <div class="factor-item"><span class="factor-icon">◆</span><span><strong>Moderate Technical Setup</strong><br><small>Chart quality: 9/20 • Score: 11/25 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Massive recovery potential</strong><br><small>Down 86.7% from peak • Score: 17/20 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Strong volume</strong><br><small>2.3x average • Score: 10/10 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Limited history</strong><br><small>1 previous rallies • Score: 5/15 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Major upside</strong><br><small>Historical best: +250% • Score: 12/20 points</small></span></div>
+
+            </div>
+            
+            <div style="margin-top: 40px;"></div>
+            
+            <!-- Exhaustion Metrics -->
+            <div class="card-title">
+                <span class="card-icon">📈</span>
+                Rally Cycle Position
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Current Position</div>
+                    <div style="font-size: 32px; font-weight: 800;">98%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
+                    <div style="font-size: 32px; font-weight: 800;">250%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
+                    <div style="font-size: 32px; font-weight: 800;">0.4x</div>
+                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
+                </div>
+            </div>
+        
+            </div>
+          </details>
+        </div>
+        
+
+        <!-- Reasons Buy/Sell -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #10b981;">▲</span>
+                    Reasons to Buy
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Early stage positioning offers best R:R if catalysts appear</span>
+                    <span class="tag" style="background: #f59e0b; color: white;">⚡ Medium Strength</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">timing=EARLY BUILD • current return=98.0%</div>
+            </div>
+            
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Proven winner - previously hit lock-in target</span>
+                    <span class="tag" style="background: #f59e0b; color: white;">⚡ Medium Strength</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">profit target reached: True</div>
+            </div>
+            
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #ef4444;">▼</span>
+                    Reasons to Sell / Avoid
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Stale signal - not for active trading</span>
+                    <span class="tag" style="background: #ef4444; color: white;">🚨 High Risk</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">historical • signal date=2025-08-11</div>
+            </div>
+            
+            </div>
+        </div>
+
+        <!-- Trade Plans -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">📊</span>
+                    Short-Term Trader Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 20%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <div style="font-size: 18px; font-weight: 600; margin-bottom: 5px;">Watch / Starter</div>
+                    <div style="font-size: 14px; opacity: 0.9;">Wait for base + catalyst confirmation; starter position only</div>
+                </div>
+                <div style="padding: 12px; background: #f9fafb; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Position Size</div>
+                    <div style="font-weight: 600;">0-1% until CONFIRMED</div>
+                </div>
+                <div style="padding: 12px; background: #fef2f2; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Risk Management</div>
+                    <div style="font-weight: 600; color: #dc2626;">Invalidation = breaks recent lows / dilution / suspension</div>
+                </div>
+                <div style="padding: 12px; background: #f0fdf4; border-radius: 6px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Exit Strategy</div>
+                    <div style="font-weight: 600; color: #059669;">Scale out 25% at +15%, 25% at +50%, runner above</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">💼</span>
+                    Long-Term Investor Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center;">
+                    <div style="font-size: 32px; margin-bottom: 5px;">✗</div>
+                    <div style="font-size: 18px; font-weight: 600;">Not Recommended for Investors</div>
+                </div>
+                <div style="padding: 15px; background: #f9fafb; border-radius: 8px; font-size: 14px; line-height: 1.6;">
+                    <strong style="color: #667eea;">📋 Investment Thesis:</strong><br>
+                    Unlock after AI triangulation + CONFIRMED timing<br><br>
+                    <strong style="color: #667eea;">⏳ Time Horizon:</strong><br>
+                    N/A<br><br>
+                    <strong style="color: #ef4444;">🛡️ Exit Rule:</strong><br>
+                    N/A
+                </div>
+            </div>
+        </div>
+
+        <!-- Commentary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◐</span>
+                Executive Commentary
+            </div>
+            <div style="line-height: 1.6; margin-bottom: 20px;">
+                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows EARLY_BUILD timing with 55/100 APEX score. Historical data shows 1 rallies averaging 250% upside. Current position: +98.0%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #10b981;">▲ Bull Case:</strong>
+                <div style="padding: 8px 0;">• Early regime often offers best risk/reward</div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #ef4444;">▼ Bear Case:</strong>
+                <div style="padding: 8px 0;">• Monitor for breakdown signals</div>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
+                <strong>◷ Timing Translation:</strong><br>
+                Early accumulation phase. Watch for confirmation before committing size.
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
+                <strong>◎ Confidence Explained:</strong><br>
+                Confidence 40/100 reflects full data quality with triangulation loaded.
+            </div>
+        </div>
+
+        <!-- Data Quality Warning -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">△</span>
+                Data Quality Notice
+            </div>
+            <div class="alert-box">
+                <strong>Analysis Mode:</strong> HISTORICAL_ONLY<br>
+                <strong>Impact:</strong> HIGH
+            </div>
+            <div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">AI insights from Groq LLM</div></div></div>
+
+            <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk.
+            </div>
+        </div>
+
+        <!-- ==================== TOP 5 RECENT RNS NEWS ==================== -->
+        
+        <div class="card" style="border-top: 3px solid #3b82f6;">
+            <div class="card-title" style="margin-bottom: 20px;">
+                <span class="card-icon">📰</span>
+                Top 5 Recent RNS Announcements
+            </div>
+            <div style="margin-top: 15px;">
+                
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #10b98140;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📈</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Results of General Meeting</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • BULLISH</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    FINANCIAL RESULTS: Financial results released | ✅ BULLISH: Positive results typically drive price increases. Check guidance for future expectations.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">20th Nov 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">11:21 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #10b981;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #10b981;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">FINANCIAL RESULTS: Financial results released</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #10b981; font-weight: 600;">✅ BULLISH: Positive results typically drive price increases. Check guidance for future expectations.</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Curlew Emerald</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+20 Nov 2025 11:21
+RNS Number : 3908I
+Gem Resources PLC
+20 November 2025
+20 November 2025
+GEM Resources plc
+(the "
+Company
+")
+Results of General Meeting
+Gem Resources plc (LSE: GEMR) is pleased to announce that, at the General Meeting ("
+General Meeting
+") of the Company held today, all resolutions put to the General Meeting were duly passed (each, a "
+Resolution
+", and together, the "
+Resolutions
+").
+A poll was held on each of the Resolutions, and Resolutions were all passed by the required majority.
+Resolutions 1 and 2 were passed as ordinary resolutions. Resolutions 3 and 4 were passed as special resolutions. The results of the poll were as follows:
+In favour
+Against
+Withheld
+Total Votes
+Resolution
+Votes
+%
+Votes
+%
+Votes
+Ordinary Resolutions
+Resolution 1:
+To provide Directors' with authority to allot shares
+396,802,020
+99.88
+269,156
+0.07
+54,032
+397,260,523
+Resolution 2:
+To provide Directors' with authority to allot shares
+396,802,020
+99.88
+269,156
+0.07
+54,032
+397,260,523
+SPECIAL RESOLUTIONS
+Resolution 3:
+To provide Directors' with authority for disapplication of pre-emption rights
+395,273,591
+99.50
+1,769,156
+0.45
+54,032
+397,260,523
+Resolution 4:
+To provide Directors' with authority for disapplication of pre-emption rights
+396,773,591
+99.88
+486,932
+0.12
+54,032
+397,260,523
+*Any proxy appointments which gave discretion to the chairman of the General Meeting have been included in the "Vote For" total.
+The total number of ordinary shares of nominal value 0.01 pence each in the capital of the Company in issue at the voting date is 617,316,176
+.
+A "vote withheld" is not a vote in law and is not counted in the calculation of the proportion of votes for and against the Resolution.
+In accordance with UKLR 22.2.6R of the Financial Conduct Authority ("
+FCA
+"), a copy of the Resolutions passed have been submitted to the FCA's National Storage mechanism and will shortly be available for inspection at
+https://data.fca.org.uk/#/nsm/nationalstoragemechanism
+.
+The full text of all of the Resolutions can be found in the Notice of General Meeting posted on the Company's website,
+https://gemresources.co.uk/publications/
+.
+For further information please contact:
+Gem Resources Plc
+Executive Chairman
+Louis Ching
+Chief Executive Officer
+Bernard Olivier
++44 (0)746 368 6497
+info@gemresources.co.uk
+ALbR Capital Limited
+Joint Corporate Broker
+Lucy Williams
+Duncan Vasey
+Capital Plus Partners
+Joint Corporate Broker
+Jon Critchley
++44 (0)20 7469 0930
++44 (0)203 821 6169
+About Gem Resources Plc ("GEMR")
+GEMR is an emerging emerald producer, focusing on the Gravelotte Emerald Mine. Historically, GEMR is one of the world's largest emerald mines, located in South Africa. The Company is committed to sustainable and efficient mining practices, utilizing modern technology to revive this historically significant emerald mine. The Company has also acquired the Curlew Emerald Mine in Australia, further expanding its emerald mining operations and assets.
+For more information about Gem Resources Plc, including investor relations and corporate news, please visit our website at
+www.gemresources.co.uk
+. Interested parties are also invited to sign-up for our newsletter via our website.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+ROMFEAFFSEISEFF
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Notice of GM</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 55/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Notice of GM | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">3rd Nov 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">55/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Notice of GM</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Curlew Emerald</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+3 Nov 2025 07:00
+RNS Number : 7028F
+Gem Resources PLC
+03 November 2025
+NOT FOR RELEASE, PUBLICATION OR DISTRIBUTION, IN WHOLE OR IN PART, DIRECTLY OR INDIRECTLY, IN OR INTO OR FROM THE UNITED STATES, AUSTRALIA, CANADA, JAPAN, THE REPUBLIC OF SOUTH AFRICA OR ANY OTHER JURISDICTION WHERE IT IS UNLAWFUL TO DISTRIBUTE THIS ANNOUNCEMENT.
+THIS ANNOUNCEMENT CONTAINS INSIDE INFORMATION FOR THE PURPOSES OF ARTICLE 7 OF REGULATION 2014/596/EU WHICH IS PART OF DOMESTIC UK LAW PURSUANT TO THE MARKET ABUSE (AMENDMENT) (EU EXIT) REGULATIONS (SI 2019/310) ("UK MAR"). UPON THE PUBLICATION OF THIS ANNOUNCEMENT, THIS INSIDE INFORMATION (AS DEFINED IN UK MAR) IS NOW CONSIDERED TO BE IN THE PUBLIC DOMAIN.
+Gem Resources Plc
+("GEMR" or the "Company")
+Notice of General Meeting
+Gem Resources Plc (LSE: GEMR)
+, the emerald mining and development company with operations in South Africa and Australia, announces that its Board
+is today posting a Notice of Meeting to Shareholders convening a General Meeting ("GM") of the Company for 11am on 20th November 2025.
+The GM
+will be held at 11am on 20th November 2025 at the offices of Orrick, Herrington, Sutcliffe (UK) LLP, 107 Cheapside, London, EC2V 6DN, United Kingdom.
+Shareholders should email any questions they have to
+info@gemresources.co.uk
+(using the subject line "GM Question"). Shareholders are requested to submit any questions that they may have, in good time, ahead of the GM.
+Instructions on how to vote are attached to the Notice of GM and proxy form which are both available on the Company's website. Shareholders wishing to appoint a proxy are recommended to appoint the Chairman of the Meeting to do so. Proxy votes must be received by no later than 11am on 18th November 2025.
+Enquiries:
+Gem Resources Plc
+Executive Chairman
+Louis Ching
+Chief Executive Officer
+Bernard Olivier
++44 (0)746 368 6497
+info@gemresources.co.uk
+Peterhouse Capital Limited
+Joint Corporate Broker
+Lucy Williams
+Duncan Vasey
+Capital Plus Partners
+Joint Corporate Broker
+Jon Critchley
++44 (0)20 7469 0930
++44 (0)203 821 6169
+About Gem Resources Plc ("GEMR")
+GEMR is an emerging emerald producer, focusing on the Gravelotte Emerald Mine. Historically, GEMR is one of the world's largest emerald mines, located in South Africa. The Company is committed to sustainable and efficient mining practices, utilizing modern technology to revive this historically significant emerald mine. The Company has also acquired the Curlew Emerald Mine in Australia, further expanding its emerald mining operations and assets.
+For more information about Gem Resources Plc, including investor relations and corporate news, please visit our website at
+www.gemresources.co.uk
+. Interested parties are also invited to sign-up for our newsletter via our website.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+NOGEANEFDDSSFEA
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Adoption of Cryptocurrency Treasury Policy</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Adoption of Cryptocurrency Treasury Policy | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">9th Oct 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Adoption of Cryptocurrency Treasury Policy</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #f59e0b; font-weight: 600;">🟡 MEDIUM RISK: Some concerns, assess context</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📊 ANALYZE: Determine offer price, arbitrage opportunity if discount</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">⚠️ CRITICAL: Serious company health concerns - potential distress signal</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Crypto Treasury</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">50%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+9 Oct 2025 07:00
+RNS Number : 6158C
+Gem Resources PLC
+09 October 2025
+THIS ANNOUNCEMENT ("ANNOUNCEMENT") AND THE INFORMATION CONTAINED HEREIN IS RESTRICTED AND NOT FOR RELEASE, PUBLICATION OR DISTRIBUTION, IN WHOLE OR IN PART, DIRECTLY OR INDIRECTLY, IN OR INTO OR FROM THE UNITED STATES, AUSTRALIA, CANADA, JAPAN, THE REPUBLIC OF SOUTH AFRICA OR ANY OTHER JURISDICTION WHERE IT IS UNLAWFUL TO DISTRIBUTE THIS ANNOUNCEMENT.
+THIS ANNOUNCEMENT CONTAINS INSIDE INFORMATION FOR THE PURPOSES OF ARTICLE 7 OF REGULATION 2014/596/EU WHICH IS PART OF DOMESTIC UK LAW PURSUANT TO THE MARKET ABUSE (AMENDMENT) (EU EXIT) REGULATIONS (
+SI 2019/310
+) ("UK MAR"). UPON THE PUBLICATION OF THIS ANNOUNCEMENT, THIS INSIDE INFORMATION (AS DEFINED IN UK MAR) IS NOW CONSIDERED TO BE IN THE PUBLIC DOMAIN.
+Gem Resources Plc
+(the "
+Company"
+and together with its subsidiaries from time to time, the "Group" or "
+GEMR
+")
+Adoption of Cryptocurrency and Digital Asset Treasury Policy
+Gem Resources Plc (LSE: GEMR)
+, the emerald mining and development company with operations in South Africa and Australia, is pleased to announce that its board of directors (the "
+Board
+") has formally approved and adopted a
+Cryptocurrency and Digital Asset Treasury Policy (the "Policy")
+, supported by an updated Financial Position and Prospects Procedures Board Memorandum ("
+FPPP
+") and a new Company Standard Operating Procedure ("
+SOP
+").
+The Policy establishes a clear framework for the acquisition, holding, and management of cryptocurrencies within GEMR's treasury and commercial operations. It reflects the Company's commitment to disciplined governance, regulatory compliance, and transparent reporting, while positioning GEMR to benefit from the growing adoption of digital assets in global commerce. For the avoidance of doubt, the Policy does not change the Company's strategic focus on emerald mining and development and does not involve any admission of cryptoassets to trading venues or public offers of cryptoassets by the Company.
+Key Features of the Policy
+·
+Strategic rationale
+- Cryptocurrencies, led by Bitcoin, will be used both as a store of value and inflation hedge, and as a practical commercial utility. GEMR will now be able to
+accept payment for emerald sales in Bitcoin and other Board-approved cryptocurrencies
+, facilitating trade and offtake with a broader range of international partners. Any acceptance of cryptoassets as consideration will be converted into fiat or retained in accordance with Board
+‑
+approved risk limits and capital preservation thresholds, and will comply with applicable Anti-Money Laundering and Counter-Terrorism Financing ("
+AML
+"; "
+CTF
+") and sanctions requirements.
+·
+Risk management
+- The Company acknowledges that cryptocurrency investments are subject to significant volatility and regulatory uncertainty. The Policy includes comprehensive risk management procedures, including position limits, regular mark-to-market valuations, and stress testing scenarios.
+·
+Allocation approach
+- Initial approved assets include Bitcoin, Ethereum and Solana. Unless otherwise resolved by the Board, at least 50% of GEMR's cryptocurrency holdings will be maintained in Bitcoin, with the balance allocated at the Board's discretion to other approved cryptocurrencies in line with market conditions and in accordance with the Policy. The Company will always retain sufficient working capital in fiat currencies (principally GBP and USD) to cover operational, payroll, and listing obligations, ensuring that cryptocurrency holdings are in addition to, rather than a substitute for, essential liquidity.
+·
+Hong Kong hub for crypto operations
+- Gem Resources Limited ("
+GEMR HK
+"), a wholly-owned Kong Kong incorporated subsidiary of the Company, will serve as the designated operational hub for the Group's cryptocurrency activities, including maintaining a Hong Kong bank account, managing operational cryptocurrency wallets, receiving emerald sales proceeds in Bitcoin or other approved cryptocurrencies, executing cryptocurrency transactions, and ensuring compliance with applicable Hong Kong financial services regulations in relation to cryptocurrencies and the Policy.
+·
+Custody & security
+- the Company will implement a "cold-storage-first" custody utilising multi-signature authorisation, whitelisted wallets (pre-approved wallet addresses) and regulated custodial partners. Operational wallets will be used for day-to-day receipts and working balances, with periodic movements of excess holdings to long-term cold storage (offline storage systems). Safeguarding arrangements will align to UK regulatory expectations for cryptoasset custody, including segregation, reconciliation and resilient access controls.
+·
+Governance & approvals
+- All cryptocurrency transfers and transactions require dual authorisation from designated personnel, with quarterly Board review and audit committee oversight of all cryptocurrency activities. Monthly reconciliation and consolidated reporting will be provided to the Board and a designated senior manager of the Company, appropriately qualified in digital asset management, will be responsible for Policy oversight and internal control effectiveness. Material deviations from the Policy require prior Board approval.
+·
+Compliance & reporting
+- The Policy aligns with UK MAR, Financial Conduct Authority ("
+FCA
+") requirements, and international AML, CTF and Know Your Customer ("
+KYC
+") requirements. Cryptocurrency holdings will be classified and accounted for as intangible assets under International Accounting Standard 38 "Intangible Assets" at cost less any accumulated impairment losses. . Detailed disclosures regarding cryptocurrency holdings, accounting policies, risk exposures, and fair value information will be provided in the Company's financial statements in due course, in accordance with International Financial Reporting Standards ("IFRS") 7 "Financial Instruments: Disclosures" and IFRS 13 "Fair Value Measurement".
+·
+Implementation
+- the Company has implemented comprehensive operational procedures to support the Policy:
+o
+a
+Crypto Treasury SOP
+has been adopted covering wallet management, commercial receipts, execution, reconciliation, controls, and incident response;
+o
+the FPPP has been updated to integrate GEMR HK operations, dual-authorisation requirements and cryptocurrency reporting protocols; and
+o
+the Company has updated its risk management framework - the SOP includes incident escalation procedures, cyber response and business continuity plans to address operational risks.
+Additional information
+·
+No change of business
+- The adoption of the Policy is a treasury and operational measure and does not change the nature of the Group's principal activities. The Board has assessed that the Policy does not constitute a fundamental change of business or a reverse takeover under UK Listing Rule ("
+UKLR
+") 22.3, as cryptocurrency activities remain ancillary to core operations and below relevant size thresholds. If the Company were to contemplate any transaction involving cryptoassets that, when aggregated with other transactions, may amount to a reverse takeover, the Company would make the requisite announcements and, where required, seek shareholder approval in accordance with the UKLRs.
+Louis Ching, Executive Chairman of Gem Resources Plc, commented:
+"My vision is to lead GEMR into new frontiers of value creation, and this Cryptocurrency Treasury Policy is a central pillar of that strategy. Through this framework, we gain optionality in how we deploy capital, broaden our settlement universe, and strengthen resilience in volatile macro environments. Importantly, sufficient working capital will always remain in fiat to meet operational, payroll, and listing obligations, ensuring that our day-to-day activities are fully supported. The ability to receive emerald sales proceeds in Bitcoin or other approved digital assets not only aligns GEMR with evolving market preferences, but also enhances our global reach and capital efficiency. By combining robust governance and conservative capital management with this forward-looking approach, GEMR is ensuring that digital assets contribute responsibly to both operational efficiency and long-term shareholder value."
+Enquiries:
+Gem Resources Plc
+Executive Chairman
+Louis Ching
+Chief Executive Officer
+Bernard Olivier
++44 (0)746 368 6497
+info@gemresources.co.uk
+Peterhouse Capital Limited
+Joint Corporate Broker
+Lucy Williams
+Duncan Vasey
+Capital Plus Partners
+Joint Corporate Broker
+Jon Critchley
++44 (0)20 7469 0930
++44 (0)203 821 6169
+About Gem Resources Plc ("GEMR")
+GEMR is an emerging emerald producer, focusing on the Gravelotte Emerald Mine. Historically, GEMR is one of the world's largest emerald mines, located in South Africa. The Company is committed to sustainable and efficient mining practices, utilizing modern technology to revive this historically significant emerald mine. The Company has also acquired the Curlew Emerald Mine in Australia, further expanding its emerald mining operations and assets.
+For more information about Gem Resources Plc, including investor relations and corporate news, please visit our website at
+www.gemresources.co.uk
+. Interested parties are also invited to sign-up for our newsletter via our website.
+Important Legal Information
+The information contained in this Announcement is for background purposes only and does not purport to be full or complete, nor does this Announcement constitute or form part of any invitation or inducement to engage in investment activity. No reliance may be placed by any person for any purpose on the information contained in this Announcement or its accuracy, fairness or completeness. The contents of this Announcement are not to be construed as legal, financial or tax advice.
+This Announcement does not constitute or form part of any offer or invitation to sell or issue, or any solicitation of any offer to purchase or subscribe for, any securities, nor shall it (or any part of it), or the fact of its distribution, form the basis of, or be relied on in connection with, any contract therefor.
+This Announcement does not constitute investment advice regarding cryptocurrencies or digital assets. Cryptocurrency investments are highly volatile and speculative, and may result in total loss of capital. The Company's cryptocurrency policy is subject to regulatory developments in the UK and internationally, which may materially affect the implementation or continuation of cryptocurrency activities. Prospective investors should seek independent professional advice before making any investment decisions.
+This Announcement may include forward-looking statements, which are based on current expectations and projections about future events, including about the Group's operations, strategy, financial performance and the future prospects of its operations. These statements may include, without limitation, any statements preceded by, followed by or including words such as "target", "believe", "expect", "aim", "intend", "may", "anticipate", "estimate", "plan", "project", "will", "can have", "likely", "should", "would", "could" and any other words and terms of similar meaning or the negative thereof.
+Forward-looking statements are based on current expectations and are subject to various risks and uncertainties that could cause actual outcomes to differ materially. These risks include, but are not limited to: cryptocurrency market volatility and liquidity risks; regulatory changes affecting digital asset operations; cybersecurity threats and operational risks associated with cryptocurrency custody and transactions; technological developments that may affect cryptocurrency values or utility; counterparty risks with cryptocurrency exchanges and custodial partners; accounting treatment changes for digital assets; and broader economic conditions. No representation or warranty is made or will be made that any forward-looking statement will come to pass, and no assurance can be given that any forward-looking statement will prove accurate. Except as required by law, the Company undertakes no obligation to revise or update any forward-looking statement. The forward-looking statements in this Announcement speak only as at the date of this Announcement.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+MSCEALEPEADSFFA
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">4</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #4
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Total Voting Rights</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 75/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Total Voting Rights | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Sep 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">75/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Total Voting Rights</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Curlew Emerald</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+30 Sep 2025 07:00
+RNS Number : 1956B
+Gem Resources PLC
+30 September 2025
+NOT FOR RELEASE, PUBLICATION OR DISTRIBUTION, IN WHOLE OR IN PART, DIRECTLY OR INDIRECTLY, IN OR INTO OR FROM THE UNITED STATES, AUSTRALIA, CANADA, JAPAN, THE REPUBLIC OF SOUTH AFRICA OR ANY OTHER JURISDICTION WHERE IT IS UNLAWFUL TO DISTRIBUTE THIS ANNOUNCEMENT.
+30 September 2025
+Gem Resources plc
+("
+GEM
+" or "
+Company
+")
+Total Voting Rights
+The board of directors of Gem Resources plc (LSE: GEMR)
+announces that the total issued share capital of the Company as at 30 September 2025, consists of 617,316,176 Ordinary Shares none of which are held in treasury. Therefore, the total number of voting rights in the Company is 617,316,176.
+The figure of 617,316,176 Ordinary Shares may be used by shareholders of the Company as the denominator for the calculations by which they will determine if they are required to notify their investment in, or a change in their interest in, the share capital of the Company under the Financial Conduct Authority's Disclosure Guidance and Transparency Rules.
+Enquiries:
+Gem Resources Plc
+Chief Executive Officer
+Bernard Olivier
+Executive Director
+Peter Redmond
++44 (0)746 368 6497
+info@gemresources.co.uk
+Peterhouse Capital Limited
+Joint Corporate Broker
+Lucy Williams
+Duncan Vasey
+Capital Plus Partners
+Joint Corporate Broker
+Jon Critchley
++44 (0)20 7469 0930
++44 (0)203 821 6169
+About Gem Resources Plc ("GEMR")
+GEMR is an emerging emerald producer, focusing on the Gravelotte Emerald Mine. Historically, GEMR is one of the world's largest emerald mines, located in South Africa. The Company is committed to sustainable and efficient mining practices, utilizing modern technology to revive this historically significant emerald mine. The Company has also acquired the Curlew Emerald Mine in Australia, further expanding its emerald mining operations and assets.
+For more information about Gem Resources Plc, including investor relations and corporate news, please visit our website at
+www.gemresources.co.uk
+. Interested parties are also invited to sign-up for our newsletter via our website.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+TVRGIGDCDDDDGUC
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">5</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #5
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Half-year Report</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">GROK: 90/100 • NEUTRAL</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    CORPORATE NEWS: Half-year Report | 📊 Neutral informational update
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">26th Sep 2025</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                <div style="
+                    margin: 16px 0;
+                    padding: 14px;
+                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                    border-radius: 10px;
+                    border-left: 4px solid #3b82f6;
+                ">
+                    <h4 style="
+                        font-size: 13px;
+                        color: #1e293b;
+                        margin-bottom: 12px;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                    ">
+                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
+                        <span style="
+                            display: inline-block;
+                            background: #3b82f6;
+                            color: white;
+                            padding: 2px 8px;
+                            border-radius: 10px;
+                            font-size: 11px;
+                            font-weight: 800;
+                        ">90/100</span>
+                    </h4>
+                    
+                    <div style="display: grid; gap: 10px;">
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Half-year Report</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
+                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
+                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
+                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📈 IMPROVING: Company demonstrating strength and growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Adit Mining</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">50%, 50%, 31%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+26 Sep 2025 07:00
+RNS Number : 8668A
+Gem Resources PLC
+26 September 2025
+THIS ANNOUNCEMENT CONTAINS INSIDE INFORMATION FOR THE PURPOSES OF ARTICLE 7 OF REGULATION 2014/596/EU WHICH IS PART OF DOMESTIC UK LAW PURSUANT TO THE MARKET ABUSE (AMENDMENT) (EU EXIT) REGULATIONS (SI 2019/310) ("UK MAR"). UPON THE PUBLICATION OF THIS ANNOUNCEMENT, THIS INSIDE INFORMATION (AS DEFINED IN UK MAR) IS NOW CONSIDERED TO BE IN THE PUBLIC DOMAIN.
+26 September 2025
+Gem Resources plc
+("
+GEMR
+" or the "
+Company
+")
+The Directors of GEMR are pleased to present the unaudited interim condensed consolidated financial statements of Gem Resources plc for the six months ended 30 June 2025.
+Gem Resources plc (LSE: GEMR), the mineral exploration group listed on the Standard List segment of the main market of the London Stock Exchange announces its unaudited interim condensed consolidated financial statements for the six months ended 30 June 2025. The full report is available on the Company's website at www.gemresources.co.uk. In accordance with Listing Rule 9.6.1 of the UK Financial Conduct Authority ("FCA"), a copy of the 2025 Interim Report will also be submitted to the FCA via the National Storage Mechanism and will shortly be available to the public for inspection at:
+https://www.fca.org.uk/markets/primary-markets/regulatory-disclosures/national-storage-mechanism
+Chairman's Statement
+GEM Resources Plc - Interim Results for the six months ended 30 June 2025
+I am honoured to address you for the first time as Executive Chairman of Gem Resources Plc ("GEMR"
+or the "Company"
+). The first half of 2025 has been a period of transformation, marked by important operational milestones and the foundations for decisive strategic initiatives that are being advanced post period-end.
+Strategic Priorities: Post-Period Treasury and Offtake Initiatives
+Following the end of the reporting period, the Board has advanced two pivotal initiatives that will define GEMR's future trajectory.
+Treasury Policy Update
+The Board has proposed a
+strategic and transformative update to GEMR's Treasury Policy, under which, surplus funds, once fully approved and implemented, may be allocated into leading cryptocurrencies such as Bitcoin, Ethereum, and Solana. The objective is to diversify liquid assets, strengthen financial flexibility, and align GEMR with capital management practices increasingly adopted by innovative global resource companies.
+In support of this proposed policy, GEMR is internally developing a proprietary algorithmic entry strategy designed to optimise potential returns within the parameters of the Treasury Policy. This forward-looking approach will serve both as a hedge and as a way of integrating the Company into the digital finance ecosystem, an area of growing importance to global investment and commodity trade.
+Offtake and Pre-Financing Agreement
+Post period-end, the Company also began progressing negotiations to secure a significant offtake and pre-finance trade agreement for its Gravelotte emerald production. We are in advanced discussions with leading tokenisation and commodity trading partners to establish a direct-offtake structure. The intent is to provide upfront liquidity for mine development while opening access to broader global sales channels-including decentralised platforms-thereby accelerating growth and maximising the value of GEMR's assets.
+Operational Progress
+During the first half of the year, GEMR commenced hard-rock mining at the Cobra Open Pit in South Africa, confirming Gravelotte's geological model and production potential. Early test sales, although modest, validated our processing methods and provided proof of concept for commercialisation, despite the challenging backdrop in the gemstone sector.
+Board Transformation and Capitalisation
+Post period-end, GEMR completed a £2.117 million recapitalisation comprising a £617,320 equity subscription at market price, the issuance of £1.5 million unsecured convertible loan notes at a 50% premium to the subscription price, and the planned conversion of approximately £230,000 of accrued Board fees into equity also at a 50% premium to the subscription price. These measures have significantly strengthened the Company's balance sheet and stabilised working capital.
+We also welcomed Mr Hin Shek ("Hans") Wong as a Non-Executive Director, further broadening the Board's expertise. The accelerated Rule 9 waiver, approved by the Takeover Panel, with the backing of independent shareholders, reflects strong support for the Company's strategy and governance.
+Shareholder Alignment and ESG Commitment
+As the Company's majority shareholder, my overriding objective is to ensure value creation for all stakeholders. We remain committed to maintaining strong ESG standards, ensuring transparent engagement with our communities, and fostering clear communication with the market.
+Outlook
+While the gemstone market remains subdued, GEMR now has the operational progress, strengthened financial position, and new strategic initiatives required to advance Gravelotte and Curlew, while also establishing innovative financing and marketing channels. These developments provide a solid foundation for long-term growth.
+On behalf of the Board, I thank our shareholders and investors for their continued support. I look forward to reporting further progress as we implement our post-period initiatives-the proposed crypto treasury policy and the offtake agreement-which we believe will be central to GEMR's next chapter.
+Louis Ching
+Executive Chairman
+25 September 2025
+Business Review
+The Directors present the interim results of Gem Resources Plc
+("GEMR" or the "Company")
+, together with its subsidiaries ("the Group"), for the six-month period from 1 January 2025 to 30 June 2025.
+Financial and Operational Review
+The first half of 2025 was a period of transition and challenge for the Company. Operationally, we achieved encouraging progress at the Gravelotte Emerald Mine with the commencement of hard-rock mining and our first trial sales. At the same time, we were faced with a constrained financial position, as highlighted in both the Annual Report published in April 2025 and again in these Interim Results. Against this backdrop, the post-period refinancing and Board changes represent a turning point for the Company.
+Gravelotte Operations
+In January 2025, GEMR commenced hard-rock mining at the Cobra Open Pit, part of the Gravelotte Emerald Mine in South Africa. Results from the initial mining and processing runs have been encouraging, with emerald-bearing material recovered and processed through the upgraded plant. These activities confirm that Gravelotte has the potential to develop into an economically viable emerald mine, though further work, investment and market support will be required before such a conclusion can be reached.
+First Sales
+During February and March 2025, the Company completed its first trial sales of emeralds and by-products, generating gross proceeds of approximately USD57,000 (c. £45,000). While modest in scale and completed against subdued gemstone market conditions, these sales represent an important proof-of-concept for our recovery and marketing processes.
+Board and Corporate Developments
+During the period, Directors demonstrated their alignment with shareholders by agreeing to receive a portion of their accrued fees in equity rather than cash. A total of 5,999,998 new ordinary shares were issued at 0.65 pence per share, representing a 31% premium to the prevailing market price at the time. This decision both preserved cash resources and reflected the Directors' confidence in the Company's long-term potential.
+In June 2025, we also bid farewell to Sam Mulligan, who resigned from the Board, and we thank him for his service and contribution.
+Restructuring and Refinancing
+Subsequent to the period-end, GEMR completed a transformational £2.117 million recapitalisation. This comprised a £617,320 equity subscription at the then market price of 0.20 pence per share and the issue of £1.5 million unsecured convertible loan notes, convertible at a 50% premium to that subscription price. As part of this restructuring and refinancing, the Board also agreed that all outstanding and accrued fees - approximately £230,000 - would be converted into equity at the same 50% premium to the subscription price.
+This refinancing not only provided critical working capital, but also addressed the Company's previously poor financial condition, which had been a matter of concern in earlier reporting. In conjunction with the refinancing, Mr Louis Ching was appointed as Executive Chairman and Mr Hin Shek ("Hans") Wong joined as a Non-Executive Director. On behalf of management, I am pleased to formally welcome them to GEMR. Their expertise and commitment will be invaluable as we take the Company forward. Importantly, the Takeover Panel granted an accelerated Rule 9 waiver following the written approval of a majority of independent shareholders, ensuring that the transaction could proceed in the best interests of all shareholders.
+Financial Performance
+For the six months ended 30 June 2025, GEMR reported:
+·
+Other operating income: £45,000 (H1 2024: nil) from initial trial sales
+·
+Operating expenses: £410,000 (H1 2024: £535,000)
+·
+Loss after tax: £386,000 (H1 2024: £561,000)
+·
+Net assets: £1.25m at 30 June 2025 (31 Dec 2024: £1.69m)
+·
+Cash: £74,000 at 30 June 2025 (31 Dec 2024: £414,000)
+The successful fundraising and the proposed conversion of accrued Board and management fees into equity have materially strengthened the balance sheet and positioned the Company to progress its operations.
+Outlook
+While challenges remain, GEMR is now in a stronger position than at the start of the year. The early results at Gravelotte, together with our improved financial footing and strengthened leadership team, provide a solid foundation on which to build.
+Following the post-period subscription and convertible loan note issuance, the Company now has the resources and structure to pursue its strategic objectives. The proceeds will be applied to advancing in-pit exploration at the Gravelotte Emerald Mine in South Africa to improve resource definition, together with open pit optimisation and upgrades to processing and sorting systems aimed at increasing production and lowering unit mining costs. At the Curlew Emerald Mine in Australia, work will focus on exploration, development, and the progression towards a restart of operations. In addition, funds will support exploration and assessment activities Zambian licence areas, the strengthening of corporate governance and operational systems to align with the Company's enlarged capital base, and the positioning of GEMR to pursue innovative financing and marketing channels, including the proposed crypto treasury policy and potential offtake structures.
+With these measures in place, GEMR is better equipped to deliver operational progress, unlock value from its asset base, and move closer to establishing itself as a sustainable and reliable participant in the global emerald market.
+Bernard Olivier
+Chief Executive Officer
+25 September 2025
+Directors'
+Report
+The directors present their interim condensed consolidated financial statements of the Company for the six-month period from 1 January 2025 to 30 June 2025.
+DIRECTORS OF THE COMPANY
+The directors who have served during the period and up to the date of approval were as follows:
+Louis Ching1
+Executive Chairman
+Hin Shek "Hans" Wong1
+Non-Executive Director
+Edward Nealon
+Non-Executive Director
+Bernard Olivier
+Chief Executive Officer
+Peter Redmond
+Executive Director
+John Treacy
+Non-Executive Director
+Sam Mulligan2
+Operations Director
+1. Appointed 4 September 2025.
+2. Resigned on 19 June 2025.
+GOING CONCERN
+The Company raises money for exploration and capital projects as and when required. There can be no assurance that the Group's projects will be fully developed in accordance with current plans or completed on time or to budget. Future work on the development of these projects, the levels of production and financial returns arising therefrom, may be adversely affected by factors outside the control of the
+Group and Company
+.
+The ability of the
+Group
+to meet its projected expenditure is dependent on further equity injections and/or the raising of cash through debt instruments. These conditions necessarily indicate that a material uncertainty exists that may cast significant doubt over the
+Group's
+ability to continue as a going concern and therefore its ability to realise its assets and discharge its liabilities in the normal course of business. Whilst acknowledging this material uncertainty, the Directors remain confident of raising finance and therefore, the Directors consider it appropriate to prepare these interim condensed consolidated financial statements on a going concern basis. These interim condensed consolidated financial statements do not include the adjustments that would result if the
+Group
+were unable to continue as a going concern.
+RESULTS AND DIVIDENDS
+The interim condensed consolidated statement of comprehensive income is set out on page 8 and shows the loss for six-month period to 30 June 2025. The directors consider the loss for the period to be in line with expectations. The directors do not recommend a payment of a dividend.
+We confirm to the best of our knowledge:
+a) the condensed set of financial statements has been prepared in accordance with IAS 34 "Interim Financial Reporting"; and
+b) the interim management report includes a fair review of the information required by Disclosure and Transparency Rules 4.2.7R and 4.2.8R of the United Kingdom Financial Conduct Authority.
+Signed on behalf of the Board who approved the half yearly financial report on 25 September 2025.
+Louis Ching
+Executive Chairman
+25 September 2025
+Interim Condensed Consolidated Statement of Comprehensive Income
+6 months to 30 June 2025
+Unaudited
+6 months to 30 June 2024
+Unaudited
+£'000s
+£'000s
+Other operating income
+45
+-
+Operating expenses
+(410)
+(535)
+Operating loss
+(365)
+(535)
+Interest expense
+(29)
+(26)
+Interest income
+3
+-
+Loss before taxation
+(391)
+(561)
+Taxation
+5
+-
+Loss for the period
+(386)
+(561)
+Other comprehensive income
+Loss for the period
+(386)
+(561)
+Items that may be reclassified to profit or loss:
+Exchange difference on currency translations
+(16)
+(12)
+Total comprehensive loss for the period
+(402)
+(573)
+Basic and diluted earnings per share (pence)
+10
+(0.11)
+(0.21)
+The
+accompanying notes
+form part of these interim condensed consolidated financial statements.
+Interim Condensed Consolidated Statement of Financial Position
+Company number: 05329401
+30 June
+2025
+Unaudited
+31 December 2024
+Audited
+Note
+£'000s
+£'000s
+ASSETS
+Non-current assets
+Exploration asset
+28
+26
+Goodwill
+728
+728
+Property, plant and equipment
+342
+373
+Right of use asset
+22
+29
+Total non-current Assets
+1,120
+1,156
+Current assets
+Inventories
+22
+9
+Other receivables
+6
+18
+101
+Restricted cash
+12
+12
+Cash and cash equivalents
+74
+414
+Total current assets
+126
+536
+Total assets
+1,246
+1,692
+LIABILITIES
+Non-current liabilities
+Lease liabilities
+(13)
+(19)
+Other payables
+(503)
+(479)
+Provisions
+(12)
+(12)
+Deferred tax liability
+(3)
+(8)
+Total non-current liabilities
+(531)
+(518)
+Current liabilities
+Trade and other payables
+7
+(393)
+(489)
+Lease liabilities
+(10)
+(10)
+Total current liabilities
+(403)
+(499)
+Total liabilities
+(934)
+(1,017)
+Net assets
+312
+675
+EQUITY
+Share capital
+8
+31
+30
+Share premium
+8
+4,728
+4,690
+Other reserves
+52
+344
+Accumulated loss
+(4,313)
+(4,184)
+Total equity attributable to equity owners of the parent
+498
+880
+Non-controlling interest
+(186)
+(205)
+Total equity
+312
+675
+The accompanying notes form part of these interim condensed consolidated financial statements.
+These interim condensed consolidated financial statements were approved and authorised for issue by the Board and were signed on its behalf by:
+Louis Ching
+Executive Chairman
+25 September 2025
+Interim Condensed Consolidated Statement of Changes in Equity
+Share
+capital
+Share
+premium
+Other
+reserves
+Accumu-lated loss
+Non-Controlling interest
+Total equity
+£'000s
+£'000s
+£'000s
+£'000s
+£'000s
+£'000s
+As at 1 January 2025
+30
+4,690
+344
+(4,184)
+(205)
+675
+Loss for the period
+-
+-
+-
+(331)
+(55)
+(386)
+Other comprehensive income
+-
+-
+(90)
+-
+74
+(16)
+Total comprehensive income
+(90)
+(331)
+19
+(402)
+Equity issued
+1
+38
+-
+-
+-
+39
+Warrants lapsed
+-
+-
+(202)
+202
+-
+-
+As at 30 June 2025
+31
+4,728
+52
+(4,313)
+(186)
+312
+Share
+capital
+Share
+premium
+Other
+reserves
+Accumu-lated loss
+Total equity
+£'000s
+£'000s
+£'000s
+£'000s
+£'000s
+As at 1 January 2024 (restated - Note 12)
+25
+3,938
+291
+(2,469)
+1,785
+Total comprehensive income
+-
+-
+(12)
+(561)
+(573)
+Equity issued
+3
+345
+-
+-
+348
+Warrants issued
+-
+(12)
+12
+-
+-
+Share option expense
+-
+-
+85
+-
+85
+As at 30 June 2024
+28
+4,271
+376
+(3,030)
+1,645
+The accompanying notes form part of these interim condensed consolidated financial statements.
+Interim Condensed Consolidated Statement of Cash Flows
+6 months to 30 June 2025
+Unaudited
+6 months to 30 June 2024
+Unaudited
+£'000s
+£'000s
+Cash flows from operating activities
+Loss for the period before tax
+(391)
+(561)
+Depreciation, amortisation and impairment
+28
+14
+Net finance cost
+26
+26
+Foreign currency loss
+1
+-
+Share based payment
+-
+85
+Increase in inventories
+(12)
+(10)
+Decrease in receivables
+83
+51
+(Decrease)/increase in payables
+(60)
+136
+Net cash used in operating activities
+(325)
+(259)
+Cash flows from investing activities
+Interest received
+3
+-
+Purchase of property, plant and equipment
+-
+(28)
+Net cash from/(used in) investing activities
+3
+(28)
+Cash flows from financing activities
+Issue of shares for cash, net of costs
+-
+348
+Finance cost
+(5)
+(4)
+Repayment of lease liability
+(5)
+(10)
+Net cash (used in)/from financing activities
+(10)
+334
+Net (decrease)/increase in cash and cash equivalents
+(332)
+47
+Foreign exchange translation differences
+(8)
+(5)
+Cash and cash equivalents at the beginning of the period
+414
+674
+Cash and cash equivalents at the end of the period
+74
+716
+The accompanying notes form part of these interim condensed consolidated financial statements.
+Notes
+to the Interim Condensed Consolidated Financial Statements
+1.
+General information
+Gem Resources Plc's ("GEMR" or the "Company",
+together with its subsidiaries "the Group"
+) interim condensed consolidated financial statements are presented in British Pound Sterling (GBP) which is the presentation currency of the Group and have been rounded to the nearest £'000.
+Gem Resources Plc is the Group's ultimate parent company. It is a public limited company incorporated in England and Wales. The address of its registered office is at 9th Floor, 107 Cheapside, London, United Kingdom, EC2V 6DN and its shares are listed on the Equity Shares (Transition) segment of the Market of the London Stock Exchange.
+2.
+Nature of operations
+GEMR is a mineral exploration and an emerging emerald producer. The Group leverages the extensive in-house skills of its Board and team to identify and pursue unique, value-enhancing opportunities in minerals with a view to proving-up early-stage exploration projects for ongoing monetisation and the delivery of stakeholder returns.
+The Group's operations relate to the exploration of the GEM asset in South Africa, the Malaika licence areas in Zambia and the Curlew Emerald Mine in Australia as well as the maintenance of the appropriate licenses over these areas with phased production which commenced at GEM in April 2024.
+3. Basis
+of
+preparation
+These interim condensed consolidated financial statements are for the six-month period ended 30 June 2025. They have been prepared in accordance with IAS34 'Interim Financial Reporting'. The interim condensed consolidated financial statements do not include all of the information required in annual financial statements in accordance with IFRS, and should be read in conjunction with the Annual Report and Consolidated Financial Statements for the year ended 31 December 2024.
+The financial information set out in these interim condensed consolidated financial statements does not constitute statutory accounts as defined in Section 434 of the Companies Act 2006. The Company's statutory financial statements for the year ended 31 December 2024 have been filed with the Registrar of Companies. The auditor's report on those financial statements was unqualified but included a material uncertainty related to going concern.
+In the opinion of the Directors the interim condensed consolidated financial statements present fairly the Company's financial position, and results from operations and cash flows for the
+period
+in conformity with the generally accepted accounting principles consistently applied.
+Critical accounting judgements and key sources of estimation uncertainty
+There have been no changes to the critical accounting judgements made nor the key sources of estimation to those disclosed in the 31 December 2024 financial statements.
+Going concern
+The Group raises money for exploration and capital projects as and when required. There can be no assurance that the Group's projects will be fully developed in accordance with current plans or completed on time or to budget. Future work on the development of these projects, the levels of production and financial returns arising therefrom, may be adversely affected by factors outside the control of the
+Group and Company
+.
+The ability of the
+Group
+to meet its projected expenditure is dependent on further equity injections and/or the raising of cash through debt instruments. These conditions necessarily indicate that a material uncertainty exists that may cast significant doubt over the
+Group's
+ability to continue as a going concern and therefore its ability to realise its assets and discharge its liabilities in the normal course of business. Whilst acknowledging this material uncertainty, the Directors remain confident of raising finance and therefore, the Directors consider it appropriate to prepare these interim condensed consolidated financial statements on a going concern basis. These interim condensed consolidated financial statements do not include the adjustments that would result if the
+Group
+were unable to continue as a going concern.
+4.
+Significant accounting policies
+The Group has applied the same accounting policies, presentation, methods of computation, significant judgements and the key sources of estimation of uncertainties in its interim condensed consolidated financial statements as in its audited financial statements for the year ended 31 December 2024
+which were published on 30 April 2025
+, except for the following amendments which apply for the first time in 2025. However, not all are expected to impact the Group as they are either not relevant to the Group's activities or require accounting which is consistent with the Group's current accounting policies.
+The following new standards and amendments are effective for the period beginning 1 January 2025:
+·
+Lack of exchangeability
+(Amendments to IAS 21
+The Effects of Changes in Foreign Exchange Rates
+)
+Lack of exchangeability
+(Amendments to IAS 21
+The Effects of Changes in Foreign Exchange Rates
+)
+On 15 August 2023, the IASB issued
+Lack of Exchangeability
+which amended IAS 21
+The Effects of Changes in Foreign Exchange Rates (the Amendments)
+.
+These Amendments are applicable for annual reporting periods beginning on or after 1 January 2025. The Amendments introduce requirements to assess when a currency is exchangeable into another currency and when it is not. The Amendments require an entity to estimate the spot exchange rate when it concludes that a currency is not exchangeable into another currency. The Amendments also introduce additional disclosure requirements when an entity estimates a spot exchange rate because a currency is not exchangeable into another currency.
+IAS 21, prior to the Amendments, did not include explicit requirements for the determination of the exchange rate when a currency is not exchangeable into another currency, which led to diversity in practice.
+When applying the Amendments, an entity is not permitted to restate comparative information.
+These Amendments have had no material effect on the interim condensed consolidated financial statements.
+5.
+Segment information
+Operating segments
+The Board of Directors consider that the Group has one operating segment, being that of emerald mining and exploration. Accordingly, all revenues, operating results, assets and liabilities are allocated to this activity.
+Geographical segments
+The Group operates in three principal geographical areas - South Africa, Zambia and Australia.
+The Group's non-current assets by location of assets are detailed below.
+South Africa
+Zambia
+Australia
+Group
+£'000s
+£'000s
+£'000s
+£'000s
+30 June 2025
+Total non-current assets
+596
+272
+252
+1,120
+31 December 2024
+Total non-current assets
+623
+270
+263
+1,156
+6.
+Other receivables
+30 June
+2025
+Unaudited
+31 December 2024
+Audited
+£'000s
+£'000s
+Prepayments
+5
+30
+Sundry debtors
+-
+15
+VAT recoverable
+13
+56
+18
+101
+7.
+Trade and other payables
+30 June
+2025
+Unaudited
+31 December 2024
+Audited
+£'000s
+£'000s
+Trade payables
+217
+232
+Other payables
+2
+17
+Accruals
+174
+240
+393
+489
+8.
+Share capital
+30 June
+2025
+Unaudited
+31 December 2024
+Audited
+£'000s
+£'000s
+Allotted, called up and fully paid share capital
+31
+30
+Movements in Equity
+Number of shares in issue
+Number of shares in issue
+30 June
+2025
+31 December 2024
+Opening balance Ordinary Shares in issue of £0.0001 each
+302,658,090
+252,345,590
+Issue of Ordinary Shares of £0.0001 each
+5,999,998
+50,312,500
+Closing balance of Ordinary Shares in issue of £0.0001 each
+308,658,088
+302,658,090
+The Company has one class of ordinary shares which carry no right to fixed income.
+Share capital
+30 June
+2025
+Unaudited
+31 December 2024
+Audited
+£'000s
+£'000s
+Balance at the beginning of the period
+30
+25
+Shares issued during the period
+1
+5
+Balance at the end of the period
+31
+30
+Share premium
+30 June
+2025
+Unaudited
+31 December 2024
+Audited
+£'000s
+£'000s
+Balance at the beginning of the period
+4,690
+3,980
+Shares issued during the period
+38
+710
+Balance at the end of the period
+4,728
+4,690
+Ordinary shares
+All shares rank equally with regard to the Company's residual assets. The holders of ordinary shares are entitled to receive dividends as declared from time to time and are entitled to one vote per share at meetings of the Company.
+Share Premium
+Represents excess paid above nominal value of shares issued.
+9.
+Related party transactions
+Remuneration of key management personnel
+Six months ended 30 June 2025
+Salaries and fees
+Share based payments(1)
+Total
+£
+£
+£
+Edward Nealon
+22,500
+-
+22,500
+Bernard Olivier
+35,000
+-
+35,000
+Peter Redmond
+20,000
+-
+20,000
+John Treacy
+12,000
+-
+12,000
+Sam Mulligan*
+(24,167)
+-
+(24,167)
+65,333
+-
+65,333
+* Resigned as director on 19 June 2025. His accrued and unpaid fees have been reversed.
+Six months ended 30 June 2024
+Salaries and fees
+Share based payments(1)
+Total
+£
+£
+£
+Edward Nealon
+20,833
+-
+20,833
+Bernard Olivier
+28,333
+34,160
+62,493
+Peter Redmond
+14,667
+17,080
+31,747
+John Treacy
+12,000
+-
+12,000
+Sam Mulligan
+20,000
+-
+20,000
+95,833
+51,240
+147,073
+(1) In accordance with the requirements of IFRS 2 Share-based payments, the estimated fair value for the share options granted was calculated using a Black Scholes option pricing model. None of the share options have been exercised.
+As announced on 28 February 2025, the Company agreed to issue 5,999,998 new ordinary shares of £0.0001 each ("Ordinary Shares") at an issue price of 0.65 pence per Ordinary Share to the directors Bernard Olivier, Edward Nealon and Peter Redmond in lieu of cash settlement of part of their accrued fees.
+For a period of six months in 2025 and in order to preserve cash, all director salaries were accrued. At 30 June 2025, an amount of £120,583 (31 December 2024: £103,250) is due to directors and included in trade and other payables.
+10.
+Earnings per share
+Earnings per share is calculated by dividing the loss for the period attributable to ordinary equity shareholders of the parent by the weighted number of ordinary shares outstanding during the period.
+During the period the calculation was based on the loss for the six-month period of £331,000 (H1 2024: £571,000) divided by the weighted number of ordinary shares 307,606,034 (H1 2024: 268,178,923).
+The diluted loss per share and the basic loss per share are recorded as the same amount as conversion of share options and warrants decreases the basic loss per share, thus being anti-dilutive.
+11.
+Fair value
+The Group considers that the carrying amount of the following financial assets and financial liabilities are a reasonable approximation of their fair value:
+• Other receivables
+• Restricted cash
+• Cash at cash equivalents
+• Other payables
+• Trade and other payables.
+12.
+Prior period adjustments
+As disclosed in the Annual Report and Consolidated Financial Statements for the year ended 31 December 2024, the Group and the Company has provided a restated Balance Sheet as at 31 December 2023 and 1 January 2023 in accordance with IAS 8.
+(i) Restatement of prior year balances
+The Group holds 74% in Venus Emeralds Proprietary Limited and Adit Mining Consultants and Trading Proprietary Limited via Gem - Venus Holdings Proprietary Limited. The prior year statement of comprehensive income did not reflect the 26% portion of the profit or loss attributable to non-controlling interests and has therefore been restated. The non-controlling interest debit adjustment of £69,000 reflects the 26% share of losses attributable to South African subsidiaries, in compliance with IFRS 10. This adjustment aligns with the proportional allocation of equity ownership within the Group.
+The earnings per share have been restated as the adjustment affects the profit or loss attributable to owners of the parent used as the numerator.
+During a review of the share premium balance it was discovered that £15,000 paid by Ed Nealon in September 2023 and £15,000 due by Peter Redmond was not recorded as part of the capital raise as was announced on 1 September 2023. In addition, share issue cost was overcharged by £12,000 for which a refund was received in 2024. The overcharge was not recorded as a debtor in 2023. It was also discovered that fees amounting to £38,000 paid on behalf of a subsidiary was incorrectly charged to profit and loss and should have been allocated against the intercompany loan account.
+Impact on adjustment on the consolidated statement of changes in equity
+30 Dec 2023
+31 Dec 2023
+(as previously stated)
+Prior year adjustment
+(as re-stated)
+£'000
+£'000
+£'000
+Increase in share premium
+3,938
+42
+3,980
+Decrease in non-controlling interest
+-
+(69)
+(69)
+Increase in retained earnings
+(2,469)
+107
+(2,362)
+Impact on Profit and Loss
+(1,170)
+38
+(1,132)
+Effect on total equity
+-
+80
+-
+Impact on adjustment on the company statement of changes in equity
+30 Dec 2023
+31 Dec 2023
+(as previously stated)
+Prior year adjustment
+(as re-stated)
+£'000
+£'000
+£'000
+Increase in share premium
+3,938
+42
+3,980
+Increase in retained earnings
+(2,231)
+38
+(2,193)
+Impact on Profit and Loss
+(906)
+38
+(868)
+Effect on total equity
+-
+80
+-
+(ii) Restatement of prior year statement of cash flows
+The Group and Company have restated certain prior year comparatives to correctly present amounts in the Group and Company financial statements for the year ended 31 December 2023.
+The prior year cash flow incorrectly included non-cash movements related to the acquisition of Gem - Venus Holdings Proprietary Limited.
+Accordingly, the prior year statement of cash flows has been restated to correct these errors.
+Impact on adjustment on the consolidated statement of cash flows
+30 Dec 2023
+31 Dec 2023
+(as previously stated)
+Prior year adjustment
+(as re-stated)
+£'000
+£'000
+£'000
+Cash flows from operating activities
+Contingent consideration
+436
+(436)
+-
+(Increase)/decrease in receivables
+10
+177
+187
+Increase/(decrease) in payables
+50
+(418)
+(368)
+Cash flows from investment activities
+Purchase of subsidiary, property plant and equipment
+(559)
+559
+-
+Purchase of property plant and equipment
+-
+(7)
+(7)
+Acquisition of subsidiary, net of cash acquired
+-
+9
+9
+Cash flow from financing activities
+Issue of shares for cash, net of costs
+1,402
+(72)
+1,330
+Impact on adjustment on the company statement of cash flows
+30 Dec 2023
+31 Dec 2023
+(as previously stated)
+Prior year adjustment
+(as re-stated)
+£'000
+£'000
+£'000
+Cash flows from operating activities
+Contingent consideration
+436
+(436)
+-
+(Increase)/decrease in receivables
+(453)
+377
+(76)
+Cash flows from investment activities
+Purchase of subsidiary, property plant and equipment
+(536)
+536
+-
+Loans provided to subsidiaries
+-
+(443)
+(443)
+Cash flow from financing activities
+Issue of shares for cash, net of costs
+1,402
+(72)
+1,330
+(iii) Restatement of prior year goodwill
+The Group and Company have restated certain prior year comparatives to correctly reflect the loan provided to Venus Emeralds Proprietary Limited in 2022. Venus Emeralds Proprietary Limited was acquired in 2023 as part of the Gem - Venus Holdings Proprietary Limited group acquisition and the loan balance of £264,000 that was impaired by GEMR in 2022, but was not included in the net asset acquired calculation in 2023.
+Impact on adjustment on the consolidated statement of financial position
+30 Dec 2023
+31 Dec 2023
+(as previously stated)
+Prior year adjustment
+(as re-stated)
+£'000
+£'000
+£'000
+Decrease in goodwill
+1,550
+(264)
+1,286
+Decrease in other payables
+(345)
+264
+(81)
+Impact on adjustment on the company statement of financial position
+30 Dec 2023
+31 Dec 2023
+(as previously stated)
+Prior year adjustment
+(as re-stated)
+£'000
+£'000
+£'000
+Investment in subsidiary
+1,536
+(264)
+1,272
+Increase in other receivables
+582
+264
+846
+13.
+Events after the reporting date
+As announced on 4 September 2025, the Company appointed Mr Louis Ching as Executive Chairman, and Mr Hin Shek "Hans" Wong as a non-executive director, as a nominee of Mr Louis Ching to the Board. Mr Edward Nealon will remain on the Board as a non-executive director.
+Further to the above, the Company has raised £2.117m (the "Fundraise") before expenses comprising a subscription of £617,320 from Mr Louis Ching (the "Subscription") and the issuance of unsecured convertible loan notes in the principal amount of £1.5 million ("Convertible Loan Notes").
+Transaction Summary
+•
+Subscription
+: Mr Louis Ching has subscribed for 308,658,088 new ordinary shares of nominal value £0.0001 each ("Ordinary Shares") in the capital of the Company at a subscription price of £0.002 per share (0.20 pence) (the "Subscription Price"), raising gross proceeds of approximately £617,320. Mr Ching has also been transferred one Ordinary Share by a shareholder of the Company. This results in Mr Ching holding over 50% of the enlarged issued share capital of the Company.
+•
+Convertible Loan Notes
+: In parallel, the Company has issued Mr Louis Ching Convertible Loan Notes in the principal amount of £1.5 million, convertible at a 50% premium to the Subscription Price (equivalent to £0.003 per share (0.30 pence) (the "Conversion Price")). The Convertible Loan Notes carry a 5% annual interest and may be converted at any time up until 3 September 2028, subject to the Company obtaining authority from the holders of Ordinary Shares ("Shareholders") to issue the new Ordinary Shares on conversion of the Convertible Loan Notes ("Conversion Shares").
+•
+Conversion of unpaid fees
+: In conjunction with the above, the Company and its directors (the "Board") have agreed that all outstanding and accrued and unpaid board and management fees, totalling approximately £230,000 gross, will be converted into Ordinary Shares at the Conversion Price, once the Company has secured sufficient Shareholder authority to increase its headroom for share issuance.
+Other than the above, there have been no significant events between the end of the period and the publication of these accounts.
+- Ends -
+For further information please contact:
+Gem Resources plc
+Chief Executive Officer
+Bernard Olivier
+Director
+Peter Redmond
+Chief Operating Officer
+Jeremy Sturgess-Smith
++44 (0)746 368 6497
+info@gemresources.co.uk
+Peterhouse Capital Limited
+Joint Corporate Broker
+Lucy Williams
+Duncan Vasey
+Capital Plus Partners
+Joint Corporate Broker
+Keith Swann
+Jon Critchley
++44 (0)20 7469 0930
++44 (0)203 821 6169
++44 (0)203 821 6168
+CMC Markets
+Joint Corporate Broker
+Douglas Crippen
++44 (0)20 3003 8632
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+IR SEDFEIEISELU
+                </div>
+            </details>
+            
+            </div>
+            
+            </div>
+            <div style="
+                margin-top: 20px;
+                padding: 14px 16px;
+                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+                border-radius: 10px;
+                font-size: 12px;
+                color: #78350f;
+                border-left: 3px solid #f59e0b;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            ">
+                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
+                <div style="line-height: 1.5;">
+                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
+                    Each RNS includes sentiment classification, key data extraction, and trading context. 
+                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
+                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                    </strong>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            details[open] > summary {
+                background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%) !important;
+                border-left-color: #0369a1 !important;
+            }
+            summary::-webkit-details-marker {
+                display: none;
+            }
+            
+            /* ========== MOBILE RESPONSIVE ========== */
+            @media (max-width: 768px) {
+                body {
+                    padding: 10px;
+                    font-size: 14px;
+                }
+                
+                .container {
+                    margin: 0 auto;
+                }
+                
+                .header-card {
+                    padding: 14px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .company-name {
+                    font-size: 22px;
+                    margin-bottom: 8px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 13px;
+                    padding: 6px 12px;
+                }
+                
+                .company-meta {
+                    gap: 8px;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+                
+                .meta-item {
+                    padding: 6px 12px;
+                    font-size: 12px;
+                    gap: 6px;
+                }
+                
+                .meta-icon {
+                    font-size: 14px;
+                }
+                
+                .score-hero {
+                    padding: 20px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .action-display {
+                    font-size: 18px !important;
+                    margin-bottom: 12px;
+                }
+                
+                .scores-row {
+                    gap: 16px;
+                    margin: 20px 0;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    display: flex;
+                }
+                
+                .score-circle {
+                    width: 110px;
+                    height: 110px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 32px;
+                }
+                
+                .score-label {
+                    font-size: 10px;
+                    margin-top: 4px;
+                }
+                
+                .timing-badge-large {
+                    padding: 10px 20px;
+                    font-size: 14px;
+                    margin: 12px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 14px;
+                    padding: 12px;
+                    margin-top: 12px;
+                }
+                
+                .factors-list {
+                    grid-template-columns: 1fr;
+                    gap: 10px;
+                    margin-top: 12px;
+                }
+                
+                .factor-item {
+                    padding: 12px;
+                    font-size: 12px;
+                    gap: 8px;
+                }
+                
+                .factor-icon {
+                    font-size: 16px;
+                }
+                
+                .cards-grid {
+                    grid-template-columns: 1fr;
+                    gap: 12px;
+                    margin-bottom: 12px;
+                }
+                
+                .card {
+                    padding: 16px;
+                    border-radius: 12px;
+                }
+                
+                .card-title {
+                    font-size: 14px;
+                    margin-bottom: 12px;
+                    gap: 8px;
+                }
+                
+                .card-icon {
+                    font-size: 18px;
+                }
+                
+                .stat-row {
+                    padding: 8px 0;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+                
+                .stat-label {
+                    font-size: 12px;
+                }
+                
+                .stat-value {
+                    font-size: 14px;
+                }
+                
+                .rally-badge {
+                    padding: 4px 10px;
+                    font-size: 10px;
+                }
+                
+                .risk-indicator {
+                    gap: 10px;
+                    padding: 12px;
+                    flex-wrap: wrap;
+                }
+                
+                .risk-icon {
+                    font-size: 20px;
+                }
+                
+                .reason-item {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                }
+                
+                .tag {
+                    padding: 3px 8px;
+                    font-size: 10px;
+                }
+                
+                .footer {
+                    padding: 12px;
+                    font-size: 11px;
+                    margin-top: 12px;
+                    border-radius: 12px;
+                }
+                
+                .alert-box {
+                    padding: 12px;
+                    margin: 10px 0;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                body {
+                    padding: 8px 6px;
+                }
+                
+                .header-card {
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    border-radius: 8px;
+                }
+                
+                .company-name {
+                    font-size: 18px;
+                    margin-bottom: 6px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 11px;
+                    padding: 3px 8px;
+                }
+                
+                .company-meta {
+                    gap: 4px;
+                    flex-direction: column;
+                }
+                
+                .meta-item {
+                    padding: 4px 6px;
+                    font-size: 11px;
+                    background: rgba(247, 250, 252, 0.7);
+                }
+                
+                .score-hero {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                    border-radius: 12px;
+                }
+                
+                .score-circle {
+                    width: 70px;
+                    height: 70px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 22px;
+                    font-weight: 800;
+                }
+                
+                .score-label {
+                    font-size: 7px;
+                    margin-top: 2px;
+                }
+                
+                .scores-row {
+                    flex-direction: column;
+                    gap: 10px;
+                    margin: 12px 0;
+                    align-items: center;
+                }
+                
+                .timing-badge-large {
+                    padding: 6px 12px;
+                    font-size: 11px;
+                    margin: 10px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 11px;
+                    padding: 8px;
+                    line-height: 1.3;
+                }
+                
+                .card {
+                    padding: 10px;
+                    margin-bottom: 8px;
+                    border-radius: 8px;
+                }
+                
+                .card-title {
+                    font-size: 12px;
+                    margin-bottom: 8px;
+                    font-weight: 700;
+                }
+            }
+        </style>
+        
+
+        <!-- Footer -->
+        <div class="footer">
+            Report generated: 2026-01-17 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            <strong>△ Not financial advice. Do your own research.</strong>
+            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
+                <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
