@@ -2256,8 +2256,9 @@ async function loadAIReport(ticker) {
     const modalHTML = `
         <div class="modal" id="aiReportModal" style="
             display: flex; 
-            align-items: center; 
+            align-items: ${isMobile ? 'flex-start' : 'center'}; 
             justify-content: center;
+            padding-top: ${isMobile ? '4rem' : '0'};
             animation: fadeIn 0.3s ease;
         ">
             <!-- Loader Container (shown first) -->
@@ -2410,7 +2411,6 @@ async function loadAIReport(ticker) {
                 transform: scale(0.9);
                 transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
                 pointer-events: none;
-                padding-top: ${isMobile ? '2rem' : '0'};
             ">
                 <button onclick="closeAIReportModal()" style="
                     position: absolute;
@@ -2438,7 +2438,7 @@ async function loadAIReport(ticker) {
                     src="${reportPath}"
                     style="
                         width: 100%; 
-                        height: ${isMobile ? 'calc(90vh - 2rem)' : '95vh'}; 
+                        height: 95vh; 
                         border: none;
                         display: block;
                         box-sizing: border-box;
