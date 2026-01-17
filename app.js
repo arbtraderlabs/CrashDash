@@ -2400,7 +2400,7 @@ async function loadAIReport(ticker) {
             <div id="apexReportContainer" style="
                 max-width: ${isMobile ? '100%' : '95vw'};
                 width: ${isMobile ? '100%' : '95%'};
-                max-height: 95vh;
+                max-height: ${isMobile ? '90vh' : '95vh'};
                 background: white;
                 border-radius: ${isMobile ? '0' : '20px'};
                 overflow: hidden;
@@ -2410,25 +2410,27 @@ async function loadAIReport(ticker) {
                 transform: scale(0.9);
                 transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
                 pointer-events: none;
+                padding-top: ${isMobile ? '2rem' : '0'};
             ">
                 <button onclick="closeAIReportModal()" style="
                     position: absolute;
-                    top: ${isMobile ? '10px' : '15px'};
-                    right: ${isMobile ? '10px' : '15px'};
+                    top: ${isMobile ? '20px' : '25px'};
+                    right: ${isMobile ? '15px' : '20px'};
                     z-index: 10000;
                     background: rgba(0,0,0,0.7);
                     color: white;
                     border: none;
                     border-radius: 50%;
-                    width: ${isMobile ? '36px' : '40px'};
-                    height: ${isMobile ? '36px' : '40px'};
+                    width: ${isMobile ? '38px' : '44px'};
+                    height: ${isMobile ? '38px' : '44px'};
                     cursor: pointer;
-                    font-size: ${isMobile ? '18px' : '20px'};
+                    font-size: ${isMobile ? '20px' : '22px'};
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     transition: all 0.2s ease;
                     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+                    padding: 0;
                 " onmouseover="this.style.background='rgba(239,68,68,0.9)'; this.style.transform='scale(1.1)'" 
                    onmouseout="this.style.background='rgba(0,0,0,0.7)'; this.style.transform='scale(1)'">✕</button>
                 <iframe 
@@ -2436,9 +2438,10 @@ async function loadAIReport(ticker) {
                     src="${reportPath}"
                     style="
                         width: 100%; 
-                        height: 95vh; 
+                        height: ${isMobile ? 'calc(90vh - 2rem)' : '95vh'}; 
                         border: none;
                         display: block;
+                        box-sizing: border-box;
                     "
                 ></iframe>
             </div>
