@@ -416,9 +416,10 @@
 
     <!-- SIGNAL TIMELINE MODAL -->
     <div id="signalTimelineModal" class="modal">
-        <div class="modal-content" style="max-width: 1200px; width: 95%; max-height: 90vh; overflow-y: auto; padding: 0;">
-            <span class="close" onclick="closeSignalTimeline()">&times;</span>
-            <div id="signalTimelineContent"></div>
+        <div class="modal-content rally-modal" style="max-width: 1200px; width: 95%; max-height: 90vh; padding: 0; display: flex; flex-direction: column;">
+            <span class="close" onclick="closeSignalTimeline()" style="display: none;">&times;</span>
+            <div id="signalTimelineHeader" style="flex-shrink: 0; position: relative; z-index: 100; padding-top: 1.5rem;"></div>
+            <div id="signalTimelineContent" style="flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch;"></div>
         </div>
     </div>
 

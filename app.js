@@ -992,7 +992,7 @@ function closeFiltersModal() {
     const modal = document.getElementById('filtersModal');
     if (modal) {
         modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
+        document.body.style.overflow = '';
     }
 }
 
@@ -1324,8 +1324,9 @@ async function showSignalTimeline(ticker) {
         
         const modal = document.getElementById('signalTimelineModal');
         const content = document.getElementById('signalTimelineContent');
+        const header = document.getElementById('signalTimelineHeader');
         
-        if (!modal || !content) {
+        if (!modal || !content || !header) {
             console.error('Modal elements not found!');
             return;
         }
@@ -1379,9 +1380,10 @@ async function showSignalTimeline(ticker) {
         const currentPriceVal = getPriceFieldForTicker(ticker, basics, 'current_price');
         const fmtCurrentPrice = (currentPriceVal !== undefined && currentPriceVal !== null && !isNaN(currentPriceVal)) ? Number(currentPriceVal).toFixed(4) : '-';
         
-        content.innerHTML = `
-        <!-- STICKY COMPANY INFO HEADER -->
-        <div style="position: sticky; top: 0; z-index: 9999; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; background: rgb(26, 35, 54); box-shadow: 0 2px 8px rgba(0,0,0,0.3); border-bottom: 1px solid rgba(10, 132, 255, 0.4); padding: 0.6rem 1.5rem; margin: 0;">
+        // Set HEADER content (fixed)
+        header.innerHTML = `
+        <!-- COMPANY INFO HEADER -->
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; background: rgb(26, 35, 54); box-shadow: 0 2px 8px rgba(0,0,0,0.3); border-bottom: 1px solid rgba(10, 132, 255, 0.4); padding: 0.6rem 1.5rem; margin: 0; width: 100%;">
             <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; width: 100%; overflow: hidden;">
                 <!-- Ticker & Company Name (Left) -->
                 <div style="flex: 1 1 auto; min-width: 100px; max-width: 180px;">
@@ -1414,35 +1416,11 @@ async function showSignalTimeline(ticker) {
                         </div>
                     </div>
                 </div>
-                
-                <!-- Close Button (Right) - VISIBLE -->
-                <button onclick="closeSignalTimeline()" style="
-                    background: rgba(255,255,255,0.1);
-                    border: 1px solid rgba(255,255,255,0.2);
-                    color: rgba(255,255,255,0.8);
-                    width: 32px;
-                    height: 32px;
-                    border-radius: 6px;
-                    cursor: pointer;
-                    font-size: 1.2rem;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    transition: all 0.2s ease;
-                    flex-shrink: 0;
-                    padding: 0;
-                    font-weight: 700;
-                "
-                onmouseover="this.style.background='rgba(255,255,255,0.2)'; this.style.color='white'"
-                onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.color='rgba(255,255,255,0.8)'"
-                title="Close">
-                    ✕
-                </button>
             </div>
         </div>
         
-        <!-- Details Row - ALSO STICKY (Sector & Industry) -->
-        <div style="position: sticky; top: 52px; z-index: 9998; display: flex; gap: 1.5rem; font-size: 0.65rem; background: rgb(26, 35, 54); box-shadow: 0 2px 6px rgba(0,0,0,0.2); border-bottom: 1px solid rgba(10, 132, 255, 0.2); padding: 0.35rem 1.5rem 0.4rem 1.5rem; margin: 0; text-align: left;">
+        <!-- Details Row -->
+        <div style="display: flex; gap: 1.5rem; font-size: 0.65rem; background: rgb(26, 35, 54); box-shadow: 0 2px 6px rgba(0,0,0,0.2); border-bottom: 1px solid rgba(10, 132, 255, 0.2); padding: 0.35rem 1.5rem 0.4rem 1.5rem; margin: 0; text-align: left;">
             <div style="display: flex; align-items: center; gap: 0.4rem; min-width: 100px;">
                 <span style="color: #667eea; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 500; flex-shrink: 0;">Sector:</span>
                 <span style="color: white; font-weight: 700; font-size: 0.7rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${companyInfo.sector || '-'}</span>
@@ -1452,7 +1430,10 @@ async function showSignalTimeline(ticker) {
                 <span style="color: white; font-weight: 700; font-size: 0.7rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${companyInfo.industry || '-'}</span>
             </div>
         </div>
+        `;
         
+        // Set CONTENT
+        content.innerHTML = `
         <!-- Content starts here with proper spacing and padding -->
         <div style="padding: 1.5rem; padding-top: 1rem;">
         
@@ -1725,8 +1706,19 @@ async function showSignalTimeline(ticker) {
 
 function closeSignalTimeline() {
     const modal = document.getElementById('signalTimelineModal');
-    modal.style.display = 'none';
-    document.body.style.overflow = '';
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+        // Clear any remaining event listeners
+        const content = document.getElementById('signalTimelineContent');
+        if (content) {
+            content.innerHTML = '';
+        }
+        const header = document.getElementById('signalTimelineHeader');
+        if (header) {
+            header.innerHTML = '';
+        }
+    }
 }
 
 // Track how many signals are currently displayed per ticker
