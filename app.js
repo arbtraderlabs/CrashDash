@@ -1584,7 +1584,7 @@ async function showSignalTimeline(ticker) {
                     <!-- Entry Price -->
                     <div>
                         <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px;">Entry:</div>
-                        <div style="font-weight: 600; color: white;">${completeLatestSignal.price ? (completeLatestSignal.price * 100).toFixed(2) : completeLatestSignal.entry_price ? (completeLatestSignal.entry_price * 100).toFixed(2) : '-'}p</div>
+                        <div style="font-weight: 600; color: white;">${completeLatestSignal.price ? parseFloat(completeLatestSignal.price).toFixed(2) : completeLatestSignal.entry_price ? parseFloat(completeLatestSignal.entry_price).toFixed(2) : '-'}p</div>
                     </div>
                     
                     <!-- Current P&L -->
@@ -1663,7 +1663,7 @@ async function showSignalTimeline(ticker) {
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 6px; font-size: 0.75rem;">
                                 <div>
                                     <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 2px;">Entry</div>
-                                    <div style="font-weight: 600; color: white;">${(sig.entry_price * 100).toFixed(2)}p</div>
+                                    <div style="font-weight: 600; color: white;">${parseFloat(sig.entry_price).toFixed(2)}p</div>
                                 </div>
                                 <div>
                                     <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 2px;">Return</div>
@@ -1803,7 +1803,7 @@ function loadMoreSignals(ticker) {
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; font-size: 0.8rem;">
                     <div>
                         <span style="color: rgba(255,255,255,0.6);">Entry:</span>
-                        <span style="font-weight: 600; color: white;">${(sig.entry_price * 100).toFixed(2)}p</span>
+                        <span style="font-weight: 600; color: white;">${parseFloat(sig.entry_price).toFixed(2)}p</span>
                     </div>
                     <div>
                         <span style="color: rgba(255,255,255,0.6);">Return:</span>
