@@ -1,7 +1,7 @@
 {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "JIM.L",
-  "generated_at": "2026-01-26T02:43:24.677402Z",
+  "generated_at": "2026-01-26T10:05:39.412189Z",
   "top_card": {
     "ticker": "JIM.L",
     "company_name": "Jarvis Securities plc",
@@ -12,9 +12,9 @@
     "confidence_score_100": 50,
     "ai_final_score_25": 11,
     "ai_strength": "MODERATE",
-    "timing_regime": "EARLY_BUILD",
+    "timing_regime": "TOO_EARLY",
     "action": "WATCH",
-    "thesis_one_liner": "WATCH - EARLY_BUILD timing with 36/100 opportunity score"
+    "thesis_one_liner": "WATCH - TOO_EARLY timing with 36/100 opportunity score"
   },
   "enrichment": {
     "company_info": {
@@ -55,7 +55,15 @@
       "rsi": 20.0,
       "cycle_position": 0.0909,
       "holding_period_days": 0,
-      "current_pnl_pct": 0.0
+      "current_pnl_pct": 0.0,
+      "rally_state": "peaked",
+      "distance_from_high_pct": 0.0,
+      "Rally_Count": 0,
+      "days_since_last_high": 0,
+      "last_high_date": "2026-01-23",
+      "lock_in_reached": false,
+      "lock_in_date": NaN,
+      "best_rally_pct": 0.0
     },
     "best_historical_signal": {
       "signal_date": "2025-04-17",
@@ -158,6 +166,24 @@
         "lock_in_reached": false,
         "age_days": 20,
         "status": "active"
+      },
+      {
+        "signal_id": "JIM.L_2026-01-23",
+        "signal_date": "2026-01-23",
+        "signal_type": "CRASH ZONE BOTTOM",
+        "signal_color": "YELLOW",
+        "entry_price": 8.0,
+        "current_price": 8.0,
+        "current_return_pct": 0.0,
+        "best_rally_pct": 0.0,
+        "best_rally_date": "2026-01-23",
+        "rally_state": "peaked",
+        "Rally_Count": 0,
+        "distance_from_high_pct": 0.0,
+        "days_since_last_high": 0,
+        "lock_in_reached": false,
+        "age_days": 3,
+        "status": "active"
       }
     ],
     "stats": {
@@ -202,20 +228,20 @@
       "EXTREME_DRAWDOWN",
       "FREQUENT_CRASHES"
     ],
-    "last_updated": "2026-01-26 02:42:50 UTC",
+    "last_updated": "2026-01-26 02:43:45 UTC",
     "volatility": {
       "atr_normalized": 8.0,
       "stddev_20d": 0.0
     },
     "trends": {
-      "intelligence_signal": "TOPPED_OUT"
+      "intelligence_signal": "STABLE"
     }
   },
   "decision_summary": {
     "why_it_matters": [
       "APEX 36/100 indicates moderate opportunity quality",
-      "Timing regime: EARLY_BUILD",
-      "Historical profile: 0 rallies, 0% best run"
+      "Timing regime: TOO_EARLY",
+      "Historical profile: 0 rallies, -2% best run"
     ],
     "main_risk": "Confidence 50/100 - full data loaded",
     "watch_next": [
@@ -289,7 +315,7 @@
       "current_interest": 0,
       "momentum_score": 0,
       "trend_direction": "flat",
-      "intelligence_signal": "TOPPED_OUT"
+      "intelligence_signal": "STABLE"
     },
     "volatility": {
       "atr_normalized": 8.0,
@@ -301,7 +327,7 @@
       "penny_stock_risk": "NONE"
     },
     "catalyst_dates": {
-      "proxy_date": "2026-01-23"
+      "proxy_date": "2026-01-26"
     }
   },
   "ai_insights": {
@@ -403,10 +429,10 @@
         "color": "#f59e0b"
       },
       {
-        "type": "BUILDING",
-        "icon": "\ud83d\udcca",
-        "text": "Building",
-        "color": "#10b981"
+        "type": "EARLY",
+        "icon": "\u23f0",
+        "text": "Too Early",
+        "color": "#3b82f6"
       }
     ],
     "catalyst_pipeline": [
@@ -472,7 +498,7 @@
         },
         {
           "criterion": "Timing Regime",
-          "value": "EARLY_BUILD",
+          "value": "TOO_EARLY",
           "pass": true,
           "icon": "\u2705"
         },
@@ -540,7 +566,7 @@
           "score": 4,
           "max": 15,
           "best_historical_rally": 108.0,
-          "avg_rally": 47.3,
+          "avg_rally": 47.0,
           "signal_count": 6,
           "description": "Baseline mover (108%)"
         },
@@ -563,7 +589,7 @@
       "Drawdown reversion potential: +17 (Drawdown_Pct=84.0%)",
       "Volume confirmation: +6 (Relative_Volume=1.8)",
       "Pattern reliability: +0 (Rally_Count=0.0)",
-      "Upside history: +2 (best_rally_pct=0%)"
+      "Upside history: +2 (best_rally_pct=-2%)"
     ],
     "technical_score": {
       "points": 11,
@@ -587,8 +613,8 @@
     },
     "upside_score": {
       "points": 2,
-      "best_rally_pct": 0.0,
-      "reason": "Best rally of 0% gives 2/20 points"
+      "best_rally_pct": -1.81,
+      "reason": "Best rally of -2% gives 2/20 points"
     },
     "penalties": {
       "total": 0,
@@ -601,8 +627,8 @@
         "reason": "Early stage positioning offers best R:R if catalysts appear",
         "tag": "MED",
         "evidence": [
-          "timing_regime=EARLY_BUILD",
-          "current_return_pct=0.0%"
+          "timing_regime=TOO_EARLY",
+          "current_return_pct=-1.8%"
         ]
       }
     ],
@@ -624,10 +650,10 @@
     }
   },
   "exhaustion": {
-    "regime": "EARLY_BUILD",
-    "run_multiple": 0.0,
-    "current_run_pct": 0.0,
-    "avg_historical_run_pct": 0.0
+    "regime": "TOO_EARLY",
+    "run_multiple": -0.12,
+    "current_run_pct": -1.81,
+    "avg_historical_run_pct": -1.81
   },
   "history_snapshot": {
     "previous_report_date": null,
@@ -637,14 +663,14 @@
     "new_rns_titles": []
   },
   "commentary": {
-    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows EARLY_BUILD timing with 36/100 APEX score. Historical data shows 0 rallies averaging 0% upside. Current position: +0.0%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
+    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows TOO_EARLY timing with 36/100 APEX score. Historical data shows 0 rallies averaging -2% upside. Current position: -1.8%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
     "bull_case": [
       "Early regime often offers best risk/reward"
     ],
     "bear_case": [
-      "Monitor for breakdown signals"
+      "TOO_EARLY means you can get chopped before real move"
     ],
-    "timing_translation": "Early accumulation phase. Watch for confirmation before committing size.",
+    "timing_translation": "It might be starting, but not proven yet. Wait for base + volume + catalysts.",
     "confidence_explained": "Confidence 50/100 reflects full data quality with triangulation loaded."
   },
   "data_quality": {

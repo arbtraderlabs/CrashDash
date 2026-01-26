@@ -1,20 +1,20 @@
 {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "PANR.L",
-  "generated_at": "2026-01-26T02:43:24.875487Z",
+  "generated_at": "2026-01-26T10:05:39.616647Z",
   "top_card": {
     "ticker": "PANR.L",
     "company_name": "Pantheon Resources Plc",
     "sector": "Energy",
     "market_cap_gbp": 116637056,
     "days_active": 2,
-    "apex_score_100": 42,
-    "confidence_score_100": 55,
+    "apex_score_100": 45,
+    "confidence_score_100": 60,
     "ai_final_score_25": 11,
     "ai_strength": "MODERATE",
-    "timing_regime": "EARLY_BUILD",
-    "action": "WATCH",
-    "thesis_one_liner": "WATCH - EARLY_BUILD timing with 42/100 opportunity score"
+    "timing_regime": "CROWDED",
+    "action": "SELL/TAKE_PROFITS",
+    "thesis_one_liner": "SELL/TAKE_PROFITS - CROWDED timing with 45/100 opportunity score"
   },
   "enrichment": {
     "company_info": {
@@ -55,7 +55,15 @@
       "rsi": 33.2,
       "cycle_position": 0.0257,
       "holding_period_days": 2,
-      "current_pnl_pct": 10.16
+      "current_pnl_pct": 10.16,
+      "rally_state": "peaked",
+      "distance_from_high_pct": 0.0,
+      "Rally_Count": 1,
+      "days_since_last_high": 3,
+      "last_high_date": "2026-01-23",
+      "lock_in_reached": false,
+      "lock_in_date": NaN,
+      "best_rally_pct": 10.16
     },
     "best_historical_signal": {
       "signal_date": "2023-06-29",
@@ -338,6 +346,24 @@
         "lock_in_reached": false,
         "age_days": 10,
         "status": "active"
+      },
+      {
+        "signal_id": "PANR.L_2026-01-21",
+        "signal_date": "2026-01-21",
+        "signal_type": "ENHANCED CRASH CRASH-ACCUM COMBO",
+        "signal_color": "PURPLE",
+        "entry_price": 7.28,
+        "current_price": 8.02,
+        "current_return_pct": 10.16,
+        "best_rally_pct": 10.16,
+        "best_rally_date": "2026-01-23",
+        "rally_state": "peaked",
+        "Rally_Count": 1,
+        "distance_from_high_pct": 0.0,
+        "days_since_last_high": 3,
+        "lock_in_reached": false,
+        "age_days": 5,
+        "status": "active"
       }
     ],
     "stats": {
@@ -363,7 +389,7 @@
       "EXTREME_DRAWDOWN",
       "FREQUENT_CRASHES"
     ],
-    "last_updated": "2026-01-26 02:42:41 UTC",
+    "last_updated": "2026-01-26 02:43:36 UTC",
     "volatility": {
       "atr_normalized": 6.67,
       "stddev_20d": 0.5493
@@ -374,11 +400,11 @@
   },
   "decision_summary": {
     "why_it_matters": [
-      "APEX 42/100 indicates moderate opportunity quality",
-      "Timing regime: EARLY_BUILD",
-      "Historical profile: 1 rallies, 10% best run"
+      "APEX 45/100 indicates moderate opportunity quality",
+      "Timing regime: CROWDED",
+      "Historical profile: 1 rallies, 16% best run"
     ],
-    "main_risk": "Confidence 55/100 - full data loaded",
+    "main_risk": "Confidence 60/100 - full data loaded",
     "watch_next": [
       "RNS catalysts (funding/operational updates)",
       "Volume expansion confirmation",
@@ -463,7 +489,7 @@
       "penny_stock_risk": "NONE"
     },
     "catalyst_dates": {
-      "proxy_date": "2026-01-23"
+      "proxy_date": "2026-01-26"
     }
   },
   "ai_insights": {
@@ -549,8 +575,8 @@
         "social_silence": 6,
         "news_sentiment": 10
       },
-      "is_opportunity": true,
-      "opportunity_reason": "\u26a0\ufe0f HIGH PANIC + Early timing = Potential accumulation phase"
+      "is_opportunity": false,
+      "opportunity_reason": "\ud83d\udcca Moderate fear detected - monitor for escalation"
     },
     "fear_vs_facts": {
       "fear_points": [
@@ -567,10 +593,10 @@
         "color": "#f59e0b"
       },
       {
-        "type": "BUILDING",
-        "icon": "\ud83d\udcca",
-        "text": "Building",
-        "color": "#10b981"
+        "type": "CROWDED",
+        "icon": "\u26a0\ufe0f",
+        "text": "Crowded",
+        "color": "#f59e0b"
       }
     ],
     "catalyst_pipeline": [
@@ -608,25 +634,11 @@
         "title": "Update - Investor Webinar rescheduling",
         "status": "published",
         "icon": "\ud83d\udce2"
-      },
-      {
-        "type": "expected",
-        "date": "Expected soon",
-        "title": "Watch for: Funding announcement or operational update",
-        "status": "pending",
-        "icon": "\ud83d\udd2e"
-      },
-      {
-        "type": "expected",
-        "date": "Expected soon",
-        "title": "Watch for: Volume expansion confirmation",
-        "status": "pending",
-        "icon": "\ud83d\udd2e"
       }
     ],
     "decision_matrix": {
-      "decision": "WATCH",
-      "reason": "\u23f3 Monitor for timing regime change or panic escalation",
+      "decision": "AVOID",
+      "reason": "\u274c SELL/TAKE_PROFITS - timing CROWDED",
       "checklist": [
         {
           "criterion": "Panic Score",
@@ -636,19 +648,19 @@
         },
         {
           "criterion": "Timing Regime",
-          "value": "EARLY_BUILD",
-          "pass": true,
+          "value": "CROWDED",
+          "pass": false,
           "icon": "\u2705"
         },
         {
           "criterion": "APEX Quality",
-          "value": "42/100",
+          "value": "45/100",
           "pass": false,
           "icon": "\u26a0\ufe0f"
         },
         {
           "criterion": "Data Confidence",
-          "value": "55/100",
+          "value": "60/100",
           "pass": true,
           "icon": "\ud83c\udfaf"
         },
@@ -659,7 +671,7 @@
           "icon": "\ud83c\udfed"
         }
       ],
-      "pass_rate": "4/5"
+      "pass_rate": "3/5"
     },
     "contrarian_panic": {
       "total_score": 54,
@@ -704,7 +716,7 @@
           "score": 14,
           "max": 15,
           "best_historical_rally": 573.3,
-          "avg_rally": 197.9,
+          "avg_rally": 199.0,
           "signal_count": 16,
           "description": "BIG POPPER - Historical 5x+ (573%)"
         },
@@ -727,7 +739,7 @@
       "Drawdown reversion potential: +18 (Drawdown_Pct=90.0%)",
       "Volume confirmation: +6 (Relative_Volume=1.7)",
       "Pattern reliability: +5 (Rally_Count=1.0)",
-      "Upside history: +2 (best_rally_pct=10%)"
+      "Upside history: +5 (best_rally_pct=16%)"
     ],
     "technical_score": {
       "points": 11,
@@ -750,9 +762,9 @@
       "reason": "1.0 historical rallies gives 5/15 points"
     },
     "upside_score": {
-      "points": 2,
-      "best_rally_pct": 10.16,
-      "reason": "Best rally of 10% gives 2/20 points"
+      "points": 5,
+      "best_rally_pct": 15.77,
+      "reason": "Best rally of 16% gives 5/20 points"
     },
     "penalties": {
       "total": 0,
@@ -762,11 +774,10 @@
   "reasons_buy_sell": {
     "reasons_to_buy": [
       {
-        "reason": "Early stage positioning offers best R:R if catalysts appear",
+        "reason": "Proven winner - previously hit lock-in target",
         "tag": "MED",
         "evidence": [
-          "timing_regime=EARLY_BUILD",
-          "current_return_pct=10.2%"
+          "lock_in_reached=True"
         ]
       }
     ],
@@ -774,11 +785,11 @@
   },
   "trade_plan": {
     "trader_plan": {
-      "style": "Watch / Starter",
-      "action": "Wait for base + catalyst confirmation; starter position only",
-      "sizing": "0-1% until CONFIRMED",
-      "risk": "Invalidation = breaks recent lows / dilution / suspension",
-      "profit_taking": "Scale out 25% at +15%, 25% at +50%, runner above"
+      "style": "Active trade",
+      "action": "SELL/TAKE_PROFITS",
+      "sizing": "1-3% position based on conviction",
+      "risk": "Stop below recent support / invalidation level",
+      "profit_taking": "Scale out into strength: 25% @ +15%, 50% @ +50%, trail runner"
     },
     "investor_plan": {
       "allowed": false,
@@ -788,10 +799,10 @@
     }
   },
   "exhaustion": {
-    "regime": "EARLY_BUILD",
-    "run_multiple": 0.68,
-    "current_run_pct": 10.16,
-    "avg_historical_run_pct": 10.16
+    "regime": "CROWDED",
+    "run_multiple": 1.0,
+    "current_run_pct": 15.77,
+    "avg_historical_run_pct": 15.77
   },
   "history_snapshot": {
     "previous_report_date": null,
@@ -801,15 +812,15 @@
     "new_rns_titles": []
   },
   "commentary": {
-    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows EARLY_BUILD timing with 42/100 APEX score. Historical data shows 1 rallies averaging 10% upside. Current position: +10.2%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
+    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows CROWDED timing with 45/100 APEX score. Historical data shows 1 rallies averaging 16% upside. Current position: +15.8%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
     "bull_case": [
-      "Early regime often offers best risk/reward"
+      "Limited upside case without catalysts"
     ],
     "bear_case": [
       "Monitor for breakdown signals"
     ],
-    "timing_translation": "Early accumulation phase. Watch for confirmation before committing size.",
-    "confidence_explained": "Confidence 55/100 reflects full data quality with triangulation loaded."
+    "timing_translation": "Late stage. Consider taking profits as risk/reward deteriorates.",
+    "confidence_explained": "Confidence 60/100 reflects full data quality with triangulation loaded."
   },
   "data_quality": {
     "sources_present": {
