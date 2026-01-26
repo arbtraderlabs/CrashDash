@@ -24,28 +24,31 @@
     "drawdown_from_ath_pct": 92.75,
     "data_start": "2020-01-02",
     "data_end": "2026-01-22",
-    "total_bars": 1530
+    "total_bars": 1468
   },
   "latest_signal": {
-    "date": "2024-07-01",
-    "scan_date": "2026-01-14",
-    "signal_type": "CRASH ZONE BOTTOM",
-    "signal_color": "YELLOW",
-    "price": 0.175,
-    "drawdown_pct": 82.5,
+    "date": "2026-01-12",
+    "scan_date": "2026-01-26",
+    "signal_type": "EXTREME CRASH BOTTOM",
+    "signal_color": "ORANGE",
+    "price": 0.004,
+    "drawdown_pct": 99.37,
     "ai_score": 13.0,
-    "rsi": 20.9,
-    "cycle_position": 0.0538,
-    "holding_period_days": 570,
-    "current_pnl_pct": 128.57,
-    "rally_state": "pulling_back",
-    "distance_from_high_pct": -36.0,
+    "rsi": 0.0,
+    "cycle_position": 0.002,
+    "holding_period_days": 10,
+    "current_pnl_pct": 9900.0,
+    "rally_state": "peaked",
+    "distance_from_high_pct": 0.0,
     "Rally_Count": 1,
-    "days_since_last_high": 8,
-    "last_high_date": "2026-01-06",
+    "days_since_last_high": 7,
+    "last_high_date": "2026-01-19",
     "lock_in_reached": true,
-    "lock_in_date": "2024-07-11",
-    "best_rally_pct": 257.14
+    "lock_in_date": "2026-01-19",
+    "best_rally_pct": 9900.0,
+    "split_affected": true,
+    "split_warning": "\u26a0\ufe0f",
+    "warning_message": "Signal near stock split on 2026-01-12 (1:20)"
   },
   "best_historical_signal": {
     "signal_date": "2024-07-01",
@@ -72,9 +75,9 @@
       "rally_state": "accumulating",
       "Rally_Count": 10,
       "distance_from_high_pct": -67.35,
-      "days_since_last_high": 8,
+      "days_since_last_high": 17,
       "lock_in_reached": true,
-      "age_days": 951,
+      "age_days": 963,
       "status": "historical"
     },
     {
@@ -90,9 +93,9 @@
       "rally_state": "accumulating",
       "Rally_Count": 10,
       "distance_from_high_pct": -67.35,
-      "days_since_last_high": 8,
+      "days_since_last_high": 17,
       "lock_in_reached": true,
-      "age_days": 950,
+      "age_days": 962,
       "status": "historical"
     },
     {
@@ -106,11 +109,11 @@
       "best_rally_pct": 119.3,
       "best_rally_date": "2024-07-11",
       "rally_state": "pulling_back",
-      "Rally_Count": 1,
+      "Rally_Count": 2,
       "distance_from_high_pct": -36.0,
-      "days_since_last_high": 8,
+      "days_since_last_high": 17,
       "lock_in_reached": true,
-      "age_days": 583,
+      "age_days": 595,
       "status": "historical"
     },
     {
@@ -124,20 +127,38 @@
       "best_rally_pct": 257.14,
       "best_rally_date": "2024-07-11",
       "rally_state": "pulling_back",
-      "Rally_Count": 1,
+      "Rally_Count": 2,
       "distance_from_high_pct": -36.0,
-      "days_since_last_high": 8,
+      "days_since_last_high": 17,
       "lock_in_reached": true,
-      "age_days": 562,
+      "age_days": 574,
       "status": "historical"
+    },
+    {
+      "signal_id": "LEND.L_2026-01-12",
+      "signal_date": "2026-01-12",
+      "signal_type": "EXTREME CRASH BOTTOM",
+      "signal_color": "ORANGE",
+      "entry_price": 0.004,
+      "current_price": 0.4,
+      "current_return_pct": 9900.0,
+      "best_rally_pct": 9900.0,
+      "best_rally_date": "2026-01-19",
+      "rally_state": "peaked",
+      "Rally_Count": 1,
+      "distance_from_high_pct": 0.0,
+      "days_since_last_high": 7,
+      "lock_in_reached": true,
+      "age_days": 14,
+      "status": "active"
     }
   ],
   "stats": {
-    "total_signals": 4,
+    "total_signals": 5,
     "win_rate_pct": 100.0,
-    "avg_rally_pct": 250.29,
+    "avg_rally_pct": 2180.23,
     "median_rally_pct": 277.78,
-    "best_rally_pct": 300.0,
+    "best_rally_pct": 9900.0,
     "worst_rally_pct": 145.61
   },
   "splits": [
@@ -148,18 +169,25 @@
     }
   ],
   "split_risk": {
-    "split_detected": false,
-    "risk_level": "NONE",
-    "confidence": "HIGH"
+    "split_detected": true,
+    "split_date": "2026-01-12",
+    "split_ratio": "1:20",
+    "days_from_split": 0,
+    "split_type": "REVERSE_SPLIT",
+    "risk_level": "HIGH",
+    "confidence": "LOW",
+    "warning": "Signal occurred near stock split on 2026-01-12 (1:20) - price data may be affected by corporate action",
+    "recommendation": "VERIFY price data independently before trading - P&L calculations may be inaccurate near corporate actions"
   },
   "data_quality": {
-    "price_reliability": "RELIABLE",
-    "pnl_reliability": "RELIABLE",
-    "overall_confidence": "HIGH"
+    "price_reliability": "SUSPECT",
+    "pnl_reliability": "SUSPECT",
+    "overall_confidence": "LOW"
   },
   "risk_flags": [
+    "SIGNAL_NEAR_SPLIT",
     "HAS_REVERSE_SPLIT",
     "EXTREME_DRAWDOWN"
   ],
-  "last_updated": "2026-01-24 01:07:50 UTC"
+  "last_updated": "2026-01-26 01:24:45 UTC"
 }
