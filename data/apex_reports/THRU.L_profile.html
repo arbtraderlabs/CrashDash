@@ -238,23 +238,68 @@
                 <span style="color: white;">UNKNOWN</span>
             </div>
             
-            <div class="scores-row">
-                <div class="score-circle">
-                    <div class="score-number" style="color: #f59e0b;">54</div>
-                    <div class="score-label">APEX SCORE</div>
+            <div class="scores-row" style="display:flex; gap:18px; align-items:center; justify-content:center;">
+                <div style="display:flex; gap:10px; align-items:center;">
+                    <div style="width:84px; height:84px; border-radius:12px; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+                        <div style="font-size:20px; font-weight:800; color:#f59e0b;">54</div>
+                        <div style="font-size:11px; color:#64748b; margin-top:6px;">APEX</div>
+                    </div>
+                    <div style="width:84px; height:84px; border-radius:12px; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+                        <div style="font-size:20px; font-weight:800; color:#f59e0b;">60</div>
+                        <div style="font-size:11px; color:#64748b; margin-top:6px;">CONF</div>
+                    </div>
+                    <div style="width:84px; height:84px; border-radius:12px; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+                        <div style="font-size:20px; font-weight:800; color:#f59e0b;">66.0</div>
+                        <div style="font-size:11px; color:#64748b; margin-top:6px;">PANIC</div>
+                    </div>
+                    <div style="width:84px; height:84px; border-radius:12px; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+                        <div style="font-size:20px; font-weight:800; color:#f59e0b;">52</div>
+                        <div style="font-size:11px; color:#64748b; margin-top:6px;">CC</div>
+                    </div>
                 </div>
-                <div class="score-circle">
-                    <div class="score-number" style="color: #f59e0b;">60</div>
-                    <div class="score-label">CONFIDENCE</div>
+                <div style="width:160px; height:160px; border-radius:50%; background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 10px 30px rgba(0,0,0,0.08);">
+                    <div style="text-align:center;">
+                        <div style="font-size:34px; font-weight:900; color:#0f172a;">58</div>
+                        <div style="font-size:12px; color:#64748b; margin-top:6px; font-weight:700;">Overall</div>
+                    </div>
                 </div>
             </div>
             
-            <div class="timing-badge-large">
-                Timing: <span class="rally-badge" style="background: #dcfce7; color: #166534;">CONFIRMED</span>
-            </div>
+            <!-- timing pill removed here; timing shown below next to Timing Scope for clarity -->
             
-            <div class="thesis-line">
-                HOLD/WATCH - CONFIRMED timing with 54/100 opportunity score
+            <!-- Timing Scope (composite shown below; timing is separate) -->
+            <div style="margin-top:14px;">
+                <div style="font-size:12px; color:#475569; font-weight:700; margin-bottom:6px;">Timing Scope</div>
+                <style>
+                    @keyframes pulse-ring {
+                        0% { transform: scale(0.8); opacity: 0.9; }
+                        70% { transform: scale(2.2); opacity: 0; }
+                        100% { transform: scale(2.8); opacity: 0; }
+                    }
+                </style>
+                <div style="position:relative; height:48px; background:linear-gradient(90deg, #ef4444 0%, #f59e0b 25%, #f093fb 50%, #10b981 75%, #064e3b 100%); border-radius:8px;">
+                    <div style="position:absolute; left:calc(50% - 24px); top:calc(50% - 24px); width:48px; height:48px; display:flex; align-items:center; justify-content:center;">
+                        <div style="position:absolute; width:48px; height:48px; border-radius:24px; background:rgba(15,23,42,0.12); animation: pulse-ring 1.8s infinite;"></div>
+                        <div style="width:16px; height:16px; border-radius:8px; background:#0f172a; box-shadow:0 6px 18px rgba(0,0,0,0.12);"></div>
+                    </div>
+                    <!-- small score bubble removed (duplicate of main overall score) -->
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:12px; color:#475569; margin-top:10px;">
+                    <div>Too Early</div>
+                    <div>Early Build</div>
+                    <div>Confirmed</div>
+                    <div>Crowded</div>
+                    <div>Broken</div>
+                </div>
+
+                <div style="margin-top:12px; display:flex; justify-content:center;">
+                    <div style="background: linear-gradient(180deg, rgba(8,18,39,0.95) 0%, rgba(10,28,50,0.92) 100%); border:1px solid rgba(255,255,255,0.04); padding:14px 20px; border-radius:14px; box-shadow:0 16px 48px rgba(2,6,23,0.18); color:#e6eef8; font-size:13px; font-weight:700; max-width:920px; text-align:center;">
+                        <span style="color:#1fb6ae; font-weight:800; margin-right:10px;">Timing:</span>
+                        <span style="text-transform:uppercase; letter-spacing:0.6px; color:#ffffff;">CONFIRMED</span>
+                        <span style="color:rgba(230,238,248,0.7); font-weight:600; margin:0 10px;">—</span>
+                        <span style="font-weight:600; color:rgba(230,238,248,0.95);">Momentum confirmed — constructive for entries with risk controls.</span>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -470,7 +515,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">UK Retail Distribution Contract Award</div>
-                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                        <div style="font-size: 12px; color: #64748b;">22nd Jan 2026</div>
                     </div>
                 </div>
             </div>
@@ -480,7 +525,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">South-East Asian Mass Transit Contract Award</div>
-                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                        <div style="font-size: 12px; color: #64748b;">20th Jan 2026</div>
                     </div>
                 </div>
             </div>
@@ -490,7 +535,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Holding(s) in Company</div>
-                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                        <div style="font-size: 12px; color: #64748b;">12th Jan 2026</div>
                     </div>
                 </div>
             </div>
@@ -500,7 +545,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Award of Share Options</div>
-                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                        <div style="font-size: 12px; color: #64748b;">5th Jan 2026</div>
                     </div>
                 </div>
             </div>
@@ -510,7 +555,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">US Retail Distribution Contract Award</div>
-                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                        <div style="font-size: 12px; color: #64748b;">19th Dec 2025</div>
                     </div>
                 </div>
             </div>
@@ -574,7 +619,94 @@
         
 
         <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
-        
+        <div class="card" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 2px solid #0ea5e9;">
+            <div class="card-title" style="color: #0369a1;">
+                <span class="card-icon">📡</span>
+                APEX RNS Report
+            </div>
+            
+            <!-- Bottom Line (Most Important) -->
+            <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #0ea5e9;">
+                <div style="font-size: 16px; font-weight: 700; color: #0369a1; margin-bottom: 10px;">📝 Bottom Line</div>
+                <div style="font-size: 15px; line-height: 1.7; color: #1e293b;">
+                    Neutral – the company has secured a couple of contracts but remains pre‑revenue with no clear execution timeline. Until Q1 2026 results show any revenue, the stock is a speculative play with high risk and limited upside.
+                </div>
+            </div>
+            
+            <!-- Company in 30 Seconds -->
+            <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #6366f1;">
+                <div style="font-weight: 700; color: #6366f1; margin-bottom: 12px; font-size: 15px;">🏢 Company in 30 Seconds</div>
+                <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                    <div style="margin-bottom: 8px;"><strong>What they do:</strong> THRU delivers modular, low‑cost transit solutions for small‑city bus fleets.</div>
+                    <div style="margin-bottom: 8px;"><strong>Why they matter:</strong> If it scales, it could win a growing niche in urban micro‑transit, a market worth billions.</div>
+                    <div><strong>Current state:</strong> Pre‑revenue, still trying to prove the concept.</div>
+                </div>
+            </div>
+            
+            <!-- Buy vs Sell Decision -->
+            <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #f59e0b;">
+                <div style="font-weight: 700; color: #f59e0b; margin-bottom: 12px; font-size: 15px;">
+                    ⚖️ 
+                    Buy vs Sell — Lean: NEUTRAL
+                </div>
+                <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                    <div style="margin-bottom: 10px;"><strong style="color: #10b981;">Bull Case:</strong> If THRU can deliver on the UK Retail Distribution or the SE Asian Mass Transit contract within the next quarter, it would provide the first revenue stream and validate the product. A positive earnings report would likely lift the price from zero to a viable range.</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: #ef4444;">Bear Case:</strong> The company remains pre‑revenue, with no guidance or execution dates. The risk of dilution from share options and the lack of any tangible cash flow make the stock a high‑risk speculative play.</div>
+                    <div><strong>Risk/Reward:</strong> Low upside, high downside risk – the price is stuck at zero, so any negative news will drive it further down.</div>
+                </div>
+            </div>
+            
+            <!-- What's Happening Now -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-bottom: 15px;">
+                <div style="background: white; padding: 18px; border-radius: 10px; border-left: 4px solid #8b5cf6;">
+                    <div style="font-weight: 700; color: #8b5cf6; margin-bottom: 12px; font-size: 15px;">📰 RNS Narrative</div>
+                    <div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• The first beat of the story is the contract cluster. On 22 January 2026 THRU announced a UK Retail Distribution contract, followed two days later by a South‑East Asian Mass Transit contract on 20 January. Both announcements are headline‑worthy because they signal that the company has moved from prototype to signed deals. However, the press releases are deliberately sparse – no revenue figures, no unit volumes, no dates of delivery. The language is all about “potential” and “pipeline,” which is typical of a company that has yet to hit a single revenue point. For a trader, the key takeaway is that the company is still in a pre‑revenue phase, but it has now secured two contracts that could, if executed, provide the first cash flow. The market has reacted to the news with a mild uptick in trading volume, but the price remains flat at zero, reflecting the lack of concrete numbers.
+
+The second beat is a cluster of corporate actions that raise questions about capital structure and governance. On 12 January the company disclosed holdings in its own shares, a move that could be a sign of insider confidence or a pre‑emptive defense against dilution. On 5 January the board granted share options to key executives – a classic incentive tool, but one that could dilute the shares further if exercised. Finally, on 6 November 2025 the company filed a Block Listing Interim Review, which indicates that its listing on AIM is under scrutiny. Together these items suggest that the company is managing its capital and governance in a way that could either attract new investors or trigger a sell‑off if shareholders feel the risk of dilution is too high.
+
+The third beat is the financial update cluster. On 25 November 2025 THRU released its interim results and a trading update. The language is cautious; no revenue was disclosed, and the update focuses on R&D spending and the cost of securing the new contracts. The fact that the company is still reporting a loss is expected at this stage, but the lack of any revenue or guidance means that the market has no concrete metrics to price the shares against. The narrative here is that the company is still in the early R&D and contracting phase, with no clear path to profitability in the near term.</div>
+                </div>
+                
+                <div style="background: white; padding: 18px; border-radius: 10px; border-left: 4px solid #ec4899;">
+                    <div style="font-weight: 700; color: #ec4899; margin-bottom: 12px; font-size: 15px;">💬 Crowd Tape</div>
+                    <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                        <div style="margin-bottom: 8px;"><strong>Theme:</strong> Community silence – no chatter, no clear sentiment.</div>
+                        <div style="margin-bottom: 8px;"><strong style="color: #10b981;">Bulls:</strong> If the contracts close and the company can turn the deal into revenue, the story could suddenly become attractive for a quick upside.</div>
+                        <div style="margin-bottom: 8px;"><strong style="color: #ef4444;">Bears:</strong> The absence of any revenue, guidance or concrete execution dates makes the story look like a speculative bet.</div>
+                        <div><strong>Shift:</strong> There was a brief spike in interest around the contract announcements, but it faded within a week as no further details emerged.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Attention Check -->
+            <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #f59e0b;">
+                <div style="font-weight: 700; color: #f59e0b; margin-bottom: 12px; font-size: 15px;">👀 Attention Check</div>
+                <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                    Google Trends shows no spikes in search volume; the interest level is flat at 0/100. Social media activity is zero posts, indicating the story has lost oxygen and is not generating fresh buzz.
+                </div>
+            </div>
+            
+            <!-- What to Expect Next -->
+            <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #14b8a6;">
+                <div style="font-weight: 700; color: #14b8a6; margin-bottom: 12px; font-size: 15px;">🔮 What to Expect Next</div>
+                <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                    <div style="margin-bottom: 10px;"><strong>Catalysts:</strong></div>
+                    <div style="padding: 4px 0; padding-left: 15px;">• Q1 2026 results (expected around March): If the company reports first revenue from the UK or SE Asian contracts, it will be a major catalyst for the bull case.</div><div style="padding: 4px 0; padding-left: 15px;">• Potential AGM (April): A vote on share option exercise or additional funding could either trigger dilution or raise fresh capital.</div>
+                    <div style="margin-top: 10px;"><strong>Watch for:</strong> Director share sales, new share issuances, or any announcement of contract execution dates. The bull case hinges on the first revenue print; any delay or negative guidance will hurt the price.</div>
+                    <div style="margin-top: 8px;"><strong>Timing:</strong> Exhausted – the early hype has faded, and the price is still stuck at zero. There is no clear window for a breakout without new data.</div>
+                </div>
+            </div>
+            
+            <!-- Playbook -->
+            <div style="background: white; padding: 18px; border-radius: 10px; border-left: 4px solid #0ea5e9;">
+                <div style="font-weight: 700; color: #0ea5e9; margin-bottom: 12px; font-size: 15px;">📋 Playbook</div>
+                <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                    <div style="margin-bottom: 10px;"><strong style="color: #10b981;">If Bullish:</strong> Take a very small position (2–3% of the desk) if the Q1 results show any revenue. Use a tight stop at 5p to protect against a flat or negative outcome.</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: #f59e0b;">If Watching:</strong> Hold off until the company releases Q1 results or announces contract execution dates. Wait for a clear revenue signal before committing capital.</div>
+                    <div><strong style="color: #ef4444;">If Passing:</strong> Stay out – the story is currently speculative with no concrete metrics, and the technicals show no volatility or price movement.</div>
+                </div>
+            </div>
+        </div>
 
         <!-- Decision Summary -->
         <div class="card">
@@ -726,27 +858,27 @@
                 Executive Commentary
             </div>
             <div style="line-height: 1.6; margin-bottom: 20px;">
-                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows CONFIRMED timing with 54/100 APEX score. Historical data shows 1 rallies averaging 83% upside. Current position: +58.3%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
+                Note: this report used historical signals only — live triangulation (RNS, social, Trends) was not available. Current setup looks like CONFIRMED with an APEX score of 54/100. Historically there have been 1 rallies (avg. 83%); the position is now +58.3%. Practical take: this is interesting but unconfirmed — wait for an AI snapshot or clear confirmation before committing size.
             </div>
             
             <div style="margin-top: 20px;">
                 <strong style="color: #10b981;">▲ Bull Case:</strong>
-                <div style="padding: 8px 0;">• Limited upside case without catalysts</div>
+                <div style="padding: 8px 0;">• No obvious upside without a catalyst</div>
             </div>
             
             <div style="margin-top: 20px;">
                 <strong style="color: #ef4444;">▼ Bear Case:</strong>
-                <div style="padding: 8px 0;">• Monitor for breakdown signals</div>
+                <div style="padding: 8px 0;">• No immediate red flags, but keep stops tight</div>
             </div>
             
             <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
                 <strong>◷ Timing Translation:</strong><br>
-                Momentum confirmed. This is the trade zone if thesis holds.
+                Move has started — this is the actionable window if your thesis remains intact.
             </div>
             
             <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
                 <strong>◎ Confidence Explained:</strong><br>
-                Confidence 60/100 reflects full data quality with triangulation loaded.
+                Confidence 60/100 — data triangulated from RNS, social and Trends.
             </div>
         </div>
 
@@ -864,7 +996,7 @@
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Piers Shimwell</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Allenby Capital</td>
                     </tr>
                     
                         </table>
@@ -1032,7 +1164,7 @@ NRAGZGZMKMMGVZM
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Piers Shimwell</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">East Asian</td>
                     </tr>
                     
                         </table>
@@ -1146,7 +1278,7 @@ CNTFLFIRLDIALIR
                 margin-bottom: 16px;
             ">
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">📊</span>
+                    <span style="font-size: 20px;">🏛️</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 700; font-size: 16px;">Holding(s) in Company</div>
                         <span style="
@@ -1157,11 +1289,11 @@ CNTFLFIRLDIALIR
                             font-size: 11px;
                             margin-top: 4px;
                             font-weight: 600;
-                        ">GROK: 100/100 • NEUTRAL</span>
+                        ">HOLDINGS</span>
                     </div>
                 </div>
                 <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    HOLDING DISCLOSURE: Holding disclosed | 📊 NEUTRAL: Significant holder at 3.17% - potential price setter or activist.
+                    Major holder disclosure - routine regulatory filing.
                 </div>
             </div>
             
@@ -1191,62 +1323,6 @@ CNTFLFIRLDIALIR
             </div>
             
                 
-                <div style="
-                    margin: 16px 0;
-                    padding: 14px;
-                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-                    border-radius: 10px;
-                    border-left: 4px solid #3b82f6;
-                ">
-                    <h4 style="
-                        font-size: 13px;
-                        color: #1e293b;
-                        margin-bottom: 12px;
-                        font-weight: 700;
-                        display: flex;
-                        align-items: center;
-                        gap: 8px;
-                    ">
-                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
-                        <span style="
-                            display: inline-block;
-                            background: #3b82f6;
-                            color: white;
-                            padding: 2px 8px;
-                            border-radius: 10px;
-                            font-size: 11px;
-                            font-weight: 800;
-                        ">100/100</span>
-                    </h4>
-                    
-                    <div style="display: grid; gap: 10px;">
-                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
-                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
-                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">HOLDING DISCLOSURE: Holding disclosed</div>
-                        </div>
-                        
-                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
-                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
-                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 NEUTRAL: Significant holder at 3.17% - potential price setter or activist.</div>
-                        </div>
-                        
-                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
-                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
-                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
-                        </div>
-                        
-                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
-                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
-                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📊 ANALYZE: Determine offer price, arbitrage opportunity if discount</div>
-                        </div>
-                        
-                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
-                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
-                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
-                        </div>
-                    </div>
-                </div>
-                
                 
                     <div style="margin: 16px 0;">
                         <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
@@ -1254,7 +1330,7 @@ CNTFLFIRLDIALIR
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Thruvision Group</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Privacy Policy</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1451,12 +1527,12 @@ HOLUAARRNUUAAUR
                         justify-content: center;
                         width: 30px;
                         height: 30px;
-                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
                         color: white;
                         border-radius: 50%;
                         font-weight: 800;
                         font-size: 15px;
-                        box-shadow: 0 2px 8px #3b82f640;
+                        box-shadow: 0 2px 8px #10b98140;
                     ">4</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
                         RNS ANNOUNCEMENT #4
@@ -1465,14 +1541,14 @@ HOLUAARRNUUAAUR
                 
                 
             <div style="
-                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
                 color: white;
                 padding: 14px;
                 border-radius: 10px;
                 margin-bottom: 16px;
             ">
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">📊</span>
+                    <span style="font-size: 20px;">🤝</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 700; font-size: 16px;">Award of Share Options</div>
                         <span style="
@@ -1483,11 +1559,11 @@ HOLUAARRNUUAAUR
                             font-size: 11px;
                             margin-top: 4px;
                             font-weight: 600;
-                        ">GROK: 75/100 • NEUTRAL</span>
+                        ">CONTRACT WIN</span>
                     </div>
                 </div>
                 <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    CORPORATE NEWS: Award of Share Options | 📊 Neutral informational update
+                    Positive development - monitor for follow-through in share price.
                 </div>
             </div>
             
@@ -1508,70 +1584,14 @@ HOLUAARRNUUAAUR
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
                 </div>
             </div>
             
-                
-                <div style="
-                    margin: 16px 0;
-                    padding: 14px;
-                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-                    border-radius: 10px;
-                    border-left: 4px solid #3b82f6;
-                ">
-                    <h4 style="
-                        font-size: 13px;
-                        color: #1e293b;
-                        margin-bottom: 12px;
-                        font-weight: 700;
-                        display: flex;
-                        align-items: center;
-                        gap: 8px;
-                    ">
-                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
-                        <span style="
-                            display: inline-block;
-                            background: #3b82f6;
-                            color: white;
-                            padding: 2px 8px;
-                            border-radius: 10px;
-                            font-size: 11px;
-                            font-weight: 800;
-                        ">75/100</span>
-                    </h4>
-                    
-                    <div style="display: grid; gap: 10px;">
-                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
-                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
-                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">CORPORATE NEWS: Award of Share Options</div>
-                        </div>
-                        
-                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
-                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
-                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
-                        </div>
-                        
-                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
-                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
-                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
-                        </div>
-                        
-                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
-                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
-                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
-                        </div>
-                        
-                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
-                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
-                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">➡️ STABLE: Mixed signals, normal operations</div>
-                        </div>
-                    </div>
-                </div>
                 
                 
                     <div style="margin: 16px 0;">
@@ -1580,7 +1600,7 @@ HOLUAARRNUUAAUR
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Piers Shimwell</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Ordinary Shares</td>
                     </tr>
                     
                         </table>
@@ -1747,12 +1767,12 @@ DSHAKPBBDBKDQDK
                         justify-content: center;
                         width: 30px;
                         height: 30px;
-                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
                         color: white;
                         border-radius: 50%;
                         font-weight: 800;
                         font-size: 15px;
-                        box-shadow: 0 2px 8px #3b82f640;
+                        box-shadow: 0 2px 8px #10b98140;
                     ">5</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
                         RNS ANNOUNCEMENT #5
@@ -1761,14 +1781,14 @@ DSHAKPBBDBKDQDK
                 
                 
             <div style="
-                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
                 color: white;
                 padding: 14px;
                 border-radius: 10px;
                 margin-bottom: 16px;
             ">
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">📊</span>
+                    <span style="font-size: 20px;">🤝</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 700; font-size: 16px;">US Retail Distribution Contract Award</div>
                         <span style="
@@ -1779,11 +1799,11 @@ DSHAKPBBDBKDQDK
                             font-size: 11px;
                             margin-top: 4px;
                             font-weight: 600;
-                        ">GROK: 90/100 • NEUTRAL</span>
+                        ">CONTRACT WIN</span>
                     </div>
                 </div>
                 <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    BUSINESS WIN: Contract won or partnership announced | 📊 Neutral informational update
+                    New business win - potential revenue uplift for future quarters.
                 </div>
             </div>
             
@@ -1804,70 +1824,14 @@ DSHAKPBBDBKDQDK
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS-R</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS-R</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
                 </div>
             </div>
             
-                
-                <div style="
-                    margin: 16px 0;
-                    padding: 14px;
-                    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-                    border-radius: 10px;
-                    border-left: 4px solid #3b82f6;
-                ">
-                    <h4 style="
-                        font-size: 13px;
-                        color: #1e293b;
-                        margin-bottom: 12px;
-                        font-weight: 700;
-                        display: flex;
-                        align-items: center;
-                        gap: 8px;
-                    ">
-                        <span style="font-size: 16px;">🤖</span> GROK INTELLIGENCE ANALYSIS
-                        <span style="
-                            display: inline-block;
-                            background: #3b82f6;
-                            color: white;
-                            padding: 2px 8px;
-                            border-radius: 10px;
-                            font-size: 11px;
-                            font-weight: 800;
-                        ">90/100</span>
-                    </h4>
-                    
-                    <div style="display: grid; gap: 10px;">
-                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
-                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">EVENT TYPE:</div>
-                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">BUSINESS WIN: Contract won or partnership announced</div>
-                        </div>
-                        
-                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
-                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">TRADING VIEW:</div>
-                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">📊 Neutral informational update</div>
-                        </div>
-                        
-                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
-                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RISK LEVEL:</div>
-                            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">🔵 NEUTRAL: Balanced or routine update</div>
-                        </div>
-                        
-                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
-                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">RECOMMENDED:</div>
-                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">📋 HOLD: Monitor for developing patterns in announcements</div>
-                        </div>
-                        
-                        <div style="display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: start;">
-                            <div style="font-weight: 600; font-size: 11px; color: #64748b;">COMPANY HEALTH:</div>
-                            <div style="font-size: 12px; color: #0f172a; font-weight: 600;">⚠️ CRITICAL: Serious company health concerns - potential distress signal</div>
-                        </div>
-                    </div>
-                </div>
                 
                 
                     <div style="margin: 16px 0;">
@@ -1876,7 +1840,7 @@ DSHAKPBBDBKDQDK
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Piers Shimwell</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Senior Sales</td>
                     </tr>
                     
                         </table>
@@ -2275,7 +2239,7 @@ NRAGPGAUPUPAGWB
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-28 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-01-29 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.

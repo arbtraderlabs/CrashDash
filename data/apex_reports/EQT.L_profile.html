@@ -238,23 +238,68 @@
                 <span style="font-size: 32px; font-weight: 800; color: white;">◉ WATCH</span>
             </div>
             
-            <div class="scores-row">
-                <div class="score-circle">
-                    <div class="score-number" style="color: #ef4444;">38</div>
-                    <div class="score-label">APEX SCORE</div>
+            <div class="scores-row" style="display:flex; gap:18px; align-items:center; justify-content:center;">
+                <div style="display:flex; gap:10px; align-items:center;">
+                    <div style="width:84px; height:84px; border-radius:12px; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+                        <div style="font-size:20px; font-weight:800; color:#ef4444;">38</div>
+                        <div style="font-size:11px; color:#64748b; margin-top:6px;">APEX</div>
+                    </div>
+                    <div style="width:84px; height:84px; border-radius:12px; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+                        <div style="font-size:20px; font-weight:800; color:#f59e0b;">60</div>
+                        <div style="font-size:11px; color:#64748b; margin-top:6px;">CONF</div>
+                    </div>
+                    <div style="width:84px; height:84px; border-radius:12px; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+                        <div style="font-size:20px; font-weight:800; color:#84cc16;">54.0</div>
+                        <div style="font-size:11px; color:#64748b; margin-top:6px;">PANIC</div>
+                    </div>
+                    <div style="width:84px; height:84px; border-radius:12px; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+                        <div style="font-size:20px; font-weight:800; color:#f59e0b;">48</div>
+                        <div style="font-size:11px; color:#64748b; margin-top:6px;">CC</div>
+                    </div>
                 </div>
-                <div class="score-circle">
-                    <div class="score-number" style="color: #f59e0b;">60</div>
-                    <div class="score-label">CONFIDENCE</div>
+                <div style="width:160px; height:160px; border-radius:50%; background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 10px 30px rgba(0,0,0,0.08);">
+                    <div style="text-align:center;">
+                        <div style="font-size:34px; font-weight:900; color:#0f172a;">50</div>
+                        <div style="font-size:12px; color:#64748b; margin-top:6px; font-weight:700;">Overall</div>
+                    </div>
                 </div>
             </div>
             
-            <div class="timing-badge-large">
-                Timing: <span class="rally-badge" style="background: #fef3c7; color: #92400e;">EARLY BUILD</span>
-            </div>
+            <!-- timing pill removed here; timing shown below next to Timing Scope for clarity -->
             
-            <div class="thesis-line">
-                WATCH - EARLY_BUILD timing with 38/100 opportunity score
+            <!-- Timing Scope (composite shown below; timing is separate) -->
+            <div style="margin-top:14px;">
+                <div style="font-size:12px; color:#475569; font-weight:700; margin-bottom:6px;">Timing Scope</div>
+                <style>
+                    @keyframes pulse-ring {
+                        0% { transform: scale(0.8); opacity: 0.9; }
+                        70% { transform: scale(2.2); opacity: 0; }
+                        100% { transform: scale(2.8); opacity: 0; }
+                    }
+                </style>
+                <div style="position:relative; height:48px; background:linear-gradient(90deg, #ef4444 0%, #f59e0b 25%, #f093fb 50%, #10b981 75%, #064e3b 100%); border-radius:8px;">
+                    <div style="position:absolute; left:calc(30% - 24px); top:calc(50% - 24px); width:48px; height:48px; display:flex; align-items:center; justify-content:center;">
+                        <div style="position:absolute; width:48px; height:48px; border-radius:24px; background:rgba(15,23,42,0.12); animation: pulse-ring 1.8s infinite;"></div>
+                        <div style="width:16px; height:16px; border-radius:8px; background:#0f172a; box-shadow:0 6px 18px rgba(0,0,0,0.12);"></div>
+                    </div>
+                    <!-- small score bubble removed (duplicate of main overall score) -->
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:12px; color:#475569; margin-top:10px;">
+                    <div>Too Early</div>
+                    <div>Early Build</div>
+                    <div>Confirmed</div>
+                    <div>Crowded</div>
+                    <div>Broken</div>
+                </div>
+
+                <div style="margin-top:12px; display:flex; justify-content:center;">
+                    <div style="background: linear-gradient(180deg, rgba(8,18,39,0.95) 0%, rgba(10,28,50,0.92) 100%); border:1px solid rgba(255,255,255,0.04); padding:14px 20px; border-radius:14px; box-shadow:0 16px 48px rgba(2,6,23,0.18); color:#e6eef8; font-size:13px; font-weight:700; max-width:920px; text-align:center;">
+                        <span style="color:#1fb6ae; font-weight:800; margin-right:10px;">Timing:</span>
+                        <span style="text-transform:uppercase; letter-spacing:0.6px; color:#ffffff;">EARLY_BUILD</span>
+                        <span style="color:rgba(230,238,248,0.7); font-weight:600; margin:0 10px;">—</span>
+                        <span style="font-weight:600; color:rgba(230,238,248,0.95);">Early accumulation — consider micro entries; wait for confirmation.</span>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -470,7 +515,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Publication of Circular and Notice of EGM</div>
-                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                        <div style="font-size: 12px; color: #64748b;">21st Jan 2026</div>
                     </div>
                 </div>
             </div>
@@ -480,7 +525,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Facility Conversion Notice</div>
-                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                        <div style="font-size: 12px; color: #64748b;">14th Jan 2026</div>
                     </div>
                 </div>
             </div>
@@ -490,7 +535,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Complementary strategic expansion</div>
-                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                        <div style="font-size: 12px; color: #64748b;">14th Jan 2026</div>
                     </div>
                 </div>
             </div>
@@ -500,7 +545,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Drawdown and Funding Update</div>
-                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                        <div style="font-size: 12px; color: #64748b;">23rd Dec 2025</div>
                     </div>
                 </div>
             </div>
@@ -510,7 +555,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Facility Conversion Notice</div>
-                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                        <div style="font-size: 12px; color: #64748b;">15th Dec 2025</div>
                     </div>
                 </div>
             </div>
@@ -576,15 +621,15 @@
         <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
         <div class="card" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 2px solid #0ea5e9;">
             <div class="card-title" style="color: #0369a1;">
-                <span class="card-icon">🤖</span>
-                APEX Trader Brief v2
+                <span class="card-icon">📡</span>
+                APEX RNS Report
             </div>
             
             <!-- Bottom Line (Most Important) -->
             <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #0ea5e9;">
                 <div style="font-size: 16px; font-weight: 700; color: #0369a1; margin-bottom: 10px;">📝 Bottom Line</div>
                 <div style="font-size: 15px; line-height: 1.7; color: #1e293b;">
-                    Pass – the company is a shell with no revenue or operational traction, zero market interest, and a flat price. The risk of a total loss far outweighs any speculative upside.
+                    Avoid EQT Ltd. for now – the stock is a high‑risk, low‑reward speculative play with no visible catalyst and a strong bearish consensus. If you must take a position, do so in a very small amount and only after a positive outcome at the upcoming EGM.
                 </div>
             </div>
             
@@ -592,22 +637,22 @@
             <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #6366f1;">
                 <div style="font-weight: 700; color: #6366f1; margin-bottom: 12px; font-size: 15px;">🏢 Company in 30 Seconds</div>
                 <div style="font-size: 14px; line-height: 1.6; color: #334155;">
-                    <div style="margin-bottom: 8px;"><strong>What they do:</strong> EQT Limited is a small UK‑based investment vehicle that mainly raises capital through equity placements and manages a narrow portfolio of private‑sector holdings.</div>
-                    <div style="margin-bottom: 8px;"><strong>Why they matter:</strong> The company offers a low‑cost, high‑leverage entry point for traders looking to bet on micro‑cap volatility, but its business model is essentially a vehicle for capital deployment rather than a revenue‑generating entity.</div>
-                    <div><strong>Current state:</strong> EQT is currently pre‑revenue, with no active trading or product pipeline beyond its own equity placements.</div>
+                    <div style="margin-bottom: 8px;"><strong>What they do:</strong> EQT Ltd. is a micro‑cap listed on the AIM with no publicly disclosed core business.</div>
+                    <div style="margin-bottom: 8px;"><strong>Why they matter:</strong> They represent a low‑cost, high‑risk micro‑cap that could surprise if a hidden catalyst emerges.</div>
+                    <div><strong>Current state:</strong> The stock is struggling, down 93.8% from its peak, with no recent revenue or operational updates.</div>
                 </div>
             </div>
             
             <!-- Buy vs Sell Decision -->
-            <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #f59e0b;">
-                <div style="font-weight: 700; color: #f59e0b; margin-bottom: 12px; font-size: 15px;">
-                    ⚖️ 
-                    Buy vs Sell — Lean: NEUTRAL
+            <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #ef4444;">
+                <div style="font-weight: 700; color: #ef4444; margin-bottom: 12px; font-size: 15px;">
+                    📉 
+                    Buy vs Sell — Lean: BEARISH
                 </div>
                 <div style="font-size: 14px; line-height: 1.6; color: #334155;">
-                    <div style="margin-bottom: 10px;"><strong style="color: #10b981;">Bull Case:</strong> If EQT successfully converts its equity placements into profitable assets or secures a strategic partnership that unlocks a new revenue stream, the price could climb above the current 0p level. A well‑timed AGM vote to raise additional capital at a discount might also provide a short‑term upside for early investors.</div>
-                    <div style="margin-bottom: 10px;"><strong style="color: #ef4444;">Bear Case:</strong> The company has no product, no revenue, no clear exit strategy, and a flat price with zero volatility. The repeated equity placements are more likely to dilute shareholders than to create value. Without a tangible business plan, the risk of a price collapse is high.</div>
-                    <div><strong>Risk/Reward:</strong> Risk/reward is poor – the upside is limited to a modest price bump if a new capital raise is announced, while the downside is the current zero pence level, meaning the entire stake could become worthless.</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: #10b981;">Bull Case:</strong> If the EGM leads to a successful capital raise or the company announces a new revenue‑generating project, the stock could rally modestly. A placement at a discount could also provide a quick upside if investors are convinced.</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: #ef4444;">Bear Case:</strong> The company is burning cash, has no revenue, and has lost all visible market interest. Any dilution or a failed capital raise will push the price lower, and the flat technicals suggest no support for a bounce.</div>
+                    <div><strong>Risk/Reward:</strong> High risk, limited upside – a 3‑5x return is only possible if a surprise funding or project launch occurs, but the probability is low.</div>
                 </div>
             </div>
             
@@ -615,16 +660,16 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-bottom: 15px;">
                 <div style="background: white; padding: 18px; border-radius: 10px; border-left: 4px solid #8b5cf6;">
                     <div style="font-weight: 700; color: #8b5cf6; margin-bottom: 12px; font-size: 15px;">📰 RNS Narrative</div>
-                    <div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• Fundraising focus: The company has been busy with a series of equity placements, refinancing its existing facility and securing a new syndicated facility, all announced between early April and late May.</div><div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• Settlement and subscription updates: Several RNS entries detail settlement agreements with Logik Developments and updates on a Verde Corporation subscription, signalling the company’s attempt to diversify its limited holdings.</div><div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• No operational milestones: None of the announcements mention revenue, product launches or operational progress – the story is purely financial.</div>
+                    <div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• Corporate governance cluster: a circular and notice of an EGM were issued on 21 Jan 2026, signalling a potential capital raise or shareholder vote.</div><div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• Funding & cash‑flow cluster: the 23 Dec 2025 drawdown and funding update, 9 Dec holdings report, and 3 Dec project funding update for France indicate ongoing cash burn and a need for fresh capital.</div><div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• Strategic moves cluster: the 14 Jan facility conversion notice and complementary strategic expansion announcement suggest an attempt to restructure debt and broaden the company’s reach.</div>
                 </div>
                 
                 <div style="background: white; padding: 18px; border-radius: 10px; border-left: 4px solid #ec4899;">
                     <div style="font-weight: 700; color: #ec4899; margin-bottom: 12px; font-size: 15px;">💬 Crowd Tape</div>
                     <div style="font-size: 14px; line-height: 1.6; color: #334155;">
-                        <div style="margin-bottom: 8px;"><strong>Theme:</strong> The community is largely silent; the few posts that exist are split between hopeful investors who view the equity placements as a potential upside and cautious traders who see the lack of revenue as a warning sign.</div>
-                        <div style="margin-bottom: 8px;"><strong style="color: #10b981;">Bulls:</strong> Bulls argue that the repeated successful placements at a discount (e.g., 10p) demonstrate market confidence and could provide a catalyst for a price rebound if the company can turn its capital into profitable assets.</div>
-                        <div style="margin-bottom: 8px;"><strong style="color: #ef4444;">Bears:</strong> Bears point out that the company’s price is flat at zero pence, volatility is nil, and there is no clear business plan – a classic case of a shell company with no intrinsic value.</div>
-                        <div><strong>Shift:</strong> Initially, there was a brief spike in excitement around the first placement announcement, but the sentiment quickly cooled as subsequent filings revealed no substantive progress.</div>
+                        <div style="margin-bottom: 8px;"><strong>Theme:</strong> Bears dominate the sparse chatter, warning that the company is burning cash with no clear path to profitability.</div>
+                        <div style="margin-bottom: 8px;"><strong style="color: #10b981;">Bulls:</strong> A few traders point to the strategic expansion into France and the potential for a new placement at the EGM as a way to inject capital and unlock upside.</div>
+                        <div style="margin-bottom: 8px;"><strong style="color: #ef4444;">Bears:</strong> Most voices caution that the flat Google trends, zero social posts, and the 93.8% price slide reflect a loss of interest and a high likelihood of further dilution or a sale of the business.</div>
+                        <div><strong>Shift:</strong> The community was mildly optimistic when the circular was released, but sentiment cooled rapidly after the funding update revealed continued cash burn.</div>
                     </div>
                 </div>
             </div>
@@ -633,7 +678,7 @@
             <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #f59e0b;">
                 <div style="font-weight: 700; color: #f59e0b; margin-bottom: 12px; font-size: 15px;">👀 Attention Check</div>
                 <div style="font-size: 14px; line-height: 1.6; color: #334155;">
-                    Google Trends shows a flat, almost non‑existent interest level (0/100) and zero momentum, indicating no search activity. Social media volume is nil – no posts were tracked. The lack of both online and offline buzz suggests the story has lost oxygen and is not attracting new capital or attention.
+                    Google Trends shows a flat line with an interest level of 0/100, and no ShareChat posts were tracked. The story has lost oxygen – no new searches or social chatter to fuel momentum.
                 </div>
             </div>
             
@@ -642,9 +687,9 @@
                 <div style="font-weight: 700; color: #14b8a6; margin-bottom: 12px; font-size: 15px;">🔮 What to Expect Next</div>
                 <div style="font-size: 14px; line-height: 1.6; color: #334155;">
                     <div style="margin-bottom: 10px;"><strong>Catalysts:</strong></div>
-                    <div style="padding: 4px 0; padding-left: 15px;">• Upcoming AGM in September: Potential for a board vote on new capital raises or dilution events; any decision could move the price sharply.</div><div style="padding: 4px 0; padding-left: 15px;">• Quarterly funding review: The next scheduled funding update (likely in October) could reveal whether the company will raise more capital or begin to sell assets.</div>
-                    <div style="margin-top: 10px;"><strong>Watch for:</strong> Key red flags include a lack of revenue reports, the absence of any asset sales, and the possibility of further equity placements that could dilute existing shareholders. Positive proof points would be the sale of a holding or a clear business plan for generating cash flow.</div>
-                    <div style="margin-top: 8px;"><strong>Timing:</strong> APEX marks EQT as 'Exhausted' – the early entry window has passed, the price is flat, and the technical profile is weak. The company is in a late‑stage speculative phase with minimal upside potential unless a surprise catalyst emerges.</div>
+                    <div style="padding: 4px 0; padding-left: 15px;">• Late 2026: Next scheduled RNS (likely a quarterly update) – the first opportunity for revenue or profitability data.</div>
+                    <div style="margin-top: 10px;"><strong>Watch for:</strong> Pay close attention to any director or insider selling, rumors of a placement, and the outcome of the EGM. The bull case hinges on a surprise funding round or a new revenue stream; the bear case is a continued cash burn and further dilution.</div>
+                    <div style="margin-top: 8px;"><strong>Timing:</strong> Late/Exhausted – the technicals are weak, the price has been flat for weeks, and the story shows no signs of picking up.</div>
                 </div>
             </div>
             
@@ -652,9 +697,9 @@
             <div style="background: white; padding: 18px; border-radius: 10px; border-left: 4px solid #0ea5e9;">
                 <div style="font-weight: 700; color: #0ea5e9; margin-bottom: 12px; font-size: 15px;">📋 Playbook</div>
                 <div style="font-size: 14px; line-height: 1.6; color: #334155;">
-                    <div style="margin-bottom: 10px;"><strong style="color: #10b981;">If Bullish:</strong> Given the neutral stance, a trader would likely avoid taking a position. If a trader is determined to play, they should wait for a clear catalyst such as a new asset sale or a positive AGM outcome before committing any capital, and even then keep the position small (no more than 1–2% of the portfolio).</div>
-                    <div style="margin-bottom: 10px;"><strong style="color: #f59e0b;">If Watching:</strong> Hold off until the next AGM or a definitive funding update. Look for any signs of revenue generation or a strategic pivot. If a new business model is announced, consider a cautious entry on a dip.</div>
-                    <div><strong style="color: #ef4444;">If Passing:</strong> The story is too speculative and lacks any operational traction. The lack of buzz, flat Google Trends, and zero volatility make it a poor candidate for a micro‑cap trade. Pass for now and focus on setups with clearer fundamentals.</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: #10b981;">If Bullish:</strong> Enter a very small position (1‑2% of your allocation) only after a positive EGM outcome or a new placement announcement. Place a tight stop 5‑10 pips below the entry to protect against further decline.</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: #f59e0b;">If Watching:</strong> Hold cash and wait for the 21 Jan EGM. If the company raises capital or announces a new revenue stream, consider adding on a dip. Otherwise, stay out until a clear catalyst appears.</div>
+                    <div><strong style="color: #ef4444;">If Passing:</strong> The story has faded, the price is flat, and there are no revenue signals. The risk of a further decline outweighs any speculative upside. Better to allocate capital to setups with clearer fundamentals.</div>
                 </div>
             </div>
         </div>
@@ -817,27 +862,27 @@
                 Executive Commentary
             </div>
             <div style="line-height: 1.6; margin-bottom: 20px;">
-                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows EARLY_BUILD timing with 38/100 APEX score. Historical data shows 1 rallies averaging 200% upside. Current position: +80.0%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
+                Note: this report used historical signals only — live triangulation (RNS, social, Trends) was not available. Current setup looks like EARLY_BUILD with an APEX score of 38/100. Historically there have been 1 rallies (avg. 200%); the position is now +80.0%. Practical take: this is interesting but unconfirmed — wait for an AI snapshot or clear confirmation before committing size.
             </div>
             
             <div style="margin-top: 20px;">
                 <strong style="color: #10b981;">▲ Bull Case:</strong>
-                <div style="padding: 8px 0;">• Early regime often offers best risk/reward</div>
+                <div style="padding: 8px 0;">• Early accumulation — good risk/reward if it confirms</div>
             </div>
             
             <div style="margin-top: 20px;">
                 <strong style="color: #ef4444;">▼ Bear Case:</strong>
-                <div style="padding: 8px 0;">• Monitor for breakdown signals</div>
+                <div style="padding: 8px 0;">• No immediate red flags, but keep stops tight</div>
             </div>
             
             <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
                 <strong>◷ Timing Translation:</strong><br>
-                Early accumulation phase. Watch for confirmation before committing size.
+                Accumulation in progress. Consider small starters but wait for confirmation before sizing up.
             </div>
             
             <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
                 <strong>◎ Confidence Explained:</strong><br>
-                Confidence 60/100 reflects full data quality with triangulation loaded.
+                Confidence 60/100 — data triangulated from RNS, social and Trends.
             </div>
         </div>
 
@@ -955,7 +1000,7 @@
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">James Parsons</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Ordinary Shares</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1203,7 +1248,7 @@ MSCBMMTTMTATBRF
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">James Parsons</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Regulation No</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1392,7 +1437,7 @@ CONBRGDBRGBDGLS
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">James Parsons</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Regulation No</td>
                     </tr>
                     
                         </table>
@@ -1584,7 +1629,7 @@ MSCAKNBBFBKDFDD
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">James Parsons</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Regulation No</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1760,7 +1805,7 @@ UPDBBBDDBSDDGUX
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">James Parsons</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Regulation No</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -2176,7 +2221,7 @@ CONBUBDDLXBDGUU
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-28 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-01-29 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.

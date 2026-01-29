@@ -238,23 +238,68 @@
                 <span style="font-size: 32px; font-weight: 800; color: white;">◉ WATCH</span>
             </div>
             
-            <div class="scores-row">
-                <div class="score-circle">
-                    <div class="score-number" style="color: #ef4444;">42</div>
-                    <div class="score-label">APEX SCORE</div>
+            <div class="scores-row" style="display:flex; gap:18px; align-items:center; justify-content:center;">
+                <div style="display:flex; gap:10px; align-items:center;">
+                    <div style="width:84px; height:84px; border-radius:12px; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+                        <div style="font-size:20px; font-weight:800; color:#ef4444;">42</div>
+                        <div style="font-size:11px; color:#64748b; margin-top:6px;">APEX</div>
+                    </div>
+                    <div style="width:84px; height:84px; border-radius:12px; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+                        <div style="font-size:20px; font-weight:800; color:#f59e0b;">50</div>
+                        <div style="font-size:11px; color:#64748b; margin-top:6px;">CONF</div>
+                    </div>
+                    <div style="width:84px; height:84px; border-radius:12px; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+                        <div style="font-size:20px; font-weight:800; color:#10b981;">34.7</div>
+                        <div style="font-size:11px; color:#64748b; margin-top:6px;">PANIC</div>
+                    </div>
+                    <div style="width:84px; height:84px; border-radius:12px; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+                        <div style="font-size:20px; font-weight:800; color:#ef4444;">25</div>
+                        <div style="font-size:11px; color:#64748b; margin-top:6px;">CC</div>
+                    </div>
                 </div>
-                <div class="score-circle">
-                    <div class="score-number" style="color: #f59e0b;">50</div>
-                    <div class="score-label">CONFIDENCE</div>
+                <div style="width:160px; height:160px; border-radius:50%; background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 10px 30px rgba(0,0,0,0.08);">
+                    <div style="text-align:center;">
+                        <div style="font-size:34px; font-weight:900; color:#0f172a;">38</div>
+                        <div style="font-size:12px; color:#64748b; margin-top:6px; font-weight:700;">Overall</div>
+                    </div>
                 </div>
             </div>
             
-            <div class="timing-badge-large">
-                Timing: <span class="rally-badge" style="background: #fef3c7; color: #92400e;">EARLY BUILD</span>
-            </div>
+            <!-- timing pill removed here; timing shown below next to Timing Scope for clarity -->
             
-            <div class="thesis-line">
-                WATCH - EARLY_BUILD timing with 42/100 opportunity score
+            <!-- Timing Scope (composite shown below; timing is separate) -->
+            <div style="margin-top:14px;">
+                <div style="font-size:12px; color:#475569; font-weight:700; margin-bottom:6px;">Timing Scope</div>
+                <style>
+                    @keyframes pulse-ring {
+                        0% { transform: scale(0.8); opacity: 0.9; }
+                        70% { transform: scale(2.2); opacity: 0; }
+                        100% { transform: scale(2.8); opacity: 0; }
+                    }
+                </style>
+                <div style="position:relative; height:48px; background:linear-gradient(90deg, #ef4444 0%, #f59e0b 25%, #f093fb 50%, #10b981 75%, #064e3b 100%); border-radius:8px;">
+                    <div style="position:absolute; left:calc(30% - 24px); top:calc(50% - 24px); width:48px; height:48px; display:flex; align-items:center; justify-content:center;">
+                        <div style="position:absolute; width:48px; height:48px; border-radius:24px; background:rgba(15,23,42,0.12); animation: pulse-ring 1.8s infinite;"></div>
+                        <div style="width:16px; height:16px; border-radius:8px; background:#0f172a; box-shadow:0 6px 18px rgba(0,0,0,0.12);"></div>
+                    </div>
+                    <!-- small score bubble removed (duplicate of main overall score) -->
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:12px; color:#475569; margin-top:10px;">
+                    <div>Too Early</div>
+                    <div>Early Build</div>
+                    <div>Confirmed</div>
+                    <div>Crowded</div>
+                    <div>Broken</div>
+                </div>
+
+                <div style="margin-top:12px; display:flex; justify-content:center;">
+                    <div style="background: linear-gradient(180deg, rgba(8,18,39,0.95) 0%, rgba(10,28,50,0.92) 100%); border:1px solid rgba(255,255,255,0.04); padding:14px 20px; border-radius:14px; box-shadow:0 16px 48px rgba(2,6,23,0.18); color:#e6eef8; font-size:13px; font-weight:700; max-width:920px; text-align:center;">
+                        <span style="color:#1fb6ae; font-weight:800; margin-right:10px;">Timing:</span>
+                        <span style="text-transform:uppercase; letter-spacing:0.6px; color:#ffffff;">EARLY_BUILD</span>
+                        <span style="color:rgba(230,238,248,0.7); font-weight:600; margin:0 10px;">—</span>
+                        <span style="font-weight:600; color:rgba(230,238,248,0.95);">Early accumulation — consider micro entries; wait for confirmation.</span>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -262,8 +307,8 @@
         
         <div class="card" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 2px solid #10b981;">
             <div class="card-title" style="color: #0f172a;">
-                <span class="card-icon">🏭</span>
-                CrashDash Intelligence • Industrials
+                <span class="card-icon">🧬</span>
+                CrashDash Intelligence • Biotech & Pharma
             </div>
             
             <!-- Fear Meter -->
@@ -447,16 +492,16 @@
             <!-- Industry Crash Patterns -->
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px;">
                 <div style="background: white; padding: 18px; border-radius: 12px;">
-                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">⚠️ Crash Patterns (Industrials)</div>
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">⚠️ Crash Patterns (Biotech & Pharma)</div>
                     <div style="font-size: 13px; color: #475569; line-height: 1.8;">
-                        <div>• Order book decline or cancellations</div><div>• Margin compression (input costs)</div><div>• Cyclical demand weakness</div>
+                        <div>• Clinical trial failures (Phase 1/2/3)</div><div>• FDA/EMA rejection or delay</div><div>• Safety concerns or adverse events</div>
                     </div>
                     
                 </div>
                 <div style="background: white; padding: 18px; border-radius: 12px;">
                     <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">🚀 Recovery Paths</div>
                     <div style="font-size: 13px; color: #475569; line-height: 1.8;">
-                        <div>• Order book growth or new contracts</div><div>• Margin recovery (efficiency gains)</div><div>• Cyclical upturn (capex recovery)</div>
+                        <div>• Positive trial data (efficacy endpoints met)</div><div>• Regulatory approvals (FDA/EMA)</div><div>• Partnership deals (big pharma licensing)</div>
                     </div>
                 </div>
             </div>
@@ -470,7 +515,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Physiomics Awarded New Contract by Numab</div>
-                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                        <div style="font-size: 12px; color: #64748b;">28th Jan 2026</div>
                     </div>
                 </div>
             </div>
@@ -480,7 +525,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Options Award</div>
-                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                        <div style="font-size: 12px; color: #64748b;">23rd Dec 2025</div>
                     </div>
                 </div>
             </div>
@@ -490,7 +535,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Physiomics Awarded Follow On Contract by UK Client</div>
-                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                        <div style="font-size: 12px; color: #64748b;">15th Dec 2025</div>
                     </div>
                 </div>
             </div>
@@ -500,7 +545,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Physiomics Awarded New Contract by Numab</div>
-                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                        <div style="font-size: 12px; color: #64748b;">11th Dec 2025</div>
                     </div>
                 </div>
             </div>
@@ -510,7 +555,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Physiomics Awarded New Contract by GARDP</div>
-                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                        <div style="font-size: 12px; color: #64748b;">10th Dec 2025</div>
                     </div>
                 </div>
             </div>
@@ -561,7 +606,7 @@
             </div>
             
             <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
-                <span style="font-size: 24px;">🏭</span>
+                <span style="font-size: 24px;">🧬</span>
                 <div style="flex: 1;">
                     <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Industry Pattern</div>
                     <div style="font-size: 13px; color: #10b981; font-weight: 600;">0 active</div>
@@ -576,15 +621,15 @@
         <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
         <div class="card" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 2px solid #0ea5e9;">
             <div class="card-title" style="color: #0369a1;">
-                <span class="card-icon">🤖</span>
-                APEX Trader Brief v2
+                <span class="card-icon">📡</span>
+                APEX RNS Report
             </div>
             
             <!-- Bottom Line (Most Important) -->
             <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #0ea5e9;">
                 <div style="font-size: 16px; font-weight: 700; color: #0369a1; margin-bottom: 10px;">📝 Bottom Line</div>
                 <div style="font-size: 15px; line-height: 1.7; color: #1e293b;">
-                    Pass—no momentum, no liquidity, and a story that has yet to produce any earnings; the risk is high and the upside is minimal.
+                    Pass for now – the stock lacks momentum and clear revenue prospects. The only path to upside hinges on a single, unconfirmed contract turning into cash, which is too speculative for a micro‑cap trader.
                 </div>
             </div>
             
@@ -592,9 +637,9 @@
             <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #6366f1;">
                 <div style="font-weight: 700; color: #6366f1; margin-bottom: 12px; font-size: 15px;">🏢 Company in 30 Seconds</div>
                 <div style="font-size: 14px; line-height: 1.6; color: #334155;">
-                    <div style="margin-bottom: 8px;"><strong>What they do:</strong> PYC is a micro‑cap listed on AIM whose core business remains largely undisclosed; the company appears to operate in a niche sector without clear product visibility.</div>
-                    <div style="margin-bottom: 8px;"><strong>Why they matter:</strong> The company has recently secured a few contract awards and announced new services, which could signal a potential shift from pre‑revenue to early revenue generation if the story materialises.</div>
-                    <div><strong>Current state:</strong> PYC is currently trading at zero price, down almost 82% from its peak, with no trading volume and no clear revenue trail, indicating a struggling, highly speculative setup.</div>
+                    <div style="margin-bottom: 8px;"><strong>What they do:</strong> PYC.L builds molecular diagnostic tools that can detect diseases early by analysing tiny samples of blood or tissue.</div>
+                    <div style="margin-bottom: 8px;"><strong>Why they matter:</strong> If the platform works, it could cut the cost and time of testing for conditions like cancer or rare genetic disorders, making it attractive to big pharma and hospitals.</div>
+                    <div><strong>Current state:</strong> The firm is pre‑revenue, has fallen 81.8 % from its peak, and is trading at essentially zero – a clear sign it is still in the early, risky stage.</div>
                 </div>
             </div>
             
@@ -605,9 +650,9 @@
                     Buy vs Sell — Lean: BEARISH
                 </div>
                 <div style="font-size: 14px; line-height: 1.6; color: #334155;">
-                    <div style="margin-bottom: 10px;"><strong style="color: #10b981;">Bull Case:</strong> If the company can convert its contract wins into early revenue and management can steer the firm toward profitability, a rebound could lift the price from its current zero level.</div>
-                    <div style="margin-bottom: 10px;"><strong style="color: #ef4444;">Bear Case:</strong> With zero liquidity, no earnings, and a stagnant price, the stock remains a pure gamble; any failure to produce revenue or a negative AGM will likely keep the price at zero.</div>
-                    <div><strong>Risk/Reward:</strong> The upside is limited to a modest price move from zero, while the downside is essentially a total loss of invested capital; the risk/reward is unfavorable.</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: #10b981;">Bull Case:</strong> If the Numab contract materialises into a revenue‑generating partnership, the stock could rally sharply, offering a 3‑5x upside from the current price. A clear earnings surprise would also validate the platform’s technology.</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: #ef4444;">Bear Case:</strong> With no revenue, flat social and search metrics, and a price that has already fallen 82 % from its peak, the risk of further decline is high. The lack of a clear next catalyst makes the upside speculative.</div>
+                    <div><strong>Risk/Reward:</strong> High risk with a low probability of reward; the upside is contingent on a single contract turning into cash flow.</div>
                 </div>
             </div>
             
@@ -615,16 +660,16 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-bottom: 15px;">
                 <div style="background: white; padding: 18px; border-radius: 10px; border-left: 4px solid #8b5cf6;">
                     <div style="font-weight: 700; color: #8b5cf6; margin-bottom: 12px; font-size: 15px;">📰 RNS Narrative</div>
-                    <div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• Management moves: senior management changes and board amendments announced in early October, suggesting a reshuffle aimed at steering the company toward growth.</div><div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• Contract wins: two separate contract awards announced in September and October, offering a potential revenue engine but lacking disclosed figures.</div><div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• Financial reporting: annual report and AGM notice released in September, providing a snapshot of the company's fiscal position but no evidence of profitability.</div>
+                    <div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• Contract win: Physiomics secured a new agreement with Numab, signalling potential commercial traction but no revenue disclosed.</div><div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• Corporate moves: Board changes and a recent AGM result hint at internal restructuring, while an options award and a holdings notice suggest executive activity.</div><div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• Financial update: No cash‑flow or earnings data were released, leaving the company’s funding situation opaque.</div>
                 </div>
                 
                 <div style="background: white; padding: 18px; border-radius: 10px; border-left: 4px solid #ec4899;">
                     <div style="font-weight: 700; color: #ec4899; margin-bottom: 12px; font-size: 15px;">💬 Crowd Tape</div>
                     <div style="font-size: 14px; line-height: 1.6; color: #334155;">
-                        <div style="margin-bottom: 8px;"><strong>Theme:</strong> The community is split, with a few bullish voices pointing to contract wins and new services, while the majority remain skeptical due to zero trading activity and lack of revenue.</div>
-                        <div style="margin-bottom: 8px;"><strong style="color: #10b981;">Bulls:</strong> Bulls argue that the recent contract awards and management overhaul could bring fresh momentum, and if the company can convert these into tangible sales, a rebound is possible.</div>
-                        <div style="margin-bottom: 8px;"><strong style="color: #ef4444;">Bears:</strong> Bears point out that the stock has zero liquidity, no price movement, and no proven revenue; without a clear path to earnings, the story is speculative at best.</div>
-                        <div><strong>Shift:</strong> Initial chatter grew after the contract announcements, but as the price stayed flat and no earnings materialised, sentiment cooled to a cautious tone.</div>
+                        <div style="margin-bottom: 8px;"><strong>Theme:</strong> The community is split – bulls point to the Numab contract as a win, whereas bears flag the lack of revenue and stagnant price.</div>
+                        <div style="margin-bottom: 8px;"><strong style="color: #10b981;">Bulls:</strong> Producers of the contract believe the partnership could unlock a pipeline of future deals, potentially lifting the stock.</div>
+                        <div style="margin-bottom: 8px;"><strong style="color: #ef4444;">Bears:</strong> Without any earnings or clear cash‑flow, traders see the price drop as a sign of weak fundamentals and risk of further erosion.</div>
+                        <div><strong>Shift:</strong> Sentiment has stayed flat; no surge of enthusiasm or panic has emerged since the last announcement.</div>
                     </div>
                 </div>
             </div>
@@ -633,7 +678,7 @@
             <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #f59e0b;">
                 <div style="font-weight: 700; color: #f59e0b; margin-bottom: 12px; font-size: 15px;">👀 Attention Check</div>
                 <div style="font-size: 14px; line-height: 1.6; color: #334155;">
-                    Google Trends shows a flat, almost zero interest, and the social media volume is nil—there is no public buzz to keep the story alive.
+                    Google Trends shows zero interest and no momentum, while social media has no posts to track. The story is essentially oxygen‑deprived – no new buzz to revive the narrative.
                 </div>
             </div>
             
@@ -642,9 +687,9 @@
                 <div style="font-weight: 700; color: #14b8a6; margin-bottom: 12px; font-size: 15px;">🔮 What to Expect Next</div>
                 <div style="font-size: 14px; line-height: 1.6; color: #334155;">
                     <div style="margin-bottom: 10px;"><strong>Catalysts:</strong></div>
-                    <div style="padding: 4px 0; padding-left: 15px;">• Upcoming AGM in November 2024: a chance for management to outline strategy, potentially discuss new contracts or a fundraising round, which could be a decisive trigger for the stock.</div><div style="padding: 4px 0; padding-left: 15px;">• Q4 2024 earnings release: the first opportunity to see if any of the announced contracts have translated into revenue, which would validate the bullish narrative.</div>
-                    <div style="margin-top: 10px;"><strong>Watch for:</strong> Director selling or additional placements would signal dilution; lack of revenue or a negative AGM vote would confirm the bearish outlook.</div>
-                    <div style="margin-top: 8px;"><strong>Timing:</strong> Exhausted – the stock has already collapsed from its peak and remains stagnant; any entry would be speculative and likely to remain in the same state until a clear catalyst appears.</div>
+                    <div style="padding: 4px 0; padding-left: 15px;">• February 2026: Finalisation of the Numab contract – a signed, revenue‑generating deal would be the first tangible proof of the platform’s viability.</div><div style="padding: 4px 0; padding-left: 15px;">• March 2026 AGM: Potential vote on new funding or a strategic partnership that could inject capital and signal confidence.</div>
+                    <div style="margin-top: 10px;"><strong>Watch for:</strong> Key red flags include any director or insider selling, rumours of a private placement, or a sudden spike in price volatility that could signal manipulation.</div>
+                    <div style="margin-top: 8px;"><strong>Timing:</strong> The APEX score indicates an exhausted regime – the price has already collapsed and the technicals show no sign of recovery, so entry timing is highly uncertain.</div>
                 </div>
             </div>
             
@@ -652,9 +697,9 @@
             <div style="background: white; padding: 18px; border-radius: 10px; border-left: 4px solid #0ea5e9;">
                 <div style="font-weight: 700; color: #0ea5e9; margin-bottom: 12px; font-size: 15px;">📋 Playbook</div>
                 <div style="font-size: 14px; line-height: 1.6; color: #334155;">
-                    <div style="margin-bottom: 10px;"><strong style="color: #10b981;">If Bullish:</strong> Not applicable – the risk profile is too high; if you choose to go, do so at a minimal allocation and only after a clear revenue announcement.</div>
-                    <div style="margin-bottom: 10px;"><strong style="color: #f59e0b;">If Watching:</strong> Hold until the AGM or Q4 earnings; if the company delivers a positive earnings surprise, consider a cautious entry at a dip, with a stop above the AGM level.</div>
-                    <div><strong style="color: #ef4444;">If Passing:</strong> Given the lack of momentum, liquidity, and a concrete revenue trail, it is safer to stay out and focus on more liquid micro‑caps with clearer catalysts.</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: #10b981;">If Bullish:</strong> Take a very small position (2‑3 % of capital). Place a stop‑loss at 8p, just below the recent placement price. Add only after a confirmed revenue announcement or a clear earnings beat.</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: #f59e0b;">If Watching:</strong> Hold cash and monitor the Feb contract signing and March AGM. If a revenue‑generating deal is announced or a capital raise is secured, consider a cautious entry on a dip.</div>
+                    <div><strong style="color: #ef4444;">If Passing:</strong> The story is currently too thin – no buzz, no revenue, and a collapsed price. Skip this trade and look for other micro‑caps with clearer catalysts.</div>
                 </div>
             </div>
         </div>
@@ -809,27 +854,27 @@
                 Executive Commentary
             </div>
             <div style="line-height: 1.6; margin-bottom: 20px;">
-                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows EARLY_BUILD timing with 42/100 APEX score. Historical data shows 0 rallies averaging 10% upside. Current position: +9.8%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
+                Note: this report used historical signals only — live triangulation (RNS, social, Trends) was not available. Current setup looks like EARLY_BUILD with an APEX score of 42/100. Historically there have been 0 rallies (avg. 10%); the position is now +9.8%. Practical take: this is interesting but unconfirmed — wait for an AI snapshot or clear confirmation before committing size.
             </div>
             
             <div style="margin-top: 20px;">
                 <strong style="color: #10b981;">▲ Bull Case:</strong>
-                <div style="padding: 8px 0;">• Early regime often offers best risk/reward</div>
+                <div style="padding: 8px 0;">• Early accumulation — good risk/reward if it confirms</div>
             </div>
             
             <div style="margin-top: 20px;">
                 <strong style="color: #ef4444;">▼ Bear Case:</strong>
-                <div style="padding: 8px 0;">• Monitor for breakdown signals</div>
+                <div style="padding: 8px 0;">• No immediate red flags, but keep stops tight</div>
             </div>
             
             <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
                 <strong>◷ Timing Translation:</strong><br>
-                Early accumulation phase. Watch for confirmation before committing size.
+                Accumulation in progress. Consider small starters but wait for confirmation before sizing up.
             </div>
             
             <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
                 <strong>◎ Confidence Explained:</strong><br>
-                Confidence 50/100 reflects full data quality with triangulation loaded.
+                Confidence 50/100 — data triangulated from RNS, social and Trends.
             </div>
         </div>
 
@@ -947,7 +992,7 @@
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Data Science</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">James Bellman</td>
                     </tr>
                     
                         </table>
@@ -1114,7 +1159,7 @@ CNTFLFFDLFIDFIR
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Ordinary Share</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">James Bellman</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1448,7 +1493,7 @@ MSCFFFSVFVLSLIE
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">London Stock</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
                     </tr>
                     
                         </table>
@@ -1614,7 +1659,7 @@ CNTVBLFFELLBFBV
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Data Science</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">James Bellman</td>
                     </tr>
                     
                         </table>
@@ -2013,7 +2058,7 @@ NRAFLFVSFDLAIIE
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-28 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-01-29 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.

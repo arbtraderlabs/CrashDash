@@ -238,23 +238,68 @@
                 <span style="font-size: 32px; font-weight: 800; color: white;">◉ WATCH</span>
             </div>
             
-            <div class="scores-row">
-                <div class="score-circle">
-                    <div class="score-number" style="color: #ef4444;">46</div>
-                    <div class="score-label">APEX SCORE</div>
+            <div class="scores-row" style="display:flex; gap:18px; align-items:center; justify-content:center;">
+                <div style="display:flex; gap:10px; align-items:center;">
+                    <div style="width:84px; height:84px; border-radius:12px; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+                        <div style="font-size:20px; font-weight:800; color:#ef4444;">46</div>
+                        <div style="font-size:11px; color:#64748b; margin-top:6px;">APEX</div>
+                    </div>
+                    <div style="width:84px; height:84px; border-radius:12px; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+                        <div style="font-size:20px; font-weight:800; color:#f59e0b;">50</div>
+                        <div style="font-size:11px; color:#64748b; margin-top:6px;">CONF</div>
+                    </div>
+                    <div style="width:84px; height:84px; border-radius:12px; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+                        <div style="font-size:20px; font-weight:800; color:#f59e0b;">74.0</div>
+                        <div style="font-size:11px; color:#64748b; margin-top:6px;">PANIC</div>
+                    </div>
+                    <div style="width:84px; height:84px; border-radius:12px; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+                        <div style="font-size:20px; font-weight:800; color:#10b981;">60</div>
+                        <div style="font-size:11px; color:#64748b; margin-top:6px;">CC</div>
+                    </div>
                 </div>
-                <div class="score-circle">
-                    <div class="score-number" style="color: #f59e0b;">50</div>
-                    <div class="score-label">CONFIDENCE</div>
+                <div style="width:160px; height:160px; border-radius:50%; background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 10px 30px rgba(0,0,0,0.08);">
+                    <div style="text-align:center;">
+                        <div style="font-size:34px; font-weight:900; color:#0f172a;">58</div>
+                        <div style="font-size:12px; color:#64748b; margin-top:6px; font-weight:700;">Overall</div>
+                    </div>
                 </div>
             </div>
             
-            <div class="timing-badge-large">
-                Timing: <span class="rally-badge" style="background: #fee2e2; color: #991b1b;">TOO EARLY</span>
-            </div>
+            <!-- timing pill removed here; timing shown below next to Timing Scope for clarity -->
             
-            <div class="thesis-line">
-                WATCH - TOO_EARLY timing with 46/100 opportunity score
+            <!-- Timing Scope (composite shown below; timing is separate) -->
+            <div style="margin-top:14px;">
+                <div style="font-size:12px; color:#475569; font-weight:700; margin-bottom:6px;">Timing Scope</div>
+                <style>
+                    @keyframes pulse-ring {
+                        0% { transform: scale(0.8); opacity: 0.9; }
+                        70% { transform: scale(2.2); opacity: 0; }
+                        100% { transform: scale(2.8); opacity: 0; }
+                    }
+                </style>
+                <div style="position:relative; height:48px; background:linear-gradient(90deg, #ef4444 0%, #f59e0b 25%, #f093fb 50%, #10b981 75%, #064e3b 100%); border-radius:8px;">
+                    <div style="position:absolute; left:calc(10% - 24px); top:calc(50% - 24px); width:48px; height:48px; display:flex; align-items:center; justify-content:center;">
+                        <div style="position:absolute; width:48px; height:48px; border-radius:24px; background:rgba(15,23,42,0.12); animation: pulse-ring 1.8s infinite;"></div>
+                        <div style="width:16px; height:16px; border-radius:8px; background:#0f172a; box-shadow:0 6px 18px rgba(0,0,0,0.12);"></div>
+                    </div>
+                    <!-- small score bubble removed (duplicate of main overall score) -->
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:12px; color:#475569; margin-top:10px;">
+                    <div>Too Early</div>
+                    <div>Early Build</div>
+                    <div>Confirmed</div>
+                    <div>Crowded</div>
+                    <div>Broken</div>
+                </div>
+
+                <div style="margin-top:12px; display:flex; justify-content:center;">
+                    <div style="background: linear-gradient(180deg, rgba(8,18,39,0.95) 0%, rgba(10,28,50,0.92) 100%); border:1px solid rgba(255,255,255,0.04); padding:14px 20px; border-radius:14px; box-shadow:0 16px 48px rgba(2,6,23,0.18); color:#e6eef8; font-size:13px; font-weight:700; max-width:920px; text-align:center;">
+                        <span style="color:#1fb6ae; font-weight:800; margin-right:10px;">Timing:</span>
+                        <span style="text-transform:uppercase; letter-spacing:0.6px; color:#ffffff;">TOO_EARLY</span>
+                        <span style="color:rgba(230,238,248,0.7); font-weight:600; margin:0 10px;">—</span>
+                        <span style="font-weight:600; color:rgba(230,238,248,0.95);">Very early signs — high uncertainty; watch for confirmation.</span>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -262,8 +307,8 @@
         
         <div class="card" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b;">
             <div class="card-title" style="color: #0f172a;">
-                <span class="card-icon">🏭</span>
-                CrashDash Intelligence • Industrials
+                <span class="card-icon">💻</span>
+                CrashDash Intelligence • Software & Hardware
             </div>
             
             <!-- Fear Meter -->
@@ -447,16 +492,16 @@
             <!-- Industry Crash Patterns -->
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px;">
                 <div style="background: white; padding: 18px; border-radius: 12px;">
-                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">⚠️ Crash Patterns (Industrials)</div>
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">⚠️ Crash Patterns (Software & Hardware)</div>
                     <div style="font-size: 13px; color: #475569; line-height: 1.8;">
-                        <div>• Order book decline or cancellations</div><div>• Margin compression (input costs)</div><div>• Cyclical demand weakness</div>
+                        <div>• Revenue miss or churn spike</div><div>• Product delays or tech failures</div><div>• Customer concentration risks</div>
                     </div>
-                    <div style="margin-top: 12px; padding: 10px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e; font-weight: 600;">🚨 Active: Project delays or overruns</div>
+                    <div style="margin-top: 12px; padding: 10px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e; font-weight: 600;">🚨 Active: Revenue miss or churn spike, Product delays or tech failures, Security breaches or data leaks</div>
                 </div>
                 <div style="background: white; padding: 18px; border-radius: 12px;">
                     <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">🚀 Recovery Paths</div>
                     <div style="font-size: 13px; color: #475569; line-height: 1.8;">
-                        <div>• Order book growth or new contracts</div><div>• Margin recovery (efficiency gains)</div><div>• Cyclical upturn (capex recovery)</div>
+                        <div>• New contract wins (large enterprise deals)</div><div>• Product launches (new features/platforms)</div><div>• ARR growth acceleration</div>
                     </div>
                 </div>
             </div>
@@ -470,7 +515,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Purported Requisition Notice</div>
-                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                        <div style="font-size: 12px; color: #64748b;">28th Jan 2026</div>
                     </div>
                 </div>
             </div>
@@ -480,7 +525,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Holding(s) in Company</div>
-                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                        <div style="font-size: 12px; color: #64748b;">23rd Jan 2026</div>
                     </div>
                 </div>
             </div>
@@ -490,7 +535,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Holding(s) in Company</div>
-                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                        <div style="font-size: 12px; color: #64748b;">19th Jan 2026</div>
                     </div>
                 </div>
             </div>
@@ -500,7 +545,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">TR-1: Standard notification of major holdings</div>
-                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                        <div style="font-size: 12px; color: #64748b;">6th Jan 2026</div>
                     </div>
                 </div>
             </div>
@@ -510,7 +555,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Admission to Trading</div>
-                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                        <div style="font-size: 12px; color: #64748b;">19th Dec 2025</div>
                     </div>
                 </div>
             </div>
@@ -561,10 +606,10 @@
             </div>
             
             <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
-                <span style="font-size: 24px;">🏭</span>
+                <span style="font-size: 24px;">💻</span>
                 <div style="flex: 1;">
                     <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Industry Pattern</div>
-                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">1 active</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">3 active</div>
                 </div>
             </div>
             
@@ -576,15 +621,15 @@
         <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
         <div class="card" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 2px solid #0ea5e9;">
             <div class="card-title" style="color: #0369a1;">
-                <span class="card-icon">🤖</span>
-                APEX Trader Brief v2
+                <span class="card-icon">📡</span>
+                APEX RNS Report
             </div>
             
             <!-- Bottom Line (Most Important) -->
             <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #0ea5e9;">
                 <div style="font-size: 16px; font-weight: 700; color: #0369a1; margin-bottom: 10px;">📝 Bottom Line</div>
                 <div style="font-size: 15px; line-height: 1.7; color: #1e293b;">
-                    Pass – the lack of revenue, flat attention, and heavy dilution make this a high‑risk, low‑reward speculative bet that is unlikely to move beyond 0.00p in the near term.
+                    Pass—no meaningful catalysts, zero price, and no community interest; the risk of further decline outweighs any speculative upside.
                 </div>
             </div>
             
@@ -592,9 +637,9 @@
             <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #6366f1;">
                 <div style="font-weight: 700; color: #6366f1; margin-bottom: 12px; font-size: 15px;">🏢 Company in 30 Seconds</div>
                 <div style="font-size: 14px; line-height: 1.6; color: #334155;">
-                    <div style="margin-bottom: 8px;"><strong>What they do:</strong> SATS Ltd. is a small‑cap company that claims to develop and market advanced satellite‑based technology for data transmission.</div>
-                    <div style="margin-bottom: 8px;"><strong>Why they matter:</strong> Its niche focus on low‑orbit satellite payloads could open a market worth billions if it can secure a foothold in the growing space‑internet sector.</div>
-                    <div><strong>Current state:</strong> The firm is still in a pre‑revenue, high‑risk stage with a price that has collapsed to 0.00p and no clear revenue track record.</div>
+                    <div style="margin-bottom: 8px;"><strong>What they do:</strong> SATS runs a small chain of convenience shops across the UK, selling everyday items to local communities.</div>
+                    <div style="margin-bottom: 8px;"><strong>Why they matter:</strong> If it can capture even a modest share of the local retail market, the network of shops could become a valuable asset in a crowded sector.</div>
+                    <div><strong>Current state:</strong> The business is pre‑revenue, struggling, and has fallen almost 99% from its peak, leaving the stock at a zero price.</div>
                 </div>
             </div>
             
@@ -605,9 +650,9 @@
                     Buy vs Sell — Lean: BEARISH
                 </div>
                 <div style="font-size: 14px; line-height: 1.6; color: #334155;">
-                    <div style="margin-bottom: 10px;"><strong style="color: #10b981;">Bull Case:</strong> If the board can secure a satellite contract and the Bitcoin strategy yields a cash infusion, the company could move from 0.00p to a viable trading range. A surprise revenue report would also validate the technology claim and attract new investors.</div>
-                    <div style="margin-bottom: 10px;"><strong style="color: #ef4444;">Bear Case:</strong> The firm has no revenue, no social buzz, and a flat Google Trends profile. The recent capital activity only dilutes shareholders, and the Bitcoin purchase may be a hedge rather than a growth engine. Without a clear product or earnings, the price is likely to stay stagnant.</div>
-                    <div><strong>Risk/Reward:</strong> High risk with a very limited upside – the only way to gain is a revenue surprise, which is unlikely given the current data.</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: #10b981;">Bull Case:</strong> If the company manages to secure a new product line or successfully monetise its Bitcoin holding, the price could rally from the current zero level. A clear revenue print in the upcoming results would validate the growth narrative and attract speculative buying. However, this scenario requires a sudden shift in strategy and execution that has yet to materialise.</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: #ef4444;">Bear Case:</strong> The lack of revenue, zero trading price, and absence of social buzz suggest the company is in a precarious position. Without a clear path to profitability or a credible capital raise, the stock is likely to remain stagnant or decline further. The risk of continued dilution and potential liquidation is high, making the downside probability significant.</div>
+                    <div><strong>Risk/Reward:</strong> The risk‑reward profile is poor; the upside is limited to a few pence while the downside is essentially all or nothing, leaving the trade unattractive for most traders.</div>
                 </div>
             </div>
             
@@ -615,16 +660,16 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-bottom: 15px;">
                 <div style="background: white; padding: 18px; border-radius: 10px; border-left: 4px solid #8b5cf6;">
                     <div style="font-weight: 700; color: #8b5cf6; margin-bottom: 12px; font-size: 15px;">📰 RNS Narrative</div>
-                    <div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• Board Shuffle: In the past month the company has renamed itself, appointed a new CEO, and added several directors, signalling a major governance overhaul.</div><div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• Capital Moves: Two convertible loan notes were closed and several warrants were exercised, raising fresh capital but also diluting shareholders.</div><div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• Bitcoin Strategy: The new CEO announced a Bitcoin purchase and a Treasury Strategist was appointed, hinting at an attempt to diversify the company’s balance sheet.</div>
+                    <div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• Listing events: The company was admitted to the AIM market and filed a series of PDMR disclosures over the past two months, indicating an attempt to establish regulatory compliance.</div><div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• Corporate governance updates: A board reshuffle, director shareholding declarations, and a proposal to sell a Bitcoin holding were all announced, signalling internal shifts but no clear strategic direction.</div><div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• Financial reporting: Unaudited interim results and non‑statutory updates were released in late November, yet they lack revenue figures or forward guidance, leaving investors without concrete performance data.</div>
                 </div>
                 
                 <div style="background: white; padding: 18px; border-radius: 10px; border-left: 4px solid #ec4899;">
                     <div style="font-weight: 700; color: #ec4899; margin-bottom: 12px; font-size: 15px;">💬 Crowd Tape</div>
                     <div style="font-size: 14px; line-height: 1.6; color: #334155;">
-                        <div style="margin-bottom: 8px;"><strong>Theme:</strong> The community is split – a small group of tech‑savvy traders cheer the Bitcoin move, while most are wary of the heavy dilution and lack of earnings.</div>
-                        <div style="margin-bottom: 8px;"><strong style="color: #10b981;">Bulls:</strong> Bulls argue that the Bitcoin purchase could provide a liquidity cushion, and the new board’s experience might unlock a satellite partnership.</div>
-                        <div style="margin-bottom: 8px;"><strong style="color: #ef4444;">Bears:</strong> Bears point out that the company has zero revenue, a flat Google Trends profile, and no social chatter – a recipe for a silent collapse.</div>
-                        <div><strong>Shift:</strong> Initially there was a flurry of speculation when the name change was announced, but the buzz evaporated as the price stayed flat and no earnings materialised.</div>
+                        <div style="margin-bottom: 8px;"><strong>Theme:</strong> The community remains largely silent, with no significant chatter to gauge sentiment, leaving the story in a vacuum of noise.</div>
+                        <div style="margin-bottom: 8px;"><strong style="color: #10b981;">Bulls:</strong> A few traders speculate that the Bitcoin sale could unlock liquidity and provide the capital needed for a strategic pivot, but this remains unsubstantiated.</div>
+                        <div style="margin-bottom: 8px;"><strong style="color: #ef4444;">Bears:</strong> Others point out that a zero price and no revenue trail suggest the company is unlikely to generate the cash flow required to sustain operations, raising doubts about its viability.</div>
+                        <div><strong>Shift:</strong> There has been no noticeable change in sentiment; the lack of new posts keeps the tone flat, and any early enthusiasm has faded.</div>
                     </div>
                 </div>
             </div>
@@ -633,7 +678,7 @@
             <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #f59e0b;">
                 <div style="font-weight: 700; color: #f59e0b; margin-bottom: 12px; font-size: 15px;">👀 Attention Check</div>
                 <div style="font-size: 14px; line-height: 1.6; color: #334155;">
-                    Google Trends shows a flat, 0/100 interest level and no spike in searches – the story has lost any traction it might have had. Social media volume is nil, so there is no organic momentum to sustain a rally.
+                    Google Trends shows flat interest with an index of zero, and the social volume is nil, confirming that the story has lost oxygen and is no longer attracting attention.
                 </div>
             </div>
             
@@ -642,9 +687,9 @@
                 <div style="font-weight: 700; color: #14b8a6; margin-bottom: 12px; font-size: 15px;">🔮 What to Expect Next</div>
                 <div style="font-size: 14px; line-height: 1.6; color: #334155;">
                     <div style="margin-bottom: 10px;"><strong>Catalysts:</strong></div>
-                    <div style="padding: 4px 0; padding-left: 15px;">• July‑Aug Interim Results (10th Jul): If the company can report any positive cash flow or a revenue milestone, it could spark a brief price uptick.</div><div style="padding: 4px 0; padding-left: 15px;">• Bitcoin Treasury Update (9th Jul): A detailed statement on the Bitcoin holdings and any potential sale could provide a short‑term liquidity signal.</div>
-                    <div style="margin-top: 10px;"><strong>Watch for:</strong> Look for any sign of a revenue print, a credible satellite contract, or a dilution‑free capital raise. The board’s recent shake‑up could lead to a strategy pivot, but that would need to be substantiated by concrete data.</div>
-                    <div style="margin-top: 8px;"><strong>Timing:</strong> APEX marks this as a ‘Late’ regime – the price has been flat for months, volatility is zero, and the only remaining catalyst is a potential earnings surprise.</div>
+                    <div style="padding: 4px 0; padding-left: 15px;">• The upcoming AGM in February 2026 might see a board decision on a capital raise or a strategic shift, offering a potential catalyst for price movement.</div>
+                    <div style="margin-top: 10px;"><strong>Watch for:</strong> Watch for any director share sales, a sudden placement, or a sudden influx of liquidity that could signal distress or an opportunity.</div>
+                    <div style="margin-top: 8px;"><strong>Timing:</strong> APEX indicates the stock is in an exhausted phase, meaning that the window for meaningful upside is shrinking and any move is likely to be short‑lived.</div>
                 </div>
             </div>
             
@@ -652,9 +697,9 @@
             <div style="background: white; padding: 18px; border-radius: 10px; border-left: 4px solid #0ea5e9;">
                 <div style="font-weight: 700; color: #0ea5e9; margin-bottom: 12px; font-size: 15px;">📋 Playbook</div>
                 <div style="font-size: 14px; line-height: 1.6; color: #334155;">
-                    <div style="margin-bottom: 10px;"><strong style="color: #10b981;">If Bullish:</strong> Enter a micro‑position (2–3% of the portfolio) only after a clear revenue announcement or a successful satellite partnership. Set a tight stop at 0.02p to limit loss if the story stalls.</div>
-                    <div style="margin-bottom: 10px;"><strong style="color: #f59e0b;">If Watching:</strong> Hold off until the next quarterly report or until the Bitcoin holdings are liquidated. Watch for any new board‑approved strategy that eliminates dilution and provides a clear path to revenue.</div>
-                    <div><strong style="color: #ef4444;">If Passing:</strong> Given the zero price movement, lack of buzz, and high dilution, it is safer to stay out. The story is too early and the risk of a permanent collapse outweighs any speculative upside.</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: #10b981;">If Bullish:</strong> If you decide to take a position, start with a tiny stake of 0.5% of the account, only after a sudden news spike occurs. Use a tight stop at 5p below the entry to limit losses.</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: #f59e0b;">If Watching:</strong> Hold off until the quarterly results are released. If they show a positive cash flow or a credible growth plan, consider adding a small position on a dip.</div>
+                    <div><strong style="color: #ef4444;">If Passing:</strong> Given the absence of catalysts, zero price, and lack of community interest, it is safer to stay out of this stock for now.</div>
                 </div>
             </div>
         </div>
@@ -809,27 +854,27 @@
                 Executive Commentary
             </div>
             <div style="line-height: 1.6; margin-bottom: 20px;">
-                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows TOO_EARLY timing with 46/100 APEX score. Historical data shows 0 rallies averaging -0% upside. Current position: -0.0%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
+                Note: this report used historical signals only — live triangulation (RNS, social, Trends) was not available. Current setup looks like TOO_EARLY with an APEX score of 46/100. Historically there have been 0 rallies (avg. -0%); the position is now -0.0%. Practical take: this is interesting but unconfirmed — wait for an AI snapshot or clear confirmation before committing size.
             </div>
             
             <div style="margin-top: 20px;">
                 <strong style="color: #10b981;">▲ Bull Case:</strong>
-                <div style="padding: 8px 0;">• Early regime often offers best risk/reward</div>
+                <div style="padding: 8px 0;">• Early accumulation — good risk/reward if it confirms</div>
             </div>
             
             <div style="margin-top: 20px;">
                 <strong style="color: #ef4444;">▼ Bear Case:</strong>
-                <div style="padding: 8px 0;">• TOO_EARLY means you can get chopped before real move</div>
+                <div style="padding: 8px 0;">• Too early — price can chop and stop you out</div>
             </div>
             
             <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
                 <strong>◷ Timing Translation:</strong><br>
-                It might be starting, but not proven yet. Wait for base + volume + catalysts.
+                May be forming — needs base, volume and a catalyst. Wait for confirmation.
             </div>
             
             <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
                 <strong>◎ Confidence Explained:</strong><br>
-                Confidence 50/100 reflects full data quality with triangulation loaded.
+                Confidence 50/100 — data triangulated from RNS, social and Trends.
             </div>
         </div>
 
@@ -947,7 +992,7 @@
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Data Counsel</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">William Barker</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1114,7 +1159,7 @@ MSCFLFIRLTITFIR
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Conversion Period</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Privacy Policy</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1387,7 +1432,7 @@ HOLFZGZMGFDGVZM
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Conversion Period</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Foundry Inc</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -2062,7 +2107,7 @@ HOLUNRWRNOUARAR
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Data Counsel</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Privacy Policy</td>
                     </tr>
                     
                         </table>
@@ -2445,7 +2490,7 @@ MSCGGBDDIBBDGUC
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-28 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-01-29 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.
