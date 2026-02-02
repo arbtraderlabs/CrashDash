@@ -163,6 +163,8 @@
             font-weight: 600;
             text-transform: uppercase;
         }
+
+        
         
         .risk-indicator {
             display: flex;
@@ -223,11 +225,11 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">£</span>
-                    <span><strong>Market Cap:</strong> £4,551,873</span>
+                    <span><strong>Market Cap:</strong> £4,226,739</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 310 days</span>
+                    <span><strong>Days Active:</strong> 311 days</span>
                 </div>
             </div>
         </div>
@@ -244,7 +246,7 @@
                 <div style="position:relative; width:180px; height:180px; border-radius:50%; background:linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 12px 40px rgba(0,0,0,0.1); border:4px solid #f59e0b;">
                     <div style="text-align:center;">
                         <div style="font-size:11px; color:#64748b; margin-bottom:4px; font-weight:600;">COMPREHENSIVE</div>
-                        <div style="font-size:56px; font-weight:900; color:#f59e0b; line-height:1;">41</div>
+                        <div style="font-size:56px; font-weight:900; color:#f59e0b; line-height:1;">43</div>
                         <div style="font-size:11px; color:#64748b; margin-top:4px; font-weight:700;">APEX V5</div>
                         <div style="font-size:12px; color:#f59e0b; margin-top:4px; font-weight:700;">MODERATE</div>
                     </div>
@@ -258,8 +260,11 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#10b981; line-height:1;">47</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Setup</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Setup
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Trust -->
@@ -268,18 +273,24 @@
                             <div style="font-size:14px;">🛡️</div>
                             <div style="font-size:28px; font-weight:800; color:#3b82f6; line-height:1;">40</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Trust</div>
-                        <div style="font-size:10px; color:#94a3b8;">20%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Trust
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Panic -->
                     <div style="text-align:center;">
                         <div style="width:100px; height:100px; border-radius:50%; border:4px solid #ef4444; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
                             <div style="font-size:14px;">😱</div>
-                            <div style="font-size:28px; font-weight:800; color:#ef4444; line-height:1;">47.0</div>
+                            <div style="font-size:28px; font-weight:800; color:#ef4444; line-height:1;">55.0</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Panic</div>
-                        <div style="font-size:10px; color:#94a3b8;">30%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Panic
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Compression -->
@@ -288,34 +299,56 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#f59e0b; line-height:1;">47</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Compression</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Compression
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Timing Scope -->
+            <!-- Timing Scope: Flat segmented bar -->
             <div style="margin-top:24px;">
-                <div style="font-size:12px; color:#475569; font-weight:700; margin-bottom:8px; text-align:center;">Timing Spectrum</div>
+                <!-- position badge removed to avoid overlay on timing spectrum -->
                 <style>
                     @keyframes pulse-ring {
-                        0% { transform: scale(0.8); opacity: 0.9; }
+                        0% { transform: scale(0.7); opacity: 0.9; }
                         70% { transform: scale(2.2); opacity: 0; }
                         100% { transform: scale(2.8); opacity: 0; }
                     }
+                    @keyframes pulse-ring-outer {
+                        0% { transform: scale(0.9); opacity: 0.7; }
+                        50% { transform: scale(1.12); opacity: 0.45; }
+                        100% { transform: scale(1.3); opacity: 0; }
+                    }
                 </style>
-                <div style="position:relative; height:48px; background:linear-gradient(90deg, #ef4444 0%, #f59e0b 25%, #f093fb 50%, #10b981 75%, #064e3b 100%); border-radius:8px;">
-                    <div style="position:absolute; left:calc(30% - 24px); top:calc(50% - 24px); width:48px; height:48px; display:flex; align-items:center; justify-content:center;">
-                        <div style="position:absolute; width:48px; height:48px; border-radius:24px; background:rgba(15,23,42,0.12); animation: pulse-ring 1.8s infinite;"></div>
-                        <div style="width:16px; height:16px; border-radius:8px; background:#0f172a; box-shadow:0 6px 18px rgba(0,0,0,0.12);"></div>
+                <div style="position:relative;">
+                    <div style="display:flex; gap:6px; height:48px; border-radius:8px; overflow:hidden;">
+                        <div style="flex:1; background:#ef4444;"></div>
+                        <div style="flex:1; background:#f59e0b;"></div>
+                        <div style="flex:1; background:#facc15;"></div>
+                        <div style="flex:1; background:#10b981;"></div>
+                        <div style="flex:1; background:#065f46;"></div>
+                    </div>
+
+                    <!-- Pulse pointer positioned by timing_pos_pct -->
+                    <div style="position:absolute; left:calc(30% - 26px); top:0px; width:52px; height:52px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                        <!-- outer grey-white ring to help indicator stand out -->
+                        <div style="position:absolute; width:60px; height:60px; border-radius:30px; background:rgba(249,250,251,0.95); border:2px solid rgba(2,6,23,0.06); box-shadow:0 8px 30px rgba(2,6,23,0.06); animation: pulse-ring-outer 2.2s infinite;"></div>
+                        <!-- inner colored pulse ring -->
+                        <div style="position:absolute; width:52px; height:52px; border-radius:26px; background:#ffe50f; opacity:0.18; animation: pulse-ring 1.6s infinite;"></div>
+                        <!-- core dot with colored border for contrast -->
+                        <div style="width:18px; height:18px; border-radius:9px; background:#ffffff; box-shadow:0 10px 30px rgba(0,0,0,0.22); border:3px solid #f59e0b;"></div>
                     </div>
                 </div>
-                <div style="display:flex; justify-content:space-between; font-size:12px; color:#475569; margin-top:10px;">
-                    <div>Too Early</div>
-                    <div>Early Build</div>
-                    <div>Confirmed</div>
-                    <div>Crowded</div>
-                    <div>Broken</div>
+
+                <div style="display:flex; justify-content:space-between; font-size:12px; margin-top:8px; gap:6px;">
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Too Early</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Early Build</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Confirmed</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Crowded</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Broken</span></div>
                 </div>
 
                 <div style="margin-top:12px; display:flex; justify-content:center;">
@@ -341,9 +374,9 @@
             <div style="background: white; padding: 24px; border-radius: 14px; margin-bottom: 20px; text-align: center;">
                 <div style="font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 16px;">🔥 PANIC METER</div>
                 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 16px;">
-                    <div style="width: 160px; height: 160px; border-radius: 50%; background: conic-gradient(#84cc16 169.20000000000002deg, #e5e7eb 169.20000000000002deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                    <div style="width: 160px; height: 160px; border-radius: 50%; background: conic-gradient(#84cc16 198.0deg, #e5e7eb 198.0deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
                         <div style="width: 130px; height: 130px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                            <div style="font-size: 48px; font-weight: 800; color: #84cc16;">47</div>
+                            <div style="font-size: 48px; font-weight: 800; color: #84cc16;">55</div>
                             <div style="font-size: 12px; color: #64748b; font-weight: 600;">PANIC SCORE</div>
                         </div>
                     </div>
@@ -354,7 +387,7 @@
                             <div>💔 Price: 25/40</div>
                             <div>📉 Volume: 14/20</div>
                             <div>🔇 Social: 6/20</div>
-                            <div>📰 News: 2/20</div>
+                            <div>📰 News: 10/20</div>
                         </div>
                     </div>
                 </div>
@@ -540,6 +573,16 @@
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Second tranche of funding advanced to Aspire</div>
+                        <div style="font-size: 12px; color: #64748b;">30th Jan 2026</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Further investment in AlbaCo Limited</div>
                         <div style="font-size: 12px; color: #64748b;">22nd Jan 2026</div>
                     </div>
@@ -576,16 +619,6 @@
                 </div>
             </div>
             
-            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
-                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
-                    <span style="font-size: 18px;">📢</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Proposed Acquisition of Aspire and other matters</div>
-                        <div style="font-size: 12px; color: #64748b;">26th Nov 2025</div>
-                    </div>
-                </div>
-            </div>
-            
             </div>
             
             <!-- CrashDash Decision Matrix -->
@@ -603,7 +636,7 @@
                 <span style="font-size: 24px;">🟢</span>
                 <div style="flex: 1;">
                     <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Panic Score</div>
-                    <div style="font-size: 13px; color: #ef4444; font-weight: 600;">47/100</div>
+                    <div style="font-size: 13px; color: #ef4444; font-weight: 600;">55/100</div>
                 </div>
             </div>
             
@@ -901,6 +934,175 @@
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
                     <span style="font-size: 20px;">📰</span>
                     <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Second tranche of funding advanced to Aspire</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">10:10 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Aspire Commerce</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+Today 10:10
+RNS Number : 1122R
+Caledonian Holdings PLC
+30 January 2026
+30 January 2026
+Caledonian Holdings plc
+("Caledonian" or the "Company")
+Second tranche of funding advanced to Aspire
+Caledonian Holdings plc (AIM: CHP) is pleased to announce that it has advanced the second tranche of £300,000 to Aspire Commerce Group Limited ("Aspire"), in accordance with the funding arrangements and terms previously announced by the Company on 26 November 2025, bringing the total amount of funding provided to Aspire to £600,000.
+The advancement of the second tranche of funding forms part of the Company's ongoing strategic investment in Aspire, which is expected to become a core operating business within the Group. The second tranche of funding has been funded by the Company's existing cash resources.
+Aspire has continued to build positive operational and commercial momentum since the initial funding was provided in November 2025. Following a record December for revenue, Aspire's supply chain finance pipeline has accelerated ahead of plan and its distribution channels continue to develop. In addition, a strategic partnership with a global liquidity partner is at an advanced stage, while discussions are underway with a Singapore-based investment platform. Aspire's platform is also being evaluated by a credit institution as a potential replacement onboarding solution, which could represent an additional future revenue stream.
+The Board believes that continuing to meet agreed funding milestones as announced demonstrates Caledonian's commitment as a long-term and supportive partner and provides Aspire with the appropriate financial backing to execute its business plan.
+All other terms of the funding arrangements remain unchanged.
+Completion of the proposed acquisition of Aspire by the Company on the terms set out in the announcement of 26 November 2025 remains subject to:
+-
+receipt of regulatory change-of-control approval from the FCA; and
+-
+approval by Caledonian shareholders of an amendment to the Company's investing policy to permit majority ownership of portfolio companies.
+Adam Rigler, CEO of Aspire, commented:
+"Progress over the past three months underlines the exciting potential for Aspire, both domestically and internationally. Supply chain finance is becoming increasingly important to UK businesses, as reflected in recent UK Government initiatives. The continued digital transformation of supply chain operations, including payment systems and foreign exchange management, has positioned Aspire well to serve this growing market, particularly for UK businesses trading internationally."
+Keith Barclay, Investment Director of Caledonian Holdings plc, added:
+"We are very pleased with the progress Aspire has made in a relatively short period of time following our initial investment. The pace of operational development and commercial engagement reinforces our confidence in the strategy and the management team. Advancing this second tranche on schedule reflects our commitment to supporting Aspire as it continues to execute against its growth plan."
+For further information, please contact:
+Caledonian Holdings plc
+Jim McColl, Executive Director
+Brent Fitzpatrick, Non-Executive Chairman
+Tel: +44 (0) 7950 389469
+Allenby Capital Limited (Nominated Adviser)
+Tel: +44 (0) 20 3328 5656
+Nick Athanas / Piers Shimwell
+AlbR Capital Limited (Broker)
+Tel: +44 (0) 20 7469 0930
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+UPDSDAFSSEMSESF
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
                         <div style="font-weight: 700; font-size: 16px;">Further investment in AlbaCo Limited</div>
                         <span style="
                             display: inline-block;
@@ -951,7 +1153,7 @@
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Executive Chairman</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Financial Conduct</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1070,9 +1272,9 @@ UPDFFLLLQFLXBBF
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #10b98140;
-                    ">2</span>
+                    ">3</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #2
+                        RNS ANNOUNCEMENT #3
                     </div>
                 </div>
                 
@@ -1898,9 +2100,9 @@ IR FLFFLFLLSFIE
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">3</span>
+                    ">4</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #3
+                        RNS ANNOUNCEMENT #4
                     </div>
                 </div>
                 
@@ -2084,9 +2286,9 @@ UPDEVLFFELLXFBZ
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">4</span>
+                    ">5</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #4
+                        RNS ANNOUNCEMENT #5
                     </div>
                 </div>
                 
@@ -2151,7 +2353,7 @@ UPDEVLFFELLXFBZ
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Executive Chairman</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Financial Conduct</td>
                     </tr>
                     
                         </table>
@@ -2215,289 +2417,6 @@ Privacy Policy
 .
 END
 TVRPPGUCGUPAGQR
-                </div>
-            </details>
-            
-            </div>
-            
-            <div style="
-                margin-bottom: 20px;
-                padding: 18px;
-                background: white;
-                border-radius: 14px;
-                border: 1px solid #e2e8f0;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 30px;
-                        height: 30px;
-                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                        color: white;
-                        border-radius: 50%;
-                        font-weight: 800;
-                        font-size: 15px;
-                        box-shadow: 0 2px 8px #3b82f640;
-                    ">5</span>
-                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #5
-                    </div>
-                </div>
-                
-                
-            <div style="
-                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                color: white;
-                padding: 14px;
-                border-radius: 10px;
-                margin-bottom: 16px;
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">📰</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">Proposed Acquisition of Aspire and other matters</div>
-                        <span style="
-                            display: inline-block;
-                            background: rgba(255,255,255,0.25);
-                            padding: 2px 10px;
-                            border-radius: 12px;
-                            font-size: 11px;
-                            margin-top: 4px;
-                            font-weight: 600;
-                        ">UPDATE</span>
-                    </div>
-                </div>
-                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    Informational update - monitor for context with other announcements.
-                </div>
-            </div>
-            
-                
-            <div style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 10px;
-                margin: 16px 0;
-            ">
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">26th Nov 2025</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
-                </div>
-            </div>
-            
-                
-                
-                    <div style="margin: 16px 0;">
-                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
-                            
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Executive Chairman</td>
-                    </tr>
-                    
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">100%, 10%, 9.99%</td>
-                    </tr>
-                    
-                        </table>
-                    </div>
-                    
-                
-            <details style="margin-top: 16px;">
-                <summary style="
-                    padding: 10px;
-                    background: #f8fafc;
-                    border-radius: 8px;
-                    font-weight: 600;
-                    font-size: 12px;
-                    list-style: none;
-                    cursor: pointer;
-                    color: #64748b;
-                    border: 1px solid #e2e8f0;
-                ">
-                    📄 View Full RNS Text
-                </summary>
-                <div style="
-                    margin-top: 8px;
-                    padding: 14px;
-                    background: #f1f5f9;
-                    border-radius: 8px;
-                    font-family: 'Courier New', monospace;
-                    font-size: 11px;
-                    line-height: 1.5;
-                    color: #475569;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                ">
-26 Nov 2025 07:00
-RNS Number : 9941I
-Caledonian Holdings PLC
-26 November 2025
-This announcement contains inside information for the purposes of Article 7 of the UK version of Regulation (EU) No 596/2014 which is part of UK law by virtue of the European Union (Withdrawal) Act 2018, as amended ("MAR"). Upon the publication of this announcement via a Regulatory Information Service, this inside information is now considered to be in the public domain.
-26 November 2025
-Caledonian Holdings plc
-("Caledonian" or the "Company")
-Proposed Acquisition of Aspire Commerce Group Limited, Entry into Working Capital Loan Agreement and Execution of Deed of Priority
-Caledonian Holdings plc (AIM: CHP) is pleased to announce that it has, on 25 November 2025, entered into a conditional agreement to acquire 100% of the issued share capital of Aspire Commerce Group Limited ("Aspire") for a consideration of £1, implying an enterprise value of £
-9,489,805 as at 25 November 2025 (the "Proposed Acquisition").
-To support Aspire's short-term liquidity needs during the period prior to completion, Caledonian has executed a loan agreement to provide working-capital funding to Aspire of up to £600,000 (the "Facility"). The Facility is being made available from the Company's existing cash resources and follows on from the recently completed funding package with Yorkville Advisors Global, LP which was intended to be utilised for investing in fintech businesses in line with the Company's stated strategy.
-The Company has also entered into a Deed of Priority with Aspire and its existing lender(s) to govern ranking and enforcement rights during the interim funding period.
-Completion of the Proposed Acquisition is conditional upon:
-·
-receipt of regulatory change-of-control approval from the FCA; and
-·
-approval by Caledonian shareholders of an amendment to the Company's investing policy to permit majority ownership of portfolio companies.
-Strategic rationale
-The Proposed Acquisition represents a significant step in delivering Caledonian's strategy to build an integrated, technology-enabled financial-services investment group. Aspire provides a highly complementary platform that enables Caledonian to accelerate its fintech ambitions and deploy capital in areas requiring regulated infrastructure.
-The Proposed Acquisition:
-·
-establishes a core operating and technology platform
-capable of supporting current accounts, FX, trade finance and business lending, giving Caledonian an immediate footprint in regulated financial-services infrastructure;
-·
-enables Caledonian to deploy complementary technologies and service lines
-without repeated regulatory approval cycles, materially shortening product development and time-to-market;
-·
-creates a scalable base for an integrated fintech ecosystem
-, aligning with Caledonian's strategy to build capability across payments, lending, data and financial operations under one group structure;
-·
-preserves and stabilises value through the Facility
-, ensuring operational continuity during the transition period and protecting the underlying technology and customer pipeline;
-·
-provides access to experienced operators and a developed technology stack
-, avoiding the cost, time and execution risk associated with building equivalent infrastructure internally; and
-·
-supports a value-accretive restructuring
-, with Aspire's lenders indicating support for a long-dated repayment profile free from interest accrual, improving Aspire's financial resilience post-acquisition.
-The Board of Caledonian believe that Aspire will serve as a foundational platform for Caledonian's financial-services strategy, enabling the Company to scale more efficiently and expand into adjacent fintech verticals.
-Aspire
-Aspire is a one stop shop for current accounts, business finance and foreign exchange transactions (FX). The company addresses the £22bn UK trade finance gap through its proprietary technology and multi-asset ledger system, operating under the leadership of experienced financial business builders who have a proven track record within the payments and commercial lending markets.
-The lending solutions, supported by fully functional current accounts and FX, all provided in-house, allow businesses to handle cash flow problems and pursue expansion opportunities which traditional lenders do not support.
-For the year ended 31 December 2024, Aspire generated unaudited revenue of £36,057 and reported a loss before tax of approximately £3,993,389. As at 31 December 2024, Aspire's unaudited net liabilities were £4,950,432.
-Debt position and lender support
-As at 24 November 2025, Aspire's
-non-current liabilities totalled £9,489,804, largely comprising historic development funding used to build its technology platform.
-Caledonian has held discussions with Aspire's existing lenders, who have indicated support for a comprehensive post-completion restructuring of these liabilities. The restructuring, which will be part of the final agreed terms on the Proposed Acquisition, is expected to deliver:
-·
-no capital repayments for an initial number of years following completion;
-·
-cessation of interest accruing from completion; and
-·
-a long-dated, performance-aligned repayment schedule consistent with Aspire's cashflow profile.
-The Directors believe this restructuring will create a sustainable, growth-oriented capital structure, unlocking the value inherent in Aspire's technology and positioning the Company for long-term success.
-Working Capital Facility Agreement
-Under the Facility, Caledonian has agreed to make available a facility of up to £600,000, structured as follows:
-·
-Total commitment:
-£600,000
-·
-Tranche 1:
-£300,000 advanced at signing of the Facility agreement
-·
-Tranche 2:
-£300,000 available within 3 months at Caledonian's discretion and subject to Aspire continuing to operate in the ordinary course of its business
-·
-Purpose:
-exclusive general working-capital support for Aspire
-·
-Interest:
-10% per annum, accruing daily and payable on redemption
-·
-Term:
-repayable on the earliest of:
-o
-two years from signing;
-o
-completion of the Proposed Acquisition; and
-o
-an event of default.
-Repayment may be made at any time without penalty.
-Warrants
-As consideration for providing the Facility, Aspire has granted Caledonian nil-cost warrants to subscribe for 9.99% of Aspire's issued share capital as at the date of the loan agreement (the "Warrants").
-·
-The Warrants are exercisable at any time prior to completion of the Proposed Acquisition or repayment of the Facility; and
-·
-The Warrants automatically lapse upon completion of the Proposed Acquisition or full repayment of the Facility (whichever occurs first).
-Ranking and Protections
-In accordance with the Facility agreement:
-·
-the Facility constitutes senior, prior-ranking unsecured debt, ranking ahead of all existing and future unsecured indebtedness of Aspire;
-·
-it remains subordinated only to secured or preferential obligations required by law; and
-·
-Aspire may not incur debt ranking ahead of, or
-pari passu
-with, the Facility without Caledonian's consent.
-These terms are reinforced via the Deed of Priority.
-Deed of Priority
-The Deed of Priority governs the ranking between:
-·
-the Facility provided by Caledonian; and
-·
-Aspire's existing obligations.
-It ensures:
-·
-Caledonian's interim funding is appropriately protected;
-·
-no cross-default or enforcement rights are triggered by drawing the Facility; and
-·
-an orderly transition to the post-completion capital structure.
-Effect of Completion of the Proposed Acquisition
-Upon completion of the Proposed Acquisition:
-·
-all accrued but unpaid interest ceases to be payable;
-·
-the Caledonian's priority ranking ceases; and
-·
-the Warrants automatically lapse.
-This reflects that the Facility is purely bridging finance for Aspire pending the Proposed Acquisition.
-Proposed change to Investing Policy
-The Company's current investing policy does not allow for Caledonian to make investments which will cause the Company to hold a majority equity interest in an investee company. Pursuant to the Proposed Acquisition the Company is proposing to acquire 100% of the issued share capital of Aspire. Therefore, in order to complete the Proposed Acquisition, the Directors will propose the investing policy is amended to allow the Company to take majority equity interests in investee companies. To implement the amended investing policy, shareholders will be required to approve a resolution at a general meeting of the Company. The Directors expect to put this resolution to shareholders at the annual general meeting of the Company which is to be held in the coming weeks. A further update will be provided in due course.
-Jim McColl, Executive Director of Caledonian, commented:
-"
-The proposed acquisition of Aspire aligns with our strategy to build a scalable technology-enabled financial-services group. The interim funding ensures Aspire remains operationally stable ahead of completion and supports the platform we intend to develop.
-"
-Adam Rigler, CEO of Aspire, commented:
-"
-Partnering with Caledonian marks an important step for Aspire. The working-capital support gives us the stability to continue serving customers during the transition period, while aligning us with a long-term strategic partner committed to expanding our platform and capabilities.
-"
-For further information, please contact:
-Caledonian Holdings plc
-Jim McColl, Executive Director
-Brent Fitzpatrick, Non-Executive Chairman
-Tel: +44 (0) 7950 389469
-Allenby Capital Limited (Nominated Adviser)
-Tel: +44 (0) 20 3328 5656
-Nick Athanas / Piers Shimwell
-AlbR Capital Limited (Broker)
-Tel: +44 (0) 20 7469 0930
-This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
-rns@lseg.com
-or visit
-www.rns.com
-.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
-Privacy Policy
-.
-END
-UPDFZMZMMKNGKZZ
                 </div>
             </details>
             
@@ -2817,7 +2736,7 @@ UPDFZMZMMKNGKZZ
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-29 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-01-30 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.

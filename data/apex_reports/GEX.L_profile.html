@@ -163,6 +163,8 @@
             font-weight: 600;
             text-transform: uppercase;
         }
+
+        
         
         .risk-indicator {
             display: flex;
@@ -223,11 +225,11 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">£</span>
-                    <span><strong>Market Cap:</strong> £9,016,684</span>
+                    <span><strong>Market Cap:</strong> £9,888,533</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 367 days</span>
+                    <span><strong>Days Active:</strong> 368 days</span>
                 </div>
             </div>
         </div>
@@ -258,8 +260,11 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#10b981; line-height:1;">39</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Setup</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Setup
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Trust -->
@@ -268,8 +273,11 @@
                             <div style="font-size:14px;">🛡️</div>
                             <div style="font-size:28px; font-weight:800; color:#3b82f6; line-height:1;">40</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Trust</div>
-                        <div style="font-size:10px; color:#94a3b8;">20%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Trust
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Panic -->
@@ -278,8 +286,11 @@
                             <div style="font-size:14px;">😱</div>
                             <div style="font-size:28px; font-weight:800; color:#ef4444; line-height:1;">69.9</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Panic</div>
-                        <div style="font-size:10px; color:#94a3b8;">30%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Panic
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Compression -->
@@ -288,34 +299,56 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#f59e0b; line-height:1;">39</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Compression</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Compression
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Timing Scope -->
+            <!-- Timing Scope: Flat segmented bar -->
             <div style="margin-top:24px;">
-                <div style="font-size:12px; color:#475569; font-weight:700; margin-bottom:8px; text-align:center;">Timing Spectrum</div>
+                <!-- position badge removed to avoid overlay on timing spectrum -->
                 <style>
                     @keyframes pulse-ring {
-                        0% { transform: scale(0.8); opacity: 0.9; }
+                        0% { transform: scale(0.7); opacity: 0.9; }
                         70% { transform: scale(2.2); opacity: 0; }
                         100% { transform: scale(2.8); opacity: 0; }
                     }
+                    @keyframes pulse-ring-outer {
+                        0% { transform: scale(0.9); opacity: 0.7; }
+                        50% { transform: scale(1.12); opacity: 0.45; }
+                        100% { transform: scale(1.3); opacity: 0; }
+                    }
                 </style>
-                <div style="position:relative; height:48px; background:linear-gradient(90deg, #ef4444 0%, #f59e0b 25%, #f093fb 50%, #10b981 75%, #064e3b 100%); border-radius:8px;">
-                    <div style="position:absolute; left:calc(30% - 24px); top:calc(50% - 24px); width:48px; height:48px; display:flex; align-items:center; justify-content:center;">
-                        <div style="position:absolute; width:48px; height:48px; border-radius:24px; background:rgba(15,23,42,0.12); animation: pulse-ring 1.8s infinite;"></div>
-                        <div style="width:16px; height:16px; border-radius:8px; background:#0f172a; box-shadow:0 6px 18px rgba(0,0,0,0.12);"></div>
+                <div style="position:relative;">
+                    <div style="display:flex; gap:6px; height:48px; border-radius:8px; overflow:hidden;">
+                        <div style="flex:1; background:#ef4444;"></div>
+                        <div style="flex:1; background:#f59e0b;"></div>
+                        <div style="flex:1; background:#facc15;"></div>
+                        <div style="flex:1; background:#10b981;"></div>
+                        <div style="flex:1; background:#065f46;"></div>
+                    </div>
+
+                    <!-- Pulse pointer positioned by timing_pos_pct -->
+                    <div style="position:absolute; left:calc(30% - 26px); top:0px; width:52px; height:52px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                        <!-- outer grey-white ring to help indicator stand out -->
+                        <div style="position:absolute; width:60px; height:60px; border-radius:30px; background:rgba(249,250,251,0.95); border:2px solid rgba(2,6,23,0.06); box-shadow:0 8px 30px rgba(2,6,23,0.06); animation: pulse-ring-outer 2.2s infinite;"></div>
+                        <!-- inner colored pulse ring -->
+                        <div style="position:absolute; width:52px; height:52px; border-radius:26px; background:#ffe50f; opacity:0.18; animation: pulse-ring 1.6s infinite;"></div>
+                        <!-- core dot with colored border for contrast -->
+                        <div style="width:18px; height:18px; border-radius:9px; background:#ffffff; box-shadow:0 10px 30px rgba(0,0,0,0.22); border:3px solid #f59e0b;"></div>
                     </div>
                 </div>
-                <div style="display:flex; justify-content:space-between; font-size:12px; color:#475569; margin-top:10px;">
-                    <div>Too Early</div>
-                    <div>Early Build</div>
-                    <div>Confirmed</div>
-                    <div>Crowded</div>
-                    <div>Broken</div>
+
+                <div style="display:flex; justify-content:space-between; font-size:12px; margin-top:8px; gap:6px;">
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Too Early</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Early Build</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Confirmed</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Crowded</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Broken</span></div>
                 </div>
 
                 <div style="margin-top:12px; display:flex; justify-content:center;">
@@ -540,6 +573,26 @@
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Debt Drawdown of £500,000</div>
+                        <div style="font-size: 12px; color: #64748b;">30th Jan 2026</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Holding(s) in Company</div>
+                        <div style="font-size: 12px; color: #64748b;">29th Jan 2026</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Hussar EP513 Drilling/Funding</div>
                         <div style="font-size: 12px; color: #64748b;">26th Jan 2026</div>
                     </div>
@@ -562,26 +615,6 @@
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Operational Update</div>
                         <div style="font-size: 12px; color: #64748b;">9th Dec 2025</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
-                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
-                    <span style="font-size: 18px;">📢</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Expression of Interest to Fund Hussar EP513</div>
-                        <div style="font-size: 12px; color: #64748b;">20th Nov 2025</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
-                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
-                    <span style="font-size: 18px;">📢</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Replacement: Placing and Debt Facility</div>
-                        <div style="font-size: 12px; color: #64748b;">14th Nov 2025</div>
                     </div>
                 </div>
             </div>
@@ -984,6 +1017,507 @@
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
                     <span style="font-size: 20px;">📰</span>
                     <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Debt Drawdown of £500,000</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">11:16 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Tony Hamilton</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">50%, 40%, 50%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+Today 11:16
+RNS Number : 1227R
+Georgina Energy PLC
+30 January 2026
+THIS ANNOUNCEMENT RELATES TO THE DISCLOSURE OF INFORMATION THAT QUALIFIED OR MAY HAVE QUALIFIED AS INSIDE INFORMATION WITHIN THE MEANING OF (A) ARTICLE 7(1) OF UK MAR IN SO FAR AS IT RELATES TO ORDINARY SHARES ISSUED BY GEORGINA ENERGY PLC
+30th January 2026
+Georgina Energy plc
+("Georgina", "Georgina Energy" or the "Company")
+Debt Drawdown of £500,000
+Debt and Equity Facility
+The Company entered an equity and debt financing arrangement with an institutional investor on 4th November 2025 (RNS 1026G). The Facility, of up to £1,000,000, has a term of 3 years, and each drawdown of the debt has a term of 12 months.
+The Company will use the gross proceeds of the drawdown to fund working capital and to continue the development of its portfolio and progress the transaction with Central Petroleum.
+Westmarket Oil & Gas, the operational subsidiary of the Company is fully funded having recently agreed a structured offtake finance arrangement with Harlequin Energy.
+Debt Facility
+The First Drawdown of £300,000 occurred on 4th November 2025 and is convertible at 8 pence per share ("Reference Price") and each drawdown thereafter at a 50% premium to the 5-day VWAP preceding the drawdown. There is no interest to be applied to the loan.
+The Company has now undertaken a Second Drawdown of £500,000 on the same terms as that agreed for the First Drawdown, that being convertible at a
+premium of 8.00 pence
+.
+Issue of Warrants
+The Investor shall receive Warrants equal to 40% of each drawdown divided by the Reference Price, exercisable at a 50% premium to the relevant Reference Price being 8.00 pence (2.5 million warrants). Each issuance of Warrants will have a 48-month term from the date of issuance (which may be offset against outstanding debt if exercised). As with the First Drawdown, the Second Drawdown warrants will be exercisable at 8 pence.
+Anthony Hamilton, Chief Executive Officer of Georgina Energy, commented:
+"We are delighted to have received the continued support from an Institutional Investor. This strategic investment not only strengthens our balance sheet but also underscores institutional confidence in our vision and asset base. The funding provides us with the flexibility to accelerate the advancement of our key projects and evaluate additional growth opportunities to deliver enhanced shareholder value."
+END
+Enquiries
+Georgina Energy
+Tony Hamilton
+via
+georginaenergy@apcoworldwide.com
+Mark Wallace
+Tavira Financial Ltd - Financial Adviser and Joint Broker
+Jonathan Evans
++44 (0)20 3833 3719
+Oliver Stansfield
+Oak Securities - Joint Broker
+Jerry Keen
++44 (0)203 973 3678
+Henry Clarke
+Dillon Anadkat
+Financial PR via
+georginaenergy@apcoworldwide.com
+Violet Wilson
++44 (0)203 757 4980
+Tamsin Howard
+Notes to Editors
+Georgina Energy aims to become a leading player in the global energy market and is focused on establishing itself among the top producers of helium and hydrogen worldwide. With a strategic approach and leveraging the experienced management team's expertise, Georgina Energy aims to capitalize on opportunities in these critical energy sectors.
+Georgina Energy has two principal onshore interests held through its wholly owned Australian subsidiary, Westmarket O&G. The first, the Hussar Prospect is located in the Officer Basin in Western Australia and Westmarket O&G holds a 100% working interest in the exploration permit. The second, the EPA155 Mt Winter Prospect, is located in the Amadeus Basin in the Northern Territory, subject to completion of the Sale Agreement Georgina Energy will hold a 100% working interest.
+In line with market demand trends, Georgina Energy is well-positioned to capitalize on the growing gap between supply and demand for hydrogen and helium with the resource potential of EPA155 Mt Winter and EP513 Hussar projects for their potential accumulations.
+For more information visit
+https://www.georginaenergy.com
+END
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+MSCFLFLLLEIIVIR
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">🏛️</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Holding(s) in Company</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">HOLDINGS</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Major holder disclosure - routine regulatory filing.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">29th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">1:17 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Financial Conduct</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+29 Jan 2026 13:17
+RNS Number : 9636Q
+Georgina Energy PLC
+29 January 2026
+TR-1: S
+tandard form for notification of major holdings
+NOTIFICATION OF MAJOR HOLDINGS
+(to be sent to the relevant issuer
+and
+to the FCA in Microsoft Word format if possible)
+i
+1a. Identity of the issuer or the underlying issuer of existing shares to which voting rights are attached
+ii
+:
+Georgina Energy plc
+1b. Please indicate if the issuer is a non-UK issuer
+(please mark with an "X" if appropriate)
+Non-UK issuer
+2. Reason for the notification
+(please mark the appropriate box or boxes with an "X")
+An acquisition or disposal of voting rights
+X
+An acquisition or disposal of financial instruments
+An event changing the breakdown of voting rights
+Other (please specify) iii:
+3. Details of person subject to the notification obligation
+iv
+Name
+CSS ALPHA FUND AIFLNP VCIC LTD
+City and country of registered office (if applicable)
+NICOSIA, CYPRUS
+4. Full name of shareholder(s)
+(if different from 3.)
+v
+Name
+City and country of registered office (if applicable)
+5. Date on which the threshold was crossed or reached
+vi
+:
+28 January 2026
+6.
+Date on which issuer notified (DD/MM/YYYY):
+7. Total positions of person(s) subject to the notification obligation
+% of voting rights attached to shares (total of 8. A)
+% of
+voting rights through
+financial instruments(total of 8.B 1 + 8.B 2)
+Total of both in % (8.A + 8.B)
+Total number of voting rights held in issuer (8.A + 8.B)
+vii
+Resulting situation on the date on which threshold was crossed or reached
+5,304,646
+4.16
+Position of previous notification (if
+applicable)
+7,304,646
+8. Notified details of the resulting situation on the date on which the threshold was crossed or reached
+viii
+A: Voting rights attached to shares
+Class/type ofshares
+ISIN code (if possible)
+Number of voting rights
+ix
+% of voting rights
+Direct
+(DTR5.1)
+Indirect
+(DTR5.2.1)
+Direct
+(DTR5.1)
+Indirect
+(DTR5.2.1)
+SUBTOTAL 8. A
+B 1: Financial Instruments according to DTR5.3.1R (1) (a)
+Type of financial instrument
+Expirationdate
+x
+Exercise/Conversion Period
+xi
+Number of voting rights that may be acquired if the instrument is
+exercised/converted.
+% of voting rights
+SUBTOTAL 8. B 1
+B 2: Financial Instruments with similar economic effect according to DTR5.3.1R (1) (b)
+Type of financial instrument
+Expirationdate
+x
+Exercise/Conversion Period
+xi
+Physical or cash
+Settlement
+xii
+Number of voting rights
+% of voting rights
+SUBTOTAL 8.B.2
+9. Information in relation to the person subject to the notification obligation
+(please mark the
+applicable box with an "X")
+Person subject to the notification obligation is not controlled by any natural person or legal entity and does not control any other undertaking(s) holding directly or indirectly an interest in the (underlying) issuer
+xiii
+Full
+chain of controlled undertakings through which the voting rights and/or thefinancial instruments are effectively held starting with the ultimate controlling natural person or legal entity
+(please add additional rows as necessary)
+xiv
+Name
+xv
+% of voting rights if it equals or is higher than the notifiable threshold
+% of voting rights through financial instruments if it equals or is higher than the notifiable threshold
+Total of both if it equals or is higher than the notifiable threshold
+10.
+In case of proxy voting, please identify:
+Name of the proxy holder
+The number and % of voting rights held
+The date until which the voting rights will be held
+11. Additional information
+xvi
+Place of completion
+LONDON
+Date of completion
+28 JANUARY 2026
+Notes
+i
+Please note this form should be read jointly with the applicable Disclosure Guidance and Transparency Rules Chapter 5 (DTR5) available on the following link:
+https://www.handbook.fca.org.uk/handbook/DTR/5/?view=chapter
+ii
+Full name of the legal entity and further specification of the issuer or underlying issuer, provided it is reliable and accurate (e.g. address, LEI, domestic number identity). Indicate in the relevant section whether the issuer is a non UK issuer.
+iii
+Other reason for the notification could be voluntary notifications, changes of attribution of the nature of the holding (e.g. expiring of financial instruments) or acting in concert.
+iv
+This should be the full name of (a) the shareholder; (b) the natural person or legal entity acquiring, disposing of or exercising voting rights in the cases provided for in DTR5.2.1 (b) to (h); (c) all parties to the agreement referred to in DTR5.2.1 (a) or (d) the holder of financial instruments referred to in DTR5.3.1.
+As the disclosure of cases of acting in concert may vary due to the specific circumstances (e.g. same or different total positions of the parties, entering or exiting of acting in concert by a single party) the standard form does not provide for a specific method how to notify cases of acting in concert.
+In relation to the transactions referred to in DTR5.2.1 (b) to (h), the following list is provided as indication of the persons who should be mentioned:
+- in the circumstances foreseen in DTR5.2.1 (b), the natural person or legal entity that acquires the voting rights and is entitled to exercise them under the agreement and the natural person or legal entity who is transferring temporarily for consideration the voting rights;
+- in the circumstances foreseen in DTR5.2.1 (c), the natural person or legal entity holding the collateral, provided the person or entity controls the voting rights and declares its intention of exercising them, and natural person or legal entity lodging the collateral under these conditions;
+- in the circumstances foreseen in DTR5.2.1 (d), the natural person or legal entity who has a life interest in shares if that person or entity is entitled to exercise the voting rights attached to the shares and the natural person or legal entity who is disposing of the voting rights when the life interest is created;
+- in the circumstances foreseen in DTR5.2.1 (e), the controlling natural person or legal entity and, provided it has a notification duty at an individual level under DTR 5.1, under DTR5.2.1 (a) to (d) or under a combination of any of those situations, the controlled undertaking;
+- in the circumstances foreseen in DTR5.2.1 (f), the deposit taker of the shares, if he can exercise the voting rights attached to the shares deposited with him at his discretion, and the depositor of the shares allowing the deposit taker to exercise the voting rights at his discretion;
+- in the circumstances foreseen in DTR5.2.1 (g), the natural person or legal entity that controls the voting rights;
+- in the circumstances foreseen in DTR5.2.1 (h), the proxy holder, if he can exercise the voting rights at his discretion, and the shareholder who has given his proxy to the proxy holder allowing the latter to exercise the voting rights at his discretion (e.g. management companies).
+v
+Applicable in the cases provided for in DTR5.2.1 (b) to (h). This should be the full name of the shareholder who is the counterparty to the natural person or legal entity referred to DTR5.2 unless the percentage of voting rights held by the shareholder is lower than the lowest notifiable threshold for the disclosure of voting rights holdings in accordance with national practices (e.g. identification of funds managed by management companies).
+vi
+The date on which threshold is crossed or reached should be the date on which the acquisition or disposal took place or the other reason triggered the notification obligation. For passive crossings, the date when the corporate event took effect.
+vii
+The total number of voting rights held in the issuer shall be composed of all the shares, including depository receipts representing shares, to which voting rights are attached even if the exercise thereof is suspended.
+viii
+If the holding has fallen below the lowest applicable threshold, please note that it might not be necessary to disclose the extent of the holding, only that the new holding is below that threshold.
+ix
+In case of combined holdings of shares with voting rights attached "direct holding" and voting rights "indirect holding", please split the voting rights number and percentage into the direct and indirect columns - if there is no combined holdings, please leave the relevant box blank.
+x
+Date of maturity/expiration of the financial instrument i.e. the date when right to acquire shares ends.
+xi
+If the financial instrument has such a period - please specify this period - for example once every 3 months starting from [date].
+xii
+In case of cash settled instruments the number and percentages of voting rights is to be presented on a delta-adjusted basis (DTR 5.3.3.A).
+xiii
+If the person subject to the notification obligation is either controlled and/or does control another undertaking then the second option applies.
+xiv
+The full chain of controlled undertakings starting with the ultimate controlling natural person or legal entity has to be presented also in the cases, in which only on subsidiary level a threshold is crossed or reached and the subsidiary undertaking discloses the notification as only in this way will the markets get always the full picture of the group holdings. In case of multiple chains through which the voting rights and/or financial instruments are effectively held the chains have to be presented chain by chain by numbering each chain accordingly. Please see the below example:
+Name of ultimate controlling person A (chain 1)
+Name of controlled undertaking B
+Name of controlled undertaking C
+Name of ultimate controlling person A (chain 2)
+Name of controlled undertaking B
+Name of controlled undertaking D
+Name of ultimate controlling person A (chain3)
+Name of controlled undertaking E
+Name of controlled undertaking F
+xv
+The names of controlled undertakings through which the voting rights and/or financial instruments are effectively held have to be presented irrespectively whether the controlled undertakings cross or reach the lowest applicable threshold themselves.
+xvi
+Example: Correction of a previous notification.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+HOLBLMJTMTBTBIF
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
                         <div style="font-weight: 700; font-size: 16px;">Hussar EP513 Drilling/Funding</div>
                         <span style="
                             display: inline-block;
@@ -1034,7 +1568,7 @@
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Dillon Anadkat</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Tony Hamilton</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1189,9 +1723,9 @@ MSCPPURAGUPQGPA
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">2</span>
+                    ">4</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #2
+                        RNS ANNOUNCEMENT #4
                     </div>
                 </div>
                 
@@ -1256,7 +1790,7 @@ MSCPPURAGUPQGPA
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Halo Capital</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Tony Hamilton</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1383,9 +1917,9 @@ MSCEAKANFLFSFEA
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">3</span>
+                    ">5</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #3
+                        RNS ANNOUNCEMENT #5
                     </div>
                 </div>
                 
@@ -1450,7 +1984,7 @@ MSCEAKANFLFSFEA
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Dillon Anadkat</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Tony Hamilton</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1547,394 +2081,6 @@ Privacy Policy
 .
 END
 UPDUPGWAPUPAUQB
-                </div>
-            </details>
-            
-            </div>
-            
-            <div style="
-                margin-bottom: 20px;
-                padding: 18px;
-                background: white;
-                border-radius: 14px;
-                border: 1px solid #e2e8f0;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 30px;
-                        height: 30px;
-                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                        color: white;
-                        border-radius: 50%;
-                        font-weight: 800;
-                        font-size: 15px;
-                        box-shadow: 0 2px 8px #3b82f640;
-                    ">4</span>
-                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #4
-                    </div>
-                </div>
-                
-                
-            <div style="
-                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                color: white;
-                padding: 14px;
-                border-radius: 10px;
-                margin-bottom: 16px;
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">📰</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">Expression of Interest to Fund Hussar EP513</div>
-                        <span style="
-                            display: inline-block;
-                            background: rgba(255,255,255,0.25);
-                            padding: 2px 10px;
-                            border-radius: 12px;
-                            font-size: 11px;
-                            margin-top: 4px;
-                            font-weight: 600;
-                        ">UPDATE</span>
-                    </div>
-                </div>
-                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    Informational update - monitor for context with other announcements.
-                </div>
-            </div>
-            
-                
-            <div style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 10px;
-                margin: 16px 0;
-            ">
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">20th Nov 2025</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:16 am</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
-                </div>
-            </div>
-            
-                
-                
-                    <div style="margin: 16px 0;">
-                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
-                            
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Dillon Anadkat</td>
-                    </tr>
-                    
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">100%, 100%</td>
-                    </tr>
-                    
-                        </table>
-                    </div>
-                    
-                
-            <details style="margin-top: 16px;">
-                <summary style="
-                    padding: 10px;
-                    background: #f8fafc;
-                    border-radius: 8px;
-                    font-weight: 600;
-                    font-size: 12px;
-                    list-style: none;
-                    cursor: pointer;
-                    color: #64748b;
-                    border: 1px solid #e2e8f0;
-                ">
-                    📄 View Full RNS Text
-                </summary>
-                <div style="
-                    margin-top: 8px;
-                    padding: 14px;
-                    background: #f1f5f9;
-                    border-radius: 8px;
-                    font-family: 'Courier New', monospace;
-                    font-size: 11px;
-                    line-height: 1.5;
-                    color: #475569;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                ">
-20 Nov 2025 07:16
-RNS Number : 3389I
-Georgina Energy PLC
-20 November 2025
-20th November 2025
-THIS ANNOUNCEMENT RELATES TO THE DISCLOSURE OF INFORMATION THAT QUALIFIED OR MAY HAVE QUALIFIED AS INSIDE INFORMATION WITHIN THE MEANING OF (A) ARTICLE 7(1) OF UK MAR IN SO FAR AS IT RELATES TO ORDINARY SHARES ISSUED BY GEORGINA ENERGY PLC
-Georgina Energy plc
-("Georgina", "Georgina Energy" or the "Company")
-Expression of Interest to Fund Hussar EP513
-Georgina Energy Plc,
-GEX.L
-wishes to advise it has now received a non-binding expression of interest from Harlequin Energy Limited ("Harlequin") to provide the funding and enter into a Joint Operating Agreement ("JOA") for the drilling of the Hussar EP513 well for the recovery of helium, hydrogen and natural gas subject to further technical and economic due diligence by Harlequin.
-HUSSAR EP513 Funding Proposal:
-In addition to providing funding for the well, the proposal includes the entering of a JOA that includes all associated logistics and planning. This will involve working with Georgina's engineering consultants, Aztec Well Construction, as well as coordinating with an Industry
-leading global oilfield Services Company
-who have been engaged by Harlequin.
-This proposal remains subject to the finalisation and execution of a formal JOA and agreed commercial terms for the drilling at EP513, as well as the completion of full technical and economic due diligence of the EP513 Hussar License to the sole satisfaction of Harlequin and its advisors. Also, the Company will now undertake due diligence of Harlequin to satisfy this funding proposal.
-Westmarket Oil & Gas Pty Ltd, a subsidiary of the Company, has secured drilling approval from the Department of Mines, Petroleum and Exploration in Western Australia ("DMPE", formerly "DEMIRS"), following consultation with the Traditional Owners (MNR) and the Central Desert Native Titles Services (CDNTS)
-pursuant to regulation 13(1)c of the Resource Management and Administration Regulations (RMAR).
-Following the approval for drilling the Hussar well, the Company has commenced logistical preparations including repairs at the airstrip, access roads and planning of the drill pad and site locations for the drilling rig and crew, along with other critical elements of operational planning.
-Anthony Hamilton, Chief Executive Officer of Georgina Energy, commented:
-"Georgina is pleased to announce Harlequin's proposal for Hussar EP513. Georgina has highlighted the potential for offtake funding to develop both Hussar and Mt Winter which, combined with the recently announced acquisitions from Central Petroleum of Mt Kitty, Dukas and Magee, positions the Company to become a significant player in the extraction of helium and hydrogen and natural gas.
-Georgina has a clear strategy to advance both Hussar and Mt Winter whilst taking advantage of opportunities that build portfolio diversification which the recent proposed acquisition will do. This strategy establishes multiple catalysts for the Company in 2026 and beyond. I look forward to reporting further developments."
-END
-Enquiries
-Georgina Energy
-Tony Hamilton
-via
-georginaenergy@apcoworldwide.com
-Mark Wallace
-Tavira Financial Ltd - Financial Adviser and Joint Broker
-Jonathan Evans
-+44 (0)20 3833 3719
-Oliver Stansfield
-Oak Securities - Joint Broker
-Jerry Keen
-+44 (0)203 973 3678
-Henry Clarke
-Dillon Anadkat
-Financial PR via
-georginaenergy@apcoworldwide.com
-Violet Wilson
-+44 (0)203 757 4980
-Letaba Rimell
-Notes to Editors
-Georgina Energy aims to become a leading player in the global energy market and is focused on establishing itself among the top producers of helium and hydrogen worldwide. With a strategic approach and leveraging the experienced management team's expertise, Georgina Energy aims to capitalize on opportunities in these critical energy sectors.
-Georgina Energy has two principal onshore interests held through its wholly owned Australian subsidiary, Westmarket O&G. The first, the Hussar Prospect is located in the Officer Basin in Western Australia and Westmarket O&G holds a 100% working interest in the exploration permit. The second, the EPA155 Mt Winter Prospect, is located in the Amadeus Basin in the Northern Territory, subject to completion of the Sale Agreement Georgina Energy will hold a 100% working interest.
-In line with market demand trends, Georgina Energy is well-positioned to capitalize on the growing gap between supply and demand for hydrogen and helium with the resource potential of EPA155 Mt Winter and EP513 Hussar projects for their potential accumulations.
-For more information visit
-https://www.georginaenergy.com
-This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
-rns@lseg.com
-or visit
-www.rns.com
-.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
-Privacy Policy
-.
-END
-MSCPKKBDOBDKQDB
-                </div>
-            </details>
-            
-            </div>
-            
-            <div style="
-                margin-bottom: 20px;
-                padding: 18px;
-                background: white;
-                border-radius: 14px;
-                border: 1px solid #e2e8f0;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 30px;
-                        height: 30px;
-                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                        color: white;
-                        border-radius: 50%;
-                        font-weight: 800;
-                        font-size: 15px;
-                        box-shadow: 0 2px 8px #3b82f640;
-                    ">5</span>
-                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #5
-                    </div>
-                </div>
-                
-                
-            <div style="
-                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                color: white;
-                padding: 14px;
-                border-radius: 10px;
-                margin-bottom: 16px;
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">📰</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">Replacement: Placing and Debt Facility</div>
-                        <span style="
-                            display: inline-block;
-                            background: rgba(255,255,255,0.25);
-                            padding: 2px 10px;
-                            border-radius: 12px;
-                            font-size: 11px;
-                            margin-top: 4px;
-                            font-weight: 600;
-                        ">UPDATE</span>
-                    </div>
-                </div>
-                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    Informational update - monitor for context with other announcements.
-                </div>
-            </div>
-            
-                
-            <div style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 10px;
-                margin: 16px 0;
-            ">
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">14th Nov 2025</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
-                </div>
-            </div>
-            
-                
-                
-                    <div style="margin: 16px 0;">
-                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
-                            
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Dillon Anadkat</td>
-                    </tr>
-                    
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">50%, 40%, 50%</td>
-                    </tr>
-                    
-                        </table>
-                    </div>
-                    
-                
-            <details style="margin-top: 16px;">
-                <summary style="
-                    padding: 10px;
-                    background: #f8fafc;
-                    border-radius: 8px;
-                    font-weight: 600;
-                    font-size: 12px;
-                    list-style: none;
-                    cursor: pointer;
-                    color: #64748b;
-                    border: 1px solid #e2e8f0;
-                ">
-                    📄 View Full RNS Text
-                </summary>
-                <div style="
-                    margin-top: 8px;
-                    padding: 14px;
-                    background: #f1f5f9;
-                    border-radius: 8px;
-                    font-family: 'Courier New', monospace;
-                    font-size: 11px;
-                    line-height: 1.5;
-                    color: #475569;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                ">
-14 Nov 2025 07:00
-RNS Number : 5159H
-Georgina Energy PLC
-14 November 2025
-REPLACEMENT RNS: PLACING AND DEBT FACILITY
-The following amendments have been made to the "Placing and Debt Facility" announcement released at 09:23:57 on 04 November 2025 under RNS No 1026G:
-The date that the 4,000,000 new ordinary shares relating to the Placing will be admitted to trading on the Equity Shares (transition) category of the official list and the main market of the London Stock Exchange has been corrected from 10 November 2025 to 18 November 2025.
-The remainder of text is unchanged.
-14 November 2025
-THIS ANNOUNCEMENT RELATES TO THE DISCLOSURE OF INFORMATION THAT QUALIFIED OR MAY HAVE QUALIFIED AS INSIDE INFORMATION WITHIN THE MEANING OF (A) ARTICLE 7(1) OF UK MAR IN SO FAR AS IT RELATES TO ORDINARY SHARES ISSUED BY GEORGINA ENERGY PLC
-Georgina Energy plc
-("Georgina", "Georgina Energy" or the "Company")
-Placing and Debt Facility
-Placing
-Georgina Energy Plc is pleased to announce a placing of £200,000 through the issue of 4,000,000 new ordinary shares at a placing price of 5p to an Institutional Investor.
-Debt Facility
-The Company has also entered a debt facility with the same Institutional Investor of up to £1,000,000. The Company will initially draw down £300,000 (the "First Drawdown") with any further amounts to be agreed between the Company and the Institutional Investor.
-The Facility has a term of 3 years, and each drawdown of the debt has a term of 12 months. The First Drawdown will be convertible at 8 pence per share ("Reference Price") and each drawdown thereafter at a 50% premium to the 5-day VWAP preceding the drawdown. There is no interest to be applied to the loan.
-Issue of Warrants
-The Investor shall receive Warrants equal to 40% of each drawdown divided by the Reference Price, exercisable at a 50% premium to the relevant Reference Price. Each issuance of Warrants will have a 48-month term from the date of issuance (which may be offset against outstanding debt if exercised). The First Drawdown warrants will be exercisable at 8 pence.
-Admission and Total Voting Rights
-An application has been made for 4,000,000 new ordinary shares relating to the Placing to be admitted to trading on the Equity Shares (transition) category of the official list and the main market of the London Stock Exchange from 8.00 a.m. on 18 November 2025 ("Admission").
-Total Voting Rights
-In accordance with the FCA's Disclosure Guidance and Transparency Rules, the Company confirms that following Admission, the Company's enlarged issued ordinary share capital will comprise 127,593,987 Ordinary Shares. The Company does not hold any Ordinary Shares in Treasury. Therefore, following Admission, the above figure may be used by shareholders in the Company as the denominator for the calculations to determine if they are required to notify their interest in, or a change to their interest in the Company, under the FCA's Disclosure Guidance and Transparency Rules.
-Anthony Hamilton, Chief Executive Officer of Georgina Energy, commented:
-"We are delighted to welcome an Institutional Investor on the Company's share register. This strategic investment not only strengthens our balance sheet but also underscores institutional confidence in our vision and asset base. The funding provides us with the flexibility to accelerate the advancement of our key projects and evaluate additional growth opportunities to deliver enhanced shareholder value."
-END
-Enquiries
-Georgina Energy
-Tony Hamilton
-via
-georginaenergy@apcoworldwide.com
-Mark Wallace
-Tavira Financial Ltd - Financial Adviser and Joint Broker
-Jonathan Evans
-+44 (0)20 3833 3719
-Oliver Stansfield
-Oak Securities - Joint Broker
-Jerry Keen
-+44 (0)203 973 3678
-Henry Clarke
-Dillon Anadkat
-Financial PR via
-georginaenergy@apcoworldwide.com
-Violet Wilson
-+44 (0)203 757 4980
-Letaba Rimell
-Notes to Editors
-Georgina Energy aims to become a leading player in the global energy market and is focused on establishing itself among the top producers of helium and hydrogen worldwide. With a strategic approach and leveraging the experienced management team's expertise, Georgina Energy aims to capitalize on opportunities in these critical energy sectors.
-Georgina Energy has two principal onshore interests held through its wholly owned Australian subsidiary, Westmarket O&G. The first, the Hussar Prospect is located in the Officer Basin in Western Australia and Westmarket O&G holds a 100% working interest in the exploration permit. The second, the EPA155 Mt Winter Prospect, is located in the Amadeus Basin in the Northern Territory, subject to completion of the Sale Agreement Georgina Energy will hold a 100% working interest.
-In line with market demand trends, Georgina Energy is well-positioned to capitalize on the growing gap between supply and demand for hydrogen and helium with the resource potential of EPA155 Mt Winter and EP513 Hussar projects for their potential accumulations.
-For more information visit
-https://www.georginaenergy.com
-END
-This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
-rns@lseg.com
-or visit
-www.rns.com
-.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
-Privacy Policy
-.
-END
-IOEMZMMMFFKGKZZ
                 </div>
             </details>
             
@@ -2254,7 +2400,7 @@ IOEMZMMMFFKGKZZ
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-29 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-01-30 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.

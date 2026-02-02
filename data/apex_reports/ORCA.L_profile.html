@@ -163,6 +163,8 @@
             font-weight: 600;
             text-transform: uppercase;
         }
+
+        
         
         .risk-indicator {
             display: flex;
@@ -223,11 +225,11 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">£</span>
-                    <span><strong>Market Cap:</strong> £16,590,086</span>
+                    <span><strong>Market Cap:</strong> £15,800,082</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 461 days</span>
+                    <span><strong>Days Active:</strong> 462 days</span>
                 </div>
             </div>
         </div>
@@ -258,8 +260,11 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#10b981; line-height:1;">57</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Setup</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Setup
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Trust -->
@@ -268,8 +273,11 @@
                             <div style="font-size:14px;">🛡️</div>
                             <div style="font-size:28px; font-weight:800; color:#3b82f6; line-height:1;">40</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Trust</div>
-                        <div style="font-size:10px; color:#94a3b8;">20%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Trust
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Panic -->
@@ -278,8 +286,11 @@
                             <div style="font-size:14px;">😱</div>
                             <div style="font-size:28px; font-weight:800; color:#ef4444; line-height:1;">41.2</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Panic</div>
-                        <div style="font-size:10px; color:#94a3b8;">30%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Panic
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Compression -->
@@ -288,34 +299,56 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#f59e0b; line-height:1;">38</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Compression</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Compression
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Timing Scope -->
+            <!-- Timing Scope: Flat segmented bar -->
             <div style="margin-top:24px;">
-                <div style="font-size:12px; color:#475569; font-weight:700; margin-bottom:8px; text-align:center;">Timing Spectrum</div>
+                <!-- position badge removed to avoid overlay on timing spectrum -->
                 <style>
                     @keyframes pulse-ring {
-                        0% { transform: scale(0.8); opacity: 0.9; }
+                        0% { transform: scale(0.7); opacity: 0.9; }
                         70% { transform: scale(2.2); opacity: 0; }
                         100% { transform: scale(2.8); opacity: 0; }
                     }
+                    @keyframes pulse-ring-outer {
+                        0% { transform: scale(0.9); opacity: 0.7; }
+                        50% { transform: scale(1.12); opacity: 0.45; }
+                        100% { transform: scale(1.3); opacity: 0; }
+                    }
                 </style>
-                <div style="position:relative; height:48px; background:linear-gradient(90deg, #ef4444 0%, #f59e0b 25%, #f093fb 50%, #10b981 75%, #064e3b 100%); border-radius:8px;">
-                    <div style="position:absolute; left:calc(70% - 24px); top:calc(50% - 24px); width:48px; height:48px; display:flex; align-items:center; justify-content:center;">
-                        <div style="position:absolute; width:48px; height:48px; border-radius:24px; background:rgba(15,23,42,0.12); animation: pulse-ring 1.8s infinite;"></div>
-                        <div style="width:16px; height:16px; border-radius:8px; background:#0f172a; box-shadow:0 6px 18px rgba(0,0,0,0.12);"></div>
+                <div style="position:relative;">
+                    <div style="display:flex; gap:6px; height:48px; border-radius:8px; overflow:hidden;">
+                        <div style="flex:1; background:#ef4444;"></div>
+                        <div style="flex:1; background:#f59e0b;"></div>
+                        <div style="flex:1; background:#facc15;"></div>
+                        <div style="flex:1; background:#10b981;"></div>
+                        <div style="flex:1; background:#065f46;"></div>
+                    </div>
+
+                    <!-- Pulse pointer positioned by timing_pos_pct -->
+                    <div style="position:absolute; left:calc(70% - 26px); top:0px; width:52px; height:52px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                        <!-- outer grey-white ring to help indicator stand out -->
+                        <div style="position:absolute; width:60px; height:60px; border-radius:30px; background:rgba(249,250,251,0.95); border:2px solid rgba(2,6,23,0.06); box-shadow:0 8px 30px rgba(2,6,23,0.06); animation: pulse-ring-outer 2.2s infinite;"></div>
+                        <!-- inner colored pulse ring -->
+                        <div style="position:absolute; width:52px; height:52px; border-radius:26px; background:#17ffbb; opacity:0.18; animation: pulse-ring 1.6s infinite;"></div>
+                        <!-- core dot with colored border for contrast -->
+                        <div style="width:18px; height:18px; border-radius:9px; background:#ffffff; box-shadow:0 10px 30px rgba(0,0,0,0.22); border:3px solid #10b981;"></div>
                     </div>
                 </div>
-                <div style="display:flex; justify-content:space-between; font-size:12px; color:#475569; margin-top:10px;">
-                    <div>Too Early</div>
-                    <div>Early Build</div>
-                    <div>Confirmed</div>
-                    <div>Crowded</div>
-                    <div>Broken</div>
+
+                <div style="display:flex; justify-content:space-between; font-size:12px; margin-top:8px; gap:6px;">
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Too Early</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Early Build</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Confirmed</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Crowded</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Broken</span></div>
                 </div>
 
                 <div style="margin-top:12px; display:flex; justify-content:center;">
@@ -540,6 +573,16 @@
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Result of AGM</div>
+                        <div style="font-size: 12px; color: #64748b;">29th Jan 2026</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Notice of AGM</div>
                         <div style="font-size: 12px; color: #64748b;">7th Jan 2026</div>
                     </div>
@@ -572,16 +615,6 @@
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Pilot Field Extension of Licence P2244</div>
                         <div style="font-size: 12px; color: #64748b;">24th Nov 2025</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
-                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
-                    <span style="font-size: 18px;">📢</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">IPC presents at ADIPEC</div>
-                        <div style="font-size: 12px; color: #64748b;">12th Nov 2025</div>
                     </div>
                 </div>
             </div>
@@ -893,6 +926,252 @@
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
                     <span style="font-size: 20px;">📰</span>
                     <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Result of AGM</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">29th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">1:51 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Floating Production</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">99.998%, 0.002%, 99.996%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+29 Jan 2026 13:51
+RNS Number : 9662Q
+Orcadian Energy PLC
+29 January 2026
+29 January 2026
+Orcadian Energy plc
+("Orcadian" or the "Company")
+Result of Annual General Meeting
+Orcadian Energy (AIM:ORCA) is pleased to announce that at the Company's Annual General meeting held earlier today, all of the resolutions proposed in the Notice of Meeting were duly passed.
+The total votes that were cast on the poll vote at the General Meeting were as follows:
+Total Votes less Withheld
+Shares
+for
+Shares against
+Shares abstained
+For
+%
+Against %
+Ordinary Resolution 1
+36,656,363
+36,655,757
+606
+6
+99.998%
+0.002%
+Ordinary Resolution 2
+36,651,063
+36,649,753
+1,310
+5,306
+99.996%
+0.004%
+Ordinary Resolution 3
+36,651,063
+36,649,753
+1,310
+5,306
+99.996%
+0.004%
+Ordinary Resolution 4
+36,651,063
+36,649,753
+1,310
+5,306
+99.996%
+0.004%
+Ordinary Resolution 5
+36,651,063
+36,649,753
+1,310
+5,306
+99.996%
+0.004%
+Ordinary Resolution 6
+36,651,063
+36,649,753
+1,310
+5,306
+99.996%
+0.004%
+Ordinary Resolution 7
+36,656,363
+36,655,053
+1,310
+6
+99.996%
+0.004%
+Ordinary Resolution 8
+36,576,063
+36,574,661
+1,402
+80,306
+99.996%
+0.004%
+Special Resolution 9
+36,576,063
+36,574,753
+1,310
+80,306
+99.996%
+0.004%
+For further information on the Company please visit the Company's website:
+https://orcadian.energy
+Contact:
+Orcadian Energy plc
++ 44 20 7920 3150
+Steve Brown, CEO
+Alan Hume, CFO
+Zeus (Nomad and Joint Broker)
++44 20 3829 5000
+Darshan Patel / John Moran
+(Investment Banking)
+Simon Johnson (Corporate Broking)
+Albr (Joint Broker)
++44 207 399 9425
+Colin Rowbury / Jon Belliss
+About Orcadian Energy
+Orcadian is a North Sea focused, low emissions, oil and gas exploration and development company. Orcadian may be a small operator, but it is also nimble, and the Directors believe it has grasped opportunities that have eluded some of the much bigger companies. As we strike a balance between Net Zero and a sustainable energy supply, Orcadian intends to play its part to minimise the cost of Net Zero and to deliver reliable energy to the UK.
+Orcadian's key asset is the Pilot oilfield. Pilot was discovered by PetroFina in 1989 and has been well appraised. The field has excellent quality reservoir and contains 263MMbbl of a viscous oil ranging in gravity from 17º API in the South of the reservoir to 12º API in the North. In planning the Pilot development, Orcadian has selected polymer flooding and wind power to transform the production of viscous oil into a cleaner and greener process. Polymer significantly reduces fluid handling requirements and hence energy consumption as well as boosting recovery. Ithaca Energy, operator of the Captain field in the Inner Moray Firth, has enjoyed consistent success in applying polymer flood to the highly analogous Captain field. Following the farm-down of Pilot, the project is now under the stewardship of Ping Petroleum UK PLC ("Ping") and is intended to become amongst the lowest carbon emitting oil production facilities in the world.
+Ping is progressing a low-emissions, phased, field development plan for Pilot based upon a polymer flood of the reservoir, a Floating Production Storage and Offloading vessel (FPSO) and provision of power from a floating wind turbine or a local wind farm.
+Orcadian has an 18.75% fully carried interest in licence P2244 (block 21/27a) and a 100% interest in licence P2482 (blocks 28/2a and 28/3a). Ping is operator of P2244 and the Pilot development project.
+Orcadian was awarded three licences in the 33rd round. The Mid-North Sea High licence, P2650, contains shallow gas leads. Orcadian applied in partnership with Triangle Energy, an Australian listed energy company. Orcadian is licence administrator and holds 50% of the licence. The Mid-North Sea High licence covers blocks 29/16, 29/17, 29/18, 29/19, 29/21, 29/22, 29/23, 29/27 and 29/28.
+The Fynn licence, P2634, contains a very substantial heavy oil discovery. About 88% of the resource on a best technical case is estimated to lie within the area of the offered licence. Orcadian has a 50% working interest in the Fynn licence which is now operated by Serica. The Fynn licence covers blocks 14/15a, 14/20d and 15/11a. The Fynn licence also contains the Lowlander discovery with contingent resources of 21.4 mmbbls.
+The SNS licence, P2680, currently 100% but intended to be 50% Orcadian on completion of a proposed transaction, contains the Earlham discovery, a low-calorie gas discovery with 114bcf of methane resources on a P50 basis, the Clover prospect which has P50 prospective resources of 153bcf, and the decommissioned Orwell field which has redevelopment potential, alongside a number of smaller prospects.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+RAGAKCBQNBKDCDB
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
                         <div style="font-weight: 700; font-size: 16px;">Notice of AGM</div>
                         <span style="
                             display: inline-block;
@@ -943,7 +1222,7 @@
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Arch Law</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Steve Brown</td>
                     </tr>
                     
                         </table>
@@ -1038,9 +1317,9 @@ NOAAKOBBDBKDNDK
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #10b98140;
-                    ">2</span>
+                    ">3</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #2
+                        RNS ANNOUNCEMENT #3
                     </div>
                 </div>
                 
@@ -1105,7 +1384,7 @@ NOAAKOBBDBKDNDK
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Steve Brown</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Transitional Energy</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -2025,9 +2304,9 @@ FR EAFAFDDXSFFA
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">3</span>
+                    ">4</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #3
+                        RNS ANNOUNCEMENT #4
                     </div>
                 </div>
                 
@@ -2092,7 +2371,7 @@ FR EAFAFDDXSFFA
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">The Fynn</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Floating Production</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -2208,9 +2487,9 @@ MSCURVBRVAUUOAA
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">4</span>
+                    ">5</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #4
+                        RNS ANNOUNCEMENT #5
                     </div>
                 </div>
                 
@@ -2275,7 +2554,7 @@ MSCURVBRVAUUOAA
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">The Fynn</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Floating Production</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -2371,212 +2650,6 @@ Privacy Policy
 .
 END
 MSCFZMZMRFZGKZM
-                </div>
-            </details>
-            
-            </div>
-            
-            <div style="
-                margin-bottom: 20px;
-                padding: 18px;
-                background: white;
-                border-radius: 14px;
-                border: 1px solid #e2e8f0;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 30px;
-                        height: 30px;
-                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                        color: white;
-                        border-radius: 50%;
-                        font-weight: 800;
-                        font-size: 15px;
-                        box-shadow: 0 2px 8px #3b82f640;
-                    ">5</span>
-                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #5
-                    </div>
-                </div>
-                
-                
-            <div style="
-                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                color: white;
-                padding: 14px;
-                border-radius: 10px;
-                margin-bottom: 16px;
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">📰</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">IPC presents at ADIPEC</div>
-                        <span style="
-                            display: inline-block;
-                            background: rgba(255,255,255,0.25);
-                            padding: 2px 10px;
-                            border-radius: 12px;
-                            font-size: 11px;
-                            margin-top: 4px;
-                            font-weight: 600;
-                        ">UPDATE</span>
-                    </div>
-                </div>
-                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    Informational update - monitor for context with other announcements.
-                </div>
-            </div>
-            
-                
-            <div style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 10px;
-                margin: 16px 0;
-            ">
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">12th Nov 2025</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
-                </div>
-            </div>
-            
-                
-                
-                    <div style="margin: 16px 0;">
-                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
-                            
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">The Fynn</td>
-                    </tr>
-                    
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">50%, 50%, 50%</td>
-                    </tr>
-                    
-                        </table>
-                    </div>
-                    
-                
-            <details style="margin-top: 16px;">
-                <summary style="
-                    padding: 10px;
-                    background: #f8fafc;
-                    border-radius: 8px;
-                    font-weight: 600;
-                    font-size: 12px;
-                    list-style: none;
-                    cursor: pointer;
-                    color: #64748b;
-                    border: 1px solid #e2e8f0;
-                ">
-                    📄 View Full RNS Text
-                </summary>
-                <div style="
-                    margin-top: 8px;
-                    padding: 14px;
-                    background: #f1f5f9;
-                    border-radius: 8px;
-                    font-family: 'Courier New', monospace;
-                    font-size: 11px;
-                    line-height: 1.5;
-                    color: #475569;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                ">
-12 Nov 2025 07:00
-RNS Number : 1436H
-Orcadian Energy PLC
-12 November 2025
-12 November 2025
-Orcadian Energy plc ("Orcadian" or the "Company")
-The Independent Power Corporation plc presents at ADIPEC
-The Abu Dhabi International Petroleum Exhibition & Conference ("ADIPEC") is the world's largest energy event, attracting nearly a quarter of a million attendees and over sixteen thousand delegates. We were delighted that our partner,
-The Independent Power Corporation PLC ("IPC"), was represented by Ana Gorgyan, Director of Engineering, who presented twice at the conference. Ms Gorgyan spoke on Next Generation Power Systems for the New Digital Age, showcasing the Earlham gas field as a strong example of practical decarbonisation. Orcadian and IPC intend to develop Earlham to supply gas to a power station to be constructed by Marine Low Carbon Power Ltd ("MLCP") and located adjacent to the field. The generated power can be exported to data centres located on the M25 corridor, where demand for clean, dispatchable electricity has risen beyond the grid's current capacity. Carbon dioxide produced from the reservoir and from the combustion of gas is intended to be reinjected into the Earlham field to maintain reservoir pressure and enhance gas recovery.
-This plan is described in IPC's presentation pack delivered at ADIPEC (see slide six), available to download here:
-https://orcadian.energy/wp-content/uploads/2025/11/ADIPEC-2025-IPC-Low-Carbon-Slide-Deck-01-11-25-FINAL.pdf
-Slide six outlines the potential development scheme for Earlham, and we are excited to progress this project as a reliable, low carbon gas development capable of delivering clean power to the London area ahead of the Great Grid Upgrade.
-IPC also delivered a second presentation, "Next Generation Power Systems for the New Digital Era", which illustrates (see slide four) how the development of Earlham can support an onshore data centre. This presentation pack is available here:
-https://orcadian.energy/wp-content/uploads/2025/11/ADIPEC-2025-IPC-Digitalisation-Slide-Deck-01-11-25-FINAL.pdf
-Relationship with IPC
-The Company announced on 12 December 2024 that
-IPC had acquired the loan advanced by Shell International Trading and Shipping Company ("STASCO") and had loaned the Company further funds. As noted in the Company's results for the half year ended 31 December 2024, released to the market on 10 March 2025, the Company had intended to sell a 50% interest in P2680 to MLCP. Orcadian further announced on 18 June 2025, that it is working in partnership with IPC and MLCP
-to place the ownership of Licence P2680 (Earlham and Orwell), and Licence P2650 (shallow gas prospects), into a corporate joint venture structure to support the plan to deliver carbon free energy from new, offshore balancing power plants to IPC's large energy user customers. IPC has agreed that part of the consideration for a share in Earlham would entail cancellation of the Shell and IPC loans. Discussions are ongoing in relation to this joint venture, and a further announcement will be made as and when necessary.
-Orcadian, IPC and MLCP continue to discuss an arrangement whereby both gas licences are sold by Orcadian to HALO, which is 50% owned by Orcadian and 50% owned by IPC alongside an alternative farm-in structure.
-Steve Brown, Orcadian CEO, said:
-"Today our business has three strands, a viscous oil business with our 18.75% interest in Pilot (79 mmbbls, gross 2C), 100% interest in the Elke licence (53 mmbbls, gross 2C) and a 50% interest in the Fynn licence (268 mmbbls, gross 2C); a gas business based on the 100% owned Earlham licence which also contains Earlham discovery and the partially depleted Orwell field (145 bcf, gross) and the 50% interest in the Mid North Sea exploration licence which has two significant leads containing 269 bcf of prospective resources.
-"Finally, we have an advantaged tax position: HALO could potentially offset all upstream taxes on £115 million of income, when it acquires production.
-"Ana's presentation describes how gas can be used to deliver reliable low carbon power to enable the development of data centres in the UK. Orcadian intends to be at the forefront of delivering clean reliable power at attractive prices to make the UK the right place for the Hyper Scalers to locate their data centres, without relying on government or bill payer subsidies."
-For further information on the Company please visit the Company's website:
-https://orcadian.energy
-Contact:
-Orcadian Energy plc
-+ 44 20 7920 3150
-Steve Brown, CEO
-Alan Hume, CFO
-Zeus (Nomad and Joint Broker)
-+44 20 3829 5000
-Darshan Patel / John Moran (Investment Banking)
-Simon Johnson (Corporate Broking)
-Novum (Joint Broker)
-+44 207 399 9425
-Colin Rowbury / Jon Belliss
-Qualified Person's Statement
-Pursuant to the requirements of the AIM Rules and in particular, the AIM Note for Mining and Oil and Gas Companies, Maurice Bamford has reviewed and approved the technical information and resource reporting contained in this announcement.
-Maurice has more than 36 years' experience in the oil & gas industry and 3 years in academia. He holds a BSc in Geology from Queens University Belfast and a PhD in Geology from the National University of Ireland. Maurice is a Fellow of the Geological Society, London, and a member of the Geoscience Energy Society of Great Britain. He is Exploration and Geoscience Manager at Orcadian Energy.
-About Orcadian Energy
-Orcadian is a North Sea focused, low emissions, oil and gas exploration and development company. Orcadian may be a small operator, but it is also nimble, and the Directors believe it has grasped opportunities that have eluded some of the much bigger companies. As we strike a balance between Net Zero and a sustainable energy supply, Orcadian intends to play its part to minimise the cost of Net Zero and to deliver reliable energy to the UK.
-Viscous oil
-As part of its viscous oil strategy Orcadian has an 18.75% carried interest in the Pilot development project, Pilot was discovered by PetroFina in 1989 and has been well appraised. The field has excellent quality reservoir and has contingent resources of 79 MMbbl of a viscous oil ranging in gravity from 17º API in the South of the reservoir to 12º API in the North. In planning the Pilot development, Orcadian has selected polymer flooding and wind power to transform the production of viscous oil into a cleaner and greener process. Polymer significantly reduces fluid handling requirements and hence energy consumption as well as boosting recovery. Ithaca Energy, operator of the Captain field in the Inner Moray Firth, has enjoyed consistent success in applying polymer flood to the highly analogous Captain field. Following the recent farm-down of Pilot, the project is now under the stewardship of Ping Petroleum UK PLC ("Ping") and is intended to be amongst the lowest carbon emitting oil production facilities in the world.
-Ping is progressing a low-emissions, phased, field development plan for Pilot based upon a polymer flood of the reservoir, a Floating Production Storage and Offloading vessel (FPSO) and provision of power from a floating wind turbine or a local wind farm.
-Orcadian has an 18.75% fully carried interest in Licence P2244 (block 21/27a) and a 100% interest in Licence P2482 (blocks 28/2a and 28/3a). Ping is operator of P2244 and the Pilot development project. P2482 covers the Elke and Narwhal discoveries which contain 53 MMbbl of contingent resources.
-The Fynn licence (P2634) which was awarded in the 33rd Round contains a very substantial heavy oil discovery. About 88% of the resource on a best technical case is estimated to lie within the area of the licence. Orcadian has a 50% working interest in the Fynn licence which is operated by Serica Energy. The Fynn licence covers blocks 14/15a, 14/20d and 15/11a.
-Gas to Artificial Intelligence
-Orcadian was awarded two gas licences in the 33rd Round. The Mid-North Sea High licence, P2650, contains shallow gas leads. Orcadian applied in partnership with Triangle Energy, an Australian listed energy company. Orcadian is licence administrator and holds 50% of the licence. The Mid North Sea High licence covers blocks 29/16, 29/17, 29/18, 29/19, 29/21, 29/22, 29/23, 29/27 and 29/28.
-The Earlham and Orwell licence, P2680, 100% Orcadian, contains the Earlham discovery, a low-calorie gas discovery with 114 bcf of methane resources on a P50 basis, the Clover prospect which has P50 prospective resources of 153 bcf, and the decommissioned Orwell field which has redevelopment potential, alongside a number of smaller prospects.
-Orcadian intends progressing these and other projects in partnership with IPC through its 50% -owned, tax-advantaged, HALO subsidiary. Since 2013 HALO has incurred around £50 million of pre-trading capital expenditures which we expect will generate, on commencement of a ring-fence trade, tax allowances in the region of £115 million when Ring Fence Expenditure Supplement is applied. Orcadian continues to evaluate opportunities to acquire development and producing opportunities for HALO.
-About IPC and IPC New World Energy Limited
-IPC New World Energy Ltd is a subsidiary of Independent Power Corporation PLC (
-"IPC"
-) which since 1995 has been a developer, owner and operator of power plants on five continents across the globe. IPC has developed, owned or operated around 10,000 MW of conventional power capacity across a wide range of project types including gas, diesel, wind,
-﻿
-biofuels and hydroelectric plants. Thermal plants have included combined cycle gas turbine (CCGT) power plants (including the first in country in
-﻿
-Bolivia and South Africa) as well as combined heat and power (CHP) projects and emissions reduction projects in CIS countries. In recent years, IPC has developed projects in Azerbaijan, Chile, Ghana and the United Kingdom
-﻿
-as an independent developer, sponsor and operator of power plants. Its IPCNWE subsidiary has in excess of 7.5 GW of offshore wind and BESS (battery energy storage systems) projects in the United Kingdom and Europe.
-About the Marine Low Carbon Power Company Limited
-MLCP was formed in 2020 to generate low carbon balancing power in UK territorial waters using offshore gas reserves. The energy can be generated flexibly to provide carbon-free energy when wind and solar energy sources are unavailable, therefore supporting and complementing UK renewable energy - unlike CCGT baseload gas fired power plants which compete with renewables and which do not have the operational ability to stop and start at short notice.
-MLCP is a joint venture between IPC New World Energy Ltd and Richmond Offshore Energy Ltd.
-This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
-rns@lseg.com
-or visit
-www.rns.com
-.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
-Privacy Policy
-.
-END
-MSCUAVKRVAUAAAA
                 </div>
             </details>
             
@@ -2896,7 +2969,7 @@ MSCUAVKRVAUAAAA
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-29 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-01-30 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.

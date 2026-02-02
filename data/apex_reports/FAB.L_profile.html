@@ -163,6 +163,8 @@
             font-weight: 600;
             text-transform: uppercase;
         }
+
+        
         
         .risk-indicator {
             display: flex;
@@ -227,7 +229,7 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 638 days</span>
+                    <span><strong>Days Active:</strong> 639 days</span>
                 </div>
             </div>
         </div>
@@ -258,8 +260,11 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#10b981; line-height:1;">49</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Setup</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Setup
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Trust -->
@@ -268,8 +273,11 @@
                             <div style="font-size:14px;">🛡️</div>
                             <div style="font-size:28px; font-weight:800; color:#3b82f6; line-height:1;">40</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Trust</div>
-                        <div style="font-size:10px; color:#94a3b8;">20%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Trust
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Panic -->
@@ -278,8 +286,11 @@
                             <div style="font-size:14px;">😱</div>
                             <div style="font-size:28px; font-weight:800; color:#ef4444; line-height:1;">71.1</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Panic</div>
-                        <div style="font-size:10px; color:#94a3b8;">30%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Panic
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Compression -->
@@ -288,34 +299,56 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#f59e0b; line-height:1;">34</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Compression</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Compression
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Timing Scope -->
+            <!-- Timing Scope: Flat segmented bar -->
             <div style="margin-top:24px;">
-                <div style="font-size:12px; color:#475569; font-weight:700; margin-bottom:8px; text-align:center;">Timing Spectrum</div>
+                <!-- position badge removed to avoid overlay on timing spectrum -->
                 <style>
                     @keyframes pulse-ring {
-                        0% { transform: scale(0.8); opacity: 0.9; }
+                        0% { transform: scale(0.7); opacity: 0.9; }
                         70% { transform: scale(2.2); opacity: 0; }
                         100% { transform: scale(2.8); opacity: 0; }
                     }
+                    @keyframes pulse-ring-outer {
+                        0% { transform: scale(0.9); opacity: 0.7; }
+                        50% { transform: scale(1.12); opacity: 0.45; }
+                        100% { transform: scale(1.3); opacity: 0; }
+                    }
                 </style>
-                <div style="position:relative; height:48px; background:linear-gradient(90deg, #ef4444 0%, #f59e0b 25%, #f093fb 50%, #10b981 75%, #064e3b 100%); border-radius:8px;">
-                    <div style="position:absolute; left:calc(30% - 24px); top:calc(50% - 24px); width:48px; height:48px; display:flex; align-items:center; justify-content:center;">
-                        <div style="position:absolute; width:48px; height:48px; border-radius:24px; background:rgba(15,23,42,0.12); animation: pulse-ring 1.8s infinite;"></div>
-                        <div style="width:16px; height:16px; border-radius:8px; background:#0f172a; box-shadow:0 6px 18px rgba(0,0,0,0.12);"></div>
+                <div style="position:relative;">
+                    <div style="display:flex; gap:6px; height:48px; border-radius:8px; overflow:hidden;">
+                        <div style="flex:1; background:#ef4444;"></div>
+                        <div style="flex:1; background:#f59e0b;"></div>
+                        <div style="flex:1; background:#facc15;"></div>
+                        <div style="flex:1; background:#10b981;"></div>
+                        <div style="flex:1; background:#065f46;"></div>
+                    </div>
+
+                    <!-- Pulse pointer positioned by timing_pos_pct -->
+                    <div style="position:absolute; left:calc(30% - 26px); top:0px; width:52px; height:52px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                        <!-- outer grey-white ring to help indicator stand out -->
+                        <div style="position:absolute; width:60px; height:60px; border-radius:30px; background:rgba(249,250,251,0.95); border:2px solid rgba(2,6,23,0.06); box-shadow:0 8px 30px rgba(2,6,23,0.06); animation: pulse-ring-outer 2.2s infinite;"></div>
+                        <!-- inner colored pulse ring -->
+                        <div style="position:absolute; width:52px; height:52px; border-radius:26px; background:#ffe50f; opacity:0.18; animation: pulse-ring 1.6s infinite;"></div>
+                        <!-- core dot with colored border for contrast -->
+                        <div style="width:18px; height:18px; border-radius:9px; background:#ffffff; box-shadow:0 10px 30px rgba(0,0,0,0.22); border:3px solid #f59e0b;"></div>
                     </div>
                 </div>
-                <div style="display:flex; justify-content:space-between; font-size:12px; color:#475569; margin-top:10px;">
-                    <div>Too Early</div>
-                    <div>Early Build</div>
-                    <div>Confirmed</div>
-                    <div>Crowded</div>
-                    <div>Broken</div>
+
+                <div style="display:flex; justify-content:space-between; font-size:12px; margin-top:8px; gap:6px;">
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Too Early</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Early Build</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Confirmed</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Crowded</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Broken</span></div>
                 </div>
 
                 <div style="margin-top:12px; display:flex; justify-content:center;">
@@ -540,6 +573,16 @@
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Total Voting Rights</div>
+                        <div style="font-size: 12px; color: #64748b;">30th Jan 2026</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Issue of Director Shares</div>
                         <div style="font-size: 12px; color: #64748b;">27th Jan 2026</div>
                     </div>
@@ -572,16 +615,6 @@
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Launch of OptiMAL platform</div>
                         <div style="font-size: 12px; color: #64748b;">16th Dec 2025</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
-                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
-                    <span style="font-size: 18px;">📢</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Mammalian Display video</div>
-                        <div style="font-size: 12px; color: #64748b;">11th Dec 2025</div>
                     </div>
                 </div>
             </div>
@@ -899,6 +932,193 @@
                 margin-bottom: 16px;
             ">
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Total Voting Rights</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">5:00 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Stephen Smyth</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+Today 17:00
+RNS Number : 1535R
+Fusion Antibodies PLC
+30 January 2026
+30 January 2026
+Fusion Antibodies plc
+("Fusion"
+or the
+"Company")
+Total Voting Rights
+Fusion Antibodies plc (AIM: FAB), specialists in pre-clinical antibody discovery, engineering and supply for both therapeutic drug and diagnostic applications, announces that the issued share capital of the Company at the date of this announcement comprises
+125,021,878
+ordinary shares of 4 pence each with one voting right per share ("Ordinary Shares"). The Company does not hold any Ordinary Shares in treasury. Therefore, the total number of Ordinary Shares and voting rights in the Company is
+125,021,878
+.
+The above figure may be used by shareholders in the Company as the denominator for the calculations by which they will determine if they are required to notify their interest in, or a change to their interest in, the share capital of the Company under the FCA's Disclosure Guidance and Transparency Rules.
+Enquiries:
+Fusion Antibodies plc
+www.fusionantibodies.com
+Adrian Kinkaid, Chief Executive Officer
+Stephen Smyth, Chief Financial Officer
+Via Walbrook PR
+Fusion Antibodies interactive investor hub
+https://investorhub.fusionantibodies.com/
+Allenby Capital Limited
+Tel: +44 (0) 20 3328 5656
+James Reeve/Vivek Bhardwaj (Corporate Finance)
+Tony Quirke/Joscelin Pinnington (Sales and Corporate Broking)
+Shard Capital Partners LLP
+Damon Heath (Joint Broker)
+Tel: +44 (0) 207 186 9952
+Walbrook PR
+Tel: +44 (0)20 7933 8780 or fusion@walbrookpr.com
+Anna Dunphy
+Mob: +44 (0)7876 741 001
+About Fusion Antibodies plc
+Fusion Antibodies plc is a Contract Research Organisation (CRO) located in Northern Ireland that offers an integrated end-to-end range of antibody discovery, engineering and expression services for all stages of human therapeutic, veterinary therapeutic and diagnostic antibody development.
+The range of services offered includes antibody discovery/generation, development, characterisation, optimisation, and small-scale production. In addition, the Company also offers antigen design, antigen expression, antibody purification and sequencing, antibody humanisation using Fusion's proprietary CDRxTM platform and cell line development, producing antibody generating stable cell lines optimised for use downstream by the customer to produce material for clinical trials. Since 2012, the Company has successfully sequenced and expressed many thousands of antibodies and successfully completed over 290 humanisation projects for its international customer base, which has included eight of the top 10 global pharmaceutical companies by revenue.
+At every stage, our client's vision is central to how we work in
+combining the latest technological advances with cutting edge science.
+In this work our world-class discovery (
+OptiMAL®
+and OptiPhageTM), humanization and antibody optimization platforms harness the power of natural somatic hypermutation (SHM)
+to
+ensure the best molecule goes to the clinic.
+Fusion Antibodies' growth strategy is based on enabling Pharma and Biotech companies get to the clinic more effectively, using molecules with optimized therapeutic profile and enhanced potential for successful development and approval and, ultimately, on speeding up the drug discovery and development process. Our
+Integrated Therapeutic Antibody Services ("ITA") offering enhances the efficiency of this process by providing a continuous service offering from as early as target nomination to as far as a stable cell line.
+Fusion's use of SHM to create a fully human antibody library to capture the human antibody repertoire addresses a continuing market need in antibody discovery.
+Fusion Antibodies' emphasis on antibody therapeutics is based on the size and growth rate in the sector, with the market valued at $253 billion in 2024 and forecast to reach nearly $500 billion by 2029. From 2020 to 2024 there have been 63 antibody therapeutics granted approval in either the USA or the EU, of which 30 were for cancer and there were nine antibodies each with sales of more than $5 billion in 2023.
+While therapeutic antibodies are our primary focus, all the services are directly applicable to the Diagnostic sector and also the new, more embryonic veterinary markets and diversification into these markets gives the Company further growth opportunities.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+TVRBSGDBGSXDGLG
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
                     <span style="font-size: 20px;">👥</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 700; font-size: 16px;">Issue of Director Shares</div>
@@ -951,7 +1171,7 @@
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Richard Buick</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Stephen Smyth</td>
                     </tr>
                     
                         <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1187,9 +1407,9 @@ DSHAKABNOBKDBDB
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">2</span>
+                    ">3</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #2
+                        RNS ANNOUNCEMENT #3
                     </div>
                 </div>
                 
@@ -1254,7 +1474,7 @@ DSHAKABNOBKDBDB
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">San Diego</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Stephen Smyth</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1567,9 +1787,9 @@ IOESEFFWMEMSEDF
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">3</span>
+                    ">4</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #3
+                        RNS ANNOUNCEMENT #4
                     </div>
                 </div>
                 
@@ -1634,7 +1854,7 @@ IOESEFFWMEMSEDF
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Investor Hub</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Stephen Smyth</td>
                     </tr>
                     
                         </table>
@@ -1752,9 +1972,9 @@ MSCFZMMZVRRGKZM
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">4</span>
+                    ">5</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #4
+                        RNS ANNOUNCEMENT #5
                     </div>
                 </div>
                 
@@ -1819,7 +2039,7 @@ MSCFZMMZVRRGKZM
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">San Diego</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Stephen Smyth</td>
                     </tr>
                     
                         </table>
@@ -1903,224 +2123,6 @@ Privacy Policy
 .
 END
 MSCFFEFFMEISESE
-                </div>
-            </details>
-            
-            </div>
-            
-            <div style="
-                margin-bottom: 20px;
-                padding: 18px;
-                background: white;
-                border-radius: 14px;
-                border: 1px solid #e2e8f0;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 30px;
-                        height: 30px;
-                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                        color: white;
-                        border-radius: 50%;
-                        font-weight: 800;
-                        font-size: 15px;
-                        box-shadow: 0 2px 8px #3b82f640;
-                    ">5</span>
-                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #5
-                    </div>
-                </div>
-                
-                
-            <div style="
-                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                color: white;
-                padding: 14px;
-                border-radius: 10px;
-                margin-bottom: 16px;
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">📰</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">Mammalian Display video</div>
-                        <span style="
-                            display: inline-block;
-                            background: rgba(255,255,255,0.25);
-                            padding: 2px 10px;
-                            border-radius: 12px;
-                            font-size: 11px;
-                            margin-top: 4px;
-                            font-weight: 600;
-                        ">UPDATE</span>
-                    </div>
-                </div>
-                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    Informational update - monitor for context with other announcements.
-                </div>
-            </div>
-            
-                
-            <div style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 10px;
-                margin: 16px 0;
-            ">
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">11th Dec 2025</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS-R</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
-                </div>
-            </div>
-            
-                
-                
-                    <div style="margin: 16px 0;">
-                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
-                            
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Investor Hub</td>
-                    </tr>
-                    
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">70%, 70%, 5%</td>
-                    </tr>
-                    
-                        </table>
-                    </div>
-                    
-                
-            <details style="margin-top: 16px;">
-                <summary style="
-                    padding: 10px;
-                    background: #f8fafc;
-                    border-radius: 8px;
-                    font-weight: 600;
-                    font-size: 12px;
-                    list-style: none;
-                    cursor: pointer;
-                    color: #64748b;
-                    border: 1px solid #e2e8f0;
-                ">
-                    📄 View Full RNS Text
-                </summary>
-                <div style="
-                    margin-top: 8px;
-                    padding: 14px;
-                    background: #f1f5f9;
-                    border-radius: 8px;
-                    font-family: 'Courier New', monospace;
-                    font-size: 11px;
-                    line-height: 1.5;
-                    color: #475569;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                ">
-11 Dec 2025 07:00
-RNS Number : 0994L
-Fusion Antibodies PLC
-11 December 2025
-REACH - Non-regulatory announcement*
-11 December 2025
-Fusion Antibodies plc
-("Fusion"
-or the
-"Company")
-Mammalian Display
-video
-Fusion Antibodies plc (AIM: FAB), specialists in pre-clinical antibody discovery, engineering and supply for both therapeutic drug and diagnostic applications, announces that ahead of the commercial launch of the OptiMAL® Human Antibody Discovery platform at the Antibody Engineering and Technology conference in San Diego on 15 December 2025, Fusion has prepared a short video of Dr Richard Buick, CSO, explaining some of the features, science and technology behind the Company's Mammalian Display technology. The technology has been combined with Fusion's Opti-library to create the OptiMAL® library. OptiMAL® is intended to be used to discover novel human antibodies against any target. The mammalian display platform library design and method is protected by US patent US12378696. The Mammalian Display technology can also be used with other antibody libraries.
-The video can be viewed on the Investor Hub section of Fusion's website at,
-https://investorhub.fusionantibodies.com/s/7ea305
-.
-Other Mammalian Display technologies are available and have been summarised in the scientific literature e.g. Slavny P, Hegde M, Doerner A, Parthiban K, McCafferty J, Zielonka S and Hoet R (2024) Advancements in mammalian display technology for therapeutic antibody development and beyond: current landscape, challenges, and future prospects. Front. Immunol. 15:1469329. doi: 10.3389/fimmu.2024.1469329.
-Fusion Antibodies has compared its own Mammalian Display technology to the competitor platforms in the review article and identified several superior advantages. The most significant are its transduction efficiency of over 70% and its ability to support very large libraries, exceeding 10⁹ variants. These are summarised in the table below:
-Technology
-OptiMAL®
-Retrocyte Display
-Other Lentiviral mammalian display
-Transposase-mediated integration
-Nuclease-directed integration
-Recombinase-mediated integration
-Integration Efficiency
->70%
-<5%
-0.5-5%
-6-7.5%
-0.5-5%
-1.7%
-Reported library sizes
->109
-106-108
-106
-106
-106-108
-106-108
-If shareholders or prospective investors have further queries regarding the Mammalian Display platform, please submit questions you may have regarding this update using the facility provided.
-Investor Presentation and Q&A: OptiMAL® Launch
-Adrian Kinkaid, CEO of Fusion will provide a pre-recorded presentation and Q&A session on the OptiMAL® launch from the Antibody Engineering & Therapeutics Conference via the Company's Investor Hub on Tuesday, 16 December 2025, at 16:00 GMT.
-The presentation is open to all existing and potential shareholders. Questions are encouraged and can be pre-submitted via the webinar page.
-Register and submit your questions here:
-https://investorhub.fusionantibodies.com/webinars/mPqXOr-optimal-r-launch-investor-q-a
-No material new information will be included in the presentation or Q&A.
-Fusion Antibodies wants to keep its investors up to date with developments in the Company technology and offerings. We have therefore created a space on the Investor Hub which in contains an increasing number of videos providing more information which may be of interest to investors. This can be found here,
-https://investorhub.fusionantibodies.com/s/1b6535
-.
-Enquiries:
-Investor questions on this announcement
-We encourage all investors to share questions on this announcement via our investor hub
-Investor hub
-Fusion Antibodies plc
-www.fusionantibodies.com
-Adrian Kinkaid, Chief Executive Officer
-Stephen Smyth, Chief Financial Officer
-Via Walbrook PR
-Allenby Capital Limited
-Tel: +44 (0) 20 3328 5656
-James Reeve/Vivek Bhardwaj (Corporate Finance)
-Tony Quirke/Joscelin Pinnington (Sales and Corporate Broking)
-Shard Capital Partners LLP
-Damon Heath (Joint Broker)
-Tel: +44 (0) 207 186 9952
-Walbrook PR
-Tel: +44 (0)20 7933 8780 or fusion@walbrookpr.com
-Anna Dunphy
-Mob: +44 (0)7876 741 001
-About Fusion Antibodies plc
-Fusion is a Belfast based contract research organisation ("CRO") providing a range of antibody engineering services for the development of antibodies for both therapeutic drug and diagnostic applications.
-The Company's ordinary shares were admitted to trading on AIM on 18 December 2017. Fusion provides a broad range of services in antibody generation, development, production, characterisation and optimisation. These services include antigen expression, antibody production, purification and sequencing, antibody humanisation using Fusion's proprietary CDRx TM platform and the production of antibody generating stable cell lines to provide material for use in clinical trials. Since 2012, the Company has successfully sequenced and expressed over 250 antibodies and successfully completed over 200 humanisation projects and has an international, blue-chip client base, which has included eight of the top 10 global pharmaceutical companies by revenue.
-The Company was established in 2001 as a spin out from Queen's University Belfast. The Company's mission is to enable pharmaceutical and diagnostic companies to develop innovative products in a timely and cost-effective manner for the benefit of the global healthcare industry. Fusion Antibodies provides a broad range of services in antibody generation, development, production, characterisation and optimisation.
-Fusion Antibodies growth strategy is based on combining the latest technological advances with cutting edge science to deliver new platforms that will enable Pharma and Biotech companies get to the clinic faster, with the optimal drug candidate and ultimately speed up the drug development process.
-*About Reach announcements
-This is a Reach announcement. Reach is an investor communication service aimed at assisting listed and unlisted (including AIM quoted) companies to distribute media only / non-regulatory news releases into the public domain. Information required to be notified under the AIM Rules for Companies, Market Abuse Regulation or other regulation would be disseminated as an RNS regulatory announcement and not on Reach.
-This information is provided by Reach, the non-regulatory press release distribution service of RNS, part of the London Stock Exchange. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
-rns@lseg.com
-or visit
-www.rns.com
-.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
-Privacy Policy
-.
-END
-NRATMBBTMTJBTAA
                 </div>
             </details>
             
@@ -2440,7 +2442,7 @@ NRATMBBTMTJBTAA
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-29 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-01-30 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.

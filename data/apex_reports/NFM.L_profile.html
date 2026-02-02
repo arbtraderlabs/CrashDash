@@ -163,6 +163,8 @@
             font-weight: 600;
             text-transform: uppercase;
         }
+
+        
         
         .risk-indicator {
             display: flex;
@@ -223,11 +225,11 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">£</span>
-                    <span><strong>Market Cap:</strong> £16,324,376</span>
+                    <span><strong>Market Cap:</strong> £16,753,966</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 1301 days</span>
+                    <span><strong>Days Active:</strong> 1302 days</span>
                 </div>
             </div>
         </div>
@@ -258,8 +260,11 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#10b981; line-height:1;">58</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Setup</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Setup
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Trust -->
@@ -268,8 +273,11 @@
                             <div style="font-size:14px;">🛡️</div>
                             <div style="font-size:28px; font-weight:800; color:#3b82f6; line-height:1;">45</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Trust</div>
-                        <div style="font-size:10px; color:#94a3b8;">20%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Trust
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Panic -->
@@ -278,8 +286,11 @@
                             <div style="font-size:14px;">😱</div>
                             <div style="font-size:28px; font-weight:800; color:#ef4444; line-height:1;">40.2</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Panic</div>
-                        <div style="font-size:10px; color:#94a3b8;">30%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Panic
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Compression -->
@@ -288,34 +299,56 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#f59e0b; line-height:1;">45</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Compression</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Compression
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Timing Scope -->
+            <!-- Timing Scope: Flat segmented bar -->
             <div style="margin-top:24px;">
-                <div style="font-size:12px; color:#475569; font-weight:700; margin-bottom:8px; text-align:center;">Timing Spectrum</div>
+                <!-- position badge removed to avoid overlay on timing spectrum -->
                 <style>
                     @keyframes pulse-ring {
-                        0% { transform: scale(0.8); opacity: 0.9; }
+                        0% { transform: scale(0.7); opacity: 0.9; }
                         70% { transform: scale(2.2); opacity: 0; }
                         100% { transform: scale(2.8); opacity: 0; }
                     }
+                    @keyframes pulse-ring-outer {
+                        0% { transform: scale(0.9); opacity: 0.7; }
+                        50% { transform: scale(1.12); opacity: 0.45; }
+                        100% { transform: scale(1.3); opacity: 0; }
+                    }
                 </style>
-                <div style="position:relative; height:48px; background:linear-gradient(90deg, #ef4444 0%, #f59e0b 25%, #f093fb 50%, #10b981 75%, #064e3b 100%); border-radius:8px;">
-                    <div style="position:absolute; left:calc(30% - 24px); top:calc(50% - 24px); width:48px; height:48px; display:flex; align-items:center; justify-content:center;">
-                        <div style="position:absolute; width:48px; height:48px; border-radius:24px; background:rgba(15,23,42,0.12); animation: pulse-ring 1.8s infinite;"></div>
-                        <div style="width:16px; height:16px; border-radius:8px; background:#0f172a; box-shadow:0 6px 18px rgba(0,0,0,0.12);"></div>
+                <div style="position:relative;">
+                    <div style="display:flex; gap:6px; height:48px; border-radius:8px; overflow:hidden;">
+                        <div style="flex:1; background:#ef4444;"></div>
+                        <div style="flex:1; background:#f59e0b;"></div>
+                        <div style="flex:1; background:#facc15;"></div>
+                        <div style="flex:1; background:#10b981;"></div>
+                        <div style="flex:1; background:#065f46;"></div>
+                    </div>
+
+                    <!-- Pulse pointer positioned by timing_pos_pct -->
+                    <div style="position:absolute; left:calc(30% - 26px); top:0px; width:52px; height:52px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                        <!-- outer grey-white ring to help indicator stand out -->
+                        <div style="position:absolute; width:60px; height:60px; border-radius:30px; background:rgba(249,250,251,0.95); border:2px solid rgba(2,6,23,0.06); box-shadow:0 8px 30px rgba(2,6,23,0.06); animation: pulse-ring-outer 2.2s infinite;"></div>
+                        <!-- inner colored pulse ring -->
+                        <div style="position:absolute; width:52px; height:52px; border-radius:26px; background:#ffe50f; opacity:0.18; animation: pulse-ring 1.6s infinite;"></div>
+                        <!-- core dot with colored border for contrast -->
+                        <div style="width:18px; height:18px; border-radius:9px; background:#ffffff; box-shadow:0 10px 30px rgba(0,0,0,0.22); border:3px solid #f59e0b;"></div>
                     </div>
                 </div>
-                <div style="display:flex; justify-content:space-between; font-size:12px; color:#475569; margin-top:10px;">
-                    <div>Too Early</div>
-                    <div>Early Build</div>
-                    <div>Confirmed</div>
-                    <div>Crowded</div>
-                    <div>Broken</div>
+
+                <div style="display:flex; justify-content:space-between; font-size:12px; margin-top:8px; gap:6px;">
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Too Early</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Early Build</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Confirmed</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Crowded</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Broken</span></div>
                 </div>
 
                 <div style="margin-top:12px; display:flex; justify-content:center;">
@@ -540,6 +573,16 @@
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Quarterly Report</div>
+                        <div style="font-size: 12px; color: #64748b;">30th Jan 2026</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Upcoming Extraordinary General Meeting</div>
                         <div style="font-size: 12px; color: #64748b;">5th Jan 2026</div>
                     </div>
@@ -572,16 +615,6 @@
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Notice of change of interests</div>
                         <div style="font-size: 12px; color: #64748b;">8th Dec 2025</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
-                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
-                    <span style="font-size: 18px;">📢</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Notification and Application of Securities</div>
-                        <div style="font-size: 12px; color: #64748b;">4th Dec 2025</div>
                     </div>
                 </div>
             </div>
@@ -901,6 +934,327 @@
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
                     <span style="font-size: 20px;">📰</span>
                     <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Quarterly Report</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Mineral Resource</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">1.7%, 35%, 10.03%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+30 Jan 2026 07:00
+RNS Number : 9737Q
+New Frontier Minerals Limited
+30 January 2026
+New Frontier Minerals Limited / Index: LSE & LSE / Epic: NFM / Sector: Industrial Metals and Mining
+30 January 2026
+New Frontier Minerals Limited
+("NFM" or the "Company")
+Quarterly Report
+New Frontier Minerals Limited (LSE/ASX: NFM) is pleased to announce its quarterly activities report for the period ending 31 December 2025.
+QUARTERLY HIGHLIGHTS
+Harts Range Project
+·
+The inaugural reverse circulation (RC) drilling campaign at the Harts Range Project was completed
+·
+The geology team were pleased with the campaign, having drill-tested all high-priority targets, to provide insight into the geology and extent of the heavy rare earth mineralisation
+·
+All samples from the drilling campaign were dispatched to ALS Adelaide prior to Christmas for comprehensive assay analysis, with results to be announced upon receipt
+·
+New Frontier has entered a binding commercial framework with Metallium Ltd (ASX: MTM) to create a novel processing pathway for Harts Range, targeting Heavy REE supply to US magnet and defence customers
+·
+Exceptional beneficiation results on raw ore (25kg bulk sample), using MTM's proprietary Flash Joule Heating (FJH) technology on Harts Range delivered exceptional results from raw ore:
+o
+~20x upgrade in total REO from 1.7 % → 35 % (TREO) in a single step flash; and
+o
+~53x enrichment in dysprosium (Dy2O3) to 10.03% and 21x terbium (Tb4O7) enrichment 0.64% - with complete removal of detectable Fe, Si and Th from raw, un-beneficiated (no flotation, acid leaching or hydrometallurgical pre-conditioning) Harts Range ore
+·
+These results represent an unprecedented beneficiation performance for a raw Dy/Tb-bearing ore in a single, rapid, solvent-free reaction
+·
+New Frontier has granted MTM exclusive global rights to apply FJH processing to all Harts Range ore / concentrates for at least 10 years, with automatic extension through production, subject to successful development of a commercial scale processing facility
+·
+MTM's 2026 plans comprise generating Dy/Tb-rich "super-concentrate" samples for prospective US magnet/defence customers for qualification, with a commercial term-sheet in-place before year-end
+·
+Securing the binding strategic agreement with MTM, clearly validates the Harts Range Project
+NWQ Copper Project
+·
+Mining Lease Application (MLA) lodged covering the Big One Copper Deposit within New Frontier's NWQ Copper Project, in the Mt Isa copper belt, north-west Queensland
+·
+The application area covers 240Ha, securing tenure over the historical Big One Deposit workings and surrounding mineralised structures
+Corporate
+·
+Successfully completed a $2.25m placement at $0.021 per share, with strong support from new and existing sophisticated and institutional investors
+·
+Total cash and liquid investments at 31 December 2025 - $3.0 million
+HARTS RANGE PROJECT
+Significant progress was made on the Harts Range Project during the review period, with two key milestones achieved:
+BINDING COMMERCIAL FRAMEWORK WITH METALLIUM
+On 18 November 2025, New Frontier advised it had entered a binding commercial framework with MTM to create an exclusive western heavy rare earth pathway for Harts Range raw ore that will target US magnetic and defence customers. This follows exceptional test-work results on Harts Range raw ore, especially Dy/Tb, using MTM's proprietary FJH technology.
+Exceptional Test-Work Results
+The 25kg bulk sample from the Harts Range Project (un-beneficiated ore, crushed/ground feed) underwent MTM's proprietary FJH process (Figure 1).
+Figure 1: FJH Test Units at the Anahuac Technology Campus, Chambers County, Texas. (Source: Metallium)
+The sample from Harts Range (un-beneficiated ore, crushed/ground feed) underwent Metallium's proprietary FJH process (Figure 2).
+Total rare-earth oxide (TREO) content increased from ~1.7 % to ~35 % in a single FJH reaction step, representing ~20x upgrade (Table 1).
+·
+Key heavy REEs Dy and Tb, and magnet REE Nd concentrations increased significantly
+·
+Dy₂O₃ upgraded 53× (0.19% → 10.03%) / 11% → 29% of the REO basket (+160%)
+·
+Tb₄O₇ upgraded 21× (0.03% → 0.64%) / 1.7% → 1.8% of the REO basket (+5%)
+·
+Nd₂O₃ upgraded 114× (0.05% → 5.69%) / 2.9% → 16.3% of the REO basket (+460%)
+·
+Complete removal of detectable Fe₂O₃, SiO₂ and Th
+·
+Partial yttrium rejection, reducing Y₂O₃ from 61% to 35% of the REO basket
+·
+No traditional acid-leach or reagent-heavy beneficiation route was applied pre-FJH, underscoring metallurgical simplicity and fast processing capability
+MTM is currently modelling the next phase of optimisation, including additional FJH treatment and post-sample processing for increased recoveries.
+MTM's Texas Technology Campus will be used to scale up the reactor size, optimise reactor parameters and deliver customer-qualification grade products.
+Samples were analysed by Inductively Coupled Plasma Optical Emission Spectroscopy (ICP-OES) by an independent, accredited commercial laboratory.
+Figure 2:
+Single-step Flash Mass Balance Diagram (Source: Metallium)
+Table 1: REE Recovery and Impurity Removal - Assay Before and After FJH Treatment & Enrichment Ratio (Source: Metallium)
+Figure 3: Metallium's indicative operating model - exclusive processing rights over Harts Range enable a "Processing-as-a-Service" structure, generating both per-tonne licensing fees & production royalties without mining or operating risk (Source: Metallium)
+Binding Commercial Framework
+Under the terms of the binding commercial framework, New Frontier has agreed to the following:
+·
+MTM has binding, exclusive, project-linked rights to apply FJH (and derivative processing) to all ore, concentrate or other feed from the Harts Range Project for a minimum of 10 years, with automatic rollover into production stage.
+·
+Upon commercial production of a Dy/Tb-rich product, MTM will earn:
+o
+a royalty (1.5% Net Smelter Return equivalent) on sales of finished product; and
+o
+a margin for processing Harts Range feed through MTM's facility.
+·
+The structure includes a buy-back right allowing the project owner (or successor) to acquire a portion of the royalty for a fixed amount, enabling MTM to crystallise value.
+·
+MTM holds rights that travel with the project in the event of ownership change, ensuring the processing exclusivity remains intact.
+MTM's Texas Technology Campus serves dual purpose: core waste-to-value facility (e-waste, PCBs, speciality metals) and demonstration/refinement hub for HREE feedstocks and product qualification with U.S. / allied off-takers.
+Strategic Upside for New Frontier Through MTM Alignment
+By exclusively aligning with MTM, which is positioning itself as a gatekeeper for heavy-rare-earth refining in the Western supply chain, New Frontier has a clear path to market for its unique Dy/Tb-rich feedstock.
+The FJH process has now been demonstrated on Harts Range raw ore rather than just scraps or tailings - showing technology scalability and feed-type flexibility, increasing the addressable value chain.
+With downstream product qualification pathways (including U.S. magnet and defence supply chains), New Frontier can leverage MTM's early upgrade results into commercial optionality, not just exploration upside.
+Given global policy momentum toward allied-market rare-earth supply (including U.S. DoD and export-control tailwinds), the timing aligns with premium valuation themes for heavy-rare-earth exposures.
+DRILLING CAMPAIGN COMPLETED
+On 3 November 2025, New Frontier announced a maiden RC drilling campaign, comprising up to 46 holes to test surface mineralisation at the Harts Range Heavy Rare Earth and Niobium Project, NT, had been finalised.
+On 10 November 2025, New Frontier confirmed approval was granted by the NT Department of Mining and Energy enabling the inaugural drilling campaign at the Harts Range Project to progress. The main focus of the campaign was targeting multiple high-priority anomalies defined through regional geophysics, detailed geological mapping and surface geochemistry completed by the geology team over the past 12 months.
+The campaign was designed to test the depth extension of the heavy rare earth mineralisation, with particular attention to dysprosium and terbium - critical elements in high-performance permanent magnets used in electric vehicles, wind turbines, and advanced defence technologies.
+Meanwhile, following a comprehensive review, New Frontier applied to list on the US OTCQB market to enhance visibility and gain access to US investors wanting exposure to Australian explorers focused on critical minerals, especially heavy rare earth elements.
+On 2 December 2025, New Frontier announced the commencement of its maiden ~2,500m reverse-circulation drill program at the Harts Range Project.
+Shortly after 15 December 2025 (ASX Release date), the RC drilling campaign at the Harts Range Project was completed on time and within budget. Importantly, all high-priority targets were systematically drill-tested, to provide a strong geological understanding across the project area. The geology team is optimistic the insights from the drilling campaign will provide a significant understanding of the underlying heavy rare earths system, especially the extent of dysprosium and terbium mineralisation.
+Sample batches were dispatched to ALS Adelaide for assay analysis, with results expected to deliver valuable insights into the scale and continuity of the heavy rare earth system.
+NWQ COPPER PROJECT
+On 13 November 2025, New Frontier announced that it had lodged an MLA over the Big One Deposit, part of the NWQ Copper Project located circa 150 km north of Mount Isa, north-west Queensland.
+Development plan
+The MLA for the Big One Deposit (Figure 4) represents a significant milestone, strengthening New Frontier's position across the broader NWQ Copper Project, which lies within one of Australia's most proven districts for structurally controlled copper mineralisation. This proven district hosts multiple operating mines and development projects, providing New Frontier with access to established regional infrastructure and processing pathways.
+The MLA is accompanied by an Initial Development Plan that outlines a potential mining scenario to guide future evaluation and regulatory assessment. The plan outlines a proposed open-cut operation designed to test and extract near-surface copper mineralisation. Under the initial Development Plan, preparatory earthworks are to commence in Q3 2026, with first production targeted for Q1 2027. These timelines are conceptual and subject to regulatory approvals, funding and technical studies.
+The development plan proposes mining and haulage to the Mt Kelly Processing Facility (operated by Austral Resources).
+Figure 4: Plan view showing the proposed Big One Deposit MLA area and Year One activities, including the bulk sample zone, laydown area, stockpile, and access tracks
+Austral Resources MOU
+The MLA builds on the MOU signed earlier this year between New Frontier and Austral Resources, which established a framework for evaluating toll treatment and ore supply opportunities at the Mt Kelly Copper Processing Facility. The lodgement of the MLA represents another step towards this collaboration, aligning with New Frontier's goal of progressing the Big One Deposit towards potential near-term development within the broader NWQ Copper Project.
+The proposed operation is designed to leverage the site's existing footprint, including previously disturbed pits and infrastructure, minimising surface impact and supporting New Frontier's commitment to responsible development.
+CORPORATE ACTIVITY
+Successful Capital Raise
+On 25 November 2025, New Frontier announced it had received firm commitments from new and existing investors to subscribe for A$2,250,000 (before costs) through a placement of 107,142,857 shares to professional and sophisticated investors at an issue price of $0.021 per share. Participants in the placement will receive, subject to shareholder approval, one free attaching option for every two new shares allocated in the placement, with an exercise price of $0.04 per option and a 2-year expiry from the date of issue.
+New Appointments
+On 3 December 2025, New Frontier confirmed retaining the technical and corporate services of senior consultant Kevin Das, a highly experienced geologist and mining executive with 24+ years across global jurisdictions. In addition, Joel Logan was promoted to Executive Director, strengthening operational oversight on the group's projects.
+These appointments support NFM's objective to accelerate exploration, expand resource definition, and enhance long-term value creation.
+FINANCIAL UPDATE
+Quarterly Cash and Liquid Investments Position
+Cash on hand and liquid investments at end of the quarter totalled $3.0 million (including cash on hand of $2.6m and ASX listed shares, as noted below).
+NFM holds 40 million Infinity Mining Limited (ASX: IMI) tradeable shares which have a total market value of ~$360,000 (40 million shares x $0.009 per share as at 31/12/2025) along with 20 million unlisted options (expiry 30/11/2029, strike $0.07).
+Rehabilitation security bonds held at the end of the quarter totalled $125,000.
+Securities on Issue at Quarter End
+Ordinary shares
+1,718,355,482
+Options
+33,500,000
+Performance rights
+25,500,000
+To view Appendix 5B, which incorporates the quarterly cash flow report, click here:
+http://www.rns-pdf.londonstockexchange.com/rns/9737Q_1-2026-1-29.pdf
+Information Required Under ASX Listing Rules
+1. ASX LR 5.3.5
+During the Quarter $85,000 was paid to related parties of the Company relating to non-executive and executive director fees and exploration consulting fees paid to an entity controlled by a related party.
+2. ASX LR 5.3.1
+Consulting fees
+Rates and mines departments fees
+QLD
+$24,395
+$2,605
+Harts Range
+$332,452
+$548
+$356,847
+$3,153
+**ENDS**
+This announcement was approved for release by the Board of New Frontier Minerals Limited.
+For further information please contact
+New Frontier Minerals Limited
++61 8 6558 0886
+Gerrard Hall (UK), Chairman
+S.P. Angel Corporate Finance LLP
+(Corporate Broker)
+Ewan Leggat
++44 (0) 20 7409 3494
+St Brides Partners Ltd
+(Financial PR)
++44 (0)20 7236 1177
+Ana Ribeiro and Charlotte Page
+About New Frontier Minerals
+New Frontier Minerals Limited is an Australian-based focussed explorer, with a strategy to develop multi-commodity assets that demonstrate future potential as an economic mining operation. Through the application of disciplined and structured exploration, New Frontier has identified assets deemed core and is actively progressing these interests up the value curve. Current focus will be on advancing exploration activity at the Harts Range Niobium, Uranium and Heavy Rare Earths Project which is circa 120km north-east from Alice Springs in the Northern Territory.
+Other interests include the NWQ Copper Project, situated in the copper-belt district circa 150km north of Mt Isa in Queensland.
+New Frontier Minerals is listed on the LSE and ASX under the ticker "NFM".
+References
+Refer to NFM and MTM ASX announcements between 1 October and 31 December 2025 as applicable.
+Competent Persons Statement
+I, Mark Biggs, confirm that I am the Competent Person for the Competent Person Report from which the information to be publicly released has been obtained and confirm that:
+• I have read and understood the requirements of the 2012 Edition of the Australasian Code for Reporting of Exploration Results, Mineral Resources and Ore Reserves (JORC Code, 2012 Edition) and the relevant sections of Chapter 5 and Guidance Note 31 from the ASX Listing Rules.
+• I am a Competent Person as defined by the JORC Code 2012 Edition, having 35 years of experience that is relevant to the REE, industrial mineral, and copper mineralisation types, quality and potential mining method(s) of the deposit(s) described in the Report. In addition, I have 21 years of experience in the estimation, assessment and evaluation of Exploration Results and Mineral Resource Estimates, the activity for which I am accepting responsibility.
+• I am a Member of The Australasian Institute of Mining and Metallurgy (Member # 107188).
+• I have reviewed the Report or Excerpt from the Report to which this Consent Statement applies.
+• I am a consultant working for ROM Resources and have been engaged by New Frontier Minerals Limited to prepare the documentation for various prospects within the Harts Range Prospect area on which the Report is based.
+In addition:
+• I have disclosed to New Frontier Minerals Limited the full nature of the relationship between myself and the Company, including any issues that could be perceived by investors as a conflict of interest. Mr Biggs is a director of ROM Resources, a company which is a shareholder of New Frontier Minerals Limited. ROM Resources provides ad-hoc geological consultancy services to New Frontier Minerals Limited.
+• I verify that the Report is based on and fairly and accurately reflects in the form and context in which it appears, the information in my supporting documentation relating to exploration results and any Mineral Resource Estimates.
+• I consent to the release of the Report and this Consent Statement by the Directors of New Frontier Minerals Limited.
+Disclaimers
+Any references to previous ASX announcements should be read in conjunction with this release. Photos and commentary in this announcement regarding field observations of surface geology are included in this report for geological context and are not to be considered by the reader as a substitute for assays.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+DRLPPUGUGUPQGAB
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
                         <div style="font-weight: 700; font-size: 16px;">Upcoming Extraordinary General Meeting</div>
                         <span style="
                             display: inline-block;
@@ -951,7 +1305,7 @@
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">The Board</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">St Brides</td>
                     </tr>
                     
                         </table>
@@ -1078,9 +1432,9 @@ MSCEAPFSEFLKEEA
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">2</span>
+                    ">3</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #2
+                        RNS ANNOUNCEMENT #3
                     </div>
                 </div>
                 
@@ -1145,7 +1499,7 @@ MSCEAPFSEFLKEEA
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Processing Facility</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">St Brides</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1322,9 +1676,9 @@ MSCAKQBKOBKDNDK
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">3</span>
+                    ">4</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #3
+                        RNS ANNOUNCEMENT #4
                     </div>
                 </div>
                 
@@ -1389,7 +1743,7 @@ MSCAKQBKOBKDNDK
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">The Board</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">St Brides</td>
                     </tr>
                     
                         </table>
@@ -1529,9 +1883,9 @@ UPDGPGWUPUPAUMA
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #f59e0b40;
-                    ">4</span>
+                    ">5</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #4
+                        RNS ANNOUNCEMENT #5
                     </div>
                 </div>
                 
@@ -1596,7 +1950,7 @@ UPDGPGWUPUPAUMA
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Earths Project</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">St Brides</td>
                     </tr>
                     
                         </table>
@@ -1673,178 +2027,6 @@ Privacy Policy
 .
 END
 MSCTPBPTMTJMMIA
-                </div>
-            </details>
-            
-            </div>
-            
-            <div style="
-                margin-bottom: 20px;
-                padding: 18px;
-                background: white;
-                border-radius: 14px;
-                border: 1px solid #e2e8f0;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 30px;
-                        height: 30px;
-                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                        color: white;
-                        border-radius: 50%;
-                        font-weight: 800;
-                        font-size: 15px;
-                        box-shadow: 0 2px 8px #3b82f640;
-                    ">5</span>
-                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #5
-                    </div>
-                </div>
-                
-                
-            <div style="
-                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                color: white;
-                padding: 14px;
-                border-radius: 10px;
-                margin-bottom: 16px;
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">🏛️</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">Notification and Application of Securities</div>
-                        <span style="
-                            display: inline-block;
-                            background: rgba(255,255,255,0.25);
-                            padding: 2px 10px;
-                            border-radius: 12px;
-                            font-size: 11px;
-                            margin-top: 4px;
-                            font-weight: 600;
-                        ">HOLDINGS</span>
-                    </div>
-                </div>
-                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    Informational update - monitor for context with other announcements.
-                </div>
-            </div>
-            
-                
-            <div style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 10px;
-                margin: 16px 0;
-            ">
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">4th Dec 2025</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">9:57 am</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
-                </div>
-            </div>
-            
-                
-                
-                    <div style="margin: 16px 0;">
-                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
-                            
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Earths Project</td>
-                    </tr>
-                    
-                        </table>
-                    </div>
-                    
-                
-            <details style="margin-top: 16px;">
-                <summary style="
-                    padding: 10px;
-                    background: #f8fafc;
-                    border-radius: 8px;
-                    font-weight: 600;
-                    font-size: 12px;
-                    list-style: none;
-                    cursor: pointer;
-                    color: #64748b;
-                    border: 1px solid #e2e8f0;
-                ">
-                    📄 View Full RNS Text
-                </summary>
-                <div style="
-                    margin-top: 8px;
-                    padding: 14px;
-                    background: #f1f5f9;
-                    border-radius: 8px;
-                    font-family: 'Courier New', monospace;
-                    font-size: 11px;
-                    line-height: 1.5;
-                    color: #475569;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                ">
-4 Dec 2025 09:57
-RNS Number : 2817K
-New Frontier Minerals Limited
-04 December 2025
-New Frontier Minerals Limited / Index: LSE & LSE / Epic: NFM / Sector: Industrial Metals and Mining
-4 December 2025
-New Frontier Minerals Limited
-("NFM" or the "Company")
-Notification regarding unquoted securities and
-Application for quotation of securities
-New Frontier Minerals Ltd (LSE and ASX: NFM) advises that a Notification regarding unquoted securities and an Application for quotation of securities have been issued to the Australian Securities Exchange ("ASX") and can be viewed here:
-·
-Notification regarding unquoted securities
-http://www.rns-pdf.londonstockexchange.com/rns/2817K_1-2025-12-4.pdf
-·
-Application for quotation of securities
-http://www.rns-pdf.londonstockexchange.com/rns/2817K_2-2025-12-4.pdf
-**ENDS**
-Authorised by the Board of New Frontier Minerals Ltd.
-For further information please contact:
-New Frontier Minerals Limited
-+61 8 6558 0886
-Gerrard Hall (UK), Chairman
-S. P. Angel Corporate Finance LLP
-(Corporate Broker)
-+44 (0)1483 413500
-Ewan Leggat
-+44 (0) 20 7409 3494
-St Brides Partners Ltd
-(Financial PR)
-+44 (0)20 7236 1177
-Ana Ribeiro and Charlotte Page
-About New Frontier Minerals
-New Frontier Minerals Limited is an Australian-based focused explorer, with a strategy to develop multi-commodity assets that demonstrate future potential as an economic mining operation. Through the application of disciplined and structured exploration, New Frontier has identified assets deemed core and is actively progressing these interests up the value curve. Current focus will be on advancing exploration activity at the Harts Range Niobium, Uranium and Heavy Rare Earths Project which is circa 140km north-east from Alice Springs in the Northern Territory. Other interests include the NWQ Copper Project, situated in the copper-belt district circa 150km north of Mt Isa in Queensland.
-New Frontier Minerals is listed on the LSE and ASX under the ticker "NFM".
-This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
-rns@lseg.com
-or visit
-www.rns.com
-.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
-Privacy Policy
-.
-END
-MSCFSLSULEISEIE
                 </div>
             </details>
             
@@ -2164,7 +2346,7 @@ MSCFSLSULEISEIE
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-29 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-01-31 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.

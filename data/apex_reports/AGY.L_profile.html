@@ -163,6 +163,8 @@
             font-weight: 600;
             text-transform: uppercase;
         }
+
+        
         
         .risk-indicator {
             display: flex;
@@ -227,7 +229,7 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 827 days</span>
+                    <span><strong>Days Active:</strong> 828 days</span>
                 </div>
             </div>
         </div>
@@ -258,8 +260,11 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#10b981; line-height:1;">56</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Setup</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Setup
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Trust -->
@@ -268,8 +273,11 @@
                             <div style="font-size:14px;">🛡️</div>
                             <div style="font-size:28px; font-weight:800; color:#3b82f6; line-height:1;">40</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Trust</div>
-                        <div style="font-size:10px; color:#94a3b8;">20%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Trust
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Panic -->
@@ -278,8 +286,11 @@
                             <div style="font-size:14px;">😱</div>
                             <div style="font-size:28px; font-weight:800; color:#ef4444; line-height:1;">66.0</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Panic</div>
-                        <div style="font-size:10px; color:#94a3b8;">30%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Panic
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Compression -->
@@ -288,34 +299,56 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#f59e0b; line-height:1;">66</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Compression</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Compression
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Timing Scope -->
+            <!-- Timing Scope: Flat segmented bar -->
             <div style="margin-top:24px;">
-                <div style="font-size:12px; color:#475569; font-weight:700; margin-bottom:8px; text-align:center;">Timing Spectrum</div>
+                <!-- position badge removed to avoid overlay on timing spectrum -->
                 <style>
                     @keyframes pulse-ring {
-                        0% { transform: scale(0.8); opacity: 0.9; }
+                        0% { transform: scale(0.7); opacity: 0.9; }
                         70% { transform: scale(2.2); opacity: 0; }
                         100% { transform: scale(2.8); opacity: 0; }
                     }
+                    @keyframes pulse-ring-outer {
+                        0% { transform: scale(0.9); opacity: 0.7; }
+                        50% { transform: scale(1.12); opacity: 0.45; }
+                        100% { transform: scale(1.3); opacity: 0; }
+                    }
                 </style>
-                <div style="position:relative; height:48px; background:linear-gradient(90deg, #ef4444 0%, #f59e0b 25%, #f093fb 50%, #10b981 75%, #064e3b 100%); border-radius:8px;">
-                    <div style="position:absolute; left:calc(70% - 24px); top:calc(50% - 24px); width:48px; height:48px; display:flex; align-items:center; justify-content:center;">
-                        <div style="position:absolute; width:48px; height:48px; border-radius:24px; background:rgba(15,23,42,0.12); animation: pulse-ring 1.8s infinite;"></div>
-                        <div style="width:16px; height:16px; border-radius:8px; background:#0f172a; box-shadow:0 6px 18px rgba(0,0,0,0.12);"></div>
+                <div style="position:relative;">
+                    <div style="display:flex; gap:6px; height:48px; border-radius:8px; overflow:hidden;">
+                        <div style="flex:1; background:#ef4444;"></div>
+                        <div style="flex:1; background:#f59e0b;"></div>
+                        <div style="flex:1; background:#facc15;"></div>
+                        <div style="flex:1; background:#10b981;"></div>
+                        <div style="flex:1; background:#065f46;"></div>
+                    </div>
+
+                    <!-- Pulse pointer positioned by timing_pos_pct -->
+                    <div style="position:absolute; left:calc(70% - 26px); top:0px; width:52px; height:52px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                        <!-- outer grey-white ring to help indicator stand out -->
+                        <div style="position:absolute; width:60px; height:60px; border-radius:30px; background:rgba(249,250,251,0.95); border:2px solid rgba(2,6,23,0.06); box-shadow:0 8px 30px rgba(2,6,23,0.06); animation: pulse-ring-outer 2.2s infinite;"></div>
+                        <!-- inner colored pulse ring -->
+                        <div style="position:absolute; width:52px; height:52px; border-radius:26px; background:#17ffbb; opacity:0.18; animation: pulse-ring 1.6s infinite;"></div>
+                        <!-- core dot with colored border for contrast -->
+                        <div style="width:18px; height:18px; border-radius:9px; background:#ffffff; box-shadow:0 10px 30px rgba(0,0,0,0.22); border:3px solid #10b981;"></div>
                     </div>
                 </div>
-                <div style="display:flex; justify-content:space-between; font-size:12px; color:#475569; margin-top:10px;">
-                    <div>Too Early</div>
-                    <div>Early Build</div>
-                    <div>Confirmed</div>
-                    <div>Crowded</div>
-                    <div>Broken</div>
+
+                <div style="display:flex; justify-content:space-between; font-size:12px; margin-top:8px; gap:6px;">
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Too Early</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Early Build</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Confirmed</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Crowded</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Broken</span></div>
                 </div>
 
                 <div style="margin-top:12px; display:flex; justify-content:center;">
@@ -522,7 +555,7 @@
                     <div style="font-size: 13px; color: #475569; line-height: 1.8;">
                         <div>• Clinical trial failures (Phase 1/2/3)</div><div>• FDA/EMA rejection or delay</div><div>• Safety concerns or adverse events</div>
                     </div>
-                    <div style="margin-top: 12px; padding: 10px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e; font-weight: 600;">🚨 Active: FDA/EMA rejection or delay, Safety concerns or adverse events, Patent expiry or IP challenges</div>
+                    
                 </div>
                 <div style="background: white; padding: 18px; border-radius: 12px;">
                     <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">🚀 Recovery Paths</div>
@@ -536,6 +569,26 @@
             <div style="background: rgba(255,255,255,0.5); padding: 18px; border-radius: 12px; margin-bottom: 20px;">
                 <div style="font-weight: 700; color: #1e293b; margin-bottom: 14px; font-size: 15px;">📅 Catalyst Pipeline</div>
                 
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Chief Strategy Officer and Board appointments</div>
+                        <div style="font-size: 12px; color: #64748b;">30th Jan 2026</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Result of Annual General Meeting</div>
+                        <div style="font-size: 12px; color: #64748b;">29th Jan 2026</div>
+                    </div>
+                </div>
+            </div>
+            
             <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
@@ -562,26 +615,6 @@
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Notice of 2025 Annual General Meeting</div>
                         <div style="font-size: 12px; color: #64748b;">6th Jan 2026</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
-                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
-                    <span style="font-size: 18px;">📢</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Results of General Meeting</div>
-                        <div style="font-size: 12px; color: #64748b;">29th Dec 2025</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
-                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
-                    <span style="font-size: 18px;">📢</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Grassmuno® marketing authorisation in Germany</div>
-                        <div style="font-size: 12px; color: #64748b;">16th Dec 2025</div>
                     </div>
                 </div>
             </div>
@@ -635,7 +668,7 @@
                 <span style="font-size: 24px;">🧬</span>
                 <div style="flex: 1;">
                     <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Industry Pattern</div>
-                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">3 active</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">0 active</div>
                 </div>
             </div>
             
@@ -899,6 +932,538 @@
                 margin-bottom: 16px;
             ">
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">👥</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Chief Strategy Officer and Board appointments</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">APPOINTMENT</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">8:22 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Specialist Sales</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+30 Jan 2026 08:22
+RNS Number : 0877R
+Allergy Therapeutics PLC
+30 January 2026
+Al
+l
+e
+r
+g
+y
+Th
+e
+r
+a
+p
+e
+u
+ti
+cs
+p
+l
+c
+("
+A
+l
+l
+e
+r
+gy
+T
+he
+r
+a
+peu
+t
+i
+cs" or the "
+C
+o
+m
+p
+a
+n
+y
+" or "Group"
+)
+Allergy Therapeutics announces the appointments of Helge Weiner-Trapness as Chief Strategy Officer and Executive Director, and Lawrence Allen Wang as Independent Non-Executive Director
+-
+Newly created Chief Strategy Officer role will drive long-term international growth strategy as Group advances next-generation pipeline and explores opportunities to deliver on global ambitions
+-
+Appointments strengthen Board, each bringing decades of expertise in their respective fields to support Company's ambition to become a global leader in allergy treatments
+30 January 2026
+- Allergy Therapeutics plc (AIM: AGY), the fully integrated commercial biotechnology company specialising in allergy immunotherapies, today announces the appointment of Helge Weiner-Trapness as Chief Strategy Officer. He also joins the Group's Board as an Executive Director.
+Helge has more than 30 years of experience across leading global investment banks in the US and Asia. He most recently served as Vice Chairman, Global Banking at HSBC Holdings plc (LSE: HSBA; HKG: 0005), one of the world's largest financial organisations which is dual-listed on the London Stock Exchange and the Hong Kong Stock Exchange. He was a Founding Partner of Hong Kong-based Quintus Partners, an independent financial advisory firm offering investment banking, strategic advisory and capital raising, particularly in the US and Asia. Earlier, he held senior roles at Barclays Bank, Asia Pacific Land, J.P. Morgan Securities and Goldman Sachs.
+In his newly created role as Chief Strategy Officer, Helge will drive Allergy Therapeutics' long-term growth strategy, including corporate development, partnership strategy and portfolio prioritisation as Allergy Therapeutics advances its next-generation pipeline and explores opportunities to deliver on its global ambitions.
+Helge Weiner-Trapness, Chief Strategy Officer and Executive Director, said:
+"
+Allergy Therapeutics has established a leading position in its core markets, with a significant portfolio and an innovative pipeline that present a strong platform for future growth. I am looking forward to working with the Board and management team to drive the Company's long-term strategy and international development, prioritising opportunities and executing a global strategy in a disciplined and sustainable way."
+Allergy Therapeutics also announces that Lawrence Allen Wang will join the Company's Board as an independent Non-Executive Director. Lawrence has more than 20 years' experience across healthcare and investment roles. He currently serves as Chief Financial Officer of Adicon Clinical Laboratories, Inc. (HKG: 9860), one of China's leading independent clinical laboratory service providers, where he played a key role in the company's financing and its listing on the Hong Kong Stock Exchange. Prior to Adicon, Lawrence held roles in private equity, asset management and investment banking groups, including positions at Vivo Capital, Primavera Capital, Macquarie Group and Goldman Sachs (Asia).
+Lawrence Allen Wang, Independent Non-Executive Director, said:
+""Allergy Therapeutics has built a strong clinical and commercial platform, and I look forward to supporting the Board as the Company continues to develop its international strategy to become a global leader in allergy treatments."
+Peter Jensen, Chairman of Allergy Therapeutics, said:
+"On behalf of the Board, I am pleased to welcome Helge and Larry to Allergy Therapeutics. Both bring deep investment and healthcare expertise that will be instrumental as the Company pursues its long-term growth ambitions, including evaluating a potential dual listing on the Hong Kong Stock Exchange.
+These appointments reflect our continued focus on building a Board with the experience and perspective required to support the Company's next phase of international development."
+Additional information in respect of the AIM Rules:
+INFORMATION REQUIRED UNDER RULE 17 AND SCHEDULE 2, PARAGRAPH (G) OF THE AIM RULES FOR COMPANIES ("AIM RULES")
+Full name:
+Lawrence Allen Wang
+Age:
+49
+Shares held in the Company:
+None
+Current directorships:
+Adicon International Limited
+Manson Grand International Limited
+Hong Kong Yuan De Weike International Trade Co. Limited
+Historic directorships and partnerships in previous 5 years:
+Miramar Lifesciences Limited
+None
+Full name:
+Erik Helge Weiner-Trapness
+Age:
+62
+Shares held in the Company:
+None
+Current directorships:
+Sterling and Francine Clark Art Institute
+Historic directorships and partnerships in previous 5 years:
+Quintus Partners LLC
+Quintus Partners Limited
+International Financing Facility for Immunization ("IFFIm")
+Surgical Specialties Corporation Limited
+There is no further information to be disclosed in relation to the appointment pursuant to Rule 17 and Schedule 2, paragraph (g) of the AIM Rules.
+For further information, please contact:
+Allergy Therapeutics
+Manuel Llobet, Chief Executive Officer
+Shaun Furlong, Chief Financial Officer
++44 (0)1903 845 820
+Cavendish Capital Markets Limited (Nominated Adviser and Broker)
+Geoff Nash /Giles Balleny/ Seamus Fricker
+Nigel Birks - Life Science Specialist Sales
++44 (0)20 7220 0500
+ICR Healthcare
+Mary-Jane Elliott / David Daley / Davide Salvi
++44 (0)20 3709 5700
+allergytherapeutics@icrhealthcare.com
+Notes for editors:
+About Allergy Therapeutics
+Allergy Therapeutics is an international commercial biotechnology company, headquartered in the UK, focussed on the treatment and diagnosis of allergic disorders, including aluminium free immunotherapies that have the potential to cure disease. The Group sells proprietary and third-party products from its subsidiaries and branches in nine major European countries and via distribution agreements in an additional four countries. For more information, please see
+www.allergytherapeutics.com
+.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+BOAVBLBXQFLLBBL
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Result of Annual General Meeting</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">29th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">2:13 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Specialist Sales</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">99.99%, 0.01%, 94.78%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+29 Jan 2026 14:13
+RNS Number : 9694Q
+Allergy Therapeutics PLC
+29 January 2026
+Allergy Therapeutics plc
+("Allergy Therapeutics" or the "Group")
+Result of Annual General Meeting
+29 January 2026 -
+Allergy Therapeutics plc (AIM:AGY), the fully commercial biotechnology company specialising in allergy immunotherapies, announces that all resolutions proposed at the 2026 Annual General Meeting ("AGM") held today were duly passed by shareholders on a show of hands.
+Resolutions 1 to 10 (inclusive), were proposed as ordinary resolutions and resolutions 11 to 13 (inclusive) were proposed as special resolutions. The results of the proxy votes received ahead of the meeting are outlined in the table below.
+Resolution
+For:
+%
+Against:
+%
+Total Votes Cast
+% of ISC
+Withheld
+1. Approval of 2025 Accounts
+5,820,380,278
+99.99%
+755,751
+0.01%
+5,821,136,029
+94.78%
+56,047
+2. Approval of Directors'
+Remuneration Report
+5,820,138,203
+99.99%
+836,062
+0.01%
+5,820,974,265
+94.78%
+217,811
+3. To elect Helge Weiner-Trapness as a Director
+5,818,973,760
+99.99%
+141,507
+0.01%
+5,819,115,267
+94.75%
+2,076,809
+4. To elect Lawrence Allen Wang as a Director
+5,818,962,852
+99.99%
+130,779
+0.01%
+5,819,093,631
+94.75%
+2,098,445
+5. To re-elect Tunde Otulana as a Director
+5,818,680,380
+99.99%
+418,353
+0.01%
+5,819,098,733
+94.75%
+2,093,343
+6. To re-elect Cheryl MacDiarmid as a Director
+5,818,939,949
+99.99%
+157,006
+0.01%
+5,819,096,955
+94.75%
+2,095,121
+7. To re-elect Peter Jensen O.B.E. as a Director
+5,804,855,547
+99.76%
+14,246,551
+0.24%
+5,819,102,098
+94.75%
+2,089,978
+8. To re-appoint BDO LLP as auditors of the Company
+5,818,732,937
+99.99%
+126,888
+0.01%
+5,818,859,825
+94.75%
+2,332,251
+9. To authorise the Directors to agree the auditors' remuneration
+5,820,969,519
+99.99%
+134,889
+0.01%
+5,821,104,408
+94.78%
+87,668
+10. Authority to allot shares
+5,820,919,431
+99.99%
+179,941
+0.01%
+5,821,099,372
+94.78%
+92,704
+11. Special Resolution: Subject to the passing of Resolution 10, to authorise the Directors to allot equity securities
+5,817,602,998
+99.94%
+3,509,576
+0.06%
+5,821,112,574
+94.78%
+79,502
+12. Special Resolution: Subject to the passing of Resolution 10, to authorise the Directors, in addition to any authority granted under Resolution 11, to allot equity securities
+5,817,696,087
+99.94%
+3,419,851
+0.06%
+5,821,115,938
+94.78%
+76,138
+13. Special Resolution: To amend the Articles of Association
+5,818,896,008
+99.99%
+198,676
+0.01%
+5,819,094,684
+94.75%
+2,097,392
+- ENDS -
+For further information, please contact:
+Allergy Therapeutics
+Manuel Llobet, Chief Executive Officer
+Shaun Furlong, Chief Financial Officer
++44 (0)1903 845 820
+Cavendish Capital Markets Limited (Nominated Adviser and Broker)
+Geoff Nash /Giles Balleny/ Seamus Fricker
+Nigel Birks - Life Science Specialist Sales
++44 (0)20 7220 0500
+ICR Healthcare
+Mary-Jane Elliott / David Daley / Davide Salvi
++44 (0)20 3709 5700
+allergytherapeutics@icrhealthcare.com
+Notes for editors:
+About Allergy Therapeutics
+Allergy Therapeutics is an international commercial biotechnology company, headquartered in the UK, focussed on the treatment and diagnosis of allergic disorders, including aluminium free immunotherapies that have the potential to cure disease. The Group sells proprietary and third-party products from its subsidiaries and branches in nine major European countries and via distribution agreements in an additional four countries. For more information, please see
+www.allergytherapeutics.com
+.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+RAGAKCBDQBKDBDB
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
                     <span style="font-size: 20px;">📰</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 700; font-size: 16px;">Grant of Options under Long Term Incentive Scheme</div>
@@ -951,7 +1516,7 @@
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">The Board</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Vesting Date</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1187,9 +1752,9 @@ DSHBPMFTMTITBFF
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">2</span>
+                    ">4</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #2
+                        RNS ANNOUNCEMENT #4
                     </div>
                 </div>
                 
@@ -1254,7 +1819,7 @@ DSHBPMFTMTITBFF
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Peter Jensen</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Specialist Sales</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1417,9 +1982,9 @@ TSTVVLFFQFLXBBK
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">3</span>
+                    ">5</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #3
+                        RNS ANNOUNCEMENT #5
                     </div>
                 </div>
                 
@@ -1484,7 +2049,7 @@ TSTVVLFFQFLXBBK
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Founding Partner</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Specialist Sales</td>
                     </tr>
                     
                         </table>
@@ -1608,448 +2173,6 @@ Privacy Policy
 .
 END
 NOAFZGGMMKLGVZZ
-                </div>
-            </details>
-            
-            </div>
-            
-            <div style="
-                margin-bottom: 20px;
-                padding: 18px;
-                background: white;
-                border-radius: 14px;
-                border: 1px solid #e2e8f0;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 30px;
-                        height: 30px;
-                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                        color: white;
-                        border-radius: 50%;
-                        font-weight: 800;
-                        font-size: 15px;
-                        box-shadow: 0 2px 8px #3b82f640;
-                    ">4</span>
-                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #4
-                    </div>
-                </div>
-                
-                
-            <div style="
-                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                color: white;
-                padding: 14px;
-                border-radius: 10px;
-                margin-bottom: 16px;
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">📰</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">Results of General Meeting</div>
-                        <span style="
-                            display: inline-block;
-                            background: rgba(255,255,255,0.25);
-                            padding: 2px 10px;
-                            border-radius: 12px;
-                            font-size: 11px;
-                            margin-top: 4px;
-                            font-weight: 600;
-                        ">UPDATE</span>
-                    </div>
-                </div>
-                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    Informational update - monitor for context with other announcements.
-                </div>
-            </div>
-            
-                
-            <div style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 10px;
-                margin: 16px 0;
-            ">
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">29th Dec 2025</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">1:07 pm</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
-                </div>
-            </div>
-            
-                
-                
-                    <div style="margin: 16px 0;">
-                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
-                            
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">General Meeting</td>
-                    </tr>
-                    
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">10%</td>
-                    </tr>
-                    
-                        </table>
-                    </div>
-                    
-                
-            <details style="margin-top: 16px;">
-                <summary style="
-                    padding: 10px;
-                    background: #f8fafc;
-                    border-radius: 8px;
-                    font-weight: 600;
-                    font-size: 12px;
-                    list-style: none;
-                    cursor: pointer;
-                    color: #64748b;
-                    border: 1px solid #e2e8f0;
-                ">
-                    📄 View Full RNS Text
-                </summary>
-                <div style="
-                    margin-top: 8px;
-                    padding: 14px;
-                    background: #f1f5f9;
-                    border-radius: 8px;
-                    font-family: 'Courier New', monospace;
-                    font-size: 11px;
-                    line-height: 1.5;
-                    color: #475569;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                ">
-29 Dec 2025 13:07
-RNS Number : 0241N
-Allergy Therapeutics PLC
-29 December 2025
-Al
-l
-e
-r
-g
-y
-Th
-e
-r
-a
-p
-e
-u
-ti
-cs
-p
-l
-c
-("
-A
-l
-l
-e
-r
-gy
-T
-he
-r
-a
-peu
-t
-i
-cs" or the "
-C
-o
-m
-p
-a
-n
-y
-"
-)
-Results of General Meeting and Posting of Annual Report 2025
-29 December 2025 - Allergy Therapeutics plc (AIM: AGY), the fully integrated commercial biotechnology company specialising in allergy immunotherapies, announces that at the General Meeting held today,
-all resolutions were duly passed.
-Results of General Meeting
-All resolutions at the General Meeting were voted on by way of a poll. The results of the poll were as follows:
-Resolution
-For
-%
-Against
-%
-Total Votes Cast
-Withheld
-Ordinary Resolution
-1. To authorise the directors to allot shares and to grant rights to subscribe for or to convert any security into shares in the Company up to an aggregate nominal amount of £610,000.00
-5,813,451,109
-99.98
-903,088
-0.02
-5,814,354,197
-1,210
-Special Resolution
-2. To disapply pre-emption rights in respect of an allotment of equity securities for cash pursuant to the authority granted by Resolution 1
-5,810,471,464
-99.93
-3,882,733
-0.07
-5,814,354,197
-1,210
-The General Meeting was held as the Board is
-considering potentially undertaking an equity raise which would be structured by issuing New Shares to new investors and/or existing shareholders in the Company for cash consideration in one or more private placements on a non-pre-emptive basis (the "
-Potential Equity Raise
-").
-In order to facilitate the Potential Equity Raise and to ensure that it could be swiftly concluded if it progresses, the Board sought and, at the General Meeting, obtained, shareholder approval for the allotment and issue of up to 610,000,000 ordinary shares of £0.001 each ("
-New Shares
-") (which is approximately 10% of the Company's current issued share capital) on terms that the Board may determine. In order for the Directors to issue New Shares free of statutory pre-emption rights, such statutory pre-emption rights must be dis-applied. Accordingly, the Board sought, and, at the General Meeting, obtained, shareholder approval to dis-apply pre-emption rights in respect of the allotment of the New Shares pursuant to the Potential Equity Raise.
-At this time, there is no certainty that the Potential Equity Raise will proceed and at this point no investors have entered into any agreements to subscribe for New Shares and the amounts and price of any Potential Equity Raise have not been agreed. To the extent that any money is raised from the Potential Equity Raise, it would be applied towards the Company's stated strategy of developing treatments for grass and peanut allergy patients, and general corporate purposes, including the Company's working capital needs prior to its anticipated dual listing on the Hong Kong Stock Exchange.
-The Directors shall have discretion to determine the terms of the Potential Equity Raise, including the number of New Shares to be issued (subject to the limits of the authorities) and the price at which the New Shares will be issued, as well as the identity of who the New Shares will be issued to. Further details of the Potential Equity Raise (if it proceeds) will be announced in due course.
-Posting of Annual Report
-The Company also announces that it has posted to shareholders the Annual Report and Accounts for the year ended 30 June 2025. The Annual Report and Accounts are available to download from the Company's website at
-www.allergytherapeutics.com
-.
-For further information, please contact:
-Allergy Therapeutics
-Manuel Llobet, Chief Executive Officer
-Shaun Furlong, Chief Financial Officer
-+44 (0)1903 845 820
-Cavendish Capital Markets Limited (Nominated Adviser and Broker)
-Geoff Nash /Giles Balleny/ Seamus Fricker
-Nigel Birks - Life Science Specialist Sales
-+44 (0)20 7220 0500
-ICR Healthcare
-Mary-Jane Elliott / David Daley / Davide Salvi
-+44 (0)20 3709 5700
-allergytherapeutics@icrhealthcare.com
-About Allergy Therapeutics
-Allergy Therapeutics is an international commercial biotechnology company, headquartered in the UK, focussed on the treatment and diagnosis of allergic disorders, including aluminium free immunotherapies that have the potential to cure disease. The Group sells proprietary and third-party products from its subsidiaries in nine major European countries and via distribution agreements in an additional ten countries. For more information, please see
-www.allergytherapeutics.com
-.
-This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
-rns@lseg.com
-or visit
-www.rns.com
-.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
-Privacy Policy
-.
-END
-ROMBXBDDUGDDGUC
-                </div>
-            </details>
-            
-            </div>
-            
-            <div style="
-                margin-bottom: 20px;
-                padding: 18px;
-                background: white;
-                border-radius: 14px;
-                border: 1px solid #e2e8f0;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 30px;
-                        height: 30px;
-                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                        color: white;
-                        border-radius: 50%;
-                        font-weight: 800;
-                        font-size: 15px;
-                        box-shadow: 0 2px 8px #3b82f640;
-                    ">5</span>
-                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #5
-                    </div>
-                </div>
-                
-                
-            <div style="
-                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                color: white;
-                padding: 14px;
-                border-radius: 10px;
-                margin-bottom: 16px;
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">📰</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">Grassmuno® marketing authorisation in Germany</div>
-                        <span style="
-                            display: inline-block;
-                            background: rgba(255,255,255,0.25);
-                            padding: 2px 10px;
-                            border-radius: 12px;
-                            font-size: 11px;
-                            margin-top: 4px;
-                            font-weight: 600;
-                        ">UPDATE</span>
-                    </div>
-                </div>
-                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    Informational update - monitor for context with other announcements.
-                </div>
-            </div>
-            
-                
-            <div style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 10px;
-                margin: 16px 0;
-            ">
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">16th Dec 2025</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
-                </div>
-            </div>
-            
-                
-                
-                    <div style="margin: 16px 0;">
-                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
-                            
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Seamus Fricker</td>
-                    </tr>
-                    
-                        </table>
-                    </div>
-                    
-                
-            <details style="margin-top: 16px;">
-                <summary style="
-                    padding: 10px;
-                    background: #f8fafc;
-                    border-radius: 8px;
-                    font-weight: 600;
-                    font-size: 12px;
-                    list-style: none;
-                    cursor: pointer;
-                    color: #64748b;
-                    border: 1px solid #e2e8f0;
-                ">
-                    📄 View Full RNS Text
-                </summary>
-                <div style="
-                    margin-top: 8px;
-                    padding: 14px;
-                    background: #f1f5f9;
-                    border-radius: 8px;
-                    font-family: 'Courier New', monospace;
-                    font-size: 11px;
-                    line-height: 1.5;
-                    color: #475569;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                ">
-16 Dec 2025 07:00
-RNS Number : 6636L
-Allergy Therapeutics PLC
-16 December 2025
-Allergy Therapeutics plc
-("Allergy Therapeutics" or the "Company" or the "Group")
-Allergy Therapeutics granted marketing authorisation for Grassmuno® (Grass MATA MPL) by the German regulatory authority, the Paul Ehrlich Institut
--
-Regulatory approval in Germany follows submission of comprehensive evidence package of quality, safety and clinical efficacy supporting innovative subcutaneous immunotherapy (SCIT) designed to address the cause of symptoms of allergic rhinoconjunctivitis due to grass pollen
--
-First subcutaneous grass-pollen immunotherapy approved under Germany's TAV programme
--
-Commercialisation in Germany anticipated Q1 2026
--
-German seasonal allergy market is projected to reach ~US$1 billion by 20301
--
-Company continues its expansion strategy for the product with potential for regulatory submissions across other major global markets
-16 December 2025:
-Allergy Therapeutics plc (AIM: AGY), the integrated commercial biotechnology company specialising in allergy immunotherapies, today announces that the Paul Ehrlich Institut (PEI) has granted a marketing authorisation in Germany for the Group's subcutaneous grass pollen allergen immunotherapy, Grass MATA MPL, which will be commercialised in the German market as
-Grassmuno®
-.
-Grassmuno
-is a subcutaneous allergen immunotherapy containing a unique mixture of allergen extracts from grass pollen and the Group's novel adjuvant system, monophosphoryl lipid-A (MPL®) and the biodegradable depot adjuvant microcrystalline tyrosine (MCT), to increase the immunotherapy's immunogenic effect. It is indicated for the treatment of moderate to severe allergic symptoms in adults caused by pollen from grasses (hay fever), such as running nose (rhinitis), allergic conjunctivitis (rhinoconjunctivitis), without asthma or with asthma that is well controlled. Treatment is administered before the grass-pollen season as a six-injection pre-seasonal course.
-The approval marks the first subcutaneous grass-pollen immunotherapy to be authorised by the PEI through its TAV (Therapieallergene-Verordnung) framework and follows the submission of a comprehensive evidence package of quality, safety and clinical efficacy including the Group's pivotal Phase III G306 trial in adults. In that trial, the immunotherapy demonstrated a highly statistically significant and clinically relevant reduction in the Combined Symptom & Medication Score (CSMS) compared to placebo over the peak pollen season.
-Manuel Llobet, Chief Executive Officer of Allergy Therapeutics, said:
-"The regulatory approval of this state-of-the-art short-course aluminium-free immunotherapy is a defining moment for Allergy Therapeutics and for the future of allergy immunotherapy in Germany. Grass pollen, a common cause of seasonal allergy, significantly impacts the lives of many people and new treatment options are desperately needed. Grassmuno offers an effective, convenient treatment option for people living with a grass-pollen allergy, and its authorisation under the TAV regulation validates our clinical excellence and commitment to quality. It also validates our MATA MPL platform concept and establishes a strong foundation for our future expansion strategy for this innovative and disruptive immunotherapy with allergens such as birch and ragweed across other major global markets."
-Grass pollen is a key segment within the German seasonal allergy market, which is projected to reach ~US$1 billion by 20301.
-Grassmuno
-is expected to be a major driver of the Group's business in Germany, its largest market, as a regulatory-approved, short-course treatment approach that can be completed before the allergy season begins. This offers the potential for people living with a grass pollen allergy to achieve protection without the burden of months-long treatment schedules.
-In November 2024 the Group commenced a
-Phase III trial
-(G308) to evaluate the short- and long-term efficacy and safety of Grass MATA MPL in a paediatric population. That trial is the first long-term SCIT trial in a paediatric population and complements Allergy Therapeutics' previous studies in adults, furthering its comprehensive development strategy for the immunotherapy across different age groups.
-Allergy Therapeutics continues to explore the potential for additional registration opportunities in other major global markets, following engagement with authorities regarding local regulatory requirements.
-- ENDS -
-References
-1.
-Internal company projections
-About Grass MATA MPL
-Grass MATA MPL is a subcutaneous allergen immunotherapy to treat moderate to severe allergic symptoms in adults caused by pollen from grasses, such as running nose (rhinitis), allergic conjunctivitis (rhinoconjunctivitis), without asthma or with asthma that is well controlled. It is given before the start of the pollen season.
-The immunotherapy contains an extract of 13 grass pollens modified with glutaraldehyde to form allergoids that reduces the reactivity with immunoglobulin E (IgE) antibodies without a reduction in other important immunological properties, such as T-cell reactivity. The allergoid is adsorbed to microcrystalline tyrosine (MCT) as a depot adjuvant system formulation. Monophosphoryl lipid-A (MPL), is included as an adjuvant to increase the immunogenic effect of the immunotherapy and to enhance the switch from an allergen specific helper T-cell Type 2 (Th2) to helper T-cell Type 1 (Th1) like immune response.
-The information contained within this announcement is
-deemed by the Company to constitute inside information as stipulated under the Market Abuse Regulation ("MAR") EU no.596/2014. Upon the publication of this announcement via Regulatory Information Service ("RIS"), this inside information is now considered to be in the public domain.
-For further information, please contact:
-Allergy Therapeutics
-Manuel Llobet, Chief Executive Officer
-Shaun Furlong, Chief Financial Officer
-+44 (0)1903 845 820
-Cavendish Capital Markets Limited (Nominated Adviser and Broker)
-Geoff Nash / Giles Balleny / Seamus Fricker
-Nigel Birks - Life Science Specialist Sales
-+44 (0)20 7220 0500
-ICR Healthcare
-Mary-Jane Elliott / David Daley / Davide Salvi
-+44 (0)20 3709 5700
-allergytherapeutics@icrhealthcare.com
-About Allergy Therapeutics
-Allergy Therapeutics is an international commercial biotechnology company, headquartered in the UK, focussed on the treatment and diagnosis of allergic disorders, including aluminium free immunotherapies that have the potential to cure disease. The Group sells proprietary and third-party products from its subsidiaries in nine major European countries and via distribution agreements in an additional ten countries. For more information, please see
-www.allergytherapeutics.com
-.
-This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
-rns@lseg.com
-or visit
-www.rns.com
-.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
-Privacy Policy
-.
-END
-MSCFELLFELLEFBX
                 </div>
             </details>
             
@@ -2369,7 +2492,7 @@ MSCFELLFELLEFBX
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-29 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-01-31 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.

@@ -163,6 +163,8 @@
             font-weight: 600;
             text-transform: uppercase;
         }
+
+        
         
         .risk-indicator {
             display: flex;
@@ -223,11 +225,11 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">£</span>
-                    <span><strong>Market Cap:</strong> £12,152,178</span>
+                    <span><strong>Market Cap:</strong> £11,573,504</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 295 days</span>
+                    <span><strong>Days Active:</strong> 296 days</span>
                 </div>
             </div>
         </div>
@@ -258,8 +260,11 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#10b981; line-height:1;">39</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Setup</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Setup
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Trust -->
@@ -268,8 +273,11 @@
                             <div style="font-size:14px;">🛡️</div>
                             <div style="font-size:28px; font-weight:800; color:#3b82f6; line-height:1;">25</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Trust</div>
-                        <div style="font-size:10px; color:#94a3b8;">20%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Trust
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Panic -->
@@ -278,8 +286,11 @@
                             <div style="font-size:14px;">😱</div>
                             <div style="font-size:28px; font-weight:800; color:#ef4444; line-height:1;">43.0</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Panic</div>
-                        <div style="font-size:10px; color:#94a3b8;">30%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Panic
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Compression -->
@@ -288,34 +299,56 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#f59e0b; line-height:1;">32</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Compression</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Compression
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Timing Scope -->
+            <!-- Timing Scope: Flat segmented bar -->
             <div style="margin-top:24px;">
-                <div style="font-size:12px; color:#475569; font-weight:700; margin-bottom:8px; text-align:center;">Timing Spectrum</div>
+                <!-- position badge removed to avoid overlay on timing spectrum -->
                 <style>
                     @keyframes pulse-ring {
-                        0% { transform: scale(0.8); opacity: 0.9; }
+                        0% { transform: scale(0.7); opacity: 0.9; }
                         70% { transform: scale(2.2); opacity: 0; }
                         100% { transform: scale(2.8); opacity: 0; }
                     }
+                    @keyframes pulse-ring-outer {
+                        0% { transform: scale(0.9); opacity: 0.7; }
+                        50% { transform: scale(1.12); opacity: 0.45; }
+                        100% { transform: scale(1.3); opacity: 0; }
+                    }
                 </style>
-                <div style="position:relative; height:48px; background:linear-gradient(90deg, #ef4444 0%, #f59e0b 25%, #f093fb 50%, #10b981 75%, #064e3b 100%); border-radius:8px;">
-                    <div style="position:absolute; left:calc(10% - 24px); top:calc(50% - 24px); width:48px; height:48px; display:flex; align-items:center; justify-content:center;">
-                        <div style="position:absolute; width:48px; height:48px; border-radius:24px; background:rgba(15,23,42,0.12); animation: pulse-ring 1.8s infinite;"></div>
-                        <div style="width:16px; height:16px; border-radius:8px; background:#0f172a; box-shadow:0 6px 18px rgba(0,0,0,0.12);"></div>
+                <div style="position:relative;">
+                    <div style="display:flex; gap:6px; height:48px; border-radius:8px; overflow:hidden;">
+                        <div style="flex:1; background:#ef4444;"></div>
+                        <div style="flex:1; background:#f59e0b;"></div>
+                        <div style="flex:1; background:#facc15;"></div>
+                        <div style="flex:1; background:#10b981;"></div>
+                        <div style="flex:1; background:#065f46;"></div>
+                    </div>
+
+                    <!-- Pulse pointer positioned by timing_pos_pct -->
+                    <div style="position:absolute; left:calc(10% - 26px); top:0px; width:52px; height:52px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                        <!-- outer grey-white ring to help indicator stand out -->
+                        <div style="position:absolute; width:60px; height:60px; border-radius:30px; background:rgba(249,250,251,0.95); border:2px solid rgba(2,6,23,0.06); box-shadow:0 8px 30px rgba(2,6,23,0.06); animation: pulse-ring-outer 2.2s infinite;"></div>
+                        <!-- inner colored pulse ring -->
+                        <div style="position:absolute; width:52px; height:52px; border-radius:26px; background:#ff6262; opacity:0.18; animation: pulse-ring 1.6s infinite;"></div>
+                        <!-- core dot with colored border for contrast -->
+                        <div style="width:18px; height:18px; border-radius:9px; background:#ffffff; box-shadow:0 10px 30px rgba(0,0,0,0.22); border:3px solid #ef4444;"></div>
                     </div>
                 </div>
-                <div style="display:flex; justify-content:space-between; font-size:12px; color:#475569; margin-top:10px;">
-                    <div>Too Early</div>
-                    <div>Early Build</div>
-                    <div>Confirmed</div>
-                    <div>Crowded</div>
-                    <div>Broken</div>
+
+                <div style="display:flex; justify-content:space-between; font-size:12px; margin-top:8px; gap:6px;">
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Too Early</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Early Build</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Confirmed</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Crowded</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Broken</span></div>
                 </div>
 
                 <div style="margin-top:12px; display:flex; justify-content:center;">
@@ -540,6 +573,16 @@
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Quarterly Report and Appendix 5B</div>
+                        <div style="font-size: 12px; color: #64748b;">30th Jan 2026</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Schrader Bluff 3D Seismic Survey Secured</div>
                         <div style="font-size: 12px; color: #64748b;">27th Jan 2026</div>
                     </div>
@@ -572,16 +615,6 @@
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Project Phoenix - 2026 Production Test Program</div>
                         <div style="font-size: 12px; color: #64748b;">26th Nov 2025</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
-                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
-                    <span style="font-size: 18px;">📢</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">New North Slope Acreage Secured</div>
-                        <div style="font-size: 12px; color: #64748b;">20th Nov 2025</div>
                     </div>
                 </div>
             </div>
@@ -901,6 +934,718 @@
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
                     <span style="font-size: 20px;">📰</span>
                     <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Quarterly Report and Appendix 5B</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Media Relations</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">100%, 100%, 20%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+Today 07:00
+RNS Number : 9905Q
+88 Energy Limited
+30 January 2026
+30 January 2026
+QUARTERLY ACTIVITIES REPORT
+For the quarter ended 31 December 2025
+88 Energy Limited (ASX:
+88E
+, AIM: 88E, OTC: EEENF) (
+88 Energy, 88E
+or the
+Company
+) provides the following summary of activities for the quarter ended 31 December 2025.
+Alaskan Portfolio Highlights
+Expanded North Slope Footprint at 100% WI
+Fourteen new leases covering 34,560 acres with existing 3D seismic coverage secured in the North Slope Fall 2025 Bid Round, materially expanding the Company's operated footprint across two high-potential areas
+[1]
+:
+Ø
+South Prudhoe:
+Seven leases covering approximately 16,640 acres immediately south of the Prudhoe Bay Unit, the largest oilfield in North America, leveraging proximity to the existing 88E leases, formally known as Project Leonis and existing North Slope infrastructure.
+Ø
+Kad River East:
+Seven leases covering approximately 17,920 acres east of the Trans Alaska Pipeline System (
+TAPS
+)
+South Prudhoe (100% WI)
+South Prudhoe acreage consolidated with Project Leonis to form a contiguous 52,269-acre position covering one of the most prolific hydrocarbon fairways on the Alaskan North Slope.
+Ø
+Targeting the Ivishak Formation, a high-quality, clean sandstone reservoir, with predicted porosity of 20% and 50-100 mD permeability supported by offset well and core data.
+Ø
+Multiple low-capital intensity development pathways, including potential tie-back to Pump Station 1 or direct hot-tap connection into TAPS.
+Ø
+Farm-out discussions and planning underway for a multi-zone exploration well, with identified Ivishak potential providing greater scope for additional drilling locations.
+Kad River East (100% WI)
+Provides longer term optionality in an under-explored region east of TAPS
+Ø
+Soon to be released Kad River 3D seismic data, together with historical well logs are expected to provide significant technical insights and opportunities in 2026.
+Ø
+Kad River East leases introduce longer-term upside across an underexplored position to the east of TAPS, further adding to the growth pipeline and regional optionality
+Project Phoenix (~75% WI)
+Farm-Out Activity and Work Program Progressing:
+Ø
+JV partner Burgundy Xploration LLC (
+Burgundy
+) advanced its funding strategy and commenced operational spend to support a 2026 drilling program.
+Ø
+Draft registration statement for Burgundy's proposed initial public offering (
+IPO
+) confidentially lodged with the U.S. Securities and Exchange Commission (
+SEC
+).
+Ø
+The prolonged U.S. government shutdown in 2H 2025 has delayed SEC review timelines. 88 Energy granted Burgundy an extension under the Participation Agreement until 30 April 2026 to complete its obligations in the farm-out agreement.
+Ø
+Burgundy declared successful bidder in the recent North Slope Fall 2025 Bid Round for a further 82,080 acres adjacent to the Toolik River Unit. 88 Energy has secured the right to participate up to a 25% working interest until 1 October 2026 at cost (bid bonus and rentals only).
+Ø
+In conjunction with the extension of the Participation Agreement, 88 Energy executed an agreement in November 2025, whereby Burgundy is required to pay a total of US$2,400,000 to 88 Energy for access to the Icewine 3D seismic data which covers a portion of the new leases recently secured by Burgundy, with US$150,000 paid on 1 December 2025, and the balance due within 60 days of a successful IPO.
+Namibian Portfolio
+PEL93 (20% WI)
+Licence Extension and Pre-Drill De-Risking Underway:
+Ø
+Namibian Ministry of Mines and Energy granted a 12-month extension to the PEL 93 First Renewal Exploration Period, now expiring in October 2026.
+Ø
+A high-resolution gravity survey is planned for Q1 CY26, covering the southern area of PEL 93 where multiple structural leads have been identified.
+Ø
+Regional activity continues to build, with positive results announced by nearby operator ReconAfrica for its Kavango West-1X exploration well in December 2025, a well that shares similar geological characteristics with Lead 9 in southern PEL 93
+[2]
+.
+·
+Corporate Activity
+Ø
+Cash balance of A$6.8 million as at 31 December 2025.
+·
+The Small Holding Share Sale Facility closed on 1 August 2025. Sales of parcels valued at less than A$500 remained in progress at quarter end, with proceeds to be distributed upon completion of all sales. Subject to market liquidity, completion is anticipated in Q1 2026.
+Ø
+The Company relinquished its historical Peregrine and Umiat leases during the quarter as part of its ongoing portfolio optimisation strategy.
+The relinquishment removes the requirement to lift the two-year suspension due to expire at the end of 2025.
+This action reduces future annual lease holding costs by approximately A$0.7 million and ensures capital and technical effort remain focused on assets with superior subsurface characteristics, proximity to infrastructure and strong near-term value potential.
+Alaskan Portfolio Detail
+Acquisition of New Alaskan Leases
+In November 2025, through its wholly owned subsidiary Captivate Energy Alaska, Inc., 88 Energy secured fourteen additional leases as part of the North Slope Areawide 2025W Oil and Gas Lease Sale. These newly acquired leases expand 88 Energy's strategic landholding by 34,560 acres across two high-potential areas to the east and west of the Trans Alaskan Pipeline System (TAPS), complemented by the existing fourteen leases formally known as Project Leonis (see Figure 1 and refer to the ASX announcement on 19 November 2025 for full details).
+South Prudhoe Project
+Strategic Expansion Adjacent to World Class Producers
+The expanded South Prudhoe leases cover 52,269 acres and positions 88 Energy within one of the most prolific hydrocarbon fairways on the North Slope, immediately south of the Prudhoe Bay Unit and Kuparuk River Unit. The new acreage secured in November 2025 complements the existing leases formally known as Project Leonis to create a dual-hub development concept with a strong strategic position across a corridor of proven reservoirs complemented by ready access to existing infrastructure.
+A Proven Reservoir with Strong Technical Support
+·
+The Ivishak reservoir has produced over 13 billion barrels of oil from the Prudhoe Bay Unit and is considered one of the world's premier conventional reservoirs
+[3]
+.
+·
+Multiple fault-block closures have been mapped on the modern Storms 3D seismic within 88 Energy's South Prudhoe acreage, supported by petrophysical analysis and oil shows in key regional wells including
+[4]
+:
+-
+Hemi Springs State-1:
+Oil recovered from Ivishak and Kuparuk; DST flowed
+101-385 BOPD (26°-34° API) from Kuparuk
+, together with 450-1770 MCF/D gas and 12-143 BWPD
+.
+-
+Hailstorm-1:
+Confirmed Ivishak pay with 19.4% porosity and 13 ft oil column.
+-
+Hurl St 5-10-13:
+Maximum oil flow rate from the Ivishak of 2,060 BOPD, with 24
+°
+API oil and 226cu ft/bbl GOR.
+·
+The Ivishak reservoir offers high-quality, clean sandstone reservoir across the entire prospective area, with predicted 20% porosity and 50-100 mD permeability supported by offset well and core data
+[5]
+; unlike the shallower and typically more shaley Brookian reservoirs such as the USB.
+·
+Together with data from nearby producing fields
+[6]
+, this confirms high-quality reservoir characteristics and robust charge potential
+across the newly acquired acreage.
+Kad River East Project
+Expanding into a High-Potential, Under-Explored Region
+The new leases covering 17,920 acres east of TAPS provide a new entry into an exploration frontier area where historical wells and modern seismic data indicate a multi-reservoir petroleum system.
+Technical Indicators of Prospectivity
+The Kad River 3D seismic survey, scheduled for licensing and reprocessing in Q1 2026, together with historical well data, identifies multiple reservoir targets:
+·
+Jacobs Ladder C and Lake Fed 79-1 (within leases): Mud logs show fluorescence, petroleum odour, and hydrocarbon shows across Ivishak, Seabee and Canning intervals.
+·
+Kadler St 15-09-11 and Toolik Fed 1 (adjacent): Oil shows recorded in Mikkelsen, Lower Sag, USB, Kuparuk equivalent, and Ivishak/Lisburne reservoirs.
+These datasets confirm the presence of an active, multi-reservoir petroleum system across the Kad River East area.
+Forward Work Program:
+·
+License, evaluate and reprocess the Kad River and Schrader Bluff 3D seismic datasets in H2 2026.
+·
+Integrate historical well data and update Prospective Resource estimates
+Project Phoenix (~75% WI)
+Burgundy Joint Venture Update
+Burgundy continued to progress its funding program for the Franklin Bluffs-1H horizontal well and extended production test during the fourth quarter. Supported by sophisticated energy investors, Burgundy has invested more than US$26 million into Project Phoenix and has met all cash call requirements since the Farmout Participation Agreement was executed in February 2025.
+On 15 October 2025 Burgundy announced that it had confidentially submitted a draft registration statement on Form S-1 with the SEC relating to the proposed initial public offering (
+IPO
+) of common stock. The IPO is expected to occur after the SEC completes its review process, subject to market and other conditions. Unfortunately, the prolonged United States government shutdown in 2H 2025 extended usual SEC review timelines. Consequently, in November 2025, 88 Energy granted Burgundy an extension under the Participation Agreement until 30 April 2026 to complete its obligations in the farm-out agreement.
+Burgundy's operational readiness to drill also advanced during the fourth quarter. Fairweather LLC was appointed to support project execution, and planning is underway to secure the Franklin Bluffs 3D seismic dataset. In addition, Burgundy strengthened its "in-state" presence through the appointment of a dedicated Alaska-based company engineer. During the fourth quarter, the Burgundy team undertook meetings in Alaska with government agencies, key vendors and other stakeholders to advance permitting and logistical preparations.
+In the November 2025 North Slope Bid Round, Burgundy was declared the successful bidder for a further 82,080 acres adjacent to the Toolik River Unit, with 88E securing the right to participate up to 25% working interest until 1 October 2026 at cost (bid bonus and rentals paid only).
+In conjunction with the extension of the Participation Agreement, 88 Energy executed an agreement in November 2025, whereby Burgundy is required to pay a total of US$2,400,000 to 88 Energy for access to the Icewine 3D seismic data which covers a portion of the new leases recently secured by Burgundy, with US$150,000 paid on 1 December 2025, and the balance due within 60 days of a successful IPO.
+Namibia PEL 93 (20% WI)
+JV partner and Operator, Monitor Exploration will conduct an airborne geophysical survey over PEL 93 in 2026. The program will acquire high-resolution magnetic and gravity data to enhance subsurface imaging, better define basin geometry and identify structural features critical to hydrocarbon prospectivity. This work is expected to materially improve prospect mapping and support the maturation of drill ready targets ahead of future exploration drilling.
+The JV's forward plan also includes:
+·
+Defining prospective resource potential of identified leads within PEL 93.
+·
+Progressing discussions with potential farm in partners to support the next phase of exploration.
+·
+Preparing for future seismic acquisition and finalising drilling targets.
+Regional Activity: ReconAfrica Kavango West 1X Well
+On 3 December 2025, ReconAfrica announced positive results from the Kavango West 1X well on PEL 73, located within the same Damara Fold Belt play fairway as PEL 93. Key results included
+[7]
+:
+·
+~400 metres of gross hydrocarbon bearing section identified in the Otavi carbonate sequence.
+·
+64 metres of net hydrocarbon pay confirmed by wireline logs and supported by mud log anomalies.
+·
+Additional hydrocarbon shows within deeper fractured limestone intervals.
+·
+A production testing program planned for Q1 2026 to evaluate reservoir deliverability.
+ReconAfrica's evaluation and forward testing plans underscore the potential of the Otavi carbonate reservoir system, a key play type across the broader Damara Fold Belt. Structural trends for the carbonate reservoir targets intersected at Kavango West 1X are interpreted to extend into PEL 93, which lies approximately 200 kilometres to the east. The confirmation of meaningful net pay, additional hydrocarbon shows and the decision to progress to production testing all reinforce the potential for Otavi hosted structural closures within PEL 93, a play type directly comparable to the eleven mapped leads in PEL 93.
+Non-Core Assets
+Consistent with the Company's ongoing portfolio evaluation and optimisation strategy, in November 2025, 88 Energy relinquished its historical Peregrine and Umiat acreage positions. These lease positions have been in suspension for approximately 2 years and with the suspensions due to be lifted at year-end 2025 and annual lease payments commencing immediately of ~A$0.7 million, the Board deemed the assets non-core to the business. The land use bond covering these assets will be returned to the Company in Q1 2026 of ~A$0.45 million.
+Relinquishment ensures capital and technical effort is concentrated on assets offering superior subsurface characteristics, proximity to existing infrastructure and strong potential for near-term value generation.
+Corporate
+At 31 December 2025, the Company's cash balance was A$6.8 million (US$4.4 million). The attached ASX Appendix 5B sets out the Company's cash flow for the fourth quarter.
+Material cash flows for the period include:
+·
+Exploration and Evaluation Expenditure: ~A$0.4 million (September 2025 quarter A$0.6 million) related to well permitting and planning, analysis of new leases secured during the North Slope bid round and PEL 93 work program costs.
+·
+Staff and Administration Costs ~A$0.9 million corporate costs (September 2025 quarter A$1.1 million) and includes fees and consulting fees paid to Directors of A$0.2 million.
+·
+20% deposit on the new leases acquired of ~A$0.2 million.
+Small Holding Sale Facility Update
+Small Holding Share Sale Facility (
+SHSF
+) closed on 1 August 2025 for shareholders with parcels valued under A$500 (less than marketable parcels) that did not complete a notice of retention form. The sale facility remained ongoing at quarter end and when completed, proceeds will be provided to participating shareholders. The SHSF was undertaken to streamline registry management and reduce Company administration costs.
+Information required by ASX Listing Rule 5.4.3
+Phoenix
+Onshore, North Slope Alaska
+44,562
+~75%
+~75%
+South Prudhoe
+[8]
+Onshore, North Slope Alaska
+52,269
+100%
+100%
+Kad River East
+[9]
+Onshore, Owambo Basin, Namibia
+17,920
+20%
+20%
+PEL 93
+Onshore, Owambo Basin, Namibia
+914,270
+20%
+20%
+Peregrine
+[10]
+Onshore, North Slope Alaska (NPR-A)
+125,735
+100%
+0%
+Umiat3
+Onshore, North Slope Alaska (NPR-A)
+17,633
+100%
+0%
+Pursuant to the requirements of the ASX Listing Rules Chapter 5 and the AIM Rules for Companies, the technical information and resource reporting contained in this announcement was prepared by, or under the supervision of, Dr Stephen Staley, who is a Non-Executive Director of the Company. Dr Staley has more than 40 years' experience in the petroleum industry, is a Fellow of the Geological Society of London, and a qualified Geologist / Geophysicist who has sufficient experience that is relevant to the style and nature of the oil prospects under consideration and to the activities discussed in this document. Dr Staley has reviewed the information and supporting documentation referred to in this announcement and considers the prospective resource estimates to be fairly represented and consents to its release in the form and context in which it appears. His academic qualifications and industry memberships appear on the Company's website, and both comply with the criteria for "Competence" under clause 3.1 of the Valmin Code 2015. Terminology and standards adopted by the Society of Petroleum Engineers "Petroleum Resources Management System" have been applied in producing this document.
+This announcement has been authorised by the Board.
+Media and Investor Relations:
+88 Energy Ltd
+Ashley Gilbert, Managing Director
+Tel: +61 (0)8 9485 0990
+Email: investor-relations@88energy.com
+Fivemark Partners,
+Investor and Media Relations
+Michael Vaughan
+Tel: +61 (0)422 602 720
+Euroz Hartleys Ltd
+Chelsey Kidner
+Tel: +61 (0)8 9268 2829
+Cavendish Capital Markets Limited
+Derrick Lee / Pearl Kellie
+Tel: +44 (0)131 220 6939
+Hannam & Partners
+Leif Powis / Neil Passmore
+Tel: +44 (0) 207 907 8500
+Information required by ASX Listing Rule 5.4.3 - Lease Schedules as at 31 December 2025
+Appendix 5B
+Mining exploration entity or oil and gas exploration entityquarterly cash flow report
+Name of entity
+88 Energy Limited
+ABN
+Quarter ended ("current quarter")
+80 072 964 179
+31 December 2025
+Consolidated statement of cash flows
+Current quarter$A'000
+Year to date (12 months)$A'000
+1.
+Cash flows from operating activities
+-
+-
+1.1
+Receipts from customers
+1.2
+Payments for
+-
+-
+(a) exploration & evaluation
+(b) development
+-
+-
+(c) production
+-
+-
+(d) staff costs
+(323)
+(1,759)
+(e) administration and corporate costs
+(628)
+(2,516)
+593
+Dividends received (see note 3)
+-
+-
+1.4
+Interest received
+18
+99
+1.5
+Interest and other costs of finance paid
+-
+-
+1.6
+Income taxes paid
+-
+-
+1.7
+Government grants and tax incentives
+-
+-
+1.8
+Other
+-
+-
+1.9
+Net cash from / (used in) operating activities
+(933)
+(4,176)
+2.
+Cash flows from investing activities
+-
+-
+2.1
+Payments to acquire or for:
+(a) entities
+(b) tenements
+(283)
+(2,133)
+(c) property, plant and equipment
+-
+-
+(d) exploration & evaluation
+(428)
+(2,712)
+(e) investments
+-
+-
+(f) other non-current assets
+-
+-
+2.2
+Proceeds from the disposal of:
+-
+-
+(a) entities
+(b) tenements
+-
+-
+(c) property, plant and equipment
+-
+-
+(d) investments
+-
+-
+(e) other non-current assets
+-
+-
+2.3
+Cash flows from loans to other entities
+-
+-
+2.4
+Dividends received (see note 3)
+-
+-
+2.5
+Other - Joint Venture Contributions
+Other - Distribution from Project Longhorn
+Other - Proceeds from sale Investments
+229
+-
+-
+6,422
+262
+2,492
+2.6
+Net cash from / (used in) investing activities
+(482)
+4,331
+3.
+Cash flows from financing activities
+-
+-
+3.1
+Proceeds from issues of equity securities (excluding convertible debt securities)
+3.2
+Proceeds from issue of convertible debt securities
+-
+-
+3.3
+Proceeds from exercise of options
+-
+-
+3.4
+Transaction costs related to issues of equity securities or convertible debt securities
+-
+-
+3.5
+Proceeds from borrowings
+-
+-
+3.6
+Repayment of borrowings
+-
+-
+3.7
+Transaction costs related to loans and borrowings
+-
+-
+3.8
+Dividends paid
+-
+-
+3.9
+Other (provide details if material)
+-
+-
+3.10
+Net cash from / (used in) financing activities
+-
+-
+4.
+Net increase / (decrease) in cash and cash equivalents for the period
+4.1
+Cash and cash equivalents at beginning of period
+8,320
+7,198
+4.2
+Net cash from / (used in) operating activities (item 1.9 above)
+(933)
+(4,176)
+4.3
+Net cash from / (used in) investing activities (item 2.6 above)
+(482)
+4,331
+4.4
+Net cash from / (used in) financing activities (item 3.10 above)
+-
+-
+4.5
+Effect of movement in exchange rates on cash held
+(83)
+(531)
+4.6
+Cash and cash equivalents at end of period
+6,822
+6,822
+5.
+Reconciliation of cash and cash equivalents
+at the end of the quarter (as shown in the consolidated statement of cash flows) to the related items in the accounts
+Current quarter$A'000
+Previous quarter$A'000
+5.1
+Bank balances
+6,822
+8,047
+5.2
+Call deposits
+-
+-
+5.3
+Bank overdrafts
+-
+-
+5.4
+Other (provide details)
+-
+-
+5.5
+Cash and cash equivalents at end of quarter (should equal item 4.6 above)
+6,822
+8,047
+6.
+Payments to related parties of the entity and their associates
+Current quarter$A'000
+6.1
+Aggregate amount of payments to related parties and their associates included in item 1
+223
+6.2
+Aggregate amount of payments to related parties and their associates included in item 2
+-
+Note: if any amounts are shown in items 6.1 or 6.2, your quarterly activity report must include a description of, and an explanation for, such payments.
+6.1 Payments relate to Director and consulting fees paid to Directors. All transactions involving directors and associates were on normal commercial terms.
+7.
+Financing
+facilities
+Note: the term "facility' includes all forms of financing arrangements available to the entity.
+Add notes as necessary for an understanding of the sources of finance available to the entity.
+Total facility amount at quarter end$US'000
+Amount drawn at quarter end$US'000
+7.1
+Loan facilities
+-
+-
+7.2
+Credit standby arrangements
+-
+-
+7.3
+Other (please specify)
+-
+-
+7.4
+Total financing facilities
+-
+-
+7.5
+Unused financing facilities available at quarter end
+-
+7.6
+Include in the box below a description of each facility above, including the lender, interest rate, maturity date and whether it is secured or unsecured. If any additional financing facilities have been entered into or are proposed to be entered into after quarter end, include a note providing details of those facilities as well.
+8.
+Estimated cash available for future operating activities
+$A'000
+8.1
+Net cash from / (used in) operating activities (item 1.9)
+(933)
+8.2
+(Payments for
+exploration & evaluation classified as investing activities) (item 2.1(d))
+(428)
+8.3
+Total relevant outgoings (item 8.1 + item 8.2)
+(1,361)
+8.4
+Cash and cash equivalents at quarter end (item 4.6)
+6,822
+8.5
+Unused finance facilities available at quarter end (item 7.5)
+-
+8.6
+Total available funding (item 8.4 + item 8.5)
+6,822
+8.7
+Estimated quarters of funding available (item 8.6 divided by item 8.3)
+5.01
+Note: if the entity has reported positive relevant outgoings (ie a net cash inflow) in item 8.3, answer item 8.7 as "N/A". Otherwise, a figure for the estimated quarters of funding available must be included in item 8.7.
+8.8
+If item 8.7 is less than 2 quarters, please provide answers to the following questions:
+8.8.1 Does the entity expect that it will continue to have the current level of net operating cash flows for the time being and, if not, why not?
+Answer:
+n/a
+8.8.2 Has the entity taken any steps, or does it propose to take any steps, to raise further cash to fund its operations and, if so, what are those steps and how likely does it believe that they will be successful?
+Answer:
+n/a
+8.8.3 Does the entity expect to be able to continue its operations and to meet its business objectives and, if so, on what basis?
+Answer:
+n/a
+Note: where item 8.7 is less than 2 quarters, all of questions 8.8.1, 8.8.2 and 8.8.3 above must be answered.
+Compliance statement
+1 This statement has been prepared in accordance with accounting standards and policies which comply with Listing Rule 19.11A.
+2 This statement gives a true and fair view of the matters disclosed.
+Date: 30 January 2026
+Authorised by: By the Board
+(Name of body or officer authorising release - see note 4)
+Notes
+1. This quarterly cash flow report and the accompanying activity report provide a basis for informing the market about the entity's activities for the past quarter, how they have been financed and the effect this has had on its cash position. An entity that wishes to disclose additional information over and above the minimum required under the Listing Rules is encouraged to do so.
+2. If this quarterly cash flow report has been prepared in accordance with Australian Accounting Standards, the definitions in, and provisions of,
+AASB 6: Exploration for and Evaluation of Mineral Resources
+and
+AASB 107: Statement of Cash Flows
+apply to this report. If this quarterly cash flow report has been prepared in accordance with other accounting standards agreed by ASX pursuant to Listing Rule 19.11A, the corresponding equivalent standards apply to this report.
+3. Dividends received may be classified either as cash flows from operating activities or cash flows from investing activities, depending on the accounting policy of the entity.
+4. If this report has been authorised for release to the market by your board of directors, you can insert here: "By the board". If it has been authorised for release to the market by a committee of your board of directors, you can insert here: "By the [
+name of board committee
+-
+eg Audit and Risk Committee
+]". If it has been authorised for release to the market by a disclosure committee, you can insert here: "By the Disclosure Committee".
+5. If this report has been authorised for release to the market by your board of directors and you wish to hold yourself out as complying with recommendation 4.2 of the ASX Corporate Governance Council's
+Corporate Governance Principles and Recommendations
+, the board should have received a declaration from its CEO and CFO that, in their opinion, the financial records of the entity have been properly maintained, that this report complies with the appropriate accounting standards and gives a true and fair view of the cash flows of the entity, and that their opinion has been formed on the basis of a sound system of risk management and internal control which is operating effectively.
+[1]
+Refer to ASX announcement dated 20 November 2025. The leases are subject to adjudication and regulatory approvals in advance of formal award, expected in H2 2026
+[2]
+Refer to ReconAfrica (TSXV: RECO) release on 3 December 2025 for further details.
+[3]
+Source: Alaska DNR and Alaska Oil and Gas Conservation Commission (AOGCC)
+[4]
+Source: Alaska DNR and Alaska Oil and Gas Conservation Commission (AOGCC)
+[5]
+Source: AOGCC, wells include but not limited to Hemi Springs State-1, Kuparuk State-1, Burglin 33-1
+[6]
+Source: Prudhoe Bay Unit, data available from the DNR and AOGCC
+[7]
+Refer to ReconAfrica (TSXV: RECO) release on 3 December 2025 for further details.
+[8]
+Refer to ASX announcement on 20 November 2025 regarding highest bidder on 7 leases (16,640 acres) awarded in the 2025 Fall North Slope Lease bid round. The leases are subject to adjudication and regulatory approvals in advance of formal award, expected in H2 2026. Previously named Project Leonis leases covering 35,629 acres and the 7 new leases (16,640 acres) have been combined and renamed to Project South Prudhoe and are represented in the lease schedules to this announcement.
+[9]
+Refer to ASX announcement on 20 November 2025 regarding highest bidder on 7 leases (17,920 acres) awarded in the 2025 Fall North Slope Lease bid round. The leases are subject to adjudication and regulatory approvals in advance of formal award, expected in H2 2026.
+[10]
+Refer to ASX announcement on 20 November 2025 regarding relinquishment of non-core assets.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+UPDEAXFNAAXKEFA
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
                         <div style="font-weight: 700; font-size: 16px;">Schrader Bluff 3D Seismic Survey Secured</div>
                         <span style="
                             display: inline-block;
@@ -951,7 +1696,7 @@
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Kad River</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Upcoming Internal</td>
                     </tr>
                     
                         </table>
@@ -1113,9 +1858,9 @@ UPDEAFFKAASKEFA
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #10b98140;
-                    ">2</span>
+                    ">3</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #2
+                        RNS ANNOUNCEMENT #3
                     </div>
                 </div>
                 
@@ -1180,7 +1925,7 @@ UPDEAFFKAASKEFA
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Chelsey Kidner</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Media Relations</td>
                     </tr>
                     
                         <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1334,9 +2079,9 @@ DSHFLFSSLIIEIIR
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">3</span>
+                    ">4</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #3
+                        RNS ANNOUNCEMENT #4
                     </div>
                 </div>
                 
@@ -1401,7 +2146,7 @@ DSHFLFSSLIIEIIR
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Chelsey Kidner</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Media Relations</td>
                     </tr>
                     
                         </table>
@@ -1498,9 +2243,9 @@ MSCEADFKALDSFAA
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">4</span>
+                    ">5</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #4
+                        RNS ANNOUNCEMENT #5
                     </div>
                 </div>
                 
@@ -1565,7 +2310,7 @@ MSCEADFKALDSFAA
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">The Burgundy</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Production Test</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1810,362 +2555,6 @@ Privacy Policy
 .
 END
 MSCFELSIMEISELF
-                </div>
-            </details>
-            
-            </div>
-            
-            <div style="
-                margin-bottom: 20px;
-                padding: 18px;
-                background: white;
-                border-radius: 14px;
-                border: 1px solid #e2e8f0;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 30px;
-                        height: 30px;
-                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                        color: white;
-                        border-radius: 50%;
-                        font-weight: 800;
-                        font-size: 15px;
-                        box-shadow: 0 2px 8px #3b82f640;
-                    ">5</span>
-                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #5
-                    </div>
-                </div>
-                
-                
-            <div style="
-                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                color: white;
-                padding: 14px;
-                border-radius: 10px;
-                margin-bottom: 16px;
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">📰</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">New North Slope Acreage Secured</div>
-                        <span style="
-                            display: inline-block;
-                            background: rgba(255,255,255,0.25);
-                            padding: 2px 10px;
-                            border-radius: 12px;
-                            font-size: 11px;
-                            margin-top: 4px;
-                            font-weight: 600;
-                        ">UPDATE</span>
-                    </div>
-                </div>
-                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    Informational update - monitor for context with other announcements.
-                </div>
-            </div>
-            
-                
-            <div style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 10px;
-                margin: 16px 0;
-            ">
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">20th Nov 2025</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
-                </div>
-            </div>
-            
-                
-                
-                    <div style="margin: 16px 0;">
-                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
-                            
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Dual Hub</td>
-                    </tr>
-                    
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">20%, 19.4%, 20%</td>
-                    </tr>
-                    
-                        </table>
-                    </div>
-                    
-                
-            <details style="margin-top: 16px;">
-                <summary style="
-                    padding: 10px;
-                    background: #f8fafc;
-                    border-radius: 8px;
-                    font-weight: 600;
-                    font-size: 12px;
-                    list-style: none;
-                    cursor: pointer;
-                    color: #64748b;
-                    border: 1px solid #e2e8f0;
-                ">
-                    📄 View Full RNS Text
-                </summary>
-                <div style="
-                    margin-top: 8px;
-                    padding: 14px;
-                    background: #f1f5f9;
-                    border-radius: 8px;
-                    font-family: 'Courier New', monospace;
-                    font-size: 11px;
-                    line-height: 1.5;
-                    color: #475569;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                ">
-20 Nov 2025 07:00
-RNS Number : 2672I
-88 Energy Limited
-20 November 2025
-This announcement contains insider information
-20 November 2025
-88 Energy Limited
-new North slope alaskan leases secured ADJACENT
-TO THE LARGEST OILFIELD IN NORTH AMERICA
-88 Energy Limited (ASX:88E, AIM: 88E, OTC: EEENF) (
-88 Energy
-or
-the Company
-) is pleased to advise that on 19 November 2025 (Alaska time) its wholly owned subsidiary, Captivate Energy Alaska, Inc., was declared the successful bidder for select acreage in the North Slope Areawide 2025W Oil and Gas Lease Sale.
-The successful bids expand 88 Energy's operated acreage across two high-potential areas to the east and west of Project Leonis, consistent with the Company's infrastructure-led and data-driven exploration approach (see Figure 1).
-Highlights
-·
-Fourteen new leases
-secured
-covering approximately
-34,560 acres across two focus areas
-:
--
-South Prudhoe:
-Seven leases (~16,640 acres) targeting 3D defined
-Ivishak structural closures
-immediately south of the
-Prudhoe Bay Unit, the largest oilfield in North America
-, leveraging proximity to
-Project Leonis
-and existing infrastructure.
--
-Kad River East:
-Seven leases (~17,920 acres)
-east of the Trans Alaska Pipeline System
-(
-TAPS
-), positioned in an under-explored region where upcoming 3D seismic data and historical well logs are expected to provide significant technical insights and opportunities in 2026.
-·
-Early dual-hub development concept for the South Prudhoe and Leonis area
-considers low-CAPEX tie-back opportunities to
-Pump Station 1
-or direct hot-tap
-connection into TAPS
-.
-·
-Ivishak Formation offers high-quality, clean sandstone reservoir across the entire prospective area,
-with predicted 20% porosity and 50-100 mD permeability supported by offset well and core data.
-·
-Farm-out and planning underway
-targeting a
-multi-zone exploration well, with the identified Ivishak potential providing greater scope for additional drilling locations.
-88 Energy's Managing Director, Ashley Gilbert, commented on the successful bid
-"Securing these strategically located North Slope leases is a clear demonstration of our data-driven, infrastructure-focused strategy in action. The new South Prudhoe acreage expands our footprint across proven fairways, positions us beside existing pipelines and facilities and introduces a suite of low-risk Ivishak prospects supported by modern 3D and strong well control.
-With 3D seismic licensing planned for early 2026, there is a clear pathway to near-term value catalysts, including a potential multi-zone exploration well targeting the newly defined Ivishak prospectivity. Our near-term priority is to convert these high-quality subsurface opportunities into commercial outcomes, while maintaining capital discipline and a sharp eye on monetisation routes via tie-backs to TAPS.
-The Kad River East leases also introduce longer-term upside across an underexplored position to the east of TAPS, further adding to our growth pipeline and regional optionality."
-South Prudhoe and Leonis Area Detail
-Strategic Expansion Adjacent to World Class Producers
-The seven new South Prudhoe leases covering 16,640 acres positions 88 Energy within one of the most prolific hydrocarbon fairways on the North Slope, immediately south of the Prudhoe Bay Unit (
-PBU
-) and Kuparuk River Unit (
-KRU
-). The acreage complements Project Leonis, consolidating a strong strategic position across a corridor of proven reservoirs with ready access to existing infrastructure.
-A
-Proven
-Reservoir
-with Strong
-Technical Support
-·
-The
-Ivishak reservoir
-has produced over 13 billion barrels of oil from the Prudhoe Bay Unit and is considered one of the world's premier conventional reservoirs
-[1]
-.
-·
-Multiple fault-block closures have been mapped on the modern Storms 3D seismic, supported by petrophysical analysis and oil shows in key regional wells including
-[2]
-:
--
-Hemi Springs State-1:
-Oil recovered from Ivishak and Kuparuk; DST flowed
-101-385 BOPD (26°-34° API) from Kuparuk
-, together with 450-1770 MCF/D gas and 12-143 BWPD
-.
--
-Hailstorm-1:
-Confirmed Ivishak pay with 19.4% porosity and 13 ft oil column.
--
-Hurl St 5-10-13:
-Maximum oil flow rate of 2,060 BOPD, with 24
-°
-API oil and 226cu ft/bbl GOR.
-·
-The Ivishak reservoir offers high-quality, clean sandstone reservoir across the entire prospective area, with predicted 20% porosity and 50-100 mD permeability supported by offset well and core data
-[3]
-; unlike the shallower and typically more shaley Brookian reservoirs such as the USB.
-·
-Together with data from nearby producing fields
-[4]
-, this confirms high-quality reservoir characteristics and robust charge potential
-across the newly acquired acreage.
-Early
-Primary Ivishak Prospects
-Identified
-Initial subsurface interpretation integrating the Storms 3D seismic dataset, regional well control, and petrophysical analysis has delineated a suite of low-risk Ivishak Formation prospects across the newly secured and existing acreage. These prospects represent the first generation of drill-ready targets for future exploration and appraisal activity, demonstrating high-quality reservoir characteristics and proximity to proven production analogues. The extent of the producing wells within the main PBU field is defined by the oil-water contact rather than reservoir quality, and good Ivishak reservoir extends across the entire prospective area covering the newly identified prospects in Leonis and South Prudhoe acreage. Offset wells (Hailstorm-1, Hemi Springs State-1, Rock Flour-1) confirm excellent reservoir quality, with predicted 20% porosity and 50-100 mD permeability based on core data.
-Unlike the Brookian reservoirs, the Ivishak is a clean sandstone reservoir, reinforcing confidence in commercial potential
-.
-Rare Opportunity
-Over
-a
-Proven
-Producing
-Reservoir
-System
-88 Energy has captured a high-potential opportunity that has been largely overlooked for decades. While current major North Slope operators focused on existing field redevelopment and shallow Brookian plays, the deeper Ivishak potential in the southern Prudhoe area remained underexplored. Smaller, often privately owned operators saw the upside but lacked the capital depth to advance meaningful work programs, resulting in lease defaults and relinquishment.
-This limited historical exploration has created an opportunity and a rare entry point for nimble and experienced operators like 88 Energy. Supported by advanced seismic technology and a highly capable technical team, the Company has secured acreage over a proven producing reservoir system. This new acreage lies adjacent to existing infrastructure and proven producing fields, with historical wells confirming oil pay in the Ivishak formation, a high-quality sandstone reservoir with excellent porosity and permeability.
-Ivishak Prospect A - Southwest Prudhoe
-Located near the historical Hemi Springs State-1 well, Prospect A defines a fault-bound structural closure with approximately 100 feet of vertical relief and an aerial extent of around 1,000 acres (see Figure 3).
-Reservoir parameters indicate excellent quality sandstone with ~20 per cent porosity and permeability in the order of 100 millidarcies, consistent with producing intervals within the Prudhoe Bay field.
-The 3D seismic interpretation confirms a robust structure with clear definition and upside potential. Prospect A is considered a priority near-field opportunity capable of early tie-back to existing infrastructure as part of the proposed Southwest Prudhoe Hub concept (see
-Dual Hub Development Concept,
-below).
-Ivishak Prospect M - Leonis East
-Prospect M is the largest structural closure identified within the eastern Leonis area, exhibiting approximately 60 feet of relief and covering around 1,000 acres. The structure displays an element of four-way dip closure, low to moderate exploration risk and is strategically located adjacent to multiple secondary leads within the Leonis trend.
-Its central position within the Leonis lease block and favourable reservoir geometry make Prospect M a potential core development hub, suitable for integration into any future Leonis Hub development (see
-Dual Hub Development Concept,
-below). Seismic interpretation indicate good structural integrity and continuity, with potential for volumetric upside along the eastern extension.
-Ivishak Prospect C - South Prudhoe Margin
-Prospect C lies on the southern margin of the Prudhoe Bay Unit (
-PBU
-), immediately adjacent to the Prudhoe P-27 production well. The structure is interpreted as a low-risk fault block closure analogous to the currently producing P-27 horizontal well within the PBU, which has recovered approximately 4.1 million barrels of oil to date.
-Regional well data from the Prudhoe Bay Unit P-Pad wells confirms the productive nature of the Ivishak interval along this trend. Given its location adjacent to proven production and strong structural definition, Prospect C represents a low-risk appraisal target with clear commercial pathway options for early development.
-Portfolio Balance
-Collectively, Ivishak Prospects A, M, and C provide a balanced portfolio of early primary targets combining low-risk near-infrastructure opportunities with scalable upside. Further technical work, including seismic reprocessing, will be undertaken in 2026 to refine volumetrics and support prospective resource certification ahead of future farm-out and drilling decisions.
-Multi-Zone Reservoir Upside
-The Leonis and Southwest Prudhoe areas also contain significant multi-zone upside in the Kuparuk, Canning, and Upper Schrader Bluff reservoirs. These horizons, already defined on modern seismic and supported by oil shows, will be further evaluated following the planned Schrader Bluff 3D seismic licensing in Q1 2026.
-Dual Hub
-Development Concept
-Preliminary development studies consider a two-hub concept:
-·
-Southwest Prudhoe Hub:
-Targeting Prospect A and adjacent structures, with near-field tie-back options to Prudhoe Bay and Kuparuk River Units.
-·
-Leonis Hub:
-Focused on the eastern Ivishak prospects near TAPS, with a potential tie-back to Pump Station 1 or direct hot-tap into TAPS for early monetisation.
-88 Energy has considered, in the event a discovery is made and deemed commercial, preliminary conceptual development scenarios for Prospect A and M. Studies indicate a cost effective and rapid development option is possible for a conceptual four-well development hub leveraging established infrastructure for accelerated first oil. Conceptual plans include horizontal wells (~4,000 ft laterals) and modular processing facilities, consistent with successful small-field developments elsewhere on the North Slope. Studies were conducted in conjunction with local Alaskan third-party consultants. Further analysis and development concepts will be reviewed and refined following the completion of an exploration drilling campaign.
-Kad River East Area Detail
-Expanding into a High-Potential, Under-Explored Region
-The seven new leases covering 17,920 acres east of TAPS provide a new entry into an exploration frontier area where historical wells and modern seismic data indicate a multi-reservoir petroleum system.
-Technical Indicators of Prospectivity
-The Kad River 3D seismic survey, scheduled for licensing and reprocessing in Q1 2026, together with historical well data, identifies multiple reservoir targets:
-·
-Jacobs Ladder C and Lake Fed 79-1 (within leases): Mud logs show fluorescence, petroleum odour, and hydrocarbon shows across Ivishak, Seabee and Canning intervals.
-·
-Kadler St 15-09-11 and Toolik Fed 1 (adjacent): Oil shows recorded in Mikkelsen, Lower Sag, USB, Kuparuk equivalent, and Ivishak/Lisburne reservoirs.
-These datasets confirm the presence of an active, multi-reservoir petroleum system across the Kad River East area.
-North Slope, Alaska: Portfolio Potential and Strategy
-The Alaskan North Slope continues to experience renewed oil and gas exploration and development momentum, which is aligned with, and validates, 88 Energy's strategic focus on high-quality, infrastructure-led opportunities with clear development pathways.
-Several structural trends are reinforcing the North Slope's renewed significance:
-·
-Policy support:
-Federal and State agencies continue to streamline permitting, promote the strategic importance of Alaskan energy resources and actively encourage new investment in domestic energy production.
-·
-Exploration success:
-In early 2025 APA Corporation, Armstrong Oil & Gas, and Santos Limited announced a major oil discovery at the Sockeye-2 well, delivered 25 ft of high-quality oil pay with porosity of 20% and average flow of 2,700 barrels of oil per day without stimulation.
-·
-Infrastructure growth
-: Santos' Pikka Phase 1 development is nearing completion, with first oil expected in 2026 and production ramping up in 2027. In parallel, the Alaska LNG pipeline project continues to gain traction, with the proposed pipeline to enable large-scale gas exports from the North Slope.
-Together, these developments reinforce the basin's growing strategic importance and highlight the commercial potential of 88 Energy's North Slope portfolio.
-The newly secured South Prudhoe and Kad River leases reflect the Company's strategy in action, strengthening its position around proven fairways and existing infrastructure.
-Consistent with the Company's ongoing portfolio evolution and optimisation strategy, 88 Energy has relinquished its historical Peregrine and Umiat acreage positions. This ensures capital and technical effort are concentrated on assets offering superior subsurface characteristics, proximity to existing infrastructure, and strong potential for near-term value generation.
-Next Steps
-88 Energy intends to complete the following work programme:
-·
-License, evaluate and reprocess the Kad River and Schrader Bluff 3D seismic datasets in early 2026.
-·
-Integrate historical well data and update prospective resource estimates across the new leases and Project Leonis.
-·
-Advance farm-out discussions to fund the planned multi-zone exploration well, targeting the Ivishak reservoir and shallower Canning and USB reservoirs.
-·
-This programme will position 88 Energy to unlock significant value from its expanded North Slope portfolio through a balanced strategy of low-risk, infrastructure-proximate exploration and targeted resource growth.
-This announcement has been authorised by the Board.
-Media and Investor Relations
-88 Energy Ltd
-Ashley Gilbert, Managing Director
-Tel: +61 (0)8 9485 0990
-Email:
-investor-relations@88energy.com
-Fivemark Partners
-Michael Vaughan
-Tel: +61 (0)422 602 720
-EurozHartleys Ltd
-Chelsey Kidner
-Tel: +61 (0)8 9268 2829
-Cavendish Capital Markets Limited
-Derrick Lee / Pearl Kellie
-Tel: +44 (0)
-131 220 6939
-Hannam & Partners
-Leif Powis / Neil Passmore
-Tel: +44 (0) 207 907 8500
-[1]
-Source: Alaska DNR and Alaska Oil and Gas Conservation Commission (
-AOGCC
-);
-[2]
-Source: AOGCC;
-[3]
-Source: AOGCC, wells include
-but not limited to
-; Hemi Springs State-1, Kupar
-uk State-1, Burglin 33-1;
-[4]
-Source: Prudhoe Bay Unit, data available from the DNR and AOGCC.
-This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
-rns@lseg.com
-or visit
-www.rns.com
-.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
-Privacy Policy
-.
-END
-DRLBLBTTMTTBTMA
                 </div>
             </details>
             
@@ -2485,7 +2874,7 @@ DRLBLBTTMTTBTMA
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-29 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-01-30 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.

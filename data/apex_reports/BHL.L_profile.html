@@ -163,6 +163,8 @@
             font-weight: 600;
             text-transform: uppercase;
         }
+
+        
         
         .risk-indicator {
             display: flex;
@@ -223,11 +225,11 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">£</span>
-                    <span><strong>Market Cap:</strong> £6,620,830</span>
+                    <span><strong>Market Cap:</strong> £6,445,055</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 764 days</span>
+                    <span><strong>Days Active:</strong> 765 days</span>
                 </div>
             </div>
         </div>
@@ -258,8 +260,11 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#10b981; line-height:1;">40</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Setup</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Setup
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Trust -->
@@ -268,8 +273,11 @@
                             <div style="font-size:14px;">🛡️</div>
                             <div style="font-size:28px; font-weight:800; color:#3b82f6; line-height:1;">40</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Trust</div>
-                        <div style="font-size:10px; color:#94a3b8;">20%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Trust
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Panic -->
@@ -278,8 +286,11 @@
                             <div style="font-size:14px;">😱</div>
                             <div style="font-size:28px; font-weight:800; color:#ef4444; line-height:1;">35.3</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Panic</div>
-                        <div style="font-size:10px; color:#94a3b8;">30%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Panic
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Compression -->
@@ -288,34 +299,56 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#f59e0b; line-height:1;">7</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Compression</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Compression
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Timing Scope -->
+            <!-- Timing Scope: Flat segmented bar -->
             <div style="margin-top:24px;">
-                <div style="font-size:12px; color:#475569; font-weight:700; margin-bottom:8px; text-align:center;">Timing Spectrum</div>
+                <!-- position badge removed to avoid overlay on timing spectrum -->
                 <style>
                     @keyframes pulse-ring {
-                        0% { transform: scale(0.8); opacity: 0.9; }
+                        0% { transform: scale(0.7); opacity: 0.9; }
                         70% { transform: scale(2.2); opacity: 0; }
                         100% { transform: scale(2.8); opacity: 0; }
                     }
+                    @keyframes pulse-ring-outer {
+                        0% { transform: scale(0.9); opacity: 0.7; }
+                        50% { transform: scale(1.12); opacity: 0.45; }
+                        100% { transform: scale(1.3); opacity: 0; }
+                    }
                 </style>
-                <div style="position:relative; height:48px; background:linear-gradient(90deg, #ef4444 0%, #f59e0b 25%, #f093fb 50%, #10b981 75%, #064e3b 100%); border-radius:8px;">
-                    <div style="position:absolute; left:calc(30% - 24px); top:calc(50% - 24px); width:48px; height:48px; display:flex; align-items:center; justify-content:center;">
-                        <div style="position:absolute; width:48px; height:48px; border-radius:24px; background:rgba(15,23,42,0.12); animation: pulse-ring 1.8s infinite;"></div>
-                        <div style="width:16px; height:16px; border-radius:8px; background:#0f172a; box-shadow:0 6px 18px rgba(0,0,0,0.12);"></div>
+                <div style="position:relative;">
+                    <div style="display:flex; gap:6px; height:48px; border-radius:8px; overflow:hidden;">
+                        <div style="flex:1; background:#ef4444;"></div>
+                        <div style="flex:1; background:#f59e0b;"></div>
+                        <div style="flex:1; background:#facc15;"></div>
+                        <div style="flex:1; background:#10b981;"></div>
+                        <div style="flex:1; background:#065f46;"></div>
+                    </div>
+
+                    <!-- Pulse pointer positioned by timing_pos_pct -->
+                    <div style="position:absolute; left:calc(30% - 26px); top:0px; width:52px; height:52px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                        <!-- outer grey-white ring to help indicator stand out -->
+                        <div style="position:absolute; width:60px; height:60px; border-radius:30px; background:rgba(249,250,251,0.95); border:2px solid rgba(2,6,23,0.06); box-shadow:0 8px 30px rgba(2,6,23,0.06); animation: pulse-ring-outer 2.2s infinite;"></div>
+                        <!-- inner colored pulse ring -->
+                        <div style="position:absolute; width:52px; height:52px; border-radius:26px; background:#ffe50f; opacity:0.18; animation: pulse-ring 1.6s infinite;"></div>
+                        <!-- core dot with colored border for contrast -->
+                        <div style="width:18px; height:18px; border-radius:9px; background:#ffffff; box-shadow:0 10px 30px rgba(0,0,0,0.22); border:3px solid #f59e0b;"></div>
                     </div>
                 </div>
-                <div style="display:flex; justify-content:space-between; font-size:12px; color:#475569; margin-top:10px;">
-                    <div>Too Early</div>
-                    <div>Early Build</div>
-                    <div>Confirmed</div>
-                    <div>Crowded</div>
-                    <div>Broken</div>
+
+                <div style="display:flex; justify-content:space-between; font-size:12px; margin-top:8px; gap:6px;">
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Too Early</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Early Build</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Confirmed</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Crowded</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Broken</span></div>
                 </div>
 
                 <div style="margin-top:12px; display:flex; justify-content:center;">
@@ -540,6 +573,16 @@
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Posting of Circular and Notice of General Meeting</div>
+                        <div style="font-size: 12px; color: #64748b;">30th Jan 2026</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Joint Venture Agreement for Whistlejacket Project</div>
                         <div style="font-size: 12px; color: #64748b;">27th Jan 2026</div>
                     </div>
@@ -572,16 +615,6 @@
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Result of AGM</div>
                         <div style="font-size: 12px; color: #64748b;">30th Dec 2025</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
-                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
-                    <span style="font-size: 18px;">📢</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Notice of AGM</div>
-                        <div style="font-size: 12px; color: #64748b;">9th Dec 2025</div>
                     </div>
                 </div>
             </div>
@@ -878,15 +911,654 @@
                         justify-content: center;
                         width: 30px;
                         height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Posting of Circular and Notice of General Meeting</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">3:28 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Mineral Resource</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">100%, 1.65%, 1.22%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+Today 15:28
+RNS Number : 1615R
+Bradda Head Lithium Ltd
+30 January 2026
+30 January 2026
+Bradda Head Lithium Ltd
+("BHL" or the "Company")
+Posting of Circular and Notice of General Meeting
+Bradda Head Lithium Ltd (AIM: BHLL), the North America-focused lithium development group, is pleased to announce that further to it's announcement regarding the binding and
+definitive
+'Option to Joint Venture'
+agreement
+(the "Agreement") entered into with Kennecott Exploration Inc.- part of the Rio Tinto Mining Group of Companies ("KEX") made on 27 January 2026 ("Prior Announcement"), it has today published a circular and notice of general meeting ("Circular"). The Circular is also being posted to shareholders today. Terms defined in the Prior Announcement shall, unless otherwise stated, have the same meaning in this announcement.
+The Circular contains details of the Agreement, the Whistlejacket Project and the CLAs, as well as the notice of general meeting of the Company to be
+be held at 4.00 p.m. at The Claremont Hotel, 18-22 Loch Promenade, Douglas, Isle of Man, IM1 2LX on 17 February 2026
+("
+General Meeting
+"). The Circular is available on the Company's website at
+https://www.braddaheadltd.com/investors#ShareholderDocuments
+.
+The Circular contains two resolutions, as follows:
+·
+Resolution 1: To approve the Earn-in Acquisition. Resolution 1 shall be proposed as an ordinary resolution and all Shareholders shall be entitled to vote in respect thereof.
+·
+Resolution 2: To approve the issue of Ordinary Shares to Galloway Limited and Promaco Limited pursuant to the Convertible Loan Agreements for the purposes of Regulation 24.1(e) and Regulation 24.2(a) of the Articles. Resolution 2 shall be proposed as an ordinary resolution to be taken on a poll of Independent Shareholders only.
+The letter from the Ian Stalker, Executive Chair of the Company, which is contained in the Circular is set out in Appendix I to this announcement. Appendix II to this announcement contains defined terms and a glossary of technical terms used in Appendix I.
+THIS ANNOUNCEMENT CONTAINS INSIDE INFORMATION FOR THE PURPOSES OF THE MARKET ABUSE REGULATION (EU No. 596/2014) AS IT FORMS PART OF UK DOMESTIC LAW BY VIRTUE OF THE EUROPEAN UNION (WITHDRAWAL) ACT 2018. UPON THE PUBLICATION OF THIS ANNOUNCEMENT VIA A REGULATORY INFORMATION SERVICE, THIS INSIDE INFORMATION IS NOW CONSIDERED TO BE IN THE PUBLIC DOMAIN AND SUCH PERSONS SHALL THEREFORE CEASE TO BE IN POSSESSION OF INSIDE INFORMATION.
+For further information, please contact:
+Bradda Head Lithium Limited
+Beaumont Cornish
+Shard Capital
+Tavistock
+Company
+Nomad
+Broker
+Investor Relations
+Ian Stalker, Executive Chair
+Denham Eke, Finance Director
+James Biddle /
+Roland Cornish
+Damon Heath / Isabella Pierre
+Nick Elwes /
+Josephine Clerkin
++44 1624 639 396
++44 20 7628 3396
++44 207 186 9927
++ 44 20 7920 3150
+braddahead@tavistock.co.uk
+Qualified Person (Bradda Head)
+Don Hains, P.Geo.,President of Hains Engineering Company Limited, has reviewed and approved the technical information disclosed in the Circular (including the information in the appendix below). He is a registered as a Professional Geoscientist in Ontario (Licence #0494) and is a Qualified Person/Competent Person as defined in National Instrument NI-43-101 and AIM regulations. He has over 45 years' experience in mineral exploration, including over 25 years' experience in lithium pegmatite, lithium brine and lithium clay exploration.
+About Bradda Head Lithium Ltd.
+Bradda Head Lithium Ltd. Is a North America-focused lithium development group. The Company currently has interests in a variety of projects, the most advanced of which are in Central and Western Arizona: The Basin Project (Basin East Project and Basin West Project) and the San Domingo Project.
+The Basin East Project has a Measured Mineral Resource of 20 Mt at an average grade of 929 ppm Li for a total of 99 kt LCE and an Indicated Mineral Resource of 122 Mt at an average grade of 860 ppm Li and an Inferred Mineral Resource of 499 Mt at an average grade of 810 ppm Li for a total of 2.81 Mt LCE (
+https://www
+.accesswire.com/883697/uthor-head-lithium-ltd-announces-updated-mineral-resource-expansion-basin-project). The Group intends to continue to develop its three phase one projects in Arizona, whilst endeavoring to unlock value at its other prospective pegmatite and brine assets in Arizona, Nevada, and Pennsylvania. All of Bradda Head's licenses are held on a 100% equity basis and are in close proximity to the required infrastructure. Bradda Head is quoted on the AIM of the London Stock Exchange with the ticker of BHL.
+Nominated Advisor
+Beaumont Cornish Limited ("Beaumont Cornish") is the Company's Nominated Adviser and is uthorized and regulated by the FCA. Beaumont Cornish's responsibilities as the Company's Nominated Adviser, including a responsibility to advise and guide the Company on its responsibilities under the AIM Rules for Companies and AIM Rules for Nominated Advisers, are owed solely to the London Stock Exchange. Beaumont Cornish is not acting for and will not be responsible to any other persons for providing protections afforded to customers of Beaumont Cornish nor for advising them in relation to the proposed arrangements described in this announcement or any matter referred to in it.
+Forward Looking Statements
+This announcement contains forward-looking statements relating to expected or anticipated future events and anticipated results that are forward-looking in nature and, as a result, are subject to certain risks and uncertainties, such as general economic, market and business conditions, competition for qualified staff, the regulatory process and actions, technical issues, new legislation, uncertainties resulting from potential delays or changes in plans, uncertainties resulting from working in a new political jurisdiction, uncertainties regarding the results of exploration, uncertainties regarding the timing and granting of prospecting rights, uncertainties regarding the Company's ability to execute and implement future plans, and the occurrence of unexpected events. Actual results achieved may vary from the information provided herein as a result of numerous known and unknown risks and uncertainties and other factors.
+This announcement contains inside information for the purposes of the UK Market Abuse Regulation and the Directors of the Company are responsible for the release of this announcement.
+Appendix I
+Part I of the Circular
+LETTER FROM THE CHAIRMAN
+BRADDA HEAD LITHIUM LIMITED
+Incorporated and registered in the British Virgin Islands with registered number 1553975
+Directors:
+John (
+Ian
+) Stalker,
+Executive Chairman
+James (
+Jim
+) Mellon,
+Non-Executive Deputy Chairman
+Denham
+Hervey Newall Eke,
+Finance Director & Company Secretary
+Michael
+(Alex
+) Alexander Borrelli,
+Independent Non-Executive Director
+Euan
+William Jenkins,
+Independent Non-Executive Director
+Registered
+Office
+:
+Craigmuir Chambers
+Road Town
+Tortola
+British Virgin Islands
+30 January 2026
+Dear Shareholder,
+NOTICE OF GENERAL MEETING
+PROPOSED ACQUISITION OF UP TO 60 PER CENT INTEREST IN WHISTLEJACKET LITHIUM PROJECT
+NEW CONVERTIBLE LOAN AGREEMENTS AND APPROVAL OF FUTURE ISSUE OF SHARES
+1
+INTRODUCTION
+I am writing to you with good news and to explain the background to and reasoning for the proposed Earn-in Acquisition and the Resolutions to be voted on at the General Meeting which will be held at 4.00 p.m. at The Claremont Hotel, 18-22 Loch Promenade, Douglas, Isle of Man, IM1 2LX on 17 February 2026.
+The
+Company has been in negotiation with respect to the Whistlejacket Project for some time. It is a project that dovetails very nicely with our own San Domingo Project, also in Arizona, and, we believe, creates a much more substantial lithium pegmatite exploration/development opportunity for the Company in the USA.
+Rio Tinto, through its US subsidiary, Kennecott Exploration, has undertaken a limited but very professional exploration program over the last two years or so that highlighted the opportunity at the Whistlejacket Project. Whilst not fitting into the "Tier 1" demands of Rio Tinto, it fits right into the wheelhouse of Bradda Head and complements the work done and knowledge gained by the Company at San Domingo. The distance between the Whistlejacket Project and the Basin Project is 11 kilometers and it is 80 kilometers to the San Domingo Project, so synergies between the projects are high and will enable the Company to leverage this position.
+On 27 January 2026, the Company announced that it had entered in the Earn-in Agreement regarding the proposed Earn-in Acquisition. Further information regarding the Earn-in Acquisition is set out in in paragraph 4 below. Commencement of the Earn-in Acquisition pursuant to the Earn-in Agreement is subject only to the approval of Shareholders at the General Meeting.
+The Company has been advised that the Earn-in Acquisition will not amount to a Reverse Transaction under the AIM Rules. However, given the size of the Earn-in Acquisition and the financial commitment required to develop the Whistlejacket Project the Company recognises that it is a sufficiently large enough commitment to be put to Shareholders for approval. To assist Shareholders in considering the proposal, the Company has had the CPR prepared which is summarised in paragraph
+5
+below and available on the Company's website. Furthermore, details of how the Company proposes to finance the Earn-in Acquisition are summarised in paragraph
+6
+below. Accordingly, the purpose of this document is to provide the background and technical overview of the Whistlejacket Project, provide an overview of the current assets and operations of the Enlarged Group, to explain the terms of the Earn-In Acquisition and to set out the reasons why your Board believes that the Earn-in Acquisition and the Resolutions are in the best interests of the Company and its Shareholders as a whole.
+Concurrent with the entering into of the Earn-In Agreement, Galloway Limited, a company owned by Director Jim Mellon, and Promaco Limited, a company owned by Director Ian Stalker, have agreed to provide the Company with convertible loans of US$1.025 million and US$0.25 million respectively to fund the costs of the Year One Commitment under the Earn-In Agreement ($750,000) and general working capital (the "
+New Facilities
+"). The terms of the New Facilities are summarised in paragraph
+6
+below.
+Shareholders should read this document in its entirety. In particular, you should consider carefully the "Risk Factors" set out in Part II of this document and the Competent Person's Report. Part IV of this document is the Notice of General Meeting
+.
+2
+INFORMATION ON THE COMPANY AND ITS EXISTING PROJECTS
+Bradda Head is a North America-focused lithium development group. The Company currently has interests in a variety of projects, the most advanced of which are in Central and Western Arizona: The San Domingo Project, Basin Project, (Basin East Project, and the Basin West Project) and the Wikieup Project. The main focus to date has been on the Company's flagship pegmatite and sedimentary assets in Arizona, together with the Group's two prospective brine projects in Nevada and lithium brine assets in Pennsylvania and Texas. The Group also leverages its US based and experienced team led by Joey Wilkins (COO) to find new lithium projects and unlock value from our portfolio through continued land acquisition through claim staking or Arizona State Land leases and M&A within the US.
+The Basin East Project has a Measured Mineral Resource of 20 Mt at an average grade of 929 ppm Li for a total of 99 kt LCE and an Indicated Mineral Resource of 122 Mt at an average grade of 860 ppm Li and an Inferred Mineral Resource of 499 Mt at an average grade of 810 ppm Li for a total of 2.81 Mt LCE. Whilst the immediate focus will be on Whistlejacket project, the Group intends, subject to the availability, of finance to continue developing its existing projects all of which are held on a 100 per cent equity basis and are in close proximity to the required infrastructure.
+A summary of the Group's Existing Projects is set out in Part III of this document.
+3
+BACKGROUND TO AND REASONS FOR THE EARN-IN ACQUISITION
+Our introduction to the Whistlejacket Project originates from a good relationship the Company has with Rio Tinto (Kennecott Exploration Company) from their original interest in the Company's own San Domingo Project. Rio Tinto reached out to the Company in November of 2024 to determine our interest in an undisclosed pegmatite project they discovered in Arizona. The Company signed an NDA and their data was shared with our technical team. Once the data was received and a site visit was completed, the Company saw the potential to discover a commercially viable lithium resource and requested a meeting with their commercial manager to discuss terms of acquisition.
+The Whistlejacket Project is located only 11 kilometers southeast of the Company's Basin Project, 80 kilometers from the Company's San Domingo Project, and 3 kilometers south of the small mining town of Bagdad. Bagdad is also home to the Freeport McMoRan Bagdad porphyry copper-molybdenum open pit mine, which is useful for infrastructure and a pro-mining culture.
+The Whistlejacket area had never previously been known to contain spodumene bearing pegmatites; thus, is a virgin discovery by Kennecott Exploration. All mineral rights to the property are on Arizona State Land Department lands and they control
+4
+,486.07 acres of state mineral rights referred to as MEP's or Mineral Exploration Permits. Once Kennecott obtained the mineral rights, they acquired an exploration permit, granting them rights to conduct surface exploration. Following that phase, they obtained a drilling permit and commenced drilling. They conducted two short programs of core drilling, identifying significant drill hole intercepts in several holes. Nearly every drill hole contains lithium mineralization, presenting an excellent opportunity to continue drilling and exploring with the intent of defining a maiden Mineral Resource.
+As noted above, Bradda Head has several other projects of merit and will continue working on them as funds and time allow. Lithium bearing pegmatites are by far the most studied and well known for their simplicity in mining and processing, which is why the Company wishes to search and explore pegmatites, especially those in proximity to our San Domingo pegmatite project. The Whistlejacket Project is a perfect example of the kind of project Bradda Head is looking for to complement San Domingo and it has the characteristics that we believe makes it an excellent project for the Company.
+In particular, the Board would highlight the following key details about the Whistlejacket Project which makes the Earn-in Acquisition particularly appealing:
+·
+All 19 drill holes drilled for a total of 4,188 meters have encountered spodumene mineralization
+·
+Highlights from excellent drill hole intercepts are 19.47 meters at 1.65% Li2O in hole WSTL0008 and with 41 meters at 1.22% Li2O in hole WSTL0009
+·
+There are many pegmatites on the property that have never been drilled and contain an abundance of spodumene and high lithium values, highlighting the opportunity for the Company
+·
+The spodumene is mostly medium to coarse grained, an excellent characteristic of simple processing
+·
+The project has an excellent dataset that includes surface mapping, geochemical sampling, airborne geophysics, and collected high resolution air photographs over much of the property
+·
+Excellent access, proximity to pavement, and the pro-mining town of Bagdad
+·
+Simple ASLD land to manage, explore, and potentially mine
+·
+The geology of the pegmatites is classic LCT style with anomalous cesium and tantalum
+·
+There are no environmental or social impediments, to our knowledge
+The Company firmly believes this project has significant merit and has the potential to become an economic deposit and feasible for open pit mining. If that happens and the fact lithium is a critical metal, the Company believes it could be "fast tracked" for permitting by the State of Arizona.
+4
+PRINCIPAL TERMS OF THE EARN-IN ACQUISITION
+On 26 January
+2026, the Company entered into the Earn-in Agreement with the Earn-in Partner, pursuant to which it has conditionally agreed to earn up to a 60 per cent interest in the Whistlejacket Project. The Earn-in Acquisition will be carried out in two phases and will come into effect in the event that Resolution 1 is passed at the General Meeting. A summary of the principal terms of the Earn-in Agreement is set out below.
+Phase One
+Phase One of the Earn-in Acquisition will occur over 3 years,
+consisting of work expenditures of US$750,000, US$2,000,000, and US$2,750,000 in exploration activities per year over a 3-year period for a cumulative total of US$5,500,000 on the Whistlejacket property held by the Earn-in Partner upon completion of the Earn-in Agreement. Of the Phase One Commitment, only the Year One Commitment to spend US$750,000 is firmly committed by BHL. If BHL elects to terminate the Option prior to the first anniversary of the execution of the Definitive Agreement, or if BHL fails to timely satisfy the Phase One Commitment, the Company will pay to the Earn-in Partner in cash the difference between expenditures actually incurred and US$750,000. Upon completion of the requisite Phase One Commitment, the Company will acquire a 51 per cent interest in the Whistlejacket Project.
+First Buy-back Option
+Notwithstanding that completion of Phase One may have occurred, the Earn-in Partner will hold a buy-back option (the "
+First Buy-Back Option
+") for 90 days after the Company's exercise and completion of Phase One, which shall begin to run from the date the Company gives written notice and documentation of completion of Phase One and confirmation on whether the Company plans to proceed or not proceed with Phase Two, which the Earn-in Partner may exercise by paying to the Company an amount equal to two and one-half (2.5) times the amount of the Company's documented expenditures incurred to date to increase the Earn-in Partner's stake in the project back from 49% to 100%. Upon the Earn-in Partner's exercise of the First Buy-Back Option, the Earn-in Agreement will terminate and the Company will cease to have any interest in the Whistlejacket Project.
+Phase Two
+Within thirty (30) days of exercise and completion of Phase One, the Company shall be required to provide written notice to the Earn-in Partner on whether the Company intends to proceed to Phase Two (subject to the First Buy-back Option being exercised). If the Company completes Phase One and does not elect to pursue Phase Two, and provided that the Earn-in Partner does not timely exercise the First Buy-back Option, a contractual joint venture arrangement will be established of which 51% shall be held by the Company and the remaining 49% shall be held by the Earn-in Partner.
+In the event that the notice of intention to proceed to Phase Two is given and the First Buy-back Option is not exercised, Bradda Head may acquire an additional 9 per cent for a total of 60 per cent, by completing annual work expenditures of US$3,750,000, US$3,750,000, and US$4,500,000 per year over a second 3-year period for a cumulative Phase Two total of US$12,000,000.
+Upon completion of the requisite Phase Two expenditures, the Company will acquire a further 9 per cent interest in the Whistlejacket Project.
+Second Buy-back Option
+Notwithstanding that completion of Phase Two may have occurred, the Earn-in Partner will hold a buy-back option (the "
+Second Buy-Back Option
+") for 90 days after the Company's exercise and completion of Phase Two, which shall begin to run from the date the Company gives written notice and documentation of completion of Phase Two, which the Earn-in Partner may exercise by paying to the Company an amount equal to three (3) times the amount of the Company's documented expenditures incurred to date to increase the Earn-in Partner's stake in the project from 40% to 100%. Upon the Earn-in Partner's exercise of the Second Buy-Back Option, the Earn-in Agreement will terminate and the Earn-in Partner will own the Whistlejacket Project in full.
+Applicable Expenditures
+For the purposes of contributing towards the Earn-in Acquisition, the following expenditures shall be included (
+Applicable Expenditures
+):
+·
+exploration (drilling, assays, geophysics),
+·
+environmental studies,
+·
+permitting,
+·
+resource calculation studies,
+·
+metallurgical studies; and
+·
+surveying and mapping (geological, geochemical and geophysical).
+The Earn-in Partner shall have the right to audit the Applicable Expenditures.
+Joint Venture
+Upon completion of the Earn-in (and subject to the Earn-in Partner not exercising its buy-back options), the joint venture will proceed with weighted expenditures based upon percentage of ownership, 60% by the Company and 40% by the Earn-in Partner. A joint venture committee will be formed consisting of two people from the Company and two people from the Earn-in Partner. Work programs and expenditure budget proposals will be tabled on an annual basis to the joint venture committee for approval. If a joint venture partner is unwilling or unable to subsidize their share of the entire proposed budget, their ownership percentage will be reduced by standard and industry accepted reduction equations. If a joint venture partner's ownership falls below 10% due to inability to contribute to approved annual budgets and expenditures or to contribute to the cash calls within the deadline set by the manager, their ownership will be reduced to a 2.0% NSR (Net Smelter Royalty). The non-defaulting joint venture partner can provide cover payments for the default and subsequently can elect to adjust the ownership proportions based on initial contributions made in the joint venture partner's equity account. If the cover payment is repaid, there will be not be any adjustment made to the equity account or ownership share.
+Purchase option in favour of the Company
+On completion of Phase One, the Company will have the option to acquire the remaining 49 per cent interest in the Whistlejacket Project still owned by the Earn-in Partner for US$7,500,000 (provided the Earn-in Partner does not exercise the First Buy-back Option). If the option is not exercised after completion of Phase One, but the Company proceeds with Phase Two of the earn-in, it shall have the option to acquire the remaining 40 per cent interest in the Whistlejacket Project still owned by the Earn-in Partner after completion of Phase Two for US$10,000,000. Exercise of either of the Company's purchase options shall at all times require the consent of the Earn-in Partner and if the Earn-in Partner agrees to proceed with such sale, they will also be granted a 1% net smelter royalty over the Whistlejacket Project.
+Termination rights
+The Earn-in Acquisition may be terminated
+(and the obligation on the Company under the Earn-in Agreement shall cease without liability) at any time during the term of the Earn-in Agreement, except the first payment due under Phase One (US$0.75M) shall still be required to be paid as a minimum (to the extent not already paid). Termination thereafter, if desired and by either party, requires notification by email and letter and reciprocal confirmation of receipt. Any termination would require leaving license in good standing and no liabilities.
+Management of the Whistlejacket Project
+Not later than 30 days after the entry into the Earn-in Agreement, the Parties will form a technical committee (the "
+Technical Committee
+") comprised of four members, with two members appointed by each Party. The Technical Committee will govern the technical, logistical and budgetary matters applicable to the development of and operations on the Property until the formation of the Joint Venture, at a minimum of 51%/49% ownership. The Technical Committee will direct the operator with respect to the structure and requirements of any approved budget and program. The affirmative vote of a majority of the members of the Technical Committee will constitute the decision and action of the Technical Committee. Failure to obtain the affirmative vote of a majority of the members of the Technical Committee (including in the event of a deadlock) shall mean that a decision or action is not adopted. If no decision is made, the Technical Committee will negotiate at "good will" until an agreeable program is adopted. The Technical Committee will meet semi-annually in person or by telephone or videoconference, to review technical results, expenditures, status of tenements and any applications, work programs & budgets.
+Throughout the term of the Earn-in Agreement and thereafter, the Company's subsidiary Zenolith (USA) LLC will be the initial manager and operator of the Whistlejacket Project. The operator's duties shall include the adoption of a work programme and budget, maintenance of the Whistlejacket Project in good standing, maintain accounts and records for the Whistlejacket and provide the same to the Earn-in Partner, d
+evelop a rigid health and safety environment to prevent accidents and environmental incidents and conduct field activities, such as drilling and road construction, with highest BMP's (Best Management Practices).
+The Company or the Earn-in Partner, whoever has a majority joint venture interest, will be solely responsible for the operation of the Whistlejacket Project. In consideration for acting as manager after the completion of the Earn-in, the manager shall be entitled to a management fee equal to 10% of the applicable expenditures during the exploration stage, 5.0% for all expenditures during the development stage, and 2.0% of all expenditures during the mining operation stage.
+Governing law
+The Earn-in Agreement and joint venture shall at all times be subject to Arizona law.
+5
+cpr SUMMARY INFORMATION ON THE WHISTLEJACKET PROJECT
+Location and Geography
+The Whistlejacket Project is located in Yavapai County, Arizona. It located immediately south of the town of Bagdad, the site of the Bagdad copper mine owned by Freeport Copper Corporation. The approximate centre of the property is located at UTM 300000 E, 3825000N (NAD83, Zone 12). The project is readily accessed via US Highway 93 from Wickenburg and then State Highways 97 and 96. Access to the property claims is via a network of gravel roads and trails. The majority of the property is accessible by 4WD vehicles. Figure 1 illustrates the location of the property.
+Licences comprising the Whistlejacket Project
+The Whistlejacket Project is held as a series of Mineral Exploration Permits (MEPs) registered in the name of Kennecott Exploration Company ("Kennecott"), a subsidiary of Rio Tinto. Rio Tinto Exploration (RTX) manages the permits on behalf of Kennecott (and ultimately Rio Tinto). All of the MEPs are reported to be in good standing as of the date of this document and as detailed below.
+MEPs must be renewed annually for a period of up to a maximum of five years, at which time they statutorily expire. If renewal is required after the five year period, the applicant must apply for a new MEP prior to the end of the statutory expiration date.
+Annual renewal fees are US$500/application, plus US$ 1.00/acre annual rent. In addition, annual renewals require submission of an affidavit and documentation to the ADSL confirming the required exploration expenditures, or alternatively, payment in lieu thereof of US$ 10/acre for the first two annual periods (after the first year) and US$ 20/acre for the remaining two annual periods, and $US 20/acre for any renewal in subsequent years. Finally, MEP holders are required to maintain certain insurance coverages. The available data indicate all required annual fees have been paid and receipted (or payment is being processed by the ADSL) and that the required liability insurance coverage is in place as approved by the ADSL on July 15, 2025. Details of the Annual Fees and Expenditures are fully set out in Table 3 of the CPR.
+Proposed
+Exploration Budget - Year 1 of Option Agreement
+Bradda Head Limited has proposed an exploration budget for the initial year of exploration under the terms of the option agreement as detailed in Table ES-1 contained in the CPR and set out below. The author of the CPR has reviewed this budget in consultation with senior BHL staff and considers the proposed exploration program and budget to be reasonable.
+Activities undertaken to date
+Rio Tinto has undertaken preliminary exploration on the property, including drilling and mineralogical evaluation. 19 drill holes have been completed for a total of 4,188 m. No resource estimate has been prepared as of the date of this CPR.
+Exploration work to date has identified a series of pegmatite dykes containing spodumene as the principal lithium-bearing mineral. The pegmatites are generally oriented in a SW-NE strike direction, with some oriented in an E-W or N-S direction. The pegmatites intrude the mafic to intermediate metavolcanic rocks of the Bridle Formation and dip from sub-horizontal to sub-vertical. The pegmatites form swarms or clusters, of which seven have been tested by drilling and/or surface sampling. A significant N-S oriented volcanic tuff zone separates the Bridle Formation rocks and the pegmatites into two zones, with the eastern side predominating in terms of the number of pegmatite showings.
+Exploration results by RTX demonstrated the sampled pegmatites contained relatively medium to coarse-grained spodumene grading approximately 1.1% - 1.2% Li2O and that dense media separation (DMS) could potentially produce a commercial quality (5.5% - 6.0% Li2O) concentrate. Core assay results show lithium hydroxide mineralization in all 19 holes, including 41.0 meters at 1.22% Li2O in hole WSTL0009 and 19.47 meters at 1.65% Li2O in hole WSTL0008
+Description of Resources and Reserves
+No mineral resources or mineral reserves are reported in this CPR. An exploration target has been defined for between 12 M tonnes to 15 M tonnes grading between 0.7% to 1.1% Li2O. Results from the core drilling, surface geochemistry and geological mapping show potential to expand the pegmatite mineralization laterally and at depth, whilst many pegmatites have not been drill tested and contain several rock chip samples at >2.0% Li2O.
+Conclusions
+In general, the exploration results to date have been positive in identifying a prospective spodumene deposit. Additional work is justified to better delineate the resource potential of the Whistlejacket project area and better understand the potential economics of developing the project. Future exploration programs are expected to comprise a range of exploration techniques, with a focus on surface mapping and sampling, trenching, drilling, geophysical surveys, and mineralogical and metallurgical test work.
+In the opinion of the Qualified Person for this CPR the available exploration data are sufficient to support an "exploration target" as such is defined by the Canadian Institute of Mining and Metallurgy ("CIM") mineral resource and mineral reserve definitions, of between 12 million tonnes to 15 million tonnes mineralization grading between 0.7% Li2O to 1.1% Li2O.
+Exploration efforts should focus on additional surface mapping and sampling to identify additional pegmatites and their orientation; structural analysis to better understand the relationship between the sub-horizontal and sub-vertical pegmatite swarms, and follow-up drilling to develop the data necessary for a resource estimate. Additional mineralogical and metallurgical test work to assess the potential for DMS processing of the spodumene is also required.
+6
+CURRENT FINANCIAL POSITION AND FUNDING OF THE ENLARGED GROUP
+As announced by the Company on 25 September 2025, the Company entered into a short-term loan facility agreement ("
+Existing Galloway Facility
+") with Galloway Limited, a related party. The funding was provided in connection with the undertaking made by Galloway Limited as noted in the statutory accounts for the year ending 28 February 2025 to provide support for the Company to maintain its good standing and will be used for general working capital purposes. The Existing Galloway Facility was for US$500,000 and has been drawn in full. Accordingly, as at 31 December 2025, the Company has existing cash balances of US$54,000.
+In order to fund the Year One Commitment, the Company has entered into new convertible facility agreements with each of Galloway Limited, a company owned by Jim Mellon, and Promaco Limited (a company owned by Ian Stalker) pursuant to which Galloway Limited and Promaco Limited will provide an unsecured convertible loans in the amount of US$1,025,000 ("
+New Galloway Facility
+") and US$250,000 ("
+Promaco Loan Facility
+") respectively (together the "
+New Facilities
+"). The New Facilities are subject to equivalent terms and shall accrue interest at a rate of 10% per annum of the principal amount outstanding. It is intended that the Existing Galloway Facility will be rolled into the New Loan Facility such that the total outstanding principal amount of indebtedness owing to Galloway under these arrangements shall be US$1,525,000 ("
+Total Galloway Loan Amounts
+"), and that such amounts shall be capable of conversion into Ordinary Shares.
+The Company shall repay the Total Galloway Loan Amounts and the Promaco Loan Facility on the earlier of (i) the date on which the parties agree that the Total Galloway Loan Amounts and the Promaco Loan Facility shall be repaid, (ii)the 2nd anniversary of the drawdown of the New Facilities (or such later date as may be agreed in writing between the Company and each of Galloway Limited and Promaco Limited, and (iii) on the occurrence of an event of default (in line with industry norms). The Total Galloway Loan Amounts and the Promaco Loan Facility shall be automatically converted into Ordinary Shares upon the completion of a qualifying fundraise of not less than £2 million (gross) carried out by the Company, in which case the conversion price shall be at a 10% discount to the amount paid by each investor in the qualifying fundraise.
+Galloway Limited and Promaco Limited shall each have the option to convert some or all of the Total Galloway Loan Amount and/or the Promaco Loan Facility (together with all accrued but unpaid interest) into Ordinary Shares in the Company by issuing a conversion notice under the convertible loan agreements. In such circumstance, the conversion will take place at a price per share equal to a 10% discount to 30 day volume weighted average price of the Ordinary Shares as at the close of trading on the trading day immediately prior to the date of issue of a conversion notice.
+The provision of funding pursuant to the New Loan Facilities, as well as the existing cash balances held as set out above, means that the Company is able to meet its firm obligations under the Earn-in Agreement and to fund the operations of the Company in the short term.
+It should be noted that at this stage the Company does not have funding for the Whistlejacket Project beyond the first year of Phase One and will need to raise finance in the form for equity or debt or possible direct participation in this and/or other of its projects to fund the future years of the Whistlejacket Project.
+AIM Rule 13
+Gallloway Limited is a company indirectly wholly owned by Jim Mellon, and which is the Company's largest shareholder. Denham Eke is also the Managing Director of Galloway Limited. Promaco Limited is indirectly wholly owned by John Ian Stalker, the Executive Chair of the Company. Accordingly, the provision of the New Loan Facilities (including the roll up of the Existing Galloway Facility into the New Loan Facility) are related party transactions under the AIM Rules. Accordingly, the independent director, being Alex Borrelli and Euan Jenkins, having consulted with the Group's Nominated Adviser, consider that the terms of the New Facilities are fair and reasonable insofar as the Company's shareholders are concerned.
+In forming this view the independent directors have noted the following:
+·
+the minimum US$750,000 commitment of the Company over the next 12 months (should the Proposed Transaction be approved by shareholders);
+·
+the Board's support for the Proposed Transaction and the potential benefit the Board believes this will provide all Bradda shareholders;
+·
+the need to satisfy KEX that the Company has capital to meet the guaranteed expenditure prior to signing the Agreement;
+·
+the current cash position of the Company and the amounts due under the existing loan facilities provided by Galloway;
+·
+the need for the Company to complete a Qualifying Fundraise within the next 12 months, providing
+·
+capital to meet expenditure commitments in year two (and potentially beyond) under the Agreement;
+·
+planned continued expenditure of the Company on its existing assets over the next 12 months as well as general working capital requirements;
+·
+the unsecured nature of the CLN Facility;
+·
+the cost of alternative short-term bridge finance to satisfy KEX and prior to a Qualifying Fundraise; and
+·
+the positive market message of Galloway Limited, the Company's largest shareholder, and Promaco Limited, being wholly owned by the Executive Chair of Bradda Head, providing further financial support to support management.
+Shareholder approval
+The Conversion of the Total Galloway Amounts gives rise to certain considerations under the Company's Articles. As a BVI company, the Company is not subject to the UK Takeover Code. However, Regulation 24 of the Articles sets out provisions regulating takeover offers in respect of the Company. In particular, Regulation 24.2(a) provides that a person must not, whether by himself or with persons determined by the Board to be acting in concert with him, acquire an interest in shares which, taken together with shares in which persons determined by the Board to be acting in concert with him have become interested, carry 30 per cent. or more of the voting rights attributable to all the shares of the Company, except as a result of a "
+Permitted Acquisition
+". A "
+Permitted Acquisition
+" would either be (i) an acquisition approved by Shareholders (excluding any Shareholder carrying out the acquisition together with all persons determined by the Board to be acting in concert with him) or (ii) an acquisition carried out in accordance with Rule 9 of the UK Takeover Code (as if such provision applied to the Company), whereby an offer would need to be made to Shareholders.
+Under the Convertible Loan Agreements, a conversion notice shall not be capable of being served if as a result of the conversion pursuant to that conversion notice, the lender (being either Galloway Limited or Promaco Limited), together with persons with which they are acting in concert, would as a result of the conversion, hold 30% or more of the issued Ordinary Shares of the Company unless such issuance of Ordinary Shares would constitute a "Permitted Acquisition" (the "
+Conversion Condition
+").
+It is not expected that the conversion of the Promaco Loan Facility into Ordinary Shares will cause Promaco Limited, together with any parties acting in concert with them (being the IS Concert Party), to hold 30% or more of the Ordinary Shares in issue. However, as the largest shareholder in the Company, there is a possibility that the conversion of the Total Galloway Loan Amounts could cause the shareholding of Galloway Limited, together with parties acting in concert with Galloway Limited (being the JM Concert Party), to reach 30% or more of the Ordinary Shares. As the conversion amount is not fixed and remains subject to determination at the time of conversion, this cannot be known for sure at this time. Accordingly, it is proposed that the issue of Ordinary Shares pursuant to the Convertible Loan Agreements be approved by the Independent Shareholders in the General Meeting for the purposes of Regulation 24.1(e)(i) and Regulation 24.2(a) of the Articles such that the conversion of the Total Galloway Amounts and the Promaco Loan Facility shall not cause any requirement for an offer to be made to Shareholders under Regulation 24 of the Articles.
+7
+RISK FACTORS
+Shareholders and other prospective investors in the Company should be aware that an investment in the Company involves a high degree of risk. Your attention is drawn to the risk factors set out in Part II of this document.
+8
+FURTHER INFORMATION
+In the year to 31 December 2024, the Earn-in Partner spent approximately $51,000 on the Whistlejacket Project with the material assets being the MEP's over the project. Other than the commitments pursuant to the Earn-in Agreement, there are no material liabilities connected with the Whistlejacket Project.
+Shareholders should read the whole of this document, which provides additional information on the Company, the Whistlejacket Project and the Proposals, and should not rely on summaries of, or individual parts only of, this document. Your attention is drawn, in particular, to Parts II and III of this document.
+9
+GENERAL MEETING
+You will find set out at the
+end of this document a notice convening the General Meeting of the Company to be held at 4.00 p.m. on
+17 February 2026 at
+The Claremont Hotel, 18-22 Loch Promenade, Douglas, Isle of Man, IM1 2LX
+at which the following Resolutions will be proposed:
+Resolution 1: To approve the Earn-in Acquisition. Resolution 1 shall be proposed as an ordinary resolution and all Shareholders shall be entitled to vote in respect thereof.
+Resolution 2: To approve the issue of Ordinary Shares to Galloway Limited and Promaco Limited pursuant to the Convertible Loan Agreements for the purposes of Regulation 24.1(e) and Regulation 24.2(a) of the Articles. Resolution 2 shall be proposed as an ordinary resolution to be taken on a poll of Independent Shareholders only.
+10
+ACTION TO BE TAKEN
+A Form of Proxy and a Form of Instruction for use at the General Meeting are enclosed with this Document.
+Shareholders holding Ordinary Shares in certificated form should complete and sign the Form of Proxy and return it to Computershare Investor Services (Jersey) Limited,
+c/o Computershare Investor Services PLC
+, The Pavilions, Bridgwater Road, Bristol BS99 6ZY; to be received not later than
+4.00 p.m.
+on 13 February 2026 or 48 hours before any adjourned meeting.
+Depositary Interest holders should complete and sign the Form of Instruction and return it to Computershare Investor Services PLC, The Pavilions, Bridgwater Road, Bristol BS99 6ZY; to be received not later than 4.00 p.m. on 12 February 2026 or 72 hours before any adjourned meeting.
+The return of a Form of Proxy or Form of Instruction will not, however, prevent a Shareholder from attending the Meeting of Shareholders and voting in person, should he/she wish to do so. Shareholders who wish to attend in person should contact Computershare Investor Services PLC in advance to confirm what identity documents they should bring with them and to complete a form of representation (available on request from Computershare Investor Services PLC) if necessary.
+11
+RECOMMENDATION
+The Board is of the opinion that the Resolutions are in the best interests of the Company and its Shareholders as a whole. Accordingly, the Directors unanimously recommend that Shareholders vote in favour of the Resolution 1, as the Directors intend to do in respect of their own beneficial shareholdings, which amount in aggregate to 79,633,714 Existing Ordinary Shares, representing approximately 20.39 per cent. of the Existing Ordinary Shares. Additionally, the Independent Directors unanimously recommend that the Independent Shareholders vote in favour of Resolution 2, as the Independent Directors intend to do in respect of their own beneficial shareholdings, which amount in aggregate to 2,666,570 Existing Ordinary Shares, representing approximately 0.68 per cent. of the Existing Ordinary Shares.
+Yours faithfully
+Ian Stalker
+Executive Chairman
+Appendix II
+Defined Terms and Glossary of Technical Terms
+DEFINITIONS
+The following definitions apply throughout this document unless the context otherwise requires:
+"AIM"
+the market of that name operated by the London Stock Exchange;
+"AIM Rules"
+the AIM Rules for Companies and the AIM Rules for Nominated
+Advisers;
+"AIM Rules for Companies"
+the rules which set out the obligations and responsibilities in relation to companies whose shares are admitted to AIM as published by the London Stock Exchange from time to time;
+"AIM Rules for Nominated Advisers"
+the rules which set out the eligibility, obligations and certain disciplinary matters in relation to nominated advisers as published by the London Stock Exchange from time to time;
+"Articles"
+the memorandum and articles of association of the Company for the time being;
+"Board" or "Directors"
+the current directors of the Company, whose names are set out on
+page 4 of this document;
+"BVI"
+the British Virgin Islands;
+"Certificated" or "in Certificated
+Form"
+a share or other security recorded on the relevant register of the
+relevant company as being held in certificated form and title to which
+may be transferred by means of a stock transfer form;
+"Company"
+Bradda Head Lithium Limited, a company incorporated and registered in the BVI
+with registration number 1553975;
+"Competent Person"
+Means
+Hains Engineering Company Limited
+;
+"Competent Person's Report" or "CPR"
+means the independent technical report prepared by the Competent Person for the Company in relation to the Whistlejacket Project as summarised in paragraph
+5
+of Part I of this document and published on the Company's website;
+"Connected Persons"
+has the meaning set out in the UK Takeover Code and includes a spouse, children under 18 and any company in which the relevant person is interested in shares comprising at least one-fifth of the share capital of that company;
+"Convertible Loan Agreements"
+the convertible loan agreements entered into on or around the date of this circular by the Company with each of Galloway Limited and Promaco Limited pursuant to which the New Facilities are made available to the Company;
+"CREST"
+the computerized settlement system to facilitate the transfer of title of shares in uncertificated form operated by Euroclear UK & Ireland Limited;
+"CREST Regulations"
+the Uncertificated Securities Regulations 2001 (SI 2001 No. 3755), as amended;
+"Depositary"
+Computershare Investor Services PLC of The Pavilions, Bridgwater Road, Bristol BS13 8AE;
+"Depositary Interests" or "DIs"
+the interests representing Ordinary Shares issued through the Depositary
+"Earn-in Acquisition"
+the earn-in acquisition by the Company of up to 60 per cent. Interest in the Whistlejacket Project
+, pursuant to the terms of the Earn-in Agreement;
+"Earn-in Agreement"
+the conditional option to JVA dated 26 January 2026 between (1) the Company and (2) the Earn-in Partner, in relation to the earn-in by the Company to acquire up to 60 per cent interest in the Whistlejacket Project, further details of which are set out in paragraph
+4
+of Part I of this document;
+"Earn-in Commitment"
+the aggregate amount to be paid by the Company pursuant to the Earn-in Agreement to earn up to 60 per cent of the Whistlejacket Project as set out in paragraph
+4
+of Part I of this document;
+"Earn-in Partner"
+Kennecott Exploration Company, a wholly owned subsidiary of Rio Tinto plc;
+"Enlarged Group"
+the Group, as enlarged by the Earn-in Acquisition;
+"Existing Galloway Facility"
+the loan facility of US$500,000 made available to the Company by Galloway Limited pursuant to a loan agreement entered into on or around 25 September 2025;
+"Existing Projects"
+the projects owned by the Group prior to the Earn-in Acquisition, as summarised in Part III of this document;
+"Financial Conduct Authority"
+the United Kingdom Financial Conduct Authority;
+"Form of Instruction"
+the form of instruction for use by holders of Depositary Interests in connection with the General Meeting;
+"Form of Proxy"
+the form of proxy enclosed with this document for use by
+Shareholders in connection with the General Meeting;
+"FSMA"
+the Financial Services and Markets Act 2000 of the United Kingdom,
+as amended;
+"General Meeting"
+the general meeting of the Company, convened for 4.00 p.m. on 17 February
+2026, and any adjournment thereof, notice of which is set out at the end of this document;
+"Independent Shareholders"
+Shareholders other than the members of the JM Concert Party and the IS Concert Party;
+"IS Concert Party"
+John Ian Stalker, along with his Connected Persons (including Promaco Limited), being persons presumed to be acting in concert;
+"JM Concert Party"
+James Mellon and Anthony Baillieu along with their Connected Persons (including Galloway Limited), being persons presumed to be acting in concert;
+"London Stock Exchange"
+London Stock Exchange plc;
+"New Facilities"
+the New Galloway Facility and the Promaco Facility;
+"New Galloway Facility"
+the loan facility of US$1,025,000 to be made available to the Company by Galloway Limited pursuant to a Convertible Loan Agreement;
+"Notice"
+the notice of the General Meeting set out at the end of this document;
+"Ordinary Shares"
+ordinary shares in the issued share capital of the Company from time
+to time;
+"Phase One Commitment"
+the obligation of the Company to fund US$5.5 million of Whistlejacket Project expenditures during the Phase One Period as further explained in paragraph
+4
+of Part I of this document;
+"Phase One Period"
+the first three years of the Earn-in Agreement;
+"Projects"
+the Existing Projects and the Whistlejacket Project;
+"Promaco Facility"
+the loan facility of US$250,000 to be made available to the Company by Promaco Limited pursuant to a Convertible Loan Agreement;
+"Resolutions"
+the resolutions to be proposed at the General Meeting, details of
+which are set out in the Notice;
+"Shareholders"
+the persons who are registered as holders of the Ordinary Shares;
+"Sterling" or "£"
+the legal currency of the UK;
+"Total Galloway Commitments"
+US$1,525,000, comprising the Existing Galloway Facility and the New Galloway Facility, each of which shall be governed by the Convertible Loan Agreement entered into by the Company with Galloway Limited;
+"UK" or "United Kingdom"
+the United Kingdom of Great Britain and Northern Ireland;
+UK Takeover Code
+the City Code on Takeovers and Mergers, as amended from time to time;
+"Uncertificated" or "in Uncertificated
+Form"
+a share or other security recorded on the relevant register of the
+relevant company concerned as being held in uncertificated form in CREST and title to which, by virtue of the CREST Regulations, may be transferred by means of CREST;
+"US" or "United States"
+the United States of America, its territories and possessions, any
+states of the United States of America and the District of Columbia and all other areas subject to its jurisdiction;
+"US$"
+the legal currency of the United States;
+"VAT"
+value added tax;
+"Whistlejacket Project"
+the WhistleJacket lithium project located in Yavapai County, Arizona, USA
+; and
+"Year One Commitment"
+the obligation of the Company to fund US%0.75M in the first year of the Earn-in Agreement.
+GLOSSARY OF TECHNICAL TERMS AND MEASUREMENTS
+The following table provides an explanation of certain technical terms and abbreviations used in this document. The terms and their assigned meanings may not correspond to standard industry meanings or usage of these terms. The following table provides an explanation of certain technical terms and abbreviations used in this document. The terms and their assigned meanings may not correspond to standard industry meanings or usage of these terms.
+"ASLD, Arizona State Land Department"
+the agency within the state of Arizona that manages land, both surface and subsurface.
+"brine"
+an aqueous solution containing elevated amounts of dissolved chemical salts.
+"core drilling"
+rotational drilling with a core barrel, core tube, and diamond impregnated bit attached to pipe. The pipe is spun rapidly by a drill rig, which also has a wireline designed to retrieve the core tube after drilling 5, 10, or up to 20 feet per "run" under optimal conditions. The process also uses water pumped to the face of the drill bit to maintain lubrication and prevent becoming stuck in the hole.
+"grade(s)"
+the relative proportion or the percentage of ore-mineral or metal content in a mineral deposit or mineralised fluid.
+"Indicated Mineral Resource"
+that part of a Mineral Resource for which quantity, grade (or quality), densities, shape and physical characteristics are estimated with sufficient confidence to allow the application of modifying factors in sufficient detail to support mine planning and evaluation of the economic viability of the deposit. Geological evidence is derived from adequately detailed and reliable exploration, sampling and testing gathered through appropriate techniques from locations such as outcrops, trenches, pits, workings and drill holes, and is sufficient to assume geological and grade (or quality) continuity between points of observation where data and samples are gathered..
+"Inferred Mineral Resource"
+the part of a mineral deposit for which quantity and grade (or quality) are estimated on the basis of limited geological evidence and sampling. Geological evidence is sufficient to imply but not verify geological grade (or quality) continuity. It is based on exploration, sampling and testing information gathered through appropriate techniques from locations such as outcrops, trenches, pits, workings and drill holes. An Inferred Mineral Resource has a lower level of confidence that that applying to an Indicated Mineral Resources and must not be converted to an Ore Reserve. It is reasonably expected that the majority of Inferred Mineral Resources could be upgraded to Indicated Mineral Resources with continued exploration.
+"LCE"
+lithium carbonate equivalent.
+"Li2O"
+or
+"Li2O"
+lithium oxide - a unit of grade commonly used for hard rock lithium deposits.
+"lithium carbonate equivalent" or "LCE"
+a method of expressing lithium content in terms of lithium carbonate equivalent, which is a form of lithium that is commonly traded.
+"magnetotelluric or MT"
+a
+type of electro-magnetic geophysical survey for determining differences in conductivity of geological formations hundreds of metres below the surface
+.
+"MEP"
+Mineral Exploration Permit granted by the Arizona State Land Department (ASLD) allowing access to mineral rights over 5 year periods, renewable with right of first refusal after 5 years and as long as the Company maintains required payments and/or expenditures.
+"metallurgical"
+pertaining to
+laboratory testwork, undertaken to determine the most appropriate process route for the economic recovery of valuable minerals/metals
+.
+"Measured Mineral Resource"
+That part of a Mineral Resource for which mineralization or other natural material of economic interest may be classified as a Measured Mineral Resource when the nature, quality, quantity and distribution of data are such that the tonnage and grade or quality of the mineralization can be estimated to within close limits and that variation from the estimate would not significantly affect potential economic viability of the deposit. This category requires a high level of confidence in, and understanding of, the geology and controls of the mineral deposit..
+"mg/litre"
+milligrams per litre - a unit of grade commonly used for brine deposits.
+"Mineral Reserves"
+the smaller subset of Mineral Resources deemed economically viable for extraction. While Mineral Resources have potential economic value, the economic viability of extracting these minerals depends on factors such as market prices, extraction costs, and technological developments in metallurgy and processing. Mineral Reserves are the portion of Mineral Resources that can be realistically and economically mined based on location, quantity, grade, geological characteristics, and any other factor that impacts end product value
+.
+"Mineral Resource"
+a concentration or occurrence of solid or liquid material of economic interest in or on the Earth's crust in such form, grade (or quality), and quantity that there are reasonable prospects for eventual economic extraction. The location, quantity, grade (or quality), continuity and other geological characteristics of a Mineral Resource are known, estimated or interpreted from specific geological evidence and knowledge, including sampling. Mineral Resources are sub-divided, in order of increasing geological confidence, into Inferred, Indicated and Measured categories.
+"pegmatite"
+a body of igneous rock characterised by large to giant crystal sizes; certain types of pegmatite may contain lithium minerals.
+"ppm"
+parts per million, commonly used to express grade in mineral and brine deposits (equivalent to one gram per tonne).
+"spodumene"
+a type of pyroxene (a group
+of rock-forming silicate minerals
+) containing lithium with the chemical formula LiAl(Si
+2
+O
+6
+), commonly mined and concentrated by hard rock lithium producers.
+"unpatented"
+an unpatented mining claim is a parcel of Federal land where an individual has asserted a right of possession, which is restricted to the extraction and development of a mineral deposit, but where no land ownership is conveyed.
+"U.S. Bureau of Land Management" or "BLM"
+the agency within the United States Department of the Interior responsible for administering public lands.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+MSCWPUQPGUPQGAU
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
                         background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
                         color: white;
                         border-radius: 50%;
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #10b98140;
-                    ">1</span>
+                    ">2</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #1
+                        RNS ANNOUNCEMENT #2
                     </div>
                 </div>
                 
@@ -951,7 +1623,7 @@
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Completion Date</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Related Party</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1186,9 +1858,9 @@ MSCPPUPAGUPQUQM
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">2</span>
+                    ">3</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #2
+                        RNS ANNOUNCEMENT #3
                     </div>
                 </div>
                 
@@ -1253,7 +1925,7 @@ MSCPPUPAGUPQUQM
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Ontario Inc</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Financial Conduct</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1458,9 +2130,9 @@ HOLEAXFLFDKKEFA
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">3</span>
+                    ">4</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #3
+                        RNS ANNOUNCEMENT #4
                     </div>
                 </div>
                 
@@ -1693,9 +2365,9 @@ HOLEASFLFELKEFA
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">4</span>
+                    ">5</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #4
+                        RNS ANNOUNCEMENT #5
                     </div>
                 </div>
                 
@@ -1760,7 +2432,7 @@ HOLEASFLFELKEFA
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Lithium Limited</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Western Arizona</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1843,198 +2515,6 @@ Privacy Policy
 .
 END
 RAGPKKBKFBDDQBN
-                </div>
-            </details>
-            
-            </div>
-            
-            <div style="
-                margin-bottom: 20px;
-                padding: 18px;
-                background: white;
-                border-radius: 14px;
-                border: 1px solid #e2e8f0;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 30px;
-                        height: 30px;
-                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                        color: white;
-                        border-radius: 50%;
-                        font-weight: 800;
-                        font-size: 15px;
-                        box-shadow: 0 2px 8px #3b82f640;
-                    ">5</span>
-                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #5
-                    </div>
-                </div>
-                
-                
-            <div style="
-                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                color: white;
-                padding: 14px;
-                border-radius: 10px;
-                margin-bottom: 16px;
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">📰</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">Notice of AGM</div>
-                        <span style="
-                            display: inline-block;
-                            background: rgba(255,255,255,0.25);
-                            padding: 2px 10px;
-                            border-radius: 12px;
-                            font-size: 11px;
-                            margin-top: 4px;
-                            font-weight: 600;
-                        ">UPDATE</span>
-                    </div>
-                </div>
-                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    Informational update - monitor for context with other announcements.
-                </div>
-            </div>
-            
-                
-            <div style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 10px;
-                margin: 16px 0;
-            ">
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">9th Dec 2025</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
-                </div>
-            </div>
-            
-                
-                
-                    <div style="margin: 16px 0;">
-                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
-                            
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Lithium Limited</td>
-                    </tr>
-                    
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">100%</td>
-                    </tr>
-                    
-                        </table>
-                    </div>
-                    
-                
-            <details style="margin-top: 16px;">
-                <summary style="
-                    padding: 10px;
-                    background: #f8fafc;
-                    border-radius: 8px;
-                    font-weight: 600;
-                    font-size: 12px;
-                    list-style: none;
-                    cursor: pointer;
-                    color: #64748b;
-                    border: 1px solid #e2e8f0;
-                ">
-                    📄 View Full RNS Text
-                </summary>
-                <div style="
-                    margin-top: 8px;
-                    padding: 14px;
-                    background: #f1f5f9;
-                    border-radius: 8px;
-                    font-family: 'Courier New', monospace;
-                    font-size: 11px;
-                    line-height: 1.5;
-                    color: #475569;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                ">
-9 Dec 2025 07:00
-RNS Number : 7270K
-Bradda Head Lithium Ltd
-09 December 2025
-9 December 2025
-Bradda Head Lithium Limited
-(the "Company")
-Notice of 2025 Annual General Meeting
-Bradda Head Lithium Limited (AIM:BHL), the North America-focused lithium development group, announces that the Company's Annual General Meeting (the "AGM"), originally scheduled for 27 November 2025, will be held at 3:00 pm on 30 December 2025 at the Claremont Hotel, Loch Promenade, Douglas, Isle of Man, and also via the Investor Meet Company online platform.
-The Notice of AGM will also be available on the Company's website
-www.braddaheadltd.com
-.
-Validity of Existing Forms of Proxy and Forms of Instruction
-Forms of Proxy and Forms of Instruction already lodged for the Company's previously scheduled Annual General Meeting on 27 November 2025 (which was postponed) will remain valid and will be applied at the rescheduled Annual General Meeting on 30 December 2025, unless revoked or replaced prior to the deadlines set out in this Notice.
-Investor Meet Company
-In order to ensure that shareholders are able to follow the proceedings of the AGM, the Company will provide access online through the Investor Meet Company platform. However, shareholders will not be able to vote online during the Meeting and are therefore urged to submit their votes via proxy as early as possible.
-Shareholders are also invited to submit questions for the Board to consider. Questions can be pre-submitted in advance of the AGM via the Investor Meet Company Platform up to 9:00 am the day before the AGM, or via the Investor Meet Platform at any time during the AGM itself. The Board will respond to key questions during the meeting and will provide all such answers on its website as soon as possible thereafter.
-Investors can sign up to Investor Meet Company for free and add to meet
-BRADDA HEAD LITHIUM LIMITED
-via:
-https://www.investormeetcompany.com/bradda-head-lithium-limited/register-investor
-Investors who already follow
-BRADDA HEAD LITHIUM LIMITED
-on the Investor Meet Company platform will automatically be invited.
-For further information, please contact:
-Bradda Head Lithium Limited
-Beaumont Cornish
-Shard Capital
-Tavistock
-Company
-Nomad
-Broker
-Investor Relations
-Ian Stalker, Executive Chair
-Denham Eke, Finance Director
-James Biddle /
-Roland Cornish
-Damon Heath / Isabella Pierre
-Nick Elwes /
-Josephine Clerkin
-+44 1624 639 396
-+44 20 7628 3396
-+44 207 186 9927
-+ 44 20 7920 3150
-braddahead@tavistock.co.uk
-About Bradda Head Lithium Ltd.
-Bradda Head Lithium Ltd. is a North America-focused lithium development group. The Company currently has interests in a variety of projects, the most advanced of which are in Central and Western Arizona: The Basin Project (Basin East Project and Basin West Project) and the San Domingo Project.
-The Basin East Project has a Measured Mineral Resource of 20 Mt at an average grade of 929 ppm Li for a total of 99 kt LCE and an Indicated Mineral Resource of 122 Mt at an average grade of 860 ppm Li and an Inferred Mineral Resource of 499 Mt at an average grade of 810 ppm Li for a total of 2.81 Mt LCE. The Group intends to continue to develop its three phase one projects in Arizona, whilst endeavouring to unlock value at its other prospective pegmatite and brine assets in Arizona, Nevada, and Pennsylvania. All of Bradda Head's licences are held on a 100% equity basis and are in close proximity to the required infrastructure. Bradda Head is quoted on the AIM of the London Stock Exchange with the ticker of BHL.
-Nominated Advisor
-Beaumont Cornish Limited ("Beaumont Cornish") is the Company's Nominated Adviser and is authorised and regulated by the FCA. Beaumont Cornish's responsibilities as the Company's Nominated Adviser, including a responsibility to advise and guide the Company on its responsibilities under the AIM Rules for Companies and AIM Rules for Nominated Advisers, are owed solely to the London Stock Exchange. Beaumont Cornish is not acting for and will not be responsible to any other persons for providing protections afforded to customers of Beaumont Cornish nor for advising them in relation to the proposed arrangements described in this announcement or any matter referred to in it.
-This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
-rns@lseg.com
-or visit
-www.rns.com
-.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
-Privacy Policy
-.
-END
-NOAPKFBNFBDDFBK
                 </div>
             </details>
             
@@ -2354,7 +2834,7 @@ NOAPKFBNFBDDFBK
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-29 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-01-30 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.

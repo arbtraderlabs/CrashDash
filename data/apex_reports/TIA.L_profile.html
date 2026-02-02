@@ -163,6 +163,8 @@
             font-weight: 600;
             text-transform: uppercase;
         }
+
+        
         
         .risk-indicator {
             display: flex;
@@ -223,11 +225,11 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">£</span>
-                    <span><strong>Market Cap:</strong> £31,369,127</span>
+                    <span><strong>Market Cap:</strong> £24,943,645</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 1611 days</span>
+                    <span><strong>Days Active:</strong> 1612 days</span>
                 </div>
             </div>
         </div>
@@ -258,8 +260,11 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#10b981; line-height:1;">50</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Setup</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Setup
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Trust -->
@@ -268,8 +273,11 @@
                             <div style="font-size:14px;">🛡️</div>
                             <div style="font-size:28px; font-weight:800; color:#3b82f6; line-height:1;">50</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Trust</div>
-                        <div style="font-size:10px; color:#94a3b8;">20%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Trust
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Panic -->
@@ -278,8 +286,11 @@
                             <div style="font-size:14px;">😱</div>
                             <div style="font-size:28px; font-weight:800; color:#ef4444; line-height:1;">46.4</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Panic</div>
-                        <div style="font-size:10px; color:#94a3b8;">30%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Panic
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Compression -->
@@ -288,34 +299,56 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#f59e0b; line-height:1;">23</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Compression</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Compression
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Timing Scope -->
+            <!-- Timing Scope: Flat segmented bar -->
             <div style="margin-top:24px;">
-                <div style="font-size:12px; color:#475569; font-weight:700; margin-bottom:8px; text-align:center;">Timing Spectrum</div>
+                <!-- position badge removed to avoid overlay on timing spectrum -->
                 <style>
                     @keyframes pulse-ring {
-                        0% { transform: scale(0.8); opacity: 0.9; }
+                        0% { transform: scale(0.7); opacity: 0.9; }
                         70% { transform: scale(2.2); opacity: 0; }
                         100% { transform: scale(2.8); opacity: 0; }
                     }
+                    @keyframes pulse-ring-outer {
+                        0% { transform: scale(0.9); opacity: 0.7; }
+                        50% { transform: scale(1.12); opacity: 0.45; }
+                        100% { transform: scale(1.3); opacity: 0; }
+                    }
                 </style>
-                <div style="position:relative; height:48px; background:linear-gradient(90deg, #ef4444 0%, #f59e0b 25%, #f093fb 50%, #10b981 75%, #064e3b 100%); border-radius:8px;">
-                    <div style="position:absolute; left:calc(30% - 24px); top:calc(50% - 24px); width:48px; height:48px; display:flex; align-items:center; justify-content:center;">
-                        <div style="position:absolute; width:48px; height:48px; border-radius:24px; background:rgba(15,23,42,0.12); animation: pulse-ring 1.8s infinite;"></div>
-                        <div style="width:16px; height:16px; border-radius:8px; background:#0f172a; box-shadow:0 6px 18px rgba(0,0,0,0.12);"></div>
+                <div style="position:relative;">
+                    <div style="display:flex; gap:6px; height:48px; border-radius:8px; overflow:hidden;">
+                        <div style="flex:1; background:#ef4444;"></div>
+                        <div style="flex:1; background:#f59e0b;"></div>
+                        <div style="flex:1; background:#facc15;"></div>
+                        <div style="flex:1; background:#10b981;"></div>
+                        <div style="flex:1; background:#065f46;"></div>
+                    </div>
+
+                    <!-- Pulse pointer positioned by timing_pos_pct -->
+                    <div style="position:absolute; left:calc(30% - 26px); top:0px; width:52px; height:52px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                        <!-- outer grey-white ring to help indicator stand out -->
+                        <div style="position:absolute; width:60px; height:60px; border-radius:30px; background:rgba(249,250,251,0.95); border:2px solid rgba(2,6,23,0.06); box-shadow:0 8px 30px rgba(2,6,23,0.06); animation: pulse-ring-outer 2.2s infinite;"></div>
+                        <!-- inner colored pulse ring -->
+                        <div style="position:absolute; width:52px; height:52px; border-radius:26px; background:#ffe50f; opacity:0.18; animation: pulse-ring 1.6s infinite;"></div>
+                        <!-- core dot with colored border for contrast -->
+                        <div style="width:18px; height:18px; border-radius:9px; background:#ffffff; box-shadow:0 10px 30px rgba(0,0,0,0.22); border:3px solid #f59e0b;"></div>
                     </div>
                 </div>
-                <div style="display:flex; justify-content:space-between; font-size:12px; color:#475569; margin-top:10px;">
-                    <div>Too Early</div>
-                    <div>Early Build</div>
-                    <div>Confirmed</div>
-                    <div>Crowded</div>
-                    <div>Broken</div>
+
+                <div style="display:flex; justify-content:space-between; font-size:12px; margin-top:8px; gap:6px;">
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Too Early</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Early Build</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Confirmed</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Crowded</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Broken</span></div>
                 </div>
 
                 <div style="margin-top:12px; display:flex; justify-content:center;">
@@ -540,8 +573,8 @@
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Holding(s) in Company</div>
-                        <div style="font-size: 12px; color: #64748b;">28th Jan 2026</div>
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">MXC Distribution, Trading Update and Board Changes</div>
+                        <div style="font-size: 12px; color: #64748b;">30th Jan 2026</div>
                     </div>
                 </div>
             </div>
@@ -561,7 +594,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Holding(s) in Company</div>
-                        <div style="font-size: 12px; color: #64748b;">24th Dec 2025</div>
+                        <div style="font-size: 12px; color: #64748b;">28th Jan 2026</div>
                     </div>
                 </div>
             </div>
@@ -878,15 +911,254 @@
                         justify-content: center;
                         width: 30px;
                         height: 30px;
+                        background: linear-gradient(135deg, #f59e0b 0%, #f59e0bdd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #f59e0b40;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #f59e0b 0%, #f59e0bdd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">🔄</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">MXC Distribution, Trading Update and Board Changes</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">CHANGE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Organizational change - assess impact on operations and strategy.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">2:44 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #f59e0b;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #f59e0b;">CAUTION</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">David Niall</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">50%, 81%, 60%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+30 Jan 2026 14:44
+RNS Number : 1538R
+Tialis Essential IT PLC
+30 January 2026
+This announcement contains inside information for the purposes of Article 7 of the Market Abuse Regulation (EU) 596/2014 as it forms part of UK domestic law by virtue of the European Union (Withdrawal) Act 2018 ("MAR"), and is disclosed in accordance with the Company's obligations under Article 17 of MAR.
+30 January 2026
+Tialis Essential IT Plc
+("Tialis" or the "Company")
+Response to liquidation of MXC Capital Limited, distribution of its shareholding in Tialis trading update for the year ended 31 December 2025 and Board Changes
+Tialis Essential IT Plc (AIM: TIA), the AIM
+‑
+quoted provider of essential IT services, has been made aware that MXC Capital Limited ("
+MXC
+"), the Company's largest shareholder, has placed MXC into members' voluntary liquidation and intends to distribute its assets to its shareholders.
+As part of the liquidation, MXC intends to distribute its entire shareholding in Tialis, representing approximately 67.17 per cent. of the Company's issued share capital, to MXC shareholders, conditional on the completion of the liquidation process and compliance with applicable legal and regulatory requirements (the "
+Distribution
+").
+Following completion of the liquidation, MXC has advised the Company that MXC shareholders will receive distributions comprising Tialis ordinary shares plus cash in accordance with the terms of the liquidation. Under the terms of the distribution, all MXC shareholders will receive the same allocation of shares and cash.
+The completion of the liquidation process is expected to take place on 2 March 2026, and the Distribution will happen shortly thereafter.
+Impact on Tialis
+When the Distribution takes place:
+·
+MXC will cease to be a shareholder in the Company;
+·
+Tialis' share register will become more diversified, with Tialis shares held directly by MXC's underlying shareholders; and
+·
+The Company would expect this to increase the free float and liquidity of Tialis shares on AIM.
+The Board does not expect the Distribution to have any operational impact on Tialis' business, strategy or employees.
+Relationship with MXC
+MXC has been a long-standing and supportive shareholder of Tialis and has contributed meaningfully to the Company's development during this period. The Board would like to record its thanks for MXC's continued support and engagement.
+Following completion of the Distribution, any arrangements, understandings or rights which exist between the Company and MXC that are conditional on MXC's shareholding are expected to fall away following completion of the distribution.
+Changes to the board
+Tialis is pleased to announce that David Niall O'Regan ("Niall"), Chief Operating Officer, has joined the Board of the Company with immediate effect and has been promoted to Chief Executive Officer.
+Tialis also announces that Ian Smith has stepped down from his position as Executive Director with immediate effect in order to pursue other business interests. Ian will remain a director of AI Auxesis Limited.
+Niall has been responsible for the Group's operational activities and has worked closely with the Executive Director and Chief Financial Officer to support the delivery of the Group's strategy and operational performance. Niall was appointed to the role in September 2024, having previously served as Commercial Director following the acquisition of certain profitable contracts from Allvotec. He has held several senior leadership roles at Allvotec, including Managing Director, and has over 25 years' experience in senior commercial, sales and operational roles across the technology, managed services, retail, hospitality, and leisure sectors.
+Peter Hallett, current Non-Executive Director has been appointed as Interim Non-Executive Chairman.
+Trading Update for the year ended 31 December 2025
+Tialis gives an update on trading for the year ended 31 December 2025.
+Financial Highlights
+Group
+·
+Revenue for the year is expected to be no less than £17m
+·
+Adjusted EBITDA
+1
+for the year is expected to be no less than £1.8m
+·
+Repayment of the bank borrowings of £1m (2024: £nil)
+·
+£8.2m invested during the year to support long‑term value creation and portfolio diversification through the acquisition of MXLG Acquisitions Limited ("MXLGA"),
+AI Auxesis Limited, CloudCoco Group Plc, Digital Petcare Direct Limited and QPC 2020 Limited
+o
+MXLGA (50% joint venture investment) - £7.2m
+o
+CloudCoCo Group Plc - £0.2m
+o
+QPC 2020 Limited - £0.3m
+o
+Digital Petcare Direct Limited - £0.5m
+·
+Customer concentration risk reduced materially, with exposure from the largest customer declining from 81% (2024) to 60% (2025).
+·
+Tialis enter 2026 with a current sales pipeline of £9m with 13 different partners
+Joint venture
+·
+MXLGA finished the year with expected revenue to be no less than £22m and adjusted EBITDA
+1
+for the year is expected to be no less than £2.2m
+·
+MXLGA enters 2026 with confirmed orders of £8.1m revenue and a pipeline revenue for Q1 2026 of £3.3m, reflecting advanced opportunities within existing customer demand.
+1
+Adjusted EBITDA excludes share-based payment charges along with depreciation, amortisation, interest, and tax from the measure of profit.
+Peter Hallett, Interim Non-Executive Chairman, commented:
+"Tialis is supportive of MXC's proposal. The proposed distribution would result in a more diversified shareholder base for Tialis and is expected to improve liquidity in the Company's shares. We believe this will be beneficial both for existing shareholders and for those joining the register as a result of the distribution.
+On behalf of the Board, I would like to thank Ian for his valuable support and contribution to Tialis over a number of years. We wish him every success in his future endeavours.
+We are delighted to welcome Niall to the Board, having already benefitted significantly from his experience and expertise in his prior role as Chief Operating Officer."
+For more information, contact:
+Tialis Essential IT Plc
+Peter Hallett, Interim Non-Executive Chairman
+Tel: +44 (0)344 874 1000
+Cavendish Capital Markets Ltd
+Nominated Adviser and Broker
+Corporate Finance: Jonny Franklin-Adams/ Elysia Bough
+Corporate Broking: Tim Redfern
+Tel: +44 (0)20 7220 0500
+Further regulatory disclosures relating to a director appointment
+Other than as disclosed below, there are no further disclosures to be made in accordance with AIM Rule 17 and paragraph (g) of Schedule Two of the AIM Rules for Companies.
+Full Name: David Niall O'Regan
+Age: 58
+Current Directorships / Partnerships:
+·
+Tialis Essential IT Financing Limited
+·
+Tialis Essential IT Manage Limited
+Previous Directorships / Partnerships (held in the past five years)
+None in last 5 years
+Niall does not hold any shares in the Company. Niall holds 53,825 options over ordinary shares of 1p each Tialis Essential IT plc which represent 0.13% of the Company's ordinary issued share capital.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+UPDEALFEDLAKEFA
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
                         background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
                         color: white;
                         border-radius: 50%;
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">1</span>
+                    ">2</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #1
+                        RNS ANNOUNCEMENT #2
                     </div>
                 </div>
                 
@@ -1177,9 +1449,9 @@ HOLBPMATMTITBMF
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">2</span>
+                    ">3</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #2
+                        RNS ANNOUNCEMENT #3
                     </div>
                 </div>
                 
@@ -1448,9 +1720,9 @@ HOLBPMATMTJTBRF
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">3</span>
+                    ">4</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #3
+                        RNS ANNOUNCEMENT #4
                     </div>
                 </div>
                 
@@ -1720,9 +1992,9 @@ HOLTJBBTMTJTTFA
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">4</span>
+                    ">5</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #4
+                        RNS ANNOUNCEMENT #5
                     </div>
                 </div>
                 
@@ -1968,278 +2240,6 @@ Privacy Policy
 .
 END
 HOLTJBBTMTJTTAA
-                </div>
-            </details>
-            
-            </div>
-            
-            <div style="
-                margin-bottom: 20px;
-                padding: 18px;
-                background: white;
-                border-radius: 14px;
-                border: 1px solid #e2e8f0;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 30px;
-                        height: 30px;
-                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                        color: white;
-                        border-radius: 50%;
-                        font-weight: 800;
-                        font-size: 15px;
-                        box-shadow: 0 2px 8px #3b82f640;
-                    ">5</span>
-                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #5
-                    </div>
-                </div>
-                
-                
-            <div style="
-                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                color: white;
-                padding: 14px;
-                border-radius: 10px;
-                margin-bottom: 16px;
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">🏛️</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">Holding(s) in Company</div>
-                        <span style="
-                            display: inline-block;
-                            background: rgba(255,255,255,0.25);
-                            padding: 2px 10px;
-                            border-radius: 12px;
-                            font-size: 11px;
-                            margin-top: 4px;
-                            font-weight: 600;
-                        ">HOLDINGS</span>
-                    </div>
-                </div>
-                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    Major holder disclosure - routine regulatory filing.
-                </div>
-            </div>
-            
-                
-            <div style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 10px;
-                margin: 16px 0;
-            ">
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">24th Dec 2025</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
-                </div>
-            </div>
-            
-                
-                
-                    <div style="margin: 16px 0;">
-                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
-                            
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Financial Conduct</td>
-                    </tr>
-                    
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">0%, 0%, 23.9%</td>
-                    </tr>
-                    
-                        </table>
-                    </div>
-                    
-                
-            <details style="margin-top: 16px;">
-                <summary style="
-                    padding: 10px;
-                    background: #f8fafc;
-                    border-radius: 8px;
-                    font-weight: 600;
-                    font-size: 12px;
-                    list-style: none;
-                    cursor: pointer;
-                    color: #64748b;
-                    border: 1px solid #e2e8f0;
-                ">
-                    📄 View Full RNS Text
-                </summary>
-                <div style="
-                    margin-top: 8px;
-                    padding: 14px;
-                    background: #f1f5f9;
-                    border-radius: 8px;
-                    font-family: 'Courier New', monospace;
-                    font-size: 11px;
-                    line-height: 1.5;
-                    color: #475569;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                ">
-24 Dec 2025 07:00
-RNS Number : 7347M
-Tialis Essential IT PLC
-24 December 2025
-TR-1: S
-tandard form for notification of major holdings
-1a. Identity of the issuer or the underlying issuer of existing shares to which voting rights are attached
-ii
-:
-Tialis Essential IT PLC
-ISIN: GB00BN4M3M55
-1b. Please indicate if the issuer is a non-UK issuer
-(please mark with an "X" if appropriate)
-Non-UK issuer
-2. Reason for the notification
-(please mark the appropriate box or boxes with an "X")
-An acquisition or disposal of voting rights
-X
-An acquisition or disposal of financial instruments
-An event changing the breakdown of voting rights
-Other (please specify):
-3. Details of person subject to the notification obligation
-iv
-Name
-MXC JV Limited
-City and country of registered office (if applicable)
-St Peter Port, Guernsey
-4. Full name of shareholder(s)
-(if different from 3.)
-v
-Name
-City and country of registered office (if applicable)
-5. Date on which the threshold was crossed or reached
-vi
-:
-27-Oct-2025
-6.
-Date on which issuer notified:
-23-Dec-2025
-7. Total positions of person(s) subject to the notification obligation
-% of voting rights attached to shares (total of 8. A)
-% of
-voting rights through
-financial instruments(total of 8.B 1 + 8.B 2)
-Total of both in % (8.A + 8.B)
-Total number of voting rights of issuer
-vii
-Resulting situation on the date on which threshold was crossed or reached
-0%
-0%
-39,909,832
-Position of previous notification (if
-applicable)
-23.9%
-23.9%
-8. Notified details of the resulting situation on the date on which the threshold was crossed or reached
-viii
-A: Voting rights attached to shares
-Class/type ofshares
-ISIN code (if possible)
-Number of voting rights
-ix
-% of voting rights
-Direct
-(Art 9 of Directive 2004/109/EC) (DTR5.1)
-Indirect
-(Art 10 of Directive 2004/109/EC) (DTR5.2.1)
-Direct
-(Art 9 of Directive 2004/109/EC) (DTR5.1)
-Indirect
-(Art 10 of Directive 2004/109/EC) (DTR5.2.1)
-Ordinary Shares of 1p each
-ISIN GB00BN4M3M55
-0
-N/A
-0%
-N/A
-SUBTOTAL 8. A
-0
-0%
-B 1: Financial Instruments according to Art. 13(1)(a) of Directive 2004/109/EC (DTR5.3.1.1 (a))
-Type of financial instrument
-Expirationdate
-x
-Exercise/Conversion Period
-xi
-Number of voting rights that may be acquired if the instrument is
-exercised/converted.
-% of voting rights
-SUBTOTAL 8. B 1
-B 2: Financial Instruments with similar economic effect according to Art. 13(1)(b) of Directive 2004/109/EC (DTR5.3.1.1 (b))
-Type of financial instrument
-Expirationdate
-x
-Exercise/Conversion Period
-xi
-Physical or cash
-settlement
-xii
-Number of voting rights
-% of voting rights
-SUBTOTAL 8.B.2
-9. Information in relation to the person subject to the notification obligation
-(please mark the
-applicable box with an "X")
-Person subject to the notification obligation is not controlled by any natural person or legal entity and does not control any other undertaking(s) holding directly or indirectly an interest in the (underlying) issuer
-xiii
-X
-Full
-chain of controlled undertakings through which the voting rights and/or thefinancial instruments are effectively held starting with the ultimate controlling natural person or legal entity
-xiv
-(please add additional rows as necessary)
-Name
-xv
-% of voting rights if it equals or is higher than the notifiable threshold
-% of voting rights through financial instruments if it equals or is higher than the notifiable threshold
-Total of both if it equals or is higher than the notifiable threshold
-10. In case of proxy voting, please identify:
-Name of the proxy holder
-N/A
-The number and % of voting rights held
-N/A
-The date until which the voting rights will be held
-N/A
-11. Additional information
-xvi
-Place of completion
-London
-Date of completion
-27-Oct-2025
-This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
-rns@lseg.com
-or visit
-www.rns.com
-.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
-Privacy Policy
-.
-END
-HOLTJBBTMTJTTJA
                 </div>
             </details>
             
@@ -2559,7 +2559,7 @@ HOLTJBBTMTJTTJA
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-29 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-01-31 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.

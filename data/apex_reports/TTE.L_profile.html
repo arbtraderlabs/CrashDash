@@ -163,6 +163,8 @@
             font-weight: 600;
             text-transform: uppercase;
         }
+
+        
         
         .risk-indicator {
             display: flex;
@@ -223,11 +225,11 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">£</span>
-                    <span><strong>Market Cap:</strong> £1,306,072,533</span>
+                    <span><strong>Market Cap:</strong> £1,309,072,030</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 1658 days</span>
+                    <span><strong>Days Active:</strong> 1659 days</span>
                 </div>
             </div>
         </div>
@@ -258,8 +260,11 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#10b981; line-height:1;">55</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Setup</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Setup
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Trust -->
@@ -268,8 +273,11 @@
                             <div style="font-size:14px;">🛡️</div>
                             <div style="font-size:28px; font-weight:800; color:#3b82f6; line-height:1;">40</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Trust</div>
-                        <div style="font-size:10px; color:#94a3b8;">20%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Trust
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Panic -->
@@ -278,8 +286,11 @@
                             <div style="font-size:14px;">😱</div>
                             <div style="font-size:28px; font-weight:800; color:#ef4444; line-height:1;">63.2</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Panic</div>
-                        <div style="font-size:10px; color:#94a3b8;">30%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Panic
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Compression -->
@@ -288,34 +299,56 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#f59e0b; line-height:1;">41</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Compression</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Compression
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Timing Scope -->
+            <!-- Timing Scope: Flat segmented bar -->
             <div style="margin-top:24px;">
-                <div style="font-size:12px; color:#475569; font-weight:700; margin-bottom:8px; text-align:center;">Timing Spectrum</div>
+                <!-- position badge removed to avoid overlay on timing spectrum -->
                 <style>
                     @keyframes pulse-ring {
-                        0% { transform: scale(0.8); opacity: 0.9; }
+                        0% { transform: scale(0.7); opacity: 0.9; }
                         70% { transform: scale(2.2); opacity: 0; }
                         100% { transform: scale(2.8); opacity: 0; }
                     }
+                    @keyframes pulse-ring-outer {
+                        0% { transform: scale(0.9); opacity: 0.7; }
+                        50% { transform: scale(1.12); opacity: 0.45; }
+                        100% { transform: scale(1.3); opacity: 0; }
+                    }
                 </style>
-                <div style="position:relative; height:48px; background:linear-gradient(90deg, #ef4444 0%, #f59e0b 25%, #f093fb 50%, #10b981 75%, #064e3b 100%); border-radius:8px;">
-                    <div style="position:absolute; left:calc(70% - 24px); top:calc(50% - 24px); width:48px; height:48px; display:flex; align-items:center; justify-content:center;">
-                        <div style="position:absolute; width:48px; height:48px; border-radius:24px; background:rgba(15,23,42,0.12); animation: pulse-ring 1.8s infinite;"></div>
-                        <div style="width:16px; height:16px; border-radius:8px; background:#0f172a; box-shadow:0 6px 18px rgba(0,0,0,0.12);"></div>
+                <div style="position:relative;">
+                    <div style="display:flex; gap:6px; height:48px; border-radius:8px; overflow:hidden;">
+                        <div style="flex:1; background:#ef4444;"></div>
+                        <div style="flex:1; background:#f59e0b;"></div>
+                        <div style="flex:1; background:#facc15;"></div>
+                        <div style="flex:1; background:#10b981;"></div>
+                        <div style="flex:1; background:#065f46;"></div>
+                    </div>
+
+                    <!-- Pulse pointer positioned by timing_pos_pct -->
+                    <div style="position:absolute; left:calc(70% - 26px); top:0px; width:52px; height:52px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                        <!-- outer grey-white ring to help indicator stand out -->
+                        <div style="position:absolute; width:60px; height:60px; border-radius:30px; background:rgba(249,250,251,0.95); border:2px solid rgba(2,6,23,0.06); box-shadow:0 8px 30px rgba(2,6,23,0.06); animation: pulse-ring-outer 2.2s infinite;"></div>
+                        <!-- inner colored pulse ring -->
+                        <div style="position:absolute; width:52px; height:52px; border-radius:26px; background:#17ffbb; opacity:0.18; animation: pulse-ring 1.6s infinite;"></div>
+                        <!-- core dot with colored border for contrast -->
+                        <div style="width:18px; height:18px; border-radius:9px; background:#ffffff; box-shadow:0 10px 30px rgba(0,0,0,0.22); border:3px solid #10b981;"></div>
                     </div>
                 </div>
-                <div style="display:flex; justify-content:space-between; font-size:12px; color:#475569; margin-top:10px;">
-                    <div>Too Early</div>
-                    <div>Early Build</div>
-                    <div>Confirmed</div>
-                    <div>Crowded</div>
-                    <div>Broken</div>
+
+                <div style="display:flex; justify-content:space-between; font-size:12px; margin-top:8px; gap:6px;">
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Too Early</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Early Build</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Confirmed</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Crowded</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Broken</span></div>
                 </div>
 
                 <div style="margin-top:12px; display:flex; justify-content:center;">
@@ -540,6 +573,26 @@
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">TotalEnergies and Galp Reinforce Their Long-Term Commitment to Namibia in High‑Level Presidential Meeting</div>
+                        <div style="font-size: 12px; color: #64748b;">30th Jan 2026</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Mozambique LNG Announces the Full Restart of All Its Activities Onshore and Offshore in Mozambique</div>
+                        <div style="font-size: 12px; color: #64748b;">29th Jan 2026</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">France: TotalEnergies to Supply 800 GWh of Renewable Electricity to Paper Manufacturer SWM Over 10 Years</div>
                         <div style="font-size: 12px; color: #64748b;">28th Jan 2026</div>
                     </div>
@@ -562,26 +615,6 @@
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">TotalEnergies SE: Fourth Quarter 2025: Main Indicators</div>
                         <div style="font-size: 12px; color: #64748b;">20th Jan 2026</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
-                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
-                    <span style="font-size: 18px;">📢</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Bahrain: TotalEnergies and Bapco Energies Launch BxT Trading, a New Player in the Trading of Petroleum Products in the Middle East</div>
-                        <div style="font-size: 12px; color: #64748b;">14th Jan 2026</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
-                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
-                    <span style="font-size: 18px;">📢</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Nigeria: TotalEnergies Signs a Sale and Purchase Agreement in View of Divesting its Oil Interest in Renaissance JV (formerly SPDC)</div>
-                        <div style="font-size: 12px; color: #64748b;">14th Jan 2026</div>
                     </div>
                 </div>
             </div>
@@ -893,6 +926,336 @@
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
                     <span style="font-size: 20px;">📰</span>
                     <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">TotalEnergies and Galp Reinforce Their Long-Term Commitment to Namibia in High‑Level Presidential Meeting</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">12:47 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">BUS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Media Relations</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+30 Jan 2026 12:47
+Patrick Pouyanné, Chairman and CEO of TotalEnergies (Paris:TTE) (LSE:TTE) (NYSE:TTE) and Paula Amorim, Chairman of Galp, held a joint meeting today with the President of the Republic of Namibia, Netumbo Nandi-Ndaitwah, to reiterate their long‑term commitment to the country and provide an update on the progress and next steps of their recently announced partnership across key offshore licenses in the Orange Basin.
+This meeting follows the agreement under which TotalEnergies will become
+operator
+of Petroleum Exploration License (PEL) 83, home to the Mopane discoveries, while Galp will enter PEL 56 and PEL 91, home to the Venus discovery.
+During this meeting, TotalEnergies and Galp reaffirmed their strong confidence towards Namibia as a future oil and gas producing country and reiterated their long‑term commitment to the responsible development of Namibia energy resources, nation-wide value creation and close cooperation with government institutions.
+The companies updated the Presidency on the transaction and the operatorship transition, highlighted the partnership’s expected contributions to employment, skills development and local industry, and underlined the importance of continued regulatory support for the efficient execution of upcoming project phases.
+For the Venus project, with a well-defined development concept, partners are working to secure all conditions enabling a potential final investment decision in 2026. At Mopane, an exploration and appraisal campaign of 3 wells is planned to commence in 2026 to further expand the understanding of the resources and progress the project toward development stage.
+“Our partnership with Galp marks an important milestone as Namibia prepares to become an important energy‑producing nation. Together, we are committed to developing the country’s deepwater potential responsibly and efficiently, while building long‑term value for Namibia and other stakeholders. By aligning our strengths across both Venus and Mopane, we are laying the foundation for a new energy hub in the region—one that combines operational excellence, local development and shared prosperity,” highlighted
+Patrick Pouyanné, Chairman and CEO of TotalEnergies.
+“Solid partnerships are a core pillar of Galp’s growth strategy. The Mopane discoveries represent a transformational opportunity and partnering with a global footprint deep‑water leader like TotalEnergies ensures these resources can be developed efficiently and sustainably for the benefit of Namibia and all stakeholders. Our commitment to Namibia has never been stronger. We are confident that this geography will emerge as a relevant future global energy ecosystem,” highlighted
+Galp’s Chairman, Paula Amorim.
+About TotalEnergies
+TotalEnergies is a global integrated energy company that produces and markets energies: oil and biofuels, natural gas, biogas and low-carbon hydrogen, renewables and electricity. Our more than 100,000 employees are committed to providing as many people as possible with energy that is more reliable, more affordable and more sustainable. Active in about 120 countries, TotalEnergies places sustainability at the heart of its strategy, its projects and its operations.
+About Galp
+Galp is an energy company committed to developing efficient and sustainable solutions in its operations and in the integrated offers it provides to its customers. We create simple, flexible, and competitive solutions for the energy or mobility needs of both large industries and small and medium-sized enterprises, as well as the individual consumer. Our offer includes various forms of energy – from electricity produced with renewable sources to natural gas and liquid fuels. As a producer, we extract oil and natural gas from reservoirs located kilometers below the sea surface, and we are also one of the main Iberian producers of solar-based electricity. We contribute to the economic development of the countries in which we operate and to the social progress of our host communities. Galp directly employs more than 7,000 people.
+TotalEnergies Contacts
+Media Relations:+33 (0)1 47 44 46 99l
+presse@totalenergies.com
+l
+@TotalEnergiesPR
+Investor Relations: +33 (0)1 47 44 46 46 l
+ir@totalenergies.com
+@TotalEnergies
+TotalEnergies
+TotalEnergies
+TotalEnergies
+Galp Media Relations
+Diogo Sousa, Pedro Marques Pereira, Gonçalo Venâncio |
+galp.press@galp.com
+Cautionary Note
+The terms “TotalEnergies”, “TotalEnergies company” or “Company” in this document are used to designate TotalEnergies SE and the consolidated entities that are directly or indirectly controlled by TotalEnergies SE. Likewise, the words “we”, “us” and “our” may also be used to refer to these entities or to their employees. The entities in which TotalEnergies SE directly or indirectly owns a shareholding are separate legal entities. This document may contain forward-looking information and statements that are based on a number of economic data and assumptions made in a given economic, competitive and regulatory environment. They may prove to be inaccurate in the future and are subject to a number of risk factors. Neither TotalEnergies SE nor any of its subsidiaries assumes any obligation to update publicly any forward-looking information or statement, objectives or trends contained in this document whether as a result of new information, future events or otherwise. Information concerning risk factors, that may affect TotalEnergies’ financial results or activities is provided in the most recent Universal Registration Document, the French-language version of which is filed by TotalEnergies SE with the French securities regulator Autorité des Marchés Financiers (AMF), and in the Form 20-F filed with the United States Securities and Exchange Commission (SEC).
+View source version on businesswire.com:
+https://www.businesswire.com/news/home/20260129322720/en/
+Copyright Business Wire 2026
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Mozambique LNG Announces the Full Restart of All Its Activities Onshore and Offshore in Mozambique</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">29th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">3:55 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">BUS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Beas Rovuma</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">40%, 26.5%, 20%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+29 Jan 2026 15:55
+Patrick Pouyanné, Chairman and CEO of TotalEnergies (Paris:TTE) (LSE:TTE) (NYSE:TTE), met today in Afungi with His Excellency Daniel Chapo, President of the Republic of Mozambique, and have announced together the full restart of Mozambique LNG project activities.
+This restart of project activities onshore and offshore follows the decision made on 7 November 2025, by Mozambique LNG consortium to lift the Force Majeure that was declared in 2021 and resume project activities.
+During the meeting, the government of Mozambique confirmed its commitment to work together with Mozambique LNG to support the restart of project activities and address the consequences of the Force Majeure period. In particular, the Government confirmed all measures taken to address the security and the continued cooperation with Rwanda.
+Construction activities have now restarted both offshore and onshore at Afungi site, with over 4,000 workers currently mobilized of which over 3,000 are Mozambican nationals. First LNG is expected in 2029 as the project progress is currently at 40% - almost all engineering and procurement of main equipments have been executed during the force majeure period.
+The Mozambique LNG project will bring significant economic benefits to Mozambique during its development phase, notably through an ambitious local content plan. The project will provide up to 7,000 direct jobs for Mozambicans during construction, and contracts awarded to Mozambican compagnies are expected to amount to more than USD 4 billion.
+In addition, Mozambique LNG has launched a large-scale socio-economic development program to support local communities in Cabo Delgado province. The Mozambique LNG Foundation, established in 2023 and endowed with a budget of USD 200 million, has already delivered tangible results, with over 8,000 jobs created and 7,000 farmers and fishermen supported by the Foundation in Cabo Delgado province.
+“The full restart of project activities marks a major milestone for Mozambique LNG and the country. I want to thank President Chapo and all Mozambican authorities for their commitment to the project. We are now working together to make this project a great success for the people of Mozambique”, said
+Patrick Pouyanné, Chairman and CEO of TotalEnergies
+. “This landmark project will position Mozambique as a major LNG exporter. With its strong local content, it will also bring lasting economic benefits to Mozambican people.”
+“The resumption of the project represents a significant milestone for the national economy and reaffirms the confidence of international partners in Mozambique’s energy, institutional and human potential. It will have a direct and significant impact on job creation, both in construction phase and in the operational phase, stimulating the national labor market and promoting the capacity-building of Mozambican manpower. At the same time, it consolidates Mozambique’s positioning as a regional energy hub and reaffirms the country as a credible and relevant actor in the global Liquefied Natural Gas market, strengthening its geostrategic position and its role in global energy security”,
+said His Excellency Daniel Chapo, President of the Republic of Mozambique
+.
+***
+About Mozambique LNG
+Mozambique LNG is a joint venture composed of TotalEnergies EP Mozambique Area 1 (26.5%, operator), Mitsui E&P Mozambique Area 1 (20%), ENH Rovuma Área Um (15%), ONGC Videsh Rovuma (10%), Beas Rovuma Energy Mozambique (10%), BPRL Ventures Mozambique (10%) and PTTEP Mozambique Area 1 (8.5%).
+About TotalEnergies
+TotalEnergies is a global integrated energy company that produces and markets energies: oil and biofuels, natural gas, biogas and low-carbon hydrogen, renewables and electricity. Our more than 100,000 employees are committed to provide as many people as possible with energy that is more reliable, more affordable and more sustainable. Active in about 120 countries, TotalEnergies places sustainability at the heart of its strategy, its projects and its operations.
+@TotalEnergies
+TotalEnergies
+TotalEnergies
+TotalEnergies
+Cautionary Note
+The terms “TotalEnergies”, “TotalEnergies company” or “Company” in this document are used to designate TotalEnergies SE and the consolidated entities that are directly or indirectly controlled by TotalEnergies SE. Likewise, the words “we”, “us” and “our” may also be used to refer to these entities or to their employees. The entities in which TotalEnergies SE directly or indirectly owns a shareholding are separate legal entities. This document may contain forward-looking information and statements that are based on a number of economic data and assumptions made in a given economic, competitive and regulatory environment. They may prove to be inaccurate in the future and are subject to a number of risk factors. Neither TotalEnergies SE nor any of its subsidiaries assumes any obligation to update publicly any forward-looking information or statement, objectives or trends contained in this document whether as a result of new information, future events or otherwise. Information concerning risk factors, that may affect TotalEnergies’ financial results or activities is provided in the most recent Universal Registration Document, the French-language version of which is filed by TotalEnergies SE with the French securities regulator Autorité des Marchés Financiers (AMF), and in the Form 20-F filed with the United States Securities and Exchange Commission (SEC).
+TotalEnergies
+Media Relations: +33 (0)1 47 44 46 99 l
+presse@totalenergies.com
+l
+@TotalEnergiesPR
+Investor Relations: +33 (0)1 47 44 46 46 l
+ir@totalenergies.com
+View source version on businesswire.com:
+https://www.businesswire.com/news/home/20260129408643/en/
+Copyright Business Wire 2026
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
                         <div style="font-weight: 700; font-size: 16px;">France: TotalEnergies to Supply 800 GWh of Renewable Electricity to Paper Manufacturer SWM Over 10 Years</div>
                         <span style="
                             display: inline-block;
@@ -943,7 +1306,7 @@
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Exchange Commission</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Media Relations</td>
                     </tr>
                     
                         </table>
@@ -1062,9 +1425,9 @@ Copyright Business Wire 2026
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">2</span>
+                    ">4</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #2
+                        RNS ANNOUNCEMENT #4
                     </div>
                 </div>
                 
@@ -1129,7 +1492,7 @@ Copyright Business Wire 2026
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Waha Concessions</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Media Relations</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1220,9 +1583,9 @@ Copyright Business Wire 2026
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">3</span>
+                    ">5</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #3
+                        RNS ANNOUNCEMENT #5
                     </div>
                 </div>
                 
@@ -1287,7 +1650,7 @@ Copyright Business Wire 2026
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Exchange Commission</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Arche Nord</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1452,324 +1815,6 @@ sec.gov
 .
 View source version on businesswire.com:
 https://www.businesswire.com/news/home/20260119985120/en/
-Copyright Business Wire 2026
-                </div>
-            </details>
-            
-            </div>
-            
-            <div style="
-                margin-bottom: 20px;
-                padding: 18px;
-                background: white;
-                border-radius: 14px;
-                border: 1px solid #e2e8f0;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 30px;
-                        height: 30px;
-                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                        color: white;
-                        border-radius: 50%;
-                        font-weight: 800;
-                        font-size: 15px;
-                        box-shadow: 0 2px 8px #3b82f640;
-                    ">4</span>
-                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #4
-                    </div>
-                </div>
-                
-                
-            <div style="
-                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                color: white;
-                padding: 14px;
-                border-radius: 10px;
-                margin-bottom: 16px;
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">📰</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">Bahrain: TotalEnergies and Bapco Energies Launch BxT Trading, a New Player in the Trading of Petroleum Products in the Middle East</div>
-                        <span style="
-                            display: inline-block;
-                            background: rgba(255,255,255,0.25);
-                            padding: 2px 10px;
-                            border-radius: 12px;
-                            font-size: 11px;
-                            margin-top: 4px;
-                            font-weight: 600;
-                        ">UPDATE</span>
-                    </div>
-                </div>
-                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    Informational update - monitor for context with other announcements.
-                </div>
-            </div>
-            
-                
-            <div style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 10px;
-                margin: 16px 0;
-            ">
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">14th Jan 2026</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:59 am</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">BUS</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
-                </div>
-            </div>
-            
-                
-                
-                    <div style="margin: 16px 0;">
-                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
-                            
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Exchange Commission</td>
-                    </tr>
-                    
-                        </table>
-                    </div>
-                    
-                
-            <details style="margin-top: 16px;">
-                <summary style="
-                    padding: 10px;
-                    background: #f8fafc;
-                    border-radius: 8px;
-                    font-weight: 600;
-                    font-size: 12px;
-                    list-style: none;
-                    cursor: pointer;
-                    color: #64748b;
-                    border: 1px solid #e2e8f0;
-                ">
-                    📄 View Full RNS Text
-                </summary>
-                <div style="
-                    margin-top: 8px;
-                    padding: 14px;
-                    background: #f1f5f9;
-                    border-radius: 8px;
-                    font-family: 'Courier New', monospace;
-                    font-size: 11px;
-                    line-height: 1.5;
-                    color: #475569;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                ">
-14 Jan 2026 07:59
-Regulatory News:
-TotalEnergies (Paris:TTE) (LSE:TTE) (NYSE:TTE) and Bapco Energies are launching BxT Trading, an equally owned trading joint venture backed by flows from Bapco Energies’ Refinery. The signing ceremony was witnessed yesterday by His Highness Shaikh Nasser bin Hamad Al Khalifa, Representative of His Majesty the King of Bahrain for Humanitarian Works and Youth Affairs and Chairman of Bapco Energies, and Patrick Pouyanné, Chairman and Chief Executive Officer of TotalEnergies in Abu Dhabi.
-As a competitive new player in the Middle East, BxT Trading will support Bahrain’s oil industry by leveraging its downstream portfolio for maximizing value and broadening its access to global markets. Through this joint venture, Bapco Energies will benefit from TotalEnergies' global expertise in trading and will develop advanced trading, pricing, analysis, and risk management capabilities.
-With BxT Trading, TotalEnergies is strengthening its trading position in the Middle East, where the Company already has trading activities, in addition to its international hubs in Houston, Geneva and Singapore. This new initiative enhances the trading teams’ responsiveness and agility, reinforcing their local footprint that enables them to better address regional specificities.
-His Highness Shaikh Nasser bin Hamad Al Khalifa, Representative of His Majesty for Humanitarian Works and Youth Affairs and Chairman of Bapco Energies
-announced: “The launch of BxT Trading reflects the Kingdom’s commitment to forging long-term strategic partnerships with leading global energy companies. BxT Trading represents a strategic step forward for Bapco Energies and the Kingdom of Bahrain. Through this partnership with TotalEnergies, we are enhancing our global trading capabilities, strengthening our downstream value chain, and reinforcing Bahrain’s position as a competitive and trusted player in the international energy markets.”
-Patrick Pouyanné, Chairman and CEO of TotalEnergies
-, stated: “We are happy about this new partnership with Bahrain and Bapco Energies, which strengthens our presence in the Middle East. BxT Trading reflects our long-standing commitment to act as a trusted partner in the region, dedicated to innovation, operational excellence and value creation.”
-***
-About TotalEnergies
-TotalEnergies is a global integrated energy company that produces and markets energies: oil and biofuels, natural gas, biogas and low-carbon hydrogen, renewables and electricity. Our more than 100,000 employees are committed to provide as many people as possible with energy that is more reliable, more affordable and more sustainable. Active in about 120 countries, TotalEnergies places sustainability at the heart of its strategy, its projects and its operations.
-About BxT Trading
-BXT Trading is a joint venture between Bapco Energies and TotalEnergies, combining Bapco Energies’ deep local roots with TotalEnergies’ global trading expertise to create a platform that is both locally grounded and globally connected. Guided by the principle of energies in motion, BXT Trading is committed to enabling the efficient and reliable flow of energy products, with rigorous risk management, a commitment to operational excellence, and high HSSE standards. BXT Trading is set to deliver sustainable value to stakeholders while positioning the Kingdom of Bahrain as a trusted player in international energy markets.
-@TotalEnergies
-TotalEnergies
-TotalEnergies
-TotalEnergies
-Cautionary Note
-The terms “TotalEnergies”, “TotalEnergies company” or “Company” in this document are used to designate TotalEnergies SE and the consolidated entities that are directly or indirectly controlled by TotalEnergies SE. Likewise, the words “we”, “us” and “our” may also be used to refer to these entities or to their employees. The entities in which TotalEnergies SE directly or indirectly owns a shareholding are separate legal entities. This document may contain forward-looking information and statements that are based on a number of economic data and assumptions made in a given economic, competitive and regulatory environment. They may prove to be inaccurate in the future and are subject to a number of risk factors. Neither TotalEnergies SE nor any of its subsidiaries assumes any obligation to update publicly any forward-looking information or statement, objectives or trends contained in this document whether as a result of new information, future events or otherwise. Information concerning risk factors, that may affect TotalEnergies’ financial results or activities is provided in the most recent Universal Registration Document, the French-language version of which is filed by TotalEnergies SE with the French securities regulator Autorité des Marchés Financiers (AMF), and in the Form 20-F filed with the United States Securities and Exchange Commission (SEC).
-TotalEnergies
-Media Relations: +33 (0)1 47 44 46 99l
-presse@totalenergies.com
-l
-@TotalEnergiesPR
-Investor Relations: +33 (0)1 47 44 46 46 l
-ir@totalenergies.com
-View source version on businesswire.com:
-https://www.businesswire.com/news/home/20260113595043/en/
-Copyright Business Wire 2026
-                </div>
-            </details>
-            
-            </div>
-            
-            <div style="
-                margin-bottom: 20px;
-                padding: 18px;
-                background: white;
-                border-radius: 14px;
-                border: 1px solid #e2e8f0;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 30px;
-                        height: 30px;
-                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
-                        color: white;
-                        border-radius: 50%;
-                        font-weight: 800;
-                        font-size: 15px;
-                        box-shadow: 0 2px 8px #10b98140;
-                    ">5</span>
-                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #5
-                    </div>
-                </div>
-                
-                
-            <div style="
-                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
-                color: white;
-                padding: 14px;
-                border-radius: 10px;
-                margin-bottom: 16px;
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">📈</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">Nigeria: TotalEnergies Signs a Sale and Purchase Agreement in View of Divesting its Oil Interest in Renaissance JV (formerly SPDC)</div>
-                        <span style="
-                            display: inline-block;
-                            background: rgba(255,255,255,0.25);
-                            padding: 2px 10px;
-                            border-radius: 12px;
-                            font-size: 11px;
-                            margin-top: 4px;
-                            font-weight: 600;
-                        ">DIRECTOR BUY</span>
-                    </div>
-                </div>
-                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    Positive development - monitor for follow-through in share price.
-                </div>
-            </div>
-            
-                
-            <div style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 10px;
-                margin: 16px 0;
-            ">
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">14th Jan 2026</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:42 am</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BUS</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
-                </div>
-            </div>
-            
-                
-                
-                    <div style="margin: 16px 0;">
-                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
-                            
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Exchange Commission</td>
-                    </tr>
-                    
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">10%, 55%, 30%</td>
-                    </tr>
-                    
-                        </table>
-                    </div>
-                    
-                
-            <details style="margin-top: 16px;">
-                <summary style="
-                    padding: 10px;
-                    background: #f8fafc;
-                    border-radius: 8px;
-                    font-weight: 600;
-                    font-size: 12px;
-                    list-style: none;
-                    cursor: pointer;
-                    color: #64748b;
-                    border: 1px solid #e2e8f0;
-                ">
-                    📄 View Full RNS Text
-                </summary>
-                <div style="
-                    margin-top: 8px;
-                    padding: 14px;
-                    background: #f1f5f9;
-                    border-radius: 8px;
-                    font-family: 'Courier New', monospace;
-                    font-size: 11px;
-                    line-height: 1.5;
-                    color: #475569;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                ">
-14 Jan 2026 07:42
-TotalEnergies announces that its subsidiary TotalEnergies EP Nigeria has signed a Sale and Purchase Agreement (SPA) with Vaaris for the sale of its 10% non-operated interest in the Renaissance JV licenses in Nigeria.
-The Renaissance JV, formerly known as the SPDC JV, is an unincorporated joint venture between Nigerian National Petroleum Corporation Ltd (55%), Renaissance Africa Energy Company Ltd (30%, operator), TotalEnergies EP Nigeria (10%) and Agip Energy and Natural Resources Nigeria (5%), which holds 18 licenses in the Niger Delta.
-Under the agreement signed with Vaaris:
-TotalEnergies EP Nigeria will sell to Vaaris its 10% participating interest and all its rights and obligations in 15 licenses of Renaissance JV, which are producing mainly oil. Production from these licenses represented approximately 16,000 barrels equivalent per day in Company share in 2025. TotalEnergies EP Nigeria will also transfer to Vaaris its 10% participating interest in the 3 other licenses of Renaissance JV which are producing mainly gas (OML 23, OML 28 and OML 77), while TotalEnergies will retain full economic interest in these licenses which currently account for 50% of Nigeria LNG gas supply.
-Closing is subject to customary conditions, including regulatory approvals.
-***
-About TotalEnergies in Nigeria
-TotalEnergies has been present in Nigeria for more than 60 years and employs today more than 1,800 people across different business segments. Nigeria is one of the main contributing countries to TotalEnergies’ hydrocarbon production with 209,000 boe/d produced in 2024. TotalEnergies also operates an extensive distribution network which includes about 540 service stations in the country. In all its operations, TotalEnergies is particularly attentive to the socio-economic development of the country and is committed to working with local communities.
-About TotalEnergies
-TotalEnergies is a global integrated energy company that produces and markets energies: oil and biofuels, natural gas and green gases, renewables and electricity. Our more than 100,000 employees are committed to provide as many people as possible with energy that is more reliable, more affordable and more sustainable. Active in about 120 countries, TotalEnergies places sustainability at the heart of its strategy, its projects and its operations.
-TotalEnergies Contacts
-Corporate Media Relations: +33 (0)1 47 44 46 99 l
-presse@totalenergies.com
-l
-@TotalEnergiesPR
-Investor Relations: +33 (0)1 47 44 46 46 l
-ir@totalenergies.com
-@TotalEnergies
-TotalEnergies
-TotalEnergies
-TotalEnergies
-Cautionary Note
-The terms “TotalEnergies”, “TotalEnergies company” or “Company” in this document are used to designate TotalEnergies SE and the consolidated entities that are directly or indirectly controlled by TotalEnergies SE. Likewise, the words “we”, “us” and “our” may also be used to refer to these entities or to their employees. The entities in which TotalEnergies SE directly or indirectly owns a shareholding are separate legal entities. This document may contain forward-looking information and statements that are based on a number of economic data and assumptions made in a given economic, competitive and regulatory environment. They may prove to be inaccurate in the future and are subject to a number of risk factors. Neither TotalEnergies SE nor any of its subsidiaries assumes any obligation to update publicly any forward-looking information or statement, objectives or trends contained in this document whether as a result of new information, future events or otherwise. Information concerning risk factors, that may affect TotalEnergies’ financial results or activities is provided in the most recent Registration Document, the French-language version of which is filed by TotalEnergies SE with the French securities regulator Autorité des Marchés Financiers (AMF), and in the Form 20-F filed with the United States Securities and Exchange Commission (SEC).
-View source version on businesswire.com:
-https://www.businesswire.com/news/home/20260112451893/en/
 Copyright Business Wire 2026
                 </div>
             </details>
@@ -2090,7 +2135,7 @@ Copyright Business Wire 2026
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-29 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-01-31 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.

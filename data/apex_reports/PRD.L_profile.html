@@ -163,6 +163,8 @@
             font-weight: 600;
             text-transform: uppercase;
         }
+
+        
         
         .risk-indicator {
             display: flex;
@@ -223,11 +225,11 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">£</span>
-                    <span><strong>Market Cap:</strong> £28,418,165</span>
+                    <span><strong>Market Cap:</strong> £27,297,735</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 309 days</span>
+                    <span><strong>Days Active:</strong> 310 days</span>
                 </div>
             </div>
         </div>
@@ -258,8 +260,11 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#10b981; line-height:1;">53</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Setup</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Setup
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Trust -->
@@ -268,8 +273,11 @@
                             <div style="font-size:14px;">🛡️</div>
                             <div style="font-size:28px; font-weight:800; color:#3b82f6; line-height:1;">40</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Trust</div>
-                        <div style="font-size:10px; color:#94a3b8;">20%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Trust
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Panic -->
@@ -278,8 +286,11 @@
                             <div style="font-size:14px;">😱</div>
                             <div style="font-size:28px; font-weight:800; color:#ef4444; line-height:1;">35.1</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Panic</div>
-                        <div style="font-size:10px; color:#94a3b8;">30%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Panic
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Compression -->
@@ -288,34 +299,56 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#f59e0b; line-height:1;">16</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Compression</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Compression
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Timing Scope -->
+            <!-- Timing Scope: Flat segmented bar -->
             <div style="margin-top:24px;">
-                <div style="font-size:12px; color:#475569; font-weight:700; margin-bottom:8px; text-align:center;">Timing Spectrum</div>
+                <!-- position badge removed to avoid overlay on timing spectrum -->
                 <style>
                     @keyframes pulse-ring {
-                        0% { transform: scale(0.8); opacity: 0.9; }
+                        0% { transform: scale(0.7); opacity: 0.9; }
                         70% { transform: scale(2.2); opacity: 0; }
                         100% { transform: scale(2.8); opacity: 0; }
                     }
+                    @keyframes pulse-ring-outer {
+                        0% { transform: scale(0.9); opacity: 0.7; }
+                        50% { transform: scale(1.12); opacity: 0.45; }
+                        100% { transform: scale(1.3); opacity: 0; }
+                    }
                 </style>
-                <div style="position:relative; height:48px; background:linear-gradient(90deg, #ef4444 0%, #f59e0b 25%, #f093fb 50%, #10b981 75%, #064e3b 100%); border-radius:8px;">
-                    <div style="position:absolute; left:calc(30% - 24px); top:calc(50% - 24px); width:48px; height:48px; display:flex; align-items:center; justify-content:center;">
-                        <div style="position:absolute; width:48px; height:48px; border-radius:24px; background:rgba(15,23,42,0.12); animation: pulse-ring 1.8s infinite;"></div>
-                        <div style="width:16px; height:16px; border-radius:8px; background:#0f172a; box-shadow:0 6px 18px rgba(0,0,0,0.12);"></div>
+                <div style="position:relative;">
+                    <div style="display:flex; gap:6px; height:48px; border-radius:8px; overflow:hidden;">
+                        <div style="flex:1; background:#ef4444;"></div>
+                        <div style="flex:1; background:#f59e0b;"></div>
+                        <div style="flex:1; background:#facc15;"></div>
+                        <div style="flex:1; background:#10b981;"></div>
+                        <div style="flex:1; background:#065f46;"></div>
+                    </div>
+
+                    <!-- Pulse pointer positioned by timing_pos_pct -->
+                    <div style="position:absolute; left:calc(30% - 26px); top:0px; width:52px; height:52px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                        <!-- outer grey-white ring to help indicator stand out -->
+                        <div style="position:absolute; width:60px; height:60px; border-radius:30px; background:rgba(249,250,251,0.95); border:2px solid rgba(2,6,23,0.06); box-shadow:0 8px 30px rgba(2,6,23,0.06); animation: pulse-ring-outer 2.2s infinite;"></div>
+                        <!-- inner colored pulse ring -->
+                        <div style="position:absolute; width:52px; height:52px; border-radius:26px; background:#ffe50f; opacity:0.18; animation: pulse-ring 1.6s infinite;"></div>
+                        <!-- core dot with colored border for contrast -->
+                        <div style="width:18px; height:18px; border-radius:9px; background:#ffffff; box-shadow:0 10px 30px rgba(0,0,0,0.22); border:3px solid #f59e0b;"></div>
                     </div>
                 </div>
-                <div style="display:flex; justify-content:space-between; font-size:12px; color:#475569; margin-top:10px;">
-                    <div>Too Early</div>
-                    <div>Early Build</div>
-                    <div>Confirmed</div>
-                    <div>Crowded</div>
-                    <div>Broken</div>
+
+                <div style="display:flex; justify-content:space-between; font-size:12px; margin-top:8px; gap:6px;">
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Too Early</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Early Build</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Confirmed</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Crowded</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Broken</span></div>
                 </div>
 
                 <div style="margin-top:12px; display:flex; justify-content:center;">
@@ -540,6 +573,16 @@
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Total Voting Rights</div>
+                        <div style="font-size: 12px; color: #64748b;">30th Jan 2026</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Notification of Major Holdings</div>
                         <div style="font-size: 12px; color: #64748b;">26th Jan 2026</div>
                     </div>
@@ -572,16 +615,6 @@
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Trinidad Increased Production</div>
                         <div style="font-size: 12px; color: #64748b;">7th Jan 2026</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
-                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
-                    <span style="font-size: 18px;">📢</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">End of Year Operations Update</div>
-                        <div style="font-size: 12px; color: #64748b;">17th Dec 2025</div>
                     </div>
                 </div>
             </div>
@@ -899,6 +932,185 @@
                 margin-bottom: 16px;
             ">
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Total Voting Rights</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">4:25 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Investor Communications</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+Today 16:25
+RNS Number : 1675R
+Predator Oil & Gas Holdings PLC
+30 January 2026
+Predator Oil & Gas Holdings Plc
+("
+Predator
+" or the "
+Company
+" and together with its subsidiaries "
+the Group
+")
+Total Voting Rights
+In accordance with the FCA's Disclosure Guidance and Transparency Rules, as at
+30 January 2026
+, the Company's issued share capital consists of 814,857,814 Ordinary Shares of no par value, each with one voting right. The Company does not hold any Ordinary Shares in treasury. Therefore, the total number of voting rights in the Company is 814,857,814.
+The above figure of 814,857,814 should be used by shareholders in the Company as the denominator for the calculations by which they will determine if they are required to notify their interest in, or a change to their interest in, the share capital of the Company under the Financial Conduct Authority's Disclosure Guidance and Transparency Rules.
+For more information, please visit the Company's website at
+www.predatoroilandgas.com
+Follow the Company on X @PredatorOilGas.
+Enquiries:
+Predator Oil & Gas Holdings Plc
+Paul Griffiths - Chief Executive Officer
+Tel: +44 (0) 1534 834 600
+Info@predatoroilandgas.com
+AlbR Capital Limited
+David Coffman / Jon Belliss
+Oak Securities
+Jerry Keen
+Tel: +44 (0)207 469 0930
+Tel: +44 (0)203 973 3678
+Jerry.keen@oak-securities.com
+Flagstaff Strategic and Investor Communications
+Tim Thompson
+Mark Edwards
+Fergus Mellon
+Tel: +44 (0)207 129 1474
+predator@flagstaffcomms.com
+Notes to Editors:
+Predator is an oil & gas company with a diversified portfolio of scaled assets including unique and highly prospective onshore Moroccan gas exposure, with multiple fully financed upcoming catalysts.
+Predator has an interesting gas project in Morocco with fast pace of commercialisation and significant upside. The Guercif project is a shallow CNG biogenic gas development with different traps and separate identified reservoirs. The Jurassic Titanosaurus is a shallow thermogenic gas prospect evaluating 249m of potential gross reservoir thickness in a trap of maximum closure of 187 km2 for pipeline gas to power, with pipeline 2.5km from wellhead. Moroccan gas prices are high, and the fiscal terms are some of the best in the world. Predator also has a diversified portfolio of assets across Ireland and Trinidad, which is a near-term revenue-generating project.
+Predator has an experienced management team with particular knowledge in Moroccan sub surface and operations. The team specialises in incorporating modern, proven technologies and processes from Canada and the US to provinces where the conventional technologies did not allow their hydrocarbon potential to be revealed.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+TVRWPUWPGUPQGQU
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
                     <span style="font-size: 20px;">🏛️</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 700; font-size: 16px;">Notification of Major Holdings</div>
@@ -1173,9 +1385,9 @@ HOLPPUBWGUPQGMW
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">2</span>
+                    ">3</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #2
+                        RNS ANNOUNCEMENT #3
                     </div>
                 </div>
                 
@@ -1240,7 +1452,7 @@ HOLPPUBWGUPQGMW
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Rex Resources</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Investor Communications</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1390,9 +1602,9 @@ DRLUAOBRNWUAUAR
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">3</span>
+                    ">4</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #3
+                        RNS ANNOUNCEMENT #4
                     </div>
                 </div>
                 
@@ -1457,7 +1669,7 @@ DRLUAOBRNWUAUAR
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Independent Technical</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Investor Communications</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1659,9 +1871,9 @@ IOEGZGMMZLFGVZZ
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">4</span>
+                    ">5</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #4
+                        RNS ANNOUNCEMENT #5
                     </div>
                 </div>
                 
@@ -1726,7 +1938,7 @@ IOEGZGMMZLFGVZZ
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Petroleum Profit</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Investor Communications</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1859,291 +2071,6 @@ Privacy Policy
 .
 END
 MSCZZGGMGVMGVZZ
-                </div>
-            </details>
-            
-            </div>
-            
-            <div style="
-                margin-bottom: 20px;
-                padding: 18px;
-                background: white;
-                border-radius: 14px;
-                border: 1px solid #e2e8f0;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 30px;
-                        height: 30px;
-                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                        color: white;
-                        border-radius: 50%;
-                        font-weight: 800;
-                        font-size: 15px;
-                        box-shadow: 0 2px 8px #3b82f640;
-                    ">5</span>
-                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #5
-                    </div>
-                </div>
-                
-                
-            <div style="
-                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                color: white;
-                padding: 14px;
-                border-radius: 10px;
-                margin-bottom: 16px;
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">📰</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">End of Year Operations Update</div>
-                        <span style="
-                            display: inline-block;
-                            background: rgba(255,255,255,0.25);
-                            padding: 2px 10px;
-                            border-radius: 12px;
-                            font-size: 11px;
-                            margin-top: 4px;
-                            font-weight: 600;
-                        ">UPDATE</span>
-                    </div>
-                </div>
-                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    Informational update - monitor for context with other announcements.
-                </div>
-            </div>
-            
-                
-            <div style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 10px;
-                margin: 16px 0;
-            ">
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">17th Dec 2025</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
-                </div>
-            </div>
-            
-                
-                
-                    <div style="margin: 16px 0;">
-                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
-                            
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Independent Technical</td>
-                    </tr>
-                    
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">30%, 15%, 30%</td>
-                    </tr>
-                    
-                        </table>
-                    </div>
-                    
-                
-            <details style="margin-top: 16px;">
-                <summary style="
-                    padding: 10px;
-                    background: #f8fafc;
-                    border-radius: 8px;
-                    font-weight: 600;
-                    font-size: 12px;
-                    list-style: none;
-                    cursor: pointer;
-                    color: #64748b;
-                    border: 1px solid #e2e8f0;
-                ">
-                    📄 View Full RNS Text
-                </summary>
-                <div style="
-                    margin-top: 8px;
-                    padding: 14px;
-                    background: #f1f5f9;
-                    border-radius: 8px;
-                    font-family: 'Courier New', monospace;
-                    font-size: 11px;
-                    line-height: 1.5;
-                    color: #475569;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                ">
-17 Dec 2025 07:00
-RNS Number : 8270L
-Predator Oil & Gas Holdings PLC
-17 December 2025
-FOR IMMEDIATE RELEASE
-17 December 2025
-Predator Oil & Gas Holdings Plc / Index: LSE / Epic: PRD / Sector: Oil & Gas
-Predator Oil & Gas Holdings Plc
-("Predator" or the "Company" and together with its subsidiaries "the Group")
-End of year operations update
-Highlights
-·
-27,175 barrels oil produced to date
-·
-Gross revenues
-US$806,051 to date
-·
-Net Predator revenues averaging US$100,405 per month
-·
-First fully funded infill development well in Trinidad drilled and tied in
-·
-Fully-funded for up to 12 infill development wells and 14 heavy workovers in 2026
-·
-Forecast up to 1,000 bopd and 5- to 10-fold increase in monthly revenues by end 2026
-·
-Final stages of partnership building and financial engineering for FID for gas appraisal and development
-Predator Oil & Gas Holdings Plc (LSE: PRD), the Jersey based Oil and Gas Company with producing hydrocarbon operations focussed on Trinidad and Morocco,
-is pleased to announce an end of the year operations update.
-Onshore Trinidad
-2025 progress
-·
-Cumulative oil production up at 27,175 barrels at 30/11/25 (452 barrels at 01/01/25).
-·
-Cumulative sales oil up at 25,300 barrels at 31/10/25 (0 barrels at 01/01/25).
-·
-Cumulative gross revenues up at US$806,051 at 31/10/25 (US$0 at 01/01/25).
-·
-Cumulative Predator net revenues up at US$200,810 at 31/10/25 (US$0 at 01/01/25).
-·
-Daily oil production up at 308 bopd at 30/11/25 (4 bopd at 01/01/25).
-1. Execution of Production and Field Services Management Agreement with NABI Construction ("NABI").
-Predator has no exposure to current and future field operating and employee costs and does not have to provide any working capital for drilling and heavy well workovers, for the assets operated by NABI.
-Predator receives 30% of gross sales revenues from existing production less taxes and royalties and 15% of new production until recovery of NABI costs, thereafter 30% of net sales revenues.
-This provides for more efficient utilisation of legacy tax losses acquired following restructuring of the companies acquired in 2025.
-2. Bonasse field oil sales point established at South Erin field.
-3. Two existing Bonasse field wells restored to production and a new shallow infill development well BON-16 drilled in November and put on production.
-4. Increased Bonasse field production by 220 % since 30 October 2025.
-5. Increased production from Goudron, Inniss-Trinity and Icacos fields by 5% between 1 September and 31 October 2025 through better field management.
-Focus to date on improving infrastructure and access roads to areas with wells selected for heavy workovers and sites for infill drilling, and on ordering well inventory.
-6. All fields are now returned to profitability after significant reductions in licence management and administrative costs through consolidation.
-7. Predator management team can now focus on developing and planning new, high value opportunities to drill under the Production and Field Services Management Agreement and on reviewing any new M & A opportunities.
-2026 fully-funded forward programme
-January
-BON-17 second infill development well due to commence at the end of 2025 will be tied into production.
-First of 13 heavy well workovers in Goudron and Inniss-Trinity fields expected to commence.
-February
-Goudron infill development well expected to commence - targeting up to 200 bopd.
-March
-Snowcap-1 re-entry and well workover - targeting 80 to 200 bopd.
-April to May
-Snowcap-3 appraisal well to commence to test 3 reservoirs producing in the adjacent Moruga
-West field for over 50 years - targeting stabilized initial production of up to 400 bopd.
-Snowcap-1 originally tested 1,100 to 1,450 bopd from the Herrera #8 Sand.
-May
-Re-start the Bonasse infill development well programme with up to 10 new shallow wells.
-2026 outlook
-The programme of infield development drilling, heavy workovers of old production wells and Cory Moruga appraisal/development drilling is targeting increasing current production to 1,000 bopd on exiting 2026.
-Using 2025 actual Predator net revenue receipts this is forecast to generate between a five to ten fold increase in monthly production revenues depending on a successful outcome to operations and the prevailing oil price (average monthly Predator share of sales revenues for September and October 2025 US$100,405).
-Onshore Morocco
-2025 progress
-·
-MOU-3 rigless testing of the shallow "A" Sand verified for the first time the extent and causes of formation damage linked to the original drilling programme.
-It validated the NuTech interpretation of gas saturations and gas shows seen whilst drilling before mud weight was increased to shut off gas inflow into the well.
-It provided the data necessary to ensure that appraisal/development wells can be programmed to mitigate against formation damage to enure maximum possible stabilised gas flow rates from the NuTech-interpreted gas reservoirs.
-·
-Focus for initial appraisal and potential development is confined to the section above 950 metres in MOU-3 in the structure penetrated by MOU-1 and MOU-3.
-On this basis discussions with two parties are ongoing on the basis of a fully-funded CNG and/or micro-LNG development.
-·
-A request with agreed terms for an Amendment No.5 to extend the First Extension Period of the Guercif Petroleum Agreement from 5 March 2026 to 5 November 2026 has been submitted.
-This will allow time for a programme of work to be completed to potentially support an application for an Exploitation Concession in 2026.
-·
-MOU-5 was successfully drilled to 1,137 metres and logged using improved drilling practices deployed by the Company's new drilling team to significantly minimise over-balanced drilling.
-MOU-5 was drilled under budget.
-A helium show was encountered that supported the pre-drill helium generation and migration concept.
-Mobilised Triassic salt from a depth below the well was unexpectedly penetrated.
-MOU-5 is a potentially play-opening well for a deeper Triassic TAGI reservoir target that is expected to have good reservoir properties based on a 100-foot Jurassic sand encountered at the base of MOU-5.
-2026 forward programme
-January/February
-An updated Independent Technical Resources report ,which will take into consideration the studies completed in 2025, is likely to uplift gas resources for the MOU-1 and MOU-3 structure.
-Validation of the NuTech interpretation of gas saturations is also likely to significantly increase potential for prospective gas resources beyond the limits of the MOU-1 and MOU-3 structure in the interval down to 950 metres.
-A fully-funded Environmental Impact Assessment will be commenced for a CNG/micro-LNG development together with a preliminary Front End Engineering Design concept.
-Desktop well design and drilling programme will be finalised for an appraisal/development well.
-The purpose of the fully-funded desktop work during this period is to ensure that the Company and its shareholders get the best possible mutually acceptable terms in commercial negotiations to monetise the discovered gas with the existing entities agreeing to join the Company in a potential FID and development programme.
-A successful application for an Exploitation Concession in 2026 will crystalise the considerable value currently assigned to the discovered gas in Guercif licence area.
-2026
-Outlook
-The Company is fully committed to partnering up for potential appraisal and scalable development of its discovered gas in the MOU-1 and MOU-3 structure.
-Subject to a final agreement that incorporates a funding mechanism for an appraisal and development programme the Company will pursue its schedule to complete the work necessary for an application for an Exploitation Concession by the end of Q3 2026.
-Offshore Ireland
-The Company notes that Ireland has recognised security of gas supply and gas storage as a critically important issue by announcing the proposed State-owned FSRU concept as a future strategic national gas reserve.
-The Company believes that the concept, which includes a jetty and an onshore pipeline and terminal, will only only be realised after several years based on the historical Corrib gas terminal planning and environmental experience.
-Far more practical, and likely to be delivered in a shorter timeframe, is an offshore FSRU facility linked to a subsurface storage reservoir in one of the very few remaining oil and gas licences offshore Ireland.
-This could be a public/private sector joint facility combining a strategic gas storage reserve with a commercial business to minimise or eliminate the cost to the consumer so as not to further exacerbate the cost of living crisis, which is linked to energy affordability all-year-round.
-The Company intends to make an application in early 2026 to the Department of Climate, Energy and the Environment under Ireland's Freedom of Information Act to compile all internal documents relating to the award of the Corrib South successor authorisation.
-The results should be interesting and revealing of the protracted procedural process that has been drawn out for over 7 years, contrary to any reasonable industry expectations of acting in good faith.
-Paul Griffiths, Chief Executive Officer of Predator, commented:
-"By the end of 2025 we have eliminated our exposure to field operating costs and the requirement for capital to grow our production and revenues in Trinidad and returned our acquired assets to making an operating profit through astute restructuring of local companies and application of legacy tax losses.
-The fully-funded programme to significantly increase production has commenced already and will accelerate through the first half of 2026, with up to 12 new wells and 14 heavy workovers currently scheduled.
-Senior management is freed up from administrative burdens to focus on generating new high-value drilling opportunities in the Trinidad acreage.
-In Morocco we have reached a position after the 2025 work programme where we can now leverage our position in discovered gas to secure a partnership for funding for an appraisal and potential development programme.
-The oil and gas sector outside of Europe, where the Company prefers to operate, is showing a marked pick-up in exploration and development and M & A activity. This is in marked contrast to most of western Europe and the UK, which is suffering from a security of energy supply issue and cost of living crisis due to lack of investment in developing indigenous gas. We have no such investment constraints in the jurisdictions we operate in, where hydrocarbons, especially gas, are viewed as key ingredients to a much longer-term and more credible, less economically painful, energy transition process.
-We thank our shareholders for their support during a year that has seen extremely challenging public market conditions for the oil and gas sector in general. We look forward to 2026 turning sentiment around."
-For further information visit
-www.predatoroilandgas.com
-Follow the Company on X @PredatorOilGas.
-This announcement contains inside information for the purposes of Article 7 of the Regulation (EU) No 596/2014 on market abuse.
-For more information please visit the Company's website at
-www.predatoroilandgas.com
-:
-Enquiries:
-Predator Oil & Gas Holdings Plc
-Paul Griffiths Chief Executive Officer
-Tel: +44 (0) 1534 834 600
-Info@predatoroilandgas.com
-AlbR Capital Limited
-David Coffman / Jon Belliss
-Tel: +44 (0)207 469 0930
-Flagstaff Strategic and Investor Communications
-Tim Thompson
-Alison Alfrey
-Fergus Mellon
-Tel: +44 (0)207 129 1474
-predator@flagstaffcomms.com
-Notes to Editors:
-Predator is an oil & gas company with a portfolio of assets including unique and highly prospective onshore Moroccan gas exposure and production, appraisal and exploration projects onshore Trinidad.
-Morocco offers a potentially faster route to commercialisation of shallow biogenic gas through a CNG or micro-LNG development. The structure penetrated by the MOU-1 and MOU-3 wells is currently defined as having the best potential for an application for an Exploitation Concession in 2026. The Company is committed to partnering with entities capable of supporting a future development decision and who have already identified the opportunity as one warranting the execution of a Collaboration Agreement and a Memorandum of Understanding. Moroccan gas prices are high, and the fiscal terms are some of the best in the world. The presence of gas export infrastructure adjacent to the MOU-1 and MOU-3 structure allows for a scalable gas development after initial CNG or micro-LNG gas production over time establishes the extent of connected gas volumes and the capability of reservoirs to deliver at plateau rates over time.
-Trinidad offers the security of a mature onshore oil province that has been producing hydrocarbons for over 50 years. Predator has assembled a portfolio of onshore producing fields with opportunities for production enhancement and additional infill development and appraisal drilling. Significant legacy tax losses, economies of scale and the application of new low-cost technologies are factors that can improve profit margins per barrel of oil produced. A Master Services Agreement with local operator NABI Construction relieves the Company of the burden and costs of operating the fields and executing drilling and heavy well workovers. In return the Company receives 30% of gross sales revenues for which it can use its acquired tax losses to substantially reduce Petroleum Profit Tax from 50% to an effective rate of 12.5%.
-Predator has an experienced technical, financial and legal management team with particular knowledge of the Moroccan and Trinidad sub-surface and operations and an ability to complete M & A transactions in Trinidad and receive regulatory approvals in a timely manner and without any unnecessary advisory fees for transactions. The Company's strategy is to operate at a much reduced overhead compared to other operators with portfolios of assets of similar extent to maintain competitiveness.
-Predator Oil & Gas Holdings plc is listed on the
-Equity Shares (transition) category of the Official List of the London Stock Exchange's main market for listed securities
-(symbol: PRD).
-For further information, visit
-www.predatoroilandgas.com
-This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
-rns@lseg.com
-or visit
-www.rns.com
-.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
-Privacy Policy
-.
-END
-UPDGZMMZNVMGKZM
                 </div>
             </details>
             
@@ -2463,7 +2390,7 @@ UPDGZMMZNVMGKZM
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-29 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-01-30 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.

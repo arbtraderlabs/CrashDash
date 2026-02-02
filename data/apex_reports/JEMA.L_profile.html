@@ -163,6 +163,8 @@
             font-weight: 600;
             text-transform: uppercase;
         }
+
+        
         
         .risk-indicator {
             display: flex;
@@ -223,11 +225,11 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">£</span>
-                    <span><strong>Market Cap:</strong> £103,280,056</span>
+                    <span><strong>Market Cap:</strong> £99,068,631</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 1318 days</span>
+                    <span><strong>Days Active:</strong> 1319 days</span>
                 </div>
             </div>
         </div>
@@ -258,8 +260,11 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#10b981; line-height:1;">53</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Setup</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Setup
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Trust -->
@@ -268,8 +273,11 @@
                             <div style="font-size:14px;">🛡️</div>
                             <div style="font-size:28px; font-weight:800; color:#3b82f6; line-height:1;">40</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Trust</div>
-                        <div style="font-size:10px; color:#94a3b8;">20%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Trust
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Panic -->
@@ -278,8 +286,11 @@
                             <div style="font-size:14px;">😱</div>
                             <div style="font-size:28px; font-weight:800; color:#ef4444; line-height:1;">62.0</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Panic</div>
-                        <div style="font-size:10px; color:#94a3b8;">30%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Panic
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Compression -->
@@ -288,34 +299,56 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#f59e0b; line-height:1;">45</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Compression</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Compression
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Timing Scope -->
+            <!-- Timing Scope: Flat segmented bar -->
             <div style="margin-top:24px;">
-                <div style="font-size:12px; color:#475569; font-weight:700; margin-bottom:8px; text-align:center;">Timing Spectrum</div>
+                <!-- position badge removed to avoid overlay on timing spectrum -->
                 <style>
                     @keyframes pulse-ring {
-                        0% { transform: scale(0.8); opacity: 0.9; }
+                        0% { transform: scale(0.7); opacity: 0.9; }
                         70% { transform: scale(2.2); opacity: 0; }
                         100% { transform: scale(2.8); opacity: 0; }
                     }
+                    @keyframes pulse-ring-outer {
+                        0% { transform: scale(0.9); opacity: 0.7; }
+                        50% { transform: scale(1.12); opacity: 0.45; }
+                        100% { transform: scale(1.3); opacity: 0; }
+                    }
                 </style>
-                <div style="position:relative; height:48px; background:linear-gradient(90deg, #ef4444 0%, #f59e0b 25%, #f093fb 50%, #10b981 75%, #064e3b 100%); border-radius:8px;">
-                    <div style="position:absolute; left:calc(70% - 24px); top:calc(50% - 24px); width:48px; height:48px; display:flex; align-items:center; justify-content:center;">
-                        <div style="position:absolute; width:48px; height:48px; border-radius:24px; background:rgba(15,23,42,0.12); animation: pulse-ring 1.8s infinite;"></div>
-                        <div style="width:16px; height:16px; border-radius:8px; background:#0f172a; box-shadow:0 6px 18px rgba(0,0,0,0.12);"></div>
+                <div style="position:relative;">
+                    <div style="display:flex; gap:6px; height:48px; border-radius:8px; overflow:hidden;">
+                        <div style="flex:1; background:#ef4444;"></div>
+                        <div style="flex:1; background:#f59e0b;"></div>
+                        <div style="flex:1; background:#facc15;"></div>
+                        <div style="flex:1; background:#10b981;"></div>
+                        <div style="flex:1; background:#065f46;"></div>
+                    </div>
+
+                    <!-- Pulse pointer positioned by timing_pos_pct -->
+                    <div style="position:absolute; left:calc(70% - 26px); top:0px; width:52px; height:52px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                        <!-- outer grey-white ring to help indicator stand out -->
+                        <div style="position:absolute; width:60px; height:60px; border-radius:30px; background:rgba(249,250,251,0.95); border:2px solid rgba(2,6,23,0.06); box-shadow:0 8px 30px rgba(2,6,23,0.06); animation: pulse-ring-outer 2.2s infinite;"></div>
+                        <!-- inner colored pulse ring -->
+                        <div style="position:absolute; width:52px; height:52px; border-radius:26px; background:#17ffbb; opacity:0.18; animation: pulse-ring 1.6s infinite;"></div>
+                        <!-- core dot with colored border for contrast -->
+                        <div style="width:18px; height:18px; border-radius:9px; background:#ffffff; box-shadow:0 10px 30px rgba(0,0,0,0.22); border:3px solid #10b981;"></div>
                     </div>
                 </div>
-                <div style="display:flex; justify-content:space-between; font-size:12px; color:#475569; margin-top:10px;">
-                    <div>Too Early</div>
-                    <div>Early Build</div>
-                    <div>Confirmed</div>
-                    <div>Crowded</div>
-                    <div>Broken</div>
+
+                <div style="display:flex; justify-content:space-between; font-size:12px; margin-top:8px; gap:6px;">
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Too Early</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Early Build</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Confirmed</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Crowded</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Broken</span></div>
                 </div>
 
                 <div style="margin-top:12px; display:flex; justify-content:center;">
@@ -541,6 +574,36 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Net Asset Value(s)</div>
+                        <div style="font-size: 12px; color: #64748b;">30th Jan 2026</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Dividend Declaration</div>
+                        <div style="font-size: 12px; color: #64748b;">30th Jan 2026</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Final Results</div>
+                        <div style="font-size: 12px; color: #64748b;">30th Jan 2026</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Net Asset Value(s)</div>
                         <div style="font-size: 12px; color: #64748b;">29th Jan 2026</div>
                     </div>
                 </div>
@@ -552,36 +615,6 @@
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Net Asset Value(s)</div>
                         <div style="font-size: 12px; color: #64748b;">28th Jan 2026</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
-                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
-                    <span style="font-size: 18px;">📢</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Holding(s) in Company</div>
-                        <div style="font-size: 12px; color: #64748b;">28th Jan 2026</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
-                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
-                    <span style="font-size: 18px;">📢</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Net Asset Value(s)</div>
-                        <div style="font-size: 12px; color: #64748b;">27th Jan 2026</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
-                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
-                    <span style="font-size: 18px;">📢</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Net Asset Value(s)</div>
-                        <div style="font-size: 12px; color: #64748b;">26th Jan 2026</div>
                     </div>
                 </div>
             </div>
@@ -919,6 +952,1156 @@
             ">
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">11:20 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Global Depositary</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">99%, 99%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+30 Jan 2026 11:20
+RNS Number : 1218R
+JPMorgan Emerging EMEA Securities
+30 January 2026
+JPMORGAN EMERGING EUROPE, MIDDLE EAST & AFRICA SECURITIES PLC (the 'Company')
+Legal Entity Identifier: 549300II3MHI98ZLVH37
+THE COMPANY ANNOUNCES THE UNAUDITED NET ASSET VALUE (NAV) As at: 29 January 2026
+THE NET ASSET VALUE PER SHARE IN PENCE, INCLUDING INCOME WITH DEBT AT FAIR VALUE:
+71.73
+The Directors consider that in the absence of observable market data on its Russian investments resulting from the closure of the Moscow Exchange (MOEX) to overseas investors, there has been a material change to the market value of its Russian investments and therefore a fair value valuation methodology has been applied to those investments held. For its MOEX local stock, an alternative fair value adjustment has been applied to the last trade price on 25th February 2022. The price of these stocks has been determined by taking the live market price as at 25th February 2022 and applying a 99% provision for valuation. Similarly, for the American Depositary Receipts and Global Depositary Receipts an alternative fair value adjustment has been applied to the last trade price on 2nd March 2022 and a 99% provision for valuation applied.
+Name of contact and telephone number for queries:
+Paul Ainger 0044 207 742 6524
+Name of authorised company official responsible for making this notification:
+Paul Winship 0044 207 742 9815 - Company Secretary
+Date: 30 January 2026
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+NAVWPUPGGUPQGGU
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Dividend Declaration</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:02 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Financial Conduct</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+30 Jan 2026 07:02
+RNS Number : 0012R
+JPMorgan Emerging EMEA Securities
+30 January 2026
+LONDON STOCK EXCHANGE ANNOUNCEMENT
+JPMORGAN EMERGING EUROPE, MIDDLE EAST & AFRICA SECURITIES PLC
+DIVIDEND DECLARATION
+Legal Entity Identifier: 549300II3MHI98ZLVH37
+Information disclosed in accordance with DTR 6.1.13
+The Board of JPMorgan Emerging Europe, Middle East & Africa Securities plc
+(the Company)
+announces that, subject to shareholder approval at the Annual General Meeting to be held on 11th March 2026, an ordinary dividend of 0.6 pence per share, for the year ended 31st October 2025, will be paid on 20th March 2026 to shareholders on the register at the close of business on 13th February 2026. The ex-dividend date is 12th February 2026.
+A dividend reinvestment plan is available for shareholders and the last election date is 27th February 2026.
+30th January 2026
+For further information, please contact:
+Joel Clopon
+For and on behalf of
+JPMorgan Funds Limited - Secretary
+0800 20 40 20
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+DIVBLMLTMTITBRF
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #10b98140;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Final Results</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">POSITIVE RESULTS</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Positive development - monitor for follow-through in share price.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">The Turkish</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">6%, 25.5%, 6.0%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+30 Jan 2026 07:00
+RNS Number : 0022R
+JPMorgan Emerging EMEA Securities
+30 January 2026
+LONDON STOCK EXCHANGE ANNOUNCEMENT
+JPMORGAN EMERGING EUROPE, MIDDLE EAST & AFRICA SECURITIES PLC
+FINAL RESULTS FOR THE YEAR ENDED 31ST OCTOBER 2025
+Legal Entity Identifier
+: 549300II3MHI98ZLVH37
+Information disclosed in accordance with the DTR 4.1.3
+CHAIRMAN'S STATEMENT
+"
+The Company delivered a 6% outperformance versus its reference index. Our income continues to remain resilient and in light of this, the Board is announcing a modest increase to the dividend."
+Eric Sanderson
+Chairman
+Overview and Performance
+I am pleased to report that in the year ended 31st October 2025, the Company's net asset value on a total return basis increased by 25.5%, an outperformance of 6.0% against the Company's reference index, the S&P Emerging Europe, Middle East & Africa BMI Net Return in GBP (the 'Reference Index'), which increased 19.5% on a total return basis over the same period. The main reason for the outperformance was stock selection. The Investment Manager's Report on pages 12 to 16 in the Annual Report provides further details.
+On a share price total return basis, the Company returned +79.6% in the 12-month reporting period. As at 31st October 2025, the Company's share price was 216.0 pence, an increase of 79.3% in the reporting period. As at 28th January 2026 the share price was 246.0 pence. The share price is of course very volatile and seems to be heavily influenced by different perceptions at different times of the likelihood of recovering value from the assets located in Russia.
+The Company's Portfolio
+The Company continues to invest in higher quality companies, with a tilt towards value and income and a focus on maximising total return for shareholders. The portfolio's geographical focus is on South Africa, Saudi Arabia, and the United Arab Emirates, which at the year-end represented 25.6%, 20.5% and 12.7% of the portfolio respectively - see page 26 in the Annual Report .
+The tragic events in Ukraine since Russia's military invasion on 24th February 2022 sadly continue whilst recent US led proposals for peace negotiations seem to have faltered.
+The strict economic sanctions that followed the invasion have continued to reduce the valuation of the Company's Russian assets. The Company continues to apply the 99% provision for valuation of the Russian assets, as detailed in note 19. Extensive details on the negative impact that the events in Ukraine have had on the Company are provided in my Chairman's Statement within previous annual reports, which are available on the Company's website
+www.jpmeemeasecurities.com
+.
+The Company is not allowed to and has not engaged in any disposals of its Russian assets during this reporting period due to the continuation of the current strict economic sanctions that followed Russia's invasion of Ukraine in February 2022.
+Update on Russian Court Cases
+As detailed in the numerous RNS announcements that the Company has released in this reporting period and up until the date of this report, since the first half of 2024 when VTB made its $439.5 million claim in the Russian courts against a number of J.P.Morgan legal entities, including JPMorgan Bank International (the Russian sub-custodian for the Company's Russian assets) and the Company, VTB has made additional claims of $81.3 million, $74.5 million and €108 million and Sberbank has made a $830,183 claim against the same defendants. A summary of the status of the each of the claims is detailed in an RNS released on 15th December 2025 which in short, indicates that the Russian court has upheld VTB's $439.5 million claim, but enforcement has not yet been undertaken and proceedings on this and the other cases continue.
+As stated in the previous year's annual report, enforcement of the claim by VTB may result in the insolvency of the Company's sub-custodian in Russia and may constitute a Force Majeure and or Country Risk event (as defined in the contracts that clients have with J.P. Morgan). If the Russian sub-custodian were to be declared insolvent, the Manager has advised us that the Company's Russian assets could not be serviced by them. Russian Presidential Decree 48 suggests that securities and cash held in type 'S' accounts of an insolvent institution will be transferred to an alternative credit organisation or professional participant of the securities market as determined by the Central Bank of Russia. However, the precise mechanism and how this would work in practice with the current sanctions regime is unknown. The Board will provide a further update once more information becomes available.
+The Russian Court continues to allow VTB to include the Company in the list of defendants despite being a separate client entity, rather than a proprietary entity of the J.P. Morgan Asset Management group.
+The RNS announcements released in the reporting period have referred to the protection that the Company may derive from Russian Decree 8 which offers protection to client securities and RUB cash in S type accounts from the enforcement of court decisions issued after 3rd January 2024. The Russian courts have so far respected this. However, the situation remains dynamic. In addition, Presidential Decree 442 published on 23rd May 2024 established a framework for compensating the Russian Federation and/or the Central Bank of Russia for damage caused by 'unfriendly' actions of the United States of America. Decree 442 indicated that a detailed procedure would be published within four months of its issue, however, details of that further procedure remain yet to be published and analysed by market participants.
+In view of the unknown outcome of the VTB and Sberbank cases, there has been no impact on the financial statements as at 31st October 2025. As at 31st October 2025 the Company's Russian investments amounted to 5.7% of the portfolio, although that figure should be considered in the context of the Company's share price premium to net asset value per share of 230.8% as detailed in the Discount Control section below and in the context of the considerable uncertainty attaching to the value of its Russian assets. All these developments reinforce that there is much uncertainty of these values ever being realisable by the Company. The Board has sought to keep shareholders informed of material developments arising in relation to the Company's holdings in its Russian stocks during this continuing difficult period.
+The RNS announcements made by the Company regarding VTB's claims are available to view on the London Stock Exchange website
+https://www.londonstockexchange.com/stock/JEMA/jpmorgan-emerging-europe-middle-east-africa-securities-plc/analysis
+Revenue, Earnings, and Dividend
+The Company's net revenue for the 12 month period to 31st October 2025 after taxation was £247,000 (31st October 2024: £225,000) and the return per share, calculated on the basis of the average number of shares in issue, was 0.61 pence (31st October 2024: 0.56 pence) per share. The Company's ongoing charge of 3.3% (on an annualised basis) as at 31st October 2025 (31st October 2024: 4.2%) although relatively high is reduced from the prior year, in part due to the agreed reduction in the custody fees on Russian assets that the Board negotiated with the Company's custodian JPMorgan Chase Bank, N.A. effective from 1st August 2024.
+The management fee charged by the Manager continues to be based on the Company's assets, excluding the value of the Russian holdings.
+I am pleased to announce that the Company will recommend the payment of a dividend of 0.6p per share (2024: 0.5p per share). This will be funded from net revenue received during the year. Subject to shareholder approval, the dividend will be paid on 20th March 2026 to shareholders on the Company's register on 13th February 2026, with the ex-dividend date set for 12th February 2026. Going forward, the Board's expectation is that an annual dividend will be paid if net revenue allows.
+'S' Account Balances
+At present, the dividends paid from the Russian securities in the Company's portfolio are held in a custody 'S' account in Moscow. As previously detailed, these dividends cannot be remitted to the Company and may never be received. They are not recognised in the Company's net asset value or in its income statement.
+The balance on the 'S' account attributed to the Company as at 23rd January 2026 was equivalent to approximately £54.2 million at the exchange rate applicable on that date. The Company's Manager is monitoring the receipts into the 'S' account against dividends announced by the portfolio companies, although there is no certainty that the sums in the 'S' account will ever be received by the Company. The Board also monitors the underlying local value of the Russian assets, although there remains uncertainty of these values ever being realisable by the Company. See above for reference to the protection afforded to 'S' Accounts by Decree 8. As at 23rd January 2026, an additional £2.4 million of dividend income from Russian portfolio companies has been announced but is yet to be credited to the 'S' account. Your Board also monitors this in order to assess whether all dividends due are in fact accurately recorded in the 'S' account. The addition of these sums to dividends already in an 'S' account brings the total dividends received or announced in relation to our Russian holdings to £56.6 million. For further details regarding 'S' accounts please see the Glossary of Terms and Alternative Performance Measures on page 98 in the Annual Report.
+Furthermore, as detailed in the RNS that the Company announced on 14th August 2025, VTB filed a claim in the Russian court seeking to avoid paying its 2024 dividends due to J.P.Morgan entities and the Company. VTB dividends announced but not yet received are estimated to have a value of £0.9 million as at 23rd January 2026. The case is ongoing.
+Discount Control
+Due to the continuing extreme market conditions that have created the unusual situation whereby the Company's shares are currently trading at a very elevated premium to its net asset value, the Board has no current plans to reinstate the Company's share discount control programme. As at 31st October 2025, the premium was 230.8%. The premium as at 28th January 2026 was 242.8%. The Board believes that this premium arises due to a difference in the view of the valuation of the Company's net assets and should not be interpreted as an indication that investors are more likely to derive any value from the Company's Russian shareholdings.
+Investment Management
+Oleg Biryulyov and Luis Carrillo continue to be the Company's Portfolio Managers supported by JPMorgan Asset Management's Emerging Markets and Asia Pacific equities team (EMAP). JPMAM's EMAP team consists of 100+ investment professionals based in both the UK and overseas.
+The Board receives regular reports on the service levels of the Manager, Investment Manager and the Company's key service providers. Through the Management Engagement Committee, the Board formally evaluated their performance in September 2025. Following that review, the Board concluded that it was satisfied with the current levels of service.
+Investment Manager's Investment Process
+The Investment Manager's Investment Process is detailed on pages 17 to 21 in the Annual Report. The Board shares the Investment Manager's view of the importance of considering financially material ESG factors when making investments for the long term, and in particular, the necessity of continued engagement with investee companies over the duration of the investment. The Board is satisfied that financially material ESG considerations are integrated in the investment process.
+Board Composition
+Following a thorough selection process undertaken with the assistance of a third party independent search consultancy, the Board are delighted that as previously announced, Ms Joanne Irvine was appointed as a Non-executive Director of the Company on 1st May 2025.
+During the year, the Board evaluation process reviewed Directors, the Chair, the Committees and the working of the Board as a whole. It was concluded that all aspects of the Board and its procedures were operating effectively.
+In accordance with corporate governance best practice, all Directors will retire by rotation at this year's AGM and will offer themselves for re-election/election.
+Annual General Meeting
+The Company's Annual General Meeting (AGM) will be held on Wednesday 11th March 2026 at 2.00 p.m. at 60 Victoria Embankment, London EC4Y 0JP. We are pleased to invite shareholders to join us in person for the Company's AGM, hear from the Portfolio Managers and ask questions. Shareholders wishing to follow the AGM proceedings but choosing not to attend in person will be able to view proceedings live and ask questions (but not vote) through conferencing software. Details on how to register, together with access details, will be available shortly on the Company's website at
+www.jpmeemeasecurities.com
+or by contacting the Company Secretary at
+jpmam.investment.trusts@jpmorgan.com
+My fellow Board members, representatives of JPMorgan and I look forward to the opportunity to meet and speak with shareholders after the formalities of the meeting have been concluded. Shareholders who are unable to attend the AGM are strongly encouraged to submit their proxy votes in advance of the meeting, so that they are registered and recorded at the AGM. Proxy votes can be lodged in advance of the AGM either by post or electronically: detailed instructions are included in the Notes to the Notice of Annual General Meeting on pages 94 to 95 in the Annual Report.
+In addition, Shareholders are encouraged to send any questions ahead of the AGM to the Board via the Company Secretary at the email address above. We will endeavour to answer relevant questions at the meeting or via the website depending on arrangements in place at the time.
+If there are any changes to these arrangements for the AGM, the Company will update shareholders via the Company's website.
+Stay in Touch
+Your Board would like to ensure Shareholders have regular information about the Company's progress. Please consider signing up for our email updates featuring news and views, as well as the latest performance of the portfolio. You can opt in via the QR Code on page 2 in the Annual Report or via the following link visit
+https://tinyurl.com/JEMA-Sign-Up
+.
+Outlook
+Despite the recent US led proposals for peace in Ukraine, the path to a meaningful resolution to the conflict remains unclear. The decision of the Russian court to uphold VTB's $439.5 million claim and their as yet unexercised right to enforce the claim means that we remain unclear about the outcome of this action. We will continue to keep shareholders informed of the decision by RNS announcement.
+Despite these unprecedented and complex events, the Company's investment objective at least helps the Company steer through this very difficult period. Although cognisant of the impact of the Russian holdings on the Company, the challenge for the Board is to use the investment objective to grow the Company's assets in a way that promotes the success of the Company for the benefit of the shareholders as a whole.
+The Board is confident that, with the assistance of the JPMorgan EMAP team over the long term and a supportive political and regulatory environment, the Company's investment objective is achievable.
+Eric Sanderson
+Chairman
+29th January 2026
+INVESTMENT MANAGER'S REPORT
+"Over the year, the Company returned +25.5% on an NAV total return basis, outperforming the Company's Reference Index, which returned +19.5% over the same period. This outperformance was mainly the result of stock selection, although asset allocation decisions also made a meaningful contribution to returns."
+Introduction
+As mentioned by the Chairman in his latest statement, and in previous reporting, the Company's Russian holdings continue to be subject to strict sanctions, and their valuations have been discounted accordingly. In addition, the numerous Russian court cases including VTB's $439.5 million claim against eight J.P.Morgan legal entities and the Company continue as detailed in the Chairman's statement. This Investment Manager's Report therefore relates to the Company's strategy and portfolio activity under its revised investment objective, which is to maximise total return to shareholders from a diversified portfolio of investments in Emerging Europe (including Russia) Middle East and Africa (EMEA). It covers the 12-month period ended 31st October 2025.
+Performance
+Over the year, the Company returned +25.5% on an NAV total return basis, outperforming the Company's Reference Index, which returned +19.5% over the same period. This outperformance was mainly the result of stock selection, although asset allocation decisions also made a meaningful contribution to returns.
+Portfolio
+At the end of the 12-month review period, the Company's portfolio comprised 92 stocks and securities, compared to 106 holdings at the end of the previous year. Of these, 25 were Russian, the same as at the end of last year. The Company's Russian securities comprise approximately 5.7% of the written down value of the portfolio, as compared to 7% at end of the previous financial year. The Company's holding in the JPMorgan Liquidity Fund is not included in the above numbers.
+Market backdrop
+The review period was characterised by strong absolute and relative performance by emerging European, Middle East and African markets, although there were large disparities between markets, and these gains also mask significant intra-year volatility. Markets made steady but modest progress in the first months of the review period, supported by a rotation out of US markets, which was fuelled by investors' concerns about the incoming US administration's tariff policies and associated risks to growth. Emerging European equities were a particular beneficiary of this trend. As was the case in developed markets, emerging market equities dropped sharply in April 2025 as fears about the US's aggressive trade policy escalated. However, this adverse market reaction prompted the US to postpone threatened tariff rises subject to further negotiations with its major trading partners. Global investors welcomed this delay, and emerging market share prices climbed steadily in the second half of the year, further encouraged by better-than-expected earnings results and higher dividend payouts. However, initial public offerings (IPOs), which were a key feature for emerging markets in the previous two years, were less relevant during 2025.
+South Africa fared much worse than other EMEA nations in subsequent trade negotiations. The US imposed a 30% tariff on South African imports - the highest rate imposed on any African country. Tensions between the two nations continue to simmer, with the US threatening to bar South Africa from attending the next G20 meeting, to be held in Miami.
+Performance
+attribution
+31st October
+2025
+%
+%
+Contributions to total
+returns
+Reference index
+return
+19.5
+Asset
+allocation
+2.0
+Stock
+selection
+8.6
+Gearing/(net
+cash)
+(0.6)
+Investment Manager
+contribution
+10.0
+Portfolio
+return
+29.5
+Management fee and other
+expenses
+1
+(4.0)
+Return on net asset value per ordinary
+share
+APM
+25.5
+Effect of movement in premium over the
+year
+54.1
+Return on share
+price
+APM
+79.6
+Source: FactSet, Morningstar and J.P.Morgan. All figures are on a Cum Income total return basis.
+Performance attribution analyses how the Company achieved its recorded performance relative to its Reference Index.
+1
+The Ongoing charges of 4.03% (which includes the one off legal expense) has been used in these calculations.
+APM
+Alternative Performance Measure ('APM').
+A glossary of terms and APMs is provided on pages 96 to 98
+in the Annual Report.
+Other significant political developments over the year included the intensification of negotiations to end the war in Ukraine, although an early end to the conflict seems unlikely. The Turkish government's repression of opposition parties has raised political uncertainty in this market, and while the Gaza peace deal, struck in October, is holding, regional tensions remain high due to Iran's ongoing efforts to enhance its nuclear capability.
+In commodity markets, global economic and geopolitical uncertainties ensured that demand for gold and other precious metals was strong. A 10% depreciation in the US dollar over the review period encouraged this trend, as investors unsettled by erratic US policymaking and economic uncertainty sought the safe haven of real assets. The gold price reached a record above US$4,000 per ounce in late 2025, significantly boosting South African gold mining stocks. However, oil price weakness persisted. Oil prices have, historically, been a key driver of emerging markets, but this relationship has broken down over the past 18 months. Fears that a global trade war would slow global growth saw oil prices decline by more than 15% to less than US$65 pbbl in the first half of the year, and oversupply by some OPEC+ members, combined with higher US oil production, high inventories and weak demand, notably from China, kept prices around this level through to year-end.
+At the country level, Greek equities were the standout performer as the economy continued to outpace its regional peers. Growth is being driven by tourism and restructuring of the country's financial, energy and real estate sectors. South Africa also outperformed thanks to the surge in precious metal prices, and despite punitive US tariffs. The Kingdom of Saudi Arabia (KSA) was the worst performer of the year, with oil price weakness contributing to a significant derating. Turkish stocks saw intra-year volatility and general weakness due to the escalation in political risks.
+Investment strategy
+The Company's investment objective is to maximise the total return from investments in EMEA markets. We aim to meet this objective by identifying high quality businesses with strong expected returns and the capacity to compound earnings and generate sustainable dividends, over the long term. This includes companies with the potential to grow due to their positions as national or global market leaders. However, we aim to buy stocks at reasonable prices, so recent acquisitions have a value tilt. We adopt a bottom-up stock selection process, drawing on the in-depth fundamental analysis of JPMorgan's Emerging Markets and Asia Pacific equity research team, which includes assessments of the longevity of a business's investment case, and the quality of its management and governance practices. We believe the depth and breadth of JPMorgan's research resources give us a competitive advantage in a region where research coverage by other investors remains limited and shallow.
+Our investment approach is permeated by three broad themes:
+Commodity sensitivities
+: EMEA countries are rich in a variety of commodities - not only oil and gas, but also gold, platinum and copper. We are especially interested in companies with exposure to the global transition to renewable energy. Portfolio holdings driven by the commodities theme include Gold Fields, a South African gold miner which is one of the portfolio's largest positions, and Valterra Platinum.
+Mass market consumption
+: 60% of the population of EMEA countries is less than 25 years old, and this percentage is forecast to continue rising. The youthfulness of the population is a major boon for consumption, as this demographic is tech savvy and thus easy for digital marketers to access, and younger people have a higher propensity to spend than older generations. As incomes across EMEA regions are relatively low by global standards, we look for companies selling affordable products which are differentiated from their competitors by their strong branding and customer service. Many day-to-day household spending decisions are made by women, so companies focused on products of potential interest to them are another focus. Portfolio holdings underpinned by this theme include the Greek company, Sarantis, a national and potentially regional leader in the production of cosmetics and household products.
+Technology adopters
+: Many EMEA countries, especially in Africa, are dogged by structural challenges which can often seem intractable, given the economic and fiscal constraints and political uncertainties endemic in the region, so we seek out companies that are able to 'leapfrog' these challenges or provide much-needed consumer services which the market, or governments, have otherwise failed to supply. For example, Benefit Systems, a Polish provider of non-pay employee benefits, provides consumers in many Central and Eastern European countries with electronic access to sports facilities and cultural events. We opened a position in this name during the year as we expect it to benefit from the evolution of consumer spending towards health and fitness and well-being. Our out-of-index positions in two Kazakhstan banks, Kaspi and Halyk Savings Bank are similarly underpinned by their astute and rapid adoption of digital technology.
+How did specific stocks and sectors fare over the year?
+Stock selection was by far the most significant contributor to performance over the past year. It is particularly gratifying that returns were boosted by the re-rating of a variety of holdings, many of which benefited from better-than-expected earnings results and higher dividend payouts. Top contributors included our overweights to several Greek banks - Alpha Bank, National Bank of Greece and Piraeus Bank. Our overweights to several other financial names, including out-of-index positions in Halyk Bank, Slovenia's Nova Ljubjanska Bank and Georgia's Lion Finance and TBC Bank, also enhanced relative returns, although we took profits and closed these latter two positions in the second quarter of 2025. Our overweights to South African gold miner, Gold Fields, and Kazatomprom, a Kazakhstani uranium producer, were notable beneficiaries of stronger gold and uranium prices respectively, while our decision to underweight ACWA, KSA's very expensive utility company, also paid off as the stock came under pressure and re-rated towards the norm.
+On the negative side, our decision to hold Kaspi was the most significant detractor. The stock derated in response to disappointing earnings following Kaspi's ill-judged acquisition of Turkish fintech company Hepsiburada. However, we still hold this stock due to our conviction in the company's longer-term prospects and potential for higher dividend payments. Our decision to avoid MTN, a South African mobile telecommunications company which we view as a poor-quality business, also hurt performance, as the stock re-rated following a rise in Nigerian phone tariffs. We also opted not to hold Orlen, a Polish energy company, for similar reasons, but the stock benefited from a one-off increase in its dividend. Several other positions also detracted, but their individual impacts on performance were relatively limited.
+At the country level, our overweight to Greece was the most significant contributor to relative returns, comprising a material element (+300bps) of the Company's outperformance over the period. Our decision to underweight KSA was the second largest contributor (+194bps), while an underweight to UAE also added (+135bps). Our exposure to small peripheral markets including Georgia, Slovenia and Kazakhstan also lifted performance over the period thanks to a combination of low valuations and attractive yields. We are particularly pleased with positioning in Georgia, as we managed to trade Georgian banks within the year, locking in profits with limited risk. In all, our exposure to Georgia added 77bps to performance over the period. Our South African exposure made a similar contribution.
+At the sector level, gold and platinum outshone other sectors, as discussed above, and our holdings in several South African mining names, not only top performer Gold Fields, recent additions Anglo Gold Ashanti and Valterra Platinum (now a top 10 holding), proved a great proxy for this theme. Financials did extremely well in central and eastern Europe (CEE), as EU banks vied for market share in the region. Greek banks were notable outperformers, as restructuring efforts paid off. These efforts, combined with relatively strong growth and investment, were recognised by credit rating upgrades by all the major rating agencies during the year. Banks in peripheral countries such as Georgia, Slovenia, Romania and Kazakhstan also did well, as noted above. However, the performance of South African, Saudi and Turkish banks was mediocre, with large cap names underperforming.
+On the downside, oil service names were mixed, with performance linked to volumes of production. Saudi oil and gas drilling companies ADES and ADNOC Drilling did well accordingly, while Arabian Drilling suffered. We maintained our holding in ADES, as we still like this name. We locked in profits by closing the position in ADNOC, and we sold Arabian Drilling to stem further losses. Consumer names were weak across the board as potential was not realised. Retailers such as Poland's Dino and Greece's Jumbo and OPAP, a lottery company, along with Saudi gym operator Leejam, all underperformed their domestic markets. We closed our position in OPAP due to increased competition.
+Portfolio positioning
+Our investment strategy has a quality bias, but it is important to note that the investment universe defined by our reference index is presently dominated by companies rated by JPMorgan analysts as 'standard' stocks, the lowest of their three designations of 'premium', 'quality' and 'standard'. This is in part because regional equity markets are still young, and in the initial stages of development. In addition, JPMorgan's analytical framework requires companies to possess a track record of at least five years before they can be rated more highly. Another notable feature of the EMEA investment universe is that financials and commodity names feature heavily, although the index will broaden out over time as economies and financial markets develop, and we look forward to exploring these markets more deeply as they evolve. However, despite the current market concentration around these sectors, the Company's reference index already contains more than 680 names - a much larger and more diverse investment universe than the extremely limited number of stocks previously available to us in Russia, and we see many compelling opportunities across the EMEA region.
+Our preference is for quality names and our strategy favours income (yield), high expected returns and earnings momentum.
+These criteria were the drivers behind all the new acquisitions we made during the past year. Our positive view on gold and other commodities underpinned our decision to increase exposure to this sector. In addition to the acquisition of AngloGold Ashanti and Valterra Platinum, mentioned above, we also purchased Kumba Iron Ore and KGHM, a Polish copper miner. We added new banking names across several countries, including South Africa's Nedbank, Greece's Optima and Alpha Bank, Arab National Bank, Bank of Cyprus and the National Bank of Kuwait (NBK), which is the repository of the proceeds of Kuwait's oil revenues, and offers a dividend yield of more than 5%. NBK is now a top 10 holding.
+We took profits on a few positions, including the two Georgian banks discussed above, but most of the sales we conducted over the past year were motivated by deterioration in the investment outlook and dividend expectations of these companies. Disposals tended to be names with domestic exposure to KSA, South Africa and Turkey. In addition to the sale of ADNOC and Arabian Drilling, we also closed a position in BUPA, a Saudi insurance company, Bidvest, a South African business services company and Turkcell, a Turkish mobile phone company whose earnings have deteriorated.
+These portfolio changes have not had a major impact on overall portfolio structure. At the country level, we are most positive about, and therefore overweight, Greece, Kazakhstan and South Africa. Our heaviest underweights are to Turkey, due to political uncertainty and concerns about the macroeconomic outlook, and KSA, where many companies are vulnerable to persistently low oil prices.
+At the sector level, we still favour Financials, Materials and Energy, while avoiding Communications services and Utilities. We are particularly positive on Financials, which comprise 40% of our index, as banks are continuing to enjoy elevated net interest margins (NIMs) thanks to higher interest rates. Our preferences are reflected in the composition of the portfolio's top 10 holdings, which include six bank names and two mining companies. Our relatively positive view on energy is based on our expectation that oil and gas supply is unlikely to increase further. This suggests prices have bottomed and have scope to firm up in 2026.
+Outlook
+There has been much focus in recent months on the huge amounts of investment in artificial intelligence (AI) being made by the US's mega cap tech companies. Investors are concerned that much of this investment is speculative and will not deliver projected returns. Many fear this so-called 'AI bubble' will eventually burst, triggering precipitous falls in tech stocks and sustained market volatility reminiscent of the 'dot com' crash of 2000-2002. This is undoubtedly an uncomfortable prospect and a major risk as we consider the outlook for 2026 and beyond. However, based on our assessment, the EMEA region has limited exposure to AI, and is negatively correlated to the current AI investment boom. If our analysis is correct, emerging markets across Europe, the Middle East and Africa may be major beneficiaries if the AI bubble does burst, as domestic investors are likely to seek refuge in their home markets, and global investors will look for more attractive opportunities beyond the US. We saw what may have been a foretaste of this trend in South Africa in 2025, when local investors were caught short by the rally in gold and other material stocks.
+On the economic front, the outlook for EMEA countries is mixed. In Europe, Greece is set to continue to outperform, growing by 2-3% in 2026, thanks in part to the ongoing benefits of structural reforms, as well as the boost provided by European Union funding from the NextGenerationEU (NGEU) programme aimed at supporting the transition to green energy and digitalisation. However, Poland, Hungary and the Czech Republic are forecast to perform below trend with military spending and broader fiscal pressures likely to drive taxation increases and constrain investment and domestic consumption. Hungary will hold elections in the spring of 2026, and we expect the vote to deliver another term of office to President Orban. The Turkish economy is likely to lose momentum, hampered by high inflation, which appears to be stuck above 30%.
+Elsewhere, we expect to see a marginal improvement in the South African economy. GDP growth is likely to be 1.0-1.5% in 2026, although further reforms to the electricity industry and transportation may add a further 0.5-1.5% to annual growth. In the Middle East, the oil-related sectors of both KSA and UAE are likely to grow more quickly in 2026 in the region of circa 3-5% in the UAE thanks to oil production increases implemented in 2025, while the non-oil parts of these economies will also do well, growing by 3-4%, due to support from state investment. On the downside, US dollar weakness over the past year has created a challenge for the central banks of KSA, UAE and the other Gulf Cooperation Countries (GCC) which peg their currencies to the greenback. This peg used to be a very useful stabilisation mechanism for these economies, but dollar deprecation means local central banks must balance the necessity of maintaining the currency peg against their need to support their domestic economies.
+This varied economic environment underlies our expectation that earnings growth will remain specific to companies, not regions. Following EPS growth of 7-8% within our portfolio in 2025, consistent with our forecast, we expect earnings to grow by a further 5-10% in 2026. This is less positive than some current market consensus, which assume EPS growth in the region of +13% for the emerging markets sector in 2026.
+Yet whatever the immediate future holds, we remain optimistic about the prospects for emerging markets in Europe, the Middle East and Africa over the longer term. These economies, and their capital markets, are relatively young and developing rapidly, and the investment universe is expanding as more companies enter the market. This dynamism will continue to spawn compelling opportunities for investment in good quality growth, value and income, at attractive valuations. This should ensure that the balance between reward and risk remains skewed in investors' favour, especially given these markets' lack of correlation to AI-related stocks, whose valuations are looking increasingly excessive. Against this positive backdrop, we intend to maintain our efforts to discover the most interesting ideas across EMEA's vibrant markets, and to capitalise on these opportunities as they emerge. The portfolio will continue to evolve as our target markets develop and deepen, and we are excited by what the future holds for the Company and its shareholders.
+We thank you for your ongoing support.
+For and on behalf of the Investment Manager
+Oleg I. Biryulyov
+Portfolio Manager
+Luis Carrillo
+Portfolio Manager 29th January 2026
+PRINCIPAL AND EMERGING RISKS
+The Directors confirm that they have carried out a robust assessment of the principal and emerging risks facing the Company, including those that would threaten its business model, future performance, solvency or liquidity. With the assistance of JPMF, the Audit Committee has drawn up a risk matrix, which identifies the key risks to the Company. These are reviewed and noted by the Board. The risks identified and the broad categories in which they fall, and the ways in which they are managed or mitigated are summarised below. The AIC Code of Corporate Governance requires the Audit Committee to put in place procedures to identify emerging risks. The key emerging risks identified are also summarised below.
+Movement from
+Principal risk
+Description
+Mitigating activities
+prior year
+Investment Management and Performance
+Investing in Emerging Markets
+Investors should note that there are significant risks inherent in investing in emerging market securities not typically associated with investing in securities of companies in more developed countries. In terms of gauging the economic and political risk of investing in emerging markets, it frequently appears in the higher risk categories when compared with most Western countries. The value of emerging market securities, and therefore the net asset value of the Company, may be affected by uncertainties such as economic, political or diplomatic developments, social and religious instability, taxation and interest rates, currency repatriation restrictions, crime and corruption and developments in the law or regulations in emerging markets and, in particular, the risks of expropriation, nationalisation and confiscation of assets and changes in legislation relating to the level of foreign ownership. Some of these risks arise in the current VTB and Sberbank legal cases against JPM entities and the Company as referred to in the Chairman's statement and recent RNS announcements. Such factors may lead to a reduction in the size of the Company's net assets and it becoming unviable. Russia's invasion of Ukraine on 24th February 2022 led to the realisation of some of the above risks and Russia becoming a pariah state for western investors. The fragility of relations in the Middle East and risk of further instability in the region continues.
+Following Russia's invasion of Ukraine on 24th February 2022, the prohibition of trading of Russian securities, prohibition on the ultimate receipt of dividends and reduction in the value of the Company by circa 95% led the Board to propose a shareholder resolution to widen the Company's investment objective and permit investments in Emerging Europe, Africa & Middle East. Shareholders approved the widening of the Company's investment objective on 23rd November 2022 and the Company implemented its new investment objective in the first quarter of 2023. The Board also temporarily suspended its dividend payment policy and the Company's financial statements no longer reflect dividends receivable from the Company's Russian stocks. The Board's activities also included reviewing the value of the Company's portfolio, discount/premium to share price, sanctions, counter-parties status, inability to trade stocks and review of investment strategy. The Board has sought external professional advice where appropriate.
+â
+Share Price Discount to Net Asset Value ('NAV') per Share
+If the share price of an investment trust is lower than the NAV per share, the shares are said to be trading at a discount. The widening of the discount can be seen as a disadvantage of investment trusts which could discourage investors. Although it is common for an investment trust's shares to trade at a discount, particular events can negatively impact market sentiment. Due to the substantial reduction in the book value of the Company's assets following Russia's invasion of Ukraine the Company's shares have traded at a premium.
+The prohibition of trading of securities in Russian companies held in the Company's portfolio which was introduced following Russia's invasion of Ukraine on 24th February 2022 led the Board to suspend its share buy back policy. In addition the Board has withdrawn its commitment to provide a tender offer based on performance of the Company against the RTS benchmark in the five year period to 31st October 2026.
+In normal market conditions the Board monitors the Company's discount level and seeks, where deemed prudent, to address imbalances in the supply and demand of the Company's shares through a programme of share buybacks. For details of the Company's Continuation Vote, including recent updates, see the Key Features at the front of this document.
+â
+Investment Under-performance
+and Strategy
+An inappropriate investment strategy, for example asset allocation may lead to underperformance against the Company's reference index and peer companies.
+Following Russia's invasion of Ukraine on 24th February 2022, the prohibition of the trading of Russian securities led to the closure of the Russian market to the Company and its peers together with the cessation of reporting of benchmark data by western news companies. The Board managed these unprecedented events by keeping regularly updated regarding compliance with sanctions and ensuring sufficient liquidity in order to maintain a going concern basis.
+In normal market conditions, the Board manages these risks by diversification of investments through its investment restrictions and guidelines, which are monitored and reported on by the Manager. The Manager provides the Directors with timely and accurate management information, including performance data and attribution analyses, revenue estimates, liquidity reports and shareholder analyses. The Board monitors the implementation and results of the investment process with the Portfolio Manager, who attends all Board meetings, and reviews data which show statistical measures of the Company's risk profile. Following adoption of the new mandate the Board re-commenced this process for its new investments.
+The Company amended its investment objective in 2022 to widen its investment to include Emerging Europe, Middle East and Africa. Possible actions that the Board may consider to address underperformance include changing the Portfolio Manager or selecting another manager.
+â
+Failure of Investment Process
+A failure of process could lead to losses.
+The Manager mitigates this risk through internal controls and monitoring. An incidence of fraud is required to be notified immediately to the Board and regular reports are provided on control processes.
+â
+Loss of Investment Team or Portfolio Managers
+The sudden departure of the Portfolio Manager or several members of the wider investment management team could result in a short term deterioration in investment performance.
+The Investment Manager takes steps to reduce the likelihood of such an event by ensuring appropriate succession planning and the adoption of a team based approach, as well as special efforts to retain key personnel. The Board engages privately with the Portfolio Manager on a regular basis.
+â
+Market and Financial
+The Company's assets consist of listed securities and it is therefore exposed to movements in the prices of individual securities and the market generally. The financial risks faced by the Company include market price risk, interest rate risk, foreign currency risk, liquidity risk and credit risk.
+In normal market conditions the Board considers asset allocation and stock selection on a regular basis and has set investment restrictions and guidelines, which are monitored and reported on by the Manager. During the current period of prohibition on the trading of Russian securities, a fair value valuation method involving a 99% provision against the Company's Russian investments is applied.
+Further details are disclosed in note 20 on pages 82 to 87 in the Annual Report. The Manager regularly monitors the liquidity of the portfolio including determining the market valuation of securities held, the average daily volume and number of days to liquidate a holding.
+â
+Operational Risks
+Cyber Crime
+Disruption to, or failure of, the Manager's accounting, dealing or payments systems or the Depositary or custodian's records could prevent accurate reporting and monitoring of the Company's financial position. Under the terms of its agreement, the Depositary has strict liability for the loss or misappropriation of assets held in custody. See note 20(c) for further details on the responsibilities of the Depositary.
+Details of how the Board monitors the services provided by JPMF and its associates and the key elements designed to provide effective internal control are included within the Risk Management and Internal Control section of the Corporate Governance Statement on page 51
+in the Annual Report. The threat of Cyber attack is increasing and regarded as having the ability to cause equivalent disruption to the Company's business as more traditional business continuity and security threats. The Company benefits from JPMorgan's Cyber Security Programme. The information technology controls around the physical security of JPMorgan's data centres, security of its networks and security of its trading applications are tested by independent auditors PricewaterhouseCoopers and reported every six months against the Audit and Assurance Faculty (AAF) standard.
+â
+Counterparty Risk
+Local custodian or broker counterparty failure resulting in loss of stock/money. Inability of Custodian to service the Company's assets.
+In the Chairman's statement and recent RNS announcements, the Company has said that if the VTB claim is successful then the Company's sub-custodian may become insolvent and may constitute a Force Majeure event and/or Country risk event, as defined in the contracts that clients have with J.P. Morgan.
+The Manager monitors counterparty exposures closely and has set limits according to various criteria (including an assessment of financial stability of counterparty). The Board receives information relating to counterparties.
+The possibility of the Company's custodian in Russia becoming insolvent and a force majeure scenario arising in respect of the Company's Russian assets is referred to in detail in the Chairman's Statement and in recent RNS announcements. The Board has sought external professional advice where appropriate.
+â
+Regulatory Risks
+Board Relationship with Shareholders
+The risk that the Company's strategy and performance does not align with shareholders expectations.
+The Manager addresses this by the organisation of an email address on the Company's website whereby shareholders can raise questions. Feedback from shareholders is received directly through the email address provided on the Company's website and via brokers which is fed back to the Board regularly.
+In addition, the Board is in regular contact with significant shareholders and also meets with other shareholders informally after AGMs to better understand shareholder expectations.
+â
+Political and Economic
+Changes in financial or tax legislation may adversely affect the Company. In addition, the Company is subject to administrative risks, such as the imposition of restrictions on the free movement of capital.
+In addition, The Russian Government may change legislation which currently protects 'S' accounts against loss from legal action.
+The Manager makes recommendations to the Board on accounting, dividend and tax policies and the Board seeks external advice where appropriate. The Manager closely monitors political, legal and economic developments and reports significant events to the Board either at scheduled meetings or when an event arises. The Board factors in the status of current political and economic developments in its decision making.
+See above for details of the Board's responses to Russia's invasion of Ukraine including the prohibition on trading and ultimate receipt of dividends from Russian held companies, and successful proposal to widen the Company's investment objective. The Board has sought external professional advice where appropriate.
+â
+Regulatory and Legal
+Breach of regulatory rules, including sanctions could lead to suspension of the Company's Stock Exchange listing, financial penalties, or a qualified audit report. Loss of investment trust status could lead to the Company being subject to tax on capital gains. Legal claims against the Company may arise due to sanctions effectively 'freezing' Russian assets.
+The Board has remained informed of the impact of the sanctions and restrictions that followed Russia's invasion of Ukraine on 24th February 2022. Moreover, the Board sought and received FCA approval for the change to the Company's investment objective, which includes investment in Russia. HMRC also confirmed the continuation of the Company's investment trust status. The Board, with the assistance of the Manager, monitors the Company's activities to ensure that they remain compliant with the current sanctions regime including the specific requirements applicable to the Manager as a company subject to the laws of the United States of America and other jurisdictions that it operates in. The Directors seek to comply with all relevant regulation and legislation and rely on the services of the Company Secretary, the Manager, and the Company's professional advisors to monitor compliance with all relevant requirements. The Board and its Committees review the status of the Company's regulatory and legal requirements at regular intervals. The Board is kept updated of the status of the ongoing Russian court cases against eight JPM entities and the Company as referred to in the Chairman's Statement.
+â
+Climate Risks
+Climate Change
+Climate change, which barely registered with investors a decade ago, has today become one of the most critical issues confronting asset managers and their investors. Investors can no longer ignore the impact that the world's changing climate will have on their portfolios, with the impact of climate change on returns now inevitable.
+The Investment Manager's investment process integrates consideration of financially material environmental, social and governance factors into investment decisions. This includes the approach investee companies take to recognising and mitigating climate change risks. The Manager aims to influence the management of climate related risks through engagement and voting and is a participant of Climate Action 100+ and a signatory of the United Nations Principles for Responsible Investment. The Board is also considering the threat posed by the direct impact on climate change on the operations of the Manager and other major service providers. As extreme weather events become more common, the resiliency, business continuity planning and the location strategies of our services providers will come under greater scrutiny.
+â
+Movement from
+Emerging risk
+Description
+Mitigating activities
+prior year
+Global Crisis
+A wide scale economic crisis which could be caused by a number of catastrophic events such as climate change, may cause significant reductions in the valuations of companies in the portfolio.
+The Board keeps informed of economic developments and latest ESG requirements through regular updates from the Investment Manager.
+â
+Global Trade Protectionism
+A reduction in global trading arising from increased barriers to trade, including the recent shifts in US trade policy and the increased use of tariffs and protectionist measures, is a risk to economic growth, to investors' risk appetites and, consequently, to the valuations of companies in the portfolio.
+The Portfolio Manager manages the Company's portfolio in light of ongoing current events. The Board can, with shareholder approval, seek to amend the investment policy and objectives of the Company to mitigate the risks.
+â
+Artificial Intelligence (AI)
+Advances in computing power means that AI has become a powerful tool that will impact society, with a wide range of applications that include the potential to harm. While it might equally be deemed a force for good, there appears to be an increasing risk to society from the threat posed by AI.
+The Board monitors developments concerning AI as its use evolves and considers how it might threaten the Company's activities, which may include a heightened threat to cybersecurity. The Board works closely with the Manager in identifying these threats and monitors the strategies of our service providers.
+â
+TRANSACTIONS WITH THE MANAGER
+Details of the management contract are set out in the Directors' Report on page 46 in the Annual Report. The management fee payable to the Manager for the year was £195,000 (2024: £164,000) of which £nil (2024: £2,000) was outstanding at the year end.
+Included in note 6 on page 76 in the Annual Report are safe custody fees amounting to £177,000 (2024: £284,000) payable to JPMorgan Chase Bank N.A. during the year of which £35,000 (2024: £66,000) was outstanding at the year end.
+The Manager may carry out some of its dealing transactions through group subsidiaries. These transactions are carried out at arm's length. The commission payable to JPMorgan Securities Limited for the year was £3,000 (2024: £nil) of which £nil (2024: £nil) was outstanding at the year end.
+Other capital charges (handling charges) on dealing transactions amounting to £20,000 (2024: £21,000) were payable to JPMorgan Chase Bank N.A. during the year of which £3,000 (2024: £3,000) was outstanding at the year end.
+The Company also invests in JPMorgan USD Liquidity Fund, which is managed by JPMorgan Asset Management (Europe) S.à r.l. At the year end this was valued at £1,000 (2024: £nil). Interest amounting to £1,000 (2024: £32,000) was receivable during the year of which £nil (2024: £nil) was outstanding at the year end.
+At the year end, total cash of £259,000 (2024: £50,000) was held with JPMorgan Chase Bank, N.A. A net amount of interest of £3,000 (2024: £3,000) was receivable by the Company during the year from JPMorgan Chase Bank, N.A.
+STATEMENT OF DIRECTORS' RESPONSIBILITIES
+The Directors are responsible for preparing the annual report and financial statements, and the Directors' Remuneration Report in accordance with applicable law and regulations.
+Company law requires the Directors to prepare financial statements for each financial year. Under that law, the Directors have prepared the financial statements in accordance with United Kingdom Generally Accepted Accounting Practice (United Kingdom Accounting Standards and applicable law) and Financial Reporting Standard (FRS) 102. Under company law the Directors must not approve the financial statements unless they are satisfied that, taken as a whole, the annual report and financial statements provide the information necessary for shareholders to assess the Company's performance, business model and strategy and that they give a true and fair view of the state of affairs of the Company and of the total return or loss of the Company for that period. In addition, to provide these confirmations, and in preparing these financial statements, the Directors must be satisfied that, taken as a whole, the annual report and financial statements are fair, balanced and understandable. In order to provide these confirmations and in preparing these annual statements the Directors are required to:
+• select suitable accounting policies and then apply them consistently;
+• make judgements and accounting estimates that are reasonable and prudent;
+• state whether applicable UK Accounting Standards have been followed, subject to any material departures disclosed and explained in the financial statements; and
+• prepare the financial statements on the going concern basis unless it is inappropriate to presume that the Company will continue in business
+and the Directors confirm they have done so.
+The Directors are responsible for keeping proper accounting records that are sufficient to show and explain the Company's transactions and disclose with reasonable accuracy at any time the financial position of the Company and enable them to ensure that the financial statements comply with the Companies Act 2006. They are also responsible for safeguarding the assets of the Company and hence for taking reasonable steps for the prevention and detection of fraud and other irregularities.
+The report and financial statements are published on the
+www.jpmeemeasecurities.com
+website which is maintained by the Company's Manager. The maintenance and integrity of the website maintained by the Manager is, so far as it relates to the Company, the responsibility of the Manager. The work carried out by the Auditor does not involve consideration of the maintenance and integrity of this website and, accordingly, the Auditor accepts no responsibility for any changes that have occurred to the financial statements since they were initially presented on the website. The financial statements are prepared in accordance with UK legislation, which may differ from legislation in other jurisdictions.
+Under applicable law and regulations the Directors are also responsible for preparing a Strategic Report, a Directors' Report, Directors' Remuneration Report and Statement of Corporate Governance that comply with that law and those regulations.
+Each of the Directors, whose names and functions are listed in the Directors' Report, confirms that, to the best of their knowledge:
+• the financial statements, which have been prepared in accordance with United Kingdom Generally Accepted Accounting Practice (United Kingdom Accounting Standards) and applicable law, give a true and fair view of the assets, liabilities, financial position and return or loss of the Company.
+• The Directors confirm that, taken as a whole, the annual report and financial statements are fair, balanced and understandable and provide the information necessary for shareholders to assess the strategy and business model of the Company; and of the total return or loss of the Company for that period.
+• That the Strategic Report and Directors Report include a fair review of the development and performance of the business and the position of the Company together with a description of the principal risks and uncertainties that the Company faces.
+The Board confirms that it is satisfied that the Annual Report and Financial Statements, taken as a whole, are fair, balanced and understandable and provide the information necessary for shareholders to assess the Company's position, performance, business model and strategy.
+For and on behalf of the Board
+Eric Sanderson
+Chairman
+29th January 2026
+STATEMENT OF COMPREHENSIVE INCOME
+Year ended
+Year ended
+31st October 2025
+31st October 2024
+Revenue
+Capital
+Total
+Revenue
+Capital
+Total
+£'000
+£'000
+£'000
+£'000
+£'000
+£'000
+Gains on investments held at fair value through
+profit or loss
+-
+5,241
+5,241
+-
+2,431
+2,431
+Net foreign currency exchange losses
+-
+(8)
+(8)
+-
+(29)
+(29)
+Income from investments
+1,127
+28
+1,155
+974
+2
+976
+Interest income
+4
+-
+4
+35
+-
+35
+Gross return
+1,131
+5,261
+6,392
+1,009
+2,404
+3,413
+Management fee
+(78)
+(117)
+(195)
+(66)
+(98)
+(164)
+Other administrative expenses
+(751)
+-
+(751)
+(666)
+-
+(666)
+Net return before taxation
+302
+5,144
+5,446
+277
+2,306
+2,583
+Taxation
+(55)
+-
+(55)
+(52)
+-
+(52)
+Net return after taxation
+247
+5,144
+5,391
+225
+2,306
+2,531
+Return per ordinary share
+0.61p
+12.72p
+13.33p
+0.56p
+5.70p
+6.26p
+All revenue and capital items in the above statement derive from continuing operations.
+The 'Total' column of this statement is the profit and loss account of the Company and the 'Revenue' and 'Capital' columns represent supplementary information prepared under guidance issued by the Association of Investment Companies. The net return after taxation represents the profit for the year and also total comprehensive income.
+STATEMENT OF CHANGES IN EQUITY
+Called up
+Capital
+share
+redemption
+Capital
+Revenue
+capital
+reserve
+reserves1
+reserve1
+Total
+£'000
+£'000
+£'000
+£'000
+£'000
+At 31st October 2023
+405
+196
+9,772
+8,507
+18,880
+Net return after taxation
+-
+-
+2,306
+225
+2,531
+Dividend paid in the year
+-
+-
+-
+(202)
+(202)
+At 31st October 2024
+405
+196
+12,078
+8,530
+21,209
+Net return after taxation
+-
+-
+5,144
+247
+5,391
+Dividend paid in the year
+-
+-
+-
+(202)
+(202)
+At 31st October 2025
+405
+196
+17,222
+8,575
+26,398
+1
+Revenue reserve and the capital reserves form the distributable reserves of the Company and may be used to fund distributions to shareholders. See note 14 on page 80 in the Annual Report for details.
+STATEMENT OF FINANCIAL POSITION
+31st October
+31st October
+2025
+2024
+£'000
+£'000
+Fixed assets
+Investments held at fair value through profit or loss
+25,853
+21,241
+Current assets
+Debtors
+428
+247
+Current asset investment
+1
+-
+Cash at bank
+259
+50
+688
+297
+Current liabilities
+Creditors:
+amounts falling due within one year
+(143)
+(329)
+Net current assets/(liabilities)
+545
+(32)
+Total assets less current liabilities
+26,398
+21,209
+Net assets
+26,398
+21,209
+Capital and reserves
+Called up share capital
+405
+405
+Capital redemption reserve
+196
+196
+Capital reserves
+17,222
+12,078
+Revenue reserve
+8,575
+8,530
+Total shareholders' funds
+26,398
+21,209
+Net asset value per ordinary share
+65.3p
+52.5p
+STATEMENT OF CASH FLOWS
+Year ended
+Year ended
+31st October
+31st October
+2025
+2024
+£'000
+£'000
+Cash flows from operating activities
+Net return before taxation
+5,446
+2,583
+Adjustment for:
+Net gains on investments held at fair value through profit or loss
+(5,241)
+(2,431)
+Net foreign currency exchange losses
+8
+29
+Dividend income
+(1,155)
+(976)
+Interest income
+(4)
+(35)
+Realised losses on foreign currency exchange transactions
+(18)
+(24)
+Realised foreign currency exchange losses on the JPMorgan USD Liquidity Fund
+(3)
+-
+Decrease/(increase) in other debtors and VAT recoverable
+20
+(46)
+Decrease in accrued expenses
+(69)
+(11)
+Net cash outflow from operating activities before dividends, interest and taxation
+(1,016)
+(911)
+Dividends received
+1,057
+907
+Interest income received
+4
+35
+Overseas withholding tax recovered
+-
+2
+Net cash inflow from operating activities
+45
+33
+Purchases of investments
+(12,241)
+(10,643)
+Sales of investments
+12,595
+9,827
+Net cash inflow/(outflow) from investing activities
+354
+(816)
+Equity dividends paid
+(202)
+(202)
+Net cash outflow from financing activities
+(202)
+(202)
+Increase/(decrease) in cash and cash equivalents1
+197
+(985)
+Cash and cash equivalents at start of year1
+50
+1,040
+Foreign currency exchange movements
+13
+(5)
+Cash and cash equivalents at end of year1
+260
+50
+Cash and cash equivalents consist of1:
+Cash at bank
+259
+50
+JPMorgan USD Liquidity Fund
+1
+-
+Total
+260
+50
+1
+The term 'cash and cash equivalents' is used for the purposes of the Statement of Cash Flows.
+NOTES TO THE FINANCIAL STATEMENTS
+1. Accounting policies
+(a) Basis of accounting
+The financial statements are prepared under the historical cost convention, modified to include fixed asset investments at fair value, and in accordance with the Companies Act 2006, United Kingdom Generally Accepted Accounting Practice ('UK GAAP'), including FRS 102 'The Financial Reporting Standard applicable in the UK and Republic of Ireland' and with the Statement of Recommended Practice 'Financial Statements of Investment Trust Companies and Venture Capital Trusts' (the 'SORP') issued by the Association of Investment Companies in July 2022.
+All of the Company's operations are of a continuing nature.
+The financial statements have been prepared on a going concern basis. The Directors have a reasonable expectation that the Company has adequate resources to continue in operational existence up to 31st January 2027 which is at least 12 months from the date of approval of these Financial Statements. In forming this opinion, the Directors have considered the impact of Russia's invasion of Ukraine and fragility of relations in the Middle East and risk of further instability in the region. They have considered the mitigation measures which key service providers, including the Manager, have in place to maintain operational resilience. The Directors have broadened the Company's investment mandate to include emerging European, Middle Eastern and African countries and concluded that this is sufficient to apply the going concern basis. The Directors have reviewed income and expense projections and the liquidity of the investment portfolio in making their assessment.
+In addition to the above, the Company carried out stress testing that included modelling significantly reduced market liquidity and considered the impact of stressed revenue. In even the most stressed scenario, the Company was shown to have sufficient cash, or to be able to liquidate a sufficient portion of its listed holdings, in order to meet its liabilities as they fall due.
+The policies applied in these financial statements are consistent with those applied in the preceding year.
+2. Dividends
+(a) Dividends paid and proposed
+2025
+2024
+Pence
+£'000
+Pence
+£'000
+Dividend paid
+Final dividend in respect of prior year
+0.5
+202
+0.5
+202
+Total dividends paid in the year
+0.5
+202
+0.5
+202
+(b) Dividends for the purposes of Section 1158 of the Corporation Tax Act 2010 ('Section 1158')
+The requirements of Section 1158 are considered on the basis of the dividend proposed in respect of the financial year, shown below. The revenue available for distribution by way of dividend is £247,000 (2024: £225,000).
+2025
+2024
+Pence
+£'000
+Pence
+£'000
+Final dividend proposed
+0.6
+243
+0.5
+202
+Total dividend for Section 1158 purposes
+0.6
+243
+0.5
+202
+3. Return per ordinary share
+2025
+2024
+£'000
+£'000
+Revenue return
+247
+225
+Capital return
+5,144
+2,306
+Total return
+5,391
+2,531
+Weighted average number of ordinary shares in issue during the year
+40,436,176
+40,436,176
+Revenue return per ordinary share
+0.61p
+0.56p
+Capital return per ordinary share
+12.72p
+5.70p
+Total return per ordinary share
+13.33p
+6.26p
+4. Net asset value per ordinary share
+2025
+2024
+Net assets (£'000)
+26,398
+21,209
+Number of ordinary shares in issue
+40,436,176
+40,436,176
+Net asset value per ordinary share
+65.3p
+52.5p
+5. Status of announcement
+2024 Financial Information
+The figures and financial information for 2024 are extracted from the Annual Report and Accounts for the year ended 31st October 2024 and do not constitute the statutory accounts for that year. The Annual Report and Accounts includes the Report of the Independent Auditor which is unqualified and does not contain a statement under either section 498(2) or section 498(3) of the Companies Act 2006. The Annual Report and Accounts has been delivered to the Registrar of Companies.
+2025 Financial Information
+The figures and financial information for 2025 are extracted from the Annual Report and Accounts for the year ended 31st October 2025 and do not constitute the statutory accounts for that year. The Annual Report and Accounts includes the Report of the Independent Auditor which is unqualified and does not contain a statement under either section 498(2) or section 498(3) of the Companies Act 2006. The Annual Report and Accounts will be delivered to the Registrar of Companies in due course.
+JPMORGAN FUNDS LIMITED
+30th January 2026
+For further information, please contact:
+Paul Winship
+For and on behalf of
+JPMorgan Funds Limited
+Telephone: 0800 20 40 20 or
+or +44 1268 44 44 70
+E-mail:
+jpmam.investment.trusts@jpmorgan.com
+Neither the contents of the Company's website nor the contents of any website accessible from hyperlinks on the Company's website (or any other website) is incorporated into, or forms part of, this announcement.
+ENDS
+A copy of the Annual Report will shortly be submitted to the FCA's National Storage Mechanism and will be available for inspection at
+https://data.fca.org.uk/#/nsm/nationalstoragemechanism
+The Annual Report will be available on the Company's website at
+www.jpmeemeasecurities.com
+where up-to-date information on the Company, including daily NAV and share prices, factsheets and portfolio information can also be found.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+FR SEAESUEMSEEF
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">4</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #4
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Net Asset Value(s)</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
                     <div style="font-weight: 700; font-size: 13px; color: #0f172a;">29th Jan 2026</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
@@ -943,7 +2126,7 @@
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">American Depositary</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Global Depositary</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1033,9 +2216,9 @@ NAVPPUCAGUPQGUB
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">2</span>
+                    ">5</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #2
+                        RNS ANNOUNCEMENT #5
                     </div>
                 </div>
                 
@@ -1100,7 +2283,7 @@ NAVPPUCAGUPQGUB
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">American Depositary</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Global Depositary</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1164,606 +2347,6 @@ Privacy Policy
 .
 END
 NAVPPUQPGUPQGGR
-                </div>
-            </details>
-            
-            </div>
-            
-            <div style="
-                margin-bottom: 20px;
-                padding: 18px;
-                background: white;
-                border-radius: 14px;
-                border: 1px solid #e2e8f0;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 30px;
-                        height: 30px;
-                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                        color: white;
-                        border-radius: 50%;
-                        font-weight: 800;
-                        font-size: 15px;
-                        box-shadow: 0 2px 8px #3b82f640;
-                    ">3</span>
-                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #3
-                    </div>
-                </div>
-                
-                
-            <div style="
-                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                color: white;
-                padding: 14px;
-                border-radius: 10px;
-                margin-bottom: 16px;
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">🏛️</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">Holding(s) in Company</div>
-                        <span style="
-                            display: inline-block;
-                            background: rgba(255,255,255,0.25);
-                            padding: 2px 10px;
-                            border-radius: 12px;
-                            font-size: 11px;
-                            margin-top: 4px;
-                            font-weight: 600;
-                        ">HOLDINGS</span>
-                    </div>
-                </div>
-                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    Major holder disclosure - routine regulatory filing.
-                </div>
-            </div>
-            
-                
-            <div style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 10px;
-                margin: 16px 0;
-            ">
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">28th Jan 2026</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">9:57 am</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
-                </div>
-            </div>
-            
-                
-                
-                    <div style="margin: 16px 0;">
-                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
-                            
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Financial Instruments</td>
-                    </tr>
-                    
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">19.150000%, 19.150000%, 19.150000%</td>
-                    </tr>
-                    
-                        </table>
-                    </div>
-                    
-                
-            <details style="margin-top: 16px;">
-                <summary style="
-                    padding: 10px;
-                    background: #f8fafc;
-                    border-radius: 8px;
-                    font-weight: 600;
-                    font-size: 12px;
-                    list-style: none;
-                    cursor: pointer;
-                    color: #64748b;
-                    border: 1px solid #e2e8f0;
-                ">
-                    📄 View Full RNS Text
-                </summary>
-                <div style="
-                    margin-top: 8px;
-                    padding: 14px;
-                    background: #f1f5f9;
-                    border-radius: 8px;
-                    font-family: 'Courier New', monospace;
-                    font-size: 11px;
-                    line-height: 1.5;
-                    color: #475569;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                ">
-28 Jan 2026 09:57
-RNS Number : 7296Q
-JPMorgan Emerging EMEA Securities
-28 January 2026
-TR-1: Standard form for notification of major holdings
-1. Issuer Details
-ISIN
-GB0032164732
-Issuer Name
-JPMORGAN EMERGING EUROPE, MIDDLE EAST & AFRICA SECURITIES PLC
-UK or Non-UK Issuer
-UK
-2. Reason for Notification
-An acquisition or disposal of voting rights
-3. Details of person subject to the notification obligation
-Name
-Whitefort Capital Management, LP
-City of registered office (if applicable)
-Wilmington, Delaware
-Country of registered office (if applicable)
-United States
-Name
-City of registered
-office
-Country of registered
-office
-David
-Salanic
-N/A
-N/A
-Joseph
-Kaplan
-N/A
-N/A
-4. Details of the shareholder
-Full name of shareholder(s) if different from the person(s) subject to the notification obligation, above
-WHITEFORT CAPITAL MASTER FUND, LP
-City of registered office (if applicable)
-Grand Cayman
-Country of registered office (if applicable)
-Cayman Islands
-5. Date on which the threshold was crossed or reached
-23-Jan-2026
-6. Date on which Issuer notified
-27-Jan-2026
-7. Total positions of person(s) subject to the notification obligation
-% of voting rights attached to shares (total of 8.A)
-% of voting rights through financial instruments (total of 8.B 1 + 8.B 2)
-Total of both in % (8.A + 8.B)
-Total number of voting rights held in issuer
-Resulting situation on the date on which threshold was crossed or reached
-19.150000
-0.000000
-19.150000
-7744108
-Position of previous notification (if applicable)
-18.800000
-0.000000
-18.800000
-8. Notified details of the resulting situation on the date on which the threshold was crossed or reached
-8A. Voting rights attached to shares
-Class/Type of shares ISIN code(if possible)
-Number of direct voting rights (DTR5.1)
-Number of indirect voting rights (DTR5.2.1)
-% of direct voting rights (DTR5.1)
-% of indirect voting rights (DTR5.2.1)
-GB0032164732
-7744108
-19.150000
-Sub Total 8.A
-7744108
-19.150000%
-8B1. Financial Instruments according to (DTR5.3.1R.(1) (a))
-Type of financial instrument
-Expiration date
-Exercise/conversion period
-Number of voting rights that may be acquired if the instrument is exercised/converted
-% of voting rights
-Sub Total 8.B1
-8B2. Financial Instruments with similar economic effect according to (DTR5.3.1R.(1) (b))
-Type of financial instrument
-Expiration date
-Exercise/conversion period
-Physical or cash settlement
-Number of voting rights
-% of voting rights
-Sub Total 8.B2
-9. Information in relation to the person subject to the notification obligation
-2. Full chain of controlled undertakings through which the voting rights and/or the financial instruments are effectively held starting with the ultimate controlling natural person or legal entities (please add additional rows as necessary)
-Ultimate controlling person
-Name of controlled undertaking
-% of voting rights if it equals or is higher than the notifiable threshold
-% of voting rights through financial instruments if it equals or is higher than the notifiable threshold
-Total of both if it equals or is higher than the notifiable threshold
-David Salanic
-Safida LLC
-(1)
-19.150000
-19.150000%
-Joseph Kaplan
-JK Advisors LLC
-(1)
-19.150000
-19.150000%
-David Salanic
-WHITEFORT CAPITAL MANAGEMENT,
-LP (2)
-19.150000
-19.150000%
-Joseph Kaplan
-WHITEFORT CAPITAL MANAGEMENT,
-LP (2)
-19.150000
-19.150000%
-David Salanic
-WHITEFORT
-CAPITAL GP, LLC (3)
-19.150000
-19.150000%
-Joseph Kaplan
-WHITEFORT
-CAPITAL GP, LLC (3)
-19.150000
-19.150000%
-David Salanic
-WHITEFORT CAPITAL
-MASTER FUND, LP (4)
-19.150000
-19.150000%
-Joseph Kaplan
-WHITEFORT CAPITAL
-MASTER FUND, LP (4)
-19.150000
-19.150000%
-10. In case of proxy voting
-Name of the proxy holder
-The number and % of voting rights held
-The date until which the voting rights will be held
-11. Additional Information
-Whitefort Capital Master Fund, LP's general partner is Whitefort Capital GP, LLC (the "GP"). The GP has delegated voting rights to Whitefort Capital Management, LP (the "Manager") pursuant to an investment management agreement. The Manager is controlled jointly by (1) Safida, LLC, which is, in turn, controlled by David Salanic, and (2) JK Advisors, LLC, which is, in turn, controlled by Joseph Kaplan.
-12. Date of Completion
-27-Jan-2026
-13. Place Of Completion
-New York, NY, USA
-This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
-rns@lseg.com
-or visit
-www.rns.com
-.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
-Privacy Policy
-.
-END
-HOLUWVKRNNUAURR
-                </div>
-            </details>
-            
-            </div>
-            
-            <div style="
-                margin-bottom: 20px;
-                padding: 18px;
-                background: white;
-                border-radius: 14px;
-                border: 1px solid #e2e8f0;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 30px;
-                        height: 30px;
-                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                        color: white;
-                        border-radius: 50%;
-                        font-weight: 800;
-                        font-size: 15px;
-                        box-shadow: 0 2px 8px #3b82f640;
-                    ">4</span>
-                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #4
-                    </div>
-                </div>
-                
-                
-            <div style="
-                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                color: white;
-                padding: 14px;
-                border-radius: 10px;
-                margin-bottom: 16px;
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">📰</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">Net Asset Value(s)</div>
-                        <span style="
-                            display: inline-block;
-                            background: rgba(255,255,255,0.25);
-                            padding: 2px 10px;
-                            border-radius: 12px;
-                            font-size: 11px;
-                            margin-top: 4px;
-                            font-weight: 600;
-                        ">UPDATE</span>
-                    </div>
-                </div>
-                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    Informational update - monitor for context with other announcements.
-                </div>
-            </div>
-            
-                
-            <div style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 10px;
-                margin: 16px 0;
-            ">
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">27th Jan 2026</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">10:36 am</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
-                </div>
-            </div>
-            
-                
-                
-                    <div style="margin: 16px 0;">
-                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
-                            
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">American Depositary</td>
-                    </tr>
-                    
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">99%, 99%</td>
-                    </tr>
-                    
-                        </table>
-                    </div>
-                    
-                
-            <details style="margin-top: 16px;">
-                <summary style="
-                    padding: 10px;
-                    background: #f8fafc;
-                    border-radius: 8px;
-                    font-weight: 600;
-                    font-size: 12px;
-                    list-style: none;
-                    cursor: pointer;
-                    color: #64748b;
-                    border: 1px solid #e2e8f0;
-                ">
-                    📄 View Full RNS Text
-                </summary>
-                <div style="
-                    margin-top: 8px;
-                    padding: 14px;
-                    background: #f1f5f9;
-                    border-radius: 8px;
-                    font-family: 'Courier New', monospace;
-                    font-size: 11px;
-                    line-height: 1.5;
-                    color: #475569;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                ">
-27 Jan 2026 10:36
-RNS Number : 5571Q
-JPMorgan Emerging EMEA Securities
-27 January 2026
-JPMORGAN EMERGING EUROPE, MIDDLE EAST & AFRICA SECURITIES PLC (the 'Company')
-Legal Entity Identifier: 549300II3MHI98ZLVH37
-THE COMPANY ANNOUNCES THE UNAUDITED NET ASSET VALUE (NAV) As at: 26 January 2026
-THE NET ASSET VALUE PER SHARE IN PENCE, INCLUDING INCOME WITH DEBT AT FAIR VALUE:
-70.87
-The Directors consider that in the absence of observable market data on its Russian investments resulting from the closure of the Moscow Exchange (MOEX) to overseas investors, there has been a material change to the market value of its Russian investments and therefore a fair value valuation methodology has been applied to those investments held. For its MOEX local stock, an alternative fair value adjustment has been applied to the last trade price on 25th February 2022. The price of these stocks has been determined by taking the live market price as at 25th February 2022 and applying a 99% provision for valuation. Similarly, for the American Depositary Receipts and Global Depositary Receipts an alternative fair value adjustment has been applied to the last trade price on 2nd March 2022 and a 99% provision for valuation applied.
-Name of contact and telephone number for queries:
-Paul Ainger 0044 207 742 6524
-Name of authorised company official responsible for making this notification:
-Paul Winship 0044 207 742 9815 - Company Secretary
-Date: 27 January 2026
-This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
-rns@lseg.com
-or visit
-www.rns.com
-.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
-Privacy Policy
-.
-END
-NAVPPUUWGUPQGUM
-                </div>
-            </details>
-            
-            </div>
-            
-            <div style="
-                margin-bottom: 20px;
-                padding: 18px;
-                background: white;
-                border-radius: 14px;
-                border: 1px solid #e2e8f0;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 30px;
-                        height: 30px;
-                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                        color: white;
-                        border-radius: 50%;
-                        font-weight: 800;
-                        font-size: 15px;
-                        box-shadow: 0 2px 8px #3b82f640;
-                    ">5</span>
-                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #5
-                    </div>
-                </div>
-                
-                
-            <div style="
-                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                color: white;
-                padding: 14px;
-                border-radius: 10px;
-                margin-bottom: 16px;
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">📰</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">Net Asset Value(s)</div>
-                        <span style="
-                            display: inline-block;
-                            background: rgba(255,255,255,0.25);
-                            padding: 2px 10px;
-                            border-radius: 12px;
-                            font-size: 11px;
-                            margin-top: 4px;
-                            font-weight: 600;
-                        ">UPDATE</span>
-                    </div>
-                </div>
-                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    Informational update - monitor for context with other announcements.
-                </div>
-            </div>
-            
-                
-            <div style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 10px;
-                margin: 16px 0;
-            ">
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">26th Jan 2026</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">10:52 am</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
-                </div>
-            </div>
-            
-                
-                
-                    <div style="margin: 16px 0;">
-                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
-                            
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">American Depositary</td>
-                    </tr>
-                    
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">99%, 99%</td>
-                    </tr>
-                    
-                        </table>
-                    </div>
-                    
-                
-            <details style="margin-top: 16px;">
-                <summary style="
-                    padding: 10px;
-                    background: #f8fafc;
-                    border-radius: 8px;
-                    font-weight: 600;
-                    font-size: 12px;
-                    list-style: none;
-                    cursor: pointer;
-                    color: #64748b;
-                    border: 1px solid #e2e8f0;
-                ">
-                    📄 View Full RNS Text
-                </summary>
-                <div style="
-                    margin-top: 8px;
-                    padding: 14px;
-                    background: #f1f5f9;
-                    border-radius: 8px;
-                    font-family: 'Courier New', monospace;
-                    font-size: 11px;
-                    line-height: 1.5;
-                    color: #475569;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                ">
-26 Jan 2026 10:52
-RNS Number : 3693Q
-JPMorgan Emerging EMEA Securities
-26 January 2026
-JPMORGAN EMERGING EUROPE, MIDDLE EAST & AFRICA SECURITIES PLC (the 'Company')
-Legal Entity Identifier: 549300II3MHI98ZLVH37
-THE COMPANY ANNOUNCES THE UNAUDITED NET ASSET VALUE (NAV) As at: 23 January 2026
-THE NET ASSET VALUE PER SHARE IN PENCE, INCLUDING INCOME WITH DEBT AT FAIR VALUE:
-70.37
-The Directors consider that in the absence of observable market data on its Russian investments resulting from the closure of the Moscow Exchange (MOEX) to overseas investors, there has been a material change to the market value of its Russian investments and therefore a fair value valuation methodology has been applied to those investments held. For its MOEX local stock, an alternative fair value adjustment has been applied to the last trade price on 25th February 2022. The price of these stocks has been determined by taking the live market price as at 25th February 2022 and applying a 99% provision for valuation. Similarly, for the American Depositary Receipts and Global Depositary Receipts an alternative fair value adjustment has been applied to the last trade price on 2nd March 2022 and a 99% provision for valuation applied.
-Name of contact and telephone number for queries:
-Paul Ainger 0044 207 742 6524
-Name of authorised company official responsible for making this notification:
-Paul Winship 0044 207 742 9815 - Company Secretary
-Date: 26 January 2026
-This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
-rns@lseg.com
-or visit
-www.rns.com
-.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
-Privacy Policy
-.
-END
-NAVPPUWCGUPQGUQ
                 </div>
             </details>
             
@@ -2083,7 +2666,7 @@ NAVPPUWCGUPQGUQ
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-29 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-01-31 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.

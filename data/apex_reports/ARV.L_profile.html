@@ -163,6 +163,8 @@
             font-weight: 600;
             text-transform: uppercase;
         }
+
+        
         
         .risk-indicator {
             display: flex;
@@ -223,11 +225,11 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">£</span>
-                    <span><strong>Market Cap:</strong> £11,595,585</span>
+                    <span><strong>Market Cap:</strong> £12,255,496</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 196 days</span>
+                    <span><strong>Days Active:</strong> 197 days</span>
                 </div>
             </div>
         </div>
@@ -258,8 +260,11 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#10b981; line-height:1;">61</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Setup</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Setup
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Trust -->
@@ -268,8 +273,11 @@
                             <div style="font-size:14px;">🛡️</div>
                             <div style="font-size:28px; font-weight:800; color:#3b82f6; line-height:1;">40</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Trust</div>
-                        <div style="font-size:10px; color:#94a3b8;">20%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Trust
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Panic -->
@@ -278,8 +286,11 @@
                             <div style="font-size:14px;">😱</div>
                             <div style="font-size:28px; font-weight:800; color:#ef4444; line-height:1;">44.6</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Panic</div>
-                        <div style="font-size:10px; color:#94a3b8;">30%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Panic
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Compression -->
@@ -288,34 +299,56 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#f59e0b; line-height:1;">28</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Compression</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Compression
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Timing Scope -->
+            <!-- Timing Scope: Flat segmented bar -->
             <div style="margin-top:24px;">
-                <div style="font-size:12px; color:#475569; font-weight:700; margin-bottom:8px; text-align:center;">Timing Spectrum</div>
+                <!-- position badge removed to avoid overlay on timing spectrum -->
                 <style>
                     @keyframes pulse-ring {
-                        0% { transform: scale(0.8); opacity: 0.9; }
+                        0% { transform: scale(0.7); opacity: 0.9; }
                         70% { transform: scale(2.2); opacity: 0; }
                         100% { transform: scale(2.8); opacity: 0; }
                     }
+                    @keyframes pulse-ring-outer {
+                        0% { transform: scale(0.9); opacity: 0.7; }
+                        50% { transform: scale(1.12); opacity: 0.45; }
+                        100% { transform: scale(1.3); opacity: 0; }
+                    }
                 </style>
-                <div style="position:relative; height:48px; background:linear-gradient(90deg, #ef4444 0%, #f59e0b 25%, #f093fb 50%, #10b981 75%, #064e3b 100%); border-radius:8px;">
-                    <div style="position:absolute; left:calc(30% - 24px); top:calc(50% - 24px); width:48px; height:48px; display:flex; align-items:center; justify-content:center;">
-                        <div style="position:absolute; width:48px; height:48px; border-radius:24px; background:rgba(15,23,42,0.12); animation: pulse-ring 1.8s infinite;"></div>
-                        <div style="width:16px; height:16px; border-radius:8px; background:#0f172a; box-shadow:0 6px 18px rgba(0,0,0,0.12);"></div>
+                <div style="position:relative;">
+                    <div style="display:flex; gap:6px; height:48px; border-radius:8px; overflow:hidden;">
+                        <div style="flex:1; background:#ef4444;"></div>
+                        <div style="flex:1; background:#f59e0b;"></div>
+                        <div style="flex:1; background:#facc15;"></div>
+                        <div style="flex:1; background:#10b981;"></div>
+                        <div style="flex:1; background:#065f46;"></div>
+                    </div>
+
+                    <!-- Pulse pointer positioned by timing_pos_pct -->
+                    <div style="position:absolute; left:calc(30% - 26px); top:0px; width:52px; height:52px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                        <!-- outer grey-white ring to help indicator stand out -->
+                        <div style="position:absolute; width:60px; height:60px; border-radius:30px; background:rgba(249,250,251,0.95); border:2px solid rgba(2,6,23,0.06); box-shadow:0 8px 30px rgba(2,6,23,0.06); animation: pulse-ring-outer 2.2s infinite;"></div>
+                        <!-- inner colored pulse ring -->
+                        <div style="position:absolute; width:52px; height:52px; border-radius:26px; background:#ffe50f; opacity:0.18; animation: pulse-ring 1.6s infinite;"></div>
+                        <!-- core dot with colored border for contrast -->
+                        <div style="width:18px; height:18px; border-radius:9px; background:#ffffff; box-shadow:0 10px 30px rgba(0,0,0,0.22); border:3px solid #f59e0b;"></div>
                     </div>
                 </div>
-                <div style="display:flex; justify-content:space-between; font-size:12px; color:#475569; margin-top:10px;">
-                    <div>Too Early</div>
-                    <div>Early Build</div>
-                    <div>Confirmed</div>
-                    <div>Crowded</div>
-                    <div>Broken</div>
+
+                <div style="display:flex; justify-content:space-between; font-size:12px; margin-top:8px; gap:6px;">
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Too Early</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Early Build</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Confirmed</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Crowded</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Broken</span></div>
                 </div>
 
                 <div style="margin-top:12px; display:flex; justify-content:center;">
@@ -522,7 +555,7 @@
                     <div style="font-size: 13px; color: #475569; line-height: 1.8;">
                         <div>• Commodity price crashes (gold, copper, lithium)</div><div>• Exploration failure / dry holes</div><div>• Permitting delays or regulatory blocks</div>
                     </div>
-                    <div style="margin-top: 12px; padding: 10px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e; font-weight: 600;">🚨 Active: Capital raises at distressed valuations</div>
+                    <div style="margin-top: 12px; padding: 10px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e; font-weight: 600;">🚨 Active: Permitting delays or regulatory blocks, Capital raises at distressed valuations</div>
                 </div>
                 <div style="background: white; padding: 18px; border-radius: 12px;">
                     <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">🚀 Recovery Paths</div>
@@ -536,6 +569,16 @@
             <div style="background: rgba(255,255,255,0.5); padding: 18px; border-radius: 12px; margin-bottom: 20px;">
                 <div style="font-weight: 700; color: #1e293b; margin-bottom: 14px; font-size: 15px;">📅 Catalyst Pipeline</div>
                 
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Quarterly Activities Report</div>
+                        <div style="font-size: 12px; color: #64748b;">30th Jan 2026</div>
+                    </div>
+                </div>
+            </div>
+            
             <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
@@ -572,16 +615,6 @@
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Updated JV Agreement Announcement</div>
                         <div style="font-size: 12px; color: #64748b;">24th Dec 2025</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
-                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
-                    <span style="font-size: 18px;">📢</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">JV Agreement Signed</div>
-                        <div style="font-size: 12px; color: #64748b;">22nd Dec 2025</div>
                     </div>
                 </div>
             </div>
@@ -635,7 +668,7 @@
                 <span style="font-size: 24px;">⛏️</span>
                 <div style="flex: 1;">
                     <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Industry Pattern</div>
-                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">1 active</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">2 active</div>
                 </div>
             </div>
             
@@ -901,6 +934,513 @@
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
                     <span style="font-size: 20px;">📰</span>
                     <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Quarterly Activities Report</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Mineral Resource</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">60%, 60%, 100%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+Today 07:00
+RNS Number : 9959Q
+Artemis Resources Limited
+30 January 2026
+30 January 2026
+This announcement contains inside information for the purposes of Article 7 of the UK version of Regulation (EU) No 596/2014 which is part of UK law by virtue of the European Union (Withdrawal) Act 2018, as amended ("MAR"). Upon the publication of this announcement via a Regulatory Information Service, this inside information is now considered to be in the public domain.
+Quarterly Activities Report
+For the period ending 31 December 2025
+_______________________________________________________________________________
+Artemis Resources Limited ('
+Artemis'
+or the
+'Company
+') (
+ASX:
+ARV
+) is pleased to provide its Quarterly Activities Report for the period ended 31 December 2025 (the quarter).
+During the quarter, the Company delivered a significant exploration breakthrough at the Titan East prospect within the Karratha Gold-Copper Project, advanced development studies at Carlow, and expanded its copper growth pipeline through the execution of a new earn-in and joint venture agreement in the Madura Province. Artemis also entered into a non-binding Memorandum of Understanding to collaboratively assess processing options for the Elizabeth Hill Silver mine and positioned its technical team for drilling programs scheduled in early 2026.
+Quarter Highlights (December 2025)
+·
+Titan East discovery breakthrough:
+Confirmation of a new shear-hosted gold system with high-grade results of
+5m @ 13.1g/t Au
+(25ARRC006) and
+19m @ 1.6g/t Au
+(25ARRC025), supporting an emerging mineralised trend over approximately
+600m strike
+and triggering follow-up diamond drilling
+(refer to ASX announcement dated 29 October 2025 and 19 December 2025).
+·
+Carlow development studies initiated:
+Commencement of a conceptual mining study to assess potential open pit and underground development scenarios in parallel with planned extensional drilling
+(refer to ASX announcement dated 17 November 2025).
+·
+Madura Province expansion:
+Execution of an earn-in and joint venture agreement with Red Metal Limited to earn up to
+60% of the Sharon Dam IOCG Project
+, establishing a second district-scale copper growth opportunity alongside Cassowary
+(refer to ASX announcements dated 24 December 2025).
+·
+Radio Hill optionality advanced:
+Signing of a non-binding Memorandum of Understanding with West Coast Silver to assess the suitability of the Radio Hill Processing Plant for potential toll treatment opportunities
+(refer to ASX announcement dated 4 December 2025).
+·
+Post-quarter corporate update:
+Julian Hanna transitioned from Technical Director to Project Manager (Cassowary and Sharon Dam) under a consultancy agreement effective 1 January 2026 (refer to ASX announcement dated 31 December 2025). Artemis announced its intention to delist from the AIM Market of the London Stock Exchange, with the objective of reducing costs and compliance overheads and consolidating trading liquidity on ASX (refer ASX announcement dated 15 January 2025).
+Karratha Gold-Copper Project
+Titan East Gold Discovery
+The December quarter was headlined by a transition from exploration targeting to discovery at the Titan East prospect, located approximately 1.5km northwest of the Carlow Gold-Copper Resource
+(refer to ASX announcement dated 29 October 2025).
+Assay results from the first reverse circulation (RC) hole drilled to test a newly identified north-east trending shear zone returned a high-grade intersection of
+5m @ 13.1g/t Au from 132m
+in hole
+25ARRC006
+, representing the first drilling to test this interpreted structural position
+(refer to ASX announcement dated 29 October 2025).
+Follow-up drilling confirmed continuity of mineralisation along the shear zone, with hole
+25ARRC025
+intersecting
+19m @ 1.6g/t Au from 127m
+, supporting the presence of a coherent mineralised system,
+(refer to ASX announcement dated 19 December 2025)
+.
+Gold mineralisation is associated with vein quartz and alteration within a structural zone parallel to the Regal Thrust, the same regional-scale structure that hosts the Carlow deposit. The Titan East area is largely obscured by transported sediments, which has historically limited the effectiveness of surface exploration and highlights the importance of drilling-led discovery.
+In response to these results, Artemis commenced diamond drilling during the quarter to define the geometry, orientation and potential scale of the mineralised shear zone. Diamond hole
+25ARDD006
+was collared on 10 December 2025, with early core observations confirming successful intersection of the targeted structure at depth. Assay results were pending at quarter end
+(refer to ASX announcement dated 19 December 2025).
+Next steps (March 2026 quarter):
+·
+Completion and assay of diamond drilling
+·
+Follow-up diamond drilling to test strike and depth continuity
+·
+Integration of results into the Carlow-Titan geological model
+Carlow Gold-Copper Project
+The Carlow Gold-Copper Project remains a cornerstone asset within Artemis' Pilbara portfolio, hosting a JORC 2012 Inferred Mineral Resource of
+374koz gold and 64kt copper
+(
+refer to ASX announcement dated 13 October 2022)
+, which remains open along strike to the east and at depth below approximately
+380 metres vertical
+.
+During the quarter, Artemis commenced a
+conceptual mining study
+, being undertaken by independent consultants Snowden-Optiro,
+(refer to ASX announcement dated 17 November 2025),
+to assess potential development scenarios and support ongoing technical evaluation of the project.
+The study is examining a range of open pit and underground optimisation concepts and is being conducted in parallel with planned extensional drilling. This work is being advanced against a materially stronger commodity price environment compared with the assumptions underpinning the October 2022 Mineral Resource Estimate.
+Outputs from the study are intended to guide near-term decision-making, including drill targeting priorities, resource growth opportunities, metallurgical sampling requirements and early-stage development pathways.
+Next steps (March 2026 quarter):
+·
+Completion of the conceptual mining study
+·
+Integration of drilling results into updated geological and development assessments
+Figure 1: Interpreted long section through the Titan-Carlow corridor showing geological and structural interpretation, Titan East discovery drill intersections and outline of the Carlow Mineral Resource.
+Madura Province - Copper Growth Strategy
+Cassowary Exploration Project
+Artemis is systematically advancing its
+1,129km² landholding
+along the Madura Crustal Boundary in south-eastern Western Australia, targeting large-scale
+IOCG-style copper-gold systems
+.
+Following execution of the Land Access Agreement with the
+Pila Nguru (Aboriginal Corporation) RNTBC
+in October 2025,
+(refer to ASX announcement dated 13 October 2025),
+the Company has full operational access to the granted
+341km² core exploration licence (E69/4266)
+.
+Cassowary is centred on an interpreted intrusive complex situated along a major lithospheric boundary separating the Yilgarn Craton from the Albany-Fraser Orogen, a geological setting considered favourable for large-scale intrusion-related mineral systems.
+During the quarter, work programs were lodged for
+four initial diamond drill sites
+, targeting the core of the interpreted Cassowary Intrusion (Target T1) and associated structural corridors. These programs are designed to test the presence of copper-gold mineralisation beneath transported cover.
+Sharon Dam IOCG Project (Earn-In / Joint Venture)
+During the quarter, Artemis executed an
+Earn-In and Joint Venture agreement with Red Metal Limited
+(ASX:RDM) to secure a majority interest in the Sharon Dam IOCG Project,
+(refer to ASX announcements dated 24 December 2025),
+located approximately 50km south of Cassowary within the same regional structural corridor.
+Sharon Dam is defined by a coincident magnetic and gravity anomaly interpreted to represent a prospective intrusive system concealed beneath approximately
+250 metres of transported cover
+, which is materially shallower than many comparable IOCG targets in Australia.
+Under the agreement, Artemis may earn up to
+60% interest
+by spending
+A$5 million over three years
+, including a
+minimum A$400,000 drilling commitment within 12 months
+.
+The project has an existing Exploration Incentive Scheme (EIS) co-funding allocation of up to approximately A$220,000, which will reduce net drilling costs but does not count toward the minimum expenditure requirement under the earn-in agreement.
+Drilling is targeted for late Q2
+2026
+, subject to heritage clearance.
+Figure 2
+: Location plan highlighting mineral deposits and occurrences associated with Proterozoic age crustal boundaries, parallel with the Yilgarn craton margin. Madura Crustal Boundary shown in red.
+Corporate
+Processing & Infrastructure
+Radio Hill Processing Plant
+Artemis holds 100% ownership of the fully permitted
+Radio Hill Processing Plant
+, located near Karratha in Western Australia.
+During the quarter, the Company executed a
+non-binding Memorandum of Understanding (MoU)
+with West Coast Silver Limited (ASX: WCE)
+(refer to ASX announcement dated 4 December 2025)
+to assess the potential suitability of the Radio Hill plant for processing high-grade silver ore from the Elizabeth Hill Silver Mine.
+The MoU is assessment-focused only and does not constitute a binding processing or toll treatment agreement. The evaluation is intended to determine whether the existing plant configuration could be optimised to support potential third-party material.
+This work reinforces the strategic optionality provided by Artemis' infrastructure ownership and the potential for Radio Hill to operate as a regional, multi-commodity processing facility.
+Figure 3
+:
+Radio Hill Processing Plant Location; Proximal to the Elizabeth Hill Silver Project
+Finance and AGM Results
+At the Annual General Meeting held on
+27 November 2025
+, shareholders approved all resolutions put to the meeting on a poll, including the adoption of the Remuneration Report, the election and re-election of Directors, and the ratification of prior share issues.
+In accordance with ASX Listing Rule 5.3.1, exploration expenditure during the quarter was primarily directed toward drilling activities at the
+Karratha Gold-Copper Project (Titan East)
+and preliminary joint venture costs associated with the
+Sharon Dam IOCG Project
+.
+Board and Management Update
+To ensure focused technical execution across its frontier copper growth assets,
+Julian Hanna transitioned to the role of Project Manager (Cassowary and Sharon Dam)
+under a consultancy agreement effective
+1 January 2026
+(refer to ASX announcement dated 31 October 2025).
+During the quarter,
+Ms Vivienne Powe and Mr Guy Robertson
+retired from the Board. The Board acknowledged their contributions to the Company (refer to ASX announcement dated 29 September 2025 and 27 November 2025).
+Cash
+The Company held approximately $2,446,000 in cash at the end of the quarter. This provides funding into H2 2026 for planned drilling and studies.
+Issued Capital
+The capital
+structure of the Company as of 31 December 2025 was:
+Ordinary fully paid shares
+3,770,922,165
+Listed Options exercisable at $0.025 on or before 9 March 2026
+313,732,039
+Unlisted Options exercisable at $0.01 on or before 13 October 2028
+150,000,000
+Unlisted Options exercisable at $0.02 on or before 20 December 2027
+25,000,000
+Unlisted Options exercisable at $0.02 on or before 8 September 2027
+5,000,000
+Unlisted Options exercisable at $0.015 on or before 4 March 2027
+67,321,429
+APPENDIX 5B DISCLOSURES
+Exploration Activities (ASX LR 5.3.1)
+During the December 2025 quarter, the Company incurred exploration expenditure of approximately $1,046,000. The Company held approximately $2,446,000 in cash at the end of the reporting period.
+Mining Production and Development (ASX LR 5.3.2)
+The Company confirms that there were no mining production or development activities undertaken during the quarter by the Company or its subsidiaries.
+Tenements (ASX LR 5.3.3)
+No mining tenements were acquired or disposed of during the quarter.
+During the quarter, the Company entered into an earn-in and joint venture (farm-in) agreement with Red Metal Limited in relation to the Sharon Dam IOCG Project (refer ASX announcement dated 24 December 2025).
+A schedule of mining tenements held by the Company, including percentage interests, is provided on page 8.
+Related Party Transactions (ASX LR 5.3.5)
+Payments to related parties during the quarter totalled $310,000, comprising directors' fees and remuneration, as well as fees paid to related entities for corporate and consulting services provided to the Company, as disclosed in item 6.1 of the Appendix 5B. All related party transactions were conducted on normal commercial terms.
+Project
+Tenement
+Project Area
+Holder/Applicant
+Holding
+Status
+End Date
+Karratha Gold Project
+E47/1797
+Carlow - Titan
+KML No 2 Pty Ltd
+100%
+Live
+6 May 2026
+E47/1746
+Carlow West
+KML No 2 Pty Ltd
+100%
+Live
+15 May 2026
+E47/3719
+Osborne
+KML No 2 Pty Ltd
+49%
+Live
+27 Feb 2030
+P47/1972
+Cherratta Road
+KML No 2 Pty Ltd
+100%
+Live
+25 Aug 2029
+M47/337
+Radio Hill
+Fox Radio Hill Pty Ltd
+100%
+Live
+21 Mar 2036
+M47/161
+Radio Hill
+Fox Radio Hill Pty Ltd
+100%
+Live
+23 Feb 2031
+E47/3361
+Radio Hill
+Fox Radio Hill Pty Ltd
+100%
+Live
+4 April 2028
+L47/93
+Radio Hill
+Fox Radio Hill Pty Ltd
+100%
+Live
+8 Nov 2043
+E47/5138
+Whundo West
+KML No 2 Pty Ltd
+Ballot
+N/A
+E47/4933
+Hemi West
+KML No 2 Pty Ltd
+100%
+Pending
+N/A
+E47/4884
+Hemi West
+KML No 2 Pty Ltd
+Ballot
+N/A
+E47/4887
+Hemi West
+KML No 2 Pty Ltd
+Ballot
+N/A
+Cassowary Project
+E69/4266
+Cassowary Intrusion
+KML No 2 Pty Ltd
+100%
+Live
+10 Aug 2030
+E69/4317
+Cassowary South
+KML No 2 Pty Ltd
+100%
+Pending
+N/A
+E69/4334
+Cassowary East
+KML No 2 Pty Ltd
+100%
+Pending
+N/A
+E69/4318
+Cassowary West
+KML No 2 Pty Ltd
+100%
+Pending
+N/A
+E69/4330
+Southern Intrusions
+KML No 2 Pty Ltd
+100%
+Pending
+N/A
+E69/3441
+Sharon Dam Intrusion
+Red Metal Ltd - earn in
+0%
+Live
+10 Oct 2026
+Paterson Project
+E45/5276
+Central Paterson
+Armada Mining Pty Ltd
+100%
+Live
+13 Feb 2029
+This announcement was approved for release by the Board
+For further information:
+Artemis Resources Ltd
+Jozsef Patarica, Executive Director
+Zeus (Nomad and Broker)
+Antonio Bossi / James Bavister
+info@artemisresources.com.au
+Tel: + 44 20 3829 5000
+Competent/ Qualified Person Statement
+The information in this report that relates to exploration results was prepared by Mr Oliver Hirst M.Sci (Hons), a Competent Person who is a member of the Australasian Institute of Mining and Metallurgy (MAusIMM). Mr Hirst is a technical consultant to Artemis Resources. Mr Hirst has sufficient experience that is relevant to the style of mineralisation and type of deposit under consideration and to the activity being undertaken to qualify as a Competent Person as defined in the 2012 Edition of the 'Australasian Code for Reporting of Exploration Results, Mineral Resources and Ore Reserves". Mr Hirst consents to the inclusion in this report of the matters based on his information in the form and context in which it appears.
+No New Information
+To the extent that this announcement contains references to prior exploration results which have been cross referenced to previous market announcements made by the Company, unless explicitly stated, no new information is contained. The Company confirms that it is not aware of any new information or data that materially affects the information included in the relevant market announcements and, in the case of estimates of Mineral Resources, that all material assumptions and technical parameters underpinning the estimates in the relevant market announcements continue to apply and have not materially changed.
+About Artemis Resources
+Artemis Resources (ASX/AIM:ARV) is a gold and copper focused resources company with a highly attractive suite of projects including projects in Western Australia's underexplored North Pilbara Gold Province and at the Cassowary Exploration Project located 440km east of Kalgoorlie in Western Australia.
+·
+Attractive projects:
+o
+Gold/Copper
+- Karratha Gold Project
+(100%) multiple prospects incl: Carlow, Titan, Thorpe
+o
+Copper/Gold
+- Cassowary Exploration Project
+- large IOCG type and intrusion related targets
+o
+Paterson Gold/Copper Project
+- adjacent to Havieron Mine (owned Greatland Gold)
+o
+Lithium
+- Artemis/Greentech Lithium JV: Mt Marie, Kobe, Osborne
+·
+Highly strategic location:
+Tier 1 jurisdiction, close proximity to major hub at Karratha including regional rail and road infrastructure, administrative centre and Dampier Port
+·
+Significant exploration upside:
+highly prospective tenure package in the Pilbara Region of Western Australia which is rapidly emerging gold province dominated by >12Moz Au Hemi Project
+·
+Mineral Resource with growth potential:
+existing high-grade gold-copper Mineral Resource at Carlow
+·
+Established processing site at Radio Hill:
+strategically located, fully permitted
+·
+Cassowary Exploration Project:
+Artemis holds a granted 341km2 exploration licence covering the large, interpreted Cassowary Intrusion prospective for IOCG type copper/gold and has four other exploration licence applications to cover other interpreted intrusions within a 30-40km wide interpreted rift zone.
+Appendix - Carlow Resource
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+UPDMZGZMRLZGVZM
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
                         <div style="font-weight: 700; font-size: 16px;">Diamond Drilling Recommences at Titan East</div>
                         <span style="
                             display: inline-block;
@@ -951,7 +1491,7 @@
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Gold Discovery</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Antonio Bossi</td>
                     </tr>
                     
                         </table>
@@ -1116,9 +1656,9 @@ DRLAKKBPABKDPDB
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">2</span>
+                    ">3</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #2
+                        RNS ANNOUNCEMENT #3
                     </div>
                 </div>
                 
@@ -1183,7 +1723,7 @@ DRLAKKBPABKDPDB
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Automic Pty</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Antonio Bossi</td>
                     </tr>
                     
                         </table>
@@ -1339,9 +1879,9 @@ MSCAKQBNQBKDNDD
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">3</span>
+                    ">4</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #3
+                        RNS ANNOUNCEMENT #4
                     </div>
                 </div>
                 
@@ -1539,9 +2079,9 @@ MSCVFLBXELLBFBL
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #10b98140;
-                    ">4</span>
+                    ">5</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #4
+                        RNS ANNOUNCEMENT #5
                     </div>
                 </div>
                 
@@ -1677,334 +2217,6 @@ Privacy Policy
 .
 END
 MSCFEDFSLEISEEE
-                </div>
-            </details>
-            
-            </div>
-            
-            <div style="
-                margin-bottom: 20px;
-                padding: 18px;
-                background: white;
-                border-radius: 14px;
-                border: 1px solid #e2e8f0;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 30px;
-                        height: 30px;
-                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
-                        color: white;
-                        border-radius: 50%;
-                        font-weight: 800;
-                        font-size: 15px;
-                        box-shadow: 0 2px 8px #10b98140;
-                    ">5</span>
-                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #5
-                    </div>
-                </div>
-                
-                
-            <div style="
-                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
-                color: white;
-                padding: 14px;
-                border-radius: 10px;
-                margin-bottom: 16px;
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">🤝</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">JV Agreement Signed</div>
-                        <span style="
-                            display: inline-block;
-                            background: rgba(255,255,255,0.25);
-                            padding: 2px 10px;
-                            border-radius: 12px;
-                            font-size: 11px;
-                            margin-top: 4px;
-                            font-weight: 600;
-                        ">CONTRACT WIN</span>
-                    </div>
-                </div>
-                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    Positive development - monitor for follow-through in share price.
-                </div>
-            </div>
-            
-                
-            <div style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 10px;
-                margin: 16px 0;
-            ">
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">22nd Dec 2025</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
-                </div>
-            </div>
-            
-                
-                
-                    <div style="margin: 16px 0;">
-                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
-                            
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Antonio Bossi</td>
-                    </tr>
-                    
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">60%, 60%, 60%</td>
-                    </tr>
-                    
-                        </table>
-                    </div>
-                    
-                
-            <details style="margin-top: 16px;">
-                <summary style="
-                    padding: 10px;
-                    background: #f8fafc;
-                    border-radius: 8px;
-                    font-weight: 600;
-                    font-size: 12px;
-                    list-style: none;
-                    cursor: pointer;
-                    color: #64748b;
-                    border: 1px solid #e2e8f0;
-                ">
-                    📄 View Full RNS Text
-                </summary>
-                <div style="
-                    margin-top: 8px;
-                    padding: 14px;
-                    background: #f1f5f9;
-                    border-radius: 8px;
-                    font-family: 'Courier New', monospace;
-                    font-size: 11px;
-                    line-height: 1.5;
-                    color: #475569;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                ">
-22 Dec 2025 07:00
-RNS Number : 4506M
-Artemis Resources Limited
-22 December 2025
-This announcement contains inside information for the purposes of Article 7 of the UK version of Regulation (EU) No 596/2014 which is part of UK law by virtue of the European Union (Withdrawal) Act 2018, as amended ("MAR"). Upon the publication of this announcement via a Regulatory Information Service, this inside information is now considered to be in the public domain.
-22 December 2025
-Artemis Expands Footprint in High Leverage Copper Frontier
-Earn-In/Joint Venture Agreement with Red Metal at Sharon Dam IOCG Target
-50km south of the Cassowary Intrusion within Madura Copper Exploration Belt
-HIGHLIGHTS
-·
-High-leverage copper JV:
-Artemis can earn 60% of Red Metal's Sharon Dam IOCG target by spending not less than $5,000,000 within 3 years, inclusive of an initial commitment $400k for drilling, supported by~$220k government EIS co-funding grant
-·
-Optionality:
-After meeting the $400k commitment for drilling within 12 months, Artemis has the option to continue and earn the JV interest or withdraw from the agreement at any time.
-·
-Belt-scale potential:
-Sharon Dam is a large previously undrilled IOCG target defined by a strong coincident magnetic-gravity anomaly within a frontier copper exploration district
-·
-Strategic consolidation
-: JV strengthens Artemis' 1,180km² copper-gold position along the Madura Crustal Boundary, an emerging province with multiple interpreted intrusions.
-·
-Favourable discovery conditions:
-Shallow cover (estimated 250m) provides a cost-effective exploration environment compared to deeper IOCG systems elsewhere in Australia.
-·
-Rapid pathway to drilling:
-Granted tenement; established access to drill site; existing heritage agreement with drilling targeted for March-April 2026, subject to heritage clearance.
-Artemis Resources Limited (ASX/AIM: ARV)
-(
-Artemis
-or
-the Company
-) is pleased to advise that it has entered into an earn-in and joint venture agreement with Red Metal Limited (ASX: RDM) (
-Red Metal
-) over the highly prospective Sharon Dam T1 intrusion, located approximately 50km south of the Company's compelling Cassowary Intrusion in Western Australia's Madura Province.
-The JV expands Artemis' holdings and provides a second outstanding target (after Cassowary) for early drilling within what is interpreted to be a unique, multi-intrusion belt within a wide rift zone along the Madura Crustal Boundary (
-MCB
-) - a major structural corridor and one of the last underexplored frontiers for IOCG copper and other intrusion related deposits in Australia.
-Artemis Executive Director, Jozsef Patarica, commented:
-"The JV with Red Metal provides a strategic and low-cost entry into another compelling IOCG target in Western Australia. By partnering with Red Metal we are expanding our footprint 50 kilometres south of the Cassowary Intrusion and putting funds directly into drilling one of the most exciting targets in the region. The Sharon Dam target sits within an area which may host multiple intrusions adjacent to the Madura Crustal Boundary - which we believe is on the cusp of major exploration interest. Consolidation of this belt enhances Artemis' position as a leading copper explorer in a region with IOCG potential."
-Artemis Technical Director, Julian Hanna, added:
-"Sharon Dam is a rare opportunity for Artemis. Not only does it tick all the boxes on technical grounds, the first drill hole into the centre of this compelling target will be co-funded by a substantial EIS grant reducing the funding requirement from Artemis. Our exploration team is looking forward to working closely with Red Metal on the Sharon Dam project, and with the Pila Nguru Native Title Holders and local station owners on the wider Cassowary Project which extends 70km along this overlooked belt."
-Frontier IOCG Search Space: Madura Crustal Boundary -
-Exceptional Geological Opportunity
-Recent interpretations of geophysical data by Artemis have identified a >30km-wide rift zone which appears to host multiple interpreted intrusions - dominated in the north by the Cassowary Intrusion and in the south by the Sharon Dam Intrusion, buried beneath flat lying Nullarbor sediments. The rift zone is bounded on the west by the Madura Crustal Boundary, a long-lived crustal structure parallel to:
-1. Yilgarn Craton margin - hosting Tropicana Gold District (multi-Moz gold)
-2. Albany-Fraser mobile belt - hosting IGO's Nova-Bollinger and Legend's nickel-copper deposits
-The large, Sharon Dam and Cassowary intrusions sit within the Madura structural corridor and are interpreted to have preserved their original geometries - markedly different from highly deformed intrusions within the nearby Albany-Fraser mobile belt.
-Regional Activity
-·
-BHP Nickel West
-previously held the southern part of the belt exploring for nickel until 2022.
-·
-Artemis initially applied for the tenement covering the Cassowary Intrusion (341km2) which was granted in August 2025. Artemis has also applied for 4 additional tenements covering (788km2).
-·
-WA1 Resources
-has applied for 2 tenements (~1,000 km²) covering the area between Artemis's northern and southern blocks and is publicly targeting IOCG and other intrusion related deposits.
-·
-Teck
-has applied for 1 tenement 110km south along the crustal boundary from Cassowary.
-Most of Artemis's tenement applications
-are expected to be granted in Q1 2026, coinciding with heightened exploration activity and news flow.
-Strategic Rationale: Why This Matters for Artemis Shareholders
-·
-High-impact, low-cost discovery opportunity:
-Artemis secures the right to earn 60% of a large IOCG target for an effective outlay of only $400k, which with EIS co-funding will be used to fund the initial drilling. Artemis can earn 60%
-by spending $5,000,000, less the initial $400k outlay.
-·
-Belt-scale consolidation:
-The JV extends Artemis' footprint to control two clusters of interpreted intrusions within 50-70km of strike adjacent to a major prospective structural boundary, strengthening the Company's regional competitive position.
-·
-District emerging as a strategic hotspot:
-Recent moves by Teck, WA1, and historical interest from BHP support the view that the Madura Crustal Boundary may represent an underexplored mineral province.
-·
-Drilling in early 2026:
-A clear pathway to drilling provides a near-term catalyst with meaningful upside if the initial drilling confirms Sharon Dam could represent a mineralised intrusion.
-·
-Intact, undrilled intrusive systems:
-Targets of this size with strong magnetic/gravity coincidence as well as preservation are rare in Australia and offer genuine IOCG discovery potential.
-Figure 1
-- Location plan highlighting mineral deposits and occurrences associated with Proterozoic age crustal boundaries, parallel with the Yilgarn craton margin. Madura Crustal Boundary shown in red
-Sharon Dam Target
-Priority Target T1 - Compelling IOCG Candidate
-Interpreted Sharon Dam Intrusion is a drill-ready target characterised by:
-·
-Strong coincident magnetic and gravity anomalies - refer to Figures 3 and 4.
-·
-Coincident anomalies possibly consistent with IOCG
-·
-Modelling of gravity data implies density of ~3.5 (SG) - possible iron-rich source
-·
-Bounded by NW trending cross-cutting faults - similar to Cassowary Intrusion.
-·
-Source of the coincident anomalies is modelled at 500-600m depth.
-Interpreted geological setting of Sharon Dam:
-·
-Main intrusion appears intact with small satellite intrusion on western side - refer to Figure 3
-·
-Surrounding cluster of other intrusions on Artemis tenement application - refer to Figure 2.
-·
-Central within >20km wide circular gravity low suggests underlying deep seated granitic body.
-F
-igure 2
-- Magnetic image of interpreted rift zone showing interpreted Cassowary Intrusion
-and
-Sharon Dam
-Intrusion (50km south) showing initial planned drill holes
-Figure 3
-- Sharon Dam RTP Magnetic Image overlain by 1VD gravity contours
-showing planned location of first diamond drill hole
-Figure 4
-- Sharon Dam coincident 3D modelled gravity (top) and magnetic (below) anomalies
-showing planned location of first diamond drill hole
-Exploration Incentive Scheme (EIS) Co-Funding
-Red Metal has previously been awarded an Exploration Incentive Scheme (EIS) co-funded drilling grant of up to $220,000 for the Sharon Dam Project by the Western Australian Government. Under the earn-in and joint venture agreement, any EIS funds received by Red Metal for the approved Sharon Dam drill program will be transferred to Artemis but cannot be used to satisfy Artemis' $400,000 minimum expenditure requirement. As a result, Artemis is required to fund the full minimum drilling commitment, with the EIS refund expected to reduce the Company's net cash outlay for the drilling.
-Binding Earn In and Joint Venture Agreement - Key Terms
-·
-Initial commitment:
-Artemis has a minimum expenditure requirement of $400,000 to fund the initial drill hole at Sharon Dam within a 12-month expenditure period
-·
-The expenditure period may be extended in event of unexpected delays due to Force Majeure or delays to heritage surveys or other cultural related restraints
-·
-If drilling fails to reach target depth, or no favourable geology or indications of mineralisation intersected before 500m depth, the minimum expenditure requirement will reduce to $250,000
-·
-Red Metal will transfer to Artemis funds received by Red Metal from the EIS co-funding grant (est. ~$220,000) - not to be used to satisfy the minimum expenditure requirement
-·
-If Artemis fails to satisfy the minimum expenditure requirement it will be required to pay to Red Metal the short fall between the minimum expenditure requirement, and actual expenditure
-·
-After satisfying the minimum expenditure requirement, Artemis may withdraw from the agreement at any time with no retained interest other than accrued rights and liabilities prior to the withdrawal
-·
-Earn-in:
-Artemis can earn 60% interest in the Red Metal tenement by spending not less than $5,000,000 (inclusive of the $400,000 minimum expenditure commitment) within 3 years
-·
-Within 30 days of earning the 60% interest, an unincorporated joint venture will be formed between Artemis and Red Metal, and Red Metal may elect to reduce its interest to 20% in which event Artemis will increase its interest to 80% and free carry Red Metal's interest to a decision to mine. The joint venture interest will be in proportion to the interest in the Red Metal tenement
-·
-Joint Venture:
-standard terms include - JV committee, programs/budgets, pre-emptive rights
-·
-Assignment:
-parties may assign, transfer, sell or dispose of JV interest to a related body corporate
-Next Steps
-1.
-Lodge a work program for first drill hole at Sharon Dam with Pila Nguru Native Title owners
-2.
-Organise a time with Pila Nguru to conduct a heritage survey of the drill site
-3.
-Confirm existing access track to drill site, arrange water supply with station owner
-4.
-Once heritage clearance is received, commence drilling using two drill rigs
-5.
-RC drilling to be used through cover sequence, diamond drilling through basement sequence
-6.
-Drilling is targeted to commence in March-April 2026
-AIM Rule Disclosures
-For the financial year ended 30 June 2025, there were $51,212 of losses attributable to these assets.
-APPENDIX
-Examples of gravity and magnetic signatures for six IOCG deposits and occurrences within the Olympic Dam Copper-Gold Province. Source: Geological Survey South Australia - July 2020
-Cautionary Statement
-Artemis wishes to emphasize that the publicly available
-gravity and magnetic expressions of six Iron Oxide Copper-Gold (IOCG) deposits and occurrences illustrated above are
-intended to provide examples of geophysical responses across a range of Australian IOCG - type
-deposits and occurrences, which have been confirmed by drilling
-. There is no historic drilling at the interpreted Sharon Dam intrusion and no outcrop to indicate the presence of IOCG or any other type of mineralisation. Sharon Dam is a conceptual target only and drilling is planned to test the source of the coincident gravity and magnetic anomalies, which is currently unknown.
-This announcement has been authorised for release by the Board of Artemis Resources Limited.
-For further information:
-Artemis Resources Ltd
-Jozsef Patarica, Executive Director
-Julian Hanna, Technical Director
-Zeus (Nomad & Broker)
-Antonio Bossi / James Bavister
-info@artemisresources.com.au
-Tel: +44 20 3829 5000
-About Artemis Resources
-Artemis Resources (ASX/AIM: ARV)
-is a Western Australian exploration company focused on advancing a highly prospective portfolio of gold, copper and critical minerals projects. The Company holds a significant land position in the underexplored North Pilbara Gold-Copper Province, including the Carlow, Titan and Thorpe prospects, as well as the large-scale Cassowary Exploration Project located approximately 440km east of Kalgoorlie. Artemis also holds a strategic, fully permitted processing asset at Radio Hill, situated near Karratha.
-Artemis' portfolio includes exposure to gold-copper systems, IOCG-style intrusions, and lithium via joint venture interests at Mt Marie, Kobe and Osborne. The Company continues to advance high-impact exploration programmes across these assets with the objective of defining new discoveries and unlocking value for shareholders.
-About Red Metals
-Red Metal Limited (ASX: RDM)
-is an Australian mineral explorer with a portfolio spanning rare earths, copper and gold. Red Metal is currently focused on advancing its flagship Sybella Rare Earth Project in north-west Queensland.
-Competent Person Statement
-The information in this report that relates to Exploration Results was compiled by Mr Julian Hanna, a Competent Person who is a member of the Australasian Institute of Mining and Metallurgy (MAusIMM). Mr Hanna is Technical Director of Artemis Resources Ltd and has sufficient experience that is relevant to the style of mineralisation and type of deposit under consideration and to the activity being undertaken to qualify as a Competent Person as defined in the 2012 Edition of the 'Australasian Code for Reporting of Exploration Results, Mineral Resources and Ore Reserves". Mr Hanna consents to the inclusion in this report of the matters based on his information in the form and context in which it appears.
-No New Information
-To the extent that this announcement contains references to prior exploration results which have been cross referenced to previous market announcements made by the Company, unless explicitly stated, no new information is contained. The Company confirms that it is not aware of any new information or data that materially affects the information included in the relevant market announcements and, in the case of estimates of Mineral Resources, that all material assumptions and technical parameters underpinning the estimates in the relevant market announcements continue to apply and have not materially changed.
-Forward Looking Statements
-This announcement contains historical facts, interpretations and statements relating to the Company's current exploration projects, drill targets, conceptual targets, plans, estimates, objectives, and strategies which are forward-looking statements. Such forward-looking statements involve known and unknown risks, uncertainties and other important factors beyond the Company's control that could cause the actual results, performance, or achievements of the Company to be materially different from future results, performance or achievements expressed or implied by such forward-looking statements. Accordingly, any reliance you place on such forward-looking statements will be at your sole risk and the Company expressly disclaims any obligation or undertaking to disseminate any updates or revisions to any forward-looking statements contained in this announcement to reflect any changes in its expectations with regard thereto or any change in events, conditions or circumstances on which any statement is based. The information contained in this announcement is subject to change without notice. No representation or warranty, express or implied, is given as to the accuracy, completeness or fairness of the information or opinions contained in this announcement and no liability is accepted by the Company or any of its directors, members, officers, employees, agents, or advisers for any such information or opinions.
-This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
-rns@lseg.com
-or visit
-www.rns.com
-.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
-Privacy Policy
-.
-END
-JVEEAKAAALDSFEA
                 </div>
             </details>
             
@@ -2324,7 +2536,7 @@ JVEEAKAAALDSFEA
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-29 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-01-30 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.

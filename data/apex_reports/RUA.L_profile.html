@@ -163,6 +163,8 @@
             font-weight: 600;
             text-transform: uppercase;
         }
+
+        
         
         .risk-indicator {
             display: flex;
@@ -223,11 +225,11 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">£</span>
-                    <span><strong>Market Cap:</strong> £9,619,342</span>
+                    <span><strong>Market Cap:</strong> £8,998,739</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 446 days</span>
+                    <span><strong>Days Active:</strong> 448 days</span>
                 </div>
             </div>
         </div>
@@ -258,8 +260,11 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#10b981; line-height:1;">48</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Setup</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Setup
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Trust -->
@@ -268,8 +273,11 @@
                             <div style="font-size:14px;">🛡️</div>
                             <div style="font-size:28px; font-weight:800; color:#3b82f6; line-height:1;">40</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Trust</div>
-                        <div style="font-size:10px; color:#94a3b8;">20%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Trust
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Panic -->
@@ -278,8 +286,11 @@
                             <div style="font-size:14px;">😱</div>
                             <div style="font-size:28px; font-weight:800; color:#ef4444; line-height:1;">52.6</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Panic</div>
-                        <div style="font-size:10px; color:#94a3b8;">30%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Panic
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Compression -->
@@ -288,34 +299,56 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#f59e0b; line-height:1;">25</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Compression</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Compression
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Timing Scope -->
+            <!-- Timing Scope: Flat segmented bar -->
             <div style="margin-top:24px;">
-                <div style="font-size:12px; color:#475569; font-weight:700; margin-bottom:8px; text-align:center;">Timing Spectrum</div>
+                <!-- position badge removed to avoid overlay on timing spectrum -->
                 <style>
                     @keyframes pulse-ring {
-                        0% { transform: scale(0.8); opacity: 0.9; }
+                        0% { transform: scale(0.7); opacity: 0.9; }
                         70% { transform: scale(2.2); opacity: 0; }
                         100% { transform: scale(2.8); opacity: 0; }
                     }
+                    @keyframes pulse-ring-outer {
+                        0% { transform: scale(0.9); opacity: 0.7; }
+                        50% { transform: scale(1.12); opacity: 0.45; }
+                        100% { transform: scale(1.3); opacity: 0; }
+                    }
                 </style>
-                <div style="position:relative; height:48px; background:linear-gradient(90deg, #ef4444 0%, #f59e0b 25%, #f093fb 50%, #10b981 75%, #064e3b 100%); border-radius:8px;">
-                    <div style="position:absolute; left:calc(70% - 24px); top:calc(50% - 24px); width:48px; height:48px; display:flex; align-items:center; justify-content:center;">
-                        <div style="position:absolute; width:48px; height:48px; border-radius:24px; background:rgba(15,23,42,0.12); animation: pulse-ring 1.8s infinite;"></div>
-                        <div style="width:16px; height:16px; border-radius:8px; background:#0f172a; box-shadow:0 6px 18px rgba(0,0,0,0.12);"></div>
+                <div style="position:relative;">
+                    <div style="display:flex; gap:6px; height:48px; border-radius:8px; overflow:hidden;">
+                        <div style="flex:1; background:#ef4444;"></div>
+                        <div style="flex:1; background:#f59e0b;"></div>
+                        <div style="flex:1; background:#facc15;"></div>
+                        <div style="flex:1; background:#10b981;"></div>
+                        <div style="flex:1; background:#065f46;"></div>
+                    </div>
+
+                    <!-- Pulse pointer positioned by timing_pos_pct -->
+                    <div style="position:absolute; left:calc(70% - 26px); top:0px; width:52px; height:52px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                        <!-- outer grey-white ring to help indicator stand out -->
+                        <div style="position:absolute; width:60px; height:60px; border-radius:30px; background:rgba(249,250,251,0.95); border:2px solid rgba(2,6,23,0.06); box-shadow:0 8px 30px rgba(2,6,23,0.06); animation: pulse-ring-outer 2.2s infinite;"></div>
+                        <!-- inner colored pulse ring -->
+                        <div style="position:absolute; width:52px; height:52px; border-radius:26px; background:#17ffbb; opacity:0.18; animation: pulse-ring 1.6s infinite;"></div>
+                        <!-- core dot with colored border for contrast -->
+                        <div style="width:18px; height:18px; border-radius:9px; background:#ffffff; box-shadow:0 10px 30px rgba(0,0,0,0.22); border:3px solid #10b981;"></div>
                     </div>
                 </div>
-                <div style="display:flex; justify-content:space-between; font-size:12px; color:#475569; margin-top:10px;">
-                    <div>Too Early</div>
-                    <div>Early Build</div>
-                    <div>Confirmed</div>
-                    <div>Crowded</div>
-                    <div>Broken</div>
+
+                <div style="display:flex; justify-content:space-between; font-size:12px; margin-top:8px; gap:6px;">
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Too Early</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Early Build</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Confirmed</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Crowded</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Broken</span></div>
                 </div>
 
                 <div style="margin-top:12px; display:flex; justify-content:center;">
@@ -540,6 +573,16 @@
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Final results for period ended 30 September 2025</div>
+                        <div style="font-size: 12px; color: #64748b;">30th Jan 2026</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Cancellation & Reissue Share Options</div>
                         <div style="font-size: 12px; color: #64748b;">10th Dec 2025</div>
                     </div>
@@ -572,16 +615,6 @@
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Director/PDMR Shareholding</div>
                         <div style="font-size: 12px; color: #64748b;">6th May 2025</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
-                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
-                    <span style="font-size: 18px;">📢</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Change of Registered Office</div>
-                        <div style="font-size: 12px; color: #64748b;">30th Apr 2025</div>
                     </div>
                 </div>
             </div>
@@ -870,15 +903,884 @@
                         justify-content: center;
                         width: 30px;
                         height: 30px;
+                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #10b98140;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Final results for period ended 30 September 2025</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">POSITIVE RESULTS</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Positive development - monitor for follow-through in share price.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Capital Redemption</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">104%, 85%, 23%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+Today 07:00
+RNS Number : 9991Q
+RUA Life Sciences PLC
+30 January 2026
+RUA Life Sciences plc
+("RUA Life Sciences", the "Company" or the "Group")
+Final results for the period ended 30 September 2025
+RUA Life Sciences, a medical device focussed CDMO specialising in implantable textile components and devices and the exploitation of the world's leading long-term implantable biostable polymer (Elast-EonTM), announces its audited final results for the period ended 30 September 2025.
+Highlights
+:
+·
+Strategic objective of doubling revenue achieved with focus on growth and commercial activities.
+·
+Revenues for 18 months £6.7m (12 months to March 2024: £2.2m)
+·
+Like for like revenue growth of 104%
+·
+£2.0m improvement in EBITDA to £0.4m from £1.6m loss.
+·
+Loss before tax reduced 85% to £0.2m (2024: £2.0m)
+·
+CDMO business strengthened with bargain purchase of ABISS (£0.9m gain).
+·
+CDMO revenues £5.8m (FY24 £1.7m)
+·
+23% like for like growth in RUA Biomaterials despite strength of Sterling against US dollar.
+·
+Biomaterials revenues £914,000 (FY24 £496,000).
+·
+Reduced R&D spend £438,000 (2024: £873,000)
+·
+Strategy to commercialise IP created in RUA Vascular and RUA Structural Heart being pursued
+·
+Year-end cash £3,250,000 (2024: £3,931,000)
+Current trading and outlook
+Activity levels achieved during period have continued into current year with encouraging new business pipelines.
+Geoff Berg, Chairman of RUA Life Sciences, commented:
+"
+The two year objectives set at the time of the 2023 Strategy Review, of doubling revenues, reducing cash burn and focussing on profitability have been achieved ahead of time through strong trading and the purchase of the Abiss subsidiary in France. We look forward to building upon this success through broadening both services for current customers and expanding the customer base further
+The information contained within this announcement is deemed by the Company to constitute inside information as stipulated under the UK version of the EU Market Abuse Regulation (2014/596), which is part of UK law by virtue of the European Union (Withdrawal) Act 2018, as amended and supplemented from time to time.
+For further information contact:
+RUA Life Sciences
+Tel: +44 (0)1294 317073
+G Berg, Non-Executive Chairman
+W Brown, Chief Executive Officer
+L Smith, Group Chief Financial Officer
+Cavendish Capital Markets Limited
+(Nominated Advisor and Stockbroker)
+Tel: +44 (0)20
+7220 0500
+Giles Balleny/Isaac Hooper (Corporate Finance)
+Harriet Ward (Broking)
+Nigel Birks (Healthcare Specialist Sales)
+Michael Johnson (Sales)
+About RUA Life Sciences
+RUA Life Sciences plc is the ultimate parent company of the Group, whose principal activities
+are the Contract Development and Manufacture of medical devices and components and exploiting the polymer and device
+IP & know-how developed within the
+Group.
+The mission of the Group is to be a long-term trusted partner to the medical device industry through specialisation in implantable textiles and biostable polymers and related technology. This is being undertaken through:
+· International growth via licensing Elast-Eon to third parties through RUA Biomaterials;
+· International growth through Medical Devices and Components businesses exploiting implantable textiles expertise;
+· Partnering with other parties to exploit and monetise the substantial Intellectual Property developed within the Group.
+RUA Life Sciences will seek to maximise shareholder value by growing each business to achieve attractive levels of profitability or disposing of business areas if the valuations are attractive
+.
+A copy of this announcement will be available shortly at
+www.rualifesciences.com/investor-relations/regulatory-news-alerts
+.
+CHAIRMAN'S STATEMENT
+I am pleased to present my statement for the 18-month period to 30 September 2025. The longer reporting period results from the Company's decision to change its year-end from March to September, providing additional time to integrate the Abiss acquisition and to align our reporting cycle with that of a major customer to support improved planning. The financial results for the period to 30 September 2025 are presented below together with the strategic and organisational progress achieved by the Company. Throughout the Report and Accounts, reported revenues and expense items relate to an 18-month period, whilst prior period comparatives are for the 12 months to 31 March 2024.
+Background
+I concluded my statement last year by observing that RUA had recently switched from a business with funding required to finance the needs of R&D projects to a financially strong business focussed on growth, cash generation and profitability. It is against this background that we set out this report.
+Trading for Year
+The headline trading results demonstrate that RUA has made exceptional progress towards its objectives of growth and profitability. Revenue grew over threefold from £2.19 million in the year to March 2024 to £6.69 million in the 18 month period to September 2025. Losses before tax reduced from £2.02 million to £0.24 million a reduction of 86%.
+The Abiss acquisition added customers, capability and momentum and, on completion, generated a non-recurring bargain-purchase gain of £0.9m. While that item lifts the reported result, the direction of travel is clear, a larger, better-balanced business moving toward sustainable profitability.
+As set out in the Strategic Report below, the improved trading is a result of growth in Contract Manufacture and the acquisition of Abiss together with tight cost control and the elimination of certain roles within the Group.
+Net cash outflow excluding proceeds from share issues was much reduced from the £1.49 million in the year to March 2024 to £0.66 million for the 18-month period to September 2025. It is pleasing that in the final six months of the period, there was a net cash inflow from operating activities meeting the objective of reaching a position of cash generation from trading.
+Cash balances at 30 September 2025 remained strong at £3.25 million after having repaid a mortgage of £0.11 million on the Drummond Crescent factory unit.
+Industry Drivers
+In the last interim report, I discussed the long-term nature of the medical device industry. The industry in many areas is dominated by large corporations which tend to be risk averse and often leave true innovation to smaller, entrepreneurial organisations but later acquire that innovation once proven.
+The regulatory environment is also highly structured, both for demonstrating the necessary safety and efficacy to obtain an initial marketing authority, and also for the additional submissions required if there is a change to a device. Against this background, progress in the industry is typically slow; however, when it does occur, it can generate high value, attractive margins and strong barriers to entry, reflecting the substantial investment required to bring a product to market and sustain it.
+Achieving growth as a contract manufacturer of devices or licensor of technology is long-term in nature, as it follows the market penetration of the device.
+The focus on commerciality over the past two years has not only positioned RUA well to grow alongside its partners but has brought a number of early-stage contract development opportunities that engage the R&D team and have set the foundations for future manufacturing revenues.
+Future Drivers
+As the business has come through the transition from being R&D to commercially focussed, revenue growth will be driven by an integrated contract development and manufacturing business working closely with partners at all stages of their product lifecycles. In addition, the business owns a substantial IP portfolio in polymers, composite materials and manufacturing processes that will drive licensing and component supply opportunities.
+Conclusion
+The two year objectives set at the time of the 2023 Strategy Review, of doubling revenues, reducing cash burn and focussing on profitability have been achieved ahead of time through strong trading and the purchase of the Abiss subsidiary in France. We look forward to building upon this success through broadening both services for current customers and expanding the customer base further.
+BUSINESS REVIEW
+G
+roup Performance
+The Group entered the financial period with an emphasis towards growth, profitability and cash generation. This short term commercial focus represented a significant change from previous, longer term ambitions of growing infrastructure to support R&D activities to having a short term commercial focus. At the point of this transition, a number of senior roles were eliminated from the business with total annualised payroll savings of over £0.6 million. The executive leadership team was restructured and empowered to deliver on the Group objectives. Reflecting upon the objectives set for the business, they were ambitious and stretching and the progress made over the past 18 months is a significant achievement by the team.
+The financial performance over the period of this report has seen a substantial improvement in the position of the Group, driven by growth in customer engagement, cost control and strategic acquisitions.
+As the shape and focus of the business has changed it is an opportune time to summarise what the key activities of the Group are:
+·
+We develop components and finished devices under contract for customers.
+·
+We manufacture devices and components for customers under long term contracts.
+·
+We manufacture, market and distribute our own medical devices through Abiss.
+·
+We develop medical device and component IP in house using our talented and experienced team of engineers.
+·
+We license our IP to industry partners to enable their devices.
+As mentioned in the Chairman's Statement, product development in the medical device industry can be slow but there are a number of attractions in becoming established and embedded in these development projects:
+·
+High barriers to entry, both technical and regulatory.
+·
+High margin potential from both device and component supply.
+·
+Long product lifecycles: 10-20 years providing long term revenue visibility.
+RUA operates in a long term industry with high value outcomes on success. Developing a new medical device or implant is a structured, multi-year process. Each phase of development is designed to ensure product safety, reliability and regulatory compliance and can typically take from five to eight years for a device to be approved. The key stages and activities in this process are:
+·
+Phase 1 - Research and Feasibility
+Early scientific research is undertaken and prototypes are developed. This can involve up to 2 years work.
+·
+Phase 2 - Design and Development
+Engineering work is undertaken to turn prototypes into finished devices and testing of those devices is performed. Again this is typically a 2 year period.
+·
+Phase 3 - Clinical studies
+Studies to ensure device safety and performance with timescales determined by the study design but typically over a one to two year period.
+·
+Phase 4 - Regulatory dossier submission
+Review and clearance activities necessary to obtain regulatory approvals.
+Once approved, the device will be launched onto the market and volume manufacture is required. A succesful device can have a lifespan of 10-20 years. Any change to the device or manufacturing process can require parts of these steps to be undertaken again.
+RUA is a Contract Developer and Manufacturer of medical devices and components and we need to be engaged with customers at the appropiate stage of their device lifecycle. Our marketing approach has been to partner with customers at the Design and Development stage of their projects, becoming a key part of their R&D process (and budget) and partnering to become the manufacturer of either components or finished devices once Regulatory Approval has been achieved. Additionally, we recognised that during the product marketing phase, supply chain risks appear and customers may be let down by other external suppliers. RUA is becoming recognised as a problem solver, working succesfuly with customers to avoid product shortages.
+The spectacular growth we have enjoyed in our contracting business, termed Medical Devices and Components, over the past 18 months has been a result of our reputation for quality, innovation and agility, drawing customers to RUA when they have a problem that needs to be solved. The new material project announced in July 2024 and the acquisition of Abiss in September 2024 were examples of our ability to support these needs..
+Importantly, RUA is now contracted on several earlier stage projects at or beyond the Design and Development stage of device lifecycles. This will ensure additional revenue from engineering services and future device or component supply.
+IP Exploitation
+RUA has developed a substantial IP portfolio in house with potential and opportunities to further exploit.
+The areas of IP are:
+·
+The world leading, long term implantable polyurethane - Elast-EonTM.
+·
+Polymer processing technology to convert textile into an Elast-Eon composite - AurTexTM.
+·
+Mechanical testing data suite on AurTex with indications for use in multiple areas.
+·
+Polymer heart valve technology and data including AurTex and Elast-Eon as leaflet material.
+·
+A fully designed and developed polymer coated vascular graft together with agreed FDA protocol for clinical studies.
+·
+A technical file ready for approval on a next generation single incision mini-sling for treatment of Stress Urinary Incontinence (SUI).
+·
+Regulatory approved mesh devices for pelvic floor disorders.
+·
+Next generation material as alternative to mesh/tape in SUI.
+Elast-Eon
+The reporting period has seen a growth in our IP related revenue from £0.49 million in the year to March 2024 to £0.91 million in the current 18 month period. On a like for like basis this is a 24% increase year on year. This is all related to Biomaterials and the licensing of Elast-Eon. There are growth indicators within this area with good performance from established devices in the market together with customer products currently at Design/Development/Regulatory stages that can lead to growth in licence and royalty fees.
+Structural Heart
+Over the past 18 months, we have continued selective investment in our AurTex material and its application for heart valve leaflets. This work has been in support of a serious interest in AurTex for a specific heart valve need. The development work is showing promise, and we hope to make further progress during the current period. The Board's objective is to move future activities in this area off book whilst being able to recognise value created to date.
+Vascular
+No further investment is being made in this area. Some of the technology developed has enabled early stage revenues for our Contract Design and Development business with contracts for supply of crimping services and coated grafts supplied as components for further processing. It has been a disapointment that we have to date not succeeded in finding a partner to take on the regulatory burden of bringing the graft range to market.
+Abiss
+This business was purchased to ensure that the supply of a range of products to a major customer remained secure. Future product strategy is being discussed with the customer, and the results of those discussions will drive how certain IP within Abiss will be exploited in the future. We have been encouraged by the depth of product IP within Abiss and are seeking to build upon it for the benefit of both the Abiss business and the wider Group.
+Within the IP of the Group, there are at least four product ranges or even potential businesses that can be developed. Our strategy is to find partners willing to support each project with RUA providing Contract Development and Manufacturing services for a financial return through royalties or otherwise on the provision of the initial IP.
+Outlook
+Last year, we set the expectation of growing Biomaterials licence income as well as engaging with customers to double the scale of our Contract Manufacturing business. We were succesful in meeting those expectations and intend to grow each of those areas further during the current year. In addition, a key focus of management will be to exploit further the considerable IP portfolio within the business.
+FINANCIAL REVIEW
+The focus of the period has been to grow the established businesses of Biomaterials and Contract Manufacture, which enjoy strong contractual revenue streams and generate attractive net margins. Ambitious targets were set for the Group at the start of the period, and it is positive that we have been able to perform in line with these expectations. The period under review is an extended 18 months to 30 September 2025 as a result of the change in year-end. The corresponding results for last year represent the 12 months to 31 March 2024 and, as such, are not directly comparable.
+Revenue
+Group revenue for the 18-month period ended 30 September 2025 was £6.7 million compared to the 12 months to 31 March 2024 of £2.2 million. The period benefited from strong organic growth together with the first-time contribution from the acquisition of Abiss..
+Revenue by segment
+·
+Medical Devices and ComponentsUK Operations: £3.6 million (53% of Group revenue). On a like for like basis this represents 41 % growth from higher volumes and demand together with new business from new and existing customers.
+EU Operations: (Abiss Group): £2.2 million (33% of Group revenue). New contribution in the period, broadening the Group's revenue base and adding complementary manufacturing income.
+·
+Biomaterials: £0.9 million (14% of Group revenue). This area grew from the £0.5 million reported last year representing annualised growth of 20%.Performance remained resilient, despite the stronger Sterling versus US Dollar exchange rate during parts of the period.
+Overall, the revenue profile is now more diversified, with
+Medical Devices and Components (UK and Abiss combined) representing c.86% of Group revenue and Biomaterials c.14%, positioning the Group for more balanced growth going into the next period.
+Acquisition of Abiss
+On 6th September 2024, the Group acquired 100% of the share capital of Abiss France SAS, a France-based medical device group, for cash consideration of £68k.
+The acquisition provides the Group with an established manufacturing and development platform in continental Europe, broadens its medical device product offering and customer base, and is expected to generate operational and commercial synergies across the Group.
+A fair value adjustment to align the identified assets and liabilities of Abiss to their estimated fair values at the acquisition date, including adjustments to inventory, property, plant and equipment, intangible assets and provisions has resulted in a gain on bargain purchase of £0.9 million being recognised.
+General and administrative expenses
+For the 18 months to 30 September 2025, general and administrative (G&A) expenses were £6.5 million (12 months to 31 March 2024: £3.8 million, not directly comparable due to the extended reporting period and business mix). The 2025 figure includes 13 months of the Abiss Group.
+Depreciation & amortisation: £0.7 million (c.10.2% of G&A) vs £0.4 million in 2024 (c.9.6%).
+Cost control remains a management focus. Throughout 2025, we tightened budgeting and approval processes, enhanced spend visibility, and strengthened financial controls across the Group (including Abiss). These actions improved oversight of operating costs and are intended to support a more efficient run-rate going forward.
+Research and development costs
+As first outlined in November 2023, the Group continued to re-prioritise resources away from pre-commercial R&D toward near-term profitability and customer delivery.For the 18 months to 30 September 2025, the Group expensed £0.4 million of Research & Development costs (12 months to 31 March 2024: £0.9 million). The lower spend is a consequence of our strategy to redeploy expenditure away from long term development projects.
+No development costs were capitalised in the period; all amounts were expensed to the income statement as they relate primarily to early-stage development activities, where the technical feasibility, commercial viability and timing of future revenues are not yet sufficiently certain to meet the criteria for capitalisation.
+Consistent with commitments made at the 2023 fundraise, we intend to reduce R&D expenditure further over the next 12 months, concentrating only on projects that demonstrably support profitable growth or are directly funded by third parties.
+Share-based payment charges
+The business operates share option plans for key personnel, which incurred a charge for share-based payment expenses of £171,000 for the period compared to a credit of £35,000 in 2024. The non-cash credit in 2024 is attributed to a writeback related to the cancellation of share option awarded to two executives who left the Group during the year to 31 March 2024.
+Net finance costs
+For the 18 months to 30 September 2025, the Group recorded net finance income of £21,000 (12 months to 31 March 2024: net finance costs £83,000)
+The improvement reflects interest earned on surplus cash held in a low-risk liquidity fund during the period and the repayment of borrowings.
+This figure is net of unrealised foreign exchange losses of £31,000 (2024: £28,000).
+Losses before taxation
+In the year to 31 March 2024, the Group incurred a pre tax loss of £2.0m, The trading improvements and Abiss acquisition referred to above contributed to a much reduced loss of £0.2m in the 18 month period to 30 September 2025. This loss includes the effect of a £0.9 million non-cash gain on bargain purchase from the Abiss acquisition. Excluding this item, the underlying loss before tax was £1.1 million. The periods are not directly comparable due to the move from a 12-month to an 18-month reporting period and the acquisition of Abiss during the period.
+Loss per share
+Basic and diluted loss per share for the period was 0.35 pence (2024: 4.29 pence).
+Taxation
+The Group claims research and development tax credits each year and, since it is currently loss making, elects to surrender these tax credits for a cash rebate. The amount is included within the taxation line of the consolidated income statement in respect of amounts receivable for the surrender of research and development expenditure amounting to £0.4m (2024: £0.9m). The Group has not recognised any tax assets in respect of trading losses arising in the current financial year or accumulated losses in previous financial years.
+EBITDA
+EBITDA, which includes non-cash share-based payment expenses, improved £2.0million to a positive £0.4 million in the period (FY24: loss £1.6 million) as a result of the improvement in revenue volumes and gross margin and gain on bargain purchase from the acquisition of the Abiss Group.
+Cashflow
+Closing cash at 30 September was £3.2 million (2024: £3.9 million)
+Cash preservation remains a strategic objective. Throughout the year, operating cash outflows from operations amounted to £0.2 million (2024: £1.3 million), reflecting the financial activities and commitments required to sustain business operations and growth initiatives.
+The business invested £161,000 in capital expenditure during the year (2024: £55,000), Spend remained tightly controlled and focused on essential replacement and maintenance, with no significant new capital projects undertaken, reflecting our ongoing cash preservation and cost discipline strategy.
+Financial position
+During the year, the Group completed the acquisition of Abiss, a French medical device business, marking a significant strategic step in expanding our capabilities and market reach. Our financial position remains robust, with net assets at 30 September 2025 of £7.1 million (2024: £7.2 million).
+Intangible assets (not including Goodwill) reduced to £0.3 million (2024: £0.4 million), reflecting an amortisation charge of £82,000, partially offset by £11,000 of intangibles acquired with the Abiss Group.
+Dividends
+No dividends have been proposed for the period ended 30 September 2025 (2024: £nil).
+STRATEGY
+The mission of the Group is to be a long-term trusted partner to the medical device industry through specialisation in implantable textiles and biostable polymers and related technology. This is being undertaken through:
+·
+International growth via licensing Elast-Eon to third parties through RUA Biomaterials;
+·
+International growth through Medical Devices and Components businesses exploiting implantable textiles expertise;
+·
+Partnering with other parties to exploit and monetise the substantial Intellectual Property developed within the Group.
+RUA Life Sciences will seek to maximise shareholder value by growing each business to achieve attractive levels of profitability or disposing of business areas if the valuations are attractive.
+Summarised consolidated income
+Period ended
+30 September 2024
+Year ended
+31 March 2024
+Notes
+£'000
+£'000
+Revenue
+2
+6,689
+2,191
+Cost of sales
+(1,438)
+(415)
+Gross Profit
+5,251
+1,756
+Other income
+1,014
+79
+Administrative expenses
+(6,522)
+(3,792)
+Operating loss
+(257)
+(1,937)
+Net finance income / (expense)
+21
+(83)
+Loss before taxation
+(236)
+(2,020)
+Taxation
+3
+580
+Loss for the period
+(233)
+(1,440)
+Loss attributable to:
+Owners of the parent
+(218)
+(1,440)
+Non-Controlling interest
+(15)
+-
+(233)
+(1,440)
+Loss per share per Ordinary Share attributable to the owners of the parent during the year
+5
+Basic
+(0.35)
+(4.29)
+Diluted
+(0.35)
+(4.29)
+Summarised consolidated statement of financial position
+Period ended
+30 September 2025
+Year ended
+31 March 2024
+Notes
+£'000
+£'000
+Assets
+Non current assets
+Goodwill
+301
+301
+Other intangible assets
+348
+419
+Property, plant and equipment
+3,074
+2,456
+Total non current assets
+3,723
+3,176
+Current assets
+Inventories
+894
+112
+Trade and other receivables
+1,250
+950
+Cash and cash equivalents
+3,250
+3,931
+Total current assets
+5,394
+4,993
+Total assets
+9,117
+8,169
+Equity & Liabilities
+Equity
+Issued capital
+3,103
+3,103
+Share premium
+13,709
+13,709
+Capital redemption reserve
+11,840
+11,840
+Other reserve
+(1,305)
+(1,485)
+Profit and loss account
+(20,203)
+(19,985)
+Total equity attributable to equity holders of the parent
+7,144
+7,182
+Non-controlling interests
+41
+-
+Total Equity
+7,185
+7182
+Liabilities
+Non-current liabilities
+Borrowings
+-
+132
+Lease liabilities
+560
+140
+Deferred tax
+167
+74
+Other liabilities
+43
+87
+Total non-current liabilities
+770
+433
+Current liabilities
+Borrowings
+73
+31
+Lease liabilities
+161
+86
+Trade and other payables
+899
+408
+Other liabilities
+29
+29
+Total current liabilities
+1,162
+554
+Total liabilities
+1,932
+987
+Total equity and liabilities
+9,117
+8,169
+Summarised consolidated cash flow statement
+Period ended
+30 September 2025
+Year ended
+31 March 2024
+£'000
+£'000
+Cash flows from operating activities
+Group loss after tax
+(233)
+(1,440)
+Adjustments for:
+Gain on bargain purchase
+(895)
+-
+Amortisation of intangible assets
+82
+51
+Depreciation of property, plant and equipment
+583
+313
+Share-based payments
+171
+(35)
+Net finance costs
+(21)
+83
+Tax credit in year
+(3)
+(580)
+(Increase)/decrease in trade and other receivables
+11
+(362)
+(Increase)/decrease in inventories
+(206)
+(31)
+Taxation received
+142
+569
+(Increase)/decrease in trade and other payables
+176
+104
+Cash inflow / (outflow) generated from operations
+(193)
+(1,328)
+Cash flows from investing activities
+Purchase of property plant and equipment
+(161)
+(55)
+Proceeds from disposal of tangible assets
+4
+Acquisition of subsidiary (net of cash acquired)
+98
+Interest paid
+(77)
+25
+Interest received
+133
+(55)
+Net cash inflow / (outflow) from operating activities
+(3)
+(85)
+Cash flows from financing activities
+Proceeds from borrowing
+49
+7
+Repayment of borrowings and leasing liabilities
+(508)
+(93)
+Proceeds from share issue
+-
+3,974
+Net cash inflow / (outflow) from financing activities
+(459)
+3,888
+Net (decrease)/increase in cash and cash equivalents
+(655)
+2,475
+Cash and cash equivalents at beginning of Period
+3,931
+1,484
+Effect of foreign exchange rate changes
+(
+26
+)
+(28)
+Cash and cash equivalents at the end of the period
+3,
+250
+3,931
+Summarised consolidated statement of changes in equity
+Issued Share capital
+Share Premium
+Capital Redemption Reserve
+Other Reserves
+Non- Controlling Interest
+Profit and loss account
+Total equity
+£'000
+£'000
+£'000
+£'000
+£'000
+£'000
+£'000
+Balance at 1 April 2023
+1,109
+11,729
+11,840
+(1,450)
+-
+(18,545)
+4,683
+Shares Issued (Net of Expenses)
+1,994
+1,980
+-
+-
+-
+-
+3,974
+Share based payments
+-
+-
+-
+(35)
+-
+-
+(35)
+Transactions with owners
+1,994
+1,980
+-
+(35)
+-
+-
+3,939
+Total comprehensive loss for the period
+-
+-
+-
+-
+-
+(1,440)
+(1,440)
+Balance at 31 March 2024
+3,103
+13,709
+11,840
+(1,485)
+-
+(19,985)
+7,182
+Share based payments
+-
+-
+-
+171
+-
+-
+171
+Transactions with owners
+-
+-
+-
+171
+-
+-
+171
+Adjustment to NCI from foreign entity acquisition
+-
+-
+-
+-
+56
+-
+56
+Total comprehensive income/(loss) for the period
+-
+-
+-
+9
+(15)
+(218)
+(224)
+Balance at 30 September 2025
+3,103
+13,709
+11,840
+(1,305)
+41
+(20,203)
+7,185
+NOTES TO THE EXTRACTS FROM THE CONSOLIDATED FINANCIAL STATEMENTS
+General Information
+RUA Life Sciences plc (the Company) is a company incorporated and domiciled in the UK. The registered head office is 2 Drummond Crescent, Riverside Business Park, Irvine, Ayrshire, KA11 5AN.
+The Company (together with its subsidiaries, the "Group") was under the control of the directors throughout the period covered in the financial statements. The list of the subsidiaries consolidated in the financial statements is shown in Note xx.
+The principal activity of the Group is exploiting the value of its IP & know-how, medical device contract manufacturing and development of cardiovascular devices.
+1.
+Basis of preparation and status of financial information
+The financial information set out in this preliminary announcement does not constitute statutory accounts as defined by section 434 of the Companies Act 2006.
+The financial information for the period ended 30 September 2025 and the year ended 31 March 2024 does not constitute the Company's statutory accounts for those years. Statutory accounts for the year ended 31 March 2024 have been delivered to the Registrar of Companies. The statutory accounts for the period ended 30 September 2025 were approved by the Board on 10 November 2025 and will be delivered to the Registrar of Companies in due course. The statutory accounts for the period ended 30 September 2025 will be posted to shareholders at least 21 days before the Annual General Meeting and made available on the Group's website.
+The Group's statutory financial statements for the year ended 30 September 2025, from which the financial information presented in this announcement has been extracted, were prepared in accordance with UK adopted international accounting standards ("IFRS"). The financial statements have been prepared on the historical cost basis with the exception of certain items, which are measured at fair value as disclosed in the principal accounting policies set out in the Group's Annual Report. These policies have been consistently applied to all years presented.
+The preparation of financial statements in conformity with IFRS requires the use of estimates and assumptions that affect the reported amounts of assets and liabilities at the date of the financial statements and the reported amounts of revenues and expenses during the reporting period. Although these estimates are based on management's best knowledge of the amount, event, or actions, actual results may ultimately differ from these estimates.
+The auditor's reports on the accounts for 30 September 2025 and 31 March 2024 were unqualified and did not contain a statement under 498(2) or 498(3) of the Companies Act 2006.
+2.
+Significant accounting policies - Going concern
+At 30 September 2025, the Group had cash and cash equivalents of £3.25 million. As at the date of approval of these financial statements, the Group's cash and cash equivalents were approximately £2.8 million
+The Directors have prepared detailed financial forecasts and cash flows looking beyond 12 months from the date of the approval of these financial statements. In developing these forecasts, the Directors have made assumptions based upon their view of the current and future economic conditions that will prevail over the forecast period.
+The cash flow predictions are based on a period of closely controlled cash flows to maintain ongoing development at a level commensurate with our means. Third party sources of funding are being explored to accelerate the development of our vascular graft portfolio and structural heart technology, in line with our corporate objectives.
+The Directors estimate that the cash held by the Group together with known receivables will be sufficient to support the planned level of activities to continue in operational existence for the foreseeable future (being a period of at least 12 months from the date of this report), and for this reason, the financial statements have been prepared on a going concern basis.
+3. Revenue
+Group revenue for the period was £6.7 million (2024: £2.2 million). The current period covers an 18-month reporting period, compared with a 12-month comparative period, and therefore, the results are not directly comparable. In addition, the increase in revenue reflects the inclusion of revenue from businesses acquired during the period. On a like-for-like basis, excluding the impact of the extended reporting period and acquisitions, underlying revenue performance was broadly in line with management expectations.
+Revenue analysed by class of business
+Period ended
+Year ended
+30 September 2025
+31 March 2024
+£'000
+£'000
+Contract Design & Manufacture of Medical Devices
+5,775
+1,695
+Royalty revenue
+914
+496
+Total
+6,689
+2,191
+Revenue analysed by geographical market
+Period ended
+Year ended
+30 September 2025
+31 March 2024
+£'000
+£'000
+Europe
+1,173
+196
+North America
+5,396
+1,945
+Middle East
+81
+50
+Asia Pacific
+37
+-
+Africa
+2
+-
+Total
+6,689
+2,191
+4. Other income
+Other income for the period includes a gain on bargain purchase arising on the acquisition of Abiss France SAS, reflecting the excess of the fair value of the identifiable net assets acquired over the consideration transferred. The gain arose due to the distressed circumstances of the vendor following the insolvency of its ultimate parent company.
+Period ended
+Year ended
+30 September 2025
+31 March 2024
+£'000
+£'000
+Government Grants
+44
+63
+Rental Income
+28
+13
+Gain On Bargain Purchase
+895
+-
+Miscellaneous Income
+47
+3
+Total
+1,014
+79
+5. Acquisitions
+On 6 September 2024, the Group acquired 100% of Abiss France SAS for cash consideration of £68k and, through this acquisition, obtained indirect control of Abiss Poland sp. z o.o., in which Abiss France holds a 60% interest. A non-controlling interest was recognised in respect of the remaining 40% held by minority shareholders.
+The acquisition resulted in a gain on bargain purchase, reflecting the distressed circumstances of the vendor following the insolvency of Abiss France's ultimate parent company. The transaction price was further influenced by the business's reliance on a single major customer and the limited pool of potential acquirers. The Group's existing technical capability, regulatory expertise and established customer relationship enabled it to complete the acquisition at a price below the fair value of the identifiable net assets acquired.
+From the acquisition date to 30 September 2025, Abiss contributed revenue of £2.2m and a loss before tax of £0.2m to the Group. Had the acquisition occurred on 1 April 2024, Group revenue for the 18-month period would have been £7.6m with a loss before tax of £0.6m. Fair value adjustments reflect the alignment of acquired assets and liabilities to their estimated fair values at the acquisition date.
+6.
+Preliminary announcement
+The summary accounts set out above do not constitute statutory accounts as defined by section 434 of the UK Companies Act 2006. The summarised consolidated statement of financial position at 30 September 2025, the summarised consolidated income statement, the summarised consolidated cash flow statement and the summarised consolidated statement of changes in equity for the period then ended have been extracted from the Group's statutory financial statements for the year ended 30 September 2025 upon which the auditor's opinion is unqualified and did not contain a statement under either sections 498(2) or 498(3) of the Companies Act 2006. The audit report for the year ended 30 September 2025 did not contain statements under sections 498(2) or 498(3) of the Companies Act 2006. The statutory financial statements for the year ended 31 March 2024 have been delivered to the Registrar of Companies. The 30 September 2025 accounts were approved by the Directors on
+29 January 2026, but have not yet been delivered to the Registrar of Companies.
+7.
+Earnings per share
+The basic and diluted loss per ordinary share of 0.35 pence (2024: loss of 4.29 pence) is calculated on the loss of the Group of £218,000 (2024: loss of £1,440,000 ) and on
+62,060,272
+(2024:
+33,546,577
+) ordinary shares, being the weighted average number of shares in issue during the year.
+8. Interest in subsidiary undertakings
+Name of undertaking
+Country of registration or incorporation
+Registered office
+Description of shares held
+Proportion of nominal value of direct shares held
+%
+(i)
+RUA Biomaterials Limited
+Scotland
+2 Drummond Crescent, Irvine, Ayrshire, KA11 5AN
+Ordinary £1
+100
+(ii)
+RUA Structural Heart Limited
+Scotland
+2 Drummond Crescent, Irvine, Ayrshire, KA11 5AN
+Ordinary £1
+100
+(iii)
+RUA Vascular Limited
+Scotland
+2 Drummond Crescent, Irvine, Ayrshire, KA11 5AN
+Ordinary £1
+100
+(iv)
+RUA Medical Devices Limited
+Scotland
+2 Drummond Crescent, Irvine, Ayrshire, KA11 5AN
+Ordinary £1
+100
+(v)
+Aortech International Limited
+Scotland
+2 Drummond Crescent, Irvine, Ayrshire, KA11 5AN
+Ordinary £1
+100
+(iv)
+Analytic Biosurgical Solutions SAS
+France
+14 Rue de la Télématique, 42000 Saint-Étienne, France
+Ordinary €1
+100
+(vi)
+Abiss Poland Sp. z o.o
+Poland
+Ul.Bagrowa 1, 30-733 Kraków,
+Poland
+Ordinary zł50
+60
+Posting and availability of accounts
+The annual report and accounts for the period ended 30 September 2025 will be sent by post or electronically to all registered shareholders at least 21 days prior to the Annual General Meeting. Additional copies will be available for a month thereafter from the Company's office, 2 Drummond Crescent, Riverside Business Park, Irvine, Ayrshire KA11 5AN. Alternatively, the document may be viewed on, or downloaded from, the Company's website:
+www.rualifesciences.com
+.
+Notice of Annual General Meeting
+Notice of the twenty-seventh Annual General Meeting of RUA Life Sciences plc will be posted with the Annual Report and Accounts and will be held at Gailes Hotel, Marine Drive, Irvine, Ayrshire KA11 5AE on Tuesday, 17 March 2026 at 11:00am.
+FORMAT OF THE AGM
+The AGM will be a physical meeting. The Board encourages all shareholders who are unable to, or do not wish to, attend the AGM in person to vote by proxy.
+If you wish to attend the AGM in person, it would assist the Company's planning if you could please notify the Company in advance by email to lachlan.smith@rualifesciences.com, including your name as shown on the Company's Register of Members.
+Any changes to these arrangements will be published on the Company's website as soon as possible before the date of the meeting and will also be circulated via a Regulatory Information Service.
+Further details of the AGM will be included in the Annual Report and will published on the Company's website at
+www.rualifesciences.com
+.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+FR VKLFLQFLEBBQ
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
                         background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
                         color: white;
                         border-radius: 50%;
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">1</span>
+                    ">2</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #1
+                        RNS ANNOUNCEMENT #2
                     </div>
                 </div>
                 
@@ -943,7 +1845,7 @@
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Options Granted</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Chief Financial</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1137,9 +2039,9 @@ DSHFFFFLSEISEIE
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">2</span>
+                    ">3</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #2
+                        RNS ANNOUNCEMENT #3
                     </div>
                 </div>
                 
@@ -1204,7 +2106,7 @@ DSHFFFFLSEISEIE
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Contract Manufacture</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Chief Financial</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1326,9 +2228,9 @@ TSTFSUFWDEISEEF
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #10b98140;
-                    ">3</span>
+                    ">4</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #3
+                        RNS ANNOUNCEMENT #4
                     </div>
                 </div>
                 
@@ -1393,7 +2295,7 @@ TSTFSUFWDEISEEF
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Group Profit</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">The Gross</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -2957,9 +3859,9 @@ IR PKQBPCBKDBAB
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">4</span>
+                    ">5</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #4
+                        RNS ANNOUNCEMENT #5
                     </div>
                 </div>
                 
@@ -3024,7 +3926,7 @@ IR PKQBPCBKDBAB
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Dan Hodkinson</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Structural Heart</td>
                     </tr>
                     
                         <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -3171,166 +4073,6 @@ Privacy Policy
 .
 END
 DSHSSLSAMEISEFI
-                </div>
-            </details>
-            
-            </div>
-            
-            <div style="
-                margin-bottom: 20px;
-                padding: 18px;
-                background: white;
-                border-radius: 14px;
-                border: 1px solid #e2e8f0;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 30px;
-                        height: 30px;
-                        background: linear-gradient(135deg, #f59e0b 0%, #f59e0bdd 100%);
-                        color: white;
-                        border-radius: 50%;
-                        font-weight: 800;
-                        font-size: 15px;
-                        box-shadow: 0 2px 8px #f59e0b40;
-                    ">5</span>
-                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #5
-                    </div>
-                </div>
-                
-                
-            <div style="
-                background: linear-gradient(135deg, #f59e0b 0%, #f59e0bdd 100%);
-                color: white;
-                padding: 14px;
-                border-radius: 10px;
-                margin-bottom: 16px;
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">🔄</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">Change of Registered Office</div>
-                        <span style="
-                            display: inline-block;
-                            background: rgba(255,255,255,0.25);
-                            padding: 2px 10px;
-                            border-radius: 12px;
-                            font-size: 11px;
-                            margin-top: 4px;
-                            font-weight: 600;
-                        ">CHANGE</span>
-                    </div>
-                </div>
-                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    Organizational change - assess impact on operations and strategy.
-                </div>
-            </div>
-            
-                
-            <div style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 10px;
-                margin: 16px 0;
-            ">
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Apr 2025</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">11:45 am</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #f59e0b;">RNS</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #f59e0b;">CAUTION</div>
-                </div>
-            </div>
-            
-                
-                
-                    <div style="margin: 16px 0;">
-                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
-                            
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Dan Hodkinson</td>
-                    </tr>
-                    
-                        </table>
-                    </div>
-                    
-                
-            <details style="margin-top: 16px;">
-                <summary style="
-                    padding: 10px;
-                    background: #f8fafc;
-                    border-radius: 8px;
-                    font-weight: 600;
-                    font-size: 12px;
-                    list-style: none;
-                    cursor: pointer;
-                    color: #64748b;
-                    border: 1px solid #e2e8f0;
-                ">
-                    📄 View Full RNS Text
-                </summary>
-                <div style="
-                    margin-top: 8px;
-                    padding: 14px;
-                    background: #f1f5f9;
-                    border-radius: 8px;
-                    font-family: 'Courier New', monospace;
-                    font-size: 11px;
-                    line-height: 1.5;
-                    color: #475569;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                ">
-30 Apr 2025 11:45
-RNS Number : 8556G
-RUA Life Sciences PLC
-30 April 2025
-30 April 2025
-RUA Life Sciences plc
-("RUA Life Sciences", the "Company" or the "Group")
-Change of registered office
-RUA Life Sciences, the holding company of a group of medical device businesses focused on the exploitation of the world's leading long-term implantable biostable polymer (Elast-EonTM), confirms that it has changed its registered office and UK head office from 163 Bath Street, Glasgow G2 4SQ to 2 Drummond Crescent, Riverside Business Park, Irvine, Ayrshire, KA11 5AN with effect from 30 April 2025.
-For further information contact:
-RUA Life Sciences
-Bill Brown, Chief Executive Tel: +44 (0)1294 317073
-Lachlan Smith, Group Chief Financial Officer
-Cavendish Capital Markets Limited
-(Nominated Adviser and Broker)
-Tel: +44 (0)20 7220 0500
-Giles Balleny/Dan Hodkinson (Corporate Finance)
-Charlie Combe (Broking)
-Nigel Birks (Healthcare Specialist Sales)
-Michael Johnson (Sales)
-About RUA Life Sciences
-RUA Life Sciences plc is the ultimate parent company of the Group, whose principal activities comprise exploiting the value
-of its IP & know-how, medical device contract manufacturing and development of medical devices.
-This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
-rns@lseg.com
-or visit
-www.rns.com
-.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
-Privacy Policy
-.
-END
-CROFLFFISAIIVIE
                 </div>
             </details>
             
@@ -3650,7 +4392,7 @@ CROFLFFISAIIVIE
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-29 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-01-30 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.

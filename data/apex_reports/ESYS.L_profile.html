@@ -163,6 +163,8 @@
             font-weight: 600;
             text-transform: uppercase;
         }
+
+        
         
         .risk-indicator {
             display: flex;
@@ -227,7 +229,7 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 1185 days</span>
+                    <span><strong>Days Active:</strong> 1187 days</span>
                 </div>
             </div>
         </div>
@@ -258,8 +260,11 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#10b981; line-height:1;">40</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Setup</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Setup
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Trust -->
@@ -268,8 +273,11 @@
                             <div style="font-size:14px;">🛡️</div>
                             <div style="font-size:28px; font-weight:800; color:#3b82f6; line-height:1;">15</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Trust</div>
-                        <div style="font-size:10px; color:#94a3b8;">20%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Trust
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Panic -->
@@ -278,8 +286,11 @@
                             <div style="font-size:14px;">😱</div>
                             <div style="font-size:28px; font-weight:800; color:#ef4444; line-height:1;">52.5</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Panic</div>
-                        <div style="font-size:10px; color:#94a3b8;">30%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Panic
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Compression -->
@@ -288,34 +299,56 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#f59e0b; line-height:1;">44</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Compression</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Compression
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Timing Scope -->
+            <!-- Timing Scope: Flat segmented bar -->
             <div style="margin-top:24px;">
-                <div style="font-size:12px; color:#475569; font-weight:700; margin-bottom:8px; text-align:center;">Timing Spectrum</div>
+                <!-- position badge removed to avoid overlay on timing spectrum -->
                 <style>
                     @keyframes pulse-ring {
-                        0% { transform: scale(0.8); opacity: 0.9; }
+                        0% { transform: scale(0.7); opacity: 0.9; }
                         70% { transform: scale(2.2); opacity: 0; }
                         100% { transform: scale(2.8); opacity: 0; }
                     }
+                    @keyframes pulse-ring-outer {
+                        0% { transform: scale(0.9); opacity: 0.7; }
+                        50% { transform: scale(1.12); opacity: 0.45; }
+                        100% { transform: scale(1.3); opacity: 0; }
+                    }
                 </style>
-                <div style="position:relative; height:48px; background:linear-gradient(90deg, #ef4444 0%, #f59e0b 25%, #f093fb 50%, #10b981 75%, #064e3b 100%); border-radius:8px;">
-                    <div style="position:absolute; left:calc(90% - 24px); top:calc(50% - 24px); width:48px; height:48px; display:flex; align-items:center; justify-content:center;">
-                        <div style="position:absolute; width:48px; height:48px; border-radius:24px; background:rgba(15,23,42,0.12); animation: pulse-ring 1.8s infinite;"></div>
-                        <div style="width:16px; height:16px; border-radius:8px; background:#0f172a; box-shadow:0 6px 18px rgba(0,0,0,0.12);"></div>
+                <div style="position:relative;">
+                    <div style="display:flex; gap:6px; height:48px; border-radius:8px; overflow:hidden;">
+                        <div style="flex:1; background:#ef4444;"></div>
+                        <div style="flex:1; background:#f59e0b;"></div>
+                        <div style="flex:1; background:#facc15;"></div>
+                        <div style="flex:1; background:#10b981;"></div>
+                        <div style="flex:1; background:#065f46;"></div>
+                    </div>
+
+                    <!-- Pulse pointer positioned by timing_pos_pct -->
+                    <div style="position:absolute; left:calc(90% - 26px); top:0px; width:52px; height:52px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                        <!-- outer grey-white ring to help indicator stand out -->
+                        <div style="position:absolute; width:60px; height:60px; border-radius:30px; background:rgba(249,250,251,0.95); border:2px solid rgba(2,6,23,0.06); box-shadow:0 8px 30px rgba(2,6,23,0.06); animation: pulse-ring-outer 2.2s infinite;"></div>
+                        <!-- inner colored pulse ring -->
+                        <div style="position:absolute; width:52px; height:52px; border-radius:26px; background:#088965; opacity:0.18; animation: pulse-ring 1.6s infinite;"></div>
+                        <!-- core dot with colored border for contrast -->
+                        <div style="width:18px; height:18px; border-radius:9px; background:#ffffff; box-shadow:0 10px 30px rgba(0,0,0,0.22); border:3px solid #065f46;"></div>
                     </div>
                 </div>
-                <div style="display:flex; justify-content:space-between; font-size:12px; color:#475569; margin-top:10px;">
-                    <div>Too Early</div>
-                    <div>Early Build</div>
-                    <div>Confirmed</div>
-                    <div>Crowded</div>
-                    <div>Broken</div>
+
+                <div style="display:flex; justify-content:space-between; font-size:12px; margin-top:8px; gap:6px;">
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Too Early</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Early Build</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Confirmed</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Crowded</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Broken</span></div>
                 </div>
 
                 <div style="margin-top:12px; display:flex; justify-content:center;">
@@ -540,6 +573,16 @@
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Result of AGM</div>
+                        <div style="font-size: 12px; color: #64748b;">30th Jan 2026</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Directorate change</div>
                         <div style="font-size: 12px; color: #64748b;">28th Jan 2026</div>
                     </div>
@@ -571,16 +614,6 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Holding(s) in Company</div>
-                        <div style="font-size: 12px; color: #64748b;">21st Jan 2026</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
-                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
-                    <span style="font-size: 18px;">📢</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Form 8.3 - ESSENSYS PLC</div>
                         <div style="font-size: 12px; color: #64748b;">21st Jan 2026</div>
                     </div>
                 </div>
@@ -886,15 +919,277 @@
                         justify-content: center;
                         width: 30px;
                         height: 30px;
+                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #10b98140;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📊</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Result of AGM</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">POSITIVE RESULTS</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Positive development - monitor for follow-through in share price.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">1:34 pm</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Jonathan Lee</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">99.97%, 0.03%, 99.77%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+30 Jan 2026 13:34
+RNS Number : 1457R
+essensys PLC
+30 January 2026
+30 January 2026
+essensys plc
+("essensys" or the "Group" or the "Company")
+Result of Annual General Meeting
+The Annual General Meeting of essensys plc was held at 1 Finsbury Avenue, London, EC2M 2PF, on 30 January 2026.
+All 12 resolutions put to members were passed on a poll. Resolutions 1 to 10 were passed as ordinary resolutions and resolutions 11 and 12 were passed as special resolutions.
+The number of votes cast for and against each of the resolutions proposed, and the number of votes withheld were as follows:
+Resolution
+Votes for
+%
+Votes against
+%
+Votes withheld
+Resolution 1 (Ordinary)
+To receive the Reports of the Directors and the Financial Statements for the year ended 31 July 2025.
+37,131,499
+99.97%
+10,629
+0.03%
+2,062
+Resolution 2 (Ordinary)
+To approve the report on Directors' remuneration for the year ended 31 July 2025.
+37,055,589
+99.77%
+86,539
+0.23%
+2,062
+Resolution 3 (Ordinary)
+To re-elect Mark Furness as a Director.
+34,454,689
+92.90%
+2,631,537
+7.10%
+57,964
+Resolution 4 (Ordinary)
+To re-elect James Lowery as a Director.
+37,075,597
+99.97%
+10,629
+0.03%
+57,964
+Resolution 5 (Ordinary)
+To re-elect Gregory Price as a Director.
+37,054,689
+99.91%
+31,537
+0.09%
+57,964
+Resolution 6 (Ordinary)
+To re-elect Jonathan Lee as a Director.
+34,454,689
+92.90%
+2,631,537
+7.10%
+57,964
+Resolution 7 (Ordinary)
+To elect Sian Herbert as a Director.
+34,476,497
+92.96%
+2,610,629
+7.04%
+57,064
+Resolution 8 (Ordinary)
+To re-appoint HaysMac LLP as auditor
+.
+37,076,499
+99.82%
+65,629
+0.18%
+2,062
+Resolution 9 (Ordinary)
+To authorise the Directors to determine audit fees.
+37,131,499
+99.97%
+10,629
+0.03%
+2,062
+Resolution 10 (Ordinary)
+To authorise the Directors to allot equity securities.
+34,427,178
+92.82%
+2,663,010
+7.18%
+54,002
+Resolution 11 (Special)
+To authorise Directors to disapply pre-emption rights in certain circumstances.
+34,372,178
+92.67%
+2,718,010
+7.33%
+54,002
+Resolution 12 (Special)
+To authorise the Company to make market purchases.
+36,993,086
+99.74%
+95,040
+0.26%
+56,064
+As at 30 January 2026, there were 64,811,336 ordinary shares in issue. Shareholders are entitled to one vote per share. Votes withheld are not votes in law and so have not been included in the calculation of the proportion of votes for and against a resolution.
+The full text of each resolution is available in the Notice of Annual General Meeting, published on our website.
+For further information, please contact:
+essensys plc
++44 (0)20 3102 5252
+James Lowery, Chief Executive Officer
+Greg Price, Chief Financial Officer
+Canaccord Genuity Limited (Nominated Adviser and Broker)
++44 (0)20 7523 8000
+Simon Bridges / Harry Gooden / Andrew Potts /Elizabeth Halley-Stott
+Gracechurch Group
+Heather Armstrong / Alexis Gore / Rebecca Scott
++44 (0) 20 4582 3500
+essensys@gracechurchpr.com
+About essensys plc
+essensys is the leading provider of software and technology to landlords and flexible workspace operators. Founded in 2006 and listed on the AIM market since 2019, essensys' mission is to power the world's largest community of flexible, technology-driven spaces. Under new leadership, the Company has simplified its go-to-market strategy around two core offerings: essensys Platform and elumo.
+essensys Platform is a SaaS platform that delivers enterprise-grade Wi-Fi seamlessly across portfolios of multi-tenant workspaces, while providing data insights to optimise performance. The Group's latest offering, elumo, provides customers with a new way to manage and monetise bookable spaces. The integrated bookings and access solution transforms meeting rooms and shared spaces from operational headaches into revenue-generating assets.
+With customers in the UK, Europe, North America and APAC, essensys is deploying a newly launched and simplified go-to-market strategy, positioning the business long-term growth in the flexible workspace and commercial real estate market.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+RAGXBLFXQFLXBBF
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
                         background: linear-gradient(135deg, #f59e0b 0%, #f59e0bdd 100%);
                         color: white;
                         border-radius: 50%;
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #f59e0b40;
-                    ">1</span>
+                    ">2</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #1
+                        RNS ANNOUNCEMENT #2
                     </div>
                 </div>
                 
@@ -959,7 +1254,7 @@
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">The Board</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Chief Financial</td>
                     </tr>
                     
                         </table>
@@ -1065,9 +1360,9 @@ BOABRMLTMTITBMF
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">2</span>
+                    ">3</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #2
+                        RNS ANNOUNCEMENT #3
                     </div>
                 </div>
                 
@@ -1132,7 +1427,7 @@ BOABRMLTMTITBMF
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Takeover Panel</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Chief Financial</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1270,9 +1565,9 @@ IOEBJMRTMTATBBF
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">3</span>
+                    ">4</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #3
+                        RNS ANNOUNCEMENT #4
                     </div>
                 </div>
                 
@@ -1337,7 +1632,7 @@ IOEBJMRTMTATBBF
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Takeover Panel</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Chief Financial</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1479,9 +1774,9 @@ MSCPPUUPGUPQGPW
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">4</span>
+                    ">5</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #4
+                        RNS ANNOUNCEMENT #5
                     </div>
                 </div>
                 
@@ -1685,270 +1980,6 @@ Privacy Policy
 .
 END
 HOLSELFLFEMSEDF
-                </div>
-            </details>
-            
-            </div>
-            
-            <div style="
-                margin-bottom: 20px;
-                padding: 18px;
-                background: white;
-                border-radius: 14px;
-                border: 1px solid #e2e8f0;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 30px;
-                        height: 30px;
-                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                        color: white;
-                        border-radius: 50%;
-                        font-weight: 800;
-                        font-size: 15px;
-                        box-shadow: 0 2px 8px #3b82f640;
-                    ">5</span>
-                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #5
-                    </div>
-                </div>
-                
-                
-            <div style="
-                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                color: white;
-                padding: 14px;
-                border-radius: 10px;
-                margin-bottom: 16px;
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">📰</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">Form 8.3 - ESSENSYS PLC</div>
-                        <span style="
-                            display: inline-block;
-                            background: rgba(255,255,255,0.25);
-                            padding: 2px 10px;
-                            border-radius: 12px;
-                            font-size: 11px;
-                            margin-top: 4px;
-                            font-weight: 600;
-                        ">UPDATE</span>
-                    </div>
-                </div>
-                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    Informational update - monitor for context with other announcements.
-                </div>
-            </div>
-            
-                
-            <div style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 10px;
-                margin: 16px 0;
-            ">
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">21st Jan 2026</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">11:26 am</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
-                </div>
-            </div>
-            
-                
-                
-                    <div style="margin: 16px 0;">
-                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
-                            
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Financial Conduct</td>
-                    </tr>
-                    
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">1%</td>
-                    </tr>
-                    
-                        </table>
-                    </div>
-                    
-                
-            <details style="margin-top: 16px;">
-                <summary style="
-                    padding: 10px;
-                    background: #f8fafc;
-                    border-radius: 8px;
-                    font-weight: 600;
-                    font-size: 12px;
-                    list-style: none;
-                    cursor: pointer;
-                    color: #64748b;
-                    border: 1px solid #e2e8f0;
-                ">
-                    📄 View Full RNS Text
-                </summary>
-                <div style="
-                    margin-top: 8px;
-                    padding: 14px;
-                    background: #f1f5f9;
-                    border-radius: 8px;
-                    font-family: 'Courier New', monospace;
-                    font-size: 11px;
-                    line-height: 1.5;
-                    color: #475569;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                ">
-Today 11:26
-RNS Number : 8037P
-Amati Global Investors Ltd
-21 January 2026
-FORM 8.3
-PUBLIC OPENING POSITION DISCLOSURE/DEALING DISCLOSURE BY
-A PERSON WITH INTERESTS IN RELEVANT SECURITIES REPRESENTING 1% OR MORE
-Rule 8.3 of the Takeover Code (the "Code")
-1. KEY INFORMATION
-(a) Full name of discloser:
-Amati Global Investors Ltd
-(b) Owner or controller of interests and short positions disclosed, if different from 1(a):
-The naming of nominee or vehicle companies is insufficient. For a trust, the trustee(s), settlor and beneficiaries must be named.
-(c) Name of offeror/offeree in relation to whose relevant securities this form relates:
-Use a separate form for each offeror/offeree
-essensys plc
-(d) If an exempt fund manager connected with an offeror/offeree, state this and specify identity of offeror/offeree:
-(e) Date position held/dealing undertaken:
-For an opening position disclosure, state the latest practicable date prior to the disclosure
-20 January 2026
-(f) In addition to the company in 1(c) above, is the discloser making disclosures in respect of any other party to the offer?
-If it is a cash offer or possible cash offer, state "N/A"
-YES
-/ NO /
-N/A
-If YES, specify which:
-2. POSITIONS OF THE PERSON MAKING THE DISCLOSURE
-If there are positions or rights to subscribe to disclose in more than one class of relevant securities of the offeror or offeree named in 1(c), copy table 2(a) or (b) (as appropriate) for each additional class of relevant security.
-(a) Interests and short positions in the relevant securities of the offeror or offeree to which the disclosure relates following the dealing (if any)
-Class of relevant security:
-Ordinary Shares of 10p
-Interests
-Short positions
-Number
-%
-Number
-%
-(1) Relevant securities owned and/or controlled:
-3,002,000
-4.63
-(2) Cash-settled derivatives:
-(3) Stock-settled derivatives (including options) and agreements to purchase/sell:
-TOTAL:
-3,002,000
-4.63
-All interests and all short positions should be disclosed.
-Details of any open stock-settled derivative positions (including traded options), or agreements to purchase or sell relevant securities, should be given on a Supplemental Form 8 (Open Positions).
-(b) Rights to subscribe for new securities (including directors' and other employee options)
-Class of relevant security in relation to which subscription right exists:
-Details, including nature of the rights concerned and relevant percentages:
-3. DEALINGS (IF ANY) BY THE PERSON MAKING THE DISCLOSURE
-Where there have been dealings in more than one class of relevant securities of the offeror or offeree named in 1(c), copy table 3(a), (b), (c) or (d) (as appropriate) for each additional class of relevant security dealt in.
-The currency of all prices and other monetary amounts should be stated.
-(a) Purchases and sales
-Class of relevant security
-Purchase/sale
-Number of securities
-Price per unit
-Ordinary 0.25p shares
-Sale
-500,000
-15p
-(b) Cash-settled derivative transactions
-Class of relevant security
-Product description
-e.g. CFD
-Nature of dealing
-e.g. opening/closing a long/short position, increasing/reducing a long/short position
-Number of reference securities
-Price per unit
-(c) Stock-settled derivative transactions (including options)
-(i) Writing, selling, purchasing or varying
-Class of relevant security
-Product description
-e.g. call option
-Writing, purchasing, selling, varying etc.
-Number of securities to which option relates
-Exercise price per unit
-Type
-e.g. American, European etc.
-Expiry date
-Option money paid/ received per unit
-(ii) Exercise
-Class of relevant security
-Product description
-e.g. call option
-Exercising/ exercised against
-Number of securities
-Exercise price per unit
-(d) Other dealings (including subscribing for new securities)
-Class of relevant security
-Nature of dealing
-e.g. subscription, conversion
-Details
-Price per unit (if applicable)
-4. OTHER INFORMATION
-(a) Indemnity and other dealing arrangements
-Details of any indemnity or option arrangement, or any agreement or understanding, formal or informal, relating to relevant securities which may be an inducement to deal or refrain from dealing entered into by the person making the disclosure and any party to the offer or any person acting in concert with a party to the offer:
-Irrevocable commitments and letters of intent should not be included. If there are no such agreements, arrangements or understandings, state "none"
-None
-(b) Agreements, arrangements or understandings relating to options or derivatives
-Details of any agreement, arrangement or understanding, formal or informal, between the person making the disclosure and any other person relating to:
-(i) the voting rights of any relevant securities under any option; or
-(ii) the voting rights or future acquisition or disposal of any relevant securities to which any derivative is referenced:
-If there are no such agreements, arrangements or understandings, state "none"
-None
-(c) Attachments
-Is a Supplemental Form 8 (Open Positions) attached?
-YES
-/NO
-Date of disclosure:
-21 January 2026
-Contact name:
-Andrew Lynn
-Telephone number*:
-0131 503 9105
-Public disclosures under Rule 8 of the Code must be made to a Regulatory Information Service.
-The Panel's Market Surveillance Unit is available for consultation in relation to the Code's disclosure requirements on +44 (0)20 7638 0129.
-*If the discloser is a natural person, a telephone number does not need to be included, provided contact information has been provided to the Panel's Market Surveillance Unit.
-The Code can be viewed on the Panel's website at
-www.thetakeoverpanel.org.uk
-.
-This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
-rns@lseg.com
-or visit
-www.rns.com
-.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
-Privacy Policy
-.
-END
-RETSEIFFFEMSEEF
                 </div>
             </details>
             
@@ -2268,7 +2299,7 @@ RETSEIFFFEMSEEF
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-29 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-01-31 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.

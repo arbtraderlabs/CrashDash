@@ -163,6 +163,8 @@
             font-weight: 600;
             text-transform: uppercase;
         }
+
+        
         
         .risk-indicator {
             display: flex;
@@ -223,11 +225,11 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">£</span>
-                    <span><strong>Market Cap:</strong> £3,284,360</span>
+                    <span><strong>Market Cap:</strong> £2,875,028</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 184 days</span>
+                    <span><strong>Days Active:</strong> 185 days</span>
                 </div>
             </div>
         </div>
@@ -258,8 +260,11 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#10b981; line-height:1;">38</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Setup</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Setup
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Trust -->
@@ -268,8 +273,11 @@
                             <div style="font-size:14px;">🛡️</div>
                             <div style="font-size:28px; font-weight:800; color:#3b82f6; line-height:1;">40</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Trust</div>
-                        <div style="font-size:10px; color:#94a3b8;">20%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Trust
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Panic -->
@@ -278,8 +286,11 @@
                             <div style="font-size:14px;">😱</div>
                             <div style="font-size:28px; font-weight:800; color:#ef4444; line-height:1;">82.8</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Panic</div>
-                        <div style="font-size:10px; color:#94a3b8;">30%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Panic
+                            </span>
+                        </div>
                     </div>
                     
                     <!-- Compression -->
@@ -288,34 +299,56 @@
                             <div style="font-size:14px;">⚡</div>
                             <div style="font-size:28px; font-weight:800; color:#f59e0b; line-height:1;">46</div>
                         </div>
-                        <div style="font-size:11px; color:#64748b; margin-top:6px; font-weight:600;">Compression</div>
-                        <div style="font-size:10px; color:#94a3b8;">25%</div>
+                        <div style="margin-top:8px;">
+                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
+                                Compression
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Timing Scope -->
+            <!-- Timing Scope: Flat segmented bar -->
             <div style="margin-top:24px;">
-                <div style="font-size:12px; color:#475569; font-weight:700; margin-bottom:8px; text-align:center;">Timing Spectrum</div>
+                <!-- position badge removed to avoid overlay on timing spectrum -->
                 <style>
                     @keyframes pulse-ring {
-                        0% { transform: scale(0.8); opacity: 0.9; }
+                        0% { transform: scale(0.7); opacity: 0.9; }
                         70% { transform: scale(2.2); opacity: 0; }
                         100% { transform: scale(2.8); opacity: 0; }
                     }
+                    @keyframes pulse-ring-outer {
+                        0% { transform: scale(0.9); opacity: 0.7; }
+                        50% { transform: scale(1.12); opacity: 0.45; }
+                        100% { transform: scale(1.3); opacity: 0; }
+                    }
                 </style>
-                <div style="position:relative; height:48px; background:linear-gradient(90deg, #ef4444 0%, #f59e0b 25%, #f093fb 50%, #10b981 75%, #064e3b 100%); border-radius:8px;">
-                    <div style="position:absolute; left:calc(30% - 24px); top:calc(50% - 24px); width:48px; height:48px; display:flex; align-items:center; justify-content:center;">
-                        <div style="position:absolute; width:48px; height:48px; border-radius:24px; background:rgba(15,23,42,0.12); animation: pulse-ring 1.8s infinite;"></div>
-                        <div style="width:16px; height:16px; border-radius:8px; background:#0f172a; box-shadow:0 6px 18px rgba(0,0,0,0.12);"></div>
+                <div style="position:relative;">
+                    <div style="display:flex; gap:6px; height:48px; border-radius:8px; overflow:hidden;">
+                        <div style="flex:1; background:#ef4444;"></div>
+                        <div style="flex:1; background:#f59e0b;"></div>
+                        <div style="flex:1; background:#facc15;"></div>
+                        <div style="flex:1; background:#10b981;"></div>
+                        <div style="flex:1; background:#065f46;"></div>
+                    </div>
+
+                    <!-- Pulse pointer positioned by timing_pos_pct -->
+                    <div style="position:absolute; left:calc(30% - 26px); top:0px; width:52px; height:52px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                        <!-- outer grey-white ring to help indicator stand out -->
+                        <div style="position:absolute; width:60px; height:60px; border-radius:30px; background:rgba(249,250,251,0.95); border:2px solid rgba(2,6,23,0.06); box-shadow:0 8px 30px rgba(2,6,23,0.06); animation: pulse-ring-outer 2.2s infinite;"></div>
+                        <!-- inner colored pulse ring -->
+                        <div style="position:absolute; width:52px; height:52px; border-radius:26px; background:#ffe50f; opacity:0.18; animation: pulse-ring 1.6s infinite;"></div>
+                        <!-- core dot with colored border for contrast -->
+                        <div style="width:18px; height:18px; border-radius:9px; background:#ffffff; box-shadow:0 10px 30px rgba(0,0,0,0.22); border:3px solid #f59e0b;"></div>
                     </div>
                 </div>
-                <div style="display:flex; justify-content:space-between; font-size:12px; color:#475569; margin-top:10px;">
-                    <div>Too Early</div>
-                    <div>Early Build</div>
-                    <div>Confirmed</div>
-                    <div>Crowded</div>
-                    <div>Broken</div>
+
+                <div style="display:flex; justify-content:space-between; font-size:12px; margin-top:8px; gap:6px;">
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Too Early</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Early Build</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Confirmed</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Crowded</span></div>
+                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Broken</span></div>
                 </div>
 
                 <div style="margin-top:12px; display:flex; justify-content:center;">
@@ -540,6 +573,16 @@
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">£3.25m Placing to Accelerate Exploration Portfolio</div>
+                        <div style="font-size: 12px; color: #64748b;">30th Jan 2026</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Tungsten Mineralisation Confirmed at Defender</div>
                         <div style="font-size: 12px; color: #64748b;">29th Jan 2026</div>
                     </div>
@@ -572,16 +615,6 @@
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Appointment of Chief Executive Officer</div>
                         <div style="font-size: 12px; color: #64748b;">12th Jan 2026</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
-                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
-                    <span style="font-size: 18px;">📢</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Tungsten Exploration Update</div>
-                        <div style="font-size: 12px; color: #64748b;">5th Jan 2026</div>
                     </div>
                 </div>
             </div>
@@ -901,6 +934,217 @@
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
                     <span style="font-size: 20px;">📰</span>
                     <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">£3.25m Placing to Accelerate Exploration Portfolio</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">30th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Pilot Mountain</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">100%, 100%, 0.45%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+Today 07:00
+RNS Number : 0051R
+Great Western Mining Corp. plc
+30 January 2026
+Great Western Mining Corporation PLC / AIM: GWMO / Euronext Growth: 8GW
+THIS ANNOUNCEMENT CONTAINS INSIDE INFORMATION IN RELATION TO GREAT WESTERN MINING CORPORATION PLC.
+30 January 2026
+GREAT WESTERN MINING CORPORATION PLC
+("Great Western", "GWM" or the "Company")
+Placing to Raise £3.25 million to Accelerate Mineral Exploration Portfolio
+Great Western Mining Corporation PLC, a strategic minerals exploration and development company, is pleased to announce an oversubscribed fundraise of £3,250,000 before expenses (the "Placing") at 1.4p, reflecting strong investor demand following the confirmation of significant tungsten mineralisation at its Pine Crow-Defender project ('Defender') in Mineral County, Nevada.
+HIGHLIGHTS
+·
+£3,250,000 conditionally raised through a placing at 1.4 pence per share
+·
+One warrant issued for every Placing Share, exercisable at 2.0 pence for three years
+·
+Proceeds will fast-track drilling at the Defender-Pine Crow tungsten project in Nevada
+o
+Recent channel sampling returned up to 16m at 0.30 per cent WO₃, including 2m at 0.66 per cent WO₃
+o
+Notice of Intent to Drill submitted to the U.S. Bureau of Land Management
+·
+Progress continues across the Company's broader multi-commodity exploration portfolio in the Walker Lane Trend
+Great Western Chairman Brian Hall commented:
+"We are very encouraged by strong investor support following the initial trenching results at our Defender-Pine Crow tungsten project, which exceeded our expectations and confirmed the potential of the system. The funds now raised will allow us to commence full scale exploration at Defender, conduct geophysics and gravity surveys and mobilise for drilling at the earliest opportunity. We will be able to expand the programme, subject to results as appropriate, aiming for a maiden Mineral Resource Estimate. With a strong need for domestic tungsten production in the U.S., we believe the strategic relevance of this project will be increasingly recognised. We have watched with great interest the success of the Pilot Mountain project operated by our neighbour Guardian Metal Resources which is only 30 miles away from Defender and in a similar geological setting. This funding places the Company in a strong position to deliver meaningful progress during the upcoming drilling season, while continuing to advance our wider Nevada portfolio."
+DETAILS
+Background to and Reasons for the Placing
+Great Western Mining Corporation is advancing a diversified exploration and development portfolio focused on strategic and critical minerals across several 100% owned claim groups in Mineral County, Nevada, one of the world's most prolific and mining-friendly jurisdictions. The Company's assets are located within the Walker Lane Trend, a tier-one geological belt with established infrastructure, a long history of mining success and low geopolitical risk. The Company's focus on domestically sourced critical and industrial metals is aligned with U.S. objectives to reduce reliance on imports and strengthen supply chain resilience.
+Recent exploration activity includes work at the Company's Defender-Pine Crow tungsten project, where historic tungsten workings are located approximately 2 km northeast of, and on trend with, the Company's M2 skarn copper resource, within skarn systems developed along the contact between Cretaceous granitic intrusions and Jurassic limestones.
+Recent fieldwork, including mapping, geochemical sampling and channel sampling, has confirmed the presence of scheelite-bearing tungsten mineralisation at both Defender and Pine Crow. Channel sampling undertaken at Defender in December 2025 returned encouraging tungsten grades announced on 29 January 2026, including 16 m at 0.30 per cent WO₃, with a higher-grade interval of 2 m at 0.66 per cent WO₃, together with supporting geochemical results over an extended strike length. These results have confirmed the scale and continuity of the mineralised system and support the advancement of the project to a drilling stage.
+In parallel, the Company has continued to advance its broader multi-commodity exploration portfolio. At West Huntoon, recent drilling has confirmed gold and silver mineralisation in a fertile granite system, in addition to the copper potential already established, supporting further follow-up work. Furthermore, the Company has progressed geological and geophysical evaluation at the Rhyolite Dome target within its Olympic Gold Project, where initial drilling has improved geological understanding and will inform future exploration planning.
+Use of Proceeds
+The proceeds of the Placing will be used primarily to fast-track an exploration programme at the Defender-Pine Crow tungsten project, following highly encouraging trenching results announced on 29 January 2026.
+Upon commencement of drilling, tungsten-bearing scheelite will be readily identifiable under ultraviolet light, allowing for rapid visual confirmation of mineralisation in drill core. The Company's objective is to advance the project toward a maiden Mineral Resource Estimate, while continuing to progress exploration across its broader portfolio of precious and strategic metals projects in Nevada.
+Details of the Placing
+The Company has conditionally raised gross proceeds of £3,250,000 million through a placing of 232,142,857 new ordinary shares of €0.0001 each in the capital of the Company at a price of 1.4 pence per Placing Share.
+The Placing Price represents a discount of approximately 8.5 per cent to the closing mid-market price of the Company's ordinary shares on 29 January 2026, being the last practicable date prior to the announcement of the Placing.
+In addition, Placing Participants will be issued with one warrant for every one Placing Share subscribed for. Each warrant will entitle the holder to subscribe for one new ordinary share in the Company at an exercise price of 2.0 pence per share and will be exercisable for a period of three years from the date of admission of the Placing Shares ("Placing Warrants").
+The Placing Warrants will be unlisted and will be issued pursuant to a warrant instrument to be entered into by the Company. The Placing Warrants will not be transferable except in limited circumstances and will be subject to customary anti-dilution and adjustment provisions.
+If exercised in full, the Placing Warrants would result in the issue of a further 232,147,857 new ordinary shares and raise additional gross proceeds of approximately £4,642,957 million.
+In addition, the Company will issue warrants over 15,692,856 new ordinary shares in the Company to the Company's brokers ("Broker Warrants"). The Broker Warrants will be exercisable for a period of three years from the date of admission of the Placing Shares with an exercise price of 1.4 pence per new ordinary share ("Broker Warrants").
+The Placing Shares, when issued, will rank pari passu in all respects with the existing ordinary shares of the Company.
+Application will be made for the Placing Shares to be admitted to trading on AIM and Euronext Growth markets ("Admission"). Admission for 196,428,571 new ordinary shares is expected to take place at 8.00am on 13 February 2026 and dealings in the Placing Shares are expected to commence at the same time. Admission for 35,714,286 new ordinary shares is expected to take place at 8.00am on 27 February 2026 and dealings in the Placing Shares are expected to commence at the same time.
+The Placing is conditional, inter alia, upon Admission becoming effective.
+Total Voting Rights
+Following Admission of the Placing Shares, the Company's issued ordinary share capital will comprise 411,832,131 ordinary shares of €0.0001 each. There are no ordinary shares held in treasury. Accordingly, the total number of voting rights in the Company will be 411,832,131 and this figure may be used by shareholders as the denominator for the purposes of determining whether they are required to notify an interest in, or a change to their interest in, the Company under the Disclosure Guidance and Transparency Rules and the Euronext Growth Market Rules.
+ENDS
+For further information visit www.greatwesternmining.com or contact:
+Great Western Mining Corporation PLC
+Brian Hall, Chairman
+c/o St Brides
+Max Williams, Finance Director
+greatwesternmining@stbridespartners.co.uk
+Davy
+Nominated Adviser, Euronext Growth Adviser & Joint Broker
+Brian Garrahy
++353 (0)1 679 6363
+Shard Capital Partners
+Joint Broker
+Andrew Gutmann / Erik Woolgar
++44 (0)20 7186 9008
+St Brides Partners
+Financial PR
+Susie Geliher / Isabel de Salis / Will Turner
+greatwesternmining@stbridespartners.co.uk
+Notes
+Great Western Mining Corporation PLC
+(AIM: GWMO / Euronext Growth: 8GW) is a diversified exploration and development company focused on strategic minerals across several 100%-owned claim groups in Mineral County, Nevada, one of the world's most prolific and mining-friendly jurisdictions. Backed by an experienced team, the Company is pursuing a multi-commodity strategy targeting near-term development and longer-term exploration while assessing farm-out and joint venture opportunities to unlock broader portfolio value. As well as its flagship Huntoon Copper Project, which hosts a JORC-compliant resource of 4.3 Mt at 0.45% Cu, with upside from undrilled porphyry targets, it has a pipeline of gold, silver, and early-stage tungsten assets aligned with US critical minerals priorities.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+IOEBLMTTMTITTAF
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
                         <div style="font-weight: 700; font-size: 16px;">Tungsten Mineralisation Confirmed at Defender</div>
                         <span style="
                             display: inline-block;
@@ -951,7 +1195,7 @@
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Shard Capital</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">St Brides</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1145,9 +1389,9 @@ UPDVVLFLQFLBBBD
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #10b98140;
-                    ">2</span>
+                    ">3</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #2
+                        RNS ANNOUNCEMENT #3
                     </div>
                 </div>
                 
@@ -1212,7 +1456,7 @@ UPDVVLFLQFLBBBD
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">The Great</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">St Brides</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1389,9 +1633,9 @@ DRLPPUBAGUPQUBM
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">3</span>
+                    ">4</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #3
+                        RNS ANNOUNCEMENT #4
                     </div>
                 </div>
                 
@@ -1456,7 +1700,7 @@ DRLPPUBAGUPQUBM
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Dr Lawrence</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">The Cretaceous</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1686,9 +1930,9 @@ MSCEASFFALAKEFA
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">4</span>
+                    ">5</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #4
+                        RNS ANNOUNCEMENT #5
                     </div>
                 </div>
                 
@@ -1753,7 +1997,7 @@ MSCEASFFALAKEFA
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Camborne School</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">St Brides</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1842,186 +2086,6 @@ Privacy Policy
 .
 END
 BOAEAXFNEASKEFA
-                </div>
-            </details>
-            
-            </div>
-            
-            <div style="
-                margin-bottom: 20px;
-                padding: 18px;
-                background: white;
-                border-radius: 14px;
-                border: 1px solid #e2e8f0;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 30px;
-                        height: 30px;
-                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                        color: white;
-                        border-radius: 50%;
-                        font-weight: 800;
-                        font-size: 15px;
-                        box-shadow: 0 2px 8px #3b82f640;
-                    ">5</span>
-                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #5
-                    </div>
-                </div>
-                
-                
-            <div style="
-                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                color: white;
-                padding: 14px;
-                border-radius: 10px;
-                margin-bottom: 16px;
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">📰</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">Tungsten Exploration Update</div>
-                        <span style="
-                            display: inline-block;
-                            background: rgba(255,255,255,0.25);
-                            padding: 2px 10px;
-                            border-radius: 12px;
-                            font-size: 11px;
-                            margin-top: 4px;
-                            font-weight: 600;
-                        ">UPDATE</span>
-                    </div>
-                </div>
-                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    Informational update - monitor for context with other announcements.
-                </div>
-            </div>
-            
-                
-            <div style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 10px;
-                margin: 16px 0;
-            ">
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">5th Jan 2026</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
-                </div>
-            </div>
-            
-                
-                
-                    <div style="margin: 16px 0;">
-                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
-                            
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Executive Chairman</td>
-                    </tr>
-                    
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">100%, 100%, 0.45%</td>
-                    </tr>
-                    
-                        </table>
-                    </div>
-                    
-                
-            <details style="margin-top: 16px;">
-                <summary style="
-                    padding: 10px;
-                    background: #f8fafc;
-                    border-radius: 8px;
-                    font-weight: 600;
-                    font-size: 12px;
-                    list-style: none;
-                    cursor: pointer;
-                    color: #64748b;
-                    border: 1px solid #e2e8f0;
-                ">
-                    📄 View Full RNS Text
-                </summary>
-                <div style="
-                    margin-top: 8px;
-                    padding: 14px;
-                    background: #f1f5f9;
-                    border-radius: 8px;
-                    font-family: 'Courier New', monospace;
-                    font-size: 11px;
-                    line-height: 1.5;
-                    color: #475569;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                ">
-5 Jan 2026 07:00
-RNS Number : 5303N
-Great Western Mining Corp. plc
-05 January 2026
-Great Western Mining Corporation PLC / AIM: GWMO / Euronext Growth: 8GW
-5 January 2026
-GREAT WESTERN MINING CORPORATION PLC
-("Great Western," "GWM" or the "Company")
-Tungsten Exploration Update
-Great Western Mining Corporation PLC, a strategic and precious metals exploration and development company, is pleased to announce an update on its 100% owned and highly prospective Pine Crow-Defender tungsten prospect in Mineral County, Nevada.
-Further to the Company's 18 November 2025 announcement, in December the GWM exploration team completed a machine-cut channel sampling programme over existing trenches at the Pine Crow-Defender prospect. This work followed anomalous soil sampling results reported in October and the Company considers that these trench samples have strong potential to confirm zones of broad and consistent tungsten mineralisation.
-Initial observations from the trenching programme are highly encouraging and the samples have been dispatched to a laboratory for assay. The results are expected during January and could be used in the design of an early drill programme.
-Development of a tungsten asset is aligned with US demand for secure domestic supplies of critical and strategic minerals.
-Commenting on the year, Brian Hall, Executive Chairman of Great Western Mining, said:
-"2025 was a year of solid exploration progress for Great Western, involving copper, precious metals and tungsten. Our drilling campaigns at the West Huntoon copper prospect and the Rhyolite Dome gold prospect were completed as planned, with laboratory assays currently awaited. At West Huntoon and Defender-Pine Crow we have conducted extensive surface sampling and the recent machine-cut channel samples taken at Defender-Pine Crow in December will greatly add to our understanding of the tungsten potential there, which we expect will confirm zones of tungsten mineralisation. We have effectively strengthened our exposure to the minerals that are becoming increasingly important to domestic US supply chains, and we are eager to see the Pine Crow-Defender assay results.
-"We will enter the new year well positioned to build on this momentum and unlock value across the portfolio."
-**ENDS**
-For further information visit www.greatwesternmining.com or contact:
-Great Western Mining Corporation PLC
-Brian Hall, Chairman
-c/o St Brides
-Max Williams, Finance Director
-greatwesternmining@stbridespartners.co.uk
-Davy
-Nominated Adviser, Euronext Growth Adviser & Joint Broker
-Brian Garrahy
-+353 (0)1 679 6363
-Shard Capital Partners
-Joint Broker
-Andrew Gutmann / Erik Woolgar
-+44 (0)20 7186 9008
-St Brides Partners
-Financial PR
-Susie Geliher / Isabel de Salis / Will Turner
-greatwesternmining@stbridespartners.co.uk
-Notes
-Great Western Mining Corporation PLC
-(AIM: GWMO / Euronext Growth: 8GW) is a diversified exploration and development company focused on strategic minerals across several 100%-owned claim groups in Mineral County, Nevada, one of the world's most prolific and mining-friendly jurisdictions. Backed by an experienced team, the Company is pursuing a multi-commodity strategy targeting near-term development and longer-term exploration while assessing farm-out and joint venture opportunities to unlock broader portfolio value. As well as its flagship Huntoon Copper Project, which hosts a JORC-compliant resource of 4.3 Mt at 0.45% Cu, with upside from undrilled porphyry targets, it has a pipeline of gold, silver, and early-stage tungsten assets aligned with US critical minerals priorities.
-This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
-rns@lseg.com
-or visit
-www.rns.com
-.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
-Privacy Policy
-.
-END
-UPDUPUAPGUPQGAP
                 </div>
             </details>
             
@@ -2341,7 +2405,7 @@ UPDUPUAPGUPQGAP
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-01-29 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-01-30 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.
