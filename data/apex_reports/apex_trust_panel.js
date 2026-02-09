@@ -811,22 +811,28 @@ function populateRNSAnnouncements(profile) {
 					<span style="color: rgba(255, 255, 255, 0.5); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;">RNS ANNOUNCEMENT #${index + 1}</span>
 				</div>
 				
-				<!-- Title banner -->
+				<!-- Title banner with sentiment/date below title -->
 				<div style="background: ${sentiment.bg}; padding: 14px 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-					<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
-						<svg width="20" height="20" viewBox="0 0 16 16" fill="none" style="flex-shrink: 0;">
-							<rect x="2" y="2" width="12" height="12" rx="1" stroke="${sentiment.color}" stroke-width="1.5" fill="none"/>
-							<path d="M5 7h6M5 10h4" stroke="${sentiment.color}" stroke-width="1.5" stroke-linecap="round"/>
-							<circle cx="5" cy="4.5" r="0.5" fill="${sentiment.color}"/>
-							<circle cx="8" cy="4.5" r="0.5" fill="${sentiment.color}"/>
-							<circle cx="11" cy="4.5" r="0.5" fill="${sentiment.color}"/>
-						</svg>
-						<div style="flex: 1;">
-							<div style="color: #fff; font-weight: 700; font-size: 14px; margin-bottom: 4px;">${title}</div>
-							<div style="display: inline-block; background: ${sentiment.color}; color: #000; padding: 4px 10px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">
-								${sentiment.label}
-							</div>
+					<!-- Row 1: Icon + Title on left, DATE on right -->
+					<div style="display: flex; align-items: center; gap: 12px; justify-content: space-between; margin-bottom: 8px;">
+						<div style="display: flex; align-items: center; gap: 12px; flex: 1;">
+							<svg width="20" height="20" viewBox="0 0 16 16" fill="none" style="flex-shrink: 0;">
+								<rect x="2" y="2" width="12" height="12" rx="1" stroke="${sentiment.color}" stroke-width="1.5" fill="none"/>
+								<path d="M5 7h6M5 10h4" stroke="${sentiment.color}" stroke-width="1.5" stroke-linecap="round"/>
+								<circle cx="5" cy="4.5" r="0.5" fill="${sentiment.color}"/>
+								<circle cx="8" cy="4.5" r="0.5" fill="${sentiment.color}"/>
+								<circle cx="11" cy="4.5" r="0.5" fill="${sentiment.color}"/>
+							</svg>
+							<div style="color: #fff; font-weight: 700; font-size: 14px;">${title}</div>
 						</div>
+						<div style="color: rgba(255, 255, 255, 0.6); font-size: 12px; font-weight: 700; flex-shrink: 0;">${date}</div>
+					</div>
+					<!-- Row 2: SENTIMENT on left, TIME on right -->
+					<div style="display: flex; align-items: center; gap: 12px; justify-content: space-between;">
+						<div style="display: inline-block; background: ${sentiment.color}; color: #000; padding: 4px 10px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">
+							${sentiment.label}
+						</div>
+						<div style="color: rgba(255, 255, 255, 0.4); font-size: 11px; flex-shrink: 0;">${releaseTime || '--'}</div>
 					</div>
 					${
 						(() => {
@@ -841,29 +847,11 @@ function populateRNSAnnouncements(profile) {
 					}
 				</div>
 				
-				<!-- Metadata grid -->
-				<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding: 14px 16px; background: rgba(0, 0, 0, 0.2); border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-					<div>
-						<div style="color: rgba(255, 255, 255, 0.5); font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">DATE</div>
-						<div style="color: #fff; font-weight: 700; font-size: 12px;">${date}</div>
-					</div>
-					<div>
-						<div style="color: rgba(255, 255, 255, 0.5); font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">TIME</div>
-						<div style="color: #fff; font-weight: 700; font-size: 12px;">${releaseTime || 'N/A'}</div>
-					</div>
-					<div>
-						<div style="color: rgba(255, 255, 255, 0.5); font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">SOURCE</div>
-						<div style="color: ${sentiment.color}; font-weight: 700; font-size: 12px;">${source}</div>
-					</div>
-					<div>
-						<div style="color: rgba(255, 255, 255, 0.5); font-size: 10px; text-transform: uppercase; margin-bottom: 4px;">SENTIMENT</div>
-						<div style="color: ${sentiment.color}; font-weight: 700; font-size: 12px;">${sentiment.label}</div>
-					</div>
-				</div>
+				<!-- Metadata grid removed - DATE/TIME now in title -->
 				
-				<!-- Key Data Points -->
+				<!-- Key Data Points (hidden by default, shown when expanded) -->
 				${keyMetrics.length > 0 ? `
-				<div style="padding: 14px 16px; background: rgba(0, 0, 0, 0.15); border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+				<div id="rns-key-${index}" style="display: none; padding: 14px 16px; background: rgba(0, 0, 0, 0.15); border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
 					<div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
 						<svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink: 0;">
 <rect x="2" y="10" width="3" height="4" fill="#fff" opacity="0.7"/>
@@ -885,12 +873,28 @@ function populateRNSAnnouncements(profile) {
 				</div>
 				` : ''}
 				
+				<!-- Context (hidden by default, shown when expanded) -->
+				${
+					(() => {
+						const context = getContextForRNS(title, date);
+						return context ? `
+							<div id="rns-ctx-${index}" style="display: none; color: rgba(255, 255, 255, 0.7); font-size: 12px; line-height: 1.6; padding: 10px 16px; background: rgba(0, 0, 0, 0.2); border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+								<div style="color: rgba(255, 255, 255, 0.5); font-size: 10px; text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px;">Context</div>
+								${context}
+							</div>
+						` : '';
+					})()
+				}
+				
 				<!-- View Full RNS button -->
 				<div style="padding: 12px 16px; background: rgba(0, 0, 0, 0.1);">
 					<button onclick="toggleRNSFull('rns-full-${index}'); return false;" style="width: 100%; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: #d1d5db; padding: 10px; border-radius: 6px; cursor: pointer; font-family: 'Courier New', monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='rgba(255,255,255,0.05)'">
 						<span style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-							<span>📄</span>
-							<span id="rns-toggle-text-${index}">View Full RNS Text</span>
+							<svg width="14" height="14" viewBox="0 0 16 16" fill="none" style="flex-shrink: 0;">
+								<rect x="2" y="2" width="12" height="12" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+								<path d="M4 6h8M4 9h8M4 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+							</svg>
+							<span id="rns-toggle-text-${index}">View Full RNS</span>
 						</span>
 					</button>
 				</div>
@@ -922,13 +926,19 @@ function populateRNSAnnouncements(profile) {
 function toggleRNSFull(id) {
 	const fullDiv = document.getElementById(id);
 	const toggleText = document.getElementById(id.replace('rns-full-', 'rns-toggle-text-'));
+	const keyDiv = document.getElementById(id.replace('rns-full-', 'rns-key-'));
+	const ctxDiv = document.getElementById(id.replace('rns-full-', 'rns-ctx-'));
 	
 	if (fullDiv.style.display === 'none') {
 		fullDiv.style.display = 'block';
-		if (toggleText) toggleText.textContent = 'Hide Full RNS Text';
+		if (keyDiv) keyDiv.style.display = 'block';
+		if (ctxDiv) ctxDiv.style.display = 'block';
+		if (toggleText) toggleText.textContent = 'Hide Full RNS';
 	} else {
 		fullDiv.style.display = 'none';
-		if (toggleText) toggleText.textContent = 'View Full RNS Text';
+		if (keyDiv) keyDiv.style.display = 'none';
+		if (ctxDiv) ctxDiv.style.display = 'none';
+		if (toggleText) toggleText.textContent = 'View Full RNS';
 	}
 }
 
