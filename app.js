@@ -2376,7 +2376,6 @@ function closeAIReportModal() {
         document.head.appendChild(style);
     }
 }
-}
 
 // Close drawer when clicking outside on mobile
 document.addEventListener('click', function(event) {
