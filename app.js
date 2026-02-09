@@ -7,7 +7,6 @@ console.log('🚀 CRASH DASH app.js loaded!');
 // Global data stores
 let allSignals = [];
 let allMetadata = {};
-let apexScores = {};
 let tickerLookup = {};
 let dashboardStats = {};
 let currentSort = { column: 'date', direction: 'desc' };
@@ -191,23 +190,7 @@ async function loadAllData() {
             console.warn('Metadata index has no tickers array');
         }
         
-        // Load APEX scores from apex profiles
-        console.log('Loading APEX scores...');
-        for (const ticker of Object.keys(allMetadata)) {
-            try {
-                const apexResponse = await fetch(`../apex_reports/${ticker}_apex_profile.json` + cacheBuster);
-                if (apexResponse.ok) {
-                    const apexProfile = await apexResponse.json();
-                    const score = apexProfile?.top_card?.apex_score_100 || apexProfile?.comprehensive_apex?.score;
-                    if (score !== undefined) {
-                        apexScores[ticker] = score;
-                    }
-                }
-            } catch (e) {
-                // Skip if apex profile doesn't exist
-            }
-        }
-        console.log('APEX scores loaded for', Object.keys(apexScores).length, 'tickers');
+
         
         // Load signals CSV (now enriched with 49 fields - all original + 28 enriched)
         console.log('Loading enriched signals CSV...');
@@ -519,8 +502,8 @@ function renderCompressedMode(signals, tbody) {
         const topColor = [latest, ...group.history]
             .sort((a, b) => (colorPriority[b.Signal_Color] || 0) - (colorPriority[a.Signal_Color] || 0))[0].Signal_Color;
         
-        // APEX Score from apexScores map (preferred), fallback to AI score
-        const apexScore = apexScores[ticker] || parseFloat(latest.AI_Technical_Score) || 0;
+        // AI Technical Score
+        const aiScore = parseFloat(latest.AI_Technical_Score) || 0;
         
         // Best rally from metadata
         const bestRally = metadata.best_rally_pct || 0;
@@ -653,7 +636,7 @@ function renderCompressedMode(signals, tbody) {
                         transition: all 0.2s ease;
                     "
                     onclick="event.stopPropagation(); loadAIReport('${ticker}')"
-                    title="APEX Score: ${apexScore.toFixed(1)}"
+                    title="AI Technical Score: ${aiScore.toFixed(1)}"
                     onmouseover="this.style.transform='translateY(-3px) scale(1.1)'; this.style.boxShadow='0 8px 24px rgba(102, 126, 234, 0.8), 0 0 20px rgba(118, 75, 162, 0.6)'; this.style.filter='brightness(1.15)'"
                     onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 2px 8px rgba(102, 126, 234, 0.3)'; this.style.filter='brightness(1)'"
                     >
@@ -676,7 +659,7 @@ function renderCompressedMode(signals, tbody) {
                             line-height: 1;
                             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
                             z-index: 2;
-                        ">${apexScore.toFixed(1)}</div>
+                        ">${aiScore.toFixed(1)}</div>
                         <div style="
                             position: absolute;
                             inset: -2px;
