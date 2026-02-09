@@ -155,33 +155,41 @@ function populateScorecard(profile) {
 		const topCard = profile.top_card || {};
 		
 		// APEX Score (overall composite score)
-		document.getElementById('scorecard-apex').textContent = `APEX SCORE:${apex.score || '--'}`;
+		const apexText = `APEX SCORE:${apex.score || '--'}`;
+		document.getElementById('scorecard-apex').textContent = apexText;
+		document.getElementById('scorecard-apex-2').textContent = apexText;
 		
 		// Setup Score
-		document.getElementById('scorecard-setup').textContent = `SETUP:${components.setup?.score || '--'}`;
+		const setupText = `SETUP:${components.setup?.score || '--'}`;
+		document.getElementById('scorecard-setup').textContent = setupText;
+		document.getElementById('scorecard-setup-2').textContent = setupText;
 		
 		// Trust Score
-		document.getElementById('scorecard-trust').textContent = `TRUST:${components.trust?.score || '--'}`;
+		const trustText = `TRUST:${components.trust?.score || '--'}`;
+		document.getElementById('scorecard-trust').textContent = trustText;
+		document.getElementById('scorecard-trust-2').textContent = trustText;
 		
 		// Panic Score
-		document.getElementById('scorecard-panic').textContent = `PANIC:${components.panic?.score || '--'}`;
+		const panicText = `PANIC:${components.panic?.score || '--'}`;
+		document.getElementById('scorecard-panic').textContent = panicText;
+		document.getElementById('scorecard-panic-2').textContent = panicText;
 		
 		// Compression Score
-		document.getElementById('scorecard-comp').textContent = `COMPRESSION:${components.compression?.score || '--'}`;
+		const compText = `COMPRESSION:${components.compression?.score || '--'}`;
+		document.getElementById('scorecard-comp').textContent = compText;
+		document.getElementById('scorecard-comp-2').textContent = compText;
 		
 		// Timing Regime
 		const timing = topCard.timing_regime || apex.timing?.regime || 'UNKNOWN';
-		document.getElementById('scorecard-timing').textContent = `TIMING:${timing}`;
+		const timingText = `TIMING:${timing}`;
+		document.getElementById('scorecard-timing').textContent = timingText;
+		document.getElementById('scorecard-timing-2').textContent = timingText;
 		
 		// Action
 		const action = topCard.action || 'WATCH';
-		document.getElementById('scorecard-action').textContent = `ACTION:${action}`;
-		
-		// Duplicate ticker content for seamless loop
-		const ticker = document.getElementById('scorecard-ticker');
-		const content = ticker.querySelector('.ticker-content');
-		const clone = content.cloneNode(true);
-		ticker.appendChild(clone);
+		const actionText = `ACTION:${action}`;
+		document.getElementById('scorecard-action').textContent = actionText;
+		document.getElementById('scorecard-action-2').textContent = actionText;
 	} catch(e) {
 		console.error('populateScorecard failed', e);
 	}
