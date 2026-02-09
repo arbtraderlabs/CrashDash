@@ -7,6 +7,7 @@ console.log('🚀 CRASH DASH app.js loaded!');
 // Global data stores
 let allSignals = [];
 let allMetadata = {};
+let apexScores = {};
 let tickerLookup = {};
 let dashboardStats = {};
 let currentSort = { column: 'date', direction: 'desc' };
@@ -189,6 +190,24 @@ async function loadAllData() {
         } else {
             console.warn('Metadata index has no tickers array');
         }
+        
+        // Load APEX scores from apex profiles
+        console.log('Loading APEX scores...');
+        for (const ticker of Object.keys(allMetadata)) {
+            try {
+                const apexResponse = await fetch(`../apex_reports/${ticker}_apex_profile.json` + cacheBuster);
+                if (apexResponse.ok) {
+                    const apexProfile = await apexResponse.json();
+                    const score = apexProfile?.top_card?.apex_score_100 || apexProfile?.comprehensive_apex?.score;
+                    if (score !== undefined) {
+                        apexScores[ticker] = score;
+                    }
+                }
+            } catch (e) {
+                // Skip if apex profile doesn't exist
+            }
+        }
+        console.log('APEX scores loaded for', Object.keys(apexScores).length, 'tickers');
         
         // Load signals CSV (now enriched with 49 fields - all original + 28 enriched)
         console.log('Loading enriched signals CSV...');
@@ -500,8 +519,8 @@ function renderCompressedMode(signals, tbody) {
         const topColor = [latest, ...group.history]
             .sort((a, b) => (colorPriority[b.Signal_Color] || 0) - (colorPriority[a.Signal_Color] || 0))[0].Signal_Color;
         
-        // Latest signal's AI score (not max)
-        const latestScore = parseFloat(latest.AI_Technical_Score);
+        // APEX Score from apexScores map (preferred), fallback to AI score
+        const apexScore = apexScores[ticker] || parseFloat(latest.AI_Technical_Score) || 0;
         
         // Best rally from metadata
         const bestRally = metadata.best_rally_pct || 0;
@@ -634,7 +653,7 @@ function renderCompressedMode(signals, tbody) {
                         transition: all 0.2s ease;
                     "
                     onclick="event.stopPropagation(); loadAIReport('${ticker}')"
-                    title="AI Analysis Report - Score: ${latestScore.toFixed(1)}"
+                    title="APEX Score: ${apexScore.toFixed(1)}"
                     onmouseover="this.style.transform='translateY(-3px) scale(1.1)'; this.style.boxShadow='0 8px 24px rgba(102, 126, 234, 0.8), 0 0 20px rgba(118, 75, 162, 0.6)'; this.style.filter='brightness(1.15)'"
                     onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 2px 8px rgba(102, 126, 234, 0.3)'; this.style.filter='brightness(1)'"
                     >
@@ -657,7 +676,7 @@ function renderCompressedMode(signals, tbody) {
                             line-height: 1;
                             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
                             z-index: 2;
-                        ">${latestScore.toFixed(1)}</div>
+                        ">${apexScore.toFixed(1)}</div>
                         <div style="
                             position: absolute;
                             inset: -2px;
@@ -740,8 +759,8 @@ function filterSignals() {
                     marketCapMatch = capMillions >= 250;
                 }
             } else {
-                // If no market cap data, include in results (don't filter out)
-                marketCapMatch = true;
+                // If no market cap data, exclude from filtered results
+                marketCapMatch = false;
             }
         }
         
@@ -992,7 +1011,7 @@ function closeFiltersModal() {
     const modal = document.getElementById('filtersModal');
     if (modal) {
         modal.style.display = 'none';
-        document.body.style.overflow = '';
+        document.body.style.overflow = 'auto';
     }
 }
 
@@ -1174,6 +1193,27 @@ async function showCompanyModal(ticker) {
                             </div>
                         </div>
                         
+                        <!-- Price Action -->
+                        <div class="metadata-section">
+                            <h4>📊 Price Action</h4>
+                            <div class="metadata-item">
+                                <span class="metadata-label">52 Week High</span>
+                                <span class="metadata-value">${fmtPrice(athVal)}p</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">52 Week High Date</span>
+                                <span class="metadata-value">${basics.week_52_high_date ? new Date(basics.week_52_high_date).toLocaleDateString('en-GB', {day: '2-digit', month: 'short', year: 'numeric'}).replace(/ /g, '-') : '-'}</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">52 Week Low</span>
+                                <span class="metadata-value">${fmtPrice(atlVal)}p</span>
+                            </div>
+                            <div class="metadata-item">
+                                <span class="metadata-label">52 Week Low Date</span>
+                                <span class="metadata-value">${basics.week_52_low_date ? new Date(basics.week_52_low_date).toLocaleDateString('en-GB', {day: '2-digit', month: 'short', year: 'numeric'}).replace(/ /g, '-') : '-'}</span>
+                            </div>
+                        </div>
+                        
                         <!-- Latest Signal -->
                         <div class="metadata-section">
                             <h4>🎯 Latest Signal</h4>
@@ -1324,25 +1364,14 @@ async function showSignalTimeline(ticker) {
         
         const modal = document.getElementById('signalTimelineModal');
         const content = document.getElementById('signalTimelineContent');
-        const header = document.getElementById('signalTimelineHeader');
         
-        if (!modal || !content || !header) {
+        if (!modal || !content) {
             console.error('Modal elements not found!');
             return;
         }
         
         const latestSignal = metadata.latest_signal || {};
         const allSignals = metadata.all_historical_signals || [];
-        
-        // Get the MOST RECENT signal from all_historical_signals (lowest age_days value)
-        const mostRecentHistoricalSignal = allSignals.length > 0 ? allSignals.reduce((min, sig) => {
-            const minAge = min.age_days || Infinity;
-            const sigAge = sig.age_days || Infinity;
-            return sigAge < minAge ? sig : min;
-        }) : {};
-        
-        // Merge latest_signal with the most recent historical signal to get all fields including correct age_days
-        const completeLatestSignal = { ...mostRecentHistoricalSignal, ...latestSignal };
         
         // Rally State colors and labels
         const rallyStateColors = {
@@ -1354,284 +1383,66 @@ async function showSignalTimeline(ticker) {
         
         const currentState = latestSignal.rally_state ? rallyStateColors[latestSignal.rally_state] : null;
         
-        // Signal color mapping for tile background
-        const signalColorMap = {
-            'RED': { bg: '#ef4444', borderColor: 'rgba(239, 68, 68, 0.3)', label: 'Ultra Crash' },
-            'ORANGE': { bg: '#f97316', borderColor: 'rgba(249, 115, 22, 0.3)', label: 'Extreme Crash' },
-            'GREEN': { bg: '#22c55e', borderColor: 'rgba(34, 197, 94, 0.3)', label: 'Deep Crash' },
-            'YELLOW': { bg: '#eab308', borderColor: 'rgba(234, 179, 8, 0.3)', label: 'Crash Zone' },
-            'PURPLE': { bg: '#a855f7', borderColor: 'rgba(168, 85, 247, 0.3)', label: 'Enhanced' }
-        };
-        
-        const signalColor = completeLatestSignal.signal_color || 'YELLOW';
-        const signalColorStyle = signalColorMap[signalColor] || signalColorMap['YELLOW'];
-        
-        // Extract company info for header
-        const companyInfo = metadata.company_info || {};
-        const basics = metadata.basics || {};
-        const stats = metadata.stats || {};
-        const tickerInfo = tickerLookup[ticker] || {};
-        
-        // Get market cap in proper format
-        const marketCapCandidate = getMarketCapCandidate(ticker, metadata, tickerInfo);
-        const formattedMarketCap = formatMarketCap(marketCapCandidate);
-        
-        // Get current price (pence-aware)
-        const currentPriceVal = getPriceFieldForTicker(ticker, basics, 'current_price');
-        const fmtCurrentPrice = (currentPriceVal !== undefined && currentPriceVal !== null && !isNaN(currentPriceVal)) ? Number(currentPriceVal).toFixed(4) : '-';
-        
-        // Set HEADER content (fixed)
-        header.innerHTML = `
-        <!-- COMPANY INFO HEADER -->
-        <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; background: rgb(26, 35, 54); box-shadow: 0 2px 8px rgba(0,0,0,0.3); border-bottom: 1px solid rgba(10, 132, 255, 0.4); padding: 0.6rem 1.5rem; margin: 0; width: 100%; position: relative;">
-            <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; width: 100%; overflow: hidden;">
-                <!-- Ticker & Company Name (Left) -->
-                <div style="flex: 1 1 auto; min-width: 100px; max-width: 180px;">
-                    <div style="color: white; font-size: 0.95rem; font-weight: 800; letter-spacing: 0.5px;">${cleanTickerDisplay(ticker)}</div>
-                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; line-height: 1; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${companyInfo.name || 'Company'}</div>
-                </div>
-                
-                <!-- Key Metrics (Center) - 4 columns -->
-                <div style="display: flex; gap: 0.5rem; align-items: center; flex: 2 1 auto; overflow: hidden;">
-                    <!-- Current Price (with currency) -->
-                    <div style="text-align: center; min-width: 60px; flex-shrink: 0;">
-                        <div style="color: rgba(255,255,255,0.5); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1;">
-                            Price <span style="color: #f59e0b; font-size: 0.5rem; font-weight: 600;">${companyInfo.currency || 'GBP'}</span>
-                        </div>
-                        <div style="color: white; font-size: 0.85rem; font-weight: 800; line-height: 1.1; margin-top: 1px;">${fmtCurrentPrice}p</div>
-                    </div>
-                    
-                    <!-- Market Cap -->
-                    <div style="text-align: center; min-width: 55px; flex-shrink: 0;">
-                        <div style="color: rgba(255,255,255,0.5); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1;">Cap</div>
-                        <div style="color: #10b981; font-size: 0.85rem; font-weight: 800; line-height: 1.1; margin-top: 1px;">${formattedMarketCap}</div>
-                    </div>
-                    
-                    <!-- Exchange (combined Market + Exchange) -->
-                    <div style="text-align: center; min-width: 60px; flex-shrink: 0;">
-                        <div style="color: rgba(255,255,255,0.5); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1;">Exchange</div>
-                        <div style="font-size: 0.75rem; font-weight: 700; line-height: 1.1; margin-top: 1px;">
-                            <span style="color: #06b6d4;">${companyInfo.exchange || 'LSE'}</span>
-                            <span style="color: #a855f7;"> ${companyInfo.market || 'AIM'}</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Close Button -->
-                <button onclick="closeSignalTimeline()" style="
-                    position: absolute;
-                    top: 0.6rem;
-                    right: 1.5rem;
-                    background: none;
-                    border: none;
-                    color: rgba(255,255,255,0.7);
-                    cursor: pointer;
-                    padding: 0;
-                    width: 24px;
-                    height: 24px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    transition: color 0.2s ease;
-                    flex-shrink: 0;
-                "
-                onmouseover="this.style.color='white'"
-                onmouseout="this.style.color='rgba(255,255,255,0.7)'"
-                title="Close">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        
-        <!-- Details Row -->
-        <div style="display: flex; gap: 1.5rem; font-size: 0.65rem; background: rgb(26, 35, 54); box-shadow: 0 2px 6px rgba(0,0,0,0.2); border-bottom: 1px solid rgba(10, 132, 255, 0.2); padding: 0.35rem 1.5rem 0.4rem 1.5rem; margin: 0; text-align: left;">
-            <div style="display: flex; align-items: center; gap: 0.4rem; min-width: 100px;">
-                <span style="color: #667eea; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 500; flex-shrink: 0;">Sector:</span>
-                <span style="color: white; font-weight: 700; font-size: 0.7rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${companyInfo.sector || '-'}</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 0.4rem; flex: 1; overflow: hidden;">
-                <span style="color: #667eea; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 500; flex-shrink: 0;">Ind:</span>
-                <span style="color: white; font-weight: 700; font-size: 0.7rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${companyInfo.industry || '-'}</span>
-            </div>
-        </div>
-        `;
-        
-        // Set CONTENT
         content.innerHTML = `
-        <!-- Content starts here with proper spacing and padding -->
-        <div style="padding: 1.5rem; padding-top: 1rem;">
+        <h2 style="color: white; margin: 0 0 1.5rem 0; font-size: 1.5rem;">
+            ${cleanTickerDisplay(ticker)} - Rally Timeline
+        </h2>
         
         <!-- 5-Year Price Chart -->
-        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; border: 1px solid rgba(10, 132, 255, 0.2);">
-            <h3 style="color: white; margin: 0 0 0.8rem 0; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; font-weight: 600;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="flex-shrink:0;">
-                    <path d="M3 17v3h18v-14" stroke="rgb(10,132,255)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                    <polyline points="3 13 8 8 13 12 21 4" stroke="rgb(10,132,255)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                </svg>
-                ${cleanTickerDisplay(ticker)} Price Chart</h3>
-            <div id="priceChart" style="width: 100%; height: 300px; min-height: 250px;"></div>
-            
-            <!-- 52-Week High/Low Plain Text -->
-            <div style="margin-top: 0.8rem; text-align: center; font-size: 0.75rem; color: rgba(255,255,255,0.7);">
-                <div style="color: white; font-weight: 600; margin-bottom: 4px;">52-Week Range</div>
-                <div>High: ${basics.week_52_high ? basics.week_52_high + 'p' : '-'} (${basics.week_52_high_date ? new Date(basics.week_52_high_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }) : '-'})</div>
-                <div>Low: ${basics.week_52_low ? basics.week_52_low + 'p' : '-'} (${basics.week_52_low_date ? new Date(basics.week_52_low_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }) : '-'})</div>
-            </div>
+        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem; border: 1px solid rgba(10, 132, 255, 0.2);">
+            <h3 style="color: white; margin: 0 0 1rem 0; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
+                📈 ${cleanTickerDisplay(ticker)} - 5 Year Price History
+            </h3>
+            <div id="priceChart" style="width: 100%; height: 400px; min-height: 300px;"></div>
         </div>
         
-        <!-- PERFORMANCE TILE - SIMPLE SPLIT -->
-        <style>
-            /* Scoped performance tile tweaks: left-justify label and value, remove separators, responsive sizing */
-            #performance-tile .metadata-item { border-bottom: none !important; padding: 8px 0; display: flex; align-items: center; gap: 0.75rem; justify-content: flex-start; }
-            /* Label smaller than value */
-            #performance-tile .metadata-label { color: rgba(255,255,255,0.75); flex: 0 0 auto; font-size: 0.85rem; }
-            #performance-tile .metadata-value { color: white; font-weight: 700; text-align: left; flex: 0 0 auto; font-size: 1.05rem; }
-            @media (max-width: 900px) {
-                #performance-tile { padding: 0.6rem; }
-                #performance-tile .metadata-label { font-size: 0.78rem; }
-                #performance-tile .metadata-value { font-size: 0.95rem; }
-                #performance-tile h3 { font-size: 0.95rem; }
-            }
-        </style>
-        <div id="performance-tile" style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; color: white; border: 1px solid rgba(255,255,255,0.1);">
-            <h3 style="color: white; margin: 0 0 0.75rem 0; font-size: 0.9rem; font-weight: 700; display: flex; align-items: center; gap: 8px;">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true" style="flex-shrink:0;">
-                    <path d="M3 14h3v4H3zM10 8h3v10h-3zM17 4h3v14h-3z" fill="#06b6d4" />
-                </svg>
-                Performance
+        <!-- Current Rally Analysis Card -->
+        <div style="background: linear-gradient(135deg, var(--navy), #1A3A52); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; color: white; border: 1px solid rgba(10, 132, 255, 0.3);">
+            <h3 style="margin: 0 0 1rem 0; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
+                📊 Current Rally Analysis
             </h3>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                <!-- Left Column -->
-                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                    <div class="metadata-item">
-                        <span class="metadata-label">Signals</span>
-                        <span class="metadata-value" style="color: white;">${allSignals.length || 30}</span>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                ${currentState ? `
+                    <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.75rem;">
+                        <div style="color: rgba(255,255,255,0.7); font-size: 0.75rem; margin-bottom: 4px;">Rally State</div>
+                        <div style="color: white; font-size: 1.1rem; font-weight: 700;">${currentState.text}</div>
                     </div>
-                    <div class="metadata-item">
-                        <span class="metadata-label">Win Rate</span>
-                        <span class="metadata-value" style="color: white;">100%</span>
+                ` : ''}
+                ${latestSignal.Rally_Count !== undefined ? `
+                    <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.75rem;">
+                        <div style="color: rgba(255,255,255,0.7); font-size: 0.75rem; margin-bottom: 4px;">Rally Cycles</div>
+                        <div style="color: white; font-size: 1.1rem; font-weight: 700;">${latestSignal.Rally_Count} ${latestSignal.Rally_Count >= 2 ? '⚠️' : ''}</div>
                     </div>
-                </div>
-                <!-- Right Column -->
-                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                    <div class="metadata-item">
-                        <span class="metadata-label">Best Date</span>
-                        <span class="metadata-value" style="color: white;">${(metadata.best_historical_signal && metadata.best_historical_signal.signal_date) ? new Date(metadata.best_historical_signal.signal_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }) : 'N/A'}</span>
+                ` : ''}
+                ${latestSignal.lock_in_reached ? `
+                    <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.75rem;">
+                        <div style="color: rgba(255,255,255,0.7); font-size: 0.75rem; margin-bottom: 4px;">Lock-in Status</div>
+                        <div style="color: white; font-size: 1.1rem; font-weight: 700;">✓ Achieved</div>
+                        ${latestSignal.lock_in_date ? `<div style="color: rgba(255,255,255,0.6); font-size: 0.7rem;">${new Date(latestSignal.lock_in_date).toLocaleDateString('en-GB')}</div>` : ''}
                     </div>
-                    <div class="metadata-item">
-                        <span class="metadata-label">Peak Rally</span>
-                        <span class="metadata-value" style="color: white;">${(metadata.best_historical_signal && metadata.best_historical_signal.rally_pct) ? ('+' + metadata.best_historical_signal.rally_pct.toFixed(1) + '%') : '-'} <span style="color: rgba(255,255,255,0.5); font-weight: 400; font-size: 0.7rem;">(${(metadata.best_historical_signal && metadata.best_historical_signal.days_to_peak) ? metadata.best_historical_signal.days_to_peak + 'd' : '-'})</span></span>
+                ` : ''}
+                ${latestSignal.distance_from_high_pct !== undefined ? `
+                    <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.75rem;">
+                        <div style="color: rgba(255,255,255,0.7); font-size: 0.75rem; margin-bottom: 4px;">From Peak</div>
+                        <div style="color: white; font-size: 1.1rem; font-weight: 700;">${latestSignal.distance_from_high_pct.toFixed(2)}%</div>
                     </div>
-                    <div class="metadata-item">
-                        <span class="metadata-label">${cleanTickerDisplay(ticker)} Avg Rally</span>
-                        <span class="metadata-value" style="color: white;">${stats.avg_rally_pct ? stats.avg_rally_pct.toFixed(0) + '%' : '-'}</span>
+                ` : ''}
+                ${latestSignal.best_rally_pct !== undefined ? `
+                    <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.75rem;">
+                        <div style="color: rgba(255,255,255,0.7); font-size: 0.75rem; margin-bottom: 4px;">Best Rally</div>
+                        <div style="color: white; font-size: 1.1rem; font-weight: 700;">+${latestSignal.best_rally_pct.toFixed(2)}%</div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        ${metadata && metadata.risk_flags && metadata.risk_flags.length > 0 ? `
-        <!-- RISK FACTORS WARNING TILE -->
-        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.1);">
-            <h3 style="margin: 0 0 0.75rem 0; font-size: 0.95rem; font-weight: 600; color: #fbbf24; display:flex; align-items:center; gap:8px;">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true" style="flex-shrink:0;">
-                    <path d="M12 2 2 20h20L12 2z" stroke="#f59e0b" stroke-width="1.2" fill="rgba(251,191,36,0.08)" stroke-linejoin="round"/>
-                    <path d="M12 8v4" stroke="#f59e0b" stroke-width="1.6" stroke-linecap="round"/>
-                    <circle cx="12" cy="16" r="0.8" fill="#f59e0b"/>
-                </svg>
-                Risk Factors
-            </h3>
-            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                ${metadata.risk_flags.map(flag => `
-                    <span style="background: rgba(239, 68, 68, 0.2); color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; border: 1px solid rgba(239, 68, 68, 0.4);">
-                        ${flag.replace(/_/g, ' ')}
-                    </span>
-                `).join('')}
-            </div>
-        </div>
-        ` : ''}
-        
-        <!-- CURRENT SIGNAL - COMPACT SINGLE TILE -->
-        <div style="background: linear-gradient(135deg, rgba(${parseInt(signalColorStyle.bg.slice(1,3), 16)}, ${parseInt(signalColorStyle.bg.slice(3,5), 16)}, ${parseInt(signalColorStyle.bg.slice(5,7), 16)}, 0.1), rgba(10, 132, 255, 0.05)); border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem; color: white; border: 1px solid ${signalColorStyle.borderColor};">
-            <h3 style="margin: 0 0 0.75rem 0; font-size: 0.95rem; font-weight: 600; display:flex; align-items:center; gap:8px;">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true" style="flex-shrink:0;">
-                    <path d="M3 18h3v-6H3zM9 12h3v6H9zM15 8h3v10h-3z" fill="#a855f7" />
-                </svg>
-                Latest Signal
-            </h3>
-            
-            <!-- Latest Signal Compact Tile (like History format) -->
-            <div style="background: rgba(255,255,255,0.08); border-radius: 8px; padding: 1rem; border-left: 4px solid ${signalColorStyle.bg};">
-                <!-- Header: Date + Badges -->
-                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.75rem;">
-                    <div>
-                        <div style="font-weight: 700; color: white; margin-bottom: 4px;">
-                            ${completeLatestSignal.date || completeLatestSignal.signal_date || 'N/A'}
-                        </div>
-                        <div style="font-size: 0.7rem; color: rgba(255,255,255,0.7); display: flex; gap: 6px; flex-wrap: wrap;">
-                            ${completeLatestSignal.signal_type ? `<span style="background: ${signalColorStyle.bg}; color: white; padding: 2px 6px; border-radius: 3px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2px; font-size: 0.65rem;">${completeLatestSignal.signal_type}</span>` : ''}
-                            ${currentState ? `<span style="background: ${currentState.bg}; color: white; padding: 2px 6px; border-radius: 3px; font-weight: 600; font-size: 0.65rem;">${currentState.text}</span>` : ''}
-                        </div>
-                    </div>
-                    ${completeLatestSignal.lock_in_reached ? `<span style="display:inline-flex; align-items:center; gap:6px; background: rgba(16, 185, 129, 0.12); color: #10b981; border: 1px solid #10b981; padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 700;"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"14\" height=\"14\" fill=\"none\" aria-hidden=\"true\"><path d=\"M20 6L9 17l-5-5\" stroke=\"#10b981\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Lock-in</span>` : ''}
-                </div>
-                
-                <!-- Compact Metrics Grid -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 0.75rem; font-size: 0.8rem;">
-                    <!-- Entry Price -->
-                    <div>
-                        <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px;">Entry:</div>
-                        <div style="font-weight: 600; color: white;">${completeLatestSignal.price ? parseFloat(completeLatestSignal.price).toFixed(2) : completeLatestSignal.entry_price ? parseFloat(completeLatestSignal.entry_price).toFixed(2) : '-'}p</div>
-                    </div>
-                    
-                    <!-- Current P&L -->
-                    <div>
-                        <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px;">P&L:</div>
-                        <div style="font-weight: 600; color: ${completeLatestSignal.current_pnl_pct >= 0 ? '#10b981' : '#ef4444'};">${completeLatestSignal.current_pnl_pct === 0 ? '0%' : (completeLatestSignal.current_pnl_pct >= 0 ? '+' : '') + completeLatestSignal.current_pnl_pct.toFixed(1) + '%'}</div>
-                    </div>
-                    
-                    <!-- Best Rally -->
-                    <div>
-                        <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px;">Best:</div>
-                        <div style="font-weight: 600; color: #22c55e;">${completeLatestSignal.best_rally_pct !== undefined ? '+' + completeLatestSignal.best_rally_pct.toFixed(1) + '%' : '-'}</div>
-                    </div>
-                    
-                    <!-- Signal Age -->
-                    <div>
-                        <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px;">Age:</div>
-                        <div style="font-weight: 600; color: #06b6d4;">${completeLatestSignal.age_days || '0'}d</div>
-                    </div>
-                    
-                    <!-- Cycle Position -->
-                    <div>
-                        <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px;">Cycle:</div>
-                        <div style="font-weight: 600; color: #fbbf24;">${completeLatestSignal.cycle_position ? (completeLatestSignal.cycle_position * 100).toFixed(0) : '-'}%</div>
-                    </div>
-                    
-                    <!-- AI Confidence -->
-                    <div>
-                        <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px;">AI Score:</div>
-                        <div style="font-weight: 600; color: #667eea;">${completeLatestSignal.ai_score ? completeLatestSignal.ai_score.toFixed(1) : '-'}/10</div>
-                    </div>
-                </div>
+                ` : ''}
             </div>
         </div>
         
         <!-- Signal History Timeline -->
-        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin-top: 1rem; border: 1px solid rgba(10, 132, 255, 0.2);">
-            <h3 style="color: white; margin: 0 0 1rem 0; font-size: 1.05rem; font-weight: 700; display: flex; align-items: center; gap: 8px;">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true" style="flex-shrink:0;">
-                    <circle cx="12" cy="8" r="3" stroke="#f59e0b" stroke-width="1.4" fill="rgba(251,191,36,0.06)"/>
-                    <path d="M12 11v6" stroke="#f59e0b" stroke-width="1.4" stroke-linecap="round"/>
-                    <path d="M8 17h8" stroke="#f59e0b" stroke-width="1.4" stroke-linecap="round"/>
-                </svg>
-                Signal History <span style="background: rgba(10, 132, 255, 0.3); padding: 4px 10px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; color: #06b6d4;">${allSignals.length}</span>
+        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(10, 132, 255, 0.2);">
+            <h3 style="color: white; margin: 0 0 1rem 0; font-size: 1rem;">
+                📈 Signal History (${allSignals.length} signal${allSignals.length !== 1 ? 's' : ''})
             </h3>
-            <div id="signalHistoryContainer" style="display: flex; flex-direction: column; gap: 0.75rem;">
-                ${allSignals.sort((a, b) => new Date(b.signal_date) - new Date(a.signal_date)).slice(0, 10).map(sig => {
+            <div id="signalHistoryContainer" style="display: flex; flex-direction: column; gap: 12px;">
+                ${allSignals.slice(0, 10).map(sig => {
                     const signalState = sig.rally_state ? rallyStateColors[sig.rally_state] : null;
                     const signalColorEmoji = {
                         'RED': '🔴',
@@ -1646,45 +1457,43 @@ async function showSignalTimeline(ticker) {
                     const formattedDate = `${String(dateObj.getDate()).padStart(2, '0')}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${dateObj.getFullYear()}`;
                     
                     return `
-                        <div style="background: rgba(255,255,255,0.08); border-radius: 8px; padding: 0.75rem; border-left: 4px solid ${signalState ? signalState.bg : '#6b7280'}; transition: background 0.2s;">
-                            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.6rem; flex-wrap: wrap; gap: 8px;">
-                                <div style="flex: 1; min-width: 150px;">
-                                    <div style="font-weight: 700; color: white; margin-bottom: 3px; font-size: 0.9rem;">
+                        <div style="background: rgba(255,255,255,0.08); border-radius: 8px; padding: 1rem; border-left: 4px solid ${signalState ? signalState.bg : '#6b7280'};">
+                            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                                <div>
+                                    <div style="font-weight: 700; color: white; margin-bottom: 4px;">
                                         ${signalColorEmoji} ${formattedDate}
                                     </div>
-                                    <div style="font-size: 0.7rem; color: rgba(255,255,255,0.7);">${sig.signal_type}</div>
+                                    <div style="font-size: 0.75rem; color: rgba(255,255,255,0.7);">${sig.signal_type}</div>
                                 </div>
                                 ${signalState ? `
-                                    <span style="background: ${signalState.bg}; color: white; padding: 3px 8px; border-radius: 6px; font-size: 0.65rem; font-weight: 600; white-space: nowrap;">
+                                    <span style="background: ${signalState.bg}; color: white; padding: 3px 8px; border-radius: 6px; font-size: 0.7rem; font-weight: 600;">
                                         ${signalState.text}
                                     </span>
                                 ` : ''}
                             </div>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 6px; font-size: 0.75rem;">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; font-size: 0.8rem;">
                                 <div>
-                                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 2px;">Entry</div>
-                                    <div style="font-weight: 600; color: white;">${parseFloat(sig.entry_price).toFixed(2)}p</div>
+                                    <span style="color: rgba(255,255,255,0.6);">Entry:</span>
+                                    <span style="font-weight: 600; color: white;">${(sig.entry_price * 100).toFixed(2)}p</span>
                                 </div>
                                 <div>
-                                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 2px;">Return</div>
-                                    <div style="font-weight: 600;" class="${sig.current_return_pct >= 0 ? 'positive' : 'negative'}">
+                                    <span style="color: rgba(255,255,255,0.6);">Return:</span>
+                                    <span style="font-weight: 600;" class="${sig.current_return_pct >= 0 ? 'positive' : 'negative'}">
                                         ${sig.current_return_pct >= 0 ? '+' : ''}${sig.current_return_pct.toFixed(1)}%
-                                    </div>
+                                    </span>
                                 </div>
                                 <div>
-                                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 2px;">Best</div>
-                                    <div style="font-weight: 600; color: #22c55e;">+${sig.best_rally_pct.toFixed(1)}%</div>
+                                    <span style="color: rgba(255,255,255,0.6);">Best:</span>
+                                    <span style="font-weight: 600; color: #22c55e;">+${sig.best_rally_pct.toFixed(1)}%</span>
                                 </div>
                                 <div>
-                                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 2px;">Age</div>
-                                    <div style="font-weight: 600; color: #06b6d4;">${sig.age_days}d</div>
+                                    <span style="color: rgba(255,255,255,0.6);">Age:</span>
+                                    <span style="font-weight: 600; color: white;">${sig.age_days}d</span>
                                 </div>
                             </div>
-                            <div style="margin-top: 6px; display: flex; gap: 6px; flex-wrap: wrap; font-size: 0.65rem;">
-                                ${sig.lock_in_reached ? '<span style="background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981; padding: 2px 6px; border-radius: 3px; font-weight: 600;">✓ Lock-in</span>' : ''}
-                                ${sig.Rally_Count >= 2 ? `<span style="display:inline-flex; align-items:center; gap:6px; background: rgba(251, 191, 36, 0.12); color: #fbbf24; border: 1px solid #fbbf24; padding: 4px 8px; border-radius: 6px; font-weight: 700;">` +
-                                    `<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"14\" height=\"14\" fill=\"none\" aria-hidden=\"true\"><path d=\"M12 2 2 20h20L12 2z\" stroke=\"#f59e0b\" stroke-width=\"1.2\" fill=\"rgba(251,191,36,0.08)\" stroke-linejoin=\"round\"/><path d=\"M12 8v4\" stroke=\"#f59e0b\" stroke-width=\"1.6\" stroke-linecap=\"round\"/></svg>` +
-                                    ` ${sig.Rally_Count}x</span>` : ''}
+                            <div style="margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap;">
+                                ${sig.lock_in_reached ? '<span style="background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600;">✓ Lock-in</span>' : ''}
+                                ${sig.Rally_Count >= 2 ? `<span style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; border: 1px solid #fbbf24; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600;">⚠ ${sig.Rally_Count} Cycles</span>` : ''}
                             </div>
                         </div>
                     `;
@@ -1705,22 +1514,20 @@ async function showSignalTimeline(ticker) {
             ` : ''}
         </div>
         
-                ${latestSignal.Rally_Count >= 2 ? `
+        ${latestSignal.Rally_Count >= 2 ? `
             <div style="background: rgba(251, 191, 36, 0.15); border-left: 4px solid #fbbf24; border-radius: 8px; padding: 1rem; margin-top: 1rem; border: 1px solid rgba(251, 191, 36, 0.3);">
-                <h4 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
-                    <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"none\" aria-hidden=\"true\" style=\"flex-shrink:0;\"><path d=\"M12 2 2 20h20L12 2z\" stroke=\"#f59e0b\" stroke-width=\"1.2\" fill=\"rgba(251,191,36,0.08)\" stroke-linejoin=\"round\"/><path d=\"M12 8v4\" stroke=\"#f59e0b\" stroke-width=\"1.6\" stroke-linecap=\"round\"/></svg>
-                    Risk Warning
+                <h4 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
+                    ⚠️ Risk Warning
                 </h4>
                 <p style="color: rgba(255,255,255,0.9); margin: 0; font-size: 0.85rem;">
                     Multiple rally cycles detected (${latestSignal.Rally_Count} cycles). This pattern may indicate pump-and-dump behavior or high volatility. Exercise caution.
                 </p>
             </div>
         ` : ''}
-        </div>
     `;
         
         console.log('Displaying modal...');
-        modal.style.display = 'flex';
+        modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
         
         // Load and render price chart
@@ -1733,19 +1540,8 @@ async function showSignalTimeline(ticker) {
 
 function closeSignalTimeline() {
     const modal = document.getElementById('signalTimelineModal');
-    if (modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
-        // Clear any remaining event listeners
-        const content = document.getElementById('signalTimelineContent');
-        if (content) {
-            content.innerHTML = '';
-        }
-        const header = document.getElementById('signalTimelineHeader');
-        if (header) {
-            header.innerHTML = '';
-        }
-    }
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
 }
 
 // Track how many signals are currently displayed per ticker
@@ -1803,7 +1599,7 @@ function loadMoreSignals(ticker) {
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; font-size: 0.8rem;">
                     <div>
                         <span style="color: rgba(255,255,255,0.6);">Entry:</span>
-                        <span style="font-weight: 600; color: white;">${parseFloat(sig.entry_price).toFixed(2)}p</span>
+                        <span style="font-weight: 600; color: white;">${(sig.entry_price * 100).toFixed(2)}p</span>
                     </div>
                     <div>
                         <span style="color: rgba(255,255,255,0.6);">Return:</span>
@@ -2256,11 +2052,8 @@ async function loadAIReport(ticker) {
     const modalHTML = `
         <div class="modal" id="aiReportModal" style="
             display: flex; 
-            align-items: ${isMobile ? 'flex-start' : 'center'}; 
+            align-items: center; 
             justify-content: center;
-            padding-top: ${isMobile ? '0.5rem' : '0'};
-            padding-bottom: ${isMobile ? '2rem' : '0'};
-            overflow-y: ${isMobile ? 'auto' : 'hidden'};
             animation: fadeIn 0.3s ease;
         ">
             <!-- Loader Container (shown first) -->
@@ -2275,28 +2068,11 @@ async function loadAIReport(ticker) {
                 box-shadow: 0 20px 60px rgba(0,0,0,0.3);
                 transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             ">
-                <div style="margin-bottom: 2rem; position: relative;">
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 0.5rem;">
-                        <h3 style="color: white; font-size: 1.5rem; margin: 0; font-weight: 700;">
-                            ⚡ AI Smart Report
-                        </h3>
-                        <!-- APEX Score Display -->
-                        <div id="apexScoreDisplay" style="
-                            background: rgba(255, 255, 255, 0.15);
-                            border: 1px solid rgba(102, 126, 234, 0.4);
-                            border-radius: 12px;
-                            padding: 0.5rem 1rem;
-                            display: flex;
-                            align-items: center;
-                            gap: 0.5rem;
-                            min-width: 80px;
-                            justify-content: center;
-                        ">
-                            <span style="font-size: 1.3rem;">△</span>
-                            <span id="apexScore" style="color: rgba(255, 255, 255, 0.9); font-size: 1rem; font-weight: 600;">--</span>
-                        </div>
-                    </div>
-                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 1rem; margin: 0.5rem 0 1rem 0;">
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="color: white; font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">
+                        ⚡ AI Smart Report
+                    </h3>
+                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 1rem; margin-bottom: 1rem;">
                         Analyzing <strong style="color: #667eea;">${ticker}</strong> with Engine V4
                     </p>
                     
@@ -2321,10 +2097,6 @@ async function loadAIReport(ticker) {
                             top: 0.6rem;
                             left: 1rem;
                             display: flex;
-                            align-items: center;
-                            gap: 6px;
-                            z-index: 10;
-                            margin-bottom: 0.5rem;
                             align-items: center;
                             gap: 6px;
                             z-index: 10;
@@ -2382,7 +2154,6 @@ async function loadAIReport(ticker) {
                                 </svg>
                             </div>
                         </div>
-                        <!-- Progress text -->
                         <div style="flex: 1; min-width: 0;">
                             <span id="aiProgressText" style="
                                 color: rgba(255, 255, 255, 0.95);
@@ -2403,7 +2174,7 @@ async function loadAIReport(ticker) {
             <div id="apexReportContainer" style="
                 max-width: ${isMobile ? '100%' : '95vw'};
                 width: ${isMobile ? '100%' : '95%'};
-                max-height: ${isMobile ? '90vh' : '95vh'};
+                max-height: 95vh;
                 background: white;
                 border-radius: ${isMobile ? '0' : '20px'};
                 overflow: hidden;
@@ -2416,23 +2187,22 @@ async function loadAIReport(ticker) {
             ">
                 <button onclick="closeAIReportModal()" style="
                     position: absolute;
-                    top: ${isMobile ? '20px' : '25px'};
-                    right: ${isMobile ? '15px' : '20px'};
+                    top: ${isMobile ? '10px' : '15px'};
+                    right: ${isMobile ? '10px' : '15px'};
                     z-index: 10000;
                     background: rgba(0,0,0,0.7);
                     color: white;
                     border: none;
                     border-radius: 50%;
-                    width: ${isMobile ? '38px' : '44px'};
-                    height: ${isMobile ? '38px' : '44px'};
+                    width: ${isMobile ? '36px' : '40px'};
+                    height: ${isMobile ? '36px' : '40px'};
                     cursor: pointer;
-                    font-size: ${isMobile ? '20px' : '22px'};
+                    font-size: ${isMobile ? '18px' : '20px'};
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     transition: all 0.2s ease;
                     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-                    padding: 0;
                 " onmouseover="this.style.background='rgba(239,68,68,0.9)'; this.style.transform='scale(1.1)'" 
                    onmouseout="this.style.background='rgba(0,0,0,0.7)'; this.style.transform='scale(1)'">✕</button>
                 <iframe 
@@ -2443,8 +2213,8 @@ async function loadAIReport(ticker) {
                         height: 95vh; 
                         border: none;
                         display: block;
-                        box-sizing: border-box;
                     "
+                    onload="window.apexIframeLoaded = true"
                 ></iframe>
             </div>
         </div>
@@ -2555,14 +2325,12 @@ async function loadAIReport(ticker) {
     // Store interval ID for cleanup
     window.aiProgressInterval = progressInterval;
     
-    // Get iframe element
-    const iframe = document.getElementById('apexReportIframe');
-    const loaderContainer = document.getElementById('apexLoaderContainer');
-    const reportContainer = document.getElementById('apexReportContainer');
-    
-    // Handle successful iframe load
-    iframe.onload = () => {
+    // After 5 seconds, transition to iframe
+    setTimeout(() => {
         clearInterval(progressInterval);
+        
+        const loaderContainer = document.getElementById('apexLoaderContainer');
+        const reportContainer = document.getElementById('apexReportContainer');
         
         // Fade out loader with scale animation
         loaderContainer.style.opacity = '0';
@@ -2575,57 +2343,7 @@ async function loadAIReport(ticker) {
             reportContainer.style.transform = 'scale(1)';
             reportContainer.style.pointerEvents = 'auto';
         }, 500);
-    };
-    
-    // Handle iframe load error (missing report) - keep spinner running
-    iframe.onerror = () => {
-        // Switch to "connecting" message and keep spinner active
-        clearInterval(progressInterval);
-        
-        // Cycle through connecting messages indefinitely
-        const connectingMessages = [
-            'Connecting to APEX intelligence...',
-            'Loading APEX engine...',
-            'Fetching profile data...',
-            'Preparing analysis...'
-        ];
-        
-        let connectIndex = 0;
-        window.aiProgressInterval = setInterval(() => {
-            progressText.textContent = connectingMessages[connectIndex % connectingMessages.length];
-            connectIndex++;
-        }, 1000); // Change message every 1 second
-    };
-    
-    // Fetch APEX JSON to get the score
-    const jsonPath = `data/apex_reports/${ticker}_apex_profile.json`;
-    fetch(jsonPath)
-        .then(response => {
-            if (!response.ok) throw new Error('JSON not found');
-            return response.json();
-        })
-        .then(data => {
-            // Extract APEX score from JSON
-            const apexScore = data.top_card?.apex_score_100;
-            const scoreDisplay = document.getElementById('apexScore');
-            
-            if (apexScore !== null && apexScore !== undefined) {
-                scoreDisplay.textContent = apexScore;
-                // Change color based on score
-                if (apexScore >= 70) {
-                    scoreDisplay.style.color = '#10b981'; // Green
-                } else if (apexScore >= 50) {
-                    scoreDisplay.style.color = '#f59e0b'; // Orange
-                } else {
-                    scoreDisplay.style.color = '#ef4444'; // Red
-                }
-            }
-        })
-        .catch(error => {
-            // JSON not found - just show the icon
-            const scoreDisplay = document.getElementById('apexScoreDisplay');
-            scoreDisplay.innerHTML = '<span style="font-size: 1.3rem;">△</span>';
-        });
+    }, 5000); // 5 seconds
 }
 
 function closeAIReportModal() {
@@ -2657,6 +2375,7 @@ function closeAIReportModal() {
         `;
         document.head.appendChild(style);
     }
+}
 }
 
 // Close drawer when clicking outside on mobile
