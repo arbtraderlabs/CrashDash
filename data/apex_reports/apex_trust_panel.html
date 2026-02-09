@@ -1,0 +1,380 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>APEX & Trust Prototype</title>
+  <link rel="stylesheet" href="apex_trust_panel.css">
+</head>
+<body>
+  <!-- Stock Info Header (Sticky) -->
+  <div id="stock-info-header" style="position: sticky; top: 0; z-index: 1000; margin-bottom: 1rem;">
+      <!-- COMPANY INFO HEADER -->
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; background: rgb(26, 35, 54); box-shadow: 0 2px 8px rgba(0,0,0,0.3); border-bottom: 1px solid rgba(10, 132, 255, 0.4); padding: 0.6rem 1.5rem; margin: 0; width: 100%; position: relative; border-radius: 8px 8px 0 0;">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; width: 100%; overflow: hidden;">
+          <!-- Ticker & Company Name (Left) -->
+          <div style="flex: 1 1 auto; min-width: 100px; max-width: 180px;">
+            <div id="header-ticker" style="color: white; font-size: 0.95rem; font-weight: 800; letter-spacing: 0.5px;">--</div>
+            <div id="header-company" style="color: rgba(255,255,255,0.6); font-size: 0.65rem; line-height: 1; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">--</div>
+          </div>
+          
+          <!-- Key Metrics (Center) - 3 columns -->
+          <div style="display: flex; gap: 0.5rem; align-items: center; flex: 2 1 auto; overflow: hidden;">
+            <!-- Current Price (with currency) -->
+            <div style="text-align: center; min-width: 60px; flex-shrink: 0;">
+              <div style="color: rgba(255,255,255,0.5); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1;">
+                Price <span id="header-currency" style="color: #f59e0b; font-size: 0.5rem; font-weight: 600;">--</span>
+              </div>
+              <div id="header-price" style="color: white; font-size: 0.85rem; font-weight: 800; line-height: 1.1; margin-top: 1px;">--</div>
+            </div>
+            
+            <!-- Market Cap -->
+            <div style="text-align: center; min-width: 55px; flex-shrink: 0;">
+              <div style="color: rgba(255,255,255,0.5); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1;">Cap</div>
+              <div id="header-mcap" style="color: #10b981; font-size: 0.85rem; font-weight: 800; line-height: 1.1; margin-top: 1px;">--</div>
+            </div>
+            
+            <!-- Exchange (combined Market + Exchange) -->
+            <div style="text-align: center; min-width: 60px; flex-shrink: 0;">
+              <div style="color: rgba(255,255,255,0.5); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1;">Exchange</div>
+              <div id="header-exchange" style="font-size: 0.75rem; font-weight: 700; line-height: 1.1; margin-top: 1px;">--</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Details Row -->
+      <div style="display: flex; gap: 1.5rem; font-size: 0.65rem; background: rgb(26, 35, 54); box-shadow: 0 2px 6px rgba(0,0,0,0.2); border-bottom: 1px solid rgba(10, 132, 255, 0.2); padding: 0.35rem 1.5rem 0.4rem 1.5rem; margin: 0; text-align: left; border-radius: 0 0 8px 8px;">
+        <div style="display: flex; align-items: center; gap: 0.4rem; min-width: 100px;">
+          <span style="color: #667eea; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 500; flex-shrink: 0;">Sector:</span>
+          <span id="header-sector" style="color: white; font-weight: 700; font-size: 0.7rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">--</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.4rem; flex: 1; overflow: hidden;">
+          <span style="color: #667eea; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 500; flex-shrink: 0;">Ind:</span>
+          <span id="header-industry" style="color: white; font-weight: 700; font-size: 0.7rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">--</span>
+        </div>
+      </div>
+    </div>
+
+  <div class="container">
+    <div class="header"><div class="h1">🔥 APEX SCORE ARCHITECTURE (V5)</div></div>
+
+    <!-- Bloomberg Scorecard Ticker -->
+    <div style="background: rgb(26, 35, 54); border-left: 3px solid #0a84ff; padding: 0.5rem 0; margin: 1rem 0; font-family: 'Courier New', monospace; font-size: 13px; letter-spacing: 0.5px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); overflow: hidden; position: relative; max-width: 100%;">
+      <div id="scorecard-ticker" style="display: flex; white-space: nowrap; animation: ticker 20s linear infinite; width: max-content;">
+        <div class="ticker-content" style="display: flex; align-items: center; gap: 1.5rem; padding: 0 1.5rem; flex-shrink: 0;">
+          <span style="color: rgba(255,255,255,0.6); font-size: 11px; text-transform: uppercase; font-weight: 600;">SCORECARD</span>
+          <span id="scorecard-apex" style="background: #10b981; color: white; padding: 6px 12px; border-radius: 6px; font-weight: 700; font-size: 13px;">APEX SCORE:--</span>
+          <span id="scorecard-setup" style="color: #3B82F6; font-weight: 700;">SETUP:--</span>
+          <span id="scorecard-trust" style="color: #8B5CF6; font-weight: 700;">TRUST:--</span>
+          <span id="scorecard-panic" style="color: #EF4444; font-weight: 700;">PANIC:--</span>
+          <span id="scorecard-comp" style="color: #F59E0B; font-weight: 700;">COMPRESSION:--</span>
+          <span style="color: rgba(255,255,255,0.3); font-weight: 400;">│</span>
+          <span id="scorecard-timing" style="color: #3b82f6; font-weight: 700;">TIMING:--</span>
+          <span style="color: rgba(255,255,255,0.3); font-weight: 400;">│</span>
+          <span id="scorecard-action" style="color: #ef4444; font-weight: 700;">ACTION:--</span>
+        </div>
+      </div>
+    </div>
+    <style>
+      @keyframes ticker {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      #scorecard-ticker .ticker-content:last-child {
+        display: none;
+      }
+      @media (max-width: 768px) {
+        #scorecard-ticker { animation: ticker 15s linear infinite; }
+      }
+    </style>
+
+    <!-- Narrative Section Header -->
+    <div style="display: flex; align-items: center; gap: 12px; margin: 20px 0 12px 0;">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0;">
+        <rect x="2" y="4" width="16" height="12" stroke="#10B981" stroke-width="1.5" fill="none" rx="2"/>
+        <line x1="5" y1="4" x2="5" y2="2" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="15" y1="4" x2="15" y2="2" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="2" y1="7" x2="18" y2="7" stroke="#10B981" stroke-width="1.5"/>
+        <circle cx="8" cy="11" r="1.2" fill="#10B981"/>
+        <circle cx="12" cy="11" r="1.2" fill="#10B981"/>
+        <circle cx="16" cy="11" r="1.2" fill="#10B981"/>
+      </svg>
+      <span style="color: #10B981; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.8px;">Company in 30 Seconds</span>
+    </div>
+
+    <!-- Narrative Card Stack -->
+    <div class="card-stack" id="narrative-stack" style="position: relative; min-height: 180px; overflow: visible; touch-action: pan-y; user-select: none; margin-bottom: 30px;">
+      <!-- Card 1: What They Do -->
+      <div class="card component-card stack-card narrative-card" data-index="0" style="transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform: translateX(0%) scale(1); opacity: 1; pointer-events: auto; z-index: 10;">
+        <div class="panel-header" style="padding:12px;border-bottom:1px solid rgba(16,185,129,0.1);display:flex;align-items:center;gap:10px">
+          <svg width="18" height="18" viewBox="0 0 16 16" fill="none" style="flex-shrink:0">
+            <rect x="3" y="3" width="10" height="10" stroke="#10B981" stroke-width="1.5" fill="none" rx="1"/>
+            <path d="M6 3 L6 1 M10 3 L10 1 M3 6 L13 6" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="8" cy="9" r="1.5" fill="#10B981"/>
+          </svg>
+          <div class="card-title" style="font-size:16px;font-weight:800;color:#10B981">What They Do <span style="cursor:help;opacity:0.6;font-size:14px" title="Company business model and core operations">ⓘ</span></div>
+        </div>
+        <div style="padding:12px">
+          <span id="company-what" style="color: #e5e7eb; line-height: 1.6; font-size: 12px;">--</span>
+        </div>
+      </div>
+
+      <!-- Card 2: Why It Matters -->
+      <div class="card component-card stack-card narrative-card" data-index="1" style="transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform: translateX(100%) scale(0.95); opacity: 0; pointer-events: none; z-index: 5;">
+        <div class="panel-header" style="padding:12px;border-bottom:1px solid rgba(16,185,129,0.1);display:flex;align-items:center;gap:10px">
+          <svg width="18" height="18" viewBox="0 0 16 16" fill="none" style="flex-shrink:0">
+            <circle cx="8" cy="8" r="6" stroke="#10B981" stroke-width="1.5" fill="none"/>
+            <circle cx="8" cy="8" r="2" fill="#10B981"/>
+            <path d="M8 2 L8 6 M8 10 L8 14 M2 8 L6 8 M10 8 L14 8" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <div class="card-title" style="font-size:16px;font-weight:800;color:#10B981">Why It Matters <span style="cursor:help;opacity:0.6;font-size:14px" title="Market significance and investment thesis">ⓘ</span></div>
+        </div>
+        <div style="padding:12px">
+          <span id="company-why" style="color: #e5e7eb; line-height: 1.6; font-size: 12px;">--</span>
+        </div>
+      </div>
+
+      <!-- Card 3: Current State -->
+      <div class="card component-card stack-card narrative-card" data-index="2" style="transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform: translateX(100%) scale(0.95); opacity: 0; pointer-events: none; z-index: 5;">
+        <div class="panel-header" style="padding:12px;border-bottom:1px solid rgba(16,185,129,0.1);display:flex;align-items:center;gap:10px">
+          <svg width="18" height="18" viewBox="0 0 16 16" fill="none" style="flex-shrink:0">
+            <path d="M2 12 L5 9 L8 11 L14 4" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <circle cx="5" cy="9" r="1.5" fill="#10B981"/>
+            <circle cx="8" cy="11" r="1.5" fill="#10B981"/>
+            <circle cx="14" cy="4" r="1.5" fill="#10B981"/>
+          </svg>
+          <div class="card-title" style="font-size:16px;font-weight:800;color:#10B981">Current State <span style="cursor:help;opacity:0.6;font-size:14px" title="Latest company situation and metrics">ⓘ</span></div>
+        </div>
+        <div style="padding:12px">
+          <span id="company-state" style="color: #e5e7eb; line-height: 1.6; font-size: 12px;">--</span>
+        </div>
+      </div>
+
+      <!-- Narrative Stack Navigation -->
+      <div class="stack-nav" style="bottom: -35px;">
+        <div class="stack-dots">
+          <span class="stack-dot narrative-dot" data-index="0"></span>
+          <span class="stack-dot narrative-dot" data-index="1"></span>
+          <span class="stack-dot narrative-dot" data-index="2"></span>
+        </div>
+        <div class="stack-label" style="color: #10B981;">Company</div>
+      </div>
+    </div>
+
+    <!-- Scorecard Breakdown Section Header -->
+    <div style="display: flex; align-items: center; gap: 12px; margin: 20px 0 12px 0;">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0;">
+        <rect x="2" y="6" width="3" height="12" rx="1" stroke="#fff" stroke-width="1.5" fill="none"/>
+        <rect x="7" y="3" width="3" height="15" rx="1" stroke="#fff" stroke-width="1.5" fill="none"/>
+        <rect x="12" y="8" width="3" height="10" rx="1" stroke="#fff" stroke-width="1.5" fill="none"/>
+        <rect x="17" y="5" width="1" height="13" rx="0.5" stroke="#fff" stroke-width="1.5" fill="none"/>
+        <circle cx="10" cy="1" r="1.5" fill="#fff"/>
+      </svg>
+      <span style="color: #fff; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.8px;">Scorecard Breakdown</span>
+    </div>
+
+    <!-- Main swipeable cards -->
+    <div id="component-grid"></div>
+
+    <!-- Bloomberg Phase 2: Collapsible Sections -->
+    <div class="bloomberg-sections" style="margin-top: 20px;">
+      <!-- CrashDash Intelligence -->
+      <div class="bloomberg-section" style="background: rgb(26, 35, 54); border: 1px solid #374151; border-radius: 8px; margin-bottom: 12px; overflow: hidden;">
+        <div class="section-header" onclick="toggleSection('crashdash')" style="padding: 12px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: rgba(59, 130, 246, 0.1); border-bottom: 1px solid #374151;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span id="crashdash-arrow" style="color: #3b82f6; font-size: 16px; transition: transform 0.2s;">▶</span>
+            <span style="font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.5px;">CrashDash Intelligence</span>
+          </div>
+          <span style="font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255, 255, 255, 0.5);">INDUSTRY PATTERNS · RECOVERY PATHS</span>
+        </div>
+        <div id="crashdash-content" class="section-content" style="display: none; padding: 16px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.6;">
+          <div id="crashdash-data">Loading...</div>
+        </div>
+      </div>
+
+      <!-- Catalyst Pipeline -->
+      <div class="bloomberg-section" style="background: rgb(26, 35, 54); border: 1px solid #374151; border-radius: 8px; margin-bottom: 12px; overflow: hidden;">
+        <div class="section-header" onclick="toggleSection('catalyst')" style="padding: 12px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: rgba(16, 185, 129, 0.1); border-bottom: 1px solid #374151;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span id="catalyst-arrow" style="color: #10b981; font-size: 16px; transition: transform 0.2s;">▶</span>
+            <span style="font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700; color: #10b981; text-transform: uppercase; letter-spacing: 0.5px;">Catalyst Pipeline</span>
+          </div>
+          <span style="font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255, 255, 255, 0.5);">UPCOMING EVENTS · TIMELINE</span>
+        </div>
+        <div id="catalyst-content" class="section-content" style="display: none; padding: 16px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.6;">
+          <div id="catalyst-data">Loading...</div>
+        </div>
+      </div>
+
+      <!-- Market Tape -->
+      <div class="bloomberg-section" style="background: rgb(26, 35, 54); border: 1px solid #374151; border-radius: 8px; margin-bottom: 12px; overflow: hidden;">
+        <div class="section-header" onclick="toggleSection('market')" style="padding: 12px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: rgba(245, 158, 11, 0.1); border-bottom: 1px solid #374151;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span id="market-arrow" style="color: #f59e0b; font-size: 16px; transition: transform 0.2s;">▶</span>
+            <span style="font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700; color: #f59e0b; text-transform: uppercase; letter-spacing: 0.5px;">Market Tape</span>
+          </div>
+          <span style="font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255, 255, 255, 0.5);">SOCIAL SENTIMENT · TRENDS</span>
+        </div>
+        <div id="market-content" class="section-content" style="display: none; padding: 16px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.6;">
+          <div id="market-data">Loading...</div>
+        </div>
+      </div>
+
+      <!-- Investment Decision -->
+      <div class="bloomberg-section" style="background: rgb(26, 35, 54); border: 1px solid #374151; border-radius: 8px; margin-bottom: 12px; overflow: hidden;">
+        <div class="section-header" onclick="toggleSection('decision')" style="padding: 12px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: rgba(239, 68, 68, 0.1); border-bottom: 1px solid #374151;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span id="decision-arrow" style="color: #ef4444; font-size: 16px; transition: transform 0.2s;">▶</span>
+            <span style="font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700; color: #ef4444; text-transform: uppercase; letter-spacing: 0.5px;">Investment Decision</span>
+          </div>
+          <span id="decision-status" style="font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255, 255, 255, 0.5);">ANALYSIS · ACTION</span>
+        </div>
+        <div id="decision-content" class="section-content" style="display: none; padding: 16px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.6;">
+          <div id="decision-data">Loading...</div>
+        </div>
+      </div>
+
+      <!-- Top 5 Recent RNS -->
+      <div class="bloomberg-section" style="background: rgb(26, 35, 54); border: 1px solid #374151; border-radius: 8px; margin-bottom: 12px; overflow: hidden;">
+        <div class="section-header" onclick="toggleSection('rns')" style="padding: 12px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: rgba(6, 182, 212, 0.1); border-bottom: 1px solid #374151;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span id="rns-arrow" style="color: #06b6d4; font-size: 16px; transition: transform 0.2s;">▶</span>
+            <span style="font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700; color: #06b6d4; text-transform: uppercase; letter-spacing: 0.5px;">Top 5 Recent RNS</span>
+          </div>
+          <span style="font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255, 255, 255, 0.5);">REGULATORY NEWS · ANNOUNCEMENTS</span>
+        </div>
+        <div id="rns-content" class="section-content" style="display: none; padding: 16px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.6;">
+          <div id="rns-data">Loading...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bloomberg Terminal Footer -->
+    <div style="margin-top: 40px; background: linear-gradient(180deg, #0a1628 0%, #020617 100%); border: 1px solid #1e293b; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+        <!-- Header Bar -->
+        <div style="background: rgba(59, 130, 246, 0.08); border-bottom: 1px solid rgba(59, 130, 246, 0.2); padding: 16px 24px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%; box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);"></div>
+                    <span style="font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: 1px;">APEX Intelligence Terminal</span>
+                </div>
+                <div style="font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.5px;">
+                    GENERATED: <span style="color: #06b6d4;" id="footerDate"></span> • SESSION: <span style="color: #10b981;">LIVE</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Content Grid -->
+        <div style="padding: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+            <!-- Left Column -->
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <!-- System Information -->
+                <div>
+                    <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #3b82f6; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">System Information</div>
+                    <div style="font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255, 255, 255, 0.7); line-height: 1.8;">
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                            <span style="color: rgba(255, 255, 255, 0.4);">VERSION:</span>
+                            <span style="color: #06b6d4; font-weight: 700;">APEX v5.0</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                            <span style="color: rgba(255, 255, 255, 0.4);">ENGINE:</span>
+                            <span style="color: #10b981;">CrashDash Intelligence</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                            <span style="color: rgba(255, 255, 255, 0.4);">COVERAGE:</span>
+                            <span style="color: #a855f7;">LSE AIM Micro-Caps</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0;">
+                            <span style="color: rgba(255, 255, 255, 0.4);">DATA SOURCES:</span>
+                            <span style="color: #ef4444;">RNS • Social • Trends</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Risk Disclosure -->
+                <div>
+                    <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #ef4444; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Risk Disclosure</div>
+                    <div style="font-family: 'Courier New', monospace; font-size: 10px; color: rgba(255, 255, 255, 0.5); line-height: 1.6;">
+                        This analysis is provided for informational purposes only and does not constitute financial advice. AIM micro-cap securities carry significant volatility and liquidity risks. Past performance does not guarantee future results. Always conduct your own due diligence and consult with a qualified financial advisor before making investment decisions.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column -->
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <!-- Platform Overview -->
+                <div>
+                    <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #10b981; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Platform Overview</div>
+                    <div style="font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
+                        APEX Intelligence Terminal combines technical analysis, sentiment tracking, and regulatory news monitoring to identify high-probability contrarian setups in distressed micro-cap equities. Our proprietary scoring system evaluates setup quality, panic intensity, and compression patterns to surface opportunities before institutional recognition.
+                    </div>
+                </div>
+                
+                <!-- Target Users -->
+                <div>
+                    <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #a855f7; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Target Users</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 4px; color: #a855f7; font-weight: 600;">PROP TRADERS</span>
+                        <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 4px; color: #3b82f6; font-weight: 600;">HEDGE FUNDS</span>
+                        <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 4px; color: #10b981; font-weight: 600;">QUANT TEAMS</span>
+                        <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 4px; color: #ef4444; font-weight: 600;">RESEARCH DESKS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Bar -->
+        <div style="background: rgba(2, 6, 23, 0.6); border-top: 1px solid rgba(59, 130, 246, 0.15); padding: 12px 24px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-family: 'Courier New', monospace; font-size: 10px;">
+                <div style="color: rgba(255, 255, 255, 0.4);">© 2026 APEX Intelligence • All Rights Reserved</div>
+                <div style="display: flex; align-items: center; gap: 20px; color: rgba(255, 255, 255, 0.5);">
+                    <span>STATUS: <span style="color: #10b981; font-weight: 700;">● OPERATIONAL</span></span>
+                    <span>LATENCY: <span style="color: #06b6d4; font-weight: 700;">12ms</span></span>
+                    <span>BUILD: <span style="color: #a855f7; font-weight: 700;">5.0.2</span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  <!-- Mobile Responsive Styles -->
+  <style>
+    @media(max-width:768px){
+        body{padding:10px!important}
+        .container{max-width:100%!important}
+        div[style*="grid-template-columns: 1fr 1fr"]{grid-template-columns:1fr!important;gap:12px!important}
+        div[style*="grid-template-columns: repeat(4"]{grid-template-columns:repeat(2,1fr)!important;gap:10px!important}
+        div[style*="padding: 24px"]{padding:16px!important}
+        div[style*="gap: 20px"]{gap:14px!important}
+        div[style*="font-size: 11px"]{font-size:10px!important}
+    }
+    @media(max-width:480px){
+        body{padding:6px!important}
+        .container{padding:0!important;margin:0!important}
+        div[style*="grid-template-columns: 1fr 1fr"]{grid-template-columns:1fr!important;gap:8px!important}
+        div[style*="grid-template-columns: repeat(4"]{grid-template-columns:1fr!important;gap:6px!important;padding:8px 10px!important}
+        div[style*="grid-template-columns: repeat(2"]{grid-template-columns:1fr!important;gap:6px!important}
+        div[style*="padding: 24px"]{padding:10px!important}
+        div[style*="padding: 14px 16px"]{padding:8px 10px!important}
+        div[style*="padding: 18px"]{padding:10px!important}
+        div[style*="gap: 20px"]{gap:8px!important}
+        div[style*="gap: 30px"]{gap:10px!important}
+        div[style*="gap: 24px"]{gap:10px!important}
+        div[style*="gap: 16px"]{gap:8px!important}
+        div[style*="gap: 12px"]{gap:6px!important}
+        div[style*="font-size: 10px"]{font-size:8px!important}
+        div[style*="font-size: 11px"]{font-size:9px!important}
+        div[style*="font-size: 12px"]{font-size:10px!important}
+        div[style*="font-size: 13px"]{font-size:11px!important}
+        div[style*="padding: 6px 12px"]{padding:4px 6px!important;font-size:7px!important}
+        div[style*="line-height: 1.8"]{line-height:1.4!important}
+        div[style*="line-height: 1.6"]{line-height:1.3!important}
+        div[style*="line-height: 1.5"]{line-height:1.2!important}
+    }
+  </style>
+  
+  <script>window.__APEX_PROFILE = {};</script>
+  <script src="apex_trust_panel.js"></script>
+</body>
+</html>

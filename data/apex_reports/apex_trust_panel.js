@@ -54,8 +54,7 @@ function mapProfile(p){
 			RNS: {freshness: rnsCount > 0 ? 'Current' : 'No data', coverage: rnsNormalized, reliability: rnsCount > 10 ? 0.95 : rnsCount > 0 ? 0.7 : 0},
 			Social: {freshness: socialCount > 0 ? 'Live' : 'No data', coverage: socialNormalized, reliability: socialCount > 100 ? 0.85 : socialCount > 0 ? 0.6 : 0},
 			Trends: {freshness: trendsExists ? 'Active' : 'N/A', coverage: trendsNormalized, reliability: trendsExists ? 0.75 : 0},
-			History: {freshness: priceHistoryBars > 0 ? 'Complete' : 'No data', coverage: historyNormalized, reliability: priceHistoryBars > 500 ? 0.95 : priceHistoryBars > 0 ? 0.7 : 0},
-			Live: {freshness: 'N/A', coverage: 0, reliability: 0}
+			History: {freshness: priceHistoryBars > 0 ? 'Complete' : 'No data', coverage: historyNormalized, reliability: priceHistoryBars > 500 ? 0.95 : priceHistoryBars > 0 ? 0.7 : 0}
 		},
 		sample_size: priceHistoryBars,
 		std_error: (p.enrichment && p.enrichment.std_error) || 0,
@@ -168,7 +167,7 @@ function populateScorecard(profile) {
 		document.getElementById('scorecard-panic').textContent = `PANIC:${components.panic?.score || '--'}`;
 		
 		// Compression Score
-		document.getElementById('scorecard-comp').textContent = `COMP:${components.compression?.score || '--'}`;
+		document.getElementById('scorecard-comp').textContent = `COMPRESSION:${components.compression?.score || '--'}`;
 		
 		// Timing Regime
 		const timing = topCard.timing_regime || apex.timing?.regime || 'UNKNOWN';
@@ -247,57 +246,55 @@ function createRiskAuditCard(data, idx) {
 			<div style="font-size:16px;font-weight:800">⚠️ Risk Audit <span style="cursor:help;opacity:0.6;font-size:14px" title="Structural risk checks for trading safety">\u24d8</span></div>
 			<div style="margin-top:8px;font-family:'Courier New',monospace;font-size:11px;color:rgba(255,255,255,0.5);">BLOOMBERG RISK MATRIX</div>
 		</div>
-		<div class="component-row-breakdown" style="padding:12px">
-			<div style="display:grid;gap:12px;">
+		<div class="component-row-breakdown" style="padding:8px">
+			<div style="display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));">
 				<!-- Split Risk -->
-				<div style="padding:10px;background:rgba(31,41,55,0.3);border-radius:4px;border-left:3px solid ${splitColor}">
+				<div style="padding:8px;background:rgba(31,41,55,0.3);border-radius:4px;border-left:3px solid ${splitColor}">
 					<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-						<div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.5px;">Split Risk</div>
-						<div style="font-size:14px;font-weight:800;color:${splitColor};">${splitLevel}</div>
+						<div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.5px;">Split Risk</div>
+						<div style="font-size:12px;font-weight:800;color:${splitColor};">${splitLevel}</div>
 					</div>
-					<div style="font-size:12px;color:#d1d5db;line-height:1.5;">${splitRisk.confidence || 'No corporate splits detected'}</div>
+					<div style="font-size:10px;color:#d1d5db;line-height:1.4;">${splitRisk.confidence || 'No splits'}</div>
 				</div>
 				
 				<!-- Penny Stock -->
-				<div style="padding:10px;background:rgba(31,41,55,0.3);border-radius:4px;border-left:3px solid ${pennyColor}">
+				<div style="padding:8px;background:rgba(31,41,55,0.3);border-radius:4px;border-left:3px solid ${pennyColor}">
 					<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-						<div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.5px;">Penny Stock</div>
-						<div style="font-size:14px;font-weight:800;color:${pennyColor};">${pennyStock ? 'YES' : 'NO'}</div>
+						<div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.5px;">Penny Stock</div>
+						<div style="font-size:12px;font-weight:800;color:${pennyColor};">${pennyStock ? 'YES' : 'NO'}</div>
 					</div>
-					<div style="font-size:12px;color:#d1d5db;line-height:1.5;">${pennyStock ? '<£5m market cap · High volatility risk' : '≥£5m market cap · Standard liquidity'}</div>
+					<div style="font-size:10px;color:#d1d5db;line-height:1.4;">${pennyStock ? '<£5m cap' : '≥£5m cap'}</div>
 				</div>
 				
 				<!-- Active Risk Flags -->
-				<div style="padding:10px;background:rgba(31,41,55,0.3);border-radius:4px;border-left:3px solid ${riskColor}">
+				<div style="padding:8px;background:rgba(31,41,55,0.3);border-radius:4px;border-left:3px solid ${riskColor}">
 					<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-						<div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.5px;">Risk Flags</div>
-						<div style="font-size:14px;font-weight:800;color:${riskColor};">${riskFlags.length}</div>
+						<div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.5px;">Flags</div>
+						<div style="font-size:12px;font-weight:800;color:${riskColor};">${riskFlags.length}</div>
 					</div>
-					<div style="font-size:12px;color:#d1d5db;line-height:1.5;">
-						${hasRisks ? riskFlags.map(flag => `• ${flag.replace(/_/g, ' ')}`).join('<br>') : 'No structural risks detected'}
+					<div style="font-size:9px;color:#d1d5db;line-height:1.3;">
+						${hasRisks ? riskFlags.slice(0,2).map(flag => `• ${flag.substring(0,10)}`).join('<br>') : 'No risks'}
 					</div>
 				</div>
 				
 				<!-- Data Quality -->
-				<div style="padding:10px;background:rgba(31,41,55,0.3);border-radius:4px;border-left:3px solid #06b6d4">
+				<div style="padding:8px;background:rgba(31,41,55,0.3);border-radius:4px;border-left:3px solid #06b6d4">
 					<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-						<div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.5px;">Data Quality</div>
-						<div style="font-size:14px;font-weight:800;color:#06b6d4;">${enrichment.data_quality?.overall_confidence || 'HIGH'}</div>
+						<div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.5px;">Data</div>
+						<div style="font-size:12px;font-weight:800;color:#06b6d4;">${enrichment.data_quality?.overall_confidence || 'HIGH'}</div>
 					</div>
-					<div style="font-size:12px;color:#d1d5db;line-height:1.5;">
-						Price: ${enrichment.data_quality?.price_reliability || 'RELIABLE'} · 
-						P&L: ${enrichment.data_quality?.pnl_reliability || 'RELIABLE'}
+					<div style="font-size:9px;color:#d1d5db;line-height:1.3;">
+						Price: OK
 					</div>
 				</div>
 			</div>
 			
-			<div style="margin-top:12px;padding:10px;background:rgba(59,130,246,0.1);border-radius:4px;border:1px solid rgba(59,130,246,0.3);">
-				<div style="font-size:11px;font-weight:700;color:#3b82f6;margin-bottom:4px;">BLOOMBERG RISK ASSESSMENT</div>
-				<div style="font-size:11px;color:#d1d5db;line-height:1.6;">
-					${pennyStock ? '⚠️ AIM micro-cap carries significant volatility risk. ' : ''}
-					${hasRisks ? '⚠️ Active risk flags require monitoring. ' : '✓ No immediate structural concerns. '}
-					${splitLevel !== 'NONE' ? '⚠️ Corporate action risk elevated. ' : ''}
-					Always verify data quality before position sizing.
+			<div style="margin-top:8px;padding:8px;background:rgba(59,130,246,0.1);border-radius:4px;border:1px solid rgba(59,130,246,0.3);">
+				<div style="font-size:10px;font-weight:700;color:#3b82f6;margin-bottom:4px;">RISK MATRIX</div>
+				<div style="font-size:10px;color:#d1d5db;line-height:1.5;">
+					${pennyStock ? '⚠️ Micro-cap volatility. ' : ''}
+					${hasRisks ? '⚠️ Monitor flags. ' : '✓ No concerns. '}
+					Verify data before positioning.
 				</div>
 			</div>
 		</div>
@@ -1041,6 +1038,7 @@ function render(data){
 		populateScorecard(window.__APEX_PROFILE);
 		populateBloombergSections(window.__APEX_PROFILE);
 		populateFooter(window.__APEX_PROFILE);
+		initializeNarrativeStack();
 	}
 	
 	// Render the 5 swipeable cards
@@ -1137,7 +1135,7 @@ function renderComponentGrid(data){
 
 			card.innerHTML = `
 		<div class="panel-header" style="padding:12px;border-bottom:1px solid rgba(255,255,255,0.05)">
-			<div style="font-size:16px;font-weight:800">${c.name} <span style="cursor:help;opacity:0.6;font-size:14px" title="${tooltip.replace(/"/g, '&quot;').replace(/\n/g, '&#10;')}">\u24d8</span></div>
+			<div class="card-title" style="font-size:16px;font-weight:800">${c.name} <span style="cursor:help;opacity:0.6;font-size:14px" title="${tooltip.replace(/"/g, '&quot;').replace(/\n/g, '&#10;')}">\u24d8</span></div>
 			<div style="margin-top:8px;">${bloombergBar}</div>
 			<div style="margin-top:4px;font-size:11px;color:rgba(255,255,255,0.5);font-family:'Courier New',monospace;">${score}/100 · ${Math.round((c.weight||0)*100)}% weight</div>
 		</div>
@@ -1189,6 +1187,14 @@ function renderComponentGrid(data){
 }
 
 // Composite stack renderer removed — contributions panel not needed in prototype
+
+function initializeNarrativeStack() {
+	const narrativeStack = document.getElementById('narrative-stack');
+	if (!narrativeStack) return;
+	
+	const cardNames = ['What They Do', 'Why It Matters', 'Current State'];
+	initCardSwipe(narrativeStack, cardNames);
+}
 
 function initCardSwipe(container, cardNames) {
 	let currentIndex = 0;
@@ -1291,16 +1297,16 @@ function initCardSwipe(container, cardNames) {
 function getCardTooltip(componentName){
 	const c = (componentName||'').toLowerCase();
 	if(c === 'setup'){
-		return 'Is this stock technically ready to bounce?\n• Quality of chart patterns\n• How far it has fallen (recovery room)\n• Trading volume support\n• History of bouncing back';
+		return 'SETUP: Is the technical foundation strong?\n• AI Tech: Machine learning pattern quality (0-25)\n• Rel Vol: Volume surge vs. baseline (0-10)\n• Rallies: Count of historical bounces (0-15)\n• Best Rally: Maximum historical return (0-20)';
 	}
 	if(c === 'trust'){
-		return 'How reliable is the data?\n• Which sources are tracking this stock\n• Quality scores for each data source';
+		return 'TRUST: How confident are we in the data?\n• RNS: Regulatory news tracked (50 items = 100%)\n• Social: Social sentiment posts (1000 posts = 100%)\n• Trends: Google/web trend signals (active = 100%)\n• History: Price bars for patterns (1000 bars = 100%)\nHigher coverage + reliability = more reliable analysis';
 	}
 	if(c === 'panic'){
-		return 'How scared is everyone right now?\n• Price crashed hard = opportunity\n• Volume dried up = capitulation\n• Social media gone quiet = fear\n• Negative news = peak pessimism';
+		return 'PANIC: How extreme is the crash?\n• Price: Severity of price destruction (0-40)\n• Volume: Abnormality of trading volume (0-20)\n• Social: Lack of discussion/fear (0-20)\n• News: Negativity of announcements (0-20)\nHigher panic = deeper contrarian opportunity';
 	}
 	if(c === 'compression'){
-		return 'Is this ready to pop?\n• Crash signals bunching up (coiled spring)\n• Extreme oversold conditions piling up\n• Historical precedent for explosive moves';
+		return 'COMPRESSION: Is the setup coiled & ready to pop?\n• Compression: Signal density clustering (0-40)\n• Intensification: How quickly crash intensifying (0-20)\n• Volume death: Capitulation exhaustion level (0-15)\n• Pop potential: Historical upside runway (0-15)\n• Accumulation: Smart money buying detected (0-10)\n  - Score 10: Fresh accumulation NOW\n  - Score 0: No accumulation detected = institutional buyers haven\'t stepped in yet\nHigh compression + accumulation = highest probability explosive reversal';
 	}
 	return 'Component scoring breakdown';
 }
@@ -1534,13 +1540,20 @@ function renderComponentTilesHTML(name, extra, data){
 			const vdP = Math.round((vdScore / 15) * 100);
 			const popP = Math.round((popScore / 15) * 100);
 			const accumP = Math.round((accumScore / 10) * 100);
+			const tooltips = {
+				'Compression': 'Technical signal density. How many crash/crash signals are bunching up together (coiled spring effect).',
+				'Intensification': 'Escalation of crash intensity. How quickly the signals are intensifying in the pattern.',
+				'Volume death': 'Volume collapse degree. Lower volume = capitulation/exhaustion (panic selling is done).',
+				'Pop potential': 'Historical bounce potential. Best previous rally return = upside runway available.',
+				'Accumulation': 'Smart money accumulation signals. Evidence of institutional buying or distribution patterns.'
+			};
 			return `
 				<div class="compression-breakdown" style="display:flex;flex-direction:row;gap:8px;margin-top:6px;flex-wrap:wrap">
-					<div class="source" style="flex:1;min-width:120px"><div style="font-weight:700">Compression</div><div class="small">${compressionScore}/40</div><div class="progress"><i style="width:${compP}%;background:${getHeatMapColor((compressionScore/40)*100)}"></i></div><div class="small" style="margin-top:4px;font-size:10px">${sig.toFixed(1)}/wk | ${rsi} RSI&lt;20 | ${esc} escalations</div></div>
-					<div class="source" style="flex:1;min-width:120px"><div style="font-weight:700">Intensification</div><div class="small">${intensScore}/20</div><div class="progress"><i style="width:${intensP}%;background:${getHeatMapColor((intensScore/20)*100)}"></i></div><div class="small" style="margin-top:4px;font-size:10px">${intensPattern}</div></div>
-					<div class="source" style="flex:1;min-width:120px"><div style="font-weight:700">Volume death</div><div class="small">${vdScore}/15</div><div class="progress"><i style="width:${vdP}%;background:${getHeatMapColor((vdScore/15)*100)}"></i></div><div class="small" style="margin-top:4px;font-size:10px">${vdDesc}</div></div>
-					<div class="source" style="flex:1;min-width:120px"><div style="font-weight:700">Pop potential</div><div class="small">${popScore}/15</div><div class="progress"><i style="width:${popP}%;background:${getHeatMapColor((popScore/15)*100)}"></i></div><div class="small" style="margin-top:4px;font-size:10px">${pop.toFixed(0)}% best rally</div></div>
-					<div class="source" style="flex:1;min-width:120px"><div style="font-weight:700">Accumulation</div><div class="small">${accumScore}/10</div><div class="progress"><i style="width:${accumP}%;background:${getHeatMapColor((accumScore/10)*100)}"></i></div><div class="small" style="margin-top:4px;font-size:10px">${accumDesc}</div></div>
+					<div class="source" style="flex:1;min-width:120px;position:relative" title="${tooltips['Compression']}"><div style="font-weight:700;cursor:help">Compression</div><div class="small">${compressionScore}/40</div><div class="progress"><i style="width:${compP}%;background:${getHeatMapColor((compressionScore/40)*100)}"></i></div><div class="small" style="margin-top:4px;font-size:10px">${sig.toFixed(1)}/wk | ${rsi} RSI&lt;20 | ${esc} escalations</div></div>
+					<div class="source" style="flex:1;min-width:120px;position:relative" title="${tooltips['Intensification']}"><div style="font-weight:700;cursor:help">Intensification</div><div class="small">${intensScore}/20</div><div class="progress"><i style="width:${intensP}%;background:${getHeatMapColor((intensScore/20)*100)}"></i></div><div class="small" style="margin-top:4px;font-size:10px">${intensPattern}</div></div>
+					<div class="source" style="flex:1;min-width:120px;position:relative" title="${tooltips['Volume death']}"><div style="font-weight:700;cursor:help">Volume death</div><div class="small">${vdScore}/15</div><div class="progress"><i style="width:${vdP}%;background:${getHeatMapColor((vdScore/15)*100)}"></i></div><div class="small" style="margin-top:4px;font-size:10px">${vdDesc}</div></div>
+					<div class="source" style="flex:1;min-width:120px;position:relative" title="${tooltips['Pop potential']}"><div style="font-weight:700;cursor:help">Pop potential</div><div class="small">${popScore}/15</div><div class="progress"><i style="width:${popP}%;background:${getHeatMapColor((popScore/15)*100)}"></i></div><div class="small" style="margin-top:4px;font-size:10px">${pop.toFixed(0)}% best rally</div></div>
+					<div class="source" style="flex:1;min-width:120px;position:relative" title="${tooltips['Accumulation']}"><div style="font-weight:700;cursor:help">Accumulation</div><div class="small">${accumScore}/10</div><div class="progress"><i style="width:${accumP}%;background:${getHeatMapColor((accumScore/10)*100)}"></i></div><div class="small" style="margin-top:4px;font-size:10px">${accumDesc}</div></div>
 				</div>
 			`
 		}
@@ -1558,12 +1571,18 @@ function renderComponentTilesHTML(name, extra, data){
 			const rvP = Math.round((rvScore / 10) * 100);
 			const rcP = Math.round((rcScore / 15) * 100);
 			const bestP = Math.round((bestScore / 20) * 100);
+			const tooltips = {
+				'AI Tech': 'Machine learning technical score. Higher = better technical setup patterns detected.',
+				'Rel Vol': 'Volume relative to average. How much current volume exceeds the normal baseline.',
+				'Rallies': 'Historical rally count. Number of significant price rallies in stock history.',
+				'Best Rally': 'Best historical rally return. Highest percentage gain seen in stock history.'
+			};
 			return `
-				<div class="component-tiles" style="display:flex;flex-direction:row;gap:8px;margin-top:6px;flex-wrap:wrap">
-					<div class="source" style="flex:1;min-width:120px"><div style="font-weight:700">AI Tech</div><div class="small">${aiScore}/25</div><div class="progress"><i style="width:${aiP}%;background:${getHeatMapColor(aiP)}"></i></div></div>
-					<div class="source" style="flex:1;min-width:120px"><div style="font-weight:700">Rel Vol</div><div class="small">${rvScore}/10</div><div class="progress"><i style="width:${rvP}%;background:${getHeatMapColor(rvP)}"></i></div></div>
-					<div class="source" style="flex:1;min-width:120px"><div style="font-weight:700">Rallies</div><div class="small">${rcScore}/15</div><div class="progress"><i style="width:${rcP}%;background:${getHeatMapColor(rcP)}"></i></div></div>
-					<div class="source" style="flex:1;min-width:120px"><div style="font-weight:700">Best Rally</div><div class="small">${bestScore}/20</div><div class="progress"><i style="width:${bestP}%;background:${getHeatMapColor(bestP)}"></i></div></div>
+				<div class="component-tiles" style="display:flex;flex-direction:row;gap:4px;margin-top:6px;flex-wrap:nowrap">
+					<div class="source" style="flex:1;min-width:40px;padding:6px" title="${tooltips['AI Tech']}"><div style="font-weight:700;font-size:11px;cursor:help">AI Tech</div><div class="small" style="font-size:9px">${aiScore}/25</div><div class="progress"><i style="width:${aiP}%;background:${getHeatMapColor(aiP)}"></i></div></div>
+					<div class="source" style="flex:1;min-width:40px;padding:6px" title="${tooltips['Rel Vol']}"><div style="font-weight:700;font-size:11px;cursor:help">Rel Vol</div><div class="small" style="font-size:9px">${rvScore}/10</div><div class="progress"><i style="width:${rvP}%;background:${getHeatMapColor(rvP)}"></i></div></div>
+					<div class="source" style="flex:1;min-width:40px;padding:6px" title="${tooltips['Rallies']}"><div style="font-weight:700;font-size:11px;cursor:help">Rallies</div><div class="small" style="font-size:9px">${rcScore}/15</div><div class="progress"><i style="width:${rcP}%;background:${getHeatMapColor(rcP)}"></i></div></div>
+					<div class="source" style="flex:1;min-width:40px;padding:6px" title="${tooltips['Best Rally']}"><div style="font-weight:700;font-size:11px;cursor:help">Best Rally</div><div class="small" style="font-size:9px">${bestScore}/20</div><div class="progress"><i style="width:${bestP}%;background:${getHeatMapColor(bestP)}"></i></div></div>
 				</div>
 			`
 		}
@@ -1576,12 +1595,18 @@ function renderComponentTilesHTML(name, extra, data){
 			const vdP = Math.max(0, Math.min(100, Math.round((vd / 20) * 100)));
 			const ssP = Math.max(0, Math.min(100, Math.round((ss / 20) * 100)));
 			const nsP = Math.max(0, Math.min(100, Math.round((ns / 20) * 100)));
+			const tooltips = {
+				'Price': 'Price destruction score. Measures magnitude of the crash/drawdown.',
+				'Volume': 'Volume death/surge. How abnormal is the trading volume during the move.',
+				'Social': 'Social silence indicator. Lack of social discussion can signal fear/panic.',
+				'News': 'News sentiment negativity. How negative are company announcements/news.'
+			};
 			return `
-				<div class="panic-tiles" style="display:flex;flex-direction:row;gap:8px;margin-top:6px;flex-wrap:wrap">
-					<div class="source" style="flex:1;min-width:120px"><div style="font-weight:700">Price</div><div class="small">${pd.toFixed(1)}/40</div><div class="progress"><i style="width:${pdP}%;background:${getHeatMapColor(pdP)}"></i></div></div>
-					<div class="source" style="flex:1;min-width:120px"><div style="font-weight:700">Volume</div><div class="small">${vd.toFixed(1)}/20</div><div class="progress"><i style="width:${vdP}%;background:${getHeatMapColor(vdP)}"></i></div></div>
-					<div class="source" style="flex:1;min-width:120px"><div style="font-weight:700">Social</div><div class="small">${ss.toFixed(1)}/20</div><div class="progress"><i style="width:${ssP}%;background:${getHeatMapColor(ssP)}"></i></div></div>
-					<div class="source" style="flex:1;min-width:120px"><div style="font-weight:700">News</div><div class="small">${ns.toFixed(1)}/20</div><div class="progress"><i style="width:${nsP}%;background:${getHeatMapColor(nsP)}"></i></div></div>
+				<div class="panic-tiles" style="display:flex;flex-direction:row;gap:4px;margin-top:6px;flex-wrap:nowrap">
+					<div class="source" style="flex:1;min-width:40px;padding:6px" title="${tooltips['Price']}"><div style="font-weight:700;font-size:11px;cursor:help">Price</div><div class="small" style="font-size:9px">${pd.toFixed(1)}/40</div><div class="progress"><i style="width:${pdP}%;background:${getHeatMapColor(pdP)}"></i></div></div>
+					<div class="source" style="flex:1;min-width:40px;padding:6px" title="${tooltips['Volume']}"><div style="font-weight:700;font-size:11px;cursor:help">Volume</div><div class="small" style="font-size:9px">${vd.toFixed(1)}/20</div><div class="progress"><i style="width:${vdP}%;background:${getHeatMapColor(vdP)}"></i></div></div>
+					<div class="source" style="flex:1;min-width:40px;padding:6px" title="${tooltips['Social']}"><div style="font-weight:700;font-size:11px;cursor:help">Social</div><div class="small" style="font-size:9px">${ss.toFixed(1)}/20</div><div class="progress"><i style="width:${ssP}%;background:${getHeatMapColor(ssP)}"></i></div></div>
+					<div class="source" style="flex:1;min-width:40px;padding:6px" title="${tooltips['News']}"><div style="font-weight:700;font-size:11px;cursor:help">News</div><div class="small" style="font-size:9px">${ns.toFixed(1)}/20</div><div class="progress"><i style="width:${nsP}%;background:${getHeatMapColor(nsP)}"></i></div></div>
 				</div>
 			`
 		}
@@ -1589,10 +1614,16 @@ function renderComponentTilesHTML(name, extra, data){
 			// render the Trust source tiles (coverage + reliability)
 			// Trust data comes from the data parameter: data.trust.coverage
 			const cov = (data && data.trust && data.trust.coverage) || {};
-			let out = '<div class="trust-tiles" style="display:flex;flex-direction:row;gap:8px;margin-top:6px;flex-wrap:wrap">';
+			const tooltips = {
+				RNS: 'Official regulatory announcements and company news. Coverage: how many RNS items tracked (50 = 100%). Reliability: confidence in data quality.',
+				Social: 'Social media sentiment from trading communities. Coverage: number of posts analyzed (1000 = 100%). Reliability: based on volume and consistency.',
+				Trends: 'Google Trends and web analysis data. Coverage: 100% if active data, 0% if unavailable. Reliability: 75% when present.',
+				History: 'Historical price data for pattern analysis. Coverage: number of price bars (1000 = 100%). Reliability: 95% if >500 bars, 70% if <500.'
+			};
+			let out = '<div class="trust-tiles" style="display:flex;flex-direction:row;gap:4px;margin-top:6px;flex-wrap:nowrap">';
 			for(const [k,v] of Object.entries(cov)){
 				const pct = v.coverage || 0; const rel = Math.round((v.reliability||0)*100);
-				out += `<div class="source" style="flex:1;min-width:120px"><div style="font-weight:700">${k}</div><div class="small">${pct.toFixed(1)}% coverage</div><div class="progress"><i style="width:${pct}%;background:${getHeatMapColor(pct)}"></i></div><div class="small" style="margin-top:6px">Reliability: ${rel}/100</div></div>`;
+				out += `<div class="source" style="flex:1;min-width:40px;padding:6px" title="${tooltips[k] || 'Data source'}"><div style="font-weight:700;font-size:11px;line-height:1.2;cursor:help">${k}</div><div class="small" style="font-size:9px">${pct.toFixed(0)}%</div><div class="progress"><i style="width:${pct}%;background:${getHeatMapColor(pct)}"></i></div><div class="small" style="margin-top:4px;font-size:8px">${rel}/100</div></div>`;
 			}
 			out += '</div>';
 			return out;

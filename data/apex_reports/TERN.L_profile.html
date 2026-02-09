@@ -7,11 +7,8 @@
   <link rel="stylesheet" href="apex_trust_panel.css">
 </head>
 <body>
-  <div class="container">
-    <div class="header"><div class="h1">🔥 APEX SCORE ARCHITECTURE (V5)</div></div>
-
-    <!-- Stock Info Header -->
-    <div id="stock-info-header" style="flex-shrink: 0; position: relative; z-index: 100; margin-bottom: 1rem;">
+  <!-- Stock Info Header (Sticky) -->
+  <div id="stock-info-header" style="position: sticky; top: 0; z-index: 1000; margin-bottom: 1rem;">
       <!-- COMPANY INFO HEADER -->
       <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; background: rgb(26, 35, 54); box-shadow: 0 2px 8px rgba(0,0,0,0.3); border-bottom: 1px solid rgba(10, 132, 255, 0.4); padding: 0.6rem 1.5rem; margin: 0; width: 100%; position: relative; border-radius: 8px 8px 0 0;">
         <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; width: 100%; overflow: hidden;">
@@ -59,50 +56,8 @@
       </div>
     </div>
 
-    <!-- Company in 30 Seconds Banner -->
-    <div id="company-30sec" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(59, 130, 246, 0.1) 50%, rgba(31, 41, 55, 0.9) 100%); border-left: 4px solid #6366f1; padding: 16px 20px; margin: 1rem 0 0.75rem 0; font-family: 'Courier New', monospace; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2), 0 2px 4px rgba(0,0,0,0.3); border-radius: 6px; position: relative;">
-      <div style="position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.5), transparent);"></div>
-      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-        <span style="font-size: 14px; color: #6366f1; font-weight: 900;">■</span>
-        <span style="color: #6366f1; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.8px; text-shadow: 0 0 10px rgba(99, 102, 241, 0.3);">Company in 30 Seconds</span>
-      </div>
-      <div style="display: grid; gap: 10px; font-size: 11px; line-height: 1.5;">
-        <div style="display: flex; gap: 10px; align-items: flex-start; padding: 8px 10px; background: rgba(0, 0, 0, 0.2); border-radius: 4px; border-left: 2px solid rgba(99, 102, 241, 0.3);">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink: 0; margin-top: 2px;">
-            <rect x="3" y="3" width="10" height="10" stroke="#6366f1" stroke-width="1.5" fill="none" rx="1"/>
-            <path d="M6 3 L6 1 M10 3 L10 1 M3 6 L13 6" stroke="#6366f1" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="8" cy="9" r="1.5" fill="#6366f1"/>
-          </svg>
-          <div style="display: flex; flex-direction: column; gap: 2px; flex: 1;">
-            <span style="color: #6366f1; font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9;">WHAT THEY DO</span>
-            <span id="company-what" style="color: #e5e7eb; line-height: 1.4;">--</span>
-          </div>
-        </div>
-        <div style="display: flex; gap: 10px; align-items: flex-start; padding: 8px 10px; background: rgba(0, 0, 0, 0.2); border-radius: 4px; border-left: 2px solid rgba(99, 102, 241, 0.3);">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink: 0; margin-top: 2px;">
-            <circle cx="8" cy="8" r="6" stroke="#6366f1" stroke-width="1.5" fill="none"/>
-            <circle cx="8" cy="8" r="2" fill="#6366f1"/>
-            <path d="M8 2 L8 6 M8 10 L8 14 M2 8 L6 8 M10 8 L14 8" stroke="#6366f1" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-          <div style="display: flex; flex-direction: column; gap: 2px; flex: 1;">
-            <span style="color: #6366f1; font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9;">WHY IT MATTERS</span>
-            <span id="company-why" style="color: #e5e7eb; line-height: 1.4;">--</span>
-          </div>
-        </div>
-        <div style="display: flex; gap: 10px; align-items: flex-start; padding: 8px 10px; background: rgba(0, 0, 0, 0.2); border-radius: 4px; border-left: 2px solid rgba(99, 102, 241, 0.3);">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink: 0; margin-top: 2px;">
-            <path d="M2 12 L5 9 L8 11 L14 4" stroke="#6366f1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            <circle cx="5" cy="9" r="1.5" fill="#6366f1"/>
-            <circle cx="8" cy="11" r="1.5" fill="#6366f1"/>
-            <circle cx="14" cy="4" r="1.5" fill="#6366f1"/>
-          </svg>
-          <div style="display: flex; flex-direction: column; gap: 2px; flex: 1;">
-            <span style="color: #6366f1; font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9;">CURRENT STATE</span>
-            <span id="company-state" style="color: #e5e7eb; line-height: 1.4;">--</span>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="container">
+    <div class="header"><div class="h1">🔥 APEX SCORE ARCHITECTURE (V5)</div></div>
 
     <!-- Bloomberg Scorecard Ticker -->
     <div style="background: rgb(26, 35, 54); border-left: 3px solid #0a84ff; padding: 0.5rem 0; margin: 1rem 0; font-family: 'Courier New', monospace; font-size: 13px; letter-spacing: 0.5px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); overflow: hidden; position: relative; max-width: 100%;">
@@ -113,7 +68,7 @@
           <span id="scorecard-setup" style="color: #3B82F6; font-weight: 700;">SETUP:--</span>
           <span id="scorecard-trust" style="color: #8B5CF6; font-weight: 700;">TRUST:--</span>
           <span id="scorecard-panic" style="color: #EF4444; font-weight: 700;">PANIC:--</span>
-          <span id="scorecard-comp" style="color: #F59E0B; font-weight: 700;">COMP:--</span>
+          <span id="scorecard-comp" style="color: #F59E0B; font-weight: 700;">COMPRESSION:--</span>
           <span style="color: rgba(255,255,255,0.3); font-weight: 400;">│</span>
           <span id="scorecard-timing" style="color: #3b82f6; font-weight: 700;">TIMING:--</span>
           <span style="color: rgba(255,255,255,0.3); font-weight: 400;">│</span>
@@ -133,6 +88,91 @@
         #scorecard-ticker { animation: ticker 15s linear infinite; }
       }
     </style>
+
+    <!-- Narrative Section Header -->
+    <div style="display: flex; align-items: center; gap: 12px; margin: 20px 0 12px 0;">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0;">
+        <rect x="2" y="4" width="16" height="12" stroke="#10B981" stroke-width="1.5" fill="none" rx="2"/>
+        <line x1="5" y1="4" x2="5" y2="2" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="15" y1="4" x2="15" y2="2" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="2" y1="7" x2="18" y2="7" stroke="#10B981" stroke-width="1.5"/>
+        <circle cx="8" cy="11" r="1.2" fill="#10B981"/>
+        <circle cx="12" cy="11" r="1.2" fill="#10B981"/>
+        <circle cx="16" cy="11" r="1.2" fill="#10B981"/>
+      </svg>
+      <span style="color: #10B981; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.8px;">Company in 30 Seconds</span>
+    </div>
+
+    <!-- Narrative Card Stack -->
+    <div class="card-stack" id="narrative-stack" style="position: relative; min-height: 180px; overflow: visible; touch-action: pan-y; user-select: none; margin-bottom: 30px;">
+      <!-- Card 1: What They Do -->
+      <div class="card component-card stack-card narrative-card" data-index="0" style="transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform: translateX(0%) scale(1); opacity: 1; pointer-events: auto; z-index: 10;">
+        <div class="panel-header" style="padding:12px;border-bottom:1px solid rgba(16,185,129,0.1);display:flex;align-items:center;gap:10px">
+          <svg width="18" height="18" viewBox="0 0 16 16" fill="none" style="flex-shrink:0">
+            <rect x="3" y="3" width="10" height="10" stroke="#10B981" stroke-width="1.5" fill="none" rx="1"/>
+            <path d="M6 3 L6 1 M10 3 L10 1 M3 6 L13 6" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="8" cy="9" r="1.5" fill="#10B981"/>
+          </svg>
+          <div class="card-title" style="font-size:16px;font-weight:800;color:#10B981">What They Do <span style="cursor:help;opacity:0.6;font-size:14px" title="Company business model and core operations">ⓘ</span></div>
+        </div>
+        <div style="padding:12px">
+          <span id="company-what" style="color: #e5e7eb; line-height: 1.6; font-size: 12px;">--</span>
+        </div>
+      </div>
+
+      <!-- Card 2: Why It Matters -->
+      <div class="card component-card stack-card narrative-card" data-index="1" style="transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform: translateX(100%) scale(0.95); opacity: 0; pointer-events: none; z-index: 5;">
+        <div class="panel-header" style="padding:12px;border-bottom:1px solid rgba(16,185,129,0.1);display:flex;align-items:center;gap:10px">
+          <svg width="18" height="18" viewBox="0 0 16 16" fill="none" style="flex-shrink:0">
+            <circle cx="8" cy="8" r="6" stroke="#10B981" stroke-width="1.5" fill="none"/>
+            <circle cx="8" cy="8" r="2" fill="#10B981"/>
+            <path d="M8 2 L8 6 M8 10 L8 14 M2 8 L6 8 M10 8 L14 8" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <div class="card-title" style="font-size:16px;font-weight:800;color:#10B981">Why It Matters <span style="cursor:help;opacity:0.6;font-size:14px" title="Market significance and investment thesis">ⓘ</span></div>
+        </div>
+        <div style="padding:12px">
+          <span id="company-why" style="color: #e5e7eb; line-height: 1.6; font-size: 12px;">--</span>
+        </div>
+      </div>
+
+      <!-- Card 3: Current State -->
+      <div class="card component-card stack-card narrative-card" data-index="2" style="transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform: translateX(100%) scale(0.95); opacity: 0; pointer-events: none; z-index: 5;">
+        <div class="panel-header" style="padding:12px;border-bottom:1px solid rgba(16,185,129,0.1);display:flex;align-items:center;gap:10px">
+          <svg width="18" height="18" viewBox="0 0 16 16" fill="none" style="flex-shrink:0">
+            <path d="M2 12 L5 9 L8 11 L14 4" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <circle cx="5" cy="9" r="1.5" fill="#10B981"/>
+            <circle cx="8" cy="11" r="1.5" fill="#10B981"/>
+            <circle cx="14" cy="4" r="1.5" fill="#10B981"/>
+          </svg>
+          <div class="card-title" style="font-size:16px;font-weight:800;color:#10B981">Current State <span style="cursor:help;opacity:0.6;font-size:14px" title="Latest company situation and metrics">ⓘ</span></div>
+        </div>
+        <div style="padding:12px">
+          <span id="company-state" style="color: #e5e7eb; line-height: 1.6; font-size: 12px;">--</span>
+        </div>
+      </div>
+
+      <!-- Narrative Stack Navigation -->
+      <div class="stack-nav" style="bottom: -35px;">
+        <div class="stack-dots">
+          <span class="stack-dot narrative-dot" data-index="0"></span>
+          <span class="stack-dot narrative-dot" data-index="1"></span>
+          <span class="stack-dot narrative-dot" data-index="2"></span>
+        </div>
+        <div class="stack-label" style="color: #10B981;">Company</div>
+      </div>
+    </div>
+
+    <!-- Scorecard Breakdown Section Header -->
+    <div style="display: flex; align-items: center; gap: 12px; margin: 20px 0 12px 0;">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0;">
+        <rect x="2" y="6" width="3" height="12" rx="1" stroke="#fff" stroke-width="1.5" fill="none"/>
+        <rect x="7" y="3" width="3" height="15" rx="1" stroke="#fff" stroke-width="1.5" fill="none"/>
+        <rect x="12" y="8" width="3" height="10" rx="1" stroke="#fff" stroke-width="1.5" fill="none"/>
+        <rect x="17" y="5" width="1" height="13" rx="0.5" stroke="#fff" stroke-width="1.5" fill="none"/>
+        <circle cx="10" cy="1" r="1.5" fill="#fff"/>
+      </svg>
+      <span style="color: #fff; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.8px;">Scorecard Breakdown</span>
+    </div>
 
     <!-- Main swipeable cards -->
     <div id="component-grid"></div>
@@ -297,10 +337,47 @@
         </div>
     </div>
   </div>
+  
+  <!-- Mobile Responsive Styles -->
+  <style>
+    @media(max-width:768px){
+        body{padding:10px!important}
+        .container{max-width:100%!important}
+        div[style*="grid-template-columns: 1fr 1fr"]{grid-template-columns:1fr!important;gap:12px!important}
+        div[style*="grid-template-columns: repeat(4"]{grid-template-columns:repeat(2,1fr)!important;gap:10px!important}
+        div[style*="padding: 24px"]{padding:16px!important}
+        div[style*="gap: 20px"]{gap:14px!important}
+        div[style*="font-size: 11px"]{font-size:10px!important}
+    }
+    @media(max-width:480px){
+        body{padding:6px!important}
+        .container{padding:0!important;margin:0!important}
+        div[style*="grid-template-columns: 1fr 1fr"]{grid-template-columns:1fr!important;gap:8px!important}
+        div[style*="grid-template-columns: repeat(4"]{grid-template-columns:1fr!important;gap:6px!important;padding:8px 10px!important}
+        div[style*="grid-template-columns: repeat(2"]{grid-template-columns:1fr!important;gap:6px!important}
+        div[style*="padding: 24px"]{padding:10px!important}
+        div[style*="padding: 14px 16px"]{padding:8px 10px!important}
+        div[style*="padding: 18px"]{padding:10px!important}
+        div[style*="gap: 20px"]{gap:8px!important}
+        div[style*="gap: 30px"]{gap:10px!important}
+        div[style*="gap: 24px"]{gap:10px!important}
+        div[style*="gap: 16px"]{gap:8px!important}
+        div[style*="gap: 12px"]{gap:6px!important}
+        div[style*="font-size: 10px"]{font-size:8px!important}
+        div[style*="font-size: 11px"]{font-size:9px!important}
+        div[style*="font-size: 12px"]{font-size:10px!important}
+        div[style*="font-size: 13px"]{font-size:11px!important}
+        div[style*="padding: 6px 12px"]{padding:4px 6px!important;font-size:7px!important}
+        div[style*="line-height: 1.8"]{line-height:1.4!important}
+        div[style*="line-height: 1.6"]{line-height:1.3!important}
+        div[style*="line-height: 1.5"]{line-height:1.2!important}
+    }
+  </style>
+  
   <script>window.__APEX_PROFILE = {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "TERN.L",
-  "generated_at": "2026-02-09T00:02:17.254121Z",
+  "generated_at": "2026-02-09T10:01:59.981735Z",
   "top_card": {
     "ticker": "TERN.L",
     "company_name": "Tern Plc",
@@ -742,7 +819,7 @@
       "EXTREME_DRAWDOWN",
       "FREQUENT_CRASHES"
     ],
-    "last_updated": "2026-02-06 20:04:58 UTC",
+    "last_updated": "2026-02-09 00:06:38 UTC",
     "volatility": {
       "atr_normalized": 5.8,
       "stddev_20d": 0.0
@@ -1227,7 +1304,7 @@
           "max": 10,
           "has_accumulation": false,
           "bars_since_accum": 0,
-          "description": "No accumulation"
+          "description": "No accumulation detected"
         }
       },
       "ticker": "TERN.L",

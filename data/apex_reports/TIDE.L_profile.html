@@ -163,8 +163,6 @@
             font-weight: 600;
             text-transform: uppercase;
         }
-
-        
         
         .risk-indicator {
             display: flex;
@@ -234,131 +232,29 @@
             </div>
         </div>
 
-        <!-- V5: Action & Comprehensive APEX Score Hero Section -->
+        <!-- Action & Score Hero Section -->
         <div class="score-hero">
             <div class="action-display">
                 <span style="color: white;">UNKNOWN</span>
             </div>
             
-            <!-- V5: Comprehensive APEX with 4 Pillars -->
-            <div style="display:flex; gap:40px; align-items:center; justify-content:center; flex-wrap:wrap; margin:30px 0;">
-                <!-- CENTER: Comprehensive APEX -->
-                <div style="position:relative; width:180px; height:180px; border-radius:50%; background:linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 12px 40px rgba(0,0,0,0.1); border:4px solid #ef4444;">
-                    <div style="text-align:center;">
-                        <div style="font-size:11px; color:#64748b; margin-bottom:4px; font-weight:600;">COMPREHENSIVE</div>
-                        <div style="font-size:56px; font-weight:900; color:#ef4444; line-height:1;">26</div>
-                        <div style="font-size:11px; color:#64748b; margin-top:4px; font-weight:700;">APEX V5</div>
-                        <div style="font-size:12px; color:#ef4444; margin-top:4px; font-weight:700;">LOW QUALITY</div>
-                    </div>
+            <div class="scores-row">
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">39</div>
+                    <div class="score-label">APEX SCORE</div>
                 </div>
-                
-                <!-- PILLARS: 2x2 Grid -->
-                <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:16px;">
-                    <!-- Setup -->
-                    <div style="text-align:center;">
-                        <div style="width:100px; height:100px; border-radius:50%; border:4px solid #10b981; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size:14px;">⚡</div>
-                            <div style="font-size:28px; font-weight:800; color:#10b981; line-height:1;">39</div>
-                        </div>
-                        <div style="margin-top:8px;">
-                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
-                                Setup
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <!-- Trust -->
-                    <div style="text-align:center;">
-                        <div style="width:100px; height:100px; border-radius:50%; border:4px solid #3b82f6; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size:14px;">🛡️</div>
-                            <div style="font-size:28px; font-weight:800; color:#3b82f6; line-height:1;">40</div>
-                        </div>
-                        <div style="margin-top:8px;">
-                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
-                                Trust
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <!-- Panic -->
-                    <div style="text-align:center;">
-                        <div style="width:100px; height:100px; border-radius:50%; border:4px solid #ef4444; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size:14px;">😱</div>
-                            <div style="font-size:28px; font-weight:800; color:#ef4444; line-height:1;">58.5</div>
-                        </div>
-                        <div style="margin-top:8px;">
-                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
-                                Panic
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <!-- Compression -->
-                    <div style="text-align:center;">
-                        <div style="width:100px; height:100px; border-radius:50%; border:4px solid #f59e0b; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size:14px;">⚡</div>
-                            <div style="font-size:28px; font-weight:800; color:#f59e0b; line-height:1;">35</div>
-                        </div>
-                        <div style="margin-top:8px;">
-                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
-                                Compression
-                            </span>
-                        </div>
-                    </div>
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">40</div>
+                    <div class="score-label">CONFIDENCE</div>
                 </div>
             </div>
             
-            <!-- Timing Scope: Flat segmented bar -->
-            <div style="margin-top:24px;">
-                <!-- position badge removed to avoid overlay on timing spectrum -->
-                <style>
-                    @keyframes pulse-ring {
-                        0% { transform: scale(0.7); opacity: 0.9; }
-                        70% { transform: scale(2.2); opacity: 0; }
-                        100% { transform: scale(2.8); opacity: 0; }
-                    }
-                    @keyframes pulse-ring-outer {
-                        0% { transform: scale(0.9); opacity: 0.7; }
-                        50% { transform: scale(1.12); opacity: 0.45; }
-                        100% { transform: scale(1.3); opacity: 0; }
-                    }
-                </style>
-                <div style="position:relative;">
-                    <div style="display:flex; gap:6px; height:48px; border-radius:8px; overflow:hidden;">
-                        <div style="flex:1; background:#ef4444;"></div>
-                        <div style="flex:1; background:#f59e0b;"></div>
-                        <div style="flex:1; background:#facc15;"></div>
-                        <div style="flex:1; background:#10b981;"></div>
-                        <div style="flex:1; background:#065f46;"></div>
-                    </div>
-
-                    <!-- Pulse pointer positioned by timing_pos_pct -->
-                    <div style="position:absolute; left:calc(70% - 26px); top:0px; width:52px; height:52px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
-                        <!-- outer grey-white ring to help indicator stand out -->
-                        <div style="position:absolute; width:60px; height:60px; border-radius:30px; background:rgba(249,250,251,0.95); border:2px solid rgba(2,6,23,0.06); box-shadow:0 8px 30px rgba(2,6,23,0.06); animation: pulse-ring-outer 2.2s infinite;"></div>
-                        <!-- inner colored pulse ring -->
-                        <div style="position:absolute; width:52px; height:52px; border-radius:26px; background:#17ffbb; opacity:0.18; animation: pulse-ring 1.6s infinite;"></div>
-                        <!-- core dot with colored border for contrast -->
-                        <div style="width:18px; height:18px; border-radius:9px; background:#ffffff; box-shadow:0 10px 30px rgba(0,0,0,0.22); border:3px solid #10b981;"></div>
-                    </div>
-                </div>
-
-                <div style="display:flex; justify-content:space-between; font-size:12px; margin-top:8px; gap:6px;">
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Too Early</span></div>
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Early Build</span></div>
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Confirmed</span></div>
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Crowded</span></div>
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Broken</span></div>
-                </div>
-
-                <div style="margin-top:12px; display:flex; justify-content:center;">
-                    <div style="background: linear-gradient(180deg, rgba(8,18,39,0.95) 0%, rgba(10,28,50,0.92) 100%); border:1px solid rgba(255,255,255,0.04); padding:14px 20px; border-radius:14px; box-shadow:0 16px 48px rgba(2,6,23,0.18); color:#e6eef8; font-size:13px; font-weight:700; max-width:920px; text-align:center;">
-                        <span style="color:#1fb6ae; font-weight:800; margin-right:10px;">Timing:</span>
-                        <span style="text-transform:uppercase; letter-spacing:0.6px; color:#ffffff;">CROWDED</span>
-                        <span style="color:rgba(230,238,248,0.7); font-weight:600; margin:0 10px;">—</span>
-                        <span style="font-weight:600; color:rgba(230,238,248,0.95);">Momentum mature — consider profit taking or tighter stops.</span>
-                    </div>
-                </div>
+            <div class="timing-badge-large">
+                Timing: <span class="rally-badge" style="background: #dbeafe; color: #1e40af;">CROWDED</span>
+            </div>
+            
+            <div class="thesis-line">
+                SELL/TAKE_PROFITS - CROWDED timing with 39/100 opportunity score
             </div>
         </div>
 
@@ -555,7 +451,7 @@
                     <div style="font-size: 13px; color: #475569; line-height: 1.8;">
                         <div>• Revenue miss or churn spike</div><div>• Product delays or tech failures</div><div>• Customer concentration risks</div>
                     </div>
-                    <div style="margin-top: 12px; padding: 10px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e; font-weight: 600;">🚨 Active: Revenue miss or churn spike, Product delays or tech failures, Customer concentration risks</div>
+                    <div style="margin-top: 12px; padding: 10px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e; font-weight: 600;">🚨 Active: Revenue miss or churn spike</div>
                 </div>
                 <div style="background: white; padding: 18px; border-radius: 12px;">
                     <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">🚀 Recovery Paths</div>
@@ -574,7 +470,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Change of Non-Executive Director</div>
-                        <div style="font-size: 12px; color: #64748b;">23rd Jan 2026</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
                     </div>
                 </div>
             </div>
@@ -584,7 +480,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Holding(s) in Company</div>
-                        <div style="font-size: 12px; color: #64748b;">29th Dec 2025</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
                     </div>
                 </div>
             </div>
@@ -594,7 +490,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Customer Contracts Update</div>
-                        <div style="font-size: 12px; color: #64748b;">24th Dec 2025</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
                     </div>
                 </div>
             </div>
@@ -604,7 +500,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Holding(s) in Company</div>
-                        <div style="font-size: 12px; color: #64748b;">4th Dec 2025</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
                     </div>
                 </div>
             </div>
@@ -614,7 +510,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Director/PDMR Shareholding - Grant of Options</div>
-                        <div style="font-size: 12px; color: #64748b;">27th Nov 2025</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
                     </div>
                 </div>
             </div>
@@ -668,7 +564,7 @@
                 <span style="font-size: 24px;">💻</span>
                 <div style="flex: 1;">
                     <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Industry Pattern</div>
-                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">3 active</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">1 active</div>
                 </div>
             </div>
             
@@ -678,7 +574,90 @@
         
 
         <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
-        
+        <div class="card" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 2px solid #0ea5e9;">
+            <div class="card-title" style="color: #0369a1;">
+                <span class="card-icon">🤖</span>
+                APEX Trader Brief v2
+            </div>
+            
+            <!-- Bottom Line (Most Important) -->
+            <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #0ea5e9;">
+                <div style="font-size: 16px; font-weight: 700; color: #0369a1; margin-bottom: 10px;">📝 Bottom Line</div>
+                <div style="font-size: 15px; line-height: 1.7; color: #1e293b;">
+                    Tide Ltd is a silent, data‑scarce play – a classic contrarian opportunity if a deep crash has happened and a catalyst emerges.
+                </div>
+            </div>
+            
+            <!-- Company in 30 Seconds -->
+            <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #6366f1;">
+                <div style="font-weight: 700; color: #6366f1; margin-bottom: 12px; font-size: 15px;">🏢 Company in 30 Seconds</div>
+                <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                    <div style="margin-bottom: 8px;"><strong>What they do:</strong> Information about Tide Ltd’s products or services is not publicly disclosed.</div>
+                    <div style="margin-bottom: 8px;"><strong>Why they matter:</strong> No publicly known market or strategic relevance can be identified at this time.</div>
+                    <div><strong>Current state:</strong> The company has no visible revenue, cash flow or operational milestones reported. It remains in a very uncertain, low‑visibility state.</div>
+                </div>
+            </div>
+            
+            <!-- Buy vs Sell Decision -->
+            <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #f59e0b;">
+                <div style="font-weight: 700; color: #f59e0b; margin-bottom: 12px; font-size: 15px;">
+                    ⚖️ 
+                    Buy vs Sell — Lean: CONTRARIAN BULLISH – THE LACK OF DATA AND EXTREME SILENCE CREATE A CLASSIC CONTRARIAN SET‑UP.
+                </div>
+                <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                    <div style="margin-bottom: 10px;"><strong style="color: #10b981;">Bull Case:</strong> If a deep crash has already occurred, the market may be due for a mean‑reversion bounce. A 50% recovery would double the current price, while a 100% rebound would triple it, delivering a high reward for a modest risk.</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: #ef4444;">Bear Case:</strong> Without a clear catalyst, the stock could remain low or decline further. The downside is limited because the price is already very low, but there is still a chance of a temporary dip.</div>
+                    <div><strong>Risk/Reward:</strong> Risk 20% downside vs Reward 100% upside = 1:5 asymmetric play.</div>
+                </div>
+            </div>
+            
+            <!-- What's Happening Now -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-bottom: 15px;">
+                <div style="background: white; padding: 18px; border-radius: 10px; border-left: 4px solid #8b5cf6;">
+                    <div style="font-weight: 700; color: #8b5cf6; margin-bottom: 12px; font-size: 15px;">📰 RNS Narrative</div>
+                    <div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• The company has been busy with board appointments and contract updates, but none of these moves suggest a clear turnaround or growth push.</div><div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• Recent filings show a mix of executive changes and routine contract renewals, typical of a company that is either maintaining status quo or quietly restructuring.</div><div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• There are no indications of a fresh product launch or market expansion that could signal a bottoming process.</div>
+                </div>
+                
+                <div style="background: white; padding: 18px; border-radius: 10px; border-left: 4px solid #ec4899;">
+                    <div style="font-weight: 700; color: #ec4899; margin-bottom: 12px; font-size: 15px;">💬 Crowd Tape</div>
+                    <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                        <div style="margin-bottom: 8px;"><strong>Theme:</strong> Total abandonment – no social chatter or analyst coverage.</div>
+                        <div style="margin-bottom: 8px;"><strong style="color: #10b981;">Bulls:</strong> No bullish commentary is available; the market is silent.</div>
+                        <div style="margin-bottom: 8px;"><strong style="color: #ef4444;">Bears:</strong> Maximum pessimism – investors are likely ignoring the stock.</div>
+                        <div><strong>Shift:</strong> From panic to apathy – the stock has moved from a brief scare to prolonged indifference.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Attention Check -->
+            <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #f59e0b;">
+                <div style="font-weight: 700; color: #f59e0b; margin-bottom: 12px; font-size: 15px;">👀 Attention Check</div>
+                <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                    Google Trends for the ticker are flat – there is no online buzz that could trigger a surprise rally.
+                </div>
+            </div>
+            
+            <!-- What to Expect Next -->
+            <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #14b8a6;">
+                <div style="font-weight: 700; color: #14b8a6; margin-bottom: 12px; font-size: 15px;">🔮 What to Expect Next</div>
+                <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                    <div style="margin-bottom: 10px;"><strong>Catalysts:</strong></div>
+                    <div style="padding: 4px 0; padding-left: 15px;">• A fresh contract win or renewal with a major client could provide a positive signal.</div><div style="padding: 4px 0; padding-left: 15px;">• An earnings release that beats expectations would be a strong catalyst.</div><div style="padding: 4px 0; padding-left: 15px;">• A clear announcement of a new product line or market entry could spark interest.</div><div style="padding: 4px 0; padding-left: 15px;">• Technical confirmation such as a breakout above a recent low on higher volume would support a bounce.</div>
+                    <div style="margin-top: 10px;"><strong>Watch for:</strong> Look for a sudden increase in trading volume, a spike in short interest reversal, or a clear chart pattern such as a bullish reversal wedge.</div>
+                    <div style="margin-top: 8px;"><strong>Timing:</strong> The stock appears to be in a late‑stage washout, giving contrarians a window to enter before any potential catalyst.</div>
+                </div>
+            </div>
+            
+            <!-- Playbook -->
+            <div style="background: white; padding: 18px; border-radius: 10px; border-left: 4px solid #0ea5e9;">
+                <div style="font-weight: 700; color: #0ea5e9; margin-bottom: 12px; font-size: 15px;">📋 Playbook</div>
+                <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                    <div style="margin-bottom: 10px;"><strong style="color: #10b981;">If Bullish:</strong> Enter with a small position now, then add on any volume spike or positive news. Keep a tight stop just below the most recent low.</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: #f59e0b;">If Watching:</strong> Hold until you see a clear catalyst – a contract win, earnings beat, or a technical breakout with volume confirmation.</div>
+                    <div><strong style="color: #ef4444;">If Passing:</strong> Skip if you cannot find any sign of a catalyst or if the company shows signs of financial distress or regulatory issues.</div>
+                </div>
+            </div>
+        </div>
 
         <!-- Decision Summary -->
         <div class="card">
@@ -838,27 +817,27 @@
                 Executive Commentary
             </div>
             <div style="line-height: 1.6; margin-bottom: 20px;">
-                Note: this report used historical signals only — live triangulation (RNS, social, Trends) was not available. Current setup looks like CROWDED with an APEX score of 39/100. Historically there have been 1 rallies (avg. 80%); the position is now +74.8%. Practical take: this is interesting but unconfirmed — wait for an AI snapshot or clear confirmation before committing size.
+                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows CROWDED timing with 39/100 APEX score. Historical data shows 1 rallies averaging 80% upside. Current position: +74.8%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
             </div>
             
             <div style="margin-top: 20px;">
                 <strong style="color: #10b981;">▲ Bull Case:</strong>
-                <div style="padding: 8px 0;">• No obvious upside without a catalyst</div>
+                <div style="padding: 8px 0;">• Limited upside case without catalysts</div>
             </div>
             
             <div style="margin-top: 20px;">
                 <strong style="color: #ef4444;">▼ Bear Case:</strong>
-                <div style="padding: 8px 0;">• No immediate red flags, but keep stops tight</div>
+                <div style="padding: 8px 0;">• Monitor for breakdown signals</div>
             </div>
             
             <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
                 <strong>◷ Timing Translation:</strong><br>
-                Late-stage rally — trim into strength and tighten risk.
+                Late stage. Consider taking profits as risk/reward deteriorates.
             </div>
             
             <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
                 <strong>◎ Confidence Explained:</strong><br>
-                Confidence 40/100 — data triangulated from RNS, social and Trends.
+                Confidence 40/100 reflects full data quality with triangulation loaded.
             </div>
         </div>
 
@@ -886,6 +865,44 @@
                 <span class="card-icon">📰</span>
                 Top 5 Recent RNS Announcements
             </div>
+            
+            <!-- Bloomberg-style Disclaimer Box -->
+            <div style="
+                margin-bottom: 20px;
+                padding: 16px 18px;
+                background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0.02) 100%);
+                border: 1px solid rgba(59, 130, 246, 0.2);
+                border-left: 3px solid #3b82f6;
+                border-radius: 8px;
+                font-family: 'Courier New', monospace;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: flex-start; gap: 12px;">
+                    <span style="font-size: 18px; margin-top: 2px; flex-shrink: 0;">🎯</span>
+                    <div style="flex: 1;">
+                        <div style="font-size: 12px; font-weight: 700; color: #1e40af; margin-bottom: 8px; letter-spacing: 0.3px;">
+                            Trader-Focused Analysis:
+                        </div>
+                        <div style="font-size: 11px; color: #334155; line-height: 1.6; margin-bottom: 8px;">
+                            Each RNS includes sentiment classification, key data extraction, and trading context. 
+                            Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                        </div>
+                        <div style="
+                            font-size: 10px; 
+                            color: #dc2626; 
+                            font-weight: 600; 
+                            padding: 6px 10px;
+                            background: rgba(239, 68, 68, 0.08);
+                            border-left: 2px solid #ef4444;
+                            border-radius: 4px;
+                            margin-top: 8px;
+                        ">
+                            ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div style="margin-top: 15px;">
                 
             <div style="
@@ -976,7 +993,7 @@
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Executive Chair</td>
                     </tr>
                     
                         <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1143,7 +1160,7 @@ BOAPPUPPGUPQGBP
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Ordinary Shares</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Privacy Policy</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1414,7 +1431,7 @@ HOLZZMZZLLGGKZG
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Customer Contracts</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1589,7 +1606,7 @@ UPDPKNBNFBDDCBB
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Executive Chair</td>
                     </tr>
                     
                         </table>
@@ -1747,7 +1764,7 @@ HOLDZMGZNDMGKZM
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Ordinary Share</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Ordinary Shares</td>
                     </tr>
                     
                         <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1886,28 +1903,6 @@ DSHUNOWRVSUAUAA
             
             </div>
             
-            </div>
-            <div style="
-                margin-top: 20px;
-                padding: 14px 16px;
-                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-                border-radius: 10px;
-                font-size: 12px;
-                color: #78350f;
-                border-left: 3px solid #f59e0b;
-                display: flex;
-                align-items: flex-start;
-                gap: 10px;
-            ">
-                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
-                <div style="line-height: 1.5;">
-                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
-                    Each RNS includes sentiment classification, key data extraction, and trading context. 
-                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
-                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
-                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
-                    </strong>
-                </div>
             </div>
         </div>
         
@@ -2200,7 +2195,7 @@ DSHUNOWRVSUAUAA
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-02-06 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-02-09 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.
