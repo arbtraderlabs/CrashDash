@@ -7,6 +7,7 @@ console.log('🚀 CRASH DASH app.js loaded!');
 // Global data stores
 let allSignals = [];
 let allMetadata = {};
+let apexScores = {};  // Will be populated from apex_index.json
 let tickerLookup = {};
 let dashboardStats = {};
 let currentSort = { column: 'date', direction: 'desc' };
@@ -188,6 +189,19 @@ async function loadAllData() {
             console.log('Metadata loaded for', Object.keys(allMetadata).length, 'tickers');
         } else {
             console.warn('Metadata index has no tickers array');
+        }
+        
+        // Load APEX scores index (single file with all tickers)
+        console.log('Loading APEX scores index...');
+        try {
+            const apexIndexResponse = await fetch('data/apex_index.json' + cacheBuster);
+            if (apexIndexResponse.ok) {
+                const apexIndexData = await apexIndexResponse.json();
+                apexScores = apexIndexData.data || {};
+                console.log('APEX scores loaded for', Object.keys(apexScores).length, 'tickers');
+            }
+        } catch (e) {
+            console.warn('Could not load APEX index:', e);
         }
         
 
@@ -502,8 +516,16 @@ function renderCompressedMode(signals, tbody) {
         const topColor = [latest, ...group.history]
             .sort((a, b) => (colorPriority[b.Signal_Color] || 0) - (colorPriority[a.Signal_Color] || 0))[0].Signal_Color;
         
-        // AI Technical Score
-        const aiScore = parseFloat(latest.AI_Technical_Score) || 0;
+        // Use APEX score if available, otherwise fall back to AI Technical Score
+        let scoreValue = parseFloat(latest.AI_Technical_Score) || 0;
+        let scoreLabel = 'AI Technical Score';
+        let scoreColor = '#667eea';
+        
+        if (apexScores[ticker]) {
+            scoreValue = apexScores[ticker].score;
+            scoreLabel = 'APEX Score';
+            scoreColor = apexScores[ticker].color;
+        }
         
         // Best rally from metadata
         const bestRally = metadata.best_rally_pct || 0;
@@ -629,14 +651,14 @@ function renderCompressedMode(signals, tbody) {
                         justify-content: center;
                         width: 32px;
                         height: 32px;
-                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        background: linear-gradient(135deg, ${scoreColor} 0%, ${scoreColor}dd 100%);
                         border-radius: 8px;
-                        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+                        box-shadow: 0 2px 8px ${scoreColor}4d;
                         cursor: pointer;
                         transition: all 0.2s ease;
                     "
                     onclick="event.stopPropagation(); loadAIReport('${ticker}')"
-                    title="AI Technical Score: ${aiScore.toFixed(1)}"
+                    title="${scoreLabel}: ${scoreValue.toFixed(1)}"
                     onmouseover="this.style.transform='translateY(-3px) scale(1.1)'; this.style.boxShadow='0 8px 24px rgba(102, 126, 234, 0.8), 0 0 20px rgba(118, 75, 162, 0.6)'; this.style.filter='brightness(1.15)'"
                     onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 2px 8px rgba(102, 126, 234, 0.3)'; this.style.filter='brightness(1)'"
                     >
@@ -651,7 +673,7 @@ function renderCompressedMode(signals, tbody) {
                             top: -4px;
                             right: -4px;
                             background: white;
-                            color: #667eea;
+                            color: ${scoreColor};
                             font-size: 0.65rem;
                             font-weight: 800;
                             padding: 1px 4px;
@@ -659,12 +681,12 @@ function renderCompressedMode(signals, tbody) {
                             line-height: 1;
                             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
                             z-index: 2;
-                        ">${aiScore.toFixed(1)}</div>
+                        ">${scoreValue.toFixed(1)}</div>
                         <div style="
                             position: absolute;
                             inset: -2px;
                             border-radius: 8px;
-                            background: linear-gradient(135deg, rgba(102, 126, 234, 0.4), rgba(118, 75, 162, 0.4));
+                            background: linear-gradient(135deg, ${scoreColor}66, ${scoreColor}33);
                             animation: pulse 2s ease-in-out infinite;
                             z-index: 0;
                         "></div>
