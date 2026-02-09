@@ -6,15 +6,8 @@
   <title>APEX & Trust Prototype</title>
   <link rel="stylesheet" href="apex_trust_panel.css">
   <style>
-    @keyframes ticker {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    #scorecard-ticker .ticker-content:last-child {
-      display: none;
-    }
     @media (max-width: 768px) {
-      #scorecard-ticker { animation: ticker 15s linear infinite; }
+      #scorecard-ticker { display: flex; white-space: nowrap; width: 100%; overflow: hidden; }
     }
   </style>
 </head>
@@ -80,20 +73,8 @@
 
     <!-- Bloomberg Scorecard Ticker -->
     <div style="background: rgb(26, 35, 54); border-left: 3px solid #0a84ff; padding: 0.5rem 0; margin: 0; font-family: 'Courier New', monospace; font-size: 13px; letter-spacing: 0.5px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); overflow: hidden; width: 100%;">
-      <div id="scorecard-ticker" style="display: flex; white-space: nowrap; animation: ticker 20s linear infinite; width: 100%;">
+      <div id="scorecard-ticker" style="display: flex; white-space: nowrap; width: 100%; overflow: hidden;">
         <div class="ticker-content" style="display: flex; align-items: center; gap: 1.5rem; padding: 0 1.5rem; flex-shrink: 0;">
-          <span style="color: rgba(255,255,255,0.6); font-size: 11px; text-transform: uppercase; font-weight: 600;">SCORECARD</span>
-          <span id="scorecard-apex" style="background: #10b981; color: white; padding: 6px 12px; border-radius: 6px; font-weight: 700; font-size: 13px;">APEX SCORE:--</span>
-          <span id="scorecard-setup" style="color: #3B82F6; font-weight: 700;">SETUP:--</span>
-          <span id="scorecard-trust" style="color: #8B5CF6; font-weight: 700;">TRUST:--</span>
-          <span id="scorecard-panic" style="color: #EF4444; font-weight: 700;">PANIC:--</span>
-          <span id="scorecard-comp" style="color: #F59E0B; font-weight: 700;">COMPRESSION:--</span>
-          <span style="color: rgba(255,255,255,0.3); font-weight: 400;">│</span>
-          <span id="scorecard-timing" style="color: #3b82f6; font-weight: 700;">TIMING:--</span>
-          <span style="color: rgba(255,255,255,0.3); font-weight: 400;">│</span>
-          <span id="scorecard-action" style="color: #ef4444; font-weight: 700;">ACTION:--</span>
-        </div>
-      <div class="ticker-content" style="display: flex; align-items: center; gap: 1.5rem; padding: 0 1.5rem; flex-shrink: 0;">
           <span style="color: rgba(255,255,255,0.6); font-size: 11px; text-transform: uppercase; font-weight: 600;">SCORECARD</span>
           <span id="scorecard-apex" style="background: #10b981; color: white; padding: 6px 12px; border-radius: 6px; font-weight: 700; font-size: 13px;">APEX SCORE:--</span>
           <span id="scorecard-setup" style="color: #3B82F6; font-weight: 700;">SETUP:--</span>
@@ -397,7 +378,7 @@
   <script>window.__APEX_PROFILE = {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "LIT.L",
-  "generated_at": "2026-02-09T12:21:16.516558Z",
+  "generated_at": "2026-02-09T12:23:50.543088Z",
   "top_card": {
     "ticker": "LIT.L",
     "company_name": "Litigation Capital Management Limited",
