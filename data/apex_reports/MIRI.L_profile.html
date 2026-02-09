@@ -5,10 +5,29 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>APEX & Trust Prototype</title>
   <link rel="stylesheet" href="apex_trust_panel.css">
+  <style>
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    #scorecard-ticker .ticker-content:last-child {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      #scorecard-ticker { animation: ticker 15s linear infinite; }
+    }
+  </style>
 </head>
 <body>
+  <!-- Page Header (Sticky) -->
+  <div style="position: sticky; top: 0; z-index: 1001; background: rgb(26, 35, 54); padding: 0.5rem 1.5rem; margin: 0; border-bottom: 1px solid rgba(10, 132, 255, 0.2);">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <div style="font-size: 18px; font-weight: 700; color: white;">🔥 APEX SCORE ARCHITECTURE (V5)</div>
+    </div>
+  </div>
+
   <!-- Stock Info Header (Sticky) -->
-  <div id="stock-info-header" style="position: sticky; top: 0; z-index: 1000; margin-bottom: 1rem;">
+  <div id="stock-info-header" style="position: sticky; top: 56px; z-index: 1000; margin-bottom: 0;">
       <!-- COMPANY INFO HEADER -->
       <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; background: rgb(26, 35, 54); box-shadow: 0 2px 8px rgba(0,0,0,0.3); border-bottom: 1px solid rgba(10, 132, 255, 0.4); padding: 0.6rem 1.5rem; margin: 0; width: 100%; position: relative; border-radius: 8px 8px 0 0;">
         <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; width: 100%; overflow: hidden;">
@@ -56,11 +75,8 @@
       </div>
     </div>
 
-  <div class="container">
-    <div class="header"><div class="h1">🔥 APEX SCORE ARCHITECTURE (V5)</div></div>
-
-    <!-- Bloomberg Scorecard Ticker -->
-    <div style="background: rgb(26, 35, 54); border-left: 3px solid #0a84ff; padding: 0.5rem 0; margin: 1rem 0; font-family: 'Courier New', monospace; font-size: 13px; letter-spacing: 0.5px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); overflow: hidden; position: sticky; top: 117px; z-index: 999; max-width: 100%;">
+  <!-- Bloomberg Scorecard Ticker (Sticky) -->
+  <div style="background: rgb(26, 35, 54); border-left: 3px solid #0a84ff; padding: 0.5rem 0; margin: 0; font-family: 'Courier New', monospace; font-size: 13px; letter-spacing: 0.5px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); overflow: hidden; position: sticky; top: 117px; z-index: 999; max-width: 100%;">
       <div id="scorecard-ticker" style="display: flex; white-space: nowrap; animation: ticker 20s linear infinite; width: max-content;">
         <div class="ticker-content" style="display: flex; align-items: center; gap: 1.5rem; padding: 0 1.5rem; flex-shrink: 0;">
           <span style="color: rgba(255,255,255,0.6); font-size: 11px; text-transform: uppercase; font-weight: 600;">SCORECARD</span>
@@ -74,21 +90,21 @@
           <span style="color: rgba(255,255,255,0.3); font-weight: 400;">│</span>
           <span id="scorecard-action" style="color: #ef4444; font-weight: 700;">ACTION:--</span>
         </div>
-      </div>
+      <div class="ticker-content" style="display: flex; align-items: center; gap: 1.5rem; padding: 0 1.5rem; flex-shrink: 0;">
+          <span style="color: rgba(255,255,255,0.6); font-size: 11px; text-transform: uppercase; font-weight: 600;">SCORECARD</span>
+          <span id="scorecard-apex" style="background: #10b981; color: white; padding: 6px 12px; border-radius: 6px; font-weight: 700; font-size: 13px;">APEX SCORE:--</span>
+          <span id="scorecard-setup" style="color: #3B82F6; font-weight: 700;">SETUP:--</span>
+          <span id="scorecard-trust" style="color: #8B5CF6; font-weight: 700;">TRUST:--</span>
+          <span id="scorecard-panic" style="color: #EF4444; font-weight: 700;">PANIC:--</span>
+          <span id="scorecard-comp" style="color: #F59E0B; font-weight: 700;">COMPRESSION:--</span>
+          <span style="color: rgba(255,255,255,0.3); font-weight: 400;">│</span>
+          <span id="scorecard-timing" style="color: #3b82f6; font-weight: 700;">TIMING:--</span>
+          <span style="color: rgba(255,255,255,0.3); font-weight: 400;">│</span>
+          <span id="scorecard-action" style="color: #ef4444; font-weight: 700;">ACTION:--</span>
+        </div></div>
     </div>
-    <style>
-      @keyframes ticker {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
-      }
-      #scorecard-ticker .ticker-content:last-child {
-        display: none;
-      }
-      @media (max-width: 768px) {
-        #scorecard-ticker { animation: ticker 15s linear infinite; }
-      }
-    </style>
 
+  <div class="container">
     <!-- Narrative Section Header -->
     <div style="display: flex; align-items: center; gap: 12px; margin: 20px 0 12px 0;">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink: 0;">
@@ -377,7 +393,7 @@
   <script>window.__APEX_PROFILE = {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "MIRI.L",
-  "generated_at": "2026-02-09T10:09:54.804260Z",
+  "generated_at": "2026-02-09T10:20:50.181028Z",
   "top_card": {
     "ticker": "MIRI.L",
     "company_name": "Mirriad Advertising plc",
