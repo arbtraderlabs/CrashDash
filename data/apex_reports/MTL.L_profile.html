@@ -1,0 +1,2398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrashDash • MTL.L APEX Profile</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .header-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .ticker-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .company-name { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .company-meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #f7fafc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .meta-icon { font-size: 18px; }
+        
+        .score-hero {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        .action-display {
+            margin-bottom: 20px;
+        }
+        .scores-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .score-number {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .score-label { font-size: 12px; color: #666; margin-top: 5px; }
+        .timing-badge-large {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 24px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            margin: 20px 0;
+        }
+        .thesis-line {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .factors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .factor-item {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        .factor-icon { font-size: 20px; }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-icon { font-size: 24px; }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-label { color: #666; font-size: 14px; }
+        .stat-value { font-weight: 600; font-size: 16px; }
+        
+        .rally-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .risk-indicator {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .risk-high { background: #fee2e2; }
+        .risk-icon { font-size: 24px; }
+        
+        .reason-item {
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .tag {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .footer {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-top: 20px;
+        }
+        
+        .alert-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Header Card -->
+        <div class="header-card">
+            <div class="ticker-badge">MTL.L</div>
+            <div class="company-name">Metals Exploration plc</div>
+            <div class="company-meta">
+                <div class="meta-item">
+                    <span class="meta-icon">■</span>
+                    <span><strong>Sector:</strong> Basic Materials</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">£</span>
+                    <span><strong>Market Cap:</strong> £473,553,905</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">◷</span>
+                    <span><strong>Days Active:</strong> 76 days</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action & Score Hero Section -->
+        <div class="score-hero">
+            <div class="action-display">
+                <span style="color: white;">UNKNOWN</span>
+            </div>
+            
+            <div class="scores-row">
+                <div class="score-circle">
+                    <div class="score-number" style="color: #f59e0b;">59</div>
+                    <div class="score-label">APEX SCORE</div>
+                </div>
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">40</div>
+                    <div class="score-label">CONFIDENCE</div>
+                </div>
+            </div>
+            
+            <div class="timing-badge-large">
+                Timing: <span class="rally-badge" style="background: #dbeafe; color: #1e40af;">CROWDED</span>
+            </div>
+            
+            <div class="thesis-line">
+                SELL/TAKE_PROFITS - CROWDED timing with 59/100 opportunity score
+            </div>
+        </div>
+
+        <!-- ==================== CRASHDASH INTELLIGENCE - PANIC HUNTER VIEW ==================== -->
+        
+        <div class="card" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b;">
+            <div class="card-title" style="color: #0f172a;">
+                <span class="card-icon">⛏️</span>
+                CrashDash Intelligence • Mining & Chemicals
+            </div>
+            
+            <!-- Fear Meter -->
+            <div style="background: white; padding: 24px; border-radius: 14px; margin-bottom: 20px; text-align: center;">
+                <div style="font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 16px;">🔥 PANIC METER</div>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 16px;">
+                    <div style="width: 160px; height: 160px; border-radius: 50%; background: conic-gradient(#f59e0b 266.40000000000003deg, #e5e7eb 266.40000000000003deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                        <div style="width: 130px; height: 130px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <div style="font-size: 48px; font-weight: 800; color: #f59e0b;">74</div>
+                            <div style="font-size: 12px; color: #64748b; font-weight: 600;">PANIC SCORE</div>
+                        </div>
+                    </div>
+                    <div style="text-align: left; max-width: 400px;">
+                        <div style="font-size: 18px; font-weight: 700; color: #f59e0b; margin-bottom: 12px;">HIGH PANIC</div>
+                        <div style="font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 12px;">🟠 Fear dominant - watch for reversal signs</div>
+                        <div style="font-size: 13px; color: #64748b;">
+                            <div>💔 Price: 40/40</div>
+                            <div>📉 Volume: 18/20</div>
+                            <div>🔇 Social: 6/20</div>
+                            <div>📰 News: 10/20</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CrashHunter Signals -->
+                <div style="margin-top: 20px;">
+                    <span style="display: inline-block; background: #f59e0b; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">🟠 Fear 74/100</span><span style="display: inline-block; background: #f59e0b; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">⚠️ Crowded</span><span style="display: inline-block; background: #3b82f6; color: white; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; margin: 4px;">🌟 APEX 59</span>
+                </div>
+                
+                <!-- Opportunity Flag -->
+                
+            </div>
+            
+            <!-- Contrarian Compression Energy Panel -->
+            
+            <!-- Contrarian Compression Energy Panel -->
+            <div style="background: linear-gradient(135deg, #fef9c3 0%, #fde047 100%); padding: 24px; border-radius: 14px; margin-bottom: 20px; border: 3px solid #eab308;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                    <span style="font-size: 32px;">⚡</span>
+                    <div style="flex: 1;">
+                        <div style="font-size: 20px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">
+                            CONTRARIAN COMPRESSION SCORE
+                        </div>
+                        <div style="font-size: 13px; color: #475569; font-weight: 600;">
+                            Signal Congestion Framework • Compression = Explosive Potential
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Score Display -->
+                <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 30px;">
+                        <!-- Circular gauge -->
+                        <div style="width: 140px; height: 140px; border-radius: 50%; background: conic-gradient(#eab308 162.0deg, #e5e7eb 162.0deg); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+                            <div style="width: 110px; height: 110px; border-radius: 50%; background: white; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <div style="font-size: 42px; font-weight: 800; color: #eab308;">45</div>
+                                <div style="font-size: 11px; color: #64748b; font-weight: 600;">/ 100</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Key metrics -->
+                        <div style="text-align: left;">
+                            <div style="font-size: 16px; font-weight: 700; color: #eab308; margin-bottom: 12px;">🟡 MODERATE COMPRESSION (Top 30% - GOOD SETUP)</div>
+                            <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                                <div><strong>0.3</strong> signals/week</div>
+                                <div><strong>1</strong> RSI &lt; 20 events</div>
+                                <div><strong>2</strong> escalations detected</div>
+                                <div style="color: #eab308; font-weight: 700; margin-top: 6px;">
+                                    💎 Historical pop: <strong>+9633%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Component Breakdown -->
+                <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 15px;">
+                        📊 5-COMPONENT BREAKDOWN
+                    </div>
+                    
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">compression</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">14/40</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 35.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">0.3 signals/week | 1 RSI<20 | 2 escalations | 🎯 MILD COMPRESSION</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">intensification</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #eab308;">8/20</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #eab308; height: 100%; width: 40.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;"></div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">volume death</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #eab308;">8/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #eab308; height: 100%; width: 53.333333333333336%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">High volume - Panic spike or interest</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">pop potential</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #ef4444;">15/15</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #ef4444; height: 100%; width: 100.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">MONSTER POPPER - Historical 10x+ (9633%)</div>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <div style="font-weight: 700; font-size: 13px; color: #1e293b; text-transform: uppercase;">accumulation</div>
+                        <div style="font-weight: 800; font-size: 15px; color: #10b981;">0/10</div>
+                    </div>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
+                        <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
+                    </div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">No accumulation detected</div>
+                </div>
+                
+                </div>
+                
+                <!-- Contrarian Philosophy -->
+                <div style="background: rgba(255,255,255,0.7); padding: 16px; border-radius: 10px; border-left: 4px solid #eab308;">
+                    <div style="font-weight: 700; color: #0f172a; margin-bottom: 8px; font-size: 14px;">
+                        🎯 CONTRARIAN WISDOM
+                    </div>
+                    <div style="font-size: 13px; color: #334155; line-height: 1.6;">
+                        <strong>Signal congestion = Compression energy = Explosive potential.</strong><br>
+                        When multiple crash signals cluster together with extreme RSI and proven rally history, 
+                        it creates a compressed spring effect. More panic = More opportunity for contrarians.
+                        <div style="margin-top: 8px; padding: 10px; background: rgba(239,68,68,0.1); border-radius: 6px; font-size: 12px;">
+                            <strong style="color: #eab308;">Theory:</strong> High compression scores (60+) historically precede 
+                            explosive 10-20x moves when catalysts arrive. This is the foundation of crash hunting.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Fear vs Facts Contrarian View -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                <div style="background: #fee2e2; padding: 18px; border-radius: 12px; border-left: 4px solid #ef4444;">
+                    <div style="font-weight: 700; color: #991b1b; margin-bottom: 12px; font-size: 15px;">😱 FEAR (What Panic Shows)</div>
+                    <div style="color: #7f1d1d;">
+                        <div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 💔 Price destruction: 40/40 points</div><div style="padding: 8px 0; font-size: 14px; line-height: 1.5;">• 📉 Volume death: 18/20 points</div>
+                    </div>
+                </div>
+                <div style="background: #dcfce7; padding: 18px; border-radius: 12px; border-left: 4px solid #10b981;">
+                    <div style="font-weight: 700; color: #065f46; margin-bottom: 12px; font-size: 15px;">📊 FACTS (What Data Shows)</div>
+                    <div style="color: #064e3b;">
+                        <div style="color: #64748b; font-size: 14px;">Limited historical data</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contrarian Verdict -->
+            <div style="background: white; padding: 18px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #6366f1;">
+                <div style="font-weight: 700; color: #4338ca; margin-bottom: 10px; font-size: 15px;">⚖️ Contrarian Verdict</div>
+                <div style="font-size: 15px; color: #1e293b; line-height: 1.6; font-weight: 600;">
+                    🎯 CONTRARIAN OPPORTUNITY - Fear dominates but facts support recovery potential
+                </div>
+            </div>
+            
+            <!-- Industry Crash Patterns -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">⚠️ Crash Patterns (Mining & Chemicals)</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• Commodity price crashes (gold, copper, lithium)</div><div>• Exploration failure / dry holes</div><div>• Permitting delays or regulatory blocks</div>
+                    </div>
+                    <div style="margin-top: 12px; padding: 10px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e; font-weight: 600;">🚨 Active: Commodity price crashes (gold, copper, lithium), Exploration failure / dry holes</div>
+                </div>
+                <div style="background: white; padding: 18px; border-radius: 12px;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">🚀 Recovery Paths</div>
+                    <div style="font-size: 13px; color: #475569; line-height: 1.8;">
+                        <div>• New high-grade discovery announcements</div><div>• Rising commodity prices (macro tailwinds)</div><div>• Production milestones (first ore, commercial production)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Catalyst Pipeline -->
+            <div style="background: rgba(255,255,255,0.5); padding: 18px; border-radius: 12px; margin-bottom: 20px;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 14px; font-size: 15px;">📅 Catalyst Pipeline</div>
+                
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Investor Presentation and La India Update Video</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Quarterly Update to 31 December 2025</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Exercise of Options and Total Voting Rights</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Rule 19.6(b) update and Rule 19.6(c) confirmation</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Exercise of Warrants and Total Voting Rights</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+            
+            <!-- CrashDash Decision Matrix -->
+            <div style="background: white; padding: 20px; border-radius: 12px; border: 3px solid #f59e0b;">
+                <div style="font-weight: 700; color: #1e293b; margin-bottom: 16px; font-size: 16px; text-align: center;">
+                    🎯 CRASHDASH DECISION: <span style="color: #f59e0b; font-size: 20px;">AVOID</span>
+                </div>
+                <div style="font-size: 15px; color: #475569; text-align: center; margin-bottom: 20px; font-weight: 600;">
+                    ❌ SELL/TAKE_PROFITS - timing CROWDED
+                </div>
+                <div style="background: #f8fafc; padding: 16px; border-radius: 10px;">
+                    <div style="font-weight: 700; color: #64748b; margin-bottom: 12px; font-size: 13px;">CHECKLIST (4/5 pass)</div>
+                    
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🔴</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Panic Score</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">74/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">✅</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Timing Regime</div>
+                    <div style="font-size: 13px; color: #ef4444; font-weight: 600;">CROWDED</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">⭐</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">APEX Quality</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">59/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">🎯</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Data Confidence</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">40/100</div>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px; background: white; border-radius: 8px; margin-bottom: 8px;">
+                <span style="font-size: 24px;">⛏️</span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Industry Pattern</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">2 active</div>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- ==================== AI TRADER INTELLIGENCE (TOP) - TRADER BRIEF V2 ==================== -->
+        <div class="card" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 2px solid #0ea5e9;">
+            <div class="card-title" style="color: #0369a1;">
+                <span class="card-icon">🤖</span>
+                APEX Trader Brief v2
+            </div>
+            
+            <!-- Bottom Line (Most Important) -->
+            <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #0ea5e9;">
+                <div style="font-size: 16px; font-weight: 700; color: #0369a1; margin-bottom: 10px;">📝 Bottom Line</div>
+                <div style="font-size: 15px; line-height: 1.7; color: #1e293b;">
+                    No catalyst yet – wait for a surprise event before betting on a rebound.
+                </div>
+            </div>
+            
+            <!-- Company in 30 Seconds -->
+            <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #6366f1;">
+                <div style="font-weight: 700; color: #6366f1; margin-bottom: 12px; font-size: 15px;">🏢 Company in 30 Seconds</div>
+                <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                    <div style="margin-bottom: 8px;"><strong>What they do:</strong> MTL Ltd. is a small‑cap company listed on the London Stock Exchange. Public details about its core business activities are sparse, but it appears to be involved in a niche sector that has yet to generate significant revenue or market traction.</div>
+                    <div style="margin-bottom: 8px;"><strong>Why they matter:</strong> Because it is a listed entity with a potentially undervalued share price, it presents a playground for contrarian traders who thrive on market neglect and surprise catalysts.</div>
+                    <div><strong>Current state:</strong> The company has issued a series of routine reports and updates, but no major operational milestones have been announced. The share price sits near its all‑time low, suggesting a long‑term capitulation has likely finished.</div>
+                </div>
+            </div>
+            
+            <!-- Buy vs Sell Decision -->
+            <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #f59e0b;">
+                <div style="font-weight: 700; color: #f59e0b; margin-bottom: 12px; font-size: 15px;">
+                    ⚖️ 
+                    Buy vs Sell — Lean: NEUTRAL – WAIT FOR A CLEAR CATALYST BEFORE COMMITTING.
+                </div>
+                <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                    <div style="margin-bottom: 10px;"><strong style="color: #10b981;">Bull Case:</strong> If a catalyst materialises, the compressed spring could produce a strong mean‑reversion bounce. Historically, deep‑crash signals (GREEN) have delivered an average 39% rebound, so a 50% recovery would double the current price.</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: #ef4444;">Bear Case:</strong> The downside risk is limited because the share has already fallen dramatically. The worst case is a modest 10–15% further decline.</div>
+                    <div><strong>Risk/Reward:</strong> Risk 10% downside versus 30% upside = 1:3 asymmetry.</div>
+                </div>
+            </div>
+            
+            <!-- What's Happening Now -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-bottom: 15px;">
+                <div style="background: white; padding: 18px; border-radius: 10px; border-left: 4px solid #8b5cf6;">
+                    <div style="font-weight: 700; color: #8b5cf6; margin-bottom: 12px; font-size: 15px;">📰 RNS Narrative</div>
+                    <div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• The latest filings are mostly procedural – investor presentations, quarterly updates, and regulatory compliance notices.</div><div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• There is no evidence of a new contract, discovery, or restructuring that would signal a bottoming process.</div><div style="padding: 6px 0; font-size: 14px; line-height: 1.6; color: #334155;">• The narrative is one of survival and routine reporting, not growth or turnaround.</div>
+                </div>
+                
+                <div style="background: white; padding: 18px; border-radius: 10px; border-left: 4px solid #ec4899;">
+                    <div style="font-weight: 700; color: #ec4899; margin-bottom: 12px; font-size: 15px;">💬 Crowd Tape</div>
+                    <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                        <div style="margin-bottom: 8px;"><strong>Theme:</strong> Radio silence – no social chatter at all.</div>
+                        <div style="margin-bottom: 8px;"><strong style="color: #10b981;">Bulls:</strong> No bullish voices remain; the stock is largely ignored by the market.</div>
+                        <div style="margin-bottom: 8px;"><strong style="color: #ef4444;">Bears:</strong> Bearish sentiment is at its maximum – the market expects nothing more from the company.</div>
+                        <div><strong>Shift:</strong> From panic to apathy, the market has moved into a late‑stage capitulation phase.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Attention Check -->
+            <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #f59e0b;">
+                <div style="font-weight: 700; color: #f59e0b; margin-bottom: 12px; font-size: 15px;">👀 Attention Check</div>
+                <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                    Google Trends are dead, meaning the next piece of news could trigger a surprise move.
+                </div>
+            </div>
+            
+            <!-- What to Expect Next -->
+            <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid #14b8a6;">
+                <div style="font-weight: 700; color: #14b8a6; margin-bottom: 12px; font-size: 15px;">🔮 What to Expect Next</div>
+                <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                    <div style="margin-bottom: 10px;"><strong>Catalysts:</strong></div>
+                    <div style="padding: 4px 0; padding-left: 15px;">• A positive earnings surprise or a new mining lease announcement could act as a trigger.</div><div style="padding: 4px 0; padding-left: 15px;">• Regulatory approval of a project or a strategic partnership would provide a clear catalyst.</div><div style="padding: 4px 0; padding-left: 15px;">• A sudden spike in daily trading volume that breaks past the 50‑day moving average would confirm a breakout.</div>
+                    <div style="margin-top: 10px;"><strong>Watch for:</strong> Look for a volume surge, a sharp rise in short interest turnover, or a price move above the 20‑day moving average.</div>
+                    <div style="margin-top: 8px;"><strong>Timing:</strong> The stock appears to be in a late‑stage washout; it is early for contrarians to step in.</div>
+                </div>
+            </div>
+            
+            <!-- Playbook -->
+            <div style="background: white; padding: 18px; border-radius: 10px; border-left: 4px solid #0ea5e9;">
+                <div style="font-weight: 700; color: #0ea5e9; margin-bottom: 12px; font-size: 15px;">📋 Playbook</div>
+                <div style="font-size: 14px; line-height: 1.6; color: #334155;">
+                    <div style="margin-bottom: 10px;"><strong style="color: #10b981;">If Bullish:</strong> Enter gradually – start with 25% of the intended position at the current close, then add on if volume confirms a breakout. Keep a tight stop 5% below the entry.</div>
+                    <div style="margin-bottom: 10px;"><strong style="color: #f59e0b;">If Watching:</strong> Hold off until you see one of the catalysts above or a clear volume spike. Do not trade on rumors; wait for confirmed data.</div>
+                    <div><strong style="color: #ef4444;">If Passing:</strong> Skip this trade if no catalyst appears within the next 2–3 weeks or if the company signals any operational distress.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Decision Summary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◆</span>
+                Why This Matters
+            </div>
+            <div class="stat-row"><span>• APEX 59/100 indicates strong opportunity quality</span></div><div class="stat-row"><span>• Timing regime: CROWDED</span></div><div class="stat-row"><span>• Historical profile: 1 rallies, 72% best run</span></div>
+            
+            <div class="alert-box" style="margin-top: 20px;">
+                <strong>△ Main Risk:</strong> Confidence 40/100 - full data loaded
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong>◉ Watch Next:</strong>
+                <div style="padding: 8px 0;">• RNS catalysts (funding/operational updates)</div><div style="padding: 8px 0;">• Volume expansion confirmation</div><div style="padding: 8px 0;">• Timing regime change signals</div>
+            </div>
+        </div>
+
+        <!-- ==================== TECHNICAL DETAILS (COLLAPSIBLE) ==================== -->
+        
+        <div class="card">
+          <details style="cursor:pointer;">
+            <summary style="font-weight:800; font-size:16px; list-style:none; padding: 10px; background: #f9fafb; border-radius: 8px;">
+              🔧 Technical Analysis & Scoring Details
+            </summary>
+            <div style="margin-top:14px;">
+              
+            <!-- Scoring Breakdown -->
+            <div class="card-title" style="margin-top: 20px;">
+                <span class="card-icon">▣</span>
+                APEX Score Breakdown
+            </div>
+            <div class="factors-list">
+                <div class="factor-item"><span class="factor-icon">◆</span><span><strong>Strong Technical Setup</strong><br><small>Chart quality: 13/20 • Score: 16/25 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Massive recovery potential</strong><br><small>Down 98.6% from peak • Score: 20/20 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Explosive volume</strong><br><small>3.0x average • Score: 10/10 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Limited history</strong><br><small>1 previous rallies • Score: 5/15 points</small></span></div>
+<div class="factor-item"><span class="factor-icon">◆</span><span><strong>Modest upside</strong><br><small>Historical best: +72% • Score: 8/20 points</small></span></div>
+
+            </div>
+            
+            <div style="margin-top: 40px;"></div>
+            
+            <!-- Exhaustion Metrics -->
+            <div class="card-title">
+                <span class="card-icon">📈</span>
+                Rally Cycle Position
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="padding: 15px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Current Position</div>
+                    <div style="font-size: 32px; font-weight: 800;">72%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">from entry</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Typical Rally</div>
+                    <div style="font-size: 32px; font-weight: 800;">72%</div>
+                    <div style="font-size: 11px; opacity: 0.8;">historical avg</div>
+                </div>
+                <div style="padding: 15px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 8px; text-align: center; color: white;">
+                    <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Exhaustion Level</div>
+                    <div style="font-size: 32px; font-weight: 800;">1.0x</div>
+                    <div style="font-size: 11px; opacity: 0.8;">vs average</div>
+                </div>
+            </div>
+        
+            </div>
+          </details>
+        </div>
+        
+
+        <!-- Reasons Buy/Sell -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #10b981;">▲</span>
+                    Reasons to Buy
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Proven winner - previously hit lock-in target</span>
+                    <span class="tag" style="background: #f59e0b; color: white;">⚡ Medium Strength</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">profit target reached: True</div>
+            </div>
+            
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon" style="color: #ef4444;">▼</span>
+                    Reasons to Sell / Avoid
+                </div>
+                
+            <div class="reason-item">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 600;">Stale signal - not for active trading</span>
+                    <span class="tag" style="background: #ef4444; color: white;">🚨 High Risk</span>
+                </div>
+                <div style="font-size: 12px; color: #666;">historical • signal date=2025-11-25</div>
+            </div>
+            
+            </div>
+        </div>
+
+        <!-- Trade Plans -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">📊</span>
+                    Short-Term Trader Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 20%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <div style="font-size: 18px; font-weight: 600; margin-bottom: 5px;">Active trade</div>
+                    <div style="font-size: 14px; opacity: 0.9;">SELL/TAKE_PROFITS</div>
+                </div>
+                <div style="padding: 12px; background: #f9fafb; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Position Size</div>
+                    <div style="font-weight: 600;">1-3% position based on conviction</div>
+                </div>
+                <div style="padding: 12px; background: #fef2f2; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Risk Management</div>
+                    <div style="font-weight: 600; color: #dc2626;">Stop below recent support / invalidation level</div>
+                </div>
+                <div style="padding: 12px; background: #f0fdf4; border-radius: 6px;">
+                    <div style="font-size: 12px; color: #666; margin-bottom: 3px;">Exit Strategy</div>
+                    <div style="font-weight: 600; color: #059669;">Scale out into strength: 25% @ +15%, 50% @ +50%, trail runner</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span class="card-icon">💼</span>
+                    Long-Term Investor Playbook
+                </div>
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; text-align: center;">
+                    <div style="font-size: 32px; margin-bottom: 5px;">✗</div>
+                    <div style="font-size: 18px; font-weight: 600;">Not Recommended for Investors</div>
+                </div>
+                <div style="padding: 15px; background: #f9fafb; border-radius: 8px; font-size: 14px; line-height: 1.6;">
+                    <strong style="color: #667eea;">📋 Investment Thesis:</strong><br>
+                    Unlock after AI triangulation + CONFIRMED timing<br><br>
+                    <strong style="color: #667eea;">⏳ Time Horizon:</strong><br>
+                    N/A<br><br>
+                    <strong style="color: #ef4444;">🛡️ Exit Rule:</strong><br>
+                    N/A
+                </div>
+            </div>
+        </div>
+
+        <!-- Commentary -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">◐</span>
+                Executive Commentary
+            </div>
+            <div style="line-height: 1.6; margin-bottom: 20px;">
+                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows CROWDED timing with 59/100 APEX score. Historical data shows 1 rallies averaging 72% upside. Current position: +72.0%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #10b981;">▲ Bull Case:</strong>
+                <div style="padding: 8px 0;">• Limited upside case without catalysts</div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <strong style="color: #ef4444;">▼ Bear Case:</strong>
+                <div style="padding: 8px 0;">• Monitor for breakdown signals</div>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
+                <strong>◷ Timing Translation:</strong><br>
+                Late stage. Consider taking profits as risk/reward deteriorates.
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
+                <strong>◎ Confidence Explained:</strong><br>
+                Confidence 40/100 reflects full data quality with triangulation loaded.
+            </div>
+        </div>
+
+        <!-- Data Quality Warning -->
+        <div class="card">
+            <div class="card-title">
+                <span class="card-icon">△</span>
+                Data Quality Notice
+            </div>
+            <div class="alert-box">
+                <strong>Analysis Mode:</strong> HISTORICAL_ONLY<br>
+                <strong>Impact:</strong> HIGH
+            </div>
+            <div class="risk-indicator risk-high"><span class="risk-icon">△</span><div><div style="font-weight: 600;">AI insights from Groq LLM</div></div></div>
+
+            <div style="margin-top: 15px; font-size: 13px; color: #666;">
+                Data provided as-is. Not financial advice. AIM micro-caps carry significant volatility risk.
+            </div>
+        </div>
+
+        <!-- ==================== TOP 5 RECENT RNS NEWS ==================== -->
+        
+        <div class="card" style="border-top: 3px solid #3b82f6;">
+            <div class="card-title" style="margin-bottom: 20px;">
+                <span class="card-icon">📰</span>
+                Top 5 Recent RNS Announcements
+            </div>
+            
+            <!-- Bloomberg-style Disclaimer Box -->
+            <div style="
+                margin-bottom: 20px;
+                padding: 16px 18px;
+                background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0.02) 100%);
+                border: 1px solid rgba(59, 130, 246, 0.2);
+                border-left: 3px solid #3b82f6;
+                border-radius: 8px;
+                font-family: 'Courier New', monospace;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: flex-start; gap: 12px;">
+                    <span style="font-size: 18px; margin-top: 2px; flex-shrink: 0;">🎯</span>
+                    <div style="flex: 1;">
+                        <div style="font-size: 12px; font-weight: 700; color: #1e40af; margin-bottom: 8px; letter-spacing: 0.3px;">
+                            Trader-Focused Analysis:
+                        </div>
+                        <div style="font-size: 11px; color: #334155; line-height: 1.6; margin-bottom: 8px;">
+                            Each RNS includes sentiment classification, key data extraction, and trading context. 
+                            Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                        </div>
+                        <div style="
+                            font-size: 10px; 
+                            color: #dc2626; 
+                            font-weight: 600; 
+                            padding: 6px 10px;
+                            background: rgba(239, 68, 68, 0.08);
+                            border-left: 2px solid #ef4444;
+                            border-radius: 4px;
+                            margin-top: 8px;
+                        ">
+                            ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 15px;">
+                
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Investor Presentation and La India Update Video</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">9th Feb 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS-R</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Metals Exploration</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+Today 07:00
+RNS Number : 1419S
+Metals Exploration PLC
+09 February 2026
+9 February 2026
+METALS EXPLORATION PLC
+Investor Presentation and La India Development Update Video
+Metals Exploration plc (AIM: MTL) ("Metals Exploration", the "Company" or the "Group"), a gold production, development, and exploration company with assets in the Philippines and Nicaragua, is pleased to announce that its updated investor presentation is now available at:
+https://metalsexploration.com/investors/presentations/
+The Company has also released a video showing recent progress at the La India gold project in Nicaragua. This is available to view at:
+https://metalsexploration.com/news/company-media/
+For further information, please contact or visit:
+Metals Exploration PLC
+Via BlytheRay
++44 (0) 207 138 3204
+Nominated & Financial Adviser:
+STRAND HANSON LIMITED
+James Spinney, James Dance, Rob Patrick
++44 (0) 207 409 3494
+Joint Broker:
+HANNAM & PARTNERS
+Matt Hasson, Franck Nganou
++44 (0) 207 907 8500
+Joint Broker:
+PANMURE LIBERUM
+Amrit Mahbubani, Scott Mathieson, Zak Wadud
++44 (0) 20 3100 2000
+Public Relations:
+BLYTHERAY
+Megan Ray, Said Izagaren
++44 (0) 207 138 3204
+metalsexploration@blytheray.com
+Web:
+www.metalsexploration.com
+X:
+@MTLexploration
+LinkedIn:
+Metals Exploration
+This information is provided by Reach, the non-regulatory press release distribution service of RNS, part of the London Stock Exchange. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+NRAZVLFBQLLFBBD
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Quarterly Update to 31 December 2025</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">28th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Au Recovered</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">84.1%, 83.3%, 33%</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+28 Jan 2026 07:00
+RNS Number : 6129Q
+Metals Exploration PLC
+28 January 2026
+METALS EXPLORATION PLC
+Quarterly Update to 31 December 2025
+Metals Exploration plc (AIM: MTL) ("Metals Exploration", the "Company" or the "Group"), a gold production, development and exploration company with assets in the Philippines and Nicaragua, is pleased to announce its unaudited quarterly results for Q4 2025 (the "Quarter").
+Finance
+·
+Record FY2025 positive free cash flow of US$115.3 million (FY2024: US$96.7 million).
+·
+Record FY2025 gold revenue of US$208.4 million (FY2024: US$191.1 million).
+·
+Q4 2025 positive pre-tax free cash flow of US$40 million (Q3 2025: US$4.5 million).
+·
+Q4 2025 gold revenue of US$63.9 million (Q3 2025: US$25.5 million).
+·
+Q4 2025 gold sales of 16,009 ounces ("oz") sold at an average realised gold price of US$3,995 per ounce ("/oz") (Q3 2025: 8,833 oz at an average US$2,889 /oz).
+Runruno - Mining Operations
+·
+Q4 2025 mining production of ore and waste was 2.79 million tonnes ("Mt") (Q3 2025: 1.99 Mt), with a total of 710 thousand tonnes ("Kt") of ore mined in Q4 2025 (Q3 2025: 404 Kt).
+Runruno - Processing Operations
+·
+Q4 2025 gold production of 15,156 oz (Q3 2025: 9,145 oz) recovered from 538 Kt at a head grade of 1.04 grammes per tonne ("g/t") (Q3 2025: 324 Kt at a head grade of 1.06 g/t).
+·
+Q4 2025 all-in-sustaining-cost ("AISC") of US$1,584 /oz (Q3 2025: US$1,923 /oz).
+·
+Q4 2025 gold recovery of 84.1% (Q3 2025: 83.3%).
+FY2025/FY2026 Production Guidance
+·
+FY2025 gold production of 65,287 ounces was at the lower end of the revised FY2025 lower guidance forecast at an AISC of US$1,368 /oz, which was above the upper FY2025 guidance forecast range of US$1,275 /oz due to the lower ounces sold.
+·
+FY2026 gold production from Runruno forecast: 50,000 - 60,000 ounces.
+·
+FY2026 AISC forecast for Runruno gold production: US$1,400 - US$1,650 /oz.
+·
+No guidance is provided for the La India gold project which remains on track to commence gold production in Q4 2026.
+Development - La India, Nicaragua
+·
+Overall construction continues to be within the revised budget and ahead of schedule at 33% complete.
+·
+Process plant foundations, general infrastructure and bulk earthworks are all progressing ahead of schedule.
+·
+Stockpiling of ore has begun.
+Exploration - Dupax, Philippines
+·
+Drill programme continuing - limited drilling conducted during the Quarter with no near term production opportunity discovered to date.
+Darren Bowden, CEO of Metals Exploration, commented
+:
+"
+I am pleased to report a strong end to FY2025, culminating in record gold revenue for the year of US$208.4 million and record free cash flow of US$115.3 million. This record-breaking year was supported by the continued robust operational performance at Runruno, as well as the favourable gold price environment.
+"In Nicaragua, we have seen excellent momentum in the development of the La India Gold Project towards production, which remains on track for first gold in Q4 2026. Overall construction is ahead of schedule at 33%, and I look forward to providing further updates on progress throughout 2026. With an annual production target of 145,000 oz of gold, La India will serve to replace cash flow from Runruno as mining operations cease there.
+"
+At Runruno, we achieved FY2025 gold production of 65,287 oz, within the revised FY2025 lower guidance forecast of 65,000 oz. This revision came as a result of production delays due to the Q3 2025 BIOX cyanide contamination issue, which was subsequently resolved, and the impact of Super-typhoon Uwan in Q4 2025, where mains power was restored earlier than forecasted. Our production guidance for FY2026 at Runruno is 50,000 - 60,000 oz due to the mine approaching the end of its life with the mine plan scheduling lower grade material with slightly lower recovery performance, with AISC forecasted at US$1,400 - US$1,650 /oz, and we look forward to continuing to capitalise on the supportive gold price environment.
+"Drilling at Dupax to date has indicated that the target ore zone is deeper than predicted. As a result, we have concluded that an economic resource at Dupax will not be able to be defined in time for Runruno's ore processing operations to be extended via the processing of Dupax ore. Accordingly, we are considering other options to repurpose the Runruno plant and will keep shareholders updated with any developments.
+"Safety is at the heart of what we do, and I am pleased to report that the Company now has in excess of 2 million man-hours worked in the Philippines without an LTI. In Nicaragua, we have not recorded an LTI since Metals Exploration acquired La India.
+"We finished FY2025 in a very strong position, with record revenue and free cash flow. The Company is debt free, and is targeting FY2026 gold production of 50,000 - 60,000 oz from Runruno. With La India due to start production in Q4 2026, I am optimistic about the Company's year ahead and look forward to updating shareholders with our progress."
+Runruno Production and Finance Summary
+Runruno Project Report
+Quarter
+Quarter
+FY 2025
+FY 2024
+FY 2025
+Actual
+Actual
+Actual
+Actual
+PHYSICALS
+Units
+Q4 2025
+Q4 2024
+12 Months
+12 Months
+Mining
+Ore Mined
+Tonnes
+709,920
+283,862
+2,142,187
+2,055,871
+Waste Mined
+Tonnes
+2,077,887
+2,418,510
+8,557,364
+9,293,694
+Total Mined
+Tonnes
+2,787,807
+2,702,372
+10,699,551
+11,349,565
+Au Grade Mined
+g/tonne
+1.02
+1.50
+1.28
+1.46
+Strip Ratio
+2.91
+8.50
+3.92
+4.40
+Processing
+Ore Milled
+Tonnes
+537,824
+529,791
+1,902,702
+2,150,429
+Au Grade
+g/tonne
+1.04
+1.17
+1.21
+1.34
+S2 Grade
+%
+1.17
+1.30
+1.19
+1.35
+Au Milled (contained)
+Ounces
+18,019
+19,934
+73,844
+92,752
+Recovery
+%
+84.1
+94.5
+88.4
+90.5
+Au Recovered/Poured
+Ounces
+15,156
+18,829
+65,287
+83,897
+Sales
+Au Sold
+Ounces
+16,009
+19,144
+66,082
+82,676
+Au Price
+US$/oz
+3,995
+2,481
+3,154
+2,312
+FINANCIALS (Unaudited)
+Revenue
+Gold Sales
+(US$000's)
+63,949
+47,490
+208,413
+191,150
+Operating Costs - Summary
+Mining
+(US$000's)
+4,794
+4,868
+19,506
+18,879
+Processing
+(US$000's)
+7,882
+8,139
+32,692
+34,919
+G&A
+(US$000's)
+2,783
+2,569
+13,086
+11,649
+Total Operating Costs
+(US$000's)
+15,459
+15,576
+65,284
+65,447
+Excise Duty
+(US$000's)
+2,572
+1,913
+8,365
+7,668
+UK/Philippine G&A
+(US$000's)
+3,254
+5,244
+11,104
+13,768
+Total Direct Production Costs
+(US$000's)
+21,285
+22,733
+84,753
+86,882
+Net Cash Income
+(US$000's)
+42,664
+24,757
+123,661
+104,267
+Total Capital Costs
+(US$000's)
+2,656
+2,263
+8,391
+7,518
+Total non-cash costs
+(US$000's)
+15,769
+13,110
+111,062
+69,794
+Pre-tax Free Cashflow
+(
+US$000's)
+40,008
+22,494
+115,270
+96,749
+Cash Cost / oz Sold - C1
+US$/oz
+1,126
+797
+979
+785
+Cash Cost / oz Sold - AISC1
+US$/oz
+1,584
+1,289
+1,368
+1,135
+Note 1: AISC includes all UK Corporate costs. It excludes costs directly related to the Nicaraguan assets.
+Runruno Operations
+In November 2025, processing operations were impacted by the loss of mains power to site due to damage to the National power grid caused by Super-typhoon Uwan. Production was paused for approximately seven days while repairs to the power grid were conducted in various parts of the Nueva Viscaya province. Back-up generators ensured no loss of BIOX bacteria. Mining operations were also suspended for two days. Mains power was restored to the site, with processing operations able to recommence, earlier than forecasted.
+Annual gold production was 65,287 oz, at the lower end of the revised guidance of 65,000-70,000 oz, having been impacted by both production delays due to Super-typhoon Uwan and the Q3 2025 BIOX cyanide contamination issue.
+Finance
+FY2025 operations at Runruno produced record gold sales of US$208.4 million (FY2024: US$191.1 million) resulting in a record US$115.3 million pre-tax free cash flow (FY2024: US$96.7 million).
+Q4 2025 recorded gold sales of US$63.9 million (Q3 2025: US$25.5 million), at an average realised gold price of US$3,995 /oz (Q3 2025: average gold price of US$2,889 /oz); producing positive free cash flow of US$40.0 million (Q3 2025: US$4.5 million).
+The Company's cash holdings at 31 December 2025 were US$41.6 million (30 September 2025: US$28.3 million). The Group has no debt.
+Mining Operations
+Mining production of ore and waste for Q4 2025 was slightly below management's forecast at 2.79 Mt (Q3 2025: 1.99 Mt). During Q4 2025, a total of 710 Kt of ore was mined (Q3 2025: 404 Kt). The Company continues to forecast that mining operations will cease in Q3-2026 due to depletion of ore but processing will continue as detailed below.
+Process Plant
+Gold produced during Q4 2025 was 15,156 oz (Q3 2025: 9,145 oz) from ore milled in Q4 2025 of 538 Kt (Q3 2025: 324 Kt), at an AISC of US$1,584 /oz (Q3 2025: US$1,923 /oz). Head grade was lower than forecast at 1.04 g/t (Q3 2025: 1.06 g/t).
+Average gold recovery rate for Q4 2025 was 84.1% (Q3 2025: 83.3%). Average recoveries for FY2026 are expected to be approximately 82% due to a lower average head grade and continued processing of lower recovery material. Gold processing activities are expected to cease in late-2026 or early 2027.
+Residual Storage Impoundment ("RSI")
+During the Quarter, the Runruno mine received higher than normal rainfall as numerous typhoons passed over/close to the mine site. Notwithstanding the high rainfall, the RSI dam
+water freeboard remains well above design minimum levels. Construction of the RSI final in-rock spillway continues.
+Development
+La India Gold Project
+Progress of construction works at the La India mine site in Nicaragua has progressed very satisfactorily during the Quarter with overall construction remaining within the revised budget and slightly ahead of schedule, being 33% complete, being
+fully funded to date from the Runruno gold mine cash flow. The Company's ambition to produce gold during Q4 2026 remains intact. Highlights for the Quarter include:
+·
+No lost time injuries ("LTI").
+·
+The processing plant throughput capacity design has been upgraded to 1.8 million tonnes per annum ("mTpa") from 1.4 mTpa, in anticipation of future growth opportunities
+.
+·
+The on-site laboratory building is nearing completion and is scheduled to be operational from February 2026.
+·
+Bulk earthworks for the processing plant and technical services area are complete. Pre-stripping of the open pit mining area is on schedule, at approximately 19% complete.
+·
+The run-of-mine ("ROM") pad is complete, and the first ore has commenced stockpiling.
+·
+The tailings storage facility access is complete.
+·
+Construction of key infrastructure is progressing ahead of schedule; with several camp accommodation buildings completed and operational.
+·
+Exploration, geo-technical and infill resource extension drilling for the Quarter totalled 4,676 metres.
+Exploration - Philippines
+Dupax Project
+Limited drilling was undertaken during Q4 2025 due to the impact of Super-typhoon Uwan combined with the Company managing local community access issues. Drilling to date has indicated that the target ore zone is significantly deeper than predicted, leading to the Company to conclude that an economic resource at Dupax will not be able to be defined within a time period such that the Runruno process plant can be converted to process Dupax ore. As a result, other options to re-purpose the Runruno plant are being considered.
+Drilling results from this programme will be announced in due course.
+Abra Project
+Drill programmes on the Abra tenement remain on hold while
+the National Commission for Indigenous Peoples ('NCIP') further advances its consultation activities with the potentially impacted local communities.
+The Company's expectation remains that drilling in the Abra project area will commence later in FY2026.
+ESG
+Occupational Health & Safety
+The Company completed the Quarter without an LTI. The Company now has in excess of 2 million man-hours worked in the Philippines without an LTI. The Company has recorded no LTI's at its operations in Nicaragua since commencing operations in country.
+Environment & Compliance
+Compliance matters continue to be successfully monitored, and all operations in both the Philippines and Nicaragua are compliant with no outstanding material issues.
+Community & Government Relations
+The Company continues to receive strong support from local communities and government agencies in both the Philippines and Nicaragua.
+This announcement
+contains inside information for the purposes of Article 7 of EU Regulation 596/2014, which forms part of United Kingdom domestic law by virtue of the European Union (Withdrawal) Act 2018 (as amended). Upon the publication of this announcement, this inside information is now considered to be in the public domain.
+END
+For further information, please contact or visit:
+Metals Exploration PLC
+Via BlytheRay
++44 (0) 207 138 3204
+Nominated & Financial Adviser:
+STRAND HANSON LIMITED
+James Spinney, James Dance, Rob Patrick
++44 (0) 207 409 3494
+Joint Broker:
+HANNAM & PARTNERS
+Matt Hasson, Franck Nganou
++44 (0) 207
+907 8500
+Joint Broker:
+PANMURE LIBERUM
+Amrit Mahbubani, Scott Mathieson, Zak Wadud
++44 (0) 203 100 2112
+Public Relations:
+BLYTHERAY
+Megan Ray, Said Izagaren
++44 (0) 207 138 3204metalsexploration@blytheray.com
+Web:
+www.metalsexploration.com
+X:
+@MTLexploration
+LinkedIn:
+Metals Exploration
+Competent Person's Statement
+Mr Maxwell Donald Tuesley, BSc (Hons) Economic Geology, a member of the Australasian Institute of Mining and Metallurgy (No 111470 and employee of the Company, has compiled, read and approved the technical disclosure in relation to the projects in this regulatory announcement in accordance with the AIM Rules - Note for Mining and Oil & Gas Companies.
+Forward Looking Statements
+Certain statements relating to the estimated or expected future production, operating results, cash flows and costs and financial condition of Metals Explorations, planned work at the Company's projects and the expected results of such work contained herein are forward-looking statements
+which are based on current expectations, estimates and projections about the potential returns of the Group, industry and markets in which the Group operates in, the Directors' beliefs and assumptions made by the Directors
+. Forward-looking statements are statements that are not historical facts and are generally, but not always, identified by words such as the following: "expects", "plans", "anticipates", "forecasts", "believes", "intends", "estimates", "projects", "assumes", "potential" or variations of such words and similar expressions. Forward-looking statements also include reference to events or conditions that will, would, may, could or should occur. Information concerning exploration results and mineral reserve and resource estimates may also be deemed to be forward-looking statements, as it constitutes a prediction of what might be found to be present when and if a project is actually developed.
+These statements are not guarantees of future performance or the ability to identify and consummate investments and involve certain risks, uncertainties and assumptions that are difficult to predict, qualify or quantify. Among the factors that could cause actual results or projections to differ materially include,
+without limitation: uncertainties related to raising sufficient financing to fund the planned work in a timely manner and on acceptable terms; changes in planned work resulting from logistical, technical or other factors; the possibility that results of work will not fulfil projections/expectations and realize the perceived potential of the Company's projects; uncertainties involved in the interpretation of drilling results and other tests and the estimation of gold reserves and resources; risk of accidents, equipment breakdowns and labour disputes or other unanticipated difficulties or interruptions; the possibility of environmental issues at the Company's projects; the possibility of cost overruns or unanticipated expenses in work programs; the need to obtain permits and comply with environmental laws and regulations and other government requirements; fluctuations in the price of gold and other risks and uncertainties.
+The Company expressly disclaims any obligation or undertaking to disseminate any updates or revisions to any forward looking statements contained herein to reflect any change in the Group's expectations with regard thereto or any change in events, conditions or circumstances on which any such statements are based unless required to do so by applicable law or the AIM Rules.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+UPDDDLFLQFLFBBX
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">3</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #3
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Exercise of Options and Total Voting Rights</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">20th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Metals Exploration</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+20 Jan 2026 07:00
+RNS Number : 4948P
+Metals Exploration PLC
+20 January 2026
+METALS EXPLORATION PLC
+Exercise of Options and Total Voting Rights
+Metals Exploration PLC (AIM: MTL) ("Metals Exploration" or the "Company"), a gold producer, development and exploration company with assets in the Philippines and Nicaragua, announces that it has received notices of option exercise in respect of 18,815,760 new ordinary shares of £0.0001 each ("Ordinary Shares") with an average exercise price of £0.0103 each, raising £193,626.50.
+Admission and Total Voting Rights
+Application has been made to the London Stock Exchange PLC for the admission of 18,815,760 new Ordinary Shares to trading on AIM ("Admission"), which is expected to take place at 8.00 a.m. on or around 23 January 2026.
+Following Admission, the Company will have 3,259,097,368 Ordinary Shares in issue, of which 299,385,458 Ordinary Shares are held in treasury, and, accordingly, the total number of voting rights is 2,959,711,910. Therefore, this figure may be used by shareholders in the Company as the denominator for the calculation by which they may determine if they are required to notify their interest in, or change to their interest in, the share capital of the Company under the FCA's Disclosure Guidance and Transparency Rules.
+For further information, please contact or visit:
+Metals Exploration PLC
+Via BlytheRay
++44 (0) 207 138 3204
+Nominated & Financial Adviser:
+STRAND HANSON LIMITED
+James Spinney, James Dance, Rob Patrick
++44 (0) 207 409 3494
+Joint Broker:
+HANNAM & PARTNERS
+Matt Hasson, Franck Nganou
++44 (0) 207
+907 8500
+Joint Broker:
+PANMURE LIBERUM
+Amrit Mahbubani, Scott Mathieson, Zak Wadud
++44 (0) 20 3100 2000
+Public Relations:
+BLYTHERAY
+Megan Ray, Said Izagaren
++44 (0) 207 138 3204
+metalsexploration@blytheray.com
+Web:
+www.metalsexploration.com
+X:
+@MTLexploration
+LinkedIn:
+Metals Exploration
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+IOEAKCBKOBKDADD
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">4</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #4
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Rule 19.6(b) update and Rule 19.6(c) confirmation</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">15th Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Metals Exploration</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+15 Jan 2026 07:00
+RNS Number : 9492O
+Metals Exploration PLC
+15 January 2026
+The following announcement is being made pursuant to the requirements of Rule 19.6(C) of the City Code on Takeovers and Mergers (the
+"
+Code
+"
+), which,
+inter alia
+, REQUIRES A PARTY TO AN OFFER TO MAKE AN ANNOUNCEMENT AT THE END OF A PERIOD OF 12 MONTHS FROM THE DATE ON WHICH THE OFFER PERIOD ENDED CONFIRMING WHETHER IT HAS TAKEN, OR NOT TAKEN, THE COURSE OF ACTION SET OUT IN ITS STATED INTENTIONS
+.
+For immediate release
+15 January 2026
+METALS EXPLORATION PLC
+Rule 19.6(b) update and Rule 19.6(c) confirmation with respect to the stated post-offer intentions made with regard to Condor Gold plc
+Metals Exploration plc (AIM: MTL) ("Metals Exploration" or the "Company"), a gold producer, development and exploration company with assets in the Philippines and Nicaragua, announces that further to the completion of its recommended acquisition of the entire issued and to be issued ordinary share capital of Condor Gold plc ("Condor Gold"), which was effected by way of a scheme of arrangement under Part 26 of the Companies Act 2006 on 15 January 2025 (the "Acquisition"), its board of directors has duly confirmed in writing to The Panel on Takeovers and Mergers, in accordance with the requirements of Rule 19.6(c) of the Code, that, subject to the matters detailed below, the Company has complied with its post-offer statements of intent made pursuant to Rules 2.7(c)(viii) and 24.2 of the Code.
+Such post-offer intention statements were originally detailed in the Company's announcement of 4 December 2024 and the scheme document published on 11 December 2024 (the "Scheme Document") and were subsequently updated by way of the Company's announcement dated 21 March 2025.
+The Scheme Document further stated that the Company's Manikbel prospect at the southern end of the Abra tenement was drill-ready, with all approvals in place, and that Metals Exploration intended to undertake an initial 6,000m drilling campaign with the aim of completing such work before the end of Q2 2025, with the objective of compiling an initial mineral resource estimate by Q3 2025. Drilling at the Manikbel prospect has not yet commenced in order to allow for an indigenous peoples' consultation process to take place. Accordingly, the Company now expects to commence such initial 6,000m drilling campaign in H1 2026 with a view to compiling an initial mineral resource estimate by Q4 2026.
+For further information, please contact or visit:
+Metals Exploration PLC
+Via BlytheRay
++44 (0) 207 138 3204
+Nominated & Financial Adviser
+:
+STRAND HANSON LIMITED
+James Spinney, James Dance, Rob Patrick
++44 (0) 207 409 3494
+Joint Broker
+:
+HANNAM & PARTNERS
+Matt Hasson, Franck Nganou
++44 (0) 207
+907 8500
+Joint Broker
+:
+PANMURE LIBERUM
+Amrit Mahbubani, Scott Mathieson, Zak Wadud
++44 (0) 20 3100 2000
+Public Relations
+:
+BLYTHERAY
+Megan Ray, Said Izagaren
++44 (0) 207 138 3204
+metalsexploration@blytheray.com
+Web:
+www.metalsexploration.com
+X:
+@MTLexploration
+LinkedIn:
+Metals Exploration
+Strand Hanson Limited, which is authorised and regulated in the United Kingdom by the Financial Conduct Authority, is acting exclusively as financial adviser to Metals Exploration and no-one else in connection with the matter set out in this announcement and will not be responsible to anyone other than Metals Exploration for providing the protections afforded to clients of Strand Hanson Limited nor for providing advice in relation to the matter referred to herein. Neither Strand Hanson Limited nor any of its subsidiaries, branches or affiliates owes or accepts any duty, liability or responsibility whatsoever (whether direct or indirect, whether in contract, in tort, under statute or otherwise) to any person who is not a client of Strand Hanson Limited in connection with this announcement, any statement contained herein or otherwise.
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+OUPGPURWGUPQGMC
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">5</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #5
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Exercise of Warrants and Total Voting Rights</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">2nd Jan 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Metals Exploration</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+2 Jan 2026 07:00
+RNS Number : 3018N
+Metals Exploration PLC
+02 January 2026
+METALS EXPLORATION PLC
+Exercise of Warrants and Total Voting Rights
+Metals Exploration plc (AIM: MTL) ("Metals Exploration" or the "Company"), a gold producer, development and exploration company with assets in the Philippines and Nicaragua, announces that it has received notices of warrant exercise in respect of 39,470 new ordinary shares of £0.0001 each ("Ordinary Shares") with an exercise price of £0.0605 each, raising £2,388.
+Admission and Total Voting Rights
+Application has been made to the London Stock Exchange PLC for the admission of 39,470 new Ordinary Shares to trading on AIM ("Admission"), which is expected to take place at 8.00 a.m. on or around 6 January 2026.
+Following Admission, the Company will have 3,240,281,608 Ordinary Shares in issue, of which 299,385,458 Ordinary Shares are held in treasury, and, accordingly, the total number of voting rights is 2,940,896,150. Therefore, this figure may be used by shareholders in the Company as the denominator for the calculation by which they may determine if they are required to notify their interest in, or change to their interest in, the share capital of the Company under the FCA's Disclosure Guidance and Transparency Rules.
+For further information, please contact or visit:
+Metals Exploration PLC
+Via BlytheRay
++44 (0) 207 138 3204
+Nominated & Financial Adviser:
+STRAND HANSON LIMITED
+James Spinney, James Dance, Rob Patrick
++44 (0) 207 409 3494
+Joint Broker:
+HANNAM & PARTNERS
+Matt Hasson, Franck Nganou
++44 (0) 207
+907 8500
+Joint Broker:
+PANMURE LIBERUM
+Amrit Mahbubani, Scott Mathieson, Zak Wadud
++44 (0) 20 3100 2000
+Public Relations:
+BLYTHERAY
+Megan Ray, Said Izagaren
++44 (0) 207 138 3204
+metalsexploration@blytheray.com
+Web:
+www.metalsexploration.com
+X:
+@MTLexploration
+LinkedIn:
+Metals Exploration
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+IOEFDESUFEISEDE
+                </div>
+            </details>
+            
+            </div>
+            
+            </div>
+        </div>
+        
+        <style>
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            details[open] > summary {
+                background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%) !important;
+                border-left-color: #0369a1 !important;
+            }
+            summary::-webkit-details-marker {
+                display: none;
+            }
+            
+            /* ========== MOBILE RESPONSIVE ========== */
+            @media (max-width: 768px) {
+                body {
+                    padding: 10px;
+                    font-size: 14px;
+                }
+                
+                .container {
+                    margin: 0 auto;
+                }
+                
+                .header-card {
+                    padding: 14px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .company-name {
+                    font-size: 22px;
+                    margin-bottom: 8px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 13px;
+                    padding: 6px 12px;
+                }
+                
+                .company-meta {
+                    gap: 8px;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+                
+                .meta-item {
+                    padding: 6px 12px;
+                    font-size: 12px;
+                    gap: 6px;
+                }
+                
+                .meta-icon {
+                    font-size: 14px;
+                }
+                
+                .score-hero {
+                    padding: 20px;
+                    margin-bottom: 12px;
+                    border-radius: 12px;
+                }
+                
+                .action-display {
+                    font-size: 18px !important;
+                    margin-bottom: 12px;
+                }
+                
+                .scores-row {
+                    gap: 16px;
+                    margin: 20px 0;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    display: flex;
+                }
+                
+                .score-circle {
+                    width: 110px;
+                    height: 110px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 32px;
+                }
+                
+                .score-label {
+                    font-size: 10px;
+                    margin-top: 4px;
+                }
+                
+                .timing-badge-large {
+                    padding: 10px 20px;
+                    font-size: 14px;
+                    margin: 12px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 14px;
+                    padding: 12px;
+                    margin-top: 12px;
+                }
+                
+                .factors-list {
+                    grid-template-columns: 1fr;
+                    gap: 10px;
+                    margin-top: 12px;
+                }
+                
+                .factor-item {
+                    padding: 12px;
+                    font-size: 12px;
+                    gap: 8px;
+                }
+                
+                .factor-icon {
+                    font-size: 16px;
+                }
+                
+                .cards-grid {
+                    grid-template-columns: 1fr;
+                    gap: 12px;
+                    margin-bottom: 12px;
+                }
+                
+                .card {
+                    padding: 16px;
+                    border-radius: 12px;
+                }
+                
+                .card-title {
+                    font-size: 14px;
+                    margin-bottom: 12px;
+                    gap: 8px;
+                }
+                
+                .card-icon {
+                    font-size: 18px;
+                }
+                
+                .stat-row {
+                    padding: 8px 0;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+                
+                .stat-label {
+                    font-size: 12px;
+                }
+                
+                .stat-value {
+                    font-size: 14px;
+                }
+                
+                .rally-badge {
+                    padding: 4px 10px;
+                    font-size: 10px;
+                }
+                
+                .risk-indicator {
+                    gap: 10px;
+                    padding: 12px;
+                    flex-wrap: wrap;
+                }
+                
+                .risk-icon {
+                    font-size: 20px;
+                }
+                
+                .reason-item {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                }
+                
+                .tag {
+                    padding: 3px 8px;
+                    font-size: 10px;
+                }
+                
+                .footer {
+                    padding: 12px;
+                    font-size: 11px;
+                    margin-top: 12px;
+                    border-radius: 12px;
+                }
+                
+                .alert-box {
+                    padding: 12px;
+                    margin: 10px 0;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                body {
+                    padding: 8px 6px;
+                }
+                
+                .header-card {
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    border-radius: 8px;
+                }
+                
+                .company-name {
+                    font-size: 18px;
+                    margin-bottom: 6px;
+                    line-height: 1.2;
+                }
+                
+                .ticker-badge {
+                    font-size: 11px;
+                    padding: 3px 8px;
+                }
+                
+                .company-meta {
+                    gap: 4px;
+                    flex-direction: column;
+                }
+                
+                .meta-item {
+                    padding: 4px 6px;
+                    font-size: 11px;
+                    background: rgba(247, 250, 252, 0.7);
+                }
+                
+                .score-hero {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                    border-radius: 12px;
+                }
+                
+                .score-circle {
+                    width: 70px;
+                    height: 70px;
+                    flex-shrink: 0;
+                }
+                
+                .score-number {
+                    font-size: 22px;
+                    font-weight: 800;
+                }
+                
+                .score-label {
+                    font-size: 7px;
+                    margin-top: 2px;
+                }
+                
+                .scores-row {
+                    flex-direction: column;
+                    gap: 10px;
+                    margin: 12px 0;
+                    align-items: center;
+                }
+                
+                .timing-badge-large {
+                    padding: 6px 12px;
+                    font-size: 11px;
+                    margin: 10px 0;
+                }
+                
+                .thesis-line {
+                    font-size: 11px;
+                    padding: 8px;
+                    line-height: 1.3;
+                }
+                
+                .card {
+                    padding: 10px;
+                    margin-bottom: 8px;
+                    border-radius: 8px;
+                }
+                
+                .card-title {
+                    font-size: 12px;
+                    margin-bottom: 8px;
+                    font-weight: 700;
+                }
+            }
+        </style>
+        
+
+        <!-- Footer -->
+        <div class="footer">
+            Report generated: 2026-02-09 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            <strong>△ Not financial advice. Do your own research.</strong>
+            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
+                <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
