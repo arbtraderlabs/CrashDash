@@ -1508,7 +1508,7 @@ async function showSignalTimeline(ticker) {
     `;
         
         console.log('Displaying modal...');
-        modal.style.display = 'block';
+        modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
         
         // Load and render price chart
