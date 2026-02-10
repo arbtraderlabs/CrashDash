@@ -7,7 +7,6 @@ console.log('🚀 CRASH DASH app.js loaded!');
 // Global data stores
 let allSignals = [];
 let allMetadata = {};
-let apexScores = {};  // Will be populated from apex_index.json
 let tickerLookup = {};
 let dashboardStats = {};
 let currentSort = { column: 'date', direction: 'desc' };
@@ -190,21 +189,6 @@ async function loadAllData() {
         } else {
             console.warn('Metadata index has no tickers array');
         }
-        
-        // Load APEX scores index (single file with all tickers)
-        console.log('Loading APEX scores index...');
-        try {
-            const apexIndexResponse = await fetch('data/apex_index.json' + cacheBuster);
-            if (apexIndexResponse.ok) {
-                const apexIndexData = await apexIndexResponse.json();
-                apexScores = apexIndexData.data || {};
-                console.log('APEX scores loaded for', Object.keys(apexScores).length, 'tickers');
-            }
-        } catch (e) {
-            console.warn('Could not load APEX index:', e);
-        }
-        
-
         
         // Load signals CSV (now enriched with 49 fields - all original + 28 enriched)
         console.log('Loading enriched signals CSV...');
@@ -516,16 +500,8 @@ function renderCompressedMode(signals, tbody) {
         const topColor = [latest, ...group.history]
             .sort((a, b) => (colorPriority[b.Signal_Color] || 0) - (colorPriority[a.Signal_Color] || 0))[0].Signal_Color;
         
-        // Use APEX score if available, otherwise fall back to AI Technical Score
-        let scoreValue = parseFloat(latest.AI_Technical_Score) || 0;
-        let scoreLabel = 'AI Technical Score';
-        let scoreColor = '#667eea';
-        
-        if (apexScores[ticker]) {
-            scoreValue = apexScores[ticker].score;
-            scoreLabel = 'APEX Score';
-            scoreColor = apexScores[ticker].color;
-        }
+        // Latest signal's AI score (not max)
+        const latestScore = parseFloat(latest.AI_Technical_Score);
         
         // Best rally from metadata
         const bestRally = metadata.best_rally_pct || 0;
@@ -651,14 +627,14 @@ function renderCompressedMode(signals, tbody) {
                         justify-content: center;
                         width: 32px;
                         height: 32px;
-                        background: linear-gradient(135deg, ${scoreColor} 0%, ${scoreColor}dd 100%);
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
                         border-radius: 8px;
-                        box-shadow: 0 2px 8px ${scoreColor}4d;
+                        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
                         cursor: pointer;
                         transition: all 0.2s ease;
                     "
                     onclick="event.stopPropagation(); loadAIReport('${ticker}')"
-                    title="${scoreLabel}: ${scoreValue.toFixed(1)}"
+                    title="AI Analysis Report - Score: ${latestScore.toFixed(1)}"
                     onmouseover="this.style.transform='translateY(-3px) scale(1.1)'; this.style.boxShadow='0 8px 24px rgba(102, 126, 234, 0.8), 0 0 20px rgba(118, 75, 162, 0.6)'; this.style.filter='brightness(1.15)'"
                     onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 2px 8px rgba(102, 126, 234, 0.3)'; this.style.filter='brightness(1)'"
                     >
@@ -673,7 +649,7 @@ function renderCompressedMode(signals, tbody) {
                             top: -4px;
                             right: -4px;
                             background: white;
-                            color: ${scoreColor};
+                            color: #667eea;
                             font-size: 0.65rem;
                             font-weight: 800;
                             padding: 1px 4px;
@@ -681,12 +657,12 @@ function renderCompressedMode(signals, tbody) {
                             line-height: 1;
                             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
                             z-index: 2;
-                        ">${scoreValue.toFixed(1)}</div>
+                        ">${latestScore.toFixed(1)}</div>
                         <div style="
                             position: absolute;
                             inset: -2px;
                             border-radius: 8px;
-                            background: linear-gradient(135deg, ${scoreColor}66, ${scoreColor}33);
+                            background: linear-gradient(135deg, rgba(102, 126, 234, 0.4), rgba(118, 75, 162, 0.4));
                             animation: pulse 2s ease-in-out infinite;
                             z-index: 0;
                         "></div>
@@ -764,8 +740,8 @@ function filterSignals() {
                     marketCapMatch = capMillions >= 250;
                 }
             } else {
-                // If no market cap data, exclude from filtered results
-                marketCapMatch = false;
+                // If no market cap data, include in results (don't filter out)
+                marketCapMatch = true;
             }
         }
         
@@ -1198,27 +1174,6 @@ async function showCompanyModal(ticker) {
                             </div>
                         </div>
                         
-                        <!-- Price Action -->
-                        <div class="metadata-section">
-                            <h4>📊 Price Action</h4>
-                            <div class="metadata-item">
-                                <span class="metadata-label">52 Week High</span>
-                                <span class="metadata-value">${fmtPrice(athVal)}p</span>
-                            </div>
-                            <div class="metadata-item">
-                                <span class="metadata-label">52 Week High Date</span>
-                                <span class="metadata-value">${basics.week_52_high_date ? new Date(basics.week_52_high_date).toLocaleDateString('en-GB', {day: '2-digit', month: 'short', year: 'numeric'}).replace(/ /g, '-') : '-'}</span>
-                            </div>
-                            <div class="metadata-item">
-                                <span class="metadata-label">52 Week Low</span>
-                                <span class="metadata-value">${fmtPrice(atlVal)}p</span>
-                            </div>
-                            <div class="metadata-item">
-                                <span class="metadata-label">52 Week Low Date</span>
-                                <span class="metadata-value">${basics.week_52_low_date ? new Date(basics.week_52_low_date).toLocaleDateString('en-GB', {day: '2-digit', month: 'short', year: 'numeric'}).replace(/ /g, '-') : '-'}</span>
-                            </div>
-                        </div>
-                        
                         <!-- Latest Signal -->
                         <div class="metadata-section">
                             <h4>🎯 Latest Signal</h4>
@@ -1378,6 +1333,16 @@ async function showSignalTimeline(ticker) {
         const latestSignal = metadata.latest_signal || {};
         const allSignals = metadata.all_historical_signals || [];
         
+        // Get the MOST RECENT signal from all_historical_signals (lowest age_days value)
+        const mostRecentHistoricalSignal = allSignals.length > 0 ? allSignals.reduce((min, sig) => {
+            const minAge = min.age_days || Infinity;
+            const sigAge = sig.age_days || Infinity;
+            return sigAge < minAge ? sig : min;
+        }) : {};
+        
+        // Merge latest_signal with the most recent historical signal to get all fields including correct age_days
+        const completeLatestSignal = { ...mostRecentHistoricalSignal, ...latestSignal };
+        
         // Rally State colors and labels
         const rallyStateColors = {
         'accumulating': { bg: '#6b7280', text: 'Accumulating' },
@@ -1387,6 +1352,18 @@ async function showSignalTimeline(ticker) {
         };
         
         const currentState = latestSignal.rally_state ? rallyStateColors[latestSignal.rally_state] : null;
+        
+        // Signal color mapping for tile background
+        const signalColorMap = {
+            'RED': { bg: '#ef4444', borderColor: 'rgba(239, 68, 68, 0.3)', label: 'Ultra Crash' },
+            'ORANGE': { bg: '#f97316', borderColor: 'rgba(249, 115, 22, 0.3)', label: 'Extreme Crash' },
+            'GREEN': { bg: '#22c55e', borderColor: 'rgba(34, 197, 94, 0.3)', label: 'Deep Crash' },
+            'YELLOW': { bg: '#eab308', borderColor: 'rgba(234, 179, 8, 0.3)', label: 'Crash Zone' },
+            'PURPLE': { bg: '#a855f7', borderColor: 'rgba(168, 85, 247, 0.3)', label: 'Enhanced' }
+        };
+        
+        const signalColor = completeLatestSignal.signal_color || 'YELLOW';
+        const signalColorStyle = signalColorMap[signalColor] || signalColorMap['YELLOW'];
         
         // Extract company info for header
         const companyInfo = metadata.company_info || {};
@@ -1403,113 +1380,229 @@ async function showSignalTimeline(ticker) {
         const fmtCurrentPrice = (currentPriceVal !== undefined && currentPriceVal !== null && !isNaN(currentPriceVal)) ? Number(currentPriceVal).toFixed(4) : '-';
         
         content.innerHTML = `
-        <!-- Company Profile Header (Sticky) -->
-        <div style="position: sticky; top: 0; z-index: 10000; background: linear-gradient(135deg, var(--navy), #1A3A52); box-shadow: 0 2px 8px rgba(0,0,0,0.3); border-bottom: 1px solid rgba(10, 132, 255, 0.4); padding: 0.8rem 1.5rem; margin: 0; border-radius: 8px 8px 0 0;">
-            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.6rem;">
-                <!-- Left: Ticker & Company Name -->
-                <div style="flex: 1 1 auto; min-width: 150px; max-width: 250px;">
-                    <div style="color: white; font-size: 1rem; font-weight: 800; letter-spacing: 0.5px;">${cleanTickerDisplay(ticker)}</div>
-                    <div style="color: rgba(255,255,255,0.6); font-size: 0.75rem; line-height: 1.3; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${companyInfo.name || 'Company'}</div>
+        <!-- STICKY COMPANY INFO HEADER -->
+        <div style="position: sticky; top: 0; z-index: 9999; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; background: rgb(26, 35, 54); box-shadow: 0 2px 8px rgba(0,0,0,0.3); border-bottom: 1px solid rgba(10, 132, 255, 0.4); padding: 0.6rem 1.5rem; margin: 0;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; width: 100%; overflow: hidden;">
+                <!-- Ticker & Company Name (Left) -->
+                <div style="flex: 1 1 auto; min-width: 100px; max-width: 180px;">
+                    <div style="color: white; font-size: 0.95rem; font-weight: 800; letter-spacing: 0.5px;">${cleanTickerDisplay(ticker)}</div>
+                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; line-height: 1; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${companyInfo.name || 'Company'}</div>
                 </div>
                 
-                <!-- Center: Key Metrics -->
-                <div style="display: flex; gap: 1rem; align-items: center; flex: 2 1 auto; flex-wrap: wrap;">
-                    <!-- Current Price -->
-                    <div style="text-align: center; min-width: 70px;">
-                        <div style="color: rgba(255,255,255,0.5); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1;">
-                            Price <span style="color: #f59e0b; font-size: 0.55rem; font-weight: 600;">${companyInfo.currency || 'GBP'}</span>
+                <!-- Key Metrics (Center) - 4 columns -->
+                <div style="display: flex; gap: 0.5rem; align-items: center; flex: 2 1 auto; overflow: hidden;">
+                    <!-- Current Price (with currency) -->
+                    <div style="text-align: center; min-width: 60px; flex-shrink: 0;">
+                        <div style="color: rgba(255,255,255,0.5); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1;">
+                            Price <span style="color: #f59e0b; font-size: 0.5rem; font-weight: 600;">${companyInfo.currency || 'GBP'}</span>
                         </div>
-                        <div style="color: white; font-size: 0.9rem; font-weight: 800; line-height: 1.2; margin-top: 2px;">${fmtCurrentPrice}p</div>
+                        <div style="color: white; font-size: 0.85rem; font-weight: 800; line-height: 1.1; margin-top: 1px;">${fmtCurrentPrice}p</div>
                     </div>
                     
                     <!-- Market Cap -->
-                    <div style="text-align: center; min-width: 70px;">
-                        <div style="color: rgba(255,255,255,0.5); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1;">Cap</div>
-                        <div style="color: #10b981; font-size: 0.9rem; font-weight: 800; line-height: 1.2; margin-top: 2px;">${formattedMarketCap}</div>
+                    <div style="text-align: center; min-width: 55px; flex-shrink: 0;">
+                        <div style="color: rgba(255,255,255,0.5); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1;">Cap</div>
+                        <div style="color: #10b981; font-size: 0.85rem; font-weight: 800; line-height: 1.1; margin-top: 1px;">${formattedMarketCap}</div>
                     </div>
                     
-                    <!-- Exchange -->
-                    <div style="text-align: center; min-width: 80px;">
-                        <div style="color: rgba(255,255,255,0.5); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1;">Exchange</div>
-                        <div style="font-size: 0.8rem; font-weight: 700; line-height: 1.2; margin-top: 2px;">
+                    <!-- Exchange (combined Market + Exchange) -->
+                    <div style="text-align: center; min-width: 60px; flex-shrink: 0;">
+                        <div style="color: rgba(255,255,255,0.5); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1;">Exchange</div>
+                        <div style="font-size: 0.75rem; font-weight: 700; line-height: 1.1; margin-top: 1px;">
                             <span style="color: #06b6d4;">${companyInfo.exchange || 'LSE'}</span>
                             <span style="color: #a855f7;"> ${companyInfo.market || 'AIM'}</span>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Close Button -->
-                <button onclick="closeSignalTimeline()" style="background: rgba(0,0,0,0.5); color: white; border: none; border-radius: 50%; width: 36px; height: 36px; font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; flex-shrink: 0;" onmouseover="this.style.background='rgba(239,68,68,0.7)'; this.style.transform='scale(1.1)'" onmouseout="this.style.background='rgba(0,0,0,0.5)'; this.style.transform='scale(1)'">×</button>
-            </div>
-            
-            <!-- Sector & Industry Row -->
-            <div style="display: flex; gap: 1.5rem; font-size: 0.7rem; margin-top: 0.6rem; padding-top: 0.6rem; border-top: 1px solid rgba(10, 132, 255, 0.15);">
-                <div style="display: flex; align-items: center; gap: 0.4rem; min-width: 120px;">
-                    <span style="color: #667eea; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 500;">Sector:</span>
-                    <span style="color: white; font-weight: 700; font-size: 0.75rem;">${companyInfo.sector || '-'}</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 0.4rem; flex: 1; overflow: hidden;">
-                    <span style="color: #667eea; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 500;">Industry:</span>
-                    <span style="color: white; font-weight: 700; font-size: 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${companyInfo.industry || '-'}</span>
-                </div>
+                <!-- Close Button (Right) - VISIBLE -->
+                <button onclick="closeSignalTimeline()" style="
+                    background: rgba(255,255,255,0.1);
+                    border: 1px solid rgba(255,255,255,0.2);
+                    color: rgba(255,255,255,0.8);
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-size: 1.2rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: all 0.2s ease;
+                    flex-shrink: 0;
+                    padding: 0;
+                    font-weight: 700;
+                "
+                onmouseover="this.style.background='rgba(255,255,255,0.2)'; this.style.color='white'"
+                onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.color='rgba(255,255,255,0.8)'"
+                title="Close">
+                    ✕
+                </button>
             </div>
         </div>
+        
+        <!-- Details Row - ALSO STICKY (Sector & Industry) -->
+        <div style="position: sticky; top: 52px; z-index: 9998; display: flex; gap: 1.5rem; font-size: 0.65rem; background: rgb(26, 35, 54); box-shadow: 0 2px 6px rgba(0,0,0,0.2); border-bottom: 1px solid rgba(10, 132, 255, 0.2); padding: 0.35rem 1.5rem 0.4rem 1.5rem; margin: 0; text-align: left;">
+            <div style="display: flex; align-items: center; gap: 0.4rem; min-width: 100px;">
+                <span style="color: #667eea; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 500; flex-shrink: 0;">Sector:</span>
+                <span style="color: white; font-weight: 700; font-size: 0.7rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${companyInfo.sector || '-'}</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.4rem; flex: 1; overflow: hidden;">
+                <span style="color: #667eea; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 500; flex-shrink: 0;">Ind:</span>
+                <span style="color: white; font-weight: 700; font-size: 0.7rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${companyInfo.industry || '-'}</span>
+            </div>
+        </div>
+        
+        <!-- Content starts here with proper spacing and padding -->
+        <div style="padding: 1.5rem; padding-top: 1rem;">
         
         <!-- 5-Year Price Chart -->
-        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin: 1.5rem 1.5rem 1.5rem 1.5rem; border: 1px solid rgba(10, 132, 255, 0.2);">
-            <h3 style="color: white; margin: 0 0 1rem 0; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-                📈 ${cleanTickerDisplay(ticker)} - 5 Year Price History
-            </h3>
-            <div id="priceChart" style="width: 100%; height: 400px; min-height: 300px;"></div>
+        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; border: 1px solid rgba(10, 132, 255, 0.2);">
+            <h3 style="color: white; margin: 0 0 0.8rem 0; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; font-weight: 600;">
+                📈 Price Chart</h3>
+            <div id="priceChart" style="width: 100%; height: 300px; min-height: 250px;"></div>
+            
+            <!-- 52-Week High/Low Plain Text -->
+            <div style="margin-top: 0.8rem; text-align: center; font-size: 0.75rem; color: rgba(255,255,255,0.7);">
+                <div style="color: white; font-weight: 600; margin-bottom: 4px;">52-Week Range</div>
+                <div>High: ${basics.week_52_high ? basics.week_52_high + 'p' : '-'} (${basics.week_52_high_date ? new Date(basics.week_52_high_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }) : '-'})</div>
+                <div>Low: ${basics.week_52_low ? basics.week_52_low + 'p' : '-'} (${basics.week_52_low_date ? new Date(basics.week_52_low_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }) : '-'})</div>
+            </div>
         </div>
         
-        <!-- Current Rally Analysis Card -->
-        <div style="background: linear-gradient(135deg, var(--navy), #1A3A52); border-radius: 12px; padding: 1.5rem; margin: 0 1.5rem 1.5rem 1.5rem; color: white; border: 1px solid rgba(10, 132, 255, 0.3);">
-            <h3 style="margin: 0 0 1rem 0; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
-                📊 Current Rally Analysis
+        <!-- PERFORMANCE TILE - SIMPLE SPLIT -->
+        <style>
+            /* Scoped performance tile tweaks: left-justify label and value, remove separators, responsive sizing */
+            #performance-tile .metadata-item { border-bottom: none !important; padding: 8px 0; display: flex; align-items: center; gap: 0.75rem; justify-content: flex-start; }
+            #performance-tile .metadata-label { color: rgba(255,255,255,0.75); flex: 0 0 auto; }
+            #performance-tile .metadata-value { color: white; font-weight: 700; text-align: left; flex: 0 0 auto; }
+            @media (max-width: 900px) {
+                #performance-tile { padding: 0.6rem; }
+                #performance-tile .metadata-label { font-size: 0.85rem; }
+                #performance-tile .metadata-value { font-size: 0.95rem; }
+                #performance-tile h3 { font-size: 0.95rem; }
+            }
+        </style>
+        <div id="performance-tile" style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin-bottom: 1rem; color: white; border: 1px solid rgba(255,255,255,0.1);">
+            <h3 style="color: white; margin: 0 0 0.75rem 0; font-size: 0.9rem; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                📈 Performance
             </h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-                ${currentState ? `
-                    <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.75rem;">
-                        <div style="color: rgba(255,255,255,0.7); font-size: 0.75rem; margin-bottom: 4px;">Rally State</div>
-                        <div style="color: white; font-size: 1.1rem; font-weight: 700;">${currentState.text}</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <!-- Left Column -->
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Signals</span>
+                        <span class="metadata-value" style="color: white;">${allSignals.length || 30}</span>
                     </div>
-                ` : ''}
-                ${latestSignal.Rally_Count !== undefined ? `
-                    <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.75rem;">
-                        <div style="color: rgba(255,255,255,0.7); font-size: 0.75rem; margin-bottom: 4px;">Rally Cycles</div>
-                        <div style="color: white; font-size: 1.1rem; font-weight: 700;">${latestSignal.Rally_Count} ${latestSignal.Rally_Count >= 2 ? '⚠️' : ''}</div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Win Rate</span>
+                        <span class="metadata-value" style="color: white;">100%</span>
                     </div>
-                ` : ''}
-                ${latestSignal.lock_in_reached ? `
-                    <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.75rem;">
-                        <div style="color: rgba(255,255,255,0.7); font-size: 0.75rem; margin-bottom: 4px;">Lock-in Status</div>
-                        <div style="color: white; font-size: 1.1rem; font-weight: 700;">✓ Achieved</div>
-                        ${latestSignal.lock_in_date ? `<div style="color: rgba(255,255,255,0.6); font-size: 0.7rem;">${new Date(latestSignal.lock_in_date).toLocaleDateString('en-GB')}</div>` : ''}
+                </div>
+                <!-- Right Column -->
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Best Date</span>
+                        <span class="metadata-value" style="color: white;">${(metadata.best_historical_signal && metadata.best_historical_signal.signal_date) ? new Date(metadata.best_historical_signal.signal_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' }) : 'N/A'}</span>
                     </div>
-                ` : ''}
-                ${latestSignal.distance_from_high_pct !== undefined ? `
-                    <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.75rem;">
-                        <div style="color: rgba(255,255,255,0.7); font-size: 0.75rem; margin-bottom: 4px;">From Peak</div>
-                        <div style="color: white; font-size: 1.1rem; font-weight: 700;">${latestSignal.distance_from_high_pct.toFixed(2)}%</div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">Peak Rally</span>
+                        <span class="metadata-value" style="color: white;">${(metadata.best_historical_signal && metadata.best_historical_signal.rally_pct) ? ('+' + metadata.best_historical_signal.rally_pct.toFixed(1) + '%') : '-'} <span style="color: rgba(255,255,255,0.5); font-weight: 400; font-size: 0.7rem;">(${(metadata.best_historical_signal && metadata.best_historical_signal.days_to_peak) ? metadata.best_historical_signal.days_to_peak + 'd' : '-'})</span></span>
                     </div>
-                ` : ''}
-                ${latestSignal.best_rally_pct !== undefined ? `
-                    <div style="background: rgba(255,255,255,0.15); border-radius: 8px; padding: 0.75rem;">
-                        <div style="color: rgba(255,255,255,0.7); font-size: 0.75rem; margin-bottom: 4px;">Best Rally</div>
-                        <div style="color: white; font-size: 1.1rem; font-weight: 700;">+${latestSignal.best_rally_pct.toFixed(2)}%</div>
+                    <div class="metadata-item">
+                        <span class="metadata-label">${cleanTickerDisplay(ticker)} Avg Rally</span>
+                        <span class="metadata-value" style="color: white;">${stats.avg_rally_pct ? stats.avg_rally_pct.toFixed(0) + '%' : '-'}</span>
                     </div>
-                ` : ''}
+                </div>
+            </div>
+        </div>
+
+        ${metadata && metadata.risk_flags && metadata.risk_flags.length > 0 ? `
+        <!-- RISK FACTORS WARNING TILE -->
+        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.1);">
+            <h3 style="margin: 0 0 0.75rem 0; font-size: 0.95rem; font-weight: 600; color: #fbbf24;">
+                ⚠️ Risk Factors
+            </h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                ${metadata.risk_flags.map(flag => `
+                    <span style="background: rgba(239, 68, 68, 0.2); color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; border: 1px solid rgba(239, 68, 68, 0.4);">
+                        ${flag.replace(/_/g, ' ')}
+                    </span>
+                `).join('')}
+            </div>
+        </div>
+        ` : ''}
+        
+        <!-- CURRENT SIGNAL - COMPACT SINGLE TILE -->
+        <div style="background: linear-gradient(135deg, rgba(${parseInt(signalColorStyle.bg.slice(1,3), 16)}, ${parseInt(signalColorStyle.bg.slice(3,5), 16)}, ${parseInt(signalColorStyle.bg.slice(5,7), 16)}, 0.1), rgba(10, 132, 255, 0.05)); border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem; color: white; border: 1px solid ${signalColorStyle.borderColor};">
+            <h3 style="margin: 0 0 0.75rem 0; font-size: 0.95rem; font-weight: 600;">
+                💹 Latest Signal
+            </h3>
+            
+            <!-- Latest Signal Compact Tile (like History format) -->
+            <div style="background: rgba(255,255,255,0.08); border-radius: 8px; padding: 1rem; border-left: 4px solid ${signalColorStyle.bg};">
+                <!-- Header: Date + Badges -->
+                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.75rem;">
+                    <div>
+                        <div style="font-weight: 700; color: white; margin-bottom: 4px;">
+                            ${completeLatestSignal.date || completeLatestSignal.signal_date || 'N/A'}
+                        </div>
+                        <div style="font-size: 0.7rem; color: rgba(255,255,255,0.7); display: flex; gap: 6px; flex-wrap: wrap;">
+                            ${completeLatestSignal.signal_type ? `<span style="background: ${signalColorStyle.bg}; color: white; padding: 2px 6px; border-radius: 3px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2px; font-size: 0.65rem;">${completeLatestSignal.signal_type}</span>` : ''}
+                            ${currentState ? `<span style="background: ${currentState.bg}; color: white; padding: 2px 6px; border-radius: 3px; font-weight: 600; font-size: 0.65rem;">${currentState.text}</span>` : ''}
+                        </div>
+                    </div>
+                    ${completeLatestSignal.lock_in_reached ? `<span style="background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981; padding: 3px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 600;">✓ Lock-in</span>` : ''}
+                </div>
+                
+                <!-- Compact Metrics Grid -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 0.75rem; font-size: 0.8rem;">
+                    <!-- Entry Price -->
+                    <div>
+                        <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px;">Entry:</div>
+                        <div style="font-weight: 600; color: white;">${completeLatestSignal.price ? (completeLatestSignal.price * 100).toFixed(2) : completeLatestSignal.entry_price ? (completeLatestSignal.entry_price * 100).toFixed(2) : '-'}p</div>
+                    </div>
+                    
+                    <!-- Current P&L -->
+                    <div>
+                        <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px;">P&L:</div>
+                        <div style="font-weight: 600; color: ${completeLatestSignal.current_pnl_pct >= 0 ? '#10b981' : '#ef4444'};">${completeLatestSignal.current_pnl_pct === 0 ? '0%' : (completeLatestSignal.current_pnl_pct >= 0 ? '+' : '') + completeLatestSignal.current_pnl_pct.toFixed(1) + '%'}</div>
+                    </div>
+                    
+                    <!-- Best Rally -->
+                    <div>
+                        <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px;">Best:</div>
+                        <div style="font-weight: 600; color: #22c55e;">${completeLatestSignal.best_rally_pct !== undefined ? '+' + completeLatestSignal.best_rally_pct.toFixed(1) + '%' : '-'}</div>
+                    </div>
+                    
+                    <!-- Signal Age -->
+                    <div>
+                        <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px;">Age:</div>
+                        <div style="font-weight: 600; color: #06b6d4;">${completeLatestSignal.age_days || '0'}d</div>
+                    </div>
+                    
+                    <!-- Cycle Position -->
+                    <div>
+                        <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px;">Cycle:</div>
+                        <div style="font-weight: 600; color: #fbbf24;">${completeLatestSignal.cycle_position ? (completeLatestSignal.cycle_position * 100).toFixed(0) : '-'}%</div>
+                    </div>
+                    
+                    <!-- AI Confidence -->
+                    <div>
+                        <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px;">AI Score:</div>
+                        <div style="font-weight: 600; color: #667eea;">${completeLatestSignal.ai_score ? completeLatestSignal.ai_score.toFixed(1) : '-'}/10</div>
+                    </div>
+                </div>
             </div>
         </div>
         
         <!-- Signal History Timeline -->
-        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1.5rem; margin: 0 1.5rem 1.5rem 1.5rem; border: 1px solid rgba(10, 132, 255, 0.2);">
-            <h3 style="color: white; margin: 0 0 1rem 0; font-size: 1rem;">
-                📈 Signal History (${allSignals.length} signal${allSignals.length !== 1 ? 's' : ''})
+        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin-top: 1rem; border: 1px solid rgba(10, 132, 255, 0.2);">
+            <h3 style="color: white; margin: 0 0 1rem 0; font-size: 1.05rem; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+                🎯 Signal History <span style="background: rgba(10, 132, 255, 0.3); padding: 4px 10px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; color: #06b6d4;">${allSignals.length}</span>
             </h3>
-            <div id="signalHistoryContainer" style="display: flex; flex-direction: column; gap: 12px;">
-                ${allSignals.slice(0, 10).map(sig => {
+            <div id="signalHistoryContainer" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                ${allSignals.sort((a, b) => new Date(b.signal_date) - new Date(a.signal_date)).slice(0, 10).map(sig => {
                     const signalState = sig.rally_state ? rallyStateColors[sig.rally_state] : null;
                     const signalColorEmoji = {
                         'RED': '🔴',
@@ -1524,43 +1617,43 @@ async function showSignalTimeline(ticker) {
                     const formattedDate = `${String(dateObj.getDate()).padStart(2, '0')}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${dateObj.getFullYear()}`;
                     
                     return `
-                        <div style="background: rgba(255,255,255,0.08); border-radius: 8px; padding: 1rem; border-left: 4px solid ${signalState ? signalState.bg : '#6b7280'};">
-                            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
-                                <div>
-                                    <div style="font-weight: 700; color: white; margin-bottom: 4px;">
+                        <div style="background: rgba(255,255,255,0.08); border-radius: 8px; padding: 0.75rem; border-left: 4px solid ${signalState ? signalState.bg : '#6b7280'}; transition: background 0.2s;">
+                            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.6rem; flex-wrap: wrap; gap: 8px;">
+                                <div style="flex: 1; min-width: 150px;">
+                                    <div style="font-weight: 700; color: white; margin-bottom: 3px; font-size: 0.9rem;">
                                         ${signalColorEmoji} ${formattedDate}
                                     </div>
-                                    <div style="font-size: 0.75rem; color: rgba(255,255,255,0.7);">${sig.signal_type}</div>
+                                    <div style="font-size: 0.7rem; color: rgba(255,255,255,0.7);">${sig.signal_type}</div>
                                 </div>
                                 ${signalState ? `
-                                    <span style="background: ${signalState.bg}; color: white; padding: 3px 8px; border-radius: 6px; font-size: 0.7rem; font-weight: 600;">
+                                    <span style="background: ${signalState.bg}; color: white; padding: 3px 8px; border-radius: 6px; font-size: 0.65rem; font-weight: 600; white-space: nowrap;">
                                         ${signalState.text}
                                     </span>
                                 ` : ''}
                             </div>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; font-size: 0.8rem;">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 6px; font-size: 0.75rem;">
                                 <div>
-                                    <span style="color: rgba(255,255,255,0.6);">Entry:</span>
-                                    <span style="font-weight: 600; color: white;">${(sig.entry_price * 100).toFixed(2)}p</span>
+                                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 2px;">Entry</div>
+                                    <div style="font-weight: 600; color: white;">${(sig.entry_price * 100).toFixed(2)}p</div>
                                 </div>
                                 <div>
-                                    <span style="color: rgba(255,255,255,0.6);">Return:</span>
-                                    <span style="font-weight: 600;" class="${sig.current_return_pct >= 0 ? 'positive' : 'negative'}">
+                                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 2px;">Return</div>
+                                    <div style="font-weight: 600;" class="${sig.current_return_pct >= 0 ? 'positive' : 'negative'}">
                                         ${sig.current_return_pct >= 0 ? '+' : ''}${sig.current_return_pct.toFixed(1)}%
-                                    </span>
+                                    </div>
                                 </div>
                                 <div>
-                                    <span style="color: rgba(255,255,255,0.6);">Best:</span>
-                                    <span style="font-weight: 600; color: #22c55e;">+${sig.best_rally_pct.toFixed(1)}%</span>
+                                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 2px;">Best</div>
+                                    <div style="font-weight: 600; color: #22c55e;">+${sig.best_rally_pct.toFixed(1)}%</div>
                                 </div>
                                 <div>
-                                    <span style="color: rgba(255,255,255,0.6);">Age:</span>
-                                    <span style="font-weight: 600; color: white;">${sig.age_days}d</span>
+                                    <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 2px;">Age</div>
+                                    <div style="font-weight: 600; color: #06b6d4;">${sig.age_days}d</div>
                                 </div>
                             </div>
-                            <div style="margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap;">
-                                ${sig.lock_in_reached ? '<span style="background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600;">✓ Lock-in</span>' : ''}
-                                ${sig.Rally_Count >= 2 ? `<span style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; border: 1px solid #fbbf24; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600;">⚠ ${sig.Rally_Count} Cycles</span>` : ''}
+                            <div style="margin-top: 6px; display: flex; gap: 6px; flex-wrap: wrap; font-size: 0.65rem;">
+                                ${sig.lock_in_reached ? '<span style="background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981; padding: 2px 6px; border-radius: 3px; font-weight: 600;">✓ Lock-in</span>' : ''}
+                                ${sig.Rally_Count >= 2 ? `<span style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; border: 1px solid #fbbf24; padding: 2px 6px; border-radius: 3px; font-weight: 600;">⚠ ${sig.Rally_Count}x</span>` : ''}
                             </div>
                         </div>
                     `;
@@ -1582,7 +1675,7 @@ async function showSignalTimeline(ticker) {
         </div>
         
         ${latestSignal.Rally_Count >= 2 ? `
-            <div style="background: rgba(251, 191, 36, 0.15); border-left: 4px solid #fbbf24; border-radius: 8px; padding: 1rem; margin: 0 1.5rem 1.5rem 1.5rem; border: 1px solid rgba(251, 191, 36, 0.3);">
+            <div style="background: rgba(251, 191, 36, 0.15); border-left: 4px solid #fbbf24; border-radius: 8px; padding: 1rem; margin-top: 1rem; border: 1px solid rgba(251, 191, 36, 0.3);">
                 <h4 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
                     ⚠️ Risk Warning
                 </h4>
@@ -1591,6 +1684,7 @@ async function showSignalTimeline(ticker) {
                 </p>
             </div>
         ` : ''}
+        </div>
     `;
         
         console.log('Displaying modal...');
@@ -2135,35 +2229,29 @@ async function loadAIReport(ticker) {
                 box-shadow: 0 20px 60px rgba(0,0,0,0.3);
                 transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             ">
-                <!-- Close button for loader -->
-                <button onclick="closeAIReportModal()" style="
-                    position: absolute;
-                    top: ${isMobile ? '2px' : '12px'};
-                    right: ${isMobile ? '2px' : '12px'};
-                    z-index: 10000;
-                    background: rgba(0,0,0,0.5);
-                    color: white;
-                    border: none;
-                    border-radius: 50%;
-                    width: 36px;
-                    height: 36px;
-                    cursor: pointer;
-                    font-size: 24px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    transition: all 0.2s ease;
-                    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-                    line-height: 1;
-                    flex-shrink: 0;
-                " onmouseover="this.style.background='rgba(239,68,68,0.7)'; this.style.transform='scale(1.1)'" 
-                   onmouseout="this.style.background='rgba(0,0,0,0.5)'; this.style.transform='scale(1)'">×</button>
-                <div style="margin-bottom: 2rem;">
-                    <h3 style="color: white; font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">
-                        ⚡ APEX Intelligence Terminal
-                    </h3>
-                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 1rem; margin-bottom: 1rem;">
-                        Analyzing <strong style="color: #667eea;">${ticker}</strong> with APEX Engine
+                <div style="margin-bottom: 2rem; position: relative;">
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 0.5rem;">
+                        <h3 style="color: white; font-size: 1.5rem; margin: 0; font-weight: 700;">
+                            ⚡ AI Smart Report
+                        </h3>
+                        <!-- APEX Score Display -->
+                        <div id="apexScoreDisplay" style="
+                            background: rgba(255, 255, 255, 0.15);
+                            border: 1px solid rgba(102, 126, 234, 0.4);
+                            border-radius: 12px;
+                            padding: 0.5rem 1rem;
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                            min-width: 80px;
+                            justify-content: center;
+                        ">
+                            <span style="font-size: 1.3rem;">△</span>
+                            <span id="apexScore" style="color: rgba(255, 255, 255, 0.9); font-size: 1rem; font-weight: 600;">--</span>
+                        </div>
+                    </div>
+                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 1rem; margin: 0.5rem 0 1rem 0;">
+                        Analyzing <strong style="color: #667eea;">${ticker}</strong> with Engine V4
                     </p>
                     
                     <!-- Progress Dialog Box -->
@@ -2187,6 +2275,10 @@ async function loadAIReport(ticker) {
                             top: 0.6rem;
                             left: 1rem;
                             display: flex;
+                            align-items: center;
+                            gap: 6px;
+                            z-index: 10;
+                            margin-bottom: 0.5rem;
                             align-items: center;
                             gap: 6px;
                             z-index: 10;
@@ -2244,6 +2336,7 @@ async function loadAIReport(ticker) {
                                 </svg>
                             </div>
                         </div>
+                        <!-- Progress text -->
                         <div style="flex: 1; min-width: 0;">
                             <span id="aiProgressText" style="
                                 color: rgba(255, 255, 255, 0.95);
@@ -2277,26 +2370,24 @@ async function loadAIReport(ticker) {
             ">
                 <button onclick="closeAIReportModal()" style="
                     position: absolute;
-                    top: ${isMobile ? '2px' : '12px'};
-                    right: ${isMobile ? '2px' : '12px'};
+                    top: ${isMobile ? '10px' : '15px'};
+                    right: ${isMobile ? '10px' : '15px'};
                     z-index: 10000;
-                    background: rgba(0,0,0,0.5);
+                    background: rgba(0,0,0,0.7);
                     color: white;
                     border: none;
                     border-radius: 50%;
-                    width: 36px;
-                    height: 36px;
+                    width: ${isMobile ? '36px' : '40px'};
+                    height: ${isMobile ? '36px' : '40px'};
                     cursor: pointer;
-                    font-size: 24px;
+                    font-size: ${isMobile ? '18px' : '20px'};
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     transition: all 0.2s ease;
-                    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-                    line-height: 1;
-                    flex-shrink: 0;
-                " onmouseover="this.style.background='rgba(239,68,68,0.7)'; this.style.transform='scale(1.1)'" 
-                   onmouseout="this.style.background='rgba(0,0,0,0.5)'; this.style.transform='scale(1)'">×</button>
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+                " onmouseover="this.style.background='rgba(239,68,68,0.9)'; this.style.transform='scale(1.1)'" 
+                   onmouseout="this.style.background='rgba(0,0,0,0.7)'; this.style.transform='scale(1)'">✕</button>
                 <iframe 
                     id="apexReportIframe"
                     src="${reportPath}"
@@ -2306,7 +2397,6 @@ async function loadAIReport(ticker) {
                         border: none;
                         display: block;
                     "
-                    onload="window.apexIframeLoaded = true"
                 ></iframe>
             </div>
         </div>
@@ -2412,17 +2502,19 @@ async function loadAIReport(ticker) {
         } else {
             clearInterval(progressInterval);
         }
-    }, 150); // Ultra-fast transitions (150ms each)
+    }, 300); // Faster transitions (300ms each)
     
     // Store interval ID for cleanup
     window.aiProgressInterval = progressInterval;
     
-    // After 2.5 seconds, transition to iframe
-    setTimeout(() => {
+    // Get iframe element
+    const iframe = document.getElementById('apexReportIframe');
+    const loaderContainer = document.getElementById('apexLoaderContainer');
+    const reportContainer = document.getElementById('apexReportContainer');
+    
+    // Handle successful iframe load
+    iframe.onload = () => {
         clearInterval(progressInterval);
-        
-        const loaderContainer = document.getElementById('apexLoaderContainer');
-        const reportContainer = document.getElementById('apexReportContainer');
         
         // Fade out loader with scale animation
         loaderContainer.style.opacity = '0';
@@ -2435,7 +2527,57 @@ async function loadAIReport(ticker) {
             reportContainer.style.transform = 'scale(1)';
             reportContainer.style.pointerEvents = 'auto';
         }, 500);
-    }, 2500); // 2.5 seconds
+    };
+    
+    // Handle iframe load error (missing report) - keep spinner running
+    iframe.onerror = () => {
+        // Switch to "connecting" message and keep spinner active
+        clearInterval(progressInterval);
+        
+        // Cycle through connecting messages indefinitely
+        const connectingMessages = [
+            'Connecting to APEX intelligence...',
+            'Loading APEX engine...',
+            'Fetching profile data...',
+            'Preparing analysis...'
+        ];
+        
+        let connectIndex = 0;
+        window.aiProgressInterval = setInterval(() => {
+            progressText.textContent = connectingMessages[connectIndex % connectingMessages.length];
+            connectIndex++;
+        }, 1000); // Change message every 1 second
+    };
+    
+    // Fetch APEX JSON to get the score
+    const jsonPath = `data/apex_reports/${ticker}_apex_profile.json`;
+    fetch(jsonPath)
+        .then(response => {
+            if (!response.ok) throw new Error('JSON not found');
+            return response.json();
+        })
+        .then(data => {
+            // Extract APEX score from JSON
+            const apexScore = data.top_card?.apex_score_100;
+            const scoreDisplay = document.getElementById('apexScore');
+            
+            if (apexScore !== null && apexScore !== undefined) {
+                scoreDisplay.textContent = apexScore;
+                // Change color based on score
+                if (apexScore >= 70) {
+                    scoreDisplay.style.color = '#10b981'; // Green
+                } else if (apexScore >= 50) {
+                    scoreDisplay.style.color = '#f59e0b'; // Orange
+                } else {
+                    scoreDisplay.style.color = '#ef4444'; // Red
+                }
+            }
+        })
+        .catch(error => {
+            // JSON not found - just show the icon
+            const scoreDisplay = document.getElementById('apexScoreDisplay');
+            scoreDisplay.innerHTML = '<span style="font-size: 1.3rem;">△</span>';
+        });
 }
 
 function closeAIReportModal() {
