@@ -119,7 +119,7 @@
             <path d="M6 3 L6 1 M10 3 L10 1 M3 6 L13 6" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
             <circle cx="8" cy="9" r="1.5" fill="#10B981"/>
           </svg>
-          <div class="card-title" style="font-size:16px;font-weight:800;color:#10B981">What They Do <span style="cursor:help;opacity:0.6;font-size:14px" title="Company business model and core operations">ⓘ</span></div>
+          <div class="card-title" style="font-size:16px;font-weight:800;color:#10B981">What They Do <span class="info-icon" data-field="what" data-tooltip="Company business model and core operations" style="cursor:pointer;opacity:0.6;font-size:14px;transition:all 0.2s ease" onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='0.6'" onclick="showTooltipPopover(event, 'Company business model and core operations')">ⓘ</span></div>
         </div>
         <div style="padding:12px">
           <span id="company-what" style="color: #e5e7eb; line-height: 1.6; font-size: 12px;">--</span>
@@ -134,7 +134,7 @@
             <circle cx="8" cy="8" r="2" fill="#10B981"/>
             <path d="M8 2 L8 6 M8 10 L8 14 M2 8 L6 8 M10 8 L14 8" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
-          <div class="card-title" style="font-size:16px;font-weight:800;color:#10B981">Why It Matters <span style="cursor:help;opacity:0.6;font-size:14px" title="Market significance and investment thesis">ⓘ</span></div>
+          <div class="card-title" style="font-size:16px;font-weight:800;color:#10B981">Why It Matters <span class="info-icon" data-field="why" data-tooltip="Market significance and investment thesis" style="cursor:pointer;opacity:0.6;font-size:14px;transition:all 0.2s ease" onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='0.6'" onclick="showTooltipPopover(event, 'Market significance and investment thesis')">ⓘ</span></div>
         </div>
         <div style="padding:12px">
           <span id="company-why" style="color: #e5e7eb; line-height: 1.6; font-size: 12px;">--</span>
@@ -150,7 +150,7 @@
             <circle cx="8" cy="11" r="1.5" fill="#10B981"/>
             <circle cx="14" cy="4" r="1.5" fill="#10B981"/>
           </svg>
-          <div class="card-title" style="font-size:16px;font-weight:800;color:#10B981">Current State <span style="cursor:help;opacity:0.6;font-size:14px" title="Latest company situation and metrics">ⓘ</span></div>
+          <div class="card-title" style="font-size:16px;font-weight:800;color:#10B981">Current State <span class="info-icon" data-field="state" data-tooltip="Latest company situation and metrics" style="cursor:pointer;opacity:0.6;font-size:14px;transition:all 0.2s ease" onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='0.6'" onclick="showTooltipPopover(event, 'Latest company situation and metrics')">ⓘ</span></div>
         </div>
         <div style="padding:12px">
           <span id="company-state" style="color: #e5e7eb; line-height: 1.6; font-size: 12px;">--</span>
@@ -351,6 +351,37 @@
                 icon.style.transform = 'rotate(0deg)';
             }
         }
+
+        // Mobile-friendly tooltip popover
+        function showTooltipPopover(event, tooltipText) {
+            event.stopPropagation();
+            
+            // Close any existing popover
+            const existing = document.getElementById('tooltip-popover');
+            if (existing) existing.remove();
+            
+            // Create popover
+            const popover = document.createElement('div');
+            popover.id = 'tooltip-popover';
+            popover.style.cssText = 'position:fixed;background:rgba(20,25,40,0.98);color:#e5e7eb;padding:10px 14px;border-radius:6px;font-size:12px;line-height:1.4;max-width:250px;border:1px solid rgba(16,185,129,0.3);z-index:10000;box-shadow:0 4px 12px rgba(0,0,0,0.4);backdrop-filter:blur(8px);word-wrap:break-word';
+            popover.textContent = tooltipText;
+            document.body.appendChild(popover);
+            
+            // Position near clicked element
+            const rect = event.target.getBoundingClientRect();
+            popover.style.left = Math.min(rect.left, window.innerWidth - 270) + 'px';
+            popover.style.top = (rect.bottom + 8) + 'px';
+            
+            // Close on outside click
+            setTimeout(() => {
+                document.addEventListener('click', closeTooltip, { once: true });
+            }, 0);
+        }
+
+        function closeTooltip() {
+            const popover = document.getElementById('tooltip-popover');
+            if (popover) popover.remove();
+        }
     </script>
   </div>
   
@@ -409,7 +440,7 @@
   <script>window.__APEX_PROFILE = {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "PYC.L",
-  "generated_at": "2026-02-10T22:19:43.493970Z",
+  "generated_at": "2026-02-10T22:25:37.121875Z",
   "top_card": {
     "ticker": "PYC.L",
     "company_name": "Physiomics Plc",
