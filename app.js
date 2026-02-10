@@ -2232,26 +2232,11 @@ async function loadAIReport(ticker) {
                 <div style="margin-bottom: 2rem; position: relative;">
                     <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 0.5rem;">
                         <h3 style="color: white; font-size: 1.5rem; margin: 0; font-weight: 700;">
-                            ⚡ AI Smart Report
+                            ⚡ APEX Intelligence Terminal
                         </h3>
-                        <!-- APEX Score Display -->
-                        <div id="apexScoreDisplay" style="
-                            background: rgba(255, 255, 255, 0.15);
-                            border: 1px solid rgba(102, 126, 234, 0.4);
-                            border-radius: 12px;
-                            padding: 0.5rem 1rem;
-                            display: flex;
-                            align-items: center;
-                            gap: 0.5rem;
-                            min-width: 80px;
-                            justify-content: center;
-                        ">
-                            <span style="font-size: 1.3rem;">△</span>
-                            <span id="apexScore" style="color: rgba(255, 255, 255, 0.9); font-size: 1rem; font-weight: 600;">--</span>
-                        </div>
                     </div>
                     <p style="color: rgba(255, 255, 255, 0.7); font-size: 1rem; margin: 0.5rem 0 1rem 0;">
-                        Analyzing <strong style="color: #667eea;">${ticker}</strong> with Engine V4
+                        Analyzing <strong style="color: #667eea;">${ticker}</strong> with APEX Engine
                     </p>
                     
                     <!-- Progress Dialog Box -->
@@ -2499,14 +2484,16 @@ async function loadAIReport(ticker) {
     let messageIndex = 0;
     const progressText = document.getElementById('aiProgressText');
     
+    // Let progress messages animate continuously (will complete in ~5.1 seconds)
     const progressInterval = setInterval(() => {
         if (messageIndex < progressMessages.length) {
             progressText.textContent = progressMessages[messageIndex];
             messageIndex++;
         } else {
-            clearInterval(progressInterval);
+            // Keep showing the final message, don't clear interval yet
+            progressText.textContent = progressMessages[progressMessages.length - 1];
         }
-    }, 300); // Faster transitions (300ms each)
+    }, 300); // 300ms per message × 17 messages = ~5.1 seconds
     
     // Store interval ID for cleanup
     window.aiProgressInterval = progressInterval;
@@ -2516,36 +2503,52 @@ async function loadAIReport(ticker) {
     const loaderContainer = document.getElementById('apexLoaderContainer');
     const reportContainer = document.getElementById('apexReportContainer');
     
+    // Track states
+    let iframeLoaded = false;
+    let minTimeElapsed = false;
+    
     // Create a promise that resolves after 5 seconds (minimum display time for loader)
-    const minDisplayTimePromise = new Promise(resolve => setTimeout(resolve, 5000));
+    const minDisplayTimePromise = new Promise(resolve => {
+        setTimeout(() => {
+            minTimeElapsed = true;
+            resolve();
+        }, 5000);
+    });
     
     // Create a promise that resolves when iframe fully loads
     let iframeLoadPromise = new Promise((resolve) => {
         iframe.onload = () => {
-            clearInterval(progressInterval);
-            progressText.textContent = 'Report ready - preparing visualization...';
+            iframeLoaded = true;
             resolve();
         };
         
         iframe.onerror = () => {
+            // On error, still transition to error state
+            iframeLoaded = true;
             clearInterval(progressInterval);
+            // Show error cycling messages
             const connectingMessages = [
-                'Connecting to APEX intelligence...',
-                'Loading APEX engine...',
-                'Fetching profile data...',
-                'Preparing analysis...'
+                'Connection issue - retrying...',
+                'Unable to load report - check connection',
+                'Falling back to cached data...',
             ];
             let connectIndex = 0;
             window.aiProgressInterval = setInterval(() => {
                 progressText.textContent = connectingMessages[connectIndex % connectingMessages.length];
                 connectIndex++;
-            }, 1000);
-            resolve(); // Still resolve to show error state
+            }, 2000); // Change every 2 seconds
+            resolve();
         };
     });
     
     // Wait for BOTH the minimum display time AND iframe to load
     Promise.all([minDisplayTimePromise, iframeLoadPromise]).then(() => {
+        // Stop progress animation
+        clearInterval(progressInterval);
+        if (window.aiProgressInterval) {
+            clearInterval(window.aiProgressInterval);
+        }
+        
         // Fade out loader with scale animation
         loaderContainer.style.opacity = '0';
         loaderContainer.style.transform = 'scale(0.9)';
