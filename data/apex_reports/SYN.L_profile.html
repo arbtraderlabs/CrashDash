@@ -256,83 +256,102 @@
       </div>
     </div>
 
-    <!-- Bloomberg Terminal Footer -->
-    <div style="margin-top: 40px; background: linear-gradient(180deg, #0a1628 0%, #020617 100%); border: 1px solid #1e293b; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
-        <!-- Header Bar -->
-        <div style="background: rgba(59, 130, 246, 0.08); border-bottom: 1px solid rgba(59, 130, 246, 0.2); padding: 16px 24px;">
-            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%; box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);"></div>
-                    <span style="font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: 1px;">APEX Intelligence Terminal</span>
+    <!-- Bloomberg Terminal Footer (Collapsible) -->
+    <div id="footer-container" style="margin-top: 40px; background: linear-gradient(180deg, #0a1628 0%, #020617 100%); border: 1px solid #1e293b; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+        <!-- Header Bar (Always Visible) -->
+        <div style="background: rgba(59, 130, 246, 0.08); border-bottom: 1px solid rgba(59, 130, 246, 0.2); padding: 12px 16px; cursor: pointer;" onclick="toggleFooter()">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%;">
+                <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; overflow: hidden;">
+                    <div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%; box-shadow: 0 0 12px rgba(59, 130, 246, 0.6); flex-shrink: 0;"></div>
+                    <span style="font-family: 'Courier New', monospace; font-size: 12px; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">APEX Intelligence Terminal</span>
+                    <span id="footer-toggle-icon" style="font-size: 14px; color: #3b82f6; transition: transform 0.3s ease; flex-shrink: 0; margin-left: auto;">▼</span>
                 </div>
-                <div style="font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.5px;">
-                    GENERATED: <span style="color: #06b6d4;" id="footerDate"></span> • SESSION: <span style="color: #10b981;">LIVE</span>
-                </div>
+            </div>
+            <div style="font-family: 'Courier New', monospace; font-size: 9px; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.3px; margin-top: 6px; overflow: hidden;">
+                GENERATED: <span style="color: #06b6d4;" id="footerDate"></span> • SESSION: <span style="color: #10b981;">LIVE</span>
             </div>
         </div>
         
-        <!-- Content Grid -->
-        <div style="padding: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
-            <!-- Left Column -->
-            <div style="display: flex; flex-direction: column; gap: 20px;">
-                <!-- System Information -->
-                <div>
-                    <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #3b82f6; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">System Information</div>
-                    <div style="font-family: 'Courier New', monospace; font-size: 10px; color: rgba(255, 255, 255, 0.7); display: flex; gap: 16px; flex-wrap: wrap; align-items: center;">
-                        <span><span style="color: rgba(255, 255, 255, 0.4);">VERSION:</span> <span style="color: #06b6d4; font-weight: 700;">APEX v5.0</span></span>
-                        <span style="color: rgba(255, 255, 255, 0.2);">•</span>
-                        <span><span style="color: rgba(255, 255, 255, 0.4);">ENGINE:</span> <span style="color: #10b981;">CrashDash Intelligence</span></span>
-                        <span style="color: rgba(255, 255, 255, 0.2);">•</span>
-                        <span><span style="color: rgba(255, 255, 255, 0.4);">COVERAGE:</span> <span style="color: #a855f7;">LSE AIM Micro-Caps</span></span>
-                        <span style="color: rgba(255, 255, 255, 0.2);">•</span>
-                        <span><span style="color: rgba(255, 255, 255, 0.4);">SOURCES:</span> <span style="color: #ef4444;">RNS • Social • Trends</span></span>
+        <!-- Collapsible Content Section -->
+        <div id="footer-content" style="display: none;">
+            <!-- Content Grid -->
+            <div style="padding: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                <!-- Left Column -->
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <!-- System Information -->
+                    <div>
+                        <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #3b82f6; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">System Information</div>
+                        <div style="font-family: 'Courier New', monospace; font-size: 10px; color: rgba(255, 255, 255, 0.7); display: flex; gap: 16px; flex-wrap: wrap; align-items: center;">
+                            <span><span style="color: rgba(255, 255, 255, 0.4);">VERSION:</span> <span style="color: #06b6d4; font-weight: 700;">APEX v5.0</span></span>
+                            <span style="color: rgba(255, 255, 255, 0.2);">•</span>
+                            <span><span style="color: rgba(255, 255, 255, 0.4);">ENGINE:</span> <span style="color: #10b981;">CrashDash Intelligence</span></span>
+                            <span style="color: rgba(255, 255, 255, 0.2);">•</span>
+                            <span><span style="color: rgba(255, 255, 255, 0.4);">COVERAGE:</span> <span style="color: #a855f7;">LSE AIM Micro-Caps</span></span>
+                            <span style="color: rgba(255, 255, 255, 0.2);">•</span>
+                            <span><span style="color: rgba(255, 255, 255, 0.4);">SOURCES:</span> <span style="color: #ef4444;">RNS • Social • Trends</span></span>
+                        </div>
+                    </div>
+                    
+                    <!-- Risk Disclosure -->
+                    <div>
+                        <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #ef4444; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Risk Disclosure</div>
+                        <div style="font-family: 'Courier New', monospace; font-size: 10px; color: rgba(255, 255, 255, 0.5); line-height: 1.6;">
+                            This analysis is provided for informational purposes only and does not constitute financial advice. AIM micro-cap securities carry significant volatility and liquidity risks. Past performance does not guarantee future results. Always conduct your own due diligence and consult with a qualified financial advisor before making investment decisions.
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Risk Disclosure -->
-                <div>
-                    <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #ef4444; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Risk Disclosure</div>
-                    <div style="font-family: 'Courier New', monospace; font-size: 10px; color: rgba(255, 255, 255, 0.5); line-height: 1.6;">
-                        This analysis is provided for informational purposes only and does not constitute financial advice. AIM micro-cap securities carry significant volatility and liquidity risks. Past performance does not guarantee future results. Always conduct your own due diligence and consult with a qualified financial advisor before making investment decisions.
+                <!-- Right Column -->
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <!-- Platform Overview -->
+                    <div>
+                        <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #10b981; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Platform Overview</div>
+                        <div style="font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
+                            APEX Intelligence Terminal combines technical analysis, sentiment tracking, and regulatory news monitoring to identify high-probability contrarian setups in distressed micro-cap equities. Our proprietary scoring system evaluates setup quality, panic intensity, and compression patterns to surface opportunities before institutional recognition.
+                        </div>
+                    </div>
+                    
+                    <!-- Target Users -->
+                    <div>
+                        <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #a855f7; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Target Users</div>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 4px; color: #a855f7; font-weight: 600;">PROP TRADERS</span>
+                            <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 4px; color: #3b82f6; font-weight: 600;">HEDGE FUNDS</span>
+                            <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 4px; color: #10b981; font-weight: 600;">QUANT TEAMS</span>
+                            <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 4px; color: #ef4444; font-weight: 600;">RESEARCH DESKS</span>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Right Column -->
-            <div style="display: flex; flex-direction: column; gap: 20px;">
-                <!-- Platform Overview -->
-                <div>
-                    <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #10b981; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Platform Overview</div>
-                    <div style="font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
-                        APEX Intelligence Terminal combines technical analysis, sentiment tracking, and regulatory news monitoring to identify high-probability contrarian setups in distressed micro-cap equities. Our proprietary scoring system evaluates setup quality, panic intensity, and compression patterns to surface opportunities before institutional recognition.
+            <!-- Bottom Bar -->
+            <div style="background: rgba(2, 6, 23, 0.6); border-top: 1px solid rgba(59, 130, 246, 0.15); padding: 12px 24px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-family: 'Courier New', monospace; font-size: 10px;">
+                    <div style="color: rgba(255, 255, 255, 0.4);">© 2026 APEX Intelligence • All Rights Reserved</div>
+                    <div style="display: flex; align-items: center; gap: 20px; color: rgba(255, 255, 255, 0.5);">
+                        <span>STATUS: <span style="color: #10b981; font-weight: 700;">● OPERATIONAL</span></span>
+                        <span>LATENCY: <span style="color: #06b6d4; font-weight: 700;">12ms</span></span>
+                        <span>BUILD: <span style="color: #a855f7; font-weight: 700;">5.0.2</span></span>
                     </div>
-                </div>
-                
-                <!-- Target Users -->
-                <div>
-                    <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #a855f7; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Target Users</div>
-                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                        <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 4px; color: #a855f7; font-weight: 600;">PROP TRADERS</span>
-                        <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 4px; color: #3b82f6; font-weight: 600;">HEDGE FUNDS</span>
-                        <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 4px; color: #10b981; font-weight: 600;">QUANT TEAMS</span>
-                        <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 4px; color: #ef4444; font-weight: 600;">RESEARCH DESKS</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Bottom Bar -->
-        <div style="background: rgba(2, 6, 23, 0.6); border-top: 1px solid rgba(59, 130, 246, 0.15); padding: 12px 24px;">
-            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-family: 'Courier New', monospace; font-size: 10px;">
-                <div style="color: rgba(255, 255, 255, 0.4);">© 2026 APEX Intelligence • All Rights Reserved</div>
-                <div style="display: flex; align-items: center; gap: 20px; color: rgba(255, 255, 255, 0.5);">
-                    <span>STATUS: <span style="color: #10b981; font-weight: 700;">● OPERATIONAL</span></span>
-                    <span>LATENCY: <span style="color: #06b6d4; font-weight: 700;">12ms</span></span>
-                    <span>BUILD: <span style="color: #a855f7; font-weight: 700;">5.0.2</span></span>
                 </div>
             </div>
         </div>
     </div>
+    
+    <script>
+        function toggleFooter() {
+            const content = document.getElementById('footer-content');
+            const icon = document.getElementById('footer-toggle-icon');
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.style.display = 'none';
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+    </script>
   </div>
   
   <!-- Mobile Responsive Styles -->
@@ -340,19 +359,26 @@
     @media(max-width:768px){
         body{padding:10px!important}
         .container{max-width:100%!important}
+        #footer-container{margin-top:20px!important}
         div[style*="grid-template-columns: 1fr 1fr"]{grid-template-columns:1fr!important;gap:12px!important}
         div[style*="grid-template-columns: repeat(4"]{grid-template-columns:repeat(2,1fr)!important;gap:10px!important}
         div[style*="padding: 24px"]{padding:16px!important}
+        div[style*="padding: 12px 16px"]{padding:10px 12px!important}
         div[style*="gap: 20px"]{gap:14px!important}
         div[style*="font-size: 11px"]{font-size:10px!important}
+        div[style*="font-size: 12px"]{font-size:11px!important}
+        div[style*="font-size: 13px"]{font-size:12px!important}
     }
     @media(max-width:480px){
         body{padding:6px!important}
         .container{padding:0!important;margin:0!important}
+        #footer-container{margin-top:16px!important;margin-left:6px!important;margin-right:6px!important}
+        #footer-container > div:first-child{padding:8px 10px!important}
         div[style*="grid-template-columns: 1fr 1fr"]{grid-template-columns:1fr!important;gap:8px!important}
         div[style*="grid-template-columns: repeat(4"]{grid-template-columns:1fr!important;gap:6px!important;padding:8px 10px!important}
         div[style*="grid-template-columns: repeat(2"]{grid-template-columns:1fr!important;gap:6px!important}
         div[style*="padding: 24px"]{padding:10px!important}
+        div[style*="padding: 12px 16px"]{padding:8px 10px!important}
         div[style*="padding: 14px 16px"]{padding:8px 10px!important}
         div[style*="padding: 18px"]{padding:10px!important}
         div[style*="gap: 20px"]{gap:8px!important}
@@ -360,6 +386,8 @@
         div[style*="gap: 24px"]{gap:10px!important}
         div[style*="gap: 16px"]{gap:6px!important}
         div[style*="gap: 12px"]{gap:6px!important}
+        div[style*="gap: 8px"]{gap:4px!important}
+        div[style*="font-size: 9px"]{font-size:8px!important}
         div[style*="font-size: 10px"]{font-size:8px!important}
         div[style*="font-size: 11px"]{font-size:9px!important}
         div[style*="font-size: 12px"]{font-size:10px!important}
@@ -381,7 +409,7 @@
   <script>window.__APEX_PROFILE = {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "SYN.L",
-  "generated_at": "2026-02-10T21:14:50.246241Z",
+  "generated_at": "2026-02-10T22:19:41.934572Z",
   "top_card": {
     "ticker": "SYN.L",
     "company_name": "Synergia Energy Ltd",
@@ -1044,7 +1072,7 @@
     "social": {
       "has_data": true,
       "buzz_level": "HIGH",
-      "post_count": 1910,
+      "post_count": 2212,
       "sentiment_breakdown": {
         "positive": 0.0,
         "neutral": 100.0,

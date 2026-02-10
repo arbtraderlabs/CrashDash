@@ -256,83 +256,102 @@
       </div>
     </div>
 
-    <!-- Bloomberg Terminal Footer -->
-    <div style="margin-top: 40px; background: linear-gradient(180deg, #0a1628 0%, #020617 100%); border: 1px solid #1e293b; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
-        <!-- Header Bar -->
-        <div style="background: rgba(59, 130, 246, 0.08); border-bottom: 1px solid rgba(59, 130, 246, 0.2); padding: 16px 24px;">
-            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%; box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);"></div>
-                    <span style="font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: 1px;">APEX Intelligence Terminal</span>
+    <!-- Bloomberg Terminal Footer (Collapsible) -->
+    <div id="footer-container" style="margin-top: 40px; background: linear-gradient(180deg, #0a1628 0%, #020617 100%); border: 1px solid #1e293b; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+        <!-- Header Bar (Always Visible) -->
+        <div style="background: rgba(59, 130, 246, 0.08); border-bottom: 1px solid rgba(59, 130, 246, 0.2); padding: 12px 16px; cursor: pointer;" onclick="toggleFooter()">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%;">
+                <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; overflow: hidden;">
+                    <div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%; box-shadow: 0 0 12px rgba(59, 130, 246, 0.6); flex-shrink: 0;"></div>
+                    <span style="font-family: 'Courier New', monospace; font-size: 12px; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">APEX Intelligence Terminal</span>
+                    <span id="footer-toggle-icon" style="font-size: 14px; color: #3b82f6; transition: transform 0.3s ease; flex-shrink: 0; margin-left: auto;">▼</span>
                 </div>
-                <div style="font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.5px;">
-                    GENERATED: <span style="color: #06b6d4;" id="footerDate"></span> • SESSION: <span style="color: #10b981;">LIVE</span>
-                </div>
+            </div>
+            <div style="font-family: 'Courier New', monospace; font-size: 9px; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.3px; margin-top: 6px; overflow: hidden;">
+                GENERATED: <span style="color: #06b6d4;" id="footerDate"></span> • SESSION: <span style="color: #10b981;">LIVE</span>
             </div>
         </div>
         
-        <!-- Content Grid -->
-        <div style="padding: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
-            <!-- Left Column -->
-            <div style="display: flex; flex-direction: column; gap: 20px;">
-                <!-- System Information -->
-                <div>
-                    <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #3b82f6; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">System Information</div>
-                    <div style="font-family: 'Courier New', monospace; font-size: 10px; color: rgba(255, 255, 255, 0.7); display: flex; gap: 16px; flex-wrap: wrap; align-items: center;">
-                        <span><span style="color: rgba(255, 255, 255, 0.4);">VERSION:</span> <span style="color: #06b6d4; font-weight: 700;">APEX v5.0</span></span>
-                        <span style="color: rgba(255, 255, 255, 0.2);">•</span>
-                        <span><span style="color: rgba(255, 255, 255, 0.4);">ENGINE:</span> <span style="color: #10b981;">CrashDash Intelligence</span></span>
-                        <span style="color: rgba(255, 255, 255, 0.2);">•</span>
-                        <span><span style="color: rgba(255, 255, 255, 0.4);">COVERAGE:</span> <span style="color: #a855f7;">LSE AIM Micro-Caps</span></span>
-                        <span style="color: rgba(255, 255, 255, 0.2);">•</span>
-                        <span><span style="color: rgba(255, 255, 255, 0.4);">SOURCES:</span> <span style="color: #ef4444;">RNS • Social • Trends</span></span>
+        <!-- Collapsible Content Section -->
+        <div id="footer-content" style="display: none;">
+            <!-- Content Grid -->
+            <div style="padding: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                <!-- Left Column -->
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <!-- System Information -->
+                    <div>
+                        <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #3b82f6; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">System Information</div>
+                        <div style="font-family: 'Courier New', monospace; font-size: 10px; color: rgba(255, 255, 255, 0.7); display: flex; gap: 16px; flex-wrap: wrap; align-items: center;">
+                            <span><span style="color: rgba(255, 255, 255, 0.4);">VERSION:</span> <span style="color: #06b6d4; font-weight: 700;">APEX v5.0</span></span>
+                            <span style="color: rgba(255, 255, 255, 0.2);">•</span>
+                            <span><span style="color: rgba(255, 255, 255, 0.4);">ENGINE:</span> <span style="color: #10b981;">CrashDash Intelligence</span></span>
+                            <span style="color: rgba(255, 255, 255, 0.2);">•</span>
+                            <span><span style="color: rgba(255, 255, 255, 0.4);">COVERAGE:</span> <span style="color: #a855f7;">LSE AIM Micro-Caps</span></span>
+                            <span style="color: rgba(255, 255, 255, 0.2);">•</span>
+                            <span><span style="color: rgba(255, 255, 255, 0.4);">SOURCES:</span> <span style="color: #ef4444;">RNS • Social • Trends</span></span>
+                        </div>
+                    </div>
+                    
+                    <!-- Risk Disclosure -->
+                    <div>
+                        <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #ef4444; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Risk Disclosure</div>
+                        <div style="font-family: 'Courier New', monospace; font-size: 10px; color: rgba(255, 255, 255, 0.5); line-height: 1.6;">
+                            This analysis is provided for informational purposes only and does not constitute financial advice. AIM micro-cap securities carry significant volatility and liquidity risks. Past performance does not guarantee future results. Always conduct your own due diligence and consult with a qualified financial advisor before making investment decisions.
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Risk Disclosure -->
-                <div>
-                    <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #ef4444; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Risk Disclosure</div>
-                    <div style="font-family: 'Courier New', monospace; font-size: 10px; color: rgba(255, 255, 255, 0.5); line-height: 1.6;">
-                        This analysis is provided for informational purposes only and does not constitute financial advice. AIM micro-cap securities carry significant volatility and liquidity risks. Past performance does not guarantee future results. Always conduct your own due diligence and consult with a qualified financial advisor before making investment decisions.
+                <!-- Right Column -->
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <!-- Platform Overview -->
+                    <div>
+                        <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #10b981; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Platform Overview</div>
+                        <div style="font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
+                            APEX Intelligence Terminal combines technical analysis, sentiment tracking, and regulatory news monitoring to identify high-probability contrarian setups in distressed micro-cap equities. Our proprietary scoring system evaluates setup quality, panic intensity, and compression patterns to surface opportunities before institutional recognition.
+                        </div>
+                    </div>
+                    
+                    <!-- Target Users -->
+                    <div>
+                        <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #a855f7; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Target Users</div>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 4px; color: #a855f7; font-weight: 600;">PROP TRADERS</span>
+                            <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 4px; color: #3b82f6; font-weight: 600;">HEDGE FUNDS</span>
+                            <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 4px; color: #10b981; font-weight: 600;">QUANT TEAMS</span>
+                            <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 4px; color: #ef4444; font-weight: 600;">RESEARCH DESKS</span>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Right Column -->
-            <div style="display: flex; flex-direction: column; gap: 20px;">
-                <!-- Platform Overview -->
-                <div>
-                    <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #10b981; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Platform Overview</div>
-                    <div style="font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
-                        APEX Intelligence Terminal combines technical analysis, sentiment tracking, and regulatory news monitoring to identify high-probability contrarian setups in distressed micro-cap equities. Our proprietary scoring system evaluates setup quality, panic intensity, and compression patterns to surface opportunities before institutional recognition.
+            <!-- Bottom Bar -->
+            <div style="background: rgba(2, 6, 23, 0.6); border-top: 1px solid rgba(59, 130, 246, 0.15); padding: 12px 24px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-family: 'Courier New', monospace; font-size: 10px;">
+                    <div style="color: rgba(255, 255, 255, 0.4);">© 2026 APEX Intelligence • All Rights Reserved</div>
+                    <div style="display: flex; align-items: center; gap: 20px; color: rgba(255, 255, 255, 0.5);">
+                        <span>STATUS: <span style="color: #10b981; font-weight: 700;">● OPERATIONAL</span></span>
+                        <span>LATENCY: <span style="color: #06b6d4; font-weight: 700;">12ms</span></span>
+                        <span>BUILD: <span style="color: #a855f7; font-weight: 700;">5.0.2</span></span>
                     </div>
-                </div>
-                
-                <!-- Target Users -->
-                <div>
-                    <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #a855f7; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Target Users</div>
-                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                        <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 4px; color: #a855f7; font-weight: 600;">PROP TRADERS</span>
-                        <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 4px; color: #3b82f6; font-weight: 600;">HEDGE FUNDS</span>
-                        <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 4px; color: #10b981; font-weight: 600;">QUANT TEAMS</span>
-                        <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 4px; color: #ef4444; font-weight: 600;">RESEARCH DESKS</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Bottom Bar -->
-        <div style="background: rgba(2, 6, 23, 0.6); border-top: 1px solid rgba(59, 130, 246, 0.15); padding: 12px 24px;">
-            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-family: 'Courier New', monospace; font-size: 10px;">
-                <div style="color: rgba(255, 255, 255, 0.4);">© 2026 APEX Intelligence • All Rights Reserved</div>
-                <div style="display: flex; align-items: center; gap: 20px; color: rgba(255, 255, 255, 0.5);">
-                    <span>STATUS: <span style="color: #10b981; font-weight: 700;">● OPERATIONAL</span></span>
-                    <span>LATENCY: <span style="color: #06b6d4; font-weight: 700;">12ms</span></span>
-                    <span>BUILD: <span style="color: #a855f7; font-weight: 700;">5.0.2</span></span>
                 </div>
             </div>
         </div>
     </div>
+    
+    <script>
+        function toggleFooter() {
+            const content = document.getElementById('footer-content');
+            const icon = document.getElementById('footer-toggle-icon');
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.style.display = 'none';
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+    </script>
   </div>
   
   <!-- Mobile Responsive Styles -->
@@ -340,19 +359,26 @@
     @media(max-width:768px){
         body{padding:10px!important}
         .container{max-width:100%!important}
+        #footer-container{margin-top:20px!important}
         div[style*="grid-template-columns: 1fr 1fr"]{grid-template-columns:1fr!important;gap:12px!important}
         div[style*="grid-template-columns: repeat(4"]{grid-template-columns:repeat(2,1fr)!important;gap:10px!important}
         div[style*="padding: 24px"]{padding:16px!important}
+        div[style*="padding: 12px 16px"]{padding:10px 12px!important}
         div[style*="gap: 20px"]{gap:14px!important}
         div[style*="font-size: 11px"]{font-size:10px!important}
+        div[style*="font-size: 12px"]{font-size:11px!important}
+        div[style*="font-size: 13px"]{font-size:12px!important}
     }
     @media(max-width:480px){
         body{padding:6px!important}
         .container{padding:0!important;margin:0!important}
+        #footer-container{margin-top:16px!important;margin-left:6px!important;margin-right:6px!important}
+        #footer-container > div:first-child{padding:8px 10px!important}
         div[style*="grid-template-columns: 1fr 1fr"]{grid-template-columns:1fr!important;gap:8px!important}
         div[style*="grid-template-columns: repeat(4"]{grid-template-columns:1fr!important;gap:6px!important;padding:8px 10px!important}
         div[style*="grid-template-columns: repeat(2"]{grid-template-columns:1fr!important;gap:6px!important}
         div[style*="padding: 24px"]{padding:10px!important}
+        div[style*="padding: 12px 16px"]{padding:8px 10px!important}
         div[style*="padding: 14px 16px"]{padding:8px 10px!important}
         div[style*="padding: 18px"]{padding:10px!important}
         div[style*="gap: 20px"]{gap:8px!important}
@@ -360,6 +386,8 @@
         div[style*="gap: 24px"]{gap:10px!important}
         div[style*="gap: 16px"]{gap:6px!important}
         div[style*="gap: 12px"]{gap:6px!important}
+        div[style*="gap: 8px"]{gap:4px!important}
+        div[style*="font-size: 9px"]{font-size:8px!important}
         div[style*="font-size: 10px"]{font-size:8px!important}
         div[style*="font-size: 11px"]{font-size:9px!important}
         div[style*="font-size: 12px"]{font-size:10px!important}
@@ -381,7 +409,7 @@
   <script>window.__APEX_PROFILE = {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "FRG.L",
-  "generated_at": "2026-02-10T21:14:52.686974Z",
+  "generated_at": "2026-02-10T22:19:44.674874Z",
   "top_card": {
     "ticker": "FRG.L",
     "company_name": "Firering Strategic Minerals Plc",
@@ -526,6 +554,14 @@
       "ticker": "FRG.L",
       "latest": [
         {
+          "title": "Operations Update",
+          "announcement_date": "10th Feb 2026",
+          "release_time": "7:00 am",
+          "source": "RNS",
+          "content": "Today 07:00\nRNS Number : 3017S\nFirering Strategic Minerals PLC\n10 February 2026\nFirering Strategic Minerals plc / EPIC: FRG / Market: AIM / Sector: Mining\n10 February 2026\nFirering Strategic Minerals plc\n(\"Firering\" or \"the Company\")\nOperations Updates\nKiln 2 Hot Commissioned & Commercial Momentum Building\nFirering Strategic Minerals plc (AIM: FRG), a producer of lime products and explorer of critical minerals, is pleased to provide an update on its producing lime asset in Zambia, Limeco Resources Limited (\"Limeco\").\nHighlights\n\u00b7\nCompleted hot commissioning of Kiln 2, which is now entering the optimisation phase.\n\u00b7\nProgression toward sustained multi-kiln production, strengthening operating leverage, cash generation potential and strategic and financing optionality.\n\u00b7\nGrowing commercial momentum underpinned by successful product validation, international orders, and further opportunities under discussion.\n\u00b7\nCompleted the exercise of the third tranche of the Option to acquire a further 5.5% interest in Limeco, taking its interest to 36.2%.\nFirering Chairman and Interim CEO, Youval Rasin, commented:\n\"Hot commissioning of Kiln 2 is a further delivery milestone for Limeco and demonstrates the operational discipline now in place across the site. Applying the learnings from Kiln 1 enables us to have a more predictable, repeatable ramp-up as we scale to a multi-kiln operation. Notably, each additional kiln brought into stable production, materially strengthens the business and expands its strategic optionality.\"\nDETAILS\nLimeco Operations\nLimeco has completed the hot commissioning of Kiln 2, during which saleable material was produced. As with the first kiln, production from Kiln 2 is expected to ramp up over an approximate three-month optimisation period, during which operating parameters will be progressively refined to achieve consistent output with consistent quality and reliability. This optimisation phase is standard practice in the industry.\nKiln 2 incorporates the operational learnings from the ramp-up of Kiln 1, with targeted improvements to the burner system, airflow management, heat distribution and monitoring protocols, supporting a faster and more predictable path to steady-state production.\nEach additional kiln brought into stable operation materially strengthens operating leverage, cash generation potential and the overall resilience of the Project. In this context, the successful hot commissioning of Kiln 2 represents a further step in strengthening Firering's strategic and financing optionality as production capacity continues to increase.\nLimeco Sales and Customer Engagement\nCommercial momentum continues to build, with growing interest in Limeco's product range and encouraging developments across local and regional markets. Following a stringent validation process involving laboratory testing, bulk sampling, site inspections and trial orders, Limeco secured a 600t order from a major international mining group operating in Zambia. This order is currently being fulfilled, alongside a similar-sized order for material destined for clients in Zimbabwe. Engagements with additional prospective customers are ongoing, and Limeco is now well positioned to compete in tenders for longer-term supply contracts.\nLimeco Option Agreement\nIn line with the Limeco Option Agreement (the \"Option\") (see RNS dated\n28 May\n2024)\n, Firering has completed the exercise of the third tranche of the Option to acquire a further 5.5% interest in Limeco, taking its shareholding in Limeco to 36.2%.\nENDS\nFor further information visit www.fireringplc.com or contact:\nFirering Strategic Minerals\nVassilios Carellas\nE: info@firering-holdings.com\nSPARK Advisory Partners Limited (Nominated Adviser)\nNeil Baldwin / James Keeshan\nT: +44 20 3368 3550\nShard Capital Partners LLP (Joint Broker)\nDamon Heath / Erik Woolgar\nT: +44 20 7186 9950\nSt Brides Partners Limited (Financial PR)\nIsabel de Salis / Susie Geliher\nE:\u00a0firering@stbridespartners.co.uk\nNotes\nFirering Strategic Minerals plc (AIM: FRG) is an Africa-focused producer and developer of industrial and critical minerals. The Company's near-term focus is the ramp-up of production at the Limeco lime project in Zambia, where Firering holds a 36.2% interest with an option to increase this to 45%. Once fully optimised, Limeco is expected to be among the largest lime operations in the region, supplying major copper producers in the Central African Copperbelt and gold producers in Zimbabwe. Firering's portfolio also includes the highly prospective Atex Lithium-Tantalum Project in northern C\u00f4te d'Ivoire.\nThis information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact\nrns@lseg.com\nor visit\nwww.rns.com\n.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our\nPrivacy Policy\n.\nEND\nUPDBLGDDRBGDGLC",
+          "rns_number": "RNS Number : 3017S"
+        },
+        {
           "title": "Holding(s) in Company",
           "announcement_date": "5th Feb 2026",
           "release_time": "2:57 pm",
@@ -556,14 +592,6 @@
           "source": "RNS",
           "content": "14 Jan 2026 07:00\nRNS Number : 7767O\nFirering Strategic Minerals PLC\n14 January 2026\nFirering Strategic Minerals plc / EPIC: FRG / Market: AIM / Sector: Mining\n14 January 2026\nFirering Strategic Minerals plc\n(\"Firering\" or \"the Company\")\nOperations Update\nProduction momentum accelerating with new potential revenue streams and portfolio upside\nFirering Strategic Minerals plc (AIM: FRG), a producer of lime products and explorer of critical minerals, is pleased to provide an update on operational progress at its producing lime asset in Zambia, Limeco Resources Limited (\"Limeco\"), alongside positive developments across its broader portfolio.\nHighlights\n\u00b7\nCold commissioning of Kiln 2 commenced with hot commissioning to follow shortly thereafter.\n\u00b7\nContainer with equipment for Kilns 3 and 4 on site allowing rapid modification once Kiln 2 is operating.\n\u00b7\nCommercial momentum building with strengthening potential demand from a varied customer base.\n\u00b7\nFast-tracking the installation of a high-purity calcium carbonate milling circuit with commissioning currently expected in Q3 2026.\n\u00b7\nPortfolio value reinforced as Atex and Alliance attract third-party interest amid improving lithium market conditions.\nYuval Cohen, Chief Executive Officer of Firering, commented:\n\"\nOperational momentum is building across the business. At Limeco, the cold commissioning of our second kiln marks an important step towards scaling production, while growing customer engagement, and the acceleration of new potential revenue streams underline the strength of demand for our lime products. In parallel, improving lithium market dynamics are drawing renewed third-party interest in Atex and Alliance, highlighting the strategic value embedded in our wider portfolio.\"\nLimeco Operations\nLimeco continues to make good operational progress as it advances towards higher output from its integrated limestone mining and processing operation.\nFollowing on from connecting Kiln 2 to the feed system and gasifier, cold commissioning has commenced, with hot commissioning and optimisation to follow. Once commissioned, production from Kiln 2 is expected to ramp during a three month optimisation period. The final container with equipment for Kilns 3 and 4 is now on site, allowing the Company to move quickly into modifying these kilns once Kiln 2 is optimised and operating.\nKiln 1 remains operational, and over recent months Limeco has built up an inventory of approximately 5,000 tonnes of finished product, providing near-term supply flexibility as production scales.\nIn addition, Limeco is fast-tracking the installation of a high-purity calcium carbonate milling circuit (exceeding 95 percent CaCO\u2083). This will create a new revenue stream with applications across construction materials, industrial products and environmental uses. Commissioning of the milling circuit is currently expected in Q3 2026.\nLimeco Sales and Customer Engagement\nCommercial momentum continues to build, with a growing pipeline of sales discussions progressing through the typical three-month qualification process, including laboratory testing, bulk sampling, site inspections and trial orders.\nNotably, Limeco recently hosted a site visit from a major international mining group operating in Zambia, the country's largest copper and cobalt producer. Discussions focused on Limeco's production capabilities and the potential supply of hydrated lime, reflecting increasing demand from large-scale mining operators for reliable, high-performance lime products critical to their operations.\nAtex and Alliance Portfolio Assets\nFollowing the announcement of 19 August 2025 and subsequent confirmation of full and final settlement (as detailed in the announcements of 12 November 2025, 19 November 2025 and 24 December 2025), Firering now holds a 90 percent interest in Atex and a 51 percent interest in Alliance, both lithium-tantalum projects located in C\u00f4te d'Ivoire. These assets are fully unencumbered.\nThe Board continues to monitor improving lithium market conditions, which it believes are increasingly highlighting the compelling value fundamentals of both projects. In this context, Firering has received third-party interest in Atex and Alliance, reinforcing their underlying value within the Company's portfolio.\n*** ENDS ***\nFor further information visit www.fireringplc.com or contact:\nFirering Strategic Minerals\nVassilios Carellas\nE: info@firering-holdings.com\nSPARK Advisory Partners Limited (Nominated Adviser)\nNeil Baldwin / James Keeshan\nT: +44 20 3368 3550\nShard Capital Partners LLP (Joint Broker)\nDamon Heath / Erik Woolgar\nT: +44 20 7186 9950\nSt Brides Partners Limited (Financial PR)\nIsabel de Salis / Susie Geliher / Seb Weller\nE:\u00a0firering@stbridespartners.co.uk\nNotes\nFirering Strategic Minerals plc (AIM: FRG) is an emerging producer of quicklime and explorer of critical minerals. The Company is currently focused on ramping up production at the Limeco lime project in Zambia, in which it holds a 30.7% interest with an option to increase this to 45%. Targeting daily output of 600-800 tonnes, Limeco is well positioned to supply copper producers operating within the Central African Copperbelt and gold producers operating in Zimbabwe. Additionally, Firering is progressing the Atex Lithium-Tantalum Project in northern C\u00f4te d'Ivoire, a highly prospective asset with significant lithium and tantalum-niobium potential, supporting the global shift to clean energy technologies.\nThis information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact\nrns@lseg.com\nor visit\nwww.rns.com\n.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our\nPrivacy Policy\n.\nEND\nUPDDGGDBUBBDGLX",
           "rns_number": "RNS Number : 7767O"
-        },
-        {
-          "title": "Fundraising and Limeco Operations Update",
-          "announcement_date": "24th Dec 2025",
-          "release_time": "7:00 am",
-          "source": "RNS",
-          "content": "24 Dec 2025 07:00\nRNS Number : 7340M\nFirering Strategic Minerals PLC\n24 December 2025\nTHIS ANNOUNCEMENT CONTAINS INSIDE INFORMATION AS STIPULATED UNDER THE UK VERSION OF THE MARKET ABUSE REGULATION NO 596/2014 WHICH IS PART OF ENGLISH LAW BY VIRTUE OF THE EUROPEAN (WITHDRAWAL) ACT 2018, AS AMENDED. ON PUBLICATION OF THIS ANNOUNCEMENT VIA A REGULATORY INFORMATION SERVICE, THIS INFORMATION IS CONSIDERED TO BE IN THE PUBLIC DOMAIN.\nFirering Strategic Minerals plc / EPIC: FRG / Market: AIM / Sector: Mining\n24 December 2025\nFirering Strategic Minerals plc\n(\"Firering\" or \"the Company\")\nFundraising and Limeco Operations Update; Related Party Transactions\nFunded and Scaling Production\nFirering Strategic Minerals plc (AIM: FRG), a producer of lime products and explorer of critical minerals, is pleased to announce that it has received US$1m in full and final settlement of all debts and claims owed by Ricca. In addition, Firering announces the closing of a placing and subscription raising a further \u00a30.86 m (the \"Placing\" and \"Subscription\"). The injection of new capital will support continued progress at Firering's flagship asset, Limeco Resources Limited (\"Limeco\") in Zambia, where the ramp up of lime production is advancing in line with the Company's growth strategy.\nHIGHLIGHTS\n\u00b7\nUS$1m Ricca debt settlement received together with \u00a30.86m raised, support increasing Firering's interest in Limeco and the continued ramp up of operations\n\u00b7\nKiln 2 refurbishment complete with current activities focussed on connecting it to the gasifier and feed system - cold commissioning to commence in mid-January.\n\u00b7\nFinal container for Kiln 3 & 4 expected on site next month allowing for the immediate refurbishment and commissioning of these two additional kilns after bringing Kiln 2 online.\n\u00b7\nThird product stream, a >95% CaCo3 powder, which is expected to achieve multiples of the sales value of the limestone in its current aggregate form, now being developed.\n\u00b7\nCommercial traction accelerating under new Head of Sales, with several long-term partner negotiations advancing through a three to six month testing cycle.\nYuval Cohen, Chief Executive\nOfficer of Firering, commented:\n\"We are pleased to have received the US$1m Ricca settlement along with completing the Placing and Subscription for an additional \u00a30.86 m, largely supported by existing shareholders. The injection of new capital comes at a pivotal stage for Firering as we look to increase our interest in Limeco, our primary value driver, as we push forward with operational ramp up and product diversification efforts.\n\"Operational progress at Limeco continues to build, reflecting our focus on establishing an efficient and growth-oriented lime products business. With Kiln 1 performing reliably and Kiln 2 due for cold commissioning in the coming weeks, we are on track to increase output, producing both quicklime and hydrated lime. This momentum is further supported by third party interest in acquiring limestone powder produced directly from Limeco's Tier 1 limestone resource. These developments position Limeco as a responsible, long-term supplier of lime products to the mining, food, and industrial sectors.\"\nDETAILS\nRicca Resources US$1M Settlement\nFurther to updates announced on the 19 November 2025 and 12 December 2025, all the Share Purchase Agreement completion conditions have been satisfied and Skylark has transferred US$1m to settle all outstanding amounts due from Ricca.\nFirering expects Ricca will make a distribution of net proceeds to Ricca shareholders following completion of the sale of a subsidiary asset for A$4.4m (approximately \u00a32.2 million), subject to an adjustment of up to A$332,000 (approximately \u00a3166,000) payable to Skylark Minerals Limited (ASX:SKM) (Skylark). Firering holds a 10.6% shareholding in Ricca.\nBackground to the Placing and Subscription\nFirering has raised additional funds via a Placing and Subscription principally to cover general working capital requirements, the property transfer tax charges in relation to the transfer of the shares it has already acquired in Limeco and to cover its share of any potential Limeco operating expenditures.\nPlacing\nThe Placing has been undertaken by the Company's broker Shard Capital Partners LLP ('Shard') and has raised, in aggregate, gross proceeds of \u00a30.585m through the placing of 46,800,000 new ordinary shares of \u20ac0.001 each (\"Ordinary Shares\") to certain investors at a price (\"Issue Price\") of 1.25 pence per share.\u00a0The Issue Price represents a discount of approximately 7 percent to the Closing Price of 1.35 pence per Ordinary Share on 23 December 2025, being the latest practicable business day prior to this announcement.\nThe Placing is conditional upon Admission of the Placing Shares to trading on AIM by 13 January 2026. The Company has agreed to pay Shard certain commission on the funds raised in addition to the grant of 2,808,000 warrants over Ordinary Shares (the 'Broker Warrants'). Each Broker Warrant will entitle Shard to subscribe for one new Ordinary Share at a price of 1.25 pence per Ordinary Share, exercisable for a period of three years from date of Admission.\nSubscription\nThe Company has raised \u00a30.275 million through the subscription whereby various investors have subscribed directly with the Company for 22,000,000 new Ordinary Shares at the Issue Price of 1.25 p per share.\nThe Subscription is conditional upon Admission of the Subscription Shares to trading on AIM by 8,00am on 13 January 2025.\nIn aggregate the Company has raised \u00a30.86 million gross (\u00a30.817 million net) in the Placing and Subscription.\nRelated Party Transactions\nClearglass Investments Limited (\"Clearglass\") has subscribed \u00a385,000 for 6,800,000 shares in the Subscription at the Issue Price. Clearglass is a Cypriot company (Company number HE351995), in which the Company's Chairman, Youval Rasin, is a director and 40% shareholder.\nThis subscription constitutes a related party transaction under AIM Rule 13 of the AIM Rules for Companies.\nPremier Miton Group plc has subscribed \u00a3250,000 for 20,000,000 shares in the Placing at the Issue Price. This subscription constitutes a related party transaction under AIM Rule 13 of the AIM Rules for Companies.\nThe Independent Directors (being Shai Kol, Yuval Cohen, Vassilios Carellas and Remy Welschinger) consider, having consulted with SPARK Advisory Partners Limited, the Company's nominated adviser, that the terms of the subscription by Clearglass and Premier Miton Group plc are fair and reasonable in so far as Shareholders are concerned.\nSubscribing Directors' Shareholdings\nName\nNumber of Subscription Shares\nTotal number of shares held post Admission\n% of enlarged share capital\nYouval Rasin*\n6,800,000\n33,004,795\n8.27\n* 13,466,666 of Mr Rasin's shareholding post Admission set out above are held by Clearglass Investments Limited, a company in which Mr Rasin is a director and shareholder.\nAdmission\nApplication will be made shortly to the London Stock Exchange plc for 68,800,000 new Ordinary Shares to be admitted to trading on AIM (\"Admission\"). It is expected that Admission will become effective and that dealings in these Shares on AIM will commence at 8:00 a.m. on or around 13 January 2026.\nTotal voting rights\nOn Admission, the Company's issued ordinary share capital will consist of 399,154,292 Ordinary Shares, with one vote per share. The Company does not hold any Ordinary Shares in treasury. Therefore, on Admission, the total number of Ordinary Shares and voting rights in the Company will be 399,154,292. With effect from Admission, this figure may be used by shareholders in the Company as the denominator for the calculations by which they will determine if they are required to notify their interest in, or a change to their interest in, the share capital of the Company under the FCA's Disclosure Guidance and Transparency Rules.\nLimeco Operations Update\nIn line with its development strategy, the Limeco quicklime operation continues to advance with Kiln1 continuing to operate reliably. Refurbishment of Kiln 2 is complete and activities are now focussed on connecting this Kiln to the feed system and gasifier. The schedule slipped slightly after one container was held at the border for several weeks, but cold commissioning is now expected to be commence in mid-January.\nPlanning for Kilns 3 and 4 is also moving ahead, with key equipment already on site and the final container for these kilns expected to be on site next month. The Company will then be in a position to move forward with the refurbishment and commissioning soon after Kiln 2 has been brought online.\nLimeco has also expanded its product range with the introduction of hydrated lime product whose margins are higher than those of quicklime. The hydrated lime is currently manually produced and interest for this product has necessitated Limeco to investigate installing a larger automated hydrating system.\nIn addition to hydrated lime, there has been third party interest for Limeco to produce a limestone powder from its Tier 1 high quality JORC Code Compliant limestone deposit. Limeco has confirmed that the cement plant that is currently being stored in containers on site has all the necessary equipment to produce this product. Limeco is now putting plans in place to install the required milling circuit to produce the >95% CaCo3 powder which is expected to achieve multiples of the value when compared to what it is currently being sold for in its aggregate form.\nLimeco is accelerating its commercial momentum under its new Head of Sales, backed by a focused marketing refresh and deeper customer outreach. Discussions with multiple long-term industrial partners are progressing, moving through the structured three to six month engagement and testing cycle. Following laboratory testing of Limeco's products, larger trial orders for quicklime and hydrated lime have been shipped to Zimbabwe and to the Copperbelt to run through their respective processing circuits.\nFurther, Limeco has also commenced with a registration process to become a registered supplier of lime products to one of the largest copper producers in Zambia.\nAs lime products are a key reagent to both the gold and copper producing processes, Limeco is well positioned between the copper belt and gold fields of Zimbabwe to benefit from the resulting increase in production due to demand and higher commodity prices.\n*** ENDS ***\nFor further information visit www.fireringplc.com or contact:\nFirering Strategic Minerals\nVassilios Carellas\nE: info@firering-holdings.com\nSPARK Advisory Partners Limited (Nominated Adviser)\nNeil Baldwin / James Keeshan\nT: +44 20 3368 3550\nShard Capital Partners LLP (Joint Broker)\nDamon Heath / Erik Woolgar\nT: +44 20 7186 9950\nSt Brides Partners Limited (Financial PR)\nIsabel de Salis / Susie Geliher / Seb Weller\nE:\u00a0firering@stbridespartners.co.uk\nNotes\nFirering Strategic Minerals plc (AIM: FRG) is an emerging producer of quicklime and explorer of critical minerals. The Company is currently focused on ramping up production at the Limeco quicklime project in Zambia, in which it holds a 30.7% interest with an option to increase this to 45%. Targeting daily output of 600-800 tonnes, Limeco is well positioned to supply copper producers operating within the Central African Copperbelt and gold producers operating in Zimbabwe. Additionally, Firering is progressing the Atex Lithium-Tantalum Project in northern C\u00f4te d'Ivoire, a highly prospective asset with significant lithium and tantalum-niobium potential, supporting the global shift to clean energy technologies.\n1\nDetails of the person discharging managerial responsibilities / person closely associated\na)\nName\nYouval Rasin\n2\nReason for the notification\na)\nPosition/status\nDirector\nb)\nInitial notification /Amendment\nInitial notification\n3\nDetails of the issuer, emission allowance market participant, auction platform, auctioneer or auction monitor\na)\nName\nFirering Strategic Minerals PLC\nb)\nLEI\n2138005GMF9GR4W9MN36\n4\nDetails of the transaction(s): section to be repeated for (i) each type of instrument; (ii) each type of transaction; (iii) each date; and (iv) each place where transactions have been conducted\na)\nDescription of the financial instrument, type of instrument\nOrdinary Shares of \u20ac0.001 each in the share capital of Firering Strategic Minerals PLC\nIdentification code\nb)\nNature of the transaction\nSubscription for Ordinary Shares\n6,800,000 shares have been subscribed by Clearglass Investments Limited, a company in which Mr Rasin is a director and shareholder\nc)\nPrice(s) and volume(s)\nPrice(s)\nVolume(s)\n1.25 pence\n6,800,000\nd)\nAggregated information\n- Aggregated volume\nN/A\n- Price\ne)\nDate of the transaction\n24 December 2025\nf)\nPlace of the transaction\nOutside a trading venue\nThis information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact\nrns@lseg.com\nor visit\nwww.rns.com\n.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our\nPrivacy Policy\n.\nEND\nMSCPPGWGPUPAPUW",
-          "rns_number": "RNS Number : 7340M"
         }
       ],
       "themes": [
@@ -574,7 +602,7 @@
     "social": {
       "has_data": true,
       "buzz_level": "HIGH",
-      "post_count": 902,
+      "post_count": 980,
       "sentiment_breakdown": {
         "positive": 0.0,
         "neutral": 100.0,
@@ -799,9 +827,7 @@
         "Strategic partnerships or takeovers",
         "Resource upgrade announcements"
       ],
-      "active_patterns": [
-        "Permitting delays or regulatory blocks"
-      ],
+      "active_patterns": [],
       "relevant_rns_count": 0,
       "key_metrics": [
         "Resource estimates (indicated/inferred tonnes)",
@@ -841,6 +867,13 @@
       {
         "type": "rns",
         "date": "Unknown",
+        "title": "Operations Update",
+        "status": "published",
+        "icon": "\ud83d\udce2"
+      },
+      {
+        "type": "rns",
+        "date": "Unknown",
         "title": "Holding(s) in Company",
         "status": "published",
         "icon": "\ud83d\udce2"
@@ -863,13 +896,6 @@
         "type": "rns",
         "date": "Unknown",
         "title": "Operations Update",
-        "status": "published",
-        "icon": "\ud83d\udce2"
-      },
-      {
-        "type": "rns",
-        "date": "Unknown",
-        "title": "Fundraising and Limeco Operations Update",
         "status": "published",
         "icon": "\ud83d\udce2"
       },
@@ -918,7 +944,7 @@
         },
         {
           "criterion": "Industry Pattern",
-          "value": "1 active",
+          "value": "0 active",
           "pass": true,
           "icon": "\u26cf\ufe0f"
         }

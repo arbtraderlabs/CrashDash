@@ -256,83 +256,102 @@
       </div>
     </div>
 
-    <!-- Bloomberg Terminal Footer -->
-    <div style="margin-top: 40px; background: linear-gradient(180deg, #0a1628 0%, #020617 100%); border: 1px solid #1e293b; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
-        <!-- Header Bar -->
-        <div style="background: rgba(59, 130, 246, 0.08); border-bottom: 1px solid rgba(59, 130, 246, 0.2); padding: 16px 24px;">
-            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%; box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);"></div>
-                    <span style="font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: 1px;">APEX Intelligence Terminal</span>
+    <!-- Bloomberg Terminal Footer (Collapsible) -->
+    <div id="footer-container" style="margin-top: 40px; background: linear-gradient(180deg, #0a1628 0%, #020617 100%); border: 1px solid #1e293b; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+        <!-- Header Bar (Always Visible) -->
+        <div style="background: rgba(59, 130, 246, 0.08); border-bottom: 1px solid rgba(59, 130, 246, 0.2); padding: 12px 16px; cursor: pointer;" onclick="toggleFooter()">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%;">
+                <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; overflow: hidden;">
+                    <div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%; box-shadow: 0 0 12px rgba(59, 130, 246, 0.6); flex-shrink: 0;"></div>
+                    <span style="font-family: 'Courier New', monospace; font-size: 12px; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">APEX Intelligence Terminal</span>
+                    <span id="footer-toggle-icon" style="font-size: 14px; color: #3b82f6; transition: transform 0.3s ease; flex-shrink: 0; margin-left: auto;">▼</span>
                 </div>
-                <div style="font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.5px;">
-                    GENERATED: <span style="color: #06b6d4;" id="footerDate"></span> • SESSION: <span style="color: #10b981;">LIVE</span>
-                </div>
+            </div>
+            <div style="font-family: 'Courier New', monospace; font-size: 9px; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.3px; margin-top: 6px; overflow: hidden;">
+                GENERATED: <span style="color: #06b6d4;" id="footerDate"></span> • SESSION: <span style="color: #10b981;">LIVE</span>
             </div>
         </div>
         
-        <!-- Content Grid -->
-        <div style="padding: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
-            <!-- Left Column -->
-            <div style="display: flex; flex-direction: column; gap: 20px;">
-                <!-- System Information -->
-                <div>
-                    <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #3b82f6; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">System Information</div>
-                    <div style="font-family: 'Courier New', monospace; font-size: 10px; color: rgba(255, 255, 255, 0.7); display: flex; gap: 16px; flex-wrap: wrap; align-items: center;">
-                        <span><span style="color: rgba(255, 255, 255, 0.4);">VERSION:</span> <span style="color: #06b6d4; font-weight: 700;">APEX v5.0</span></span>
-                        <span style="color: rgba(255, 255, 255, 0.2);">•</span>
-                        <span><span style="color: rgba(255, 255, 255, 0.4);">ENGINE:</span> <span style="color: #10b981;">CrashDash Intelligence</span></span>
-                        <span style="color: rgba(255, 255, 255, 0.2);">•</span>
-                        <span><span style="color: rgba(255, 255, 255, 0.4);">COVERAGE:</span> <span style="color: #a855f7;">LSE AIM Micro-Caps</span></span>
-                        <span style="color: rgba(255, 255, 255, 0.2);">•</span>
-                        <span><span style="color: rgba(255, 255, 255, 0.4);">SOURCES:</span> <span style="color: #ef4444;">RNS • Social • Trends</span></span>
+        <!-- Collapsible Content Section -->
+        <div id="footer-content" style="display: none;">
+            <!-- Content Grid -->
+            <div style="padding: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                <!-- Left Column -->
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <!-- System Information -->
+                    <div>
+                        <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #3b82f6; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">System Information</div>
+                        <div style="font-family: 'Courier New', monospace; font-size: 10px; color: rgba(255, 255, 255, 0.7); display: flex; gap: 16px; flex-wrap: wrap; align-items: center;">
+                            <span><span style="color: rgba(255, 255, 255, 0.4);">VERSION:</span> <span style="color: #06b6d4; font-weight: 700;">APEX v5.0</span></span>
+                            <span style="color: rgba(255, 255, 255, 0.2);">•</span>
+                            <span><span style="color: rgba(255, 255, 255, 0.4);">ENGINE:</span> <span style="color: #10b981;">CrashDash Intelligence</span></span>
+                            <span style="color: rgba(255, 255, 255, 0.2);">•</span>
+                            <span><span style="color: rgba(255, 255, 255, 0.4);">COVERAGE:</span> <span style="color: #a855f7;">LSE AIM Micro-Caps</span></span>
+                            <span style="color: rgba(255, 255, 255, 0.2);">•</span>
+                            <span><span style="color: rgba(255, 255, 255, 0.4);">SOURCES:</span> <span style="color: #ef4444;">RNS • Social • Trends</span></span>
+                        </div>
+                    </div>
+                    
+                    <!-- Risk Disclosure -->
+                    <div>
+                        <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #ef4444; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Risk Disclosure</div>
+                        <div style="font-family: 'Courier New', monospace; font-size: 10px; color: rgba(255, 255, 255, 0.5); line-height: 1.6;">
+                            This analysis is provided for informational purposes only and does not constitute financial advice. AIM micro-cap securities carry significant volatility and liquidity risks. Past performance does not guarantee future results. Always conduct your own due diligence and consult with a qualified financial advisor before making investment decisions.
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Risk Disclosure -->
-                <div>
-                    <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #ef4444; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Risk Disclosure</div>
-                    <div style="font-family: 'Courier New', monospace; font-size: 10px; color: rgba(255, 255, 255, 0.5); line-height: 1.6;">
-                        This analysis is provided for informational purposes only and does not constitute financial advice. AIM micro-cap securities carry significant volatility and liquidity risks. Past performance does not guarantee future results. Always conduct your own due diligence and consult with a qualified financial advisor before making investment decisions.
+                <!-- Right Column -->
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <!-- Platform Overview -->
+                    <div>
+                        <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #10b981; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Platform Overview</div>
+                        <div style="font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
+                            APEX Intelligence Terminal combines technical analysis, sentiment tracking, and regulatory news monitoring to identify high-probability contrarian setups in distressed micro-cap equities. Our proprietary scoring system evaluates setup quality, panic intensity, and compression patterns to surface opportunities before institutional recognition.
+                        </div>
+                    </div>
+                    
+                    <!-- Target Users -->
+                    <div>
+                        <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #a855f7; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Target Users</div>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 4px; color: #a855f7; font-weight: 600;">PROP TRADERS</span>
+                            <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 4px; color: #3b82f6; font-weight: 600;">HEDGE FUNDS</span>
+                            <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 4px; color: #10b981; font-weight: 600;">QUANT TEAMS</span>
+                            <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 4px; color: #ef4444; font-weight: 600;">RESEARCH DESKS</span>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Right Column -->
-            <div style="display: flex; flex-direction: column; gap: 20px;">
-                <!-- Platform Overview -->
-                <div>
-                    <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #10b981; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Platform Overview</div>
-                    <div style="font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
-                        APEX Intelligence Terminal combines technical analysis, sentiment tracking, and regulatory news monitoring to identify high-probability contrarian setups in distressed micro-cap equities. Our proprietary scoring system evaluates setup quality, panic intensity, and compression patterns to surface opportunities before institutional recognition.
+            <!-- Bottom Bar -->
+            <div style="background: rgba(2, 6, 23, 0.6); border-top: 1px solid rgba(59, 130, 246, 0.15); padding: 12px 24px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-family: 'Courier New', monospace; font-size: 10px;">
+                    <div style="color: rgba(255, 255, 255, 0.4);">© 2026 APEX Intelligence • All Rights Reserved</div>
+                    <div style="display: flex; align-items: center; gap: 20px; color: rgba(255, 255, 255, 0.5);">
+                        <span>STATUS: <span style="color: #10b981; font-weight: 700;">● OPERATIONAL</span></span>
+                        <span>LATENCY: <span style="color: #06b6d4; font-weight: 700;">12ms</span></span>
+                        <span>BUILD: <span style="color: #a855f7; font-weight: 700;">5.0.2</span></span>
                     </div>
-                </div>
-                
-                <!-- Target Users -->
-                <div>
-                    <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #a855f7; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Target Users</div>
-                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                        <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 4px; color: #a855f7; font-weight: 600;">PROP TRADERS</span>
-                        <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 4px; color: #3b82f6; font-weight: 600;">HEDGE FUNDS</span>
-                        <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 4px; color: #10b981; font-weight: 600;">QUANT TEAMS</span>
-                        <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 4px; color: #ef4444; font-weight: 600;">RESEARCH DESKS</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Bottom Bar -->
-        <div style="background: rgba(2, 6, 23, 0.6); border-top: 1px solid rgba(59, 130, 246, 0.15); padding: 12px 24px;">
-            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-family: 'Courier New', monospace; font-size: 10px;">
-                <div style="color: rgba(255, 255, 255, 0.4);">© 2026 APEX Intelligence • All Rights Reserved</div>
-                <div style="display: flex; align-items: center; gap: 20px; color: rgba(255, 255, 255, 0.5);">
-                    <span>STATUS: <span style="color: #10b981; font-weight: 700;">● OPERATIONAL</span></span>
-                    <span>LATENCY: <span style="color: #06b6d4; font-weight: 700;">12ms</span></span>
-                    <span>BUILD: <span style="color: #a855f7; font-weight: 700;">5.0.2</span></span>
                 </div>
             </div>
         </div>
     </div>
+    
+    <script>
+        function toggleFooter() {
+            const content = document.getElementById('footer-content');
+            const icon = document.getElementById('footer-toggle-icon');
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.style.display = 'none';
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+    </script>
   </div>
   
   <!-- Mobile Responsive Styles -->
@@ -340,19 +359,26 @@
     @media(max-width:768px){
         body{padding:10px!important}
         .container{max-width:100%!important}
+        #footer-container{margin-top:20px!important}
         div[style*="grid-template-columns: 1fr 1fr"]{grid-template-columns:1fr!important;gap:12px!important}
         div[style*="grid-template-columns: repeat(4"]{grid-template-columns:repeat(2,1fr)!important;gap:10px!important}
         div[style*="padding: 24px"]{padding:16px!important}
+        div[style*="padding: 12px 16px"]{padding:10px 12px!important}
         div[style*="gap: 20px"]{gap:14px!important}
         div[style*="font-size: 11px"]{font-size:10px!important}
+        div[style*="font-size: 12px"]{font-size:11px!important}
+        div[style*="font-size: 13px"]{font-size:12px!important}
     }
     @media(max-width:480px){
         body{padding:6px!important}
         .container{padding:0!important;margin:0!important}
+        #footer-container{margin-top:16px!important;margin-left:6px!important;margin-right:6px!important}
+        #footer-container > div:first-child{padding:8px 10px!important}
         div[style*="grid-template-columns: 1fr 1fr"]{grid-template-columns:1fr!important;gap:8px!important}
         div[style*="grid-template-columns: repeat(4"]{grid-template-columns:1fr!important;gap:6px!important;padding:8px 10px!important}
         div[style*="grid-template-columns: repeat(2"]{grid-template-columns:1fr!important;gap:6px!important}
         div[style*="padding: 24px"]{padding:10px!important}
+        div[style*="padding: 12px 16px"]{padding:8px 10px!important}
         div[style*="padding: 14px 16px"]{padding:8px 10px!important}
         div[style*="padding: 18px"]{padding:10px!important}
         div[style*="gap: 20px"]{gap:8px!important}
@@ -360,6 +386,8 @@
         div[style*="gap: 24px"]{gap:10px!important}
         div[style*="gap: 16px"]{gap:6px!important}
         div[style*="gap: 12px"]{gap:6px!important}
+        div[style*="gap: 8px"]{gap:4px!important}
+        div[style*="font-size: 9px"]{font-size:8px!important}
         div[style*="font-size: 10px"]{font-size:8px!important}
         div[style*="font-size: 11px"]{font-size:9px!important}
         div[style*="font-size: 12px"]{font-size:10px!important}
@@ -381,7 +409,7 @@
   <script>window.__APEX_PROFILE = {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "PXC.L",
-  "generated_at": "2026-02-10T21:14:53.115241Z",
+  "generated_at": "2026-02-10T22:19:45.124149Z",
   "top_card": {
     "ticker": "PXC.L",
     "company_name": "Phoenix Copper Limited",
@@ -815,6 +843,14 @@
       "ticker": "PXC.L",
       "latest": [
         {
+          "title": "CEO Statement",
+          "announcement_date": "10th Feb 2026",
+          "release_time": "7:00 am",
+          "source": "RNS",
+          "content": "Today 07:00\nRNS Number : 3228S\nPhoenix Copper Limited\n10 February 2026\nPhoenix Copper Limited / Ticker: PXC / Sector: Mining\n10 February 2026\nPhoenix Copper Limited\n(\"Phoenix\" or the \"Company\")\nCEO Statement\nPhoenix Copper Limited (AIM: PXC; OTCQX ADR: PXCLY), the AIM quoted, 100% USA focused base and precious metals emerging producer and exploration company announces the following statement from Ryan McDermott, the Company's Chief Executive Officer:\nRyan McDermott, Phoenix's CEO, said\n: 'I recognise that our announcement of 9 February 2026 has created uncertainty for shareholders.\nI understand your concerns following recent developments and would like to assure shareholders that the Board and management team, with input from our professional advisors, are taking all the necessary steps to progress the investigations we referred to yesterday as thoroughly and efficiently as possible.\n'We've already taken action to ensure continuity of leadership, whilst also minimising any disruption to the Company in the short term while the investigations are ongoing\n.\nThe Company will provide shareholders with a further update as soon as reasonably possible once our internal reviews have been completed.\n'In the meantime, I would like to provide reassurance to shareholders regarding the Company's current strategy and priorities. Importantly, the Company's core assets and projects remain unchanged, and the Board continues to believe strongly in their long-term value and development potential. Work relating to the advancement of the Empire Project and broader strategic options continues.\n'I would like to thank all of our shareholders and stakeholders for their continued support and patience while the Company works through the processes necessary to conclude our investigations.'\nFor further information please visit\nhttps://phoenixcopperlimited.com\n.\nContacts\nPhoenix Copper Limited\nRyan McDermott\nPaul de Gruchy\nTel: +1 208 9547039\nTel: +44 7484 203 720\nTel: +44 7590 216 657\nSP Angel Corporate Finance LLP\u00a0(Nominated Adviser)\nDavid Hignell\u00a0/\u00a0Je\nn\nClarke\u00a0/\u00a0Devik Mehta\nTel: +44 20 3470 0470\nTavira Financial Limited\u00a0(Joint Broker)\nJonathan Evans\u00a0/\u00a0Oliver Stansfield\nTel: +44 20 7100 5100\nZeus Capital Limited\u00a0(Joint Broker)\nHarry Ansell\u00a0/\u00a0Katy Mitchell\nTel: +44 20 7220 1666\nOak Securities (Corporate Bond Adviser)\nHugh Rich\nTel: +44 20 3973 3678\nBlytheRay\n(Financial PR)\nTim Blythe\u00a0/\u00a0Megan Ray\nTel: +44 20 7138 3204\nNotes\nPhoenix Copper Limited\u00a0is an emerging producer and exploration company specialising in base and precious metals, with an initial focus on copper, gold, and silver extraction from an open-pit mining operation within\u00a0the United States.\nLocated in the historic\u00a0Alder Creek\u00a0mining district near\u00a0Mackay, Idaho,\u00a0Phoenix's\u00a0flagship asset is the\u00a0Empire Mine, in which the Company holds an 80% ownership stake. The historic Empire underground mine, located beneath the surface of the Company's proposed open pit, boasts a rich history of producing high-grade copper, gold, silver, zinc, and tungsten.\nSince 2017,\u00a0Phoenix\u00a0has executed extensive drilling initiatives, resulting in an expansion of the Empire Open-Pit resource by over 200%. In\u00a0May 2024\u00a0the Company published its inaugural mineral reserve statement for the\u00a0Empire Open-Pit Mine. Proven and Probable mineral reserves are 10.1 million tonnes containing 109,487,970 lbs of copper, 104,000 oz of gold and 4,654,400 oz of silver. This reserve was estimated using assay data from 485 drill holes, extensive geological modelling, metallurgical recovery test work, geotechnical evaluation, and mine design. The reserve represents a combined 66,467 tonnes of copper equivalent metal.\nIn addition to the\u00a0Empire Mine,\u00a0Phoenix's\u00a0holdings in the district also encompass the Horseshoe, White Knob, and Blue\u00a0Bird Mines, all of which have been producers of copper, gold, silver, zinc, lead, and tungsten from underground operations, a new high-grade silver and lead orebody at\u00a0Red Star, and the\u00a0Navarre Creek\u00a0gold exploration project, which was first drilled in 2023. The Company's land package at Empire spans 8,434 acres (34 sq km).\nPhoenix\u00a0also owns two cobalt properties situated along the Idaho Cobalt Belt to the north of Empire. An Earn-In Agreement has been established concerning one of these properties.\nPhoenix\u00a0is listed on\u00a0London's\u00a0AIM (PXC), and trades on\u00a0New York's\u00a0OTCQX Market (PXCLF and PXCLY (ADRs)). More details on the Company, its assets and its objectives can be found on PXC's website at\nhttps://phoenixcopperlimited.com/\nThis information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact\nrns@lseg.com\nor visit\nwww.rns.com\n.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our\nPrivacy Policy\n.\nEND\nSTRAKCBNKBKBKBK",
+          "rns_number": "RNS Number : 3228S"
+        },
+        {
           "title": "Suspension of Executive Chairman and CFO",
           "announcement_date": "9th Feb 2026",
           "release_time": "7:00 am",
@@ -845,14 +881,6 @@
           "source": "RNS",
           "content": "22 Dec 2025 10:14\nRNS Number : 4798M\nPhoenix Copper Limited\n22 December 2025\nPhoenix Copper Limited / Ticker: PXC / Sector: Mining\n22 December 2025\nPhoenix Copper Limited\n(\"Phoenix\" or the \"Company\")\nAdvisory Board Member Share Purchase\nPhoenix Copper Limited (AIM: PXC; OTCQX ADR: PXCLY), the AIM quoted, USA focused base and precious metals emerging producer and exploration company, announces that on 18 December 2025 Andre Cohen, a member of the Company's Advisory Board, purchased 300,000 Ordinary Shares of no par value in the Company (\"Ordinary Shares\") at 1.95p per share.\nFollowing this purchase, Andre Cohen has a beneficial interest totalling 942,452 Ordinary Shares representing 0.36% of the Company's issued share capital.\nFor further information please visit\nhttps://phoenixcopperlimited.com\n.\nContacts\nPhoenix Copper Limited\nRyan McDermott\nPaul de Gruchy\nRichard Wilkins\nTel: +1 208 9547039\nTel: +44 7484 203 720\nTel: +44 7590 216 657\nSP Angel Corporate Finance LLP\u00a0(Nominated Adviser)\nDavid Hignell\u00a0/\u00a0Jen\nClarke\u00a0/\u00a0Devik Mehta\nTel: +44 20 3470 0470\nTavira Financial Limited\u00a0(Joint Broker)\nJonathan Evans\u00a0/\u00a0Oliver Stansfield\nTel: +44 20 7100 5100\nZeus Capital Limited\u00a0(Joint Broker)\nHarry Ansell\u00a0/\u00a0Katy Mitchell\nTel: +44 20 7220 1666\nOak Securities (Corporate Bond Adviser)\nHugh Rich\nTel: +44 20 3973 3678\nBlytheRay\n(Financial PR)\nTim Blythe\u00a0/\u00a0Megan Ray\nTel: +44 20 7138 3204\nEmail: PhoenixCopper@blytheray.com\nNotes\nPhoenix Copper Limited\u00a0is an emerging producer and exploration company specialising in base and precious metals, with an initial focus on copper, gold, and silver extraction from an open-pit mining operation within\u00a0the United States.\nLocated in the historic\u00a0Alder Creek\u00a0mining district near\u00a0Mackay, Idaho,\u00a0Phoenix's\u00a0flagship asset is the\u00a0Empire Mine, in which the Company holds an 80% ownership stake. The historic Empire underground mine, located beneath the surface of the Company's proposed open pit, boasts a rich history of producing high-grade copper, gold, silver, zinc, and tungsten.\nSince 2017,\u00a0Phoenix\u00a0has executed extensive drilling initiatives, resulting in an expansion of the Empire Open-Pit resource by over 200%. In\u00a0May 2024\u00a0the Company published its inaugural mineral reserve statement for the\u00a0Empire Open-Pit Mine. Proven and Probable mineral reserves are 10.1 million tonnes containing 109,487,970 lbs of copper, 104,000 oz of gold and 4,654,400 oz of silver. This reserve was estimated using assay data from 485 drill holes, extensive geological modelling, metallurgical recovery test work, geotechnical evaluation, and mine design. The reserve represents a combined 66,467 tonnes of copper equivalent metal.\nIn addition to the\u00a0Empire Mine,\u00a0Phoenix's\u00a0holdings in the district also encompass the Horseshoe, White Knob, and Blue\u00a0Bird Mines, all of which have been producers of copper, gold, silver, zinc, lead, and tungsten from underground operations, a new high-grade silver and lead orebody at\u00a0Red Star, and the\u00a0Navarre Creek\u00a0gold exploration project, which was first drilled in 2023. The Company's land package at Empire spans 8,434 acres (34 sq km).\nPhoenix\u00a0also owns two cobalt properties situated along the Idaho Cobalt Belt to the north of Empire. An Earn-In Agreement has been established concerning one of these properties.\nPhoenix\u00a0is listed on\u00a0London's\u00a0AIM (PXC), and trades on\u00a0New York's\u00a0OTCQX Market (PXCLF and PXCLY (ADRs)). More details on the Company, its assets and its objectives can be found on PXC's website at\nhttps://phoenixcopperlimited.com/\nThis information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact\nrns@lseg.com\nor visit\nwww.rns.com\n.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our\nPrivacy Policy\n.\nEND\nMSCFLFLIFFLFFIE",
           "rns_number": "RNS Number : 4798M"
-        },
-        {
-          "title": "Director & PDMR Share Purchases",
-          "announcement_date": "12th Dec 2025",
-          "release_time": "7:00 am",
-          "source": "RNS",
-          "content": "12 Dec 2025 07:00\nRNS Number : 2903L\nPhoenix Copper Limited\n12 December 2025\nPhoenix Copper Limited / Ticker: PXC / Sector: Mining\n12 December 2025\nPhoenix Copper Limited\n(\"Phoenix\" or the \"Company\")\nDirector & PDMR Share Purchases\nPhoenix Copper Limited (AIM: PXC; OTCQX ADR: PXCLY), the AIM quoted, USA focused base and precious metals emerging producer and exploration company, announces that on 11 December 2025, four of the Company's Directors purchased ordinary shares of no par value in the Company (\"Ordinary Shares\"). The share purchases are summarised below:\nDirector\nTitle\nNumber of Ordinary Shares\nPurchase Price\nResultant Holding\nPercentage of Issued Share Capital\nMarcus Edwards-Jones\nExecutive Chairman\n1,000,000\n1.85p\n2,361,464\n0.90%\nRyan McDermott\nChief Executive Officer\n550,000\n1.83p\n1,156,429\n0.44%\nRichard Wilkins\nChief Financial Officer\n550,000\n1.83p\n1,544,925\n0.59%\nCatherine Evans\nNon-Executive Director\n1,420,719\n1.85p\n1,821,813\n0.70%\nIn addition, Harry Kenyon-Slayney, a member of the Company's Advisory Board, also purchased 400,000 Ordinary Shares at 1.85 pence per share on 11 December 2025. Following this purchase, Harry Kenyon-Slayney has a beneficial interest totalling 567,857 Ordinary Shares representing 0.22% of the Company's issued share capital.\nThe notification below, made in accordance with the requirements of the UK Market Abuse Regulation, provides further detail.\n.\nDetails of the person discharging managerial responsibilities/person closely associated\na)\nName:\n1. Marcus Edwards-Jones\n2. Ryan McDermott\n3. Richard Wilkins\n4. Catherine Evans\n5.\nHarry Kenyon-Slayney\n2.\nReason for the notification\na)\nPosition/status:\n1. Executive Chairman\n2. Chief Executive Officer\n3. Chief Financial Officer\n4. Non-Executive Director\n5. Advisory Board Member\nb)\nInitial notification/Amendment:\nInitial notification\n3.\nDetails of the issuer, emission allowance market participant, auction platform, auctioneer or auction monitor\na)\nName:\nPhoenix Copper Limited\nb)\nLEI:\n2138006UWPZAB1A75680\n4.\nDetails of the transaction(s): section to be repeated for (i) each type of instrument; (ii) each type of transaction; (iii) each date; and (iv) each place where transactions have been conducted\na)\nDescription of the financial instrument, type of instrument:\nIdentification code:\nOrdinary Shares\nISIN:\u00a0VGG7060R1139\nb)\nNature of the transaction:\nDirector Share Purchase\nc)\nPrice(s) and volume(s):\nPrice(s)\nVolume(s)\n1\n.\n2.\n3.\n4.\n5.\n1.85 pence\n1.83 pence\n1.83 pence\n1.85 pence\n1.85 pence\n1,000,000\n550,000\n550,000\n1,420,719\n400,000\nd)\nAggregated information:\nAggregated volume:\nPrice:\n3\n,920,719 Ordinary Shares in aggregate.\n- 2,820,719 at a price of 1.85 pence per Ordinary Share\n- 1,100,000 at a price of 1.83 pence per Ordinary Share\ne)\nDate of the transaction:\n11 December 2025\nf)\nPlace of the transaction:\nLondon Stock Exchange\nMarket Abuse Regulation (MAR) Disclosure\nThe Company deems the information contained within this announcement to constitute inside information as stipulated under the Market Abuse Regulations (EU) No. 596/2014, which has been incorporated into\u00a0UK\u00a0law by the\u00a0European Union\u00a0(Withdrawal) Act 2018. Upon the publication of this announcement via the\u00a0Regulatory Information Service, this inside information is now considered to be in the public domain.\nFor further information please visit\nhttps://phoenixcopperlimited.com\n.\nContacts\nPhoenix Copper Limited\nRyan McDermott\nPaul de Gruchy\nRichard Wilkins\nTel: +1 208 9547039\nTel: +44 7484 203 720\nTel: +44 7590 216 657\nSP Angel Corporate Finance LLP\u00a0(Nominated Adviser)\nDavid Hignell\u00a0/\u00a0Jen\nClarke\u00a0/\u00a0Devik Mehta\nTel: +44 20 3470 0470\nTavira Financial Limited\u00a0(Joint Broker)\nJonathan Evans\u00a0/\u00a0Oliver Stansfield\nTel: +44 20 7100 5100\nZeus Capital Limited\u00a0(Joint Broker)\nHarry Ansell\u00a0/\u00a0Katy Mitchell\nTel: +44 20 7220 1666\nOak Securities (Corporate Bond Adviser)\nHugh Rich\nTel: +44 20 3973 3678\nBlytheRay (Financial PR)\nTim Blythe\u00a0/\u00a0Megan Ray\nTel: +44 20 7138 3204\nEmail: PhoenixCopper@blytheray.com\nNotes\nPhoenix Copper Limited\u00a0is an emerging producer and exploration company specialising in base and precious metals, with an initial focus on copper, gold, and silver extraction from an open-pit mining operation within\u00a0the United States.\nLocated in the historic\u00a0Alder Creek\u00a0mining district near\u00a0Mackay, Idaho,\u00a0Phoenix's\u00a0flagship asset is the\u00a0Empire Mine, in which the Company holds an 80% ownership stake. The historic Empire underground mine, located beneath the surface of the Company's proposed open pit, boasts a rich history of producing high-grade copper, gold, silver, zinc, and tungsten.\nSince 2017,\u00a0Phoenix\u00a0has executed extensive drilling initiatives, resulting in an expansion of the Empire Open-Pit resource by over 200%. In\u00a0May 2024\u00a0the Company published its inaugural mineral reserve statement for the\u00a0Empire Open-Pit Mine. Proven and Probable mineral reserves are 10.1 million tonnes containing 109,487,970 lbs of copper, 104,000 oz of gold and 4,654,400 oz of silver. This reserve was estimated using assay data from 485 drill holes, extensive geological modelling, metallurgical recovery test work, geotechnical evaluation, and mine design. The reserve represents a combined 66,467 tonnes of copper equivalent metal.\nIn addition to the\u00a0Empire Mine,\u00a0Phoenix's\u00a0holdings in the district also encompass the Horseshoe, White Knob, and Blue\u00a0Bird Mines, all of which have been producers of copper, gold, silver, zinc, lead, and tungsten from underground operations, a new high-grade silver and lead orebody at\u00a0Red Star, and the\u00a0Navarre Creek\u00a0gold exploration project, which was first drilled in 2023. The Company's land package at Empire spans 8,434 acres (34 sq km).\nPhoenix\u00a0also owns two cobalt properties situated along the Idaho Cobalt Belt to the north of Empire. An Earn-In Agreement has been established concerning one of these properties.\nPhoenix\u00a0is listed on\u00a0London's\u00a0AIM (PXC), and trades on\u00a0New York's\u00a0OTCQX Market (PXCLF and PXCLY (ADRs)). More details on the Company, its assets and its objectives can be found on PXC's website at\nhttps://phoenixcopperlimited.com/\nThis information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact\nrns@lseg.com\nor visit\nwww.rns.com\n.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our\nPrivacy Policy\n.\nEND\nDSHEAFAFFEFSFAA",
-          "rns_number": "RNS Number : 2903L"
         }
       ],
       "themes": [
@@ -863,7 +891,7 @@
     "social": {
       "has_data": true,
       "buzz_level": "HIGH",
-      "post_count": 774,
+      "post_count": 1033,
       "sentiment_breakdown": {
         "positive": 0.0,
         "neutral": 100.0,
@@ -1099,6 +1127,13 @@
       {
         "type": "rns",
         "date": "Unknown",
+        "title": "CEO Statement",
+        "status": "published",
+        "icon": "\ud83d\udce2"
+      },
+      {
+        "type": "rns",
+        "date": "Unknown",
         "title": "Suspension of Executive Chairman and CFO",
         "status": "published",
         "icon": "\ud83d\udce2"
@@ -1121,13 +1156,6 @@
         "type": "rns",
         "date": "Unknown",
         "title": "Advisory Board Member Share Purchase",
-        "status": "published",
-        "icon": "\ud83d\udce2"
-      },
-      {
-        "type": "rns",
-        "date": "Unknown",
-        "title": "Director & PDMR Share Purchases",
         "status": "published",
         "icon": "\ud83d\udce2"
       },
