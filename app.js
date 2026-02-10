@@ -2516,10 +2516,36 @@ async function loadAIReport(ticker) {
     const loaderContainer = document.getElementById('apexLoaderContainer');
     const reportContainer = document.getElementById('apexReportContainer');
     
-    // Handle successful iframe load
-    iframe.onload = () => {
-        clearInterval(progressInterval);
+    // Create a promise that resolves after 5 seconds (minimum display time for loader)
+    const minDisplayTimePromise = new Promise(resolve => setTimeout(resolve, 5000));
+    
+    // Create a promise that resolves when iframe fully loads
+    let iframeLoadPromise = new Promise((resolve) => {
+        iframe.onload = () => {
+            clearInterval(progressInterval);
+            progressText.textContent = 'Report ready - preparing visualization...';
+            resolve();
+        };
         
+        iframe.onerror = () => {
+            clearInterval(progressInterval);
+            const connectingMessages = [
+                'Connecting to APEX intelligence...',
+                'Loading APEX engine...',
+                'Fetching profile data...',
+                'Preparing analysis...'
+            ];
+            let connectIndex = 0;
+            window.aiProgressInterval = setInterval(() => {
+                progressText.textContent = connectingMessages[connectIndex % connectingMessages.length];
+                connectIndex++;
+            }, 1000);
+            resolve(); // Still resolve to show error state
+        };
+    });
+    
+    // Wait for BOTH the minimum display time AND iframe to load
+    Promise.all([minDisplayTimePromise, iframeLoadPromise]).then(() => {
         // Fade out loader with scale animation
         loaderContainer.style.opacity = '0';
         loaderContainer.style.transform = 'scale(0.9)';
@@ -2531,27 +2557,7 @@ async function loadAIReport(ticker) {
             reportContainer.style.transform = 'scale(1)';
             reportContainer.style.pointerEvents = 'auto';
         }, 500);
-    };
-    
-    // Handle iframe load error (missing report) - keep spinner running
-    iframe.onerror = () => {
-        // Switch to "connecting" message and keep spinner active
-        clearInterval(progressInterval);
-        
-        // Cycle through connecting messages indefinitely
-        const connectingMessages = [
-            'Connecting to APEX intelligence...',
-            'Loading APEX engine...',
-            'Fetching profile data...',
-            'Preparing analysis...'
-        ];
-        
-        let connectIndex = 0;
-        window.aiProgressInterval = setInterval(() => {
-            progressText.textContent = connectingMessages[connectIndex % connectingMessages.length];
-            connectIndex++;
-        }, 1000); // Change message every 1 second
-    };
+    });
     
     // Fetch APEX JSON to get the score
     const jsonPath = `data/apex_reports/${ticker}_apex_profile.json`;
