@@ -2507,12 +2507,12 @@ async function loadAIReport(ticker) {
     let iframeLoaded = false;
     let minTimeElapsed = false;
     
-    // Create a promise that resolves after 2.5 seconds (minimum display time for loader)
+    // Create a promise that resolves after 2 seconds (minimum display time for loader)
     const minDisplayTimePromise = new Promise(resolve => {
         setTimeout(() => {
             minTimeElapsed = true;
             resolve();
-        }, 2500);
+        }, 2000);
     });
     
     // Create a promise that resolves when iframe fully loads
