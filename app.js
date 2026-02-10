@@ -1389,12 +1389,12 @@ async function showSignalTimeline(ticker) {
         const currentState = latestSignal.rally_state ? rallyStateColors[latestSignal.rally_state] : null;
         
         content.innerHTML = `
-        <div style="position: sticky; top: 0; z-index: 100; background: linear-gradient(135deg, var(--navy), #1A3A52); padding: 1.5rem 1rem 1rem 1rem; margin: -2rem -2rem 1.5rem -2rem; border-bottom: 1px solid rgba(10, 132, 255, 0.3);">
+        <div style="position: sticky; top: 0; z-index: 100; background: linear-gradient(135deg, var(--navy), #1A3A52); padding: 1rem; margin: 0 0 1.5rem 0; border-bottom: 1px solid rgba(10, 132, 255, 0.3); border-radius: 8px;">
             <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
-                <h2 style="color: white; margin: 0; font-size: 1.5rem; flex: 1;">
+                <h2 style="color: white; margin: 0; font-size: 1.3rem; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                     ${cleanTickerDisplay(ticker)} - Rally Timeline
                 </h2>
-                <button onclick="closeSignalTimeline()" style="background: rgba(0,0,0,0.5); color: white; border: none; border-radius: 50%; width: 32px; height: 32px; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(239,68,68,0.7)'; this.style.transform='scale(1.1)'" onmouseout="this.style.background='rgba(0,0,0,0.5)'; this.style.transform='scale(1)'">×</button>
+                <button onclick="closeSignalTimeline()" style="background: rgba(0,0,0,0.5); color: white; border: none; border-radius: 50%; width: 36px; height: 36px; font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; flex-shrink: 0;" onmouseover="this.style.background='rgba(239,68,68,0.7)'; this.style.transform='scale(1.1)'" onmouseout="this.style.background='rgba(0,0,0,0.5)'; this.style.transform='scale(1)'">×</button>
             </div>
         </div>
         
