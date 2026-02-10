@@ -2493,7 +2493,7 @@ async function loadAIReport(ticker) {
             // Keep showing the final message, don't clear interval yet
             progressText.textContent = progressMessages[progressMessages.length - 1];
         }
-    }, 300); // 300ms per message × 17 messages = ~5.1 seconds
+    }, 100); // 100ms per message × 17 messages = ~1.7 seconds
     
     // Store interval ID for cleanup
     window.aiProgressInterval = progressInterval;
@@ -2507,12 +2507,12 @@ async function loadAIReport(ticker) {
     let iframeLoaded = false;
     let minTimeElapsed = false;
     
-    // Create a promise that resolves after 5 seconds (minimum display time for loader)
+    // Create a promise that resolves after 2.5 seconds (minimum display time for loader)
     const minDisplayTimePromise = new Promise(resolve => {
         setTimeout(() => {
             minTimeElapsed = true;
             resolve();
-        }, 5000);
+        }, 2500);
     });
     
     // Create a promise that resolves when iframe fully loads
