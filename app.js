@@ -2357,22 +2357,25 @@ async function loadAIReport(ticker) {
             <div id="apexReportContainer" style="
                 max-width: ${isMobile ? '100%' : '95vw'};
                 width: ${isMobile ? '100%' : '95%'};
-                max-height: 95vh;
+                height: ${isMobile ? '95vh' : '80vh'};
                 background: white;
                 border-radius: ${isMobile ? '0' : '20px'};
-                overflow: hidden;
+                overflow: auto;
                 position: relative;
                 box-shadow: 0 20px 60px rgba(0,0,0,0.3);
                 opacity: 0;
                 transform: scale(0.9);
                 transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
                 pointer-events: none;
+                display: flex;
+                flex-direction: column;
+                padding-top: ${isMobile ? '0' : '0'};
             ">
                 <button onclick="closeAIReportModal()" style="
-                    position: absolute;
+                    position: fixed;
                     top: ${isMobile ? '10px' : '15px'};
                     right: ${isMobile ? '10px' : '15px'};
-                    z-index: 10000;
+                    z-index: 10001;
                     background: rgba(0,0,0,0.7);
                     color: white;
                     border: none;
@@ -2393,9 +2396,10 @@ async function loadAIReport(ticker) {
                     src="${reportPath}"
                     style="
                         width: 100%; 
-                        height: 95vh; 
+                        height: 100%;
                         border: none;
                         display: block;
+                        flex: 1;
                     "
                 ></iframe>
             </div>
