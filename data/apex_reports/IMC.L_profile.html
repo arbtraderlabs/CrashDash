@@ -163,8 +163,6 @@
             font-weight: 600;
             text-transform: uppercase;
         }
-
-        
         
         .risk-indicator {
             display: flex;
@@ -229,136 +227,34 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 424 days</span>
+                    <span><strong>Days Active:</strong> 427 days</span>
                 </div>
             </div>
         </div>
 
-        <!-- V5: Action & Comprehensive APEX Score Hero Section -->
+        <!-- Action & Score Hero Section -->
         <div class="score-hero">
             <div class="action-display">
                 <span style="color: white;">UNKNOWN</span>
             </div>
             
-            <!-- V5: Comprehensive APEX with 4 Pillars -->
-            <div style="display:flex; gap:40px; align-items:center; justify-content:center; flex-wrap:wrap; margin:30px 0;">
-                <!-- CENTER: Comprehensive APEX -->
-                <div style="position:relative; width:180px; height:180px; border-radius:50%; background:linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 12px 40px rgba(0,0,0,0.1); border:4px solid #ef4444;">
-                    <div style="text-align:center;">
-                        <div style="font-size:11px; color:#64748b; margin-bottom:4px; font-weight:600;">COMPREHENSIVE</div>
-                        <div style="font-size:56px; font-weight:900; color:#ef4444; line-height:1;">39</div>
-                        <div style="font-size:11px; color:#64748b; margin-top:4px; font-weight:700;">APEX V5</div>
-                        <div style="font-size:12px; color:#ef4444; margin-top:4px; font-weight:700;">LOW QUALITY</div>
-                    </div>
+            <div class="scores-row">
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">41</div>
+                    <div class="score-label">APEX SCORE</div>
                 </div>
-                
-                <!-- PILLARS: 2x2 Grid -->
-                <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:16px;">
-                    <!-- Setup -->
-                    <div style="text-align:center;">
-                        <div style="width:100px; height:100px; border-radius:50%; border:4px solid #10b981; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size:14px;">⚡</div>
-                            <div style="font-size:28px; font-weight:800; color:#10b981; line-height:1;">41</div>
-                        </div>
-                        <div style="margin-top:8px;">
-                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
-                                Setup
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <!-- Trust -->
-                    <div style="text-align:center;">
-                        <div style="width:100px; height:100px; border-radius:50%; border:4px solid #3b82f6; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size:14px;">🛡️</div>
-                            <div style="font-size:28px; font-weight:800; color:#3b82f6; line-height:1;">40</div>
-                        </div>
-                        <div style="margin-top:8px;">
-                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
-                                Trust
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <!-- Panic -->
-                    <div style="text-align:center;">
-                        <div style="width:100px; height:100px; border-radius:50%; border:4px solid #ef4444; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size:14px;">😱</div>
-                            <div style="font-size:28px; font-weight:800; color:#ef4444; line-height:1;">38.6</div>
-                        </div>
-                        <div style="margin-top:8px;">
-                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
-                                Panic
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <!-- Compression -->
-                    <div style="text-align:center;">
-                        <div style="width:100px; height:100px; border-radius:50%; border:4px solid #f59e0b; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size:14px;">⚡</div>
-                            <div style="font-size:28px; font-weight:800; color:#f59e0b; line-height:1;">37</div>
-                        </div>
-                        <div style="margin-top:8px;">
-                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
-                                Compression
-                            </span>
-                        </div>
-                    </div>
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">40</div>
+                    <div class="score-label">CONFIDENCE</div>
                 </div>
             </div>
             
-            <!-- Timing Scope: Flat segmented bar -->
-            <div style="margin-top:24px;">
-                <!-- position badge removed to avoid overlay on timing spectrum -->
-                <style>
-                    @keyframes pulse-ring {
-                        0% { transform: scale(0.7); opacity: 0.9; }
-                        70% { transform: scale(2.2); opacity: 0; }
-                        100% { transform: scale(2.8); opacity: 0; }
-                    }
-                    @keyframes pulse-ring-outer {
-                        0% { transform: scale(0.9); opacity: 0.7; }
-                        50% { transform: scale(1.12); opacity: 0.45; }
-                        100% { transform: scale(1.3); opacity: 0; }
-                    }
-                </style>
-                <div style="position:relative;">
-                    <div style="display:flex; gap:6px; height:48px; border-radius:8px; overflow:hidden;">
-                        <div style="flex:1; background:#ef4444;"></div>
-                        <div style="flex:1; background:#f59e0b;"></div>
-                        <div style="flex:1; background:#facc15;"></div>
-                        <div style="flex:1; background:#10b981;"></div>
-                        <div style="flex:1; background:#065f46;"></div>
-                    </div>
-
-                    <!-- Pulse pointer positioned by timing_pos_pct -->
-                    <div style="position:absolute; left:calc(50% - 26px); top:0px; width:52px; height:52px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
-                        <!-- outer grey-white ring to help indicator stand out -->
-                        <div style="position:absolute; width:60px; height:60px; border-radius:30px; background:rgba(249,250,251,0.95); border:2px solid rgba(2,6,23,0.06); box-shadow:0 8px 30px rgba(2,6,23,0.06); animation: pulse-ring-outer 2.2s infinite;"></div>
-                        <!-- inner colored pulse ring -->
-                        <div style="position:absolute; width:52px; height:52px; border-radius:26px; background:#ffff1e; opacity:0.18; animation: pulse-ring 1.6s infinite;"></div>
-                        <!-- core dot with colored border for contrast -->
-                        <div style="width:18px; height:18px; border-radius:9px; background:#ffffff; box-shadow:0 10px 30px rgba(0,0,0,0.22); border:3px solid #facc15;"></div>
-                    </div>
-                </div>
-
-                <div style="display:flex; justify-content:space-between; font-size:12px; margin-top:8px; gap:6px;">
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Too Early</span></div>
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Early Build</span></div>
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Confirmed</span></div>
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Crowded</span></div>
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Broken</span></div>
-                </div>
-
-                <div style="margin-top:12px; display:flex; justify-content:center;">
-                    <div style="background: linear-gradient(180deg, rgba(8,18,39,0.95) 0%, rgba(10,28,50,0.92) 100%); border:1px solid rgba(255,255,255,0.04); padding:14px 20px; border-radius:14px; box-shadow:0 16px 48px rgba(2,6,23,0.18); color:#e6eef8; font-size:13px; font-weight:700; max-width:920px; text-align:center;">
-                        <span style="color:#1fb6ae; font-weight:800; margin-right:10px;">Timing:</span>
-                        <span style="text-transform:uppercase; letter-spacing:0.6px; color:#ffffff;">CONFIRMED</span>
-                        <span style="color:rgba(230,238,248,0.7); font-weight:600; margin:0 10px;">—</span>
-                        <span style="font-weight:600; color:rgba(230,238,248,0.95);">Momentum confirmed — constructive for entries with risk controls.</span>
-                    </div>
-                </div>
+            <div class="timing-badge-large">
+                Timing: <span class="rally-badge" style="background: #dcfce7; color: #166534;">CONFIRMED</span>
+            </div>
+            
+            <div class="thesis-line">
+                HOLD/WATCH - CONFIRMED timing with 41/100 opportunity score
             </div>
         </div>
 
@@ -501,7 +397,7 @@
                     <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
                         <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
                     </div>
-                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">No accumulation</div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">No accumulation detected</div>
                 </div>
                 
                 </div>
@@ -555,7 +451,7 @@
                     <div style="font-size: 13px; color: #475569; line-height: 1.8;">
                         <div>• Commodity price crashes (gold, copper, lithium)</div><div>• Exploration failure / dry holes</div><div>• Permitting delays or regulatory blocks</div>
                     </div>
-                    <div style="margin-top: 12px; padding: 10px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e; font-weight: 600;">🚨 Active: Permitting delays or regulatory blocks</div>
+                    <div style="margin-top: 12px; padding: 10px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e; font-weight: 600;">🚨 Active: Commodity price crashes (gold, copper, lithium), Exploration failure / dry holes, Permitting delays or regulatory blocks</div>
                 </div>
                 <div style="background: white; padding: 18px; border-radius: 12px;">
                     <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">🚀 Recovery Paths</div>
@@ -574,7 +470,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Renewal of Mining Licence</div>
-                        <div style="font-size: 12px; color: #64748b;">26th Jan 2026</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
                     </div>
                 </div>
             </div>
@@ -583,8 +479,8 @@
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Result of AGM</div>
-                        <div style="font-size: 12px; color: #64748b;">31st Dec 2025</div>
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Re. Share Placing</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
                     </div>
                 </div>
             </div>
@@ -593,8 +489,8 @@
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Result of AGM</div>
-                        <div style="font-size: 12px; color: #64748b;">31st Dec 2025</div>
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">West Avoca, Co. Wicklow Sampling Update</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
                     </div>
                 </div>
             </div>
@@ -603,8 +499,8 @@
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Total Voting Rights</div>
-                        <div style="font-size: 12px; color: #64748b;">31st Oct 2025</div>
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Price Monitoring Extension</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
                     </div>
                 </div>
             </div>
@@ -613,8 +509,8 @@
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Annual Financial Report</div>
-                        <div style="font-size: 12px; color: #64748b;">31st Oct 2025</div>
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Second Price Monitoring Extn</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
                     </div>
                 </div>
             </div>
@@ -668,7 +564,7 @@
                 <span style="font-size: 24px;">⛏️</span>
                 <div style="flex: 1;">
                     <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Industry Pattern</div>
-                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">1 active</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">3 active</div>
                 </div>
             </div>
             
@@ -838,27 +734,27 @@
                 Executive Commentary
             </div>
             <div style="line-height: 1.6; margin-bottom: 20px;">
-                Note: this report used historical signals only — live triangulation (RNS, social, Trends) was not available. Current setup looks like CONFIRMED with an APEX score of 41/100. Historically there have been 2 rallies (avg. 42%); the position is now +23.8%. Practical take: this is interesting but unconfirmed — wait for an AI snapshot or clear confirmation before committing size.
+                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows CONFIRMED timing with 41/100 APEX score. Historical data shows 2 rallies averaging 42% upside. Current position: +23.8%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
             </div>
             
             <div style="margin-top: 20px;">
                 <strong style="color: #10b981;">▲ Bull Case:</strong>
-                <div style="padding: 8px 0;">• No obvious upside without a catalyst</div>
+                <div style="padding: 8px 0;">• Limited upside case without catalysts</div>
             </div>
             
             <div style="margin-top: 20px;">
                 <strong style="color: #ef4444;">▼ Bear Case:</strong>
-                <div style="padding: 8px 0;">• No immediate red flags, but keep stops tight</div>
+                <div style="padding: 8px 0;">• Monitor for breakdown signals</div>
             </div>
             
             <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
                 <strong>◷ Timing Translation:</strong><br>
-                Move has started — this is the actionable window if your thesis remains intact.
+                Momentum confirmed. This is the trade zone if thesis holds.
             </div>
             
             <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
                 <strong>◎ Confidence Explained:</strong><br>
-                Confidence 40/100 — data triangulated from RNS, social and Trends.
+                Confidence 40/100 reflects full data quality with triangulation loaded.
             </div>
         </div>
 
@@ -886,6 +782,44 @@
                 <span class="card-icon">📰</span>
                 Top 5 Recent RNS Announcements
             </div>
+            
+            <!-- Bloomberg-style Disclaimer Box -->
+            <div style="
+                margin-bottom: 20px;
+                padding: 16px 18px;
+                background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0.02) 100%);
+                border: 1px solid rgba(59, 130, 246, 0.2);
+                border-left: 3px solid #3b82f6;
+                border-radius: 8px;
+                font-family: 'Courier New', monospace;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: flex-start; gap: 12px;">
+                    <span style="font-size: 18px; margin-top: 2px; flex-shrink: 0;">🎯</span>
+                    <div style="flex: 1;">
+                        <div style="font-size: 12px; font-weight: 700; color: #1e40af; margin-bottom: 8px; letter-spacing: 0.3px;">
+                            Trader-Focused Analysis:
+                        </div>
+                        <div style="font-size: 11px; color: #334155; line-height: 1.6; margin-bottom: 8px;">
+                            Each RNS includes sentiment classification, key data extraction, and trading context. 
+                            Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                        </div>
+                        <div style="
+                            font-size: 10px; 
+                            color: #dc2626; 
+                            font-weight: 600; 
+                            padding: 6px 10px;
+                            background: rgba(239, 68, 68, 0.08);
+                            border-left: 2px solid #ef4444;
+                            border-radius: 4px;
+                            margin-top: 8px;
+                        ">
+                            ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div style="margin-top: 15px;">
                 
             <div style="
@@ -952,11 +886,11 @@
             ">
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">26th Jan 2026</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">2026-01-29</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">N/A</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
@@ -976,7 +910,7 @@
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Lori Marz</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Mineral Ventures</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1116,7 +1050,7 @@ IFC Advisory Limited (Financial PR and IR) Tim MetcalfeFlorence Chandler+44 (0)2
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
                     <span style="font-size: 20px;">📰</span>
                     <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">Result of AGM</div>
+                        <div style="font-weight: 700; font-size: 16px;">Re. Share Placing</div>
                         <span style="
                             display: inline-block;
                             background: rgba(255,255,255,0.25);
@@ -1142,15 +1076,15 @@ IFC Advisory Limited (Financial PR and IR) Tim MetcalfeFlorence Chandler+44 (0)2
             ">
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">31st Dec 2025</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">2026-01-21</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">N/A</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">PRN</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
@@ -1166,7 +1100,7 @@ IFC Advisory Limited (Financial PR and IR) Tim MetcalfeFlorence Chandler+44 (0)2
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Florence Chandler</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Contact Details</td>
                     </tr>
                     
                         </table>
@@ -1201,41 +1135,61 @@ IFC Advisory Limited (Financial PR and IR) Tim MetcalfeFlorence Chandler+44 (0)2
                     white-space: pre-wrap;
                     word-wrap: break-word;
                 ">
-31 Dec 2025 07:00
-2024-2025 AGM OUTCOME
-IMC EXPLORATION GROUP PLC
-THE DIRECTORS OF IMC EXPLORATION GROUP PLC DO NOT CONSIDER THIS ANNOUNCEMENT CONTAINS INSIDE INFORMATION FOR THE PURPOSES OF ARTICLE 7 OF Regulation (EU) No. 596/2014 of the European Parliament and the Council of 16 April 2014 on market abuse as it forms part of retained EU law as defined in the European Union (Withdrawal) Act 2018 (the "Market Abuse Regulation").
-IMC Exploration Group plc ("IMC" or the "Company");
-Outcome of Annual General Meeting ("AGM")
-The AGM of the Company was held on Tuesday, 30
-th
-December 2025, at 10.00 a.m., Dublin time, in accordance with the notice previously sent to shareholders in respect of the financial year ended 30
-th
-June 2025.
-All resolutions before IMC's shareholders were approved and, there being no further business, the AGM was declared closed at 10.35 a.m., Dublin time.
-Copies of the document referred to above and of this announcement are downloadable from
-IMC's website
-.
-Eamon P. O'Brien,
-Executive Chairman,
-Dublin, 31
-st
-December 2025
+8 Sep 2020 07:59
+IMC Exploration Group Plc - Re. Share Placing
+IMC Exploration Group Plc - Re. Share Placing
+PR Newswire
+London, September 7
+THE INFORMATION CONTAINED WITHIN THIS ANNOUNCEMENT IS DEEMED BY IMC TO CONSTITUTE INSIDE INFORMATION AS STIPULATED UNDER THE MARKET ABUSE REGULATION (EU) NO. 596/2014, AS AMENDED ("MAR"). ON THE PUBLICATION OF THIS ANNOUNCEMENT
+VIA
+A REGULATORY INFORMATION SERVICE ("RIS"), THIS INSIDE INFORMATION IS NOW CONSIDERED TO BE IN THE PUBLIC DOMAIN.
+IMC Exploration Group plc (“IMC” or the “Company”)
+Placing of Shares
+Placing of New and Treasury Shares
+The Board of IMC is pleased to announce that the Company has raised £267,500 (two hundred and sixty-seven thousand
+five hundred pounds Sterling
+) before expenses by way of an oversubscribed placing (the “Placing”) of 26,750,000 (twenty six million seven hundred and fifty thousand) new ordinary shares of €0.001 each ("Shares") in the Company at a price of 1p per Share (one penny Sterling) for cash (the “Placing Shares”), conditional only upon admission of the new Placing Shares to the Official List of the FCA and to trading on the regulated market of the London Stock Exchange (“Admission”) of the new Placing Shares. Alongside each Placing Share will be issued a warrant to subscribe for one further Share at a price of 2 p (
+two pence
+Sterling) per Share, exercisable for one year from the date of issue (the “Warrants”). No application shall be made for admission to any list or to trading on any market (regulated or otherwise) of the Warrants.
+Further to the announcement made by IMC on
+5th August 2019
+, 3,250,000 (three million two hundred and fifty thousand) existing IMC shares were returned to the Company and had been held temporarily as treasury shares by IMC, pending re-sale for cash. These 3,250,000 shares, which had been allotted but for which no consideration had been received by the Company, have now been placed on the same terms as the Placing Shares, resulting in IMC’s receiving a further £32,500 (thirty-two thousand
+five hundred pounds Sterling
+) before expenses.
+Increase in Voting Rights Outstanding
+The total number of voting rights in issue following the allotment of the Placing Shares shall be 311,495,991 (previously, 284,745,991). This new total is the denominator which shareholders should use to determine whether they are obliged to notify IMC of an interest in (or of a change to a notifiable interest in) voting rights. Application is being made for Admission for 26,750,000 Placing Shares.
+Use of Proceeds
+The net proceeds of the Placing will be applied for general working capital purposes but, in particular, for the further advancement of IMC’s exploration and geological work on its spoils and tailings project in Avoca,
+Co. Wicklow, Ireland
+, and to extend the significant progress already made on IMC’s collaboration with
+Trinity College Dublin
+. Further, IMC will work closely with the Geological Survey of
+Ireland
+to continue with the exploration work on IMC’s North Wexford gold project.
+Conclusion
+Eamon O’Brien, Chairman stated: “We are pleased to see significant support from new and existing investors. With the price having recently reached an all-time high of
+$2,000
+per troy ounce, this is an auspicious time for gold and, in particular, for IMC with its exciting gold projects in
+South East Ireland
+. The Company will move to accelerate progress at the spoils and tailings project in Avoca,
+Co. Wicklow
+and will provide independently-verified updates as they become available.”
+Eamon P. O’Brien,Executive Chairman,Dublin, 7th
+September 2020
 The Directors of IMC, after due and careful enquiry, accept responsibility for the contents of this announcement.
 REGULATORY ANNOUNCEMENT ENDS.
-Enquiries
+Contact Details
 :
 Keith, Bayley, Rogers & Co. Limited
-Brinsley Holman: +44 7776 30 22 28 /
+Graham Atthill-Beck
+: +44 20 7464 4091/ +44 7506 43 41 07 /
+Graham.Atthill-Beck@kbrl.co.uk
+Brinsley Holman
+: +44 20 7464 4098 /
 Brinsley.Holman@kbrl.co.uk
-Stephen Clayson: +44 7771 871 847 /
-Stephen.Clayson@kbrl.co.uk
-IFC Advisory Limited (Financial PR and IR)
-Tim Metcalfe
-Florence Chandler
-+44 (0)203 934 6630
 IMC Exploration Group plc
-Kathryn Byrne: +353 85 233 6033
+Kathryn Byrne
+: +353 85 233 6033
                 </div>
             </details>
             
@@ -1279,7 +1233,7 @@ Kathryn Byrne: +353 85 233 6033
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
                     <span style="font-size: 20px;">📰</span>
                     <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">Result of AGM</div>
+                        <div style="font-weight: 700; font-size: 16px;">West Avoca, Co. Wicklow Sampling Update</div>
                         <span style="
                             display: inline-block;
                             background: rgba(255,255,255,0.25);
@@ -1305,11 +1259,11 @@ Kathryn Byrne: +353 85 233 6033
             ">
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">31st Dec 2025</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">2026-01-21</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">N/A</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
@@ -1329,7 +1283,12 @@ Kathryn Byrne: +353 85 233 6033
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Florence Chandler</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Professor Garth</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">0.14%, 0.42%</td>
                     </tr>
                     
                         </table>
@@ -1364,45 +1323,103 @@ Kathryn Byrne: +353 85 233 6033
                     white-space: pre-wrap;
                     word-wrap: break-word;
                 ">
-31 Dec 2025 07:00
-IMC Exploration Group Plc - Result of AGM
-IMC Exploration Group Plc - Result of AGM
+8 Sep 2020 08:52
+IMC Exploration Group Plc - West Avoca, Co. Wicklow Sampling Update
+IMC Exploration Group Plc - West Avoca, Co. Wicklow Sampling Update
 PR Newswire
-LONDON, United Kingdom, December 31
-2024-2025 AGM OUTCOME
-IMC EXPLORATION GROUP PLC
-THE DIRECTORS OF IMC EXPLORATION GROUP PLC DO NOT CONSIDER THIS ANNOUNCEMENT CONTAINS INSIDE INFORMATION FOR THE PURPOSES OF ARTICLE 7 OF Regulation (EU) No. 596/2014 of the European Parliament and the Council of 16 April 2014 on market abuse as it forms part of retained EU law as defined in the European Union (Withdrawal) Act 2018 (the "Market Abuse Regulation").
-IMC Exploration Group plc (“IMC” or the “Company”);
-Outcome of Annual General Meeting (“AGM”)
-The AGM of the Company was held on Tuesday, 30
-th
-December 2025, at 10.00 a.m., Dublin time, in accordance with the notice previously sent to shareholders in respect of the financial year ended 30
-th
-June 2025.
-All resolutions before IMC’s shareholders were approved and, there being no further business, the AGM was declared closed at 10.35 a.m., Dublin time.
-Copies of the document referred to above and of this announcement are downloadable from
-IMC's website
-.
-Eamon P. O’Brien,
-Executive Chairman,
-Dublin, 31
-st
-December 2025
-The Directors of IMC, after due and careful enquiry, accept responsibility for the contents of this announcement.
-REGULATORY ANNOUNCEMENT ENDS.
-Enquiries
-:
-Keith, Bayley, Rogers & Co. Limited
-Brinsley Holman: +44 7776 30 22 28 /
-Brinsley.Holman@kbrl.co.uk
-Stephen Clayson: +44 7771 871 847 /
-Stephen.Clayson@kbrl.co.uk
-IFC Advisory Limited (Financial PR and IR)
-Tim Metcalfe
-Florence Chandler
-+44 (0)203 934 6630
-IMC Exploration Group plc
-Kathryn Byrne: +353 85 233 6033
+London, September 8
+THE INFORMATION CONTAINED WITHIN THIS ANNOUNCEMENT IS DEEMED BY IMC TO CONSTITUTE INSIDE INFORMATION AS STIPULATED UNDER THE MARKET ABUSE REGULATION (EU) NO. 596/2014, AS AMENDED ("MAR"). ON THE PUBLICATION OF THIS ANNOUNCEMENT
+VIA
+A REGULATORY INFORMATION SERVICE ("RIS"), THIS INSIDE INFORMATION IS NOW CONSIDERED TO BE IN THE PUBLIC DOMAIN.
+IMC Exploration Group plc (“IMC” or the “Company”)
+IMC Update Exploration Target for West Avoca Spoils
+Highlights
+Updated report increases tonnage in West Avoca spoil heaps. Exploration Target in West Avoca estimated at 3,500-4,000 oz gold. Sampling planned to upgrade West Avoca Exploration Target to Inferred Resource. Inferred Resource of 19,800 oz gold previously reported for East Avoca.
+Introduction
+IMC Exploration Group Plc (IMC), the
+London
+-listed gold and base metals explorer in
+Ireland
+, is pleased to report the following update based upon a reassessment of tonnages contained in the West Avoca spoil heaps.
+IMC commissioned Trove Metal Ltd (Trove) to review the tonnages contained in the mineralized spoils of the West Avoca Exploration Target as described by CSA Global (CSA) in the 2019 Mineral Resource Estimate (MRE) report on the Avoca Historic Mine Site Project,
+Ireland
+(reported 11th September 2019). The 2020 Trove report considers the West Avoca Exploration Target in isolation. This is in addition to the CSA MRE report for East Avoca (Inferred Resource of 19,800oz gold).
+Trove has entered into an agreement with IMC to establish an environmental clean-up operation to remove metals from the existing mine waste at the Avoca site.
+IMC plans to carry out further sampling on the West Avoca Exploration Target in 2020 to allow an Inferred Resource to be calculated at West Avoca*.
+The 2020 Trove Report
+The 2020 Trove report reassessed and recalculated the likely tonnes contained in five defined areas of West Avoca, four of which are represented by surface spoils (S1-4) and one area of backfilled spoils (U1).
+The CSA Exploration Target tonnage estimate for the West Avoca spoils specified a range from 130,000 to 180,000 tonnes. The 2020 Trove report, with areas and topography of the spoil heaps better defined through detailed assessment of lidar measurements, has calculated that 385,042 tonnes are present. The depth measurements of the spoils are based on conservative estimates of the vertical extent of each stockpile and range from
+2.0m
+to
+4.7m
+. A tonnage factor of 1.6 was used.
+Stockpile
+Area (m2)
+Volume (m3)
+Tonnes
+S1
+6,483
+30,800
+49,280
+S2
+5,008
+20,031
+32,049
+S3
+4,279
+17,116
+27,386
+S4
+19,918
+59,754
+95,606
+U1
+56,475
+112,950
+180,721
+Total
+92,163
+240,652
+385,042
+Table 1. Updated tonnage estimates for West Avoca spoils
+(Trove Metal Ltd).
+Minimal grab sampling and analyses have been undertaken on four of the five areas at West Avoca. The results are tabulated below.
+Stockpile
+Sample ID
+Au g/t
+Ag g/t
+S1
+WA 02
+0.51
+4.2
+S2
+WA 01
+0.33
+3.5
+S3
+WA 04
+0.35
+8.0
+S4
+WA 03
+0.27
+6.9
+U1
+Not Sampled
+Table 2. Grab sampling at West Avoca (Trove Metal Ltd).
+CSA provide a grade range of 0.3 – 0.6 g/t Au for the West Avoca spoil heaps Exploration Target. Using the lower estimate of 0.3 g/t Au (which is also the grade of the JORC-compliant CSA MRE in East Avoca) an Exploration Target in the region of 3,500-4,000 oz Au is reasonable for West Avoca using the updated tonnage estimate in the 2020 Trove report.
+These re-estimated values for the number of tonnes likely to be present (and associated gold content) will benefit from more detailed exploration, specifically detailed sampling at regular lateral and vertical intervals to firm-up the Exploration Target into an Inferred Resource.
+*As an Exploration Target under the JORC (2012) code the estimates for West Avoca contained in the Trove report cannot be included as a resource as the potential quantity and grade is conceptual in nature, and that there has been insufficient exploration to estimate a Mineral Resource.
+The CSA MRE
+In
+September 2019
+, IMC published an MRE on its Avoca Historic Mine Site Project,
+Ireland
+spoils and tailings project located in
+Co. Wicklow, Ireland
+. The JORC-compliant MRE report shows, inter alia, significant grades of extracted and crushed gold (1,871,000t at 0.3g/t Au), copper (1,871,000t at 0.14% Cu) and lead (1,871,000t at 0.42% Pb) in the spoil heaps on the East Avoca part of the site.
+Mineralogical testing is ongoing, and it is also anticipated that this will confirm that a sizeable quantity of gold and metals will be recoverable at low cost, given that the material has already been extracted and crushed. IMC, Trove and CSA believe there are reasonable prospects for the eventual economic extraction of the Mineral Resources.
+This release has been approved by EurGeol Professor Garth Earls PGeo, FSEG, who is an independent consulti
                 </div>
             </details>
             
@@ -1446,7 +1463,7 @@ Kathryn Byrne: +353 85 233 6033
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
                     <span style="font-size: 20px;">📰</span>
                     <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">Total Voting Rights</div>
+                        <div style="font-weight: 700; font-size: 16px;">Price Monitoring Extension</div>
                         <span style="
                             display: inline-block;
                             background: rgba(255,255,255,0.25);
@@ -1472,15 +1489,15 @@ Kathryn Byrne: +353 85 233 6033
             ">
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">31st Oct 2025</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">2026-01-21</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">8:26 am</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">N/A</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">PRN</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
@@ -1496,7 +1513,7 @@ Kathryn Byrne: +353 85 233 6033
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Ordinary Shares</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Sector Breakdown</td>
                     </tr>
                     
                         </table>
@@ -1531,35 +1548,24 @@ Kathryn Byrne: +353 85 233 6033
                     white-space: pre-wrap;
                     word-wrap: break-word;
                 ">
-31 Oct 2025 08:26
-IMC Exploration Group Plc - Total Voting Rights
-IMC Exploration Group Plc - Total Voting Rights
-PR Newswire
-LONDON, United Kingdom, October 31
-IMC EXPLORATION GROUP PLC
-("IMC" or the "Company")
-TOTAL VOTING RIGHTS
-31 OCTOBER 2025
-- IMC Exploration Group plc announces that as at the date of this announcement, IMC has in issue a total of 780,677,508 ordinary shares of €0.001 each ("Ordinary Shares").
-There are no Ordinary Shares held in treasury and therefore the total number of voting rights in the Company is 780,677,508.
-This figure may be used by shareholders in the Company as the denominator for the calculations by which they will determine if they are required to notify their interest in, or a change to their interest in, the share capital of the Company under the Financial Conduct Authority's Disclosure Guidance and Transparency Rules.
-Enquiries:
-IMC Exploration Group plc
-Eamon O'Brien
-+353 87 6183024
-Kathryn Byrne
-+353 85 233 6033
-Keith Bayley Rogers & Co. Limited
-Stephen Clayson
-stephen.clayson@kbrl.co.uk
-+44 (0)7771 871 847
-Brinsley Holman
-brinsley.holman@kbrl.co.uk
-+44 (0)7776 302 228
-IFC Advisory Limited (Financial PR and IR)
-Tim Metcalfe
-Florence Chandler
-+44 (0)203 934 6630
+9 Sep 2020 16:36
+RNS Number : 5282Y
+IMC Exploration Group PLC
+09 September 2020
+Price Monitoring Extension
+The auction call period has been extended in this security by 5 minutes.
+Auction call extensions give London Stock Exchange electronic order book users a further opportunity to review the prices and sizes of orders entered in an individual security's auction call before the execution occurs. A price monitoring extension is activated when the matching process would have otherwise resulted in an execution price that is a pre-determined percentage above or below the price of the most recent automated execution today.
+The applicable percentage is set by reference to a security's Millennium Exchange sector. This is set out in the Sector Breakdown tab of the Parameters document at
+www.londonstockexchange.com/tradingservices
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+PMEBUGDCLXGDGGC
                 </div>
             </details>
             
@@ -1603,7 +1609,7 @@ Florence Chandler
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
                     <span style="font-size: 20px;">📰</span>
                     <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">Annual Financial Report</div>
+                        <div style="font-weight: 700; font-size: 16px;">Second Price Monitoring Extn</div>
                         <span style="
                             display: inline-block;
                             background: rgba(255,255,255,0.25);
@@ -1629,15 +1635,15 @@ Florence Chandler
             ">
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">31st Oct 2025</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">2026-01-21</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">N/A</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">PRN</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
@@ -1653,12 +1659,7 @@ Florence Chandler
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Total Liabilities</td>
-                    </tr>
-                    
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">30%, 10%, 40%</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Sector Breakdown</td>
                     </tr>
                     
                         </table>
@@ -1693,478 +1694,29 @@ Florence Chandler
                     white-space: pre-wrap;
                     word-wrap: break-word;
                 ">
-31 Oct 2025 07:00
-IMC Exploration Group Plc - Annual Financial Report
-IMC Exploration Group Plc - Annual Financial Report
-PR Newswire
-LONDON, United Kingdom, October 31
-THE DIRECTORS OF IMC EXPLORATION GROUP PLC CONSIDER THIS ANNOUNCEMENT TO CONTAIN INSIDE INFORMATION FOR THE PURPOSES OF ARTICLE 7 OF REGULATION (EU) NO. 596/2014 OF THE EUROPEAN PARLIAMENT AND THE COUNCIL OF 16 APRIL 2014 ON MARKET ABUSE AS IT FORMS PART OF RETAINED EU LAW AS DEFINED IN THE EUROPEAN UNION (WITHDRAWAL) ACT 2018 (THE "MARKET ABUSE REGULATION"). UPON THE PUBLICATION OF THIS ANNOUNCEMENT THE INSIDE INFORMATION IS NOW CONSIDERED TO BE IN THE PUBLIC DOMAIN.
-FINAL RESULTS FOR THE YEAR 1 st JULY 2024 TO 30 th JUNE 2025
-IMC Exploration Group Public Limited Company
-("IMC" or the "Company")
-Chairman's Statement
-IMC Exploration Group Public Limited Company
-for the year ended 30 June 2025
-The Directors of IMC Exploration Group plc ("IMC" or the "Company") are pleased to present the final financial results for IMC for the twelve months to 30th June 2025.
-This has been a year when further progress has been made on a number of projects and there have been two major post balance sheet developments of note.
-Armand Pinarbasi, former Managing Partner Grant Thornton Armenia, has been appointed to the Company's Board as an Executive Director with immediate effect and he has also been appointed as Chief Executive Officer of IMC's Armenian mining subsidiary, ASSAT LLC. In addition,
-Lumír Vaštík
-, a long-term partner in the Company's shareholder Mineral Ventures Invest s.r.o ("MVI") will become the Deputy Director of ASSAT LLC.
-The conversion into ordinary shares in the Company of all loans provided by MVI to IMC up to the date of completion of the reverse take-over on 31 October 2023. The amount loaned up to 31 October 2023 by MVI totalled €702,286 (equivalent to £613,350) and is being converted on the basis of an IMC share price of 0.75p into 81,780,029 new ordinary shares in the Company.
-Armand has been providing assistance with our developments in Armenia and is currently in discussions with the Armenian Stock Exchange with regard to moving forward IMC's application for a dual listing on that exchange. We are delighted to welcome Armand to the management team where Armand will also take on, at IMC Board level, the role of business development, not only in Armenia, but in the South Caucasus countries and in Eastern Europe where a number of opportunities are opening and especially for those companies with a proven eco-mining solution. Prior to joining IMC, Armand served as Group CEO of SoftConstruct, a multinational technology group with 6,000+ employees. Before that, Armand spent more than 20 years at Grant Thornton, holding senior leadership roles including Managing Partner of Grant Thornton Armenia, Partner at Grant Thornton in France, where he also served as Managing Partner Grant Thornton PACA region (Nice, Provence-Alpes-Côte d'Azur) for nine years, and Executive Director for Network Member Relations at Grant Thornton International.
-The conversion of €702,286 of debt to equity strengthens the balance sheet, reducing interest costs, improving the debt-to-equity ratio and financial stability, and is in keeping with IMC's strategy to grow the company and make it attractive to new investors as we prepare for a dual listing on the Armenian Stock Exchange.
-IRISH OPERATIONS
-Summary:
-IMC, considering the significant increasing price of an Oz of gold and silver from $1,226 and $14.5 per Oz respectively, when IMC completed its 2018 JORC compliant inferred Mineral Resource Estimate, to the end June 2025 values of $3,264 and $36 respectively, and given the very encouraging results from the drilling on the Wexford licence PL2551 along with the up to three potential projects to be associated with IMC's two Avoca licences, it was decided that IMC should focus its investment in the Avoca licences PL 3850 and PL 3849 and the Wexford PL2551, and accordingly IMC gave up licences 1199 and 1200.
-The Avoca Project - PL 3850 and PL 3849
-IMC undertook further works on Avoca. These were carried out by Trove Metal and inspection was carried out by the relevant Government department. This resulted in a mid-estimated increase (+650,000 tons) in the tonnage of spoils and tailings from 1,871,000 to 2,521,000.
-As I write, and based on the Grade-tonnage estimate for the waste heaps at Avoca table
-(Page 6 CSA Global Report N
-o
-R369.2018)
-of the MRE plus the increased tonnage the following table sets out the gross value of the metals contained in the waste heaps made up of spoils and tailings -
-A number of important events favourable to progression of our Avoca project have also taken place as follows:
-·
-29 November 2024 - a new Irish Government was elected.
-This new government is very enthusiastic about development of Ireland's mineral resources.
-·
-The European Union have passed a Nature Restoration Law requiring member countries to restore 30% of damaged habitats. The Avoca mining site of 155 Acres meets this classification. This includes restoration, re-creation, maintenance and enabling measures. Funding under the EU Multiannual Financial Framework (MFF), estimates for allocations to biodiversity amount to nearly EUR 16 billion annually.
-·
-The European Union's Critical Raw Minerals Act has been approved in Ireland and includes requirements that will be very beneficial to our Avoca project as follows:
-# Streamline project approvals: The Act introduces provisions for companies, such as simplified approval procedures for "strategic projects" to help speed up project timelines
-# Set strategic targets: By 2030, the EU wants to source at least 10% of its annual extraction needs domestically, have 40% of its annual processing capacity within the EU, and have 15% of its annual recycling needs met by EU facilities.
-Following the recent works completed by IMC on its Avoca project a meeting with the Geoscience Policy section of Department of Climate, Energy and the Environment was held recently.
-Discussion was held on the three possible projects that can take place within our Avoca PL's namely:
--
-Abstraction of metals from the spoils and tailings
--
-Remediation of the site
--
-Re-opening / extending the old copper mine
-This was a positive and informative meeting with advices provided in relation to advancing the project and a further meeting is to be scheduled with the Department.
-Our colleagues from China National Geological & Mining Corporation confirmed, in a recent communication, that they are on standby to work with IMC on those projects.
-The Wexford Gold Project - PL 2551
-IMC continues with its gold exploration programme on PL 2551.
-Assessments, further to the assay in March 2024 of its results from drillhole 24-2551-01 at IMC's Boley project, were carried out in May 2025 and significant analysis of core was carried out by the Raw Materials Laser Ablation ICP-MS Laboratory of Trinity College under the supervision of Dr. Sean McClenaghan.
-While a complete report is yet to be finalised, I can confirm that initial mineralogical and micro-analytical assessment of the Boley Quartz veins indicate significant Au fertility in the region and the presence of broader orogenic Au mineralization. As announced already the drillhole 24-2552-01 intersected two mineralized zones that returned values of 1m grading 5.8g/t Au from 90.5 - 91.5m in the upper zone and 1m grading 1.1g/t Au from 139.5 - 140.5m in the lower zone.
-The drillhole reached a depth of 172.5m. Background gold values are present throughout both zones, which are interpreted as shear zones.
-ARMENIAN OPERATIONS
-Senior Management appointments
-Armand Pinarbasi - CEO
-of IMC's Mining Subsidiary
-ASSAT LLC
-Lumír Vaštík - Deputy Director
-of IMC's Mining Subsidiary ASSAT LLC
-Mr. David Marášek - Director MVI and now also Director of MASIS Refinery
-Mr. Tomáš Sedláček - formerly of MVI and now Technical Director of MASIS Refinery
-Masis Refinery - Acquisition, Finalisation and Start of Production
-As mentioned before, due to the sanctions on Russian entities, Assat, IMC's mining subsidiary could no longer process it's crushed ore through the GeoProMining facility.
-As an alternative option, associate investors of IMC's shareholder Mineral Ventures Invests (MVI) sought to acquire one of the two only available refinery plants in Armenia, Masis Refinery, that holds a valid license for refining gold.
-Due to complex bureaucracy, corporate issues on the seller's side, involvement of several banks, the takeover was only completed in March 2025.
-A technical audit was conducted throughout July 2025, requiring key operational upgrades, including the complete replacement of the Electrolysis Section. The other main challenge for Masis remains its relatively low capacity, which is being addressed in cooperation with corporate advisors Grant Thornton Yerevan.
-Importantly, processing of IMC's pre-mined Karaberd ore has already resumed.
-KARABERD MINE - CONSTRUCTION PERMIT FOR CGM ECO-PLANT
-While ore extraction was paused due to the absence of processing facilities, it will commence again shortly given the completion and upgrade of the Masis refinery. To date all mining has been open-pit, but by end 2025 an underground mining project linked to this licence is scheduled to begin alongside the finalisation of the construction permit for the China National Geological & Mining Corporation built Eco-Plant with an annual processing capacity of 100,000 tons.
-From April 2026, underground ore production is expected to gradually reach over 1,000 tons per month, with significant increases per month throughout the summer, as new gold-bearing veins are penetrated. In accordance with the Karaberd CPR report, grades from the underground mining are expected to be higher than from the open-pit operations (4 g/t vs. 1.4 g/t).
-When IMC visited Armenia this September, I am pleased to mention that we received a warm welcome from Aren Mkrtchyan the new Governor of Lori Province in Armenia where the Karaberd Mine is located. He was aware of our company and very supportive of our development plans.
-AMX - Armenian Stock Exchange
-IMC believes that a "dual listing" trading IMC shares on both the primary London Stock Exchange (LSE) and AMX-is an excellent marketing strategy for the company, particularly given the development of "green mining", which our CGM Eco-Plant promotes.
-The key advantages of this process include full transparency, enhanced creditworthiness and credibility, and increased attractiveness for local banking and institutional investors.
-The application procedure, led by our new Director and ASSAT CEO Armand Pinarbasi, has been commenced and is expected to be relatively straightforward, especially for companies already listed on other global exchanges.
-It is noteworthy that the AMX has flourished since 2023, when the exchange was acquired by the Warsaw Stock Exchange (GPW), which now owns 65% of AMX.
-Armenia-Azerbaijan Peace Agreement
-After 35 years of violent conflict, the leaders of Armenia and Azerbaijan signed a "historic peace agreement" at the White House on August 8, 2025.
-This long-sought agreement-supported over the years by numerous political groups, and countries including Russia, Turkey, the UK, France, Iran and the EU- represents a real opportunity to achieve lasting peace in the region.
-Both nations committed to ending hostilities, establishing diplomatic relations, and respecting each other's territorial integrity.
-Under the terms of the agreement, the United States will gain access to a strategic transit corridor on Armenian territory, located along the border with Iran and connecting Azerbaijan with its Nakhchivan exclave. This corridor will also provide a highly efficient trade route linking China and Central Asia to Europe via the so-called "Middle Corridor" (China-Kazakhstan-Azerbaijan-Turkey-EU), serving as an alternative to both the Russian route and the current main China-Suez trade path.
-The stability and economic benefits of the treaty are viewed by the Armenian government and business community, including IMC, as highly positive for the country's future.
-There is no doubt that there is now a confluence of EU and national requirements that in the years ahead will offer great opportunities to IMC in Ireland as well as Armenia and having developed strong relationships/partnerships at both the technology, professional and political level and having greatly strengthened our team, IMC is looking forward to a busy and bright future.
-Eamon P. O'Brien,
-Executive Chairman,
-Dublin, 31 October 2025
-IMC Exploration Group Public Limited Company
-Consolidated Statement of Comprehensive Income
-for the year ended 30
-th
-June 2025
-Continuing Operations
-Jun'25
-Jun'24
-Revenue
-66,000
-1,524,000
-Cost of Sales
-(366,694)
-(828,097)
-Gross Profit
-(300,694)
-695,903
-Administration Costs
-(1,331,816)
-(797,719)
-Other Income
--
-104,000
-Operating Profit /(loss) for the period
-(1,632,510)
-2,184
-Interest Payable & Similar (charges)/Income
-44,701
-(40,336)
-Gain on Disposal of Plant and Machinery
-11,000
--
-Foreign Exchange Gain/(Loss)
-2,000
--
-Expected credit loss
-(260,250)
--
-Translation Reserve
-(657,835)
--
-Bargain Purchase
--
-617,895
-Profit / (Loss) for period before tax
-(2,492,894)
-579,743
-Income tax expenses
-(300,935)
-(112,402)
-Total comprehensive loss for the period
-(2,793,829)
-467,341
-Loss attributable to:
-Equity holders of the Company
-(2,793,829)
-467,341
-Total Comprehensive Loss attributable to:
-Equity holders of the Company
-(2,793,829)
-467,341
-Earnings per share
-From continuing operations
-Basic and Diluted profit per share (cent)
-(0.04)
-0.07
-All activities derived from continuing operations. All losses and total comprehensive losses for the period are attributable to the owners of the Company.
-The Company has no recognised gains or losses other than those dealt with in the statement of comprehensive income.
-The financial statements were approved by the Board of Directors on 30
-th
-October 2025, and signed on its behalf by:
-On behalf of the board
-Eamon O'Brien
-Andrew Laz Fleming
-Director
-Director
-The Directors of
-IMC Exploration Group Public Limited Company
-, after due and careful enquiry, accept responsibility for the contents of this announcement.
-IMC Exploration Group Public Limited Company
-Consolidated Statement of Financial Position
-As at 30 th June 2025
-Jun'25
-Jun'24
-Assets
-Intangible assets
-3,492,455
-4,058,253
-Property, plant and equipment
-98,000
-138,472
-Non-Current Prepayments
-630,000
--
-Total Non-Current Assets
-4,220,455
-4,196,725
-Current Assets
-Inventory
-345,000
-384,000
-Trade and other receivables
-2,817,914
-2,970,358
-Cash and cash equivalents
-8,000
-9,527
-Total Current Assets
-3,170,914
-3,363,885
-Total Assets
-7,391,369
-7,560,610
-Equity
-Share Capital
-736,990
-723,191
-Share premium & Capital
-8,878,158
-8,818,818
-Other Reserves
--
--
-Retained deficit
-(7,149,760)
-(4,355,931)
-Attributable to owners of the Company
-2,465,389
-5,186,078
-Total Equity
-2,465,389
-5,186,078
-Liabilities - Current
-Trade and other payables
-1,793,286
-844,739
-Current tax liabilities
--
--
-Total Liabilities-Current
-1,793,286
-844,739
-Liabilities - Non-Current
-Loan & Borrowings
-1,175,994
-889,722
-Shareholder Contribution
-1,468,000
--
-Provision
-28,000
-31,000
-Deferred Tax Liability
-460,700
-609,071
-Total Liabilities-Current
-3,132,694
-1,529,793
-Total Equity and Liabilities
-7,391,369
-7,560,610
-The financial statements were approved by the Board of Directors on 30
-th
-October 2025, and signed on its behalf by:
-On behalf of the board
-Eamon O'Brien
-Andrew Laz Fleming
-Director
-Director
-The Directors of
-IMC Exploration Group Public Limited Company
-, after due and careful enquiry, accept responsibility for the contents of this announcement.
-IMC Exploration Group Public Limited Company
-Consolidated Statement of Changes in Equity
-for the year ended 30
-th
-June 2025
-Share Capital €
-Share Premium €
-Retained Losses €
-Total €
-Balance at 30 June 2023
-364,384
-4,253,642
-(4,823,272)
-(205,246)
-Total comprehensive income for the period
-Loss for year
--
--
-467,341
-467,341
-Total comprehensive income for the period
--
--
-467,341
-467,341
-Transactions with owners, recorded directly in equity contributions and distributions to owners
-Shares issued
-358,807
-4,565,176
--
-4,923,983
-Balance at 30 June 2024
-723,191
-8,818,818
-(4,355,931)
-5,186,078
-Total comprehensive income for the period
-Loss for year
--
--
-(2,793,829)
-(2,793,829)
-Total comprehensive income for the period
--
--
-(2,793,829)
-(2,793,829)
-Transactions with owners, recorded directly in equity contributions and distributions to owners
-Shares issued
-13,799
-59,340
--
-73,140
-Balance at 30 June 2025
-736,990
-8,878,158
-(7,149,760)
-2,465,389
-The financial statements were approved by the Board of Directors on 30
-th
-October 2025, and signed on its behalf by:
-On behalf of the board
-Eamon O'Brien
-Andrew Laz Fleming
-Director
-Director
-The Directors of
-IMC Exploration Group Public Limited Company
-, after due and careful enquiry, accept responsibility for the contents of this announcement.
-IMC Exploration Group Public Limited Company
-Consolidated Statement of Cash Flows
-for the year ended 30
-th
-June 2025
-Jun'25
-Jun'24
-Cash flows from operating activities
-Profit /(Loss) for the year
-(1,835,059)
-579,743
-Adjustments for:
-Depreciation & Amortisation
-356,166
-340,238
-Bad Debts
-257,841
--
-Movement in Provision
--
-2,000
-Gain on Disposal on Fixed asset
-(11,000)
--
-Bargain Purchase
--
-(617,895)
-Translation Reserve
-(657,835)
--
-Taxation
-661,935
--
-Foreign Exchange translation difference
-(288,941)
-(24,400)
-Interest payable and similar charges /income
--
-41,336
-Cash from operations before changes in working capital
-(1,516,893)
-321,022
-Movement in trade and other receivables
-(84,592)
-(706,313)
-Movement in trade inventories
-39,000
-10,193
-Movement in trade and other payables
-963,839
-70,000
-Net cash flow from operating activities
-(598,646)
-(305,098)
-Taxation Paid
-(407,000)
--
-Cash flows from investing activities
-Capital Expenditure
-(640,000)
-(135,657)
-Purchase of Subsidiary
--
-(4,799,105)
-Net cash (used in) investing activities
-(640,000)
-(4,934,762)
-Cash flows from financing activities
-Proceeds from the issue of new shares
-73,140
-4,923,983
-Proceeds from loans or borrowings
-1,591,272
-185,259
-Net cash generated by financing activities
-1,664,412
-5,109,242
-Movement in cash and cash equivalents
-18,766
-(130,618)
-Cash and cash equivalents at beginning of period
-(29,600)
-101,018
-Cash and cash equivalents at end of year
-(10,834)
-(29,600)
-The financial statements were approved by the Board of Directors on 30
-th
-October 2025, and signed on its behalf by:
-On behalf of the board
-Eamon O'Brien
-Andrew Laz Fleming
-Director
-Director
-The Directors of
-IMC Exploration Group Public Limited Company
-, after due and careful enquiry, accept responsibility for the contents of this announcement.
-Enquiries
-IMC Exploration Group plc
-Eamon O'Brien
-+353 87 6183024
-Kathryn Byrne
-+353 85 233 6033
-Keith, Bayley, Rogers & Co. Limited
-Stephen Clayson
-stephen.clayson@kbrl.co.uk
-+44 (0)7771 871 847
-Brinsley Holman
-brinsley.holman@kbrl.co.uk
-+44 (0)7776 302 228
-IFC Advisory Limited (Financial PR and IR)
-Tim Metcalfe
-Florence Chandler
-+44 (0)203 934 6630
-REGULATORY ANNOUNCEMENT ENDS.
+9 Sep 2020 16:41
+RNS Number : 5296Y
+IMC Exploration Group PLC
+09 September 2020
+Second Price Monitoring Extension
+A second and final Price Monitoring Extension has been activated in this security. The auction call period is extended in this security for a further 5 minutes.
+Following the first price monitoring extension this security would still have executed more than a pre-determined percentage above or below the price of the most recent automated execution today. London Stock Exchange electronic order book users have a final opportunity to review the prices and sizes of orders entered in this security prior to the auction execution.
+The applicable percentage is set by reference to a security's Millennium Exchange sector. This is set out in the Sector Breakdown tab of the Parameters document at
+www.londonstockexchange.com/tradingservices
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+APMUPUGCBUPUGAB
                 </div>
             </details>
             
             </div>
             
-            </div>
-            <div style="
-                margin-top: 20px;
-                padding: 14px 16px;
-                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-                border-radius: 10px;
-                font-size: 12px;
-                color: #78350f;
-                border-left: 3px solid #f59e0b;
-                display: flex;
-                align-items: flex-start;
-                gap: 10px;
-            ">
-                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
-                <div style="line-height: 1.5;">
-                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
-                    Each RNS includes sentiment classification, key data extraction, and trading context. 
-                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
-                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
-                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
-                    </strong>
-                </div>
             </div>
         </div>
         
@@ -2457,7 +2009,7 @@ REGULATORY ANNOUNCEMENT ENDS.
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-02-06 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-02-10 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.

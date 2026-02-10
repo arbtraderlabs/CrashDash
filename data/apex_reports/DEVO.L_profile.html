@@ -163,8 +163,6 @@
             font-weight: 600;
             text-transform: uppercase;
         }
-
-        
         
         .risk-indicator {
             display: flex;
@@ -229,136 +227,34 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 913 days</span>
+                    <span><strong>Days Active:</strong> 916 days</span>
                 </div>
             </div>
         </div>
 
-        <!-- V5: Action & Comprehensive APEX Score Hero Section -->
+        <!-- Action & Score Hero Section -->
         <div class="score-hero">
             <div class="action-display">
                 <span style="font-size: 32px; font-weight: 800; color: white;">◉ WATCH</span>
             </div>
             
-            <!-- V5: Comprehensive APEX with 4 Pillars -->
-            <div style="display:flex; gap:40px; align-items:center; justify-content:center; flex-wrap:wrap; margin:30px 0;">
-                <!-- CENTER: Comprehensive APEX -->
-                <div style="position:relative; width:180px; height:180px; border-radius:50%; background:linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 12px 40px rgba(0,0,0,0.1); border:4px solid #ef4444;">
-                    <div style="text-align:center;">
-                        <div style="font-size:11px; color:#64748b; margin-bottom:4px; font-weight:600;">COMPREHENSIVE</div>
-                        <div style="font-size:56px; font-weight:900; color:#ef4444; line-height:1;">36</div>
-                        <div style="font-size:11px; color:#64748b; margin-top:4px; font-weight:700;">APEX V5</div>
-                        <div style="font-size:12px; color:#ef4444; margin-top:4px; font-weight:700;">LOW QUALITY</div>
-                    </div>
+            <div class="scores-row">
+                <div class="score-circle">
+                    <div class="score-number" style="color: #f59e0b;">54</div>
+                    <div class="score-label">APEX SCORE</div>
                 </div>
-                
-                <!-- PILLARS: 2x2 Grid -->
-                <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:16px;">
-                    <!-- Setup -->
-                    <div style="text-align:center;">
-                        <div style="width:100px; height:100px; border-radius:50%; border:4px solid #10b981; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size:14px;">⚡</div>
-                            <div style="font-size:28px; font-weight:800; color:#10b981; line-height:1;">54</div>
-                        </div>
-                        <div style="margin-top:8px;">
-                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
-                                Setup
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <!-- Trust -->
-                    <div style="text-align:center;">
-                        <div style="width:100px; height:100px; border-radius:50%; border:4px solid #3b82f6; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size:14px;">🛡️</div>
-                            <div style="font-size:28px; font-weight:800; color:#3b82f6; line-height:1;">40</div>
-                        </div>
-                        <div style="margin-top:8px;">
-                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
-                                Trust
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <!-- Panic -->
-                    <div style="text-align:center;">
-                        <div style="width:100px; height:100px; border-radius:50%; border:4px solid #ef4444; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size:14px;">😱</div>
-                            <div style="font-size:28px; font-weight:800; color:#ef4444; line-height:1;">35.5</div>
-                        </div>
-                        <div style="margin-top:8px;">
-                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
-                                Panic
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <!-- Compression -->
-                    <div style="text-align:center;">
-                        <div style="width:100px; height:100px; border-radius:50%; border:4px solid #f59e0b; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size:14px;">⚡</div>
-                            <div style="font-size:28px; font-weight:800; color:#f59e0b; line-height:1;">30</div>
-                        </div>
-                        <div style="margin-top:8px;">
-                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
-                                Compression
-                            </span>
-                        </div>
-                    </div>
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">40</div>
+                    <div class="score-label">CONFIDENCE</div>
                 </div>
             </div>
             
-            <!-- Timing Scope: Flat segmented bar -->
-            <div style="margin-top:24px;">
-                <!-- position badge removed to avoid overlay on timing spectrum -->
-                <style>
-                    @keyframes pulse-ring {
-                        0% { transform: scale(0.7); opacity: 0.9; }
-                        70% { transform: scale(2.2); opacity: 0; }
-                        100% { transform: scale(2.8); opacity: 0; }
-                    }
-                    @keyframes pulse-ring-outer {
-                        0% { transform: scale(0.9); opacity: 0.7; }
-                        50% { transform: scale(1.12); opacity: 0.45; }
-                        100% { transform: scale(1.3); opacity: 0; }
-                    }
-                </style>
-                <div style="position:relative;">
-                    <div style="display:flex; gap:6px; height:48px; border-radius:8px; overflow:hidden;">
-                        <div style="flex:1; background:#ef4444;"></div>
-                        <div style="flex:1; background:#f59e0b;"></div>
-                        <div style="flex:1; background:#facc15;"></div>
-                        <div style="flex:1; background:#10b981;"></div>
-                        <div style="flex:1; background:#065f46;"></div>
-                    </div>
-
-                    <!-- Pulse pointer positioned by timing_pos_pct -->
-                    <div style="position:absolute; left:calc(30% - 26px); top:0px; width:52px; height:52px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
-                        <!-- outer grey-white ring to help indicator stand out -->
-                        <div style="position:absolute; width:60px; height:60px; border-radius:30px; background:rgba(249,250,251,0.95); border:2px solid rgba(2,6,23,0.06); box-shadow:0 8px 30px rgba(2,6,23,0.06); animation: pulse-ring-outer 2.2s infinite;"></div>
-                        <!-- inner colored pulse ring -->
-                        <div style="position:absolute; width:52px; height:52px; border-radius:26px; background:#ffe50f; opacity:0.18; animation: pulse-ring 1.6s infinite;"></div>
-                        <!-- core dot with colored border for contrast -->
-                        <div style="width:18px; height:18px; border-radius:9px; background:#ffffff; box-shadow:0 10px 30px rgba(0,0,0,0.22); border:3px solid #f59e0b;"></div>
-                    </div>
-                </div>
-
-                <div style="display:flex; justify-content:space-between; font-size:12px; margin-top:8px; gap:6px;">
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Too Early</span></div>
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Early Build</span></div>
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Confirmed</span></div>
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Crowded</span></div>
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Broken</span></div>
-                </div>
-
-                <div style="margin-top:12px; display:flex; justify-content:center;">
-                    <div style="background: linear-gradient(180deg, rgba(8,18,39,0.95) 0%, rgba(10,28,50,0.92) 100%); border:1px solid rgba(255,255,255,0.04); padding:14px 20px; border-radius:14px; box-shadow:0 16px 48px rgba(2,6,23,0.18); color:#e6eef8; font-size:13px; font-weight:700; max-width:920px; text-align:center;">
-                        <span style="color:#1fb6ae; font-weight:800; margin-right:10px;">Timing:</span>
-                        <span style="text-transform:uppercase; letter-spacing:0.6px; color:#ffffff;">EARLY_BUILD</span>
-                        <span style="color:rgba(230,238,248,0.7); font-weight:600; margin:0 10px;">—</span>
-                        <span style="font-weight:600; color:rgba(230,238,248,0.95);">Early accumulation — consider micro entries; wait for confirmation.</span>
-                    </div>
-                </div>
+            <div class="timing-badge-large">
+                Timing: <span class="rally-badge" style="background: #fef3c7; color: #92400e;">EARLY BUILD</span>
+            </div>
+            
+            <div class="thesis-line">
+                WATCH - EARLY_BUILD timing with 54/100 opportunity score
             </div>
         </div>
 
@@ -501,7 +397,7 @@
                     <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
                         <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
                     </div>
-                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">No accumulation</div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">No accumulation detected</div>
                 </div>
                 
                 </div>
@@ -573,8 +469,18 @@
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Trading Update</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Block Listing Application</div>
-                        <div style="font-size: 12px; color: #64748b;">2nd Feb 2026</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
                     </div>
                 </div>
             </div>
@@ -584,7 +490,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Total Voting Rights</div>
-                        <div style="font-size: 12px; color: #64748b;">30th Dec 2025</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
                     </div>
                 </div>
             </div>
@@ -594,7 +500,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Grant of Awards</div>
-                        <div style="font-size: 12px; color: #64748b;">15th Dec 2025</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
                     </div>
                 </div>
             </div>
@@ -604,17 +510,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Block Listing Return</div>
-                        <div style="font-size: 12px; color: #64748b;">18th Nov 2025</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
-                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
-                    <span style="font-size: 18px;">📢</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Grant of Awards  and PDMR Dealing</div>
-                        <div style="font-size: 12px; color: #64748b;">29th Oct 2025</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
                     </div>
                 </div>
             </div>
@@ -846,27 +742,27 @@
                 Executive Commentary
             </div>
             <div style="line-height: 1.6; margin-bottom: 20px;">
-                Note: this report used historical signals only — live triangulation (RNS, social, Trends) was not available. Current setup looks like EARLY_BUILD with an APEX score of 54/100. Historically there have been 1 rallies (avg. 173%); the position is now +59.9%. Practical take: this is interesting but unconfirmed — wait for an AI snapshot or clear confirmation before committing size.
+                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows EARLY_BUILD timing with 54/100 APEX score. Historical data shows 1 rallies averaging 173% upside. Current position: +59.9%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
             </div>
             
             <div style="margin-top: 20px;">
                 <strong style="color: #10b981;">▲ Bull Case:</strong>
-                <div style="padding: 8px 0;">• Early accumulation — good risk/reward if it confirms</div>
+                <div style="padding: 8px 0;">• Early regime often offers best risk/reward</div>
             </div>
             
             <div style="margin-top: 20px;">
                 <strong style="color: #ef4444;">▼ Bear Case:</strong>
-                <div style="padding: 8px 0;">• No immediate red flags, but keep stops tight</div>
+                <div style="padding: 8px 0;">• Monitor for breakdown signals</div>
             </div>
             
             <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
                 <strong>◷ Timing Translation:</strong><br>
-                Accumulation in progress. Consider small starters but wait for confirmation before sizing up.
+                Early accumulation phase. Watch for confirmation before committing size.
             </div>
             
             <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
                 <strong>◎ Confidence Explained:</strong><br>
-                Confidence 40/100 — data triangulated from RNS, social and Trends.
+                Confidence 40/100 reflects full data quality with triangulation loaded.
             </div>
         </div>
 
@@ -894,6 +790,44 @@
                 <span class="card-icon">📰</span>
                 Top 5 Recent RNS Announcements
             </div>
+            
+            <!-- Bloomberg-style Disclaimer Box -->
+            <div style="
+                margin-bottom: 20px;
+                padding: 16px 18px;
+                background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0.02) 100%);
+                border: 1px solid rgba(59, 130, 246, 0.2);
+                border-left: 3px solid #3b82f6;
+                border-radius: 8px;
+                font-family: 'Courier New', monospace;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: flex-start; gap: 12px;">
+                    <span style="font-size: 18px; margin-top: 2px; flex-shrink: 0;">🎯</span>
+                    <div style="flex: 1;">
+                        <div style="font-size: 12px; font-weight: 700; color: #1e40af; margin-bottom: 8px; letter-spacing: 0.3px;">
+                            Trader-Focused Analysis:
+                        </div>
+                        <div style="font-size: 11px; color: #334155; line-height: 1.6; margin-bottom: 8px;">
+                            Each RNS includes sentiment classification, key data extraction, and trading context. 
+                            Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                        </div>
+                        <div style="
+                            font-size: 10px; 
+                            color: #dc2626; 
+                            font-weight: 600; 
+                            padding: 6px 10px;
+                            background: rgba(239, 68, 68, 0.08);
+                            border-left: 2px solid #ef4444;
+                            border-radius: 4px;
+                            margin-top: 8px;
+                        ">
+                            ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div style="margin-top: 15px;">
                 
             <div style="
@@ -920,6 +854,219 @@
                     ">1</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
                         RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">📰</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Trading Update</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">UPDATE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Informational update - monitor for context with other announcements.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">9th Feb 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Rupert Dearden</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+9 Feb 2026 07:00
+RNS Number : 2161S
+Devolver Digital, Inc.
+09 February 2026
+9 February 2026
+Devolver Digital, Inc.
+("Devolver", the "Group" or the "Company")
+Trading Update
+FY 2025: Another sequential Improvement in financial performance owing to strong H2 trading
+Devolver Digital, Inc. (AIM: DEVO), an award-winning digital publisher and developer of indie video games, announces a trading update for the financial year ended 31st December 2025. All financial figures relate to that period unless otherwise stated.
+2025 full year performance showed improvement over 2024 with growth in both revenues and Adjusted EBITDA1. Revenue performance in 2H 2025 was strong and in-line with expectations, bolstered by the timing of platform deals and the Steam Publisher Sale in September, resulting in management meeting guidance
+of more than US$100m in full year revenues. Underlying Adjusted EBITDA pre-impairments is expected to reach USD double-digit millions, marginally higher than consensus expectations, while an initial unaudited estimate of impairments for released title underperformance is c. $3.5 million.
+New games released in 2025 maintained very high-quality levels with a full-year average Metacritic score of 78. Notable successes such as
+Monster Train 2
+released by publisher subsidiary Big Fan
+, Stronghold: Crusader
+released by subsidiary studio Firefly
+,
+and recent sensation
+Ball x Pit
+all garnered high-quality scores and user reviews and collectively bolstered front catalogue revenues. Lower cost titles
+Mycopunk
+and
+Look Outside
+garnered favourable user reviews and performed ahead of expectations. System Era also continued making a solid contribution, with
+Astroneer
+releasing its second PDLC
+Megatech
+in November 2025.
+Devolver has continued its disciplined approach to cost control, with FY25 operating expenses falling slightly compared to FY24. The Board remain committed to delivering efficiencies across the Group, with a continued focus on cost management going into 2026. Devolver has a robust balance sheet with c.US$36.4 million net cash as of 31 December 2025.
+2026 has started strongly with
+Quarantine Zone: The Last Check
+exceeding expectations in the first weeks of its release, and
+Cult of the Lamb
+'s highly anticipated PDLC
+Woolhaven
+receiving rave reviews. Notably, Devolver recorded a historic milestone in January with three titles (
+Woolhaven
+,
+Cult of the Lamb
+and
+Quarantine Zone: The Last Check
+) all featuring in the Steam2 Global Best Sellers Top 10 list, the first time in Devolver's history.
+Harry Miller, Chief Executive Officer at Devolver, said
+:
+"We are pleased to have delivered revenues that grew year-over-year, in a gaming market that was flat overall, and met our guidance in 2025, driven by a string of successful new launches by Devolver and its subsidiary companies. And seeing three Devolver titles ranking in Steam's Top 10 Global Best Sellers is a huge historic milestone for us.
+An overall solid portfolio performance, coupled with sustained operating cost control, resulted in another year of steady improvement in both revenues and Adjusted EBITDA. Additionally, a very strong early start to 2026 gives us good momentum to deliver further profit improvement this year.
+The calculated strategies that we began 3 years ago, including an improved greenlight process, in-house developed technologies, cost cutting, improved store management, among others, continue to lead us out of the trough of 2023. The continued adoption and maturation of these strategies, along with cycling through products initiated prior to such efforts, give us visibility to reaching higher sustainable profitability in the coming years."
+The Group will announce its results for the year ended 31 December 2025 in April 2026.
+-ENDS-
+Notes:
+1.
+Adjusted EBITDA ("EBITDA") makes the following adjustments: it excludes: 1) stock compensation (share-based payment) expenses and revaluation of contingent consideration; 2) one-time expenses and other non-recurring items; 3) amortisation of IP (but does not exclude amortisation of capitalised software development costs), and; 4) impairments of goodwill and acquired IP. Title performance impairments are included in Adjusted EBITDA.
+2.
+Steam is the world's largest one-stop-shop platform for gamers to buy, store and play video games.
+About Devolver Digital
+Devolver is an award-winning video games publisher in the indie games space with a balanced portfolio of third-party and own-IP. Devolver has an emphasis on premium games and has published more than 135 titles, with more than 30 titles in the pipeline scheduled for release over the next three years. Devolver has in-house studios developing first-party IP titles and a complementary publishing brand. Devolver is registered in Wilmington, Delaware, USA.
+Enquiries
+:
+Devolver Digital, Inc.
+Harry Miller, Chief Executive Officer
+Graeme Struthers, Chief Operating Officer
+Daniel Widdicombe, Chief Financial Officer
+ir@devolverdigital.com
+Zeus (Nominated Adviser and Joint Broker)
+David Foreman / Kieran Russell (Investment Banking)
+Ben Robertson (Equity Capital Markets)
++44 (0)20 3829 5000
+Panmure Liberum (Joint Broker)
+Dru Danford (Investment Banking)
+Rupert Dearden (Corporate Broking)
++44 (0)20 3100 2000
+FTI Consulting (Communications)
+Jamie Ricketts / Dwight Burden / Valerija Cymbal / Usama Ali
+devolver@fticonsulting.com
++44 (0)20 3727 1000
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+TSTUWOURNBUURUR
+                </div>
+            </details>
+            
+            </div>
+            
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #3b82f640;
+                    ">2</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #2
                     </div>
                 </div>
                 
@@ -984,7 +1131,7 @@
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Usama Ali</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Shalin Bhamra</td>
                     </tr>
                     
                         </table>
@@ -1096,9 +1243,9 @@ MSCURRRRNVUAOAR
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">2</span>
+                    ">3</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #2
+                        RNS ANNOUNCEMENT #3
                     </div>
                 </div>
                 
@@ -1163,7 +1310,7 @@ MSCURRRRNVUAOAR
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Usama Ali</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Shalin Bhamra</td>
                     </tr>
                     
                         </table>
@@ -1272,9 +1419,9 @@ TVRBBBDDXBXDGUG
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #10b98140;
-                    ">3</span>
+                    ">4</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #3
+                        RNS ANNOUNCEMENT #4
                     </div>
                 </div>
                 
@@ -1339,7 +1486,7 @@ TVRBBBDDXBXDGUG
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Usama Ali</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Shalin Bhamra</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1569,9 +1716,9 @@ DSHUUURRVSUUAUA
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">4</span>
+                    ">5</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #4
+                        RNS ANNOUNCEMENT #5
                     </div>
                 </div>
                 
@@ -1636,7 +1783,7 @@ DSHUUURRVSUUAUA
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Usama Ali</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Equity Incentive</td>
                     </tr>
                     
                         </table>
@@ -1743,279 +1890,6 @@ BLRBDBDBDUBDGUX
             
             </div>
             
-            <div style="
-                margin-bottom: 20px;
-                padding: 18px;
-                background: white;
-                border-radius: 14px;
-                border: 1px solid #e2e8f0;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 30px;
-                        height: 30px;
-                        background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
-                        color: white;
-                        border-radius: 50%;
-                        font-weight: 800;
-                        font-size: 15px;
-                        box-shadow: 0 2px 8px #10b98140;
-                    ">5</span>
-                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #5
-                    </div>
-                </div>
-                
-                
-            <div style="
-                background: linear-gradient(135deg, #10b981 0%, #10b981dd 100%);
-                color: white;
-                padding: 14px;
-                border-radius: 10px;
-                margin-bottom: 16px;
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">🤝</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">Grant of Awards  and PDMR Dealing</div>
-                        <span style="
-                            display: inline-block;
-                            background: rgba(255,255,255,0.25);
-                            padding: 2px 10px;
-                            border-radius: 12px;
-                            font-size: 11px;
-                            margin-top: 4px;
-                            font-weight: 600;
-                        ">CONTRACT WIN</span>
-                    </div>
-                </div>
-                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    Positive development - monitor for follow-through in share price.
-                </div>
-            </div>
-            
-                
-            <div style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 10px;
-                margin: 16px 0;
-            ">
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">29th Oct 2025</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">RNS</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #10b981;">BULLISH</div>
-                </div>
-            </div>
-            
-                
-                
-                    <div style="margin: 16px 0;">
-                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
-                            
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Usama Ali</td>
-                    </tr>
-                    
-                        </table>
-                    </div>
-                    
-                
-            <details style="margin-top: 16px;">
-                <summary style="
-                    padding: 10px;
-                    background: #f8fafc;
-                    border-radius: 8px;
-                    font-weight: 600;
-                    font-size: 12px;
-                    list-style: none;
-                    cursor: pointer;
-                    color: #64748b;
-                    border: 1px solid #e2e8f0;
-                ">
-                    📄 View Full RNS Text
-                </summary>
-                <div style="
-                    margin-top: 8px;
-                    padding: 14px;
-                    background: #f1f5f9;
-                    border-radius: 8px;
-                    font-family: 'Courier New', monospace;
-                    font-size: 11px;
-                    line-height: 1.5;
-                    color: #475569;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                ">
-29 Oct 2025 07:00
-RNS Number : 1517F
-Devolver Digital, Inc.
-29 October 2025
-29 October 2025
-Devolver Digital, Inc.
-("Devolver Digital", "Devolver" or the "Company", and the Company together with all of its subsidiary undertakings "the Group")
-Grant of Awardsand PDMR Dealing
-Devolver Digital, the award-winning digital publisher and developer of independent ("indie") video games, announces a grant of awards under the new 2025 Equity Incentive Plan ("2025 Plan").
-Following on from the Shareholder Meeting held on October 24, 2025 which approved all resolutions, the Board has made awards under the newly established 2025 Equity Inventive Plan. The 2025 awards are designed to incentivise various employees at the leadership level of the Company for performance that delivers value for shareholders in future. The 2025 Plan awards consist of Stock Options ("Options") which are awarded subject to annual vesting over 3 years (1/3 each year), with a 6-month lock up at each vesting period.
-The Remuneration Committee recommended the following awards to the Board, laid out in the tables below. These awards amount to, in aggregate, 21,687,070 options (on the assumption that all vest), representing 4.6 per cent. of the issued and outstanding share capital. Total dilution from these awards and all outstanding share options and grants amount to 12.6 per cent. of the issued and outstanding share capital. The Employee Benefit Trust (EBT) currently holds
-19,098,865
-shares, amounting to 4.0 per cent. of the issued and outstanding capital, which can be used to offset the above dilution. In addition,
-to satisfy vested awards, treasury shares may be transferred out of treasury by the Company at the Board's discretion.
-The following awards have been made to Directors / PDMRs of the Company:
-Director/PDMR
-Position
-Number of options to vest after each year
-TotalAwards
-Year 1
-Year 2
-Year 3
-Daniel Widdicombe
-CFO
-1,019,102
-1,019,102
-1,019,101
-3,057,305
-The following awards have been made to other management and employees of the Group:
-Category
-Number of options to vest after each year
-TotalAwards
-Year 1
-Year 2
-Year 3
-Other management and senior employees
-6,209,922
-6,209,922
-6,209,921
-18,629,765
-The effective date for the award of these options is 29th October 2025, i.e. the third tranche of options (Year 3) will vest on October 29th, 2028. The exercise price for all the above option grants is £0.255, based on the 5-day Volume Weighted Average Price from October 20th to October 24th 2025.
-The co-founders of Devolver who are full-time employees at the company, CEO Harry Miller, COO Graeme Struthers and CMO Nigel Lowrie, have not received any Option awards under the 2025 Equity Incentive Plan
-.
--ENDS-
-About Devolver Digital
-Devolver is an award-winning video games publisher in the indie games space with a balanced portfolio of third-party and own-IP. Devolver has an emphasis on premium games and has published more than 135 titles, with more than 30 titles in the pipeline scheduled for release over the next three years. Devolver has in-house studios developing first-party IP titles and a complementary publishing brand. Devolver is registered in Wilmington, Delaware, USA.
-Enquiries
-:
-Devolver Digital, Inc.
-Harry Miller, Chief Executive Officer
-Graeme Struthers, Chief Operating Officer
-Daniel Widdicombe, Chief Financial Officer
-ir@devolverdigital.com
-Zeus (Nominated Adviser and Joint Broker)
-David Foreman / Kieran Russell (Investment Banking)
-Ben Robertson (Equity Capital Markets)
-+44 (0)20 3829 5000
-Panmure Liberum (Joint Broker)
-Max Jones / Dru Danford / Shalin Bhamra (Investment Banking)
-Rupert Dearden (Corporate Broking)
-+44 (0)20 3100 2000
-FTI Consulting (Communications)
-Jamie Ricketts / Dwight Burden / Valerija Cymbal / Usama Ali
-devolver@fticonsulting.com
-+44 (0)20 3727 1000
-The notification set out below is provided in accordance with the requirements of Article 19 of the UK Market Abuse Regulation.
-Notification and public disclosure of transactions by persons discharging managerial responsibilities and persons closely associated with them.
-1.
-Details of the person discharging managerial responsibilities/person closely associated
-a)
-Name
-Daniel Widdicombe
-2.
-Reason for the notification
-a)
-Position/status
-CFO
-b)
-Initial notification/Amendment
-Initial notification
-3
-Details of the issuer, emission allowance market participant, auction platform, auctioneer or auction monitor
-a)
-Name
-Devolver Digital, Inc.
-b)
-LEI
-213800PRI1918XI2H813
-4
-Details of the transaction(s): section to be repeated for (i) each type of instrument; (ii) each type of transaction; (iii) each date; and (iv) each place where transactions have been conducted
-a)
-Description of the financial instrument, type of instrument
-Identification code
-Common stock par value of $0.0001
-ISIN:
-USU0858L1036
-b)
-Nature of the transaction
-Grant of Stock Options
-c)
-Price(s) and volume(s)
-Price(s) Volume(s)
-£0.255
-3,057,305 Options
-Aggregated information
-Price Volume
-£0.255
-3,057,305 Options
-e)
-Date of the transaction
-29 October 2025
-f)
-Place of the transaction
-London Stock Exchange, AIM
-This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
-rns@lseg.com
-or visit
-www.rns.com
-.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
-Privacy Policy
-.
-END
-DSHMPBBTMTITBLA
-                </div>
-            </details>
-            
-            </div>
-            
-            </div>
-            <div style="
-                margin-top: 20px;
-                padding: 14px 16px;
-                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-                border-radius: 10px;
-                font-size: 12px;
-                color: #78350f;
-                border-left: 3px solid #f59e0b;
-                display: flex;
-                align-items: flex-start;
-                gap: 10px;
-            ">
-                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
-                <div style="line-height: 1.5;">
-                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
-                    Each RNS includes sentiment classification, key data extraction, and trading context. 
-                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
-                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
-                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
-                    </strong>
-                </div>
             </div>
         </div>
         
@@ -2308,7 +2182,7 @@ DSHMPBBTMTITBLA
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-02-07 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-02-10 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.

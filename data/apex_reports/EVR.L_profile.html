@@ -163,8 +163,6 @@
             font-weight: 600;
             text-transform: uppercase;
         }
-
-        
         
         .risk-indicator {
             display: flex;
@@ -234,131 +232,29 @@
             </div>
         </div>
 
-        <!-- V5: Action & Comprehensive APEX Score Hero Section -->
+        <!-- Action & Score Hero Section -->
         <div class="score-hero">
             <div class="action-display">
                 <span style="color: white;">UNKNOWN</span>
             </div>
             
-            <!-- V5: Comprehensive APEX with 4 Pillars -->
-            <div style="display:flex; gap:40px; align-items:center; justify-content:center; flex-wrap:wrap; margin:30px 0;">
-                <!-- CENTER: Comprehensive APEX -->
-                <div style="position:relative; width:180px; height:180px; border-radius:50%; background:linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 12px 40px rgba(0,0,0,0.1); border:4px solid #f59e0b;">
-                    <div style="text-align:center;">
-                        <div style="font-size:11px; color:#64748b; margin-bottom:4px; font-weight:600;">COMPREHENSIVE</div>
-                        <div style="font-size:56px; font-weight:900; color:#f59e0b; line-height:1;">53</div>
-                        <div style="font-size:11px; color:#64748b; margin-top:4px; font-weight:700;">APEX V5</div>
-                        <div style="font-size:12px; color:#f59e0b; margin-top:4px; font-weight:700;">MODERATE</div>
-                    </div>
+            <div class="scores-row">
+                <div class="score-circle">
+                    <div class="score-number" style="color: #f59e0b;">52</div>
+                    <div class="score-label">APEX SCORE</div>
                 </div>
-                
-                <!-- PILLARS: 2x2 Grid -->
-                <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:16px;">
-                    <!-- Setup -->
-                    <div style="text-align:center;">
-                        <div style="width:100px; height:100px; border-radius:50%; border:4px solid #10b981; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size:14px;">⚡</div>
-                            <div style="font-size:28px; font-weight:800; color:#10b981; line-height:1;">52</div>
-                        </div>
-                        <div style="margin-top:8px;">
-                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
-                                Setup
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <!-- Trust -->
-                    <div style="text-align:center;">
-                        <div style="width:100px; height:100px; border-radius:50%; border:4px solid #3b82f6; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size:14px;">🛡️</div>
-                            <div style="font-size:28px; font-weight:800; color:#3b82f6; line-height:1;">40</div>
-                        </div>
-                        <div style="margin-top:8px;">
-                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
-                                Trust
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <!-- Panic -->
-                    <div style="text-align:center;">
-                        <div style="width:100px; height:100px; border-radius:50%; border:4px solid #ef4444; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size:14px;">😱</div>
-                            <div style="font-size:28px; font-weight:800; color:#ef4444; line-height:1;">61.8</div>
-                        </div>
-                        <div style="margin-top:8px;">
-                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
-                                Panic
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <!-- Compression -->
-                    <div style="text-align:center;">
-                        <div style="width:100px; height:100px; border-radius:50%; border:4px solid #f59e0b; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size:14px;">⚡</div>
-                            <div style="font-size:28px; font-weight:800; color:#f59e0b; line-height:1;">53</div>
-                        </div>
-                        <div style="margin-top:8px;">
-                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
-                                Compression
-                            </span>
-                        </div>
-                    </div>
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">40</div>
+                    <div class="score-label">CONFIDENCE</div>
                 </div>
             </div>
             
-            <!-- Timing Scope: Flat segmented bar -->
-            <div style="margin-top:24px;">
-                <!-- position badge removed to avoid overlay on timing spectrum -->
-                <style>
-                    @keyframes pulse-ring {
-                        0% { transform: scale(0.7); opacity: 0.9; }
-                        70% { transform: scale(2.2); opacity: 0; }
-                        100% { transform: scale(2.8); opacity: 0; }
-                    }
-                    @keyframes pulse-ring-outer {
-                        0% { transform: scale(0.9); opacity: 0.7; }
-                        50% { transform: scale(1.12); opacity: 0.45; }
-                        100% { transform: scale(1.3); opacity: 0; }
-                    }
-                </style>
-                <div style="position:relative;">
-                    <div style="display:flex; gap:6px; height:48px; border-radius:8px; overflow:hidden;">
-                        <div style="flex:1; background:#ef4444;"></div>
-                        <div style="flex:1; background:#f59e0b;"></div>
-                        <div style="flex:1; background:#facc15;"></div>
-                        <div style="flex:1; background:#10b981;"></div>
-                        <div style="flex:1; background:#065f46;"></div>
-                    </div>
-
-                    <!-- Pulse pointer positioned by timing_pos_pct -->
-                    <div style="position:absolute; left:calc(50% - 26px); top:0px; width:52px; height:52px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
-                        <!-- outer grey-white ring to help indicator stand out -->
-                        <div style="position:absolute; width:60px; height:60px; border-radius:30px; background:rgba(249,250,251,0.95); border:2px solid rgba(2,6,23,0.06); box-shadow:0 8px 30px rgba(2,6,23,0.06); animation: pulse-ring-outer 2.2s infinite;"></div>
-                        <!-- inner colored pulse ring -->
-                        <div style="position:absolute; width:52px; height:52px; border-radius:26px; background:#ffff1e; opacity:0.18; animation: pulse-ring 1.6s infinite;"></div>
-                        <!-- core dot with colored border for contrast -->
-                        <div style="width:18px; height:18px; border-radius:9px; background:#ffffff; box-shadow:0 10px 30px rgba(0,0,0,0.22); border:3px solid #facc15;"></div>
-                    </div>
-                </div>
-
-                <div style="display:flex; justify-content:space-between; font-size:12px; margin-top:8px; gap:6px;">
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Too Early</span></div>
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Early Build</span></div>
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Confirmed</span></div>
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Crowded</span></div>
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Broken</span></div>
-                </div>
-
-                <div style="margin-top:12px; display:flex; justify-content:center;">
-                    <div style="background: linear-gradient(180deg, rgba(8,18,39,0.95) 0%, rgba(10,28,50,0.92) 100%); border:1px solid rgba(255,255,255,0.04); padding:14px 20px; border-radius:14px; box-shadow:0 16px 48px rgba(2,6,23,0.18); color:#e6eef8; font-size:13px; font-weight:700; max-width:920px; text-align:center;">
-                        <span style="color:#1fb6ae; font-weight:800; margin-right:10px;">Timing:</span>
-                        <span style="text-transform:uppercase; letter-spacing:0.6px; color:#ffffff;">CONFIRMED</span>
-                        <span style="color:rgba(230,238,248,0.7); font-weight:600; margin:0 10px;">—</span>
-                        <span style="font-weight:600; color:rgba(230,238,248,0.95);">Momentum confirmed — constructive for entries with risk controls.</span>
-                    </div>
-                </div>
+            <div class="timing-badge-large">
+                Timing: <span class="rally-badge" style="background: #dcfce7; color: #166534;">CONFIRMED</span>
+            </div>
+            
+            <div class="thesis-line">
+                HOLD/WATCH - CONFIRMED timing with 52/100 opportunity score
             </div>
         </div>
 
@@ -501,7 +397,7 @@
                     <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
                         <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
                     </div>
-                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">No accumulation</div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">No accumulation detected</div>
                 </div>
                 
                 </div>
@@ -555,7 +451,7 @@
                     <div style="font-size: 13px; color: #475569; line-height: 1.8;">
                         <div>• Commodity price crashes (gold, copper, lithium)</div><div>• Exploration failure / dry holes</div><div>• Permitting delays or regulatory blocks</div>
                     </div>
-                    <div style="margin-top: 12px; padding: 10px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e; font-weight: 600;">🚨 Active: Permitting delays or regulatory blocks, Capital raises at distressed valuations</div>
+                    <div style="margin-top: 12px; padding: 10px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e; font-weight: 600;">🚨 Active: Exploration failure / dry holes, Permitting delays or regulatory blocks</div>
                 </div>
                 <div style="background: white; padding: 18px; border-radius: 12px;">
                     <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">🚀 Recovery Paths</div>
@@ -573,8 +469,8 @@
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">DISCONTINUATION OF DISCLOSURE VIA PRIMARY INFORMATION PROVIDER</div>
-                        <div style="font-size: 12px; color: #64748b;">28th Feb 2023</div>
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">EVRAZ plc: EVRAZ HAS RECEIVED A SPECIAL LICENCE FROM OFSI FOR AGM2022</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
                     </div>
                 </div>
             </div>
@@ -583,8 +479,8 @@
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">CLARIFICATION ON ANNUAL REPORT AND AUDITED FINANCIAL STATEMENTS FOR 2022</div>
-                        <div style="font-size: 12px; color: #64748b;">27th Feb 2023</div>
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">EVRAZ plc: EVRAZ HAS RECEIVED A SPECIAL LICENCE FROM OFSI FOR AGM2022</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
                     </div>
                 </div>
             </div>
@@ -593,8 +489,8 @@
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">EVRAZ plc announces that the Appointment and the Amendments adopted as part of the Consent Solicitation for its outstanding U.S.$700,000,000 5.250 per cent. notes due 2024 have become effective</div>
-                        <div style="font-size: 12px; color: #64748b;">28th Dec 2022</div>
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">EVRAZ plc publishes its Modern Slavery Act Transparency Statement for 2021</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
                     </div>
                 </div>
             </div>
@@ -603,8 +499,8 @@
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">EVRAZ plc announces that the Appointment and the Amendments adopted as part of the Consent Solicitation for its outstanding U.S.$700,000,000 5.250 per cent. notes due 2024 have become effective</div>
-                        <div style="font-size: 12px; color: #64748b;">28th Dec 2022</div>
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">EVRAZ plc publishes its Modern Slavery Act Transparency Statement for 2021</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
                     </div>
                 </div>
             </div>
@@ -613,8 +509,8 @@
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">EVRAZ plc announces results of the Consent Solicitation for its outstanding U.S.$700,000,000 5.250 per cent. notes due 2024</div>
-                        <div style="font-size: 12px; color: #64748b;">23rd Dec 2022</div>
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">EVRAZ plc: Results of the Annual General Meeting</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
                     </div>
                 </div>
             </div>
@@ -838,27 +734,27 @@
                 Executive Commentary
             </div>
             <div style="line-height: 1.6; margin-bottom: 20px;">
-                Note: this report used historical signals only — live triangulation (RNS, social, Trends) was not available. Current setup looks like CONFIRMED with an APEX score of 52/100. Historically there have been 1 rallies (avg. 54%); the position is now +35.0%. Practical take: this is interesting but unconfirmed — wait for an AI snapshot or clear confirmation before committing size.
+                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows CONFIRMED timing with 52/100 APEX score. Historical data shows 1 rallies averaging 54% upside. Current position: +35.0%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
             </div>
             
             <div style="margin-top: 20px;">
                 <strong style="color: #10b981;">▲ Bull Case:</strong>
-                <div style="padding: 8px 0;">• No obvious upside without a catalyst</div>
+                <div style="padding: 8px 0;">• Limited upside case without catalysts</div>
             </div>
             
             <div style="margin-top: 20px;">
                 <strong style="color: #ef4444;">▼ Bear Case:</strong>
-                <div style="padding: 8px 0;">• No immediate red flags, but keep stops tight</div>
+                <div style="padding: 8px 0;">• Monitor for breakdown signals</div>
             </div>
             
             <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
                 <strong>◷ Timing Translation:</strong><br>
-                Move has started — this is the actionable window if your thesis remains intact.
+                Momentum confirmed. This is the trade zone if thesis holds.
             </div>
             
             <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
                 <strong>◎ Confidence Explained:</strong><br>
-                Confidence 40/100 — data triangulated from RNS, social and Trends.
+                Confidence 40/100 reflects full data quality with triangulation loaded.
             </div>
         </div>
 
@@ -886,6 +782,44 @@
                 <span class="card-icon">📰</span>
                 Top 5 Recent RNS Announcements
             </div>
+            
+            <!-- Bloomberg-style Disclaimer Box -->
+            <div style="
+                margin-bottom: 20px;
+                padding: 16px 18px;
+                background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0.02) 100%);
+                border: 1px solid rgba(59, 130, 246, 0.2);
+                border-left: 3px solid #3b82f6;
+                border-radius: 8px;
+                font-family: 'Courier New', monospace;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: flex-start; gap: 12px;">
+                    <span style="font-size: 18px; margin-top: 2px; flex-shrink: 0;">🎯</span>
+                    <div style="flex: 1;">
+                        <div style="font-size: 12px; font-weight: 700; color: #1e40af; margin-bottom: 8px; letter-spacing: 0.3px;">
+                            Trader-Focused Analysis:
+                        </div>
+                        <div style="font-size: 11px; color: #334155; line-height: 1.6; margin-bottom: 8px;">
+                            Each RNS includes sentiment classification, key data extraction, and trading context. 
+                            Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                        </div>
+                        <div style="
+                            font-size: 10px; 
+                            color: #dc2626; 
+                            font-weight: 600; 
+                            padding: 6px 10px;
+                            background: rgba(239, 68, 68, 0.08);
+                            border-left: 2px solid #ef4444;
+                            border-radius: 4px;
+                            margin-top: 8px;
+                        ">
+                            ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div style="margin-top: 15px;">
                 
             <div style="
@@ -926,7 +860,7 @@
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
                     <span style="font-size: 20px;">📰</span>
                     <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">DISCONTINUATION OF DISCLOSURE VIA PRIMARY INFORMATION PROVIDER</div>
+                        <div style="font-weight: 700; font-size: 16px;">EVRAZ plc: EVRAZ HAS RECEIVED A SPECIAL LICENCE FROM OFSI FOR AGM2022</div>
                         <span style="
                             display: inline-block;
                             background: rgba(255,255,255,0.25);
@@ -952,11 +886,11 @@
             ">
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">28th Feb 2023</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">2026-01-21</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">N/A</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
@@ -976,7 +910,7 @@
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Sequence No</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Annual General</td>
                     </tr>
                     
                         </table>
@@ -1011,28 +945,37 @@
                     white-space: pre-wrap;
                     word-wrap: break-word;
                 ">
-28 Feb 2023 07:00
-EVRAZ plc (EVR) DISCONTINUATION OF DISCLOSURE VIA PRIMARY INFORMATION PROVIDER
-28-Feb-2023 / 10:00 MSK
+17 Jun 2022 18:57
+EVRAZ plc (EVR)
+EVRAZ plc: EVRAZ HAS RECEIVED A SPECIAL LICENCE FROM OFSI FOR AGM2022
+17-Jun-2022 / 20:57 MSK
+Dissemination of a Regulatory Announcement that contains inside information according to REGULATION (EU) No 596/2014 (MAR), transmitted by EQS Group.
 The issuer is solely responsible for the content of this announcement.
-DISCONTINUATION OF DISCLOSURE VIA PRIMARY INFORMATION PROVIDER
-28 February 2023 - EVRAZ plc (“EVRAZ” or the “Company”) announces that starting from 1 March 2023 the Company will not be able to release regulatory news announcements via a primary information provider (“PIP”).
-In May 2022, EVRAZ was informed by the RNS, its PIP at that time, about discontinuation of its services for EVRAZ due to sanctions placed on the Company. Since then, EVRAZ used services of another PIP which recently also decided to suspend the coverage of services.
-The Company has made multiple enquiries to other PIPs authorised by the UK Financial Conduct Authority but no one expressed willingness to work with EVRAZ.
-Thus, starting from 1 March 2023 the Company will be unable to disclose regulatory information or publish other information in the manner and following the procedures required by Market Abuse Regulation and the Disclosure Transparency Rules. The Company will continue to disclose regulatory information by way of announcements on its website.
-###
+EVRAZ HAS RECEIVED A SPECIAL LICENCE FROM OFSI FOR AGM2022
+17 June 2022 - EVRAZ plc (LSE: EVR or the "Company") informs that the Company has received a special licence from the Office of Financial Sanctions Implementation (OFSI).
+The licence permits the Company to hold the 2022 Annual General Meeting (“AGM”) at Pasley-Tyler & Co. Ltd, 42 Berkeley Square, London W1J 5AW at 11:00 a.m. (London time) on Thursday 30 June 2022.
+Notice of the AGM and Form of Proxy for the AGM are available at:
+https://www.evraz.com/en/investors/shareholders/gm/
+***
 For further information:
 Media Relations:
-+7 495 937 6871
++7
+495
+937
+6871
++44 207 290 1096
 media@evraz.com
 Investor Relations:
-+7 495 232 1370
++7
+495
+232
+1370
++44 207 290 1095
 ir@evraz.com
-Dissemination of a Regulatory Announcement, transmitted by EquityStory RS. The issuer is solely responsible for the content of this announcement.
 ISIN:
-GB00B71N6K86, XS1533915721, XS1843443273,
+GB00B71N6K86
 Category Code:
-MSCM
+MSCH
 TIDM:
 EVR
 LEI Code:
@@ -1040,12 +983,11 @@ LEI Code:
 OAM Categories:
 3.1. Additional regulated information required to be disclosed under the laws of a Member State
 Sequence No.:
-226134
-News ID:
-1569935
+169218
+EQS News ID:
+1378609
 End of Announcement
-EquityStory RS News Service
-UK Regulatory announcement transmitted by EQS Group AG. The issuer is solely responsible for the content of this announcement.
+EQS News Service
                 </div>
             </details>
             
@@ -1089,7 +1031,7 @@ UK Regulatory announcement transmitted by EQS Group AG. The issuer is solely res
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
                     <span style="font-size: 20px;">📰</span>
                     <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">CLARIFICATION ON ANNUAL REPORT AND AUDITED FINANCIAL STATEMENTS FOR 2022</div>
+                        <div style="font-weight: 700; font-size: 16px;">EVRAZ plc: EVRAZ HAS RECEIVED A SPECIAL LICENCE FROM OFSI FOR AGM2022</div>
                         <span style="
                             display: inline-block;
                             background: rgba(255,255,255,0.25);
@@ -1115,11 +1057,11 @@ UK Regulatory announcement transmitted by EQS Group AG. The issuer is solely res
             ">
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">27th Feb 2023</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">2026-01-21</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">N/A</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
@@ -1139,7 +1081,7 @@ UK Regulatory announcement transmitted by EQS Group AG. The issuer is solely res
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Sequence No</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Annual General</td>
                     </tr>
                     
                         </table>
@@ -1174,41 +1116,48 @@ UK Regulatory announcement transmitted by EQS Group AG. The issuer is solely res
                     white-space: pre-wrap;
                     word-wrap: break-word;
                 ">
-27 Feb 2023 07:00
-EVRAZ plc (EVR) CLARIFICATION ON ANNUAL REPORT AND AUDITED FINANCIAL STATEMENTS FOR 2022
-27-Feb-2023 / 10:00 MSK
-The issuer is solely responsible for the content of this announcement.
-CLARIFICATION ON ANNUAL REPORT AND AUDITED FINANCIAL STATEMENTS FOR 2022
-27 February 2023 - EVRAZ plc (“EVRAZ” or the “Company”) announces that the Company has not been able to engage an auditor in respect of its most recent financial year ended 31 December 2022 in light of UK sanctions imposed against EVRAZ.
-The Company has made multiple enquiries to UK audit firms and no one expressed willingness to act as a Company’s auditor in connection with the preparation of the annual report and audited financial statements. Additionally, EVRAZ wrote to the Secretary of State on 14 December 2022 for guidance, including whether the Secretary of State would exercise powers under the Companies Act 2006 (the “Act”) to appoint an auditor, but has not yet received a response.
-The deadline for the Company to prepare and publish its annual report and audited financial statements for its previous financial year is 30 April 2023.
-Considering all the above it is probable that EVRAZ will not be able to prepare and publish annual report and audited financial statements as required by the Disclosure and Transparency Rules and the Act as well as approve and file audited financial statements with Companies House.
-###
+17 Jun 2022 18:57
+EVRAZ plc (EVR) EVRAZ plc: EVRAZ HAS RECEIVED A SPECIAL LICENCE FROM OFSI FOR AGM2022
+17-Jun-2022 / 20:57 MSK
+Dissemination of a Regulatory Announcement that contains inside information according to REGULATION (EU) No 596/2014 (MAR), transmitted by EQS Group. The issuer is solely responsible for the content of this announcement.
+EVRAZ HAS RECEIVED A SPECIAL LICENCE FROM OFSI FOR AGM2022
+17 June 2022 - EVRAZ plc (LSE: EVR or the "Company") informs that the Company has received a special licence from the Office of Financial Sanctions Implementation (OFSI).
+The licence permits the Company to hold the 2022 Annual General Meeting (“AGM”) at Pasley-Tyler & Co. Ltd, 42 Berkeley Square, London W1J 5AW at 11:00 a.m. (London time) on Thursday 30 June 2022.
+Notice of the AGM and Form of Proxy for the AGM are available at:
+https://www.evraz.com/en/investors/shareholders/gm/
+***
 For further information:
 Media Relations:
-+7 495 937 6871
++7
+495
+937
+6871
++44 207 290 1096
 media@evraz.com
 Investor Relations:
-+7 495 232 1370
++7
+495
+232
+1370
++44 207 290 1095
 ir@evraz.com
-Dissemination of a Regulatory Announcement that contains inside information in accordance with the Market Abuse Regulation (MAR), transmitted by EquityStory RS. The issuer is solely responsible for the content of this announcement.
 ISIN:
-GB00B71N6K86, XS1533915721, XS1843443273,
+GB00B71N6K86
 Category Code:
-MSCU
+MSCH
 TIDM:
 EVR
 LEI Code:
 5493005B7DAN39RXLK23
 OAM Categories:
-1.1. Annual financial and audit reports
+3.1. Additional regulated information required to be disclosed under the laws of a Member State
 Sequence No.:
-225794
-News ID:
-1568641
+169218
+EQS News ID:
+1378609
 End of Announcement
-EquityStory RS News Service
-UK Regulatory announcement transmitted by EQS Group AG. The issuer is solely responsible for the content of this announcement.
+EQS News Service
+UK Regulatory announcement transmitted by DGAP - a service of EQS Group AG. The issuer is solely responsible for the content of this announcement.
                 </div>
             </details>
             
@@ -1250,9 +1199,9 @@ UK Regulatory announcement transmitted by EQS Group AG. The issuer is solely res
                 margin-bottom: 16px;
             ">
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">👥</span>
+                    <span style="font-size: 20px;">📰</span>
                     <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">EVRAZ plc announces that the Appointment and the Amendments adopted as part of the Consent Solicitation for its outstanding U.S.$700,000,000 5.250 per cent. notes due 2024 have become effective</div>
+                        <div style="font-weight: 700; font-size: 16px;">EVRAZ plc publishes its Modern Slavery Act Transparency Statement for 2021</div>
                         <span style="
                             display: inline-block;
                             background: rgba(255,255,255,0.25);
@@ -1261,7 +1210,7 @@ UK Regulatory announcement transmitted by EQS Group AG. The issuer is solely res
                             font-size: 11px;
                             margin-top: 4px;
                             font-weight: 600;
-                        ">APPOINTMENT</span>
+                        ">UPDATE</span>
                     </div>
                 </div>
                 <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
@@ -1278,11 +1227,11 @@ UK Regulatory announcement transmitted by EQS Group AG. The issuer is solely res
             ">
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">28th Dec 2022</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">2026-01-21</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">8:30 am</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">N/A</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
@@ -1302,7 +1251,7 @@ UK Regulatory announcement transmitted by EQS Group AG. The issuer is solely res
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Sequence No</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Act Transparency</td>
                     </tr>
                     
                         </table>
@@ -1337,89 +1286,26 @@ UK Regulatory announcement transmitted by EQS Group AG. The issuer is solely res
                     white-space: pre-wrap;
                     word-wrap: break-word;
                 ">
-28 Dec 2022 08:30
+28 Jun 2022 15:45
 EVRAZ plc (EVR)
-EVRAZ plc announces that the Appointment and the Amendments adopted as part of the Consent Solicitation for its outstanding U.S.$700,000,000 5.250 per cent. notes due 2024 have become effective
-28-Dec-2022 / 10:30 MSK
-Dissemination of a Regulatory Announcement, transmitted by EQS Group.
+EVRAZ plc publishes its Modern Slavery Act Transparency Statement for 2021
+28-Jun-2022 / 17:45 MSK
+Dissemination of a Regulatory Announcement that contains inside information according to REGULATION (EU) No 596/2014 (MAR), transmitted by EQS Group.
 The issuer is solely responsible for the content of this announcement.
-NOT
-FOR
-RELEASE,
-PUBLICATION
-OR
-DISTRIBUTION
-IN
-OR
-INTO,
-OR
-TO
-ANY
-PERSON
-LOCATED
-OR
-RESIDENT IN, ANY JURISDICTION WHERE IT IS UNLAWFUL TO RELEASE, PUBLISH OR DISTRIBUTE THIS
-ANNOUNCEMENT
-OR
-THE
-CONSENT
-SOLICITATION
-MEMORANDUM.
-EVRAZ plc announces that the Appointment and the Amendments adopted as part of the Consent Solicitation for its outstanding
-U.S.$700,000,000 5.250 per cent. notes due 2024
-have become effective
-London, 28 December 2022 – on 15 November 2022, EVRAZ plc (the “
-Issuer
-”) announced a consent solicitation in relation to the outstanding U.S.$700,000,000 5.250 per cent. notes due 2024 issued by the Issuer (Regulation S Notes: Common Coder
-184344327
-/ ISIN
-XS1843443273
-; Rule 144A Notes: Common Code
-111730776
-/ ISIN
-US30052KAA79
-/ CUSIP
-30052KAA7
-) (the “
-Notes
-”) on
-the
-terms
-and
-subject
-to
-the
-conditions
-set
-forth
-in
-the consent solicitation memorandum dated 15 November 2022 (the “
-Consent Solicitation Memorandum
-”). Capitalised terms used, but not defined herein, shall have the meanings given to them in the Consent Solicitation Memorandum.
-The Issuer notifies that, on 23 December 2022, (i)
-the Issuer and the New Trustee entered into the Deed of Appointment to effectuate the Appointment; and (ii)
-the Issuer and the New Trustee entered into the Supplemental Trust Deed to effectuate the Amendments. Accordingly, the Appointment and the Amendments have become effective and binding on all Noteholders with effect from that date.
-The Issuer extends its gratitude for the support and cooperation demonstrated by investors which has been reflected in the successful results of the Consent Solicitation.
-Questions and requests for assistance in connection with the Consent Solicitation should be directed to
-the Information and Tabulation Agent:
-Limited liability company “Legal Capital Investor Services”
-Address:
-10 Krivokolenny lane, bldg. 6, Moscow 101000, Russia
-Email:
-evraz@lcpis.ru
-Phone:
-+7 495 122 05 17
-Website:
-www.lcpis.ru
+EVRAZ plc publishes its Modern Slavery Act Transparency Statement for 2021
+EVRAZ plc (LSE: EVR) (the "Company") has published today its Modern Slavery Act Transparency Statement (the "Statement") for the year ended 31 December 2021.
+The Statement is prepared in accordance with the requirements of the UK Modern Slavery Act 2015 and sets out the steps taken by the Company throughout its global business to identify and reduce the risk of modern slavery.
+The Report is available on website at the following link:
+https://www.evraz.com/en/sustainability/data-center/regulatory-reports/#tabs-2021
 ###
 For further information:
 Investor Relations
-+7 495 232 1370
++44 207 290 1095
 ir@evraz.com
 ISIN:
-GB00B71N6K86, XS1533915721, XS1843443273,
+GB00B71N6K86
 Category Code:
-MSCL
+MSCM
 TIDM:
 EVR
 LEI Code:
@@ -1427,9 +1313,9 @@ LEI Code:
 OAM Categories:
 3.1. Additional regulated information required to be disclosed under the laws of a Member State
 Sequence No.:
-211143
+171250
 EQS News ID:
-1521415
+1385851
 End of Announcement
 EQS News Service
                 </div>
@@ -1473,9 +1359,9 @@ EQS News Service
                 margin-bottom: 16px;
             ">
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">👥</span>
+                    <span style="font-size: 20px;">📰</span>
                     <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">EVRAZ plc announces that the Appointment and the Amendments adopted as part of the Consent Solicitation for its outstanding U.S.$700,000,000 5.250 per cent. notes due 2024 have become effective</div>
+                        <div style="font-weight: 700; font-size: 16px;">EVRAZ plc publishes its Modern Slavery Act Transparency Statement for 2021</div>
                         <span style="
                             display: inline-block;
                             background: rgba(255,255,255,0.25);
@@ -1484,7 +1370,7 @@ EQS News Service
                             font-size: 11px;
                             margin-top: 4px;
                             font-weight: 600;
-                        ">APPOINTMENT</span>
+                        ">UPDATE</span>
                     </div>
                 </div>
                 <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
@@ -1501,11 +1387,11 @@ EQS News Service
             ">
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">28th Dec 2022</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">2026-01-21</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:30 am</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">N/A</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
@@ -1525,7 +1411,7 @@ EQS News Service
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Sequence No</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Act Transparency</td>
                     </tr>
                     
                         </table>
@@ -1560,87 +1446,24 @@ EQS News Service
                     white-space: pre-wrap;
                     word-wrap: break-word;
                 ">
-28 Dec 2022 07:30
-EVRAZ plc (EVR) EVRAZ plc announces that the Appointment and the Amendments adopted as part of the Consent Solicitation for its outstanding U.S.$700,000,000 5.250 per cent. notes due 2024 have become effective
-28-Dec-2022 / 10:30 MSK
-Dissemination of a Regulatory Announcement, transmitted by EQS Group. The issuer is solely responsible for the content of this announcement.
-NOT
-FOR
-RELEASE,
-PUBLICATION
-OR
-DISTRIBUTION
-IN
-OR
-INTO,
-OR
-TO
-ANY
-PERSON
-LOCATED
-OR
-RESIDENT IN, ANY JURISDICTION WHERE IT IS UNLAWFUL TO RELEASE, PUBLISH OR DISTRIBUTE THIS
-ANNOUNCEMENT
-OR
-THE
-CONSENT
-SOLICITATION
-MEMORANDUM.
-EVRAZ plc announces that the Appointment and the Amendments adopted as part of the Consent Solicitation for its outstanding
-U.S.$700,000,000 5.250 per cent. notes due 2024
-have become effective
-London, 28 December 2022 – on 15 November 2022, EVRAZ plc (the “
-Issuer
-”) announced a consent solicitation in relation to the outstanding U.S.$700,000,000 5.250 per cent. notes due 2024 issued by the Issuer (Regulation S Notes: Common Coder
-184344327
-/ ISIN
-XS1843443273
-; Rule 144A Notes: Common Code
-111730776
-/ ISIN
-US30052KAA79
-/ CUSIP
-30052KAA7
-) (the “
-Notes
-”) on
-the
-terms
-and
-subject
-to
-the
-conditions
-set
-forth
-in
-the consent solicitation memorandum dated 15 November 2022 (the “
-Consent Solicitation Memorandum
-”). Capitalised terms used, but not defined herein, shall have the meanings given to them in the Consent Solicitation Memorandum.
-The Issuer notifies that, on 23 December 2022, (i)
-the Issuer and the New Trustee entered into the Deed of Appointment to effectuate the Appointment; and (ii)
-the Issuer and the New Trustee entered into the Supplemental Trust Deed to effectuate the Amendments. Accordingly, the Appointment and the Amendments have become effective and binding on all Noteholders with effect from that date.
-The Issuer extends its gratitude for the support and cooperation demonstrated by investors which has been reflected in the successful results of the Consent Solicitation.
-Questions and requests for assistance in connection with the Consent Solicitation should be directed to
-the Information and Tabulation Agent:
-Limited liability company “Legal Capital Investor Services”
-Address:
-10 Krivokolenny lane, bldg. 6, Moscow 101000, Russia
-Email:
-evraz@lcpis.ru
-Phone:
-+7 495 122 05 17
-Website:
-www.lcpis.ru
+28 Jun 2022 15:45
+EVRAZ plc (EVR) EVRAZ plc publishes its Modern Slavery Act Transparency Statement for 2021
+28-Jun-2022 / 17:45 MSK
+Dissemination of a Regulatory Announcement that contains inside information according to REGULATION (EU) No 596/2014 (MAR), transmitted by EQS Group. The issuer is solely responsible for the content of this announcement.
+EVRAZ plc publishes its Modern Slavery Act Transparency Statement for 2021
+EVRAZ plc (LSE: EVR) (the "Company") has published today its Modern Slavery Act Transparency Statement (the "Statement") for the year ended 31 December 2021.
+The Statement is prepared in accordance with the requirements of the UK Modern Slavery Act 2015 and sets out the steps taken by the Company throughout its global business to identify and reduce the risk of modern slavery.
+The Report is available on website at the following link:
+https://www.evraz.com/en/sustainability/data-center/regulatory-reports/#tabs-2021
 ###
 For further information:
 Investor Relations
-+7 495 232 1370
++44 207 290 1095
 ir@evraz.com
 ISIN:
-GB00B71N6K86, XS1533915721, XS1843443273,
+GB00B71N6K86
 Category Code:
-MSCL
+MSCM
 TIDM:
 EVR
 LEI Code:
@@ -1648,12 +1471,12 @@ LEI Code:
 OAM Categories:
 3.1. Additional regulated information required to be disclosed under the laws of a Member State
 Sequence No.:
-211143
+171250
 EQS News ID:
-1521415
+1385851
 End of Announcement
 EQS News Service
-UK Regulatory announcement transmitted by EQS Group AG. The issuer is solely responsible for the content of this announcement.
+UK Regulatory announcement transmitted by DGAP - a service of EQS Group AG. The issuer is solely responsible for the content of this announcement.
                 </div>
             </details>
             
@@ -1697,7 +1520,7 @@ UK Regulatory announcement transmitted by EQS Group AG. The issuer is solely res
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
                     <span style="font-size: 20px;">📰</span>
                     <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">EVRAZ plc announces results of the Consent Solicitation for its outstanding U.S.$700,000,000 5.250 per cent. notes due 2024</div>
+                        <div style="font-weight: 700; font-size: 16px;">EVRAZ plc: Results of the Annual General Meeting</div>
                         <span style="
                             display: inline-block;
                             background: rgba(255,255,255,0.25);
@@ -1723,11 +1546,11 @@ UK Regulatory announcement transmitted by EQS Group AG. The issuer is solely res
             ">
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">23rd Dec 2022</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">2026-01-21</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">8:30 am</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">N/A</div>
                 </div>
                 <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
@@ -1747,7 +1570,12 @@ UK Regulatory announcement transmitted by EQS Group AG. The issuer is solely res
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Category Code</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Annual Remuneration</td>
+                    </tr>
+                    
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">KEY METRICS:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">99.95%, 0.05%, 36.09%</td>
                     </tr>
                     
                         </table>
@@ -1782,87 +1610,127 @@ UK Regulatory announcement transmitted by EQS Group AG. The issuer is solely res
                     white-space: pre-wrap;
                     word-wrap: break-word;
                 ">
-23 Dec 2022 08:30
+30 Jun 2022 13:55
 EVRAZ plc (EVR)
-EVRAZ plc announces results of the Consent Solicitation for its outstanding U.S.$700,000,000 5.250 per cent. notes due 2024
-23-Dec-2022 / 10:30 MSK
-Dissemination of a Regulatory Announcement that contains inside information in accordance with the Market Abuse Regulation (MAR), transmitted by EQS Group.
+EVRAZ plc: Results of the Annual General Meeting
+30-Jun-2022 / 15:55 MSK
+Dissemination of a Regulatory Announcement that contains inside information according to REGULATION (EU) No 596/2014 (MAR), transmitted by EQS Group.
 The issuer is solely responsible for the content of this announcement.
-NOT
+EVRAZ
+plc (the “Company”)
+Results of the Annual General Meeting
+The Annual General Meeting (the “Meeting”) of the Company was held on Thursday 30 June 2022 at 11.00am (London time). At the Meeting, the ordinary and special resolutions set out in the Notice of the Annual General Meeting dated 8 June 2022 (the “Notice of AGM”), were proposed and passed by way of a poll. Resolutions 1 to 7 were passed as ordinary resolutions. Resolution 8 was passed as special resolution.
+Full details of the poll results are set out below and will also be available on the Company’s website
+www.evraz.com
+.
+No
+RESOLUTION
+VOTES
 FOR
-RELEASE,
-PUBLICATION
-OR
-DISTRIBUTION
-IN
-OR
-INTO,
-OR
-TO
-ANY
-PERSON
-LOCATED
-OR
-RESIDENT IN, ANY JURISDICTION WHERE IT IS UNLAWFUL TO RELEASE, PUBLISH OR DISTRIBUTE THIS
-ANNOUNCEMENT
-OR
-THE
-CONSENT
-SOLICITATION
-MEMORANDUM.
-EVRAZ plc announces results of the Consent Solicitation for its outstanding U.S.$700,000,000 5.250 per cent. notes due 2024
-London, 23 December 2022 – on 15 November 2022, EVRAZ plc (the “
-Issuer
-”) announced a consent solicitation in relation to the outstanding U.S.$700,000,000 5.250 per cent. notes due 2024 issued by the Issuer (Regulation S Notes: Common Coder
-184344327
-/ ISIN
-XS1843443273
-; Rule 144A Notes: Common Code
-111730776
-/ ISIN
-US30052KAA79
-/ CUSIP
-30052KAA7
-) (the “
-Notes
-”) on
-the
-terms
-and
-subject
-to
-the
-conditions
-set
-forth
-in the consent solicitation memorandum dated 15
-November 2022 (the “
-Consent Solicitation Memorandum
-”). Capitalised terms used, but not defined herein, shall have the meanings given to them in the Consent Solicitation Memorandum.
-The Appointment Extraordinary Resolution and the Amendment Extraordinary Resolution were each passed at the Adjourned Meeting of Noteholders held on 22 December 2022. Each of the Appointment and the Amendments will become effective upon execution of (i)
-the Deed of Appointment and (ii)
-the Supplemental Trust Deed, which will be separately notified to investors by the Issuer.
-The Issuer extends its gratitude for the support and cooperation demonstrated by investors, which has been reflected in the successful results of the Consent Solicitation.
-Questions and requests for assistance in connection with the Consent Solicitation should be directed to
-the Information and Tabulation Agent:
-Limited liability company “Legal Capital Investor Services”
-Address:
-10 Krivokolenny lane, bldg. 6, Moscow 101000, Russia
-Email:
-evraz@lcpis.ru
-Phone:
-+7 495 122 05 17
-Website:
-www.lcpis.ru
-###
+%
+VOTES
+AGAINST
+%
+TOTAL VOTES
+% of ISC VOTED
+VOTES
+WITHHELD
+1
+To receive the Directors’ report and the accounts for the Company for the year ended 31 December 2021
+526,249,038
+99.95%
+257,318
+0.05%
+526,506,356
+36.09%
+407,432
+2
+To approve the Directors’ Remuneration Policy as set out on pages 140 – 146 of the 2021 Annual Report and Accounts
+525,829,269
+99.89%
+578,147
+0.11%
+526,407,416
+36.09%
+506,372
+3
+To approve the Annual Remuneration Report set out on pages 146 – 153 of the 2021 Annual Report and Accounts
+525,841,114
+99.89%
+572,270
+0.11%
+526,413,384
+36.09%
+500,404
+4
+To re-elect Aleksey Ivanov as a Director
+521,474,395
+99.08%
+4,867,766
+0.92%
+526,342,161
+36.08%
+571,627
+5
+To re-elect Nikolay Ivanov as a Director
+521,474,395
+99.08%
+4,867,766
+0.92%
+526,342,161
+36.08%
+571,627
+6
+To re-appoint Ernst & Young LLP as auditors of the Company to hold office from the conclusion of this AGM until the conclusion of the next AGM at which accounts are laid before the Company
+514,182,219
+97.67%
+12,274,446
+2.33%
+526,456,665
+36.09%
+457,123
+7
+To authorise the Board of Directors of the Company to fix the remuneration of the auditors
+514,255,934
+97.68%
+12,208,550
+2.32%
+526,464,484
+36.09%
+449,304
+8
+To authorise the Directors to call a general meeting other than an annual general meeting on not less than 14 clear days’ notice
+526,155,923
+99.94%
+324,062
+0.06%
+526,479,985
+36.09%
+433,803
+Notes:
+Any proxy arrangement which gave discretion to the Chairman has been included in the "for" totals.
+A "vote withheld" is not a vote under English law and is not counted in the calculation of the proportion of votes "for" or "against" a resolution.
+The issued share capital of EVRAZ plc as at 30 June 2022 is 1,506,527,294 ordinary shares. The Company holds 47,837,582 ordinary shares in treasury. The total number of voting rights attaching to the ordinary shares of the Company is therefore 1,458,689,712.
+The scrutineer of the poll was Computershare Investor Services PLC.
+All percentages are rounded to two decimal points.
+In accordance with Listing Rule 9.6.2, a copy
+of the resolutions passed at the Meeting will shortly be available for inspection on the National Storage Mechanism which can be accessed at:
+https://data.fca.org.uk/#/nsm/nationalstoragemechanism
 For further information:
-Investor Relations
-+7 495 232 1370
+Media Relations:
+Investor Relations:
+Mariya Starovoyt
+Director, External communications
++44 207 290 1096
+media@evraz.com
+Irina Bakhturina
+Director, Investor Relations
++44 207 290 1095
 ir@evraz.com
 ISIN:
-GB00B71N6K86, XS1533915721, XS1843443273,
+GB00B71N6K86
 Category Code:
-MSCH
+AGM
 TIDM:
 EVR
 LEI Code:
@@ -1870,9 +1738,9 @@ LEI Code:
 OAM Categories:
 3.1. Additional regulated information required to be disclosed under the laws of a Member State
 Sequence No.:
-210801
+171850
 EQS News ID:
-1520521
+1388043
 End of Announcement
 EQS News Service
                 </div>
@@ -1880,28 +1748,6 @@ EQS News Service
             
             </div>
             
-            </div>
-            <div style="
-                margin-top: 20px;
-                padding: 14px 16px;
-                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-                border-radius: 10px;
-                font-size: 12px;
-                color: #78350f;
-                border-left: 3px solid #f59e0b;
-                display: flex;
-                align-items: flex-start;
-                gap: 10px;
-            ">
-                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
-                <div style="line-height: 1.5;">
-                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
-                    Each RNS includes sentiment classification, key data extraction, and trading context. 
-                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
-                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
-                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
-                    </strong>
-                </div>
             </div>
         </div>
         
@@ -2194,7 +2040,7 @@ EQS News Service
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-02-07 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-02-10 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.

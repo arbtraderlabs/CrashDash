@@ -163,8 +163,6 @@
             font-weight: 600;
             text-transform: uppercase;
         }
-
-        
         
         .risk-indicator {
             display: flex;
@@ -229,136 +227,34 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-icon">◷</span>
-                    <span><strong>Days Active:</strong> 1470 days</span>
+                    <span><strong>Days Active:</strong> 1473 days</span>
                 </div>
             </div>
         </div>
 
-        <!-- V5: Action & Comprehensive APEX Score Hero Section -->
+        <!-- Action & Score Hero Section -->
         <div class="score-hero">
             <div class="action-display">
                 <span style="font-size: 32px; font-weight: 800; color: white;">◉ AVOID</span>
             </div>
             
-            <!-- V5: Comprehensive APEX with 4 Pillars -->
-            <div style="display:flex; gap:40px; align-items:center; justify-content:center; flex-wrap:wrap; margin:30px 0;">
-                <!-- CENTER: Comprehensive APEX -->
-                <div style="position:relative; width:180px; height:180px; border-radius:50%; background:linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 12px 40px rgba(0,0,0,0.1); border:4px solid #ef4444;">
-                    <div style="text-align:center;">
-                        <div style="font-size:11px; color:#64748b; margin-bottom:4px; font-weight:600;">COMPREHENSIVE</div>
-                        <div style="font-size:56px; font-weight:900; color:#ef4444; line-height:1;">10</div>
-                        <div style="font-size:11px; color:#64748b; margin-top:4px; font-weight:700;">APEX V5</div>
-                        <div style="font-size:12px; color:#ef4444; margin-top:4px; font-weight:700;">LOW QUALITY</div>
-                    </div>
+            <div class="scores-row">
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">36</div>
+                    <div class="score-label">APEX SCORE</div>
                 </div>
-                
-                <!-- PILLARS: 2x2 Grid -->
-                <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:16px;">
-                    <!-- Setup -->
-                    <div style="text-align:center;">
-                        <div style="width:100px; height:100px; border-radius:50%; border:4px solid #10b981; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size:14px;">⚡</div>
-                            <div style="font-size:28px; font-weight:800; color:#10b981; line-height:1;">36</div>
-                        </div>
-                        <div style="margin-top:8px;">
-                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
-                                Setup
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <!-- Trust -->
-                    <div style="text-align:center;">
-                        <div style="width:100px; height:100px; border-radius:50%; border:4px solid #3b82f6; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size:14px;">🛡️</div>
-                            <div style="font-size:28px; font-weight:800; color:#3b82f6; line-height:1;">15</div>
-                        </div>
-                        <div style="margin-top:8px;">
-                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
-                                Trust
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <!-- Panic -->
-                    <div style="text-align:center;">
-                        <div style="width:100px; height:100px; border-radius:50%; border:4px solid #ef4444; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size:14px;">😱</div>
-                            <div style="font-size:28px; font-weight:800; color:#ef4444; line-height:1;">42.0</div>
-                        </div>
-                        <div style="margin-top:8px;">
-                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
-                                Panic
-                            </span>
-                        </div>
-                    </div>
-                    
-                    <!-- Compression -->
-                    <div style="text-align:center;">
-                        <div style="width:100px; height:100px; border-radius:50%; border:4px solid #f59e0b; background:white; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
-                            <div style="font-size:14px;">⚡</div>
-                            <div style="font-size:28px; font-weight:800; color:#f59e0b; line-height:1;">37</div>
-                        </div>
-                        <div style="margin-top:8px;">
-                            <span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.18); color:#e6eef8; font-weight:800; font-size:12px;">
-                                Compression
-                            </span>
-                        </div>
-                    </div>
+                <div class="score-circle">
+                    <div class="score-number" style="color: #ef4444;">15</div>
+                    <div class="score-label">CONFIDENCE</div>
                 </div>
             </div>
             
-            <!-- Timing Scope: Flat segmented bar -->
-            <div style="margin-top:24px;">
-                <!-- position badge removed to avoid overlay on timing spectrum -->
-                <style>
-                    @keyframes pulse-ring {
-                        0% { transform: scale(0.7); opacity: 0.9; }
-                        70% { transform: scale(2.2); opacity: 0; }
-                        100% { transform: scale(2.8); opacity: 0; }
-                    }
-                    @keyframes pulse-ring-outer {
-                        0% { transform: scale(0.9); opacity: 0.7; }
-                        50% { transform: scale(1.12); opacity: 0.45; }
-                        100% { transform: scale(1.3); opacity: 0; }
-                    }
-                </style>
-                <div style="position:relative;">
-                    <div style="display:flex; gap:6px; height:48px; border-radius:8px; overflow:hidden;">
-                        <div style="flex:1; background:#ef4444;"></div>
-                        <div style="flex:1; background:#f59e0b;"></div>
-                        <div style="flex:1; background:#facc15;"></div>
-                        <div style="flex:1; background:#10b981;"></div>
-                        <div style="flex:1; background:#065f46;"></div>
-                    </div>
-
-                    <!-- Pulse pointer positioned by timing_pos_pct -->
-                    <div style="position:absolute; left:calc(90% - 26px); top:0px; width:52px; height:52px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
-                        <!-- outer grey-white ring to help indicator stand out -->
-                        <div style="position:absolute; width:60px; height:60px; border-radius:30px; background:rgba(249,250,251,0.95); border:2px solid rgba(2,6,23,0.06); box-shadow:0 8px 30px rgba(2,6,23,0.06); animation: pulse-ring-outer 2.2s infinite;"></div>
-                        <!-- inner colored pulse ring -->
-                        <div style="position:absolute; width:52px; height:52px; border-radius:26px; background:#088965; opacity:0.18; animation: pulse-ring 1.6s infinite;"></div>
-                        <!-- core dot with colored border for contrast -->
-                        <div style="width:18px; height:18px; border-radius:9px; background:#ffffff; box-shadow:0 10px 30px rgba(0,0,0,0.22); border:3px solid #065f46;"></div>
-                    </div>
-                </div>
-
-                <div style="display:flex; justify-content:space-between; font-size:12px; margin-top:8px; gap:6px;">
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Too Early</span></div>
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Early Build</span></div>
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Confirmed</span></div>
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Crowded</span></div>
-                    <div style="flex:1; display:flex; justify-content:center;"><span style="display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(2,6,23,0.12); color:#cbd5e1; font-weight:700; font-size:12px;">Broken</span></div>
-                </div>
-
-                <div style="margin-top:12px; display:flex; justify-content:center;">
-                    <div style="background: linear-gradient(180deg, rgba(8,18,39,0.95) 0%, rgba(10,28,50,0.92) 100%); border:1px solid rgba(255,255,255,0.04); padding:14px 20px; border-radius:14px; box-shadow:0 16px 48px rgba(2,6,23,0.18); color:#e6eef8; font-size:13px; font-weight:700; max-width:920px; text-align:center;">
-                        <span style="color:#1fb6ae; font-weight:800; margin-right:10px;">Timing:</span>
-                        <span style="text-transform:uppercase; letter-spacing:0.6px; color:#ffffff;">BROKEN</span>
-                        <span style="color:rgba(230,238,248,0.7); font-weight:600; margin:0 10px;">—</span>
-                        <span style="font-weight:600; color:rgba(230,238,248,0.95);">Structurally broken — avoid or exit until repaired.</span>
-                    </div>
-                </div>
+            <div class="timing-badge-large">
+                Timing: <span class="rally-badge" style="background: #fee2e2; color: #991b1b;">BROKEN</span>
+            </div>
+            
+            <div class="thesis-line">
+                AVOID - BROKEN timing with 36/100 opportunity score
             </div>
         </div>
 
@@ -501,7 +397,7 @@
                     <div style="background: #e5e7eb; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 6px;">
                         <div style="background: #10b981; height: 100%; width: 0.0%; transition: width 0.3s;"></div>
                     </div>
-                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">No accumulation</div>
+                    <div style="font-size: 12px; color: #64748b; line-height: 1.4;">No accumulation detected</div>
                 </div>
                 
                 </div>
@@ -555,7 +451,7 @@
                     <div style="font-size: 13px; color: #475569; line-height: 1.8;">
                         <div>• Like-for-like sales declines</div><div>• Store closures or restructuring</div><div>• Consumer spending weakness (macro)</div>
                     </div>
-                    <div style="margin-top: 12px; padding: 10px; background: #fef3c7; border-radius: 8px; font-size: 12px; color: #92400e; font-weight: 600;">🚨 Active: Store closures or restructuring</div>
+                    
                 </div>
                 <div style="background: white; padding: 18px; border-radius: 12px;">
                     <div style="font-weight: 700; color: #1e293b; margin-bottom: 12px; font-size: 15px;">🚀 Recovery Paths</div>
@@ -573,8 +469,18 @@
                 <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Board Change</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
+                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
+                    <span style="font-size: 18px;">📢</span>
+                    <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Trading Update</div>
-                        <div style="font-size: 12px; color: #64748b;">2nd Feb 2026</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
                     </div>
                 </div>
             </div>
@@ -584,7 +490,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Statement re: UK Budget</div>
-                        <div style="font-size: 12px; color: #64748b;">28th Nov 2025</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
                     </div>
                 </div>
             </div>
@@ -594,7 +500,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Interim Results</div>
-                        <div style="font-size: 12px; color: #64748b;">22nd Sep 2025</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
                     </div>
                 </div>
             </div>
@@ -604,17 +510,7 @@
                     <span style="font-size: 18px;">📢</span>
                     <div style="flex: 1;">
                         <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Notice of Investor Presentation</div>
-                        <div style="font-size: 12px; color: #64748b;">18th Sep 2025</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #10b981;">
-                <div style="display: flex; justify-content: between; align-items: center; gap: 10px;">
-                    <span style="font-size: 18px;">📢</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 600; font-size: 14px; color: #1e293b; margin-bottom: 4px;">Result of AGM and Notice of Interim Results</div>
-                        <div style="font-size: 12px; color: #64748b;">16th Sep 2025</div>
+                        <div style="font-size: 12px; color: #64748b;">Unknown</div>
                     </div>
                 </div>
             </div>
@@ -668,7 +564,7 @@
                 <span style="font-size: 24px;">🛍️</span>
                 <div style="flex: 1;">
                     <div style="font-weight: 600; font-size: 14px; color: #1e293b;">Industry Pattern</div>
-                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">1 active</div>
+                    <div style="font-size: 13px; color: #10b981; font-weight: 600;">0 active</div>
                 </div>
             </div>
             
@@ -854,27 +750,27 @@
                 Executive Commentary
             </div>
             <div style="line-height: 1.6; margin-bottom: 20px;">
-                Note: this report used historical signals only — live triangulation (RNS, social, Trends) was not available. Current setup looks like BROKEN with an APEX score of 36/100. Historically there have been 2 rallies (avg. 21%); the position is now -50.3%. Practical take: this is interesting but unconfirmed — wait for an AI snapshot or clear confirmation before committing size.
+                This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows BROKEN timing with 36/100 APEX score. Historical data shows 2 rallies averaging 21% upside. Current position: -50.3%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.
             </div>
             
             <div style="margin-top: 20px;">
                 <strong style="color: #10b981;">▲ Bull Case:</strong>
-                <div style="padding: 8px 0;">• No obvious upside without a catalyst</div>
+                <div style="padding: 8px 0;">• Limited upside case without catalysts</div>
             </div>
             
             <div style="margin-top: 20px;">
                 <strong style="color: #ef4444;">▼ Bear Case:</strong>
-                <div style="padding: 8px 0;">• Very deep drawdown (-50.3%) — thesis may be broken</div>
+                <div style="padding: 8px 0;">• Deep drawdown (-50.3%) suggests broken thesis</div>
             </div>
             
             <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
                 <strong>◷ Timing Translation:</strong><br>
-                Thesis looks invalid. Step back or reduce exposure.
+                Thesis invalidated. Avoid or exit.
             </div>
             
             <div style="margin-top: 20px; padding: 15px; background: #fef3c7; border-radius: 8px;">
                 <strong>◎ Confidence Explained:</strong><br>
-                Confidence 15/100 — data triangulated from RNS, social and Trends.
+                Confidence 15/100 reflects full data quality with triangulation loaded.
             </div>
         </div>
 
@@ -902,8 +798,217 @@
                 <span class="card-icon">📰</span>
                 Top 5 Recent RNS Announcements
             </div>
+            
+            <!-- Bloomberg-style Disclaimer Box -->
+            <div style="
+                margin-bottom: 20px;
+                padding: 16px 18px;
+                background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0.02) 100%);
+                border: 1px solid rgba(59, 130, 246, 0.2);
+                border-left: 3px solid #3b82f6;
+                border-radius: 8px;
+                font-family: 'Courier New', monospace;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: flex-start; gap: 12px;">
+                    <span style="font-size: 18px; margin-top: 2px; flex-shrink: 0;">🎯</span>
+                    <div style="flex: 1;">
+                        <div style="font-size: 12px; font-weight: 700; color: #1e40af; margin-bottom: 8px; letter-spacing: 0.3px;">
+                            Trader-Focused Analysis:
+                        </div>
+                        <div style="font-size: 11px; color: #334155; line-height: 1.6; margin-bottom: 8px;">
+                            Each RNS includes sentiment classification, key data extraction, and trading context. 
+                            Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
+                        </div>
+                        <div style="
+                            font-size: 10px; 
+                            color: #dc2626; 
+                            font-weight: 600; 
+                            padding: 6px 10px;
+                            background: rgba(239, 68, 68, 0.08);
+                            border-left: 2px solid #ef4444;
+                            border-radius: 4px;
+                            margin-top: 8px;
+                        ">
+                            ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div style="margin-top: 15px;">
                 
+            <div style="
+                margin-bottom: 20px;
+                padding: 18px;
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e2e8f0;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: linear-gradient(135deg, #f59e0b 0%, #f59e0bdd 100%);
+                        color: white;
+                        border-radius: 50%;
+                        font-weight: 800;
+                        font-size: 15px;
+                        box-shadow: 0 2px 8px #f59e0b40;
+                    ">1</span>
+                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
+                        RNS ANNOUNCEMENT #1
+                    </div>
+                </div>
+                
+                
+            <div style="
+                background: linear-gradient(135deg, #f59e0b 0%, #f59e0bdd 100%);
+                color: white;
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 16px;
+            ">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                    <span style="font-size: 20px;">🔄</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; font-size: 16px;">Board Change</div>
+                        <span style="
+                            display: inline-block;
+                            background: rgba(255,255,255,0.25);
+                            padding: 2px 10px;
+                            border-radius: 12px;
+                            font-size: 11px;
+                            margin-top: 4px;
+                            font-weight: 600;
+                        ">CHANGE</span>
+                    </div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
+                    Organizational change - assess impact on operations and strategy.
+                </div>
+            </div>
+            
+                
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+                margin: 16px 0;
+            ">
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">9th Feb 2026</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">7:00 am</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #f59e0b;">RNS</div>
+                </div>
+                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
+                    <div style="font-weight: 700; font-size: 13px; color: #f59e0b;">CAUTION</div>
+                </div>
+            </div>
+            
+                
+                
+                    <div style="margin: 16px 0;">
+                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
+                            
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Executive Director</td>
+                    </tr>
+                    
+                        </table>
+                    </div>
+                    
+                
+            <details style="margin-top: 16px;">
+                <summary style="
+                    padding: 10px;
+                    background: #f8fafc;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 12px;
+                    list-style: none;
+                    cursor: pointer;
+                    color: #64748b;
+                    border: 1px solid #e2e8f0;
+                ">
+                    📄 View Full RNS Text
+                </summary>
+                <div style="
+                    margin-top: 8px;
+                    padding: 14px;
+                    background: #f1f5f9;
+                    border-radius: 8px;
+                    font-family: 'Courier New', monospace;
+                    font-size: 11px;
+                    line-height: 1.5;
+                    color: #475569;
+                    max-height: 300px;
+                    overflow-y: auto;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                ">
+9 Feb 2026 07:00
+RNS Number : 1267S
+B90 Holdings PLC
+09 February 2026
+Strictly embargoed until 07.00, 9 February 2026
+B90 Holdings plc
+("B90", the "Company" or the "Group")
+BOARD CHANGE: APPOINTMENT OF ANDY MCIVER AS NON-EXECUTIVE CHAIRMAN
+B90 Holdings plc, the performance-driven digital marketing group serving the global i-gaming industry, is pleased to announce that Andy McIver, currently an independent Non-Executive Director of the Company, will assume the role of independent Non-Executive Chairman with immediate effect.
+At the same time, Ronny Breivik will transition to the role of Chief Executive Officer, having previously combined executive leadership responsibilities with the position of Chairman.
+The Board believes that the formal separation of the Chairman and Chief Executive Officer roles represents an important step in the continued evolution of B90's governance framework. The changes reflect the Company's growing scale and maturity as a public company and align B90 with best practice corporate governance standards, providing clearer distinction between independent Board oversight and executive management.
+Andy has been a Non-Executive Director of B90 since August 2023, where he has served as Chair of the Audit Committee, and brings extensive experience of digital gaming and public markets. This includes having been Non-Executive Chairman of leading Italian gambling company Planet Win/SKS365 Malta Ltd, CEO of Jackpotjoy plc, one of the world's largest online bingo operators, and CEO of leading online gambling company Sportingbet plc.
+Martin Fleisje, independent Non-Executive Director, will assume the role of Chair of the Audit Committee. The Audit Committee will comprise Martin Fleisje (Chair) and Andy McIver.
+Ronny Breivik, Chief Executive Officer, commented:
+"As B90 continues to scale and mature as a public company, it is right that our governance structures evolve alongside it. Separating the roles of Chairman and Chief Executive Officer provides greater clarity and focus across the Group and reflects both the progress we have made and our ambitions for the future.
+"I am delighted that Andy will assume the role of Chairman, bringing deep sector experience and strong governance insight, while I continue to focus fully on executing our strategy and driving long-term value for shareholders."
+Andy McIver, Non-Executive Chairman, added:
+"Having worked closely with the Board as a Non-Executive Director, I am pleased to assume the role of Chairman at this important stage in B90's development. The Company has built a scalable, technology-led platform with a clear strategic focus and strong operational discipline. I look forward to working closely with Ronny and the executive team as B90 continues to execute its growth strategy."
+-ends-
+For further information please visit
+www.b90holdings.com
+or contact:
+B90 Holdings plc
++44 (0)1624 605 764
+Ronny Breivik, Chief Executive OfficerMarcel Noordeloos, Chief Financial Officer
+Strand Hanson Limited (Nominated Adviser)
++44 (0)20 7409 3494
+James Harris / Richard Johnson
+Zeus (Broker)
++44 (0)20 3829 5000
+Louisa Waddell / Simon Johnson
+Rosewood (Financial PR & IR)
++44 (0)20 7653 8702
+John West / Llewellyn Angus / Lily Pearce
+This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
+rns@lseg.com
+or visit
+www.rns.com
+.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
+Privacy Policy
+.
+END
+BOAUPUCUPUPQGMQ
+                </div>
+            </details>
+            
+            </div>
+            
             <div style="
                 margin-bottom: 20px;
                 padding: 18px;
@@ -925,9 +1030,9 @@
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">1</span>
+                    ">2</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #1
+                        RNS ANNOUNCEMENT #2
                     </div>
                 </div>
                 
@@ -992,7 +1097,7 @@
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">United Kingdom</td>
                     </tr>
                     
                         </table>
@@ -1101,9 +1206,9 @@ TSTBMMFTMTIJBFF
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">2</span>
+                    ">3</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #2
+                        RNS ANNOUNCEMENT #3
                     </div>
                 </div>
                 
@@ -1168,7 +1273,7 @@ TSTBMMFTMTIJBFF
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">United Kingdom</td>
                     </tr>
                     
                         </table>
@@ -1266,9 +1371,9 @@ FUREAEFXADDSFAA
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #10b98140;
-                    ">3</span>
+                    ">4</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #3
+                        RNS ANNOUNCEMENT #4
                     </div>
                 </div>
                 
@@ -1333,7 +1438,7 @@ FUREAEFXADDSFAA
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Current Trading</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Standards Board</td>
                     </tr>
                     
                     <tr style="border-bottom: 1px solid #e2e8f0;">
@@ -1878,9 +1983,9 @@ IR UARRRVKUKUAR
                         font-weight: 800;
                         font-size: 15px;
                         box-shadow: 0 2px 8px #3b82f640;
-                    ">4</span>
+                    ">5</span>
                     <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #4
+                        RNS ANNOUNCEMENT #5
                     </div>
                 </div>
                 
@@ -1945,7 +2050,7 @@ IR UARRRVKUKUAR
                             
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Primary Information</td>
+                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">United Kingdom</td>
                     </tr>
                     
                         </table>
@@ -2025,195 +2130,6 @@ MSCZZGMLVNMGKZM
             
             </div>
             
-            <div style="
-                margin-bottom: 20px;
-                padding: 18px;
-                background: white;
-                border-radius: 14px;
-                border: 1px solid #e2e8f0;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 30px;
-                        height: 30px;
-                        background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                        color: white;
-                        border-radius: 50%;
-                        font-weight: 800;
-                        font-size: 15px;
-                        box-shadow: 0 2px 8px #3b82f640;
-                    ">5</span>
-                    <div style="font-size: 11px; color: #94a3b8; font-weight: 600; letter-spacing: 0.5px;">
-                        RNS ANNOUNCEMENT #5
-                    </div>
-                </div>
-                
-                
-            <div style="
-                background: linear-gradient(135deg, #3b82f6 0%, #3b82f6dd 100%);
-                color: white;
-                padding: 14px;
-                border-radius: 10px;
-                margin-bottom: 16px;
-            ">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-size: 20px;">📰</span>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 700; font-size: 16px;">Result of AGM and Notice of Interim Results</div>
-                        <span style="
-                            display: inline-block;
-                            background: rgba(255,255,255,0.25);
-                            padding: 2px 10px;
-                            border-radius: 12px;
-                            font-size: 11px;
-                            margin-top: 4px;
-                            font-weight: 600;
-                        ">UPDATE</span>
-                    </div>
-                </div>
-                <div style="font-size: 13px; opacity: 0.95; line-height: 1.4;">
-                    Informational update - monitor for context with other announcements.
-                </div>
-            </div>
-            
-                
-            <div style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 10px;
-                margin: 16px 0;
-            ">
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">DATE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">16th Sep 2025</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">TIME</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #0f172a;">9:44 am</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SOURCE</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">RNS</div>
-                </div>
-                <div style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 4px; font-weight: 600;">SENTIMENT</div>
-                    <div style="font-weight: 700; font-size: 13px; color: #3b82f6;">NEUTRAL</div>
-                </div>
-            </div>
-            
-                
-                
-                    <div style="margin: 16px 0;">
-                        <h4 style="font-size: 14px; color: #1e293b; margin-bottom: 10px; font-weight: 700;">📊 Key Data Points:</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white; border-radius: 8px; overflow: hidden;">
-                            
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                        <td style="padding: 8px; color: #64748b; font-weight: 600; font-size: 12px;">PERSON/ENTITY:</td>
-                        <td style="padding: 8px; font-weight: 600; font-size: 12px;">Interim Results</td>
-                    </tr>
-                    
-                        </table>
-                    </div>
-                    
-                
-            <details style="margin-top: 16px;">
-                <summary style="
-                    padding: 10px;
-                    background: #f8fafc;
-                    border-radius: 8px;
-                    font-weight: 600;
-                    font-size: 12px;
-                    list-style: none;
-                    cursor: pointer;
-                    color: #64748b;
-                    border: 1px solid #e2e8f0;
-                ">
-                    📄 View Full RNS Text
-                </summary>
-                <div style="
-                    margin-top: 8px;
-                    padding: 14px;
-                    background: #f1f5f9;
-                    border-radius: 8px;
-                    font-family: 'Courier New', monospace;
-                    font-size: 11px;
-                    line-height: 1.5;
-                    color: #475569;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    white-space: pre-wrap;
-                    word-wrap: break-word;
-                ">
-16 Sep 2025 09:44
-RNS Number : 5109Z
-B90 Holdings PLC
-16 September 2025
-For immediate release: 16 September 2025
-B90 Holdings plc
-("B90", the "Company" or the "Group")
-Result of Annual General Meeting and Notice of Interim Results
-B90 Holdings (AIM: B90), an online marketing company for the gaming industry
-,
-is pleased to announce that all resolutions set out in the Notice of Meeting circulated to shareholders were approved at the Annual General Meeting of the Company held earlier today.
-The Company will announce its Interim Results for the six months ended 30 June 2025 on Monday, 22 September 2025.
-Analysts and investors who are interested in meeting with the Company are invited to contact us via
-lpearce@rosewoodpr.co.uk
-.
--Ends-
-For further information please contact:
-B90 Holdings plc
-+44 (0)1624 605 764
-Ronny Breivik, Executive Chairman
-Marcel Noordeloos, Chief Financial Officer
-Strand Hanson Limited (Nominated Adviser)
-+44 (0)20 7409 3494
-James Harris / Richard Johnson / Imogen Ellis
-Zeus Capital Limited (Broker)
-+44 (0)20 3829 5000
-Louisa Waddell / Simon Johnson
-Rosewood (Financial PR & IR)
-+44 (0)20 7653 8702
-John West / Llewellyn Angus / Lily Pearce
-This information is provided by RNS, the news service of the London Stock Exchange. RNS is approved by the Financial Conduct Authority to act as a Primary Information Provider in the United Kingdom. Terms and conditions relating to the use and distribution of this information may apply. For further information, please contact
-rns@lseg.com
-or visit
-www.rns.com
-.RNS may use your IP address to confirm compliance with the terms and conditions, to analyse how you engage with the information contained in this communication, and to share such analysis on an anonymised basis with others as part of our commercial services. For further information about how RNS and the London Stock Exchange use the personal data you provide us, please see our
-Privacy Policy
-.
-END
-RAGEAPNKFLDSEEA
-                </div>
-            </details>
-            
-            </div>
-            
-            </div>
-            <div style="
-                margin-top: 20px;
-                padding: 14px 16px;
-                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-                border-radius: 10px;
-                font-size: 12px;
-                color: #78350f;
-                border-left: 3px solid #f59e0b;
-                display: flex;
-                align-items: flex-start;
-                gap: 10px;
-            ">
-                <span style="font-size: 16px; margin-top: 2px;">🎯</span>
-                <div style="line-height: 1.5;">
-                    <strong style="display: block; margin-bottom: 4px;">Trader-Focused Analysis:</strong>
-                    Each RNS includes sentiment classification, key data extraction, and trading context. 
-                    Color-coded badges indicate bullish (green), bearish (red), or neutral (blue) signals.
-                    <strong style="margin-top: 6px; display: block; font-size: 10px; opacity: 0.8;">
-                    ⚠️ This is analysis of regulatory news for informational purposes. Not investment advice.
-                    </strong>
-                </div>
             </div>
         </div>
         
@@ -2506,7 +2422,7 @@ RAGEAPNKFLDSEEA
 
         <!-- Footer -->
         <div class="footer">
-            Report generated: 2026-02-07 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
+            Report generated: 2026-02-10 • CrashDash APEX Engine (Advanced Pattern EXploration)<br>
             <strong>△ Not financial advice. Do your own research.</strong>
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; line-height: 1.5;">
                 <strong>APEX</strong> is a CrashDash AI-powered quantitative intelligence platform that analyzes multi-source market signals using advanced pattern recognition. Designed for professional traders and institutional users, it synthesizes technical, sentiment, and fundamental data into actionable market profiles—ready for seamless integration into workflows.
