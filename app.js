@@ -7,6 +7,7 @@ console.log('🚀 CRASH DASH app.js loaded!');
 // Global data stores
 let allSignals = [];
 let allMetadata = {};
+let apexScores = {};  // Will be populated from apex_index.json
 let tickerLookup = {};
 let dashboardStats = {};
 let currentSort = { column: 'date', direction: 'desc' };
@@ -189,6 +190,21 @@ async function loadAllData() {
         } else {
             console.warn('Metadata index has no tickers array');
         }
+        
+        // Load APEX scores index (single file with all tickers)
+        console.log('Loading APEX scores index...');
+        try {
+            const apexIndexResponse = await fetch('data/apex_index.json' + cacheBuster);
+            if (apexIndexResponse.ok) {
+                const apexIndexData = await apexIndexResponse.json();
+                apexScores = apexIndexData.data || {};
+                console.log('APEX scores loaded for', Object.keys(apexScores).length, 'tickers');
+            }
+        } catch (e) {
+            console.warn('Could not load APEX index:', e);
+        }
+        
+
         
         // Load signals CSV (now enriched with 49 fields - all original + 28 enriched)
         console.log('Loading enriched signals CSV...');
@@ -500,8 +516,16 @@ function renderCompressedMode(signals, tbody) {
         const topColor = [latest, ...group.history]
             .sort((a, b) => (colorPriority[b.Signal_Color] || 0) - (colorPriority[a.Signal_Color] || 0))[0].Signal_Color;
         
-        // Latest signal's AI score (not max)
-        const latestScore = parseFloat(latest.AI_Technical_Score);
+        // Use APEX score if available, otherwise fall back to AI Technical Score
+        let scoreValue = parseFloat(latest.AI_Technical_Score) || 0;
+        let scoreLabel = 'AI Technical Score';
+        let scoreColor = '#667eea';
+        
+        if (apexScores[ticker]) {
+            scoreValue = apexScores[ticker].score;
+            scoreLabel = 'APEX Score';
+            scoreColor = apexScores[ticker].color;
+        }
         
         // Best rally from metadata
         const bestRally = metadata.best_rally_pct || 0;
@@ -627,14 +651,14 @@ function renderCompressedMode(signals, tbody) {
                         justify-content: center;
                         width: 32px;
                         height: 32px;
-                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        background: linear-gradient(135deg, ${scoreColor} 0%, ${scoreColor}dd 100%);
                         border-radius: 8px;
-                        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+                        box-shadow: 0 2px 8px ${scoreColor}4d;
                         cursor: pointer;
                         transition: all 0.2s ease;
                     "
                     onclick="event.stopPropagation(); loadAIReport('${ticker}')"
-                    title="AI Analysis Report - Score: ${latestScore.toFixed(1)}"
+                    title="${scoreLabel}: ${scoreValue.toFixed(1)}"
                     onmouseover="this.style.transform='translateY(-3px) scale(1.1)'; this.style.boxShadow='0 8px 24px rgba(102, 126, 234, 0.8), 0 0 20px rgba(118, 75, 162, 0.6)'; this.style.filter='brightness(1.15)'"
                     onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 2px 8px rgba(102, 126, 234, 0.3)'; this.style.filter='brightness(1)'"
                     >
@@ -649,7 +673,7 @@ function renderCompressedMode(signals, tbody) {
                             top: -4px;
                             right: -4px;
                             background: white;
-                            color: #667eea;
+                            color: ${scoreColor};
                             font-size: 0.65rem;
                             font-weight: 800;
                             padding: 1px 4px;
@@ -657,12 +681,12 @@ function renderCompressedMode(signals, tbody) {
                             line-height: 1;
                             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
                             z-index: 2;
-                        ">${latestScore.toFixed(1)}</div>
+                        ">${scoreValue.toFixed(1)}</div>
                         <div style="
                             position: absolute;
                             inset: -2px;
                             border-radius: 8px;
-                            background: linear-gradient(135deg, rgba(102, 126, 234, 0.4), rgba(118, 75, 162, 0.4));
+                            background: linear-gradient(135deg, ${scoreColor}66, ${scoreColor}33);
                             animation: pulse 2s ease-in-out infinite;
                             z-index: 0;
                         "></div>
@@ -740,8 +764,8 @@ function filterSignals() {
                     marketCapMatch = capMillions >= 250;
                 }
             } else {
-                // If no market cap data, include in results (don't filter out)
-                marketCapMatch = true;
+                // If no market cap data, exclude from filtered results
+                marketCapMatch = false;
             }
         }
         
@@ -1364,13 +1388,75 @@ async function showSignalTimeline(ticker) {
         
         const currentState = latestSignal.rally_state ? rallyStateColors[latestSignal.rally_state] : null;
         
+        // Extract company info for header
+        const companyInfo = metadata.company_info || {};
+        const basics = metadata.basics || {};
+        const stats = metadata.stats || {};
+        const tickerInfo = tickerLookup[ticker] || {};
+        
+        // Get market cap in proper format
+        const marketCapCandidate = getMarketCapCandidate(ticker, metadata, tickerInfo);
+        const formattedMarketCap = formatMarketCap(marketCapCandidate);
+        
+        // Get current price (pence-aware)
+        const currentPriceVal = getPriceFieldForTicker(ticker, basics, 'current_price');
+        const fmtCurrentPrice = (currentPriceVal !== undefined && currentPriceVal !== null && !isNaN(currentPriceVal)) ? Number(currentPriceVal).toFixed(4) : '-';
+        
         content.innerHTML = `
-        <h2 style="color: white; margin: 0 0 1.5rem 0; font-size: 1.5rem;">
-            ${cleanTickerDisplay(ticker)} - Rally Timeline
-        </h2>
+        <!-- Company Profile Header (Sticky) -->
+        <div style="position: sticky; top: 0; z-index: 10000; background: linear-gradient(135deg, var(--navy), #1A3A52); box-shadow: 0 2px 8px rgba(0,0,0,0.3); border-bottom: 1px solid rgba(10, 132, 255, 0.4); padding: 0.8rem 1.5rem; margin: 0; border-radius: 8px 8px 0 0;">
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.6rem;">
+                <!-- Left: Ticker & Company Name -->
+                <div style="flex: 1 1 auto; min-width: 150px; max-width: 250px;">
+                    <div style="color: white; font-size: 1rem; font-weight: 800; letter-spacing: 0.5px;">${cleanTickerDisplay(ticker)}</div>
+                    <div style="color: rgba(255,255,255,0.6); font-size: 0.75rem; line-height: 1.3; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${companyInfo.name || 'Company'}</div>
+                </div>
+                
+                <!-- Center: Key Metrics -->
+                <div style="display: flex; gap: 1rem; align-items: center; flex: 2 1 auto; flex-wrap: wrap;">
+                    <!-- Current Price -->
+                    <div style="text-align: center; min-width: 70px;">
+                        <div style="color: rgba(255,255,255,0.5); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1;">
+                            Price <span style="color: #f59e0b; font-size: 0.55rem; font-weight: 600;">${companyInfo.currency || 'GBP'}</span>
+                        </div>
+                        <div style="color: white; font-size: 0.9rem; font-weight: 800; line-height: 1.2; margin-top: 2px;">${fmtCurrentPrice}p</div>
+                    </div>
+                    
+                    <!-- Market Cap -->
+                    <div style="text-align: center; min-width: 70px;">
+                        <div style="color: rgba(255,255,255,0.5); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1;">Cap</div>
+                        <div style="color: #10b981; font-size: 0.9rem; font-weight: 800; line-height: 1.2; margin-top: 2px;">${formattedMarketCap}</div>
+                    </div>
+                    
+                    <!-- Exchange -->
+                    <div style="text-align: center; min-width: 80px;">
+                        <div style="color: rgba(255,255,255,0.5); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1;">Exchange</div>
+                        <div style="font-size: 0.8rem; font-weight: 700; line-height: 1.2; margin-top: 2px;">
+                            <span style="color: #06b6d4;">${companyInfo.exchange || 'LSE'}</span>
+                            <span style="color: #a855f7;"> ${companyInfo.market || 'AIM'}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Close Button -->
+                <button onclick="closeSignalTimeline()" style="background: rgba(0,0,0,0.5); color: white; border: none; border-radius: 50%; width: 36px; height: 36px; font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; flex-shrink: 0;" onmouseover="this.style.background='rgba(239,68,68,0.7)'; this.style.transform='scale(1.1)'" onmouseout="this.style.background='rgba(0,0,0,0.5)'; this.style.transform='scale(1)'">×</button>
+            </div>
+            
+            <!-- Sector & Industry Row -->
+            <div style="display: flex; gap: 1.5rem; font-size: 0.7rem; margin-top: 0.6rem; padding-top: 0.6rem; border-top: 1px solid rgba(10, 132, 255, 0.15);">
+                <div style="display: flex; align-items: center; gap: 0.4rem; min-width: 120px;">
+                    <span style="color: #667eea; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 500;">Sector:</span>
+                    <span style="color: white; font-weight: 700; font-size: 0.75rem;">${companyInfo.sector || '-'}</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.4rem; flex: 1; overflow: hidden;">
+                    <span style="color: #667eea; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 500;">Industry:</span>
+                    <span style="color: white; font-weight: 700; font-size: 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${companyInfo.industry || '-'}</span>
+                </div>
+            </div>
+        </div>
         
         <!-- 5-Year Price Chart -->
-        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem; border: 1px solid rgba(10, 132, 255, 0.2);">
+        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; margin: 1.5rem 1.5rem 1.5rem 1.5rem; border: 1px solid rgba(10, 132, 255, 0.2);">
             <h3 style="color: white; margin: 0 0 1rem 0; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
                 📈 ${cleanTickerDisplay(ticker)} - 5 Year Price History
             </h3>
@@ -1378,7 +1464,7 @@ async function showSignalTimeline(ticker) {
         </div>
         
         <!-- Current Rally Analysis Card -->
-        <div style="background: linear-gradient(135deg, var(--navy), #1A3A52); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; color: white; border: 1px solid rgba(10, 132, 255, 0.3);">
+        <div style="background: linear-gradient(135deg, var(--navy), #1A3A52); border-radius: 12px; padding: 1.5rem; margin: 0 1.5rem 1.5rem 1.5rem; color: white; border: 1px solid rgba(10, 132, 255, 0.3);">
             <h3 style="margin: 0 0 1rem 0; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
                 📊 Current Rally Analysis
             </h3>
@@ -1418,12 +1504,12 @@ async function showSignalTimeline(ticker) {
         </div>
         
         <!-- Signal History Timeline -->
-        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(10, 132, 255, 0.2);">
+        <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1.5rem; margin: 0 1.5rem 1.5rem 1.5rem; border: 1px solid rgba(10, 132, 255, 0.2);">
             <h3 style="color: white; margin: 0 0 1rem 0; font-size: 1rem;">
                 📈 Signal History (${allSignals.length} signal${allSignals.length !== 1 ? 's' : ''})
             </h3>
             <div id="signalHistoryContainer" style="display: flex; flex-direction: column; gap: 12px;">
-                ${allSignals.sort((a, b) => new Date(b.signal_date) - new Date(a.signal_date)).slice(0, 10).map(sig => {
+                ${allSignals.slice(0, 10).map(sig => {
                     const signalState = sig.rally_state ? rallyStateColors[sig.rally_state] : null;
                     const signalColorEmoji = {
                         'RED': '🔴',
@@ -1496,7 +1582,7 @@ async function showSignalTimeline(ticker) {
         </div>
         
         ${latestSignal.Rally_Count >= 2 ? `
-            <div style="background: rgba(251, 191, 36, 0.15); border-left: 4px solid #fbbf24; border-radius: 8px; padding: 1rem; margin-top: 1rem; border: 1px solid rgba(251, 191, 36, 0.3);">
+            <div style="background: rgba(251, 191, 36, 0.15); border-left: 4px solid #fbbf24; border-radius: 8px; padding: 1rem; margin: 0 1.5rem 1.5rem 1.5rem; border: 1px solid rgba(251, 191, 36, 0.3);">
                 <h4 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;">
                     ⚠️ Risk Warning
                 </h4>
@@ -2049,29 +2135,35 @@ async function loadAIReport(ticker) {
                 box-shadow: 0 20px 60px rgba(0,0,0,0.3);
                 transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             ">
-                <div style="margin-bottom: 2rem; position: relative;">
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 0.5rem;">
-                        <h3 style="color: white; font-size: 1.5rem; margin: 0; font-weight: 700;">
-                            ⚡ AI Smart Report
-                        </h3>
-                        <!-- APEX Score Display -->
-                        <div id="apexScoreDisplay" style="
-                            background: rgba(255, 255, 255, 0.15);
-                            border: 1px solid rgba(102, 126, 234, 0.4);
-                            border-radius: 12px;
-                            padding: 0.5rem 1rem;
-                            display: flex;
-                            align-items: center;
-                            gap: 0.5rem;
-                            min-width: 80px;
-                            justify-content: center;
-                        ">
-                            <span style="font-size: 1.3rem;">△</span>
-                            <span id="apexScore" style="color: rgba(255, 255, 255, 0.9); font-size: 1rem; font-weight: 600;">--</span>
-                        </div>
-                    </div>
-                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 1rem; margin: 0.5rem 0 1rem 0;">
-                        Analyzing <strong style="color: #667eea;">${ticker}</strong> with Engine V4
+                <!-- Close button for loader -->
+                <button onclick="closeAIReportModal()" style="
+                    position: absolute;
+                    top: ${isMobile ? '2px' : '12px'};
+                    right: ${isMobile ? '2px' : '12px'};
+                    z-index: 10000;
+                    background: rgba(0,0,0,0.5);
+                    color: white;
+                    border: none;
+                    border-radius: 50%;
+                    width: 36px;
+                    height: 36px;
+                    cursor: pointer;
+                    font-size: 24px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: all 0.2s ease;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+                    line-height: 1;
+                    flex-shrink: 0;
+                " onmouseover="this.style.background='rgba(239,68,68,0.7)'; this.style.transform='scale(1.1)'" 
+                   onmouseout="this.style.background='rgba(0,0,0,0.5)'; this.style.transform='scale(1)'">×</button>
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="color: white; font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700;">
+                        ⚡ APEX Intelligence Terminal
+                    </h3>
+                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 1rem; margin-bottom: 1rem;">
+                        Analyzing <strong style="color: #667eea;">${ticker}</strong> with APEX Engine
                     </p>
                     
                     <!-- Progress Dialog Box -->
@@ -2095,10 +2187,6 @@ async function loadAIReport(ticker) {
                             top: 0.6rem;
                             left: 1rem;
                             display: flex;
-                            align-items: center;
-                            gap: 6px;
-                            z-index: 10;
-                            margin-bottom: 0.5rem;
                             align-items: center;
                             gap: 6px;
                             z-index: 10;
@@ -2156,7 +2244,6 @@ async function loadAIReport(ticker) {
                                 </svg>
                             </div>
                         </div>
-                        <!-- Progress text -->
                         <div style="flex: 1; min-width: 0;">
                             <span id="aiProgressText" style="
                                 color: rgba(255, 255, 255, 0.95);
@@ -2190,24 +2277,26 @@ async function loadAIReport(ticker) {
             ">
                 <button onclick="closeAIReportModal()" style="
                     position: absolute;
-                    top: ${isMobile ? '10px' : '15px'};
-                    right: ${isMobile ? '10px' : '15px'};
+                    top: ${isMobile ? '2px' : '12px'};
+                    right: ${isMobile ? '2px' : '12px'};
                     z-index: 10000;
-                    background: rgba(0,0,0,0.7);
+                    background: rgba(0,0,0,0.5);
                     color: white;
                     border: none;
                     border-radius: 50%;
-                    width: ${isMobile ? '36px' : '40px'};
-                    height: ${isMobile ? '36px' : '40px'};
+                    width: 36px;
+                    height: 36px;
                     cursor: pointer;
-                    font-size: ${isMobile ? '18px' : '20px'};
+                    font-size: 24px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     transition: all 0.2s ease;
-                    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-                " onmouseover="this.style.background='rgba(239,68,68,0.9)'; this.style.transform='scale(1.1)'" 
-                   onmouseout="this.style.background='rgba(0,0,0,0.7)'; this.style.transform='scale(1)'">✕</button>
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+                    line-height: 1;
+                    flex-shrink: 0;
+                " onmouseover="this.style.background='rgba(239,68,68,0.7)'; this.style.transform='scale(1.1)'" 
+                   onmouseout="this.style.background='rgba(0,0,0,0.5)'; this.style.transform='scale(1)'">×</button>
                 <iframe 
                     id="apexReportIframe"
                     src="${reportPath}"
@@ -2217,6 +2306,7 @@ async function loadAIReport(ticker) {
                         border: none;
                         display: block;
                     "
+                    onload="window.apexIframeLoaded = true"
                 ></iframe>
             </div>
         </div>
@@ -2322,19 +2412,17 @@ async function loadAIReport(ticker) {
         } else {
             clearInterval(progressInterval);
         }
-    }, 300); // Faster transitions (300ms each)
+    }, 150); // Ultra-fast transitions (150ms each)
     
     // Store interval ID for cleanup
     window.aiProgressInterval = progressInterval;
     
-    // Get iframe element
-    const iframe = document.getElementById('apexReportIframe');
-    const loaderContainer = document.getElementById('apexLoaderContainer');
-    const reportContainer = document.getElementById('apexReportContainer');
-    
-    // Handle successful iframe load
-    iframe.onload = () => {
+    // After 2.5 seconds, transition to iframe
+    setTimeout(() => {
         clearInterval(progressInterval);
+        
+        const loaderContainer = document.getElementById('apexLoaderContainer');
+        const reportContainer = document.getElementById('apexReportContainer');
         
         // Fade out loader with scale animation
         loaderContainer.style.opacity = '0';
@@ -2347,57 +2435,7 @@ async function loadAIReport(ticker) {
             reportContainer.style.transform = 'scale(1)';
             reportContainer.style.pointerEvents = 'auto';
         }, 500);
-    };
-    
-    // Handle iframe load error (missing report) - keep spinner running
-    iframe.onerror = () => {
-        // Switch to "connecting" message and keep spinner active
-        clearInterval(progressInterval);
-        
-        // Cycle through connecting messages indefinitely
-        const connectingMessages = [
-            'Connecting to APEX intelligence...',
-            'Loading APEX engine...',
-            'Fetching profile data...',
-            'Preparing analysis...'
-        ];
-        
-        let connectIndex = 0;
-        window.aiProgressInterval = setInterval(() => {
-            progressText.textContent = connectingMessages[connectIndex % connectingMessages.length];
-            connectIndex++;
-        }, 1000); // Change message every 1 second
-    };
-    
-    // Fetch APEX JSON to get the score
-    const jsonPath = `data/apex_reports/${ticker}_apex_profile.json`;
-    fetch(jsonPath)
-        .then(response => {
-            if (!response.ok) throw new Error('JSON not found');
-            return response.json();
-        })
-        .then(data => {
-            // Extract APEX score from JSON
-            const apexScore = data.top_card?.apex_score_100;
-            const scoreDisplay = document.getElementById('apexScore');
-            
-            if (apexScore !== null && apexScore !== undefined) {
-                scoreDisplay.textContent = apexScore;
-                // Change color based on score
-                if (apexScore >= 70) {
-                    scoreDisplay.style.color = '#10b981'; // Green
-                } else if (apexScore >= 50) {
-                    scoreDisplay.style.color = '#f59e0b'; // Orange
-                } else {
-                    scoreDisplay.style.color = '#ef4444'; // Red
-                }
-            }
-        })
-        .catch(error => {
-            // JSON not found - just show the icon
-            const scoreDisplay = document.getElementById('apexScoreDisplay');
-            scoreDisplay.innerHTML = '<span style="font-size: 1.3rem;">△</span>';
-        });
+    }, 2500); // 2.5 seconds
 }
 
 function closeAIReportModal() {
