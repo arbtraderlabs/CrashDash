@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>APEX & Trust Prototype</title>
   <link rel="stylesheet" href="../../apex_trust_panel.css">
   <style>
@@ -119,7 +119,7 @@
             <path d="M6 3 L6 1 M10 3 L10 1 M3 6 L13 6" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
             <circle cx="8" cy="9" r="1.5" fill="#10B981"/>
           </svg>
-          <div class="card-title" style="font-size:16px;font-weight:800;color:#10B981">What They Do <span class="info-icon" data-field="what" data-tooltip="Company business model and core operations" style="cursor:pointer;opacity:0.6;font-size:14px;transition:all 0.2s ease" onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='0.6'" onclick="showTooltipPopover(event, 'Company business model and core operations')">ⓘ</span></div>
+          <div class="card-title" style="font-size:16px;font-weight:800;color:#10B981">What They Do <span style="cursor:help;opacity:0.6;font-size:14px" title="Company business model and core operations">ⓘ</span></div>
         </div>
         <div style="padding:12px">
           <span id="company-what" style="color: #e5e7eb; line-height: 1.6; font-size: 12px;">--</span>
@@ -134,7 +134,7 @@
             <circle cx="8" cy="8" r="2" fill="#10B981"/>
             <path d="M8 2 L8 6 M8 10 L8 14 M2 8 L6 8 M10 8 L14 8" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
-          <div class="card-title" style="font-size:16px;font-weight:800;color:#10B981">Why It Matters <span class="info-icon" data-field="why" data-tooltip="Market significance and investment thesis" style="cursor:pointer;opacity:0.6;font-size:14px;transition:all 0.2s ease" onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='0.6'" onclick="showTooltipPopover(event, 'Market significance and investment thesis')">ⓘ</span></div>
+          <div class="card-title" style="font-size:16px;font-weight:800;color:#10B981">Why It Matters <span style="cursor:help;opacity:0.6;font-size:14px" title="Market significance and investment thesis">ⓘ</span></div>
         </div>
         <div style="padding:12px">
           <span id="company-why" style="color: #e5e7eb; line-height: 1.6; font-size: 12px;">--</span>
@@ -150,7 +150,7 @@
             <circle cx="8" cy="11" r="1.5" fill="#10B981"/>
             <circle cx="14" cy="4" r="1.5" fill="#10B981"/>
           </svg>
-          <div class="card-title" style="font-size:16px;font-weight:800;color:#10B981">Current State <span class="info-icon" data-field="state" data-tooltip="Latest company situation and metrics" style="cursor:pointer;opacity:0.6;font-size:14px;transition:all 0.2s ease" onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='0.6'" onclick="showTooltipPopover(event, 'Latest company situation and metrics')">ⓘ</span></div>
+          <div class="card-title" style="font-size:16px;font-weight:800;color:#10B981">Current State <span style="cursor:help;opacity:0.6;font-size:14px" title="Latest company situation and metrics">ⓘ</span></div>
         </div>
         <div style="padding:12px">
           <span id="company-state" style="color: #e5e7eb; line-height: 1.6; font-size: 12px;">--</span>
@@ -256,133 +256,83 @@
       </div>
     </div>
 
-    <!-- Bloomberg Terminal Footer (Collapsible) -->
-    <div id="footer-container" style="margin-top: 40px; background: linear-gradient(180deg, #0a1628 0%, #020617 100%); border: 1px solid #1e293b; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
-        <!-- Header Bar (Always Visible) -->
-        <div style="background: rgba(59, 130, 246, 0.08); border-bottom: 1px solid rgba(59, 130, 246, 0.2); padding: 12px 16px; cursor: pointer;" onclick="toggleFooter()">
-            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%;">
-                <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; overflow: hidden;">
-                    <div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%; box-shadow: 0 0 12px rgba(59, 130, 246, 0.6); flex-shrink: 0;"></div>
-                    <span style="font-family: 'Courier New', monospace; font-size: 12px; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">APEX Intelligence Terminal</span>
-                    <span id="footer-toggle-icon" style="font-size: 14px; color: #3b82f6; transition: transform 0.3s ease; flex-shrink: 0; margin-left: auto;">▼</span>
+    <!-- Bloomberg Terminal Footer -->
+    <div style="margin-top: 40px; background: linear-gradient(180deg, #0a1628 0%, #020617 100%); border: 1px solid #1e293b; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+        <!-- Header Bar -->
+        <div style="background: rgba(59, 130, 246, 0.08); border-bottom: 1px solid rgba(59, 130, 246, 0.2); padding: 16px 24px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%; box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);"></div>
+                    <span style="font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: 1px;">APEX Intelligence Terminal</span>
                 </div>
-            </div>
-            <div style="font-family: 'Courier New', monospace; font-size: 9px; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.3px; margin-top: 6px; overflow: hidden;">
-                GENERATED: <span style="color: #06b6d4;" id="footerDate"></span> • SESSION: <span style="color: #10b981;">LIVE</span>
+                <div style="font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.5px;">
+                    GENERATED: <span style="color: #06b6d4;" id="footerDate"></span> • SESSION: <span style="color: #10b981;">LIVE</span>
+                </div>
             </div>
         </div>
         
-        <!-- Collapsible Content Section -->
-        <div id="footer-content" style="display: none;">
-            <!-- Content Grid -->
-            <div style="padding: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
-                <!-- Left Column -->
-                <div style="display: flex; flex-direction: column; gap: 20px;">
-                    <!-- System Information -->
-                    <div>
-                        <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #3b82f6; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">System Information</div>
-                        <div style="font-family: 'Courier New', monospace; font-size: 10px; color: rgba(255, 255, 255, 0.7); display: flex; gap: 16px; flex-wrap: wrap; align-items: center;">
-                            <span><span style="color: rgba(255, 255, 255, 0.4);">VERSION:</span> <span style="color: #06b6d4; font-weight: 700;">APEX v5.0</span></span>
-                            <span style="color: rgba(255, 255, 255, 0.2);">•</span>
-                            <span><span style="color: rgba(255, 255, 255, 0.4);">ENGINE:</span> <span style="color: #10b981;">CrashDash Intelligence</span></span>
-                            <span style="color: rgba(255, 255, 255, 0.2);">•</span>
-                            <span><span style="color: rgba(255, 255, 255, 0.4);">COVERAGE:</span> <span style="color: #a855f7;">LSE AIM Micro-Caps</span></span>
-                            <span style="color: rgba(255, 255, 255, 0.2);">•</span>
-                            <span><span style="color: rgba(255, 255, 255, 0.4);">SOURCES:</span> <span style="color: #ef4444;">RNS • Social • Trends</span></span>
-                        </div>
-                    </div>
-                    
-                    <!-- Risk Disclosure -->
-                    <div>
-                        <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #ef4444; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Risk Disclosure</div>
-                        <div style="font-family: 'Courier New', monospace; font-size: 10px; color: rgba(255, 255, 255, 0.5); line-height: 1.6;">
-                            This analysis is provided for informational purposes only and does not constitute financial advice. AIM micro-cap securities carry significant volatility and liquidity risks. Past performance does not guarantee future results. Always conduct your own due diligence and consult with a qualified financial advisor before making investment decisions.
-                        </div>
+        <!-- Content Grid -->
+        <div style="padding: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+            <!-- Left Column -->
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <!-- System Information -->
+                <div>
+                    <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #3b82f6; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">System Information</div>
+                    <div style="font-family: 'Courier New', monospace; font-size: 10px; color: rgba(255, 255, 255, 0.7); display: flex; gap: 16px; flex-wrap: wrap; align-items: center;">
+                        <span><span style="color: rgba(255, 255, 255, 0.4);">VERSION:</span> <span style="color: #06b6d4; font-weight: 700;">APEX v5.0</span></span>
+                        <span style="color: rgba(255, 255, 255, 0.2);">•</span>
+                        <span><span style="color: rgba(255, 255, 255, 0.4);">ENGINE:</span> <span style="color: #10b981;">CrashDash Intelligence</span></span>
+                        <span style="color: rgba(255, 255, 255, 0.2);">•</span>
+                        <span><span style="color: rgba(255, 255, 255, 0.4);">COVERAGE:</span> <span style="color: #a855f7;">LSE AIM Micro-Caps</span></span>
+                        <span style="color: rgba(255, 255, 255, 0.2);">•</span>
+                        <span><span style="color: rgba(255, 255, 255, 0.4);">SOURCES:</span> <span style="color: #ef4444;">RNS • Social • Trends</span></span>
                     </div>
                 </div>
                 
-                <!-- Right Column -->
-                <div style="display: flex; flex-direction: column; gap: 20px;">
-                    <!-- Platform Overview -->
-                    <div>
-                        <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #10b981; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Platform Overview</div>
-                        <div style="font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
-                            APEX Intelligence Terminal combines technical analysis, sentiment tracking, and regulatory news monitoring to identify high-probability contrarian setups in distressed micro-cap equities. Our proprietary scoring system evaluates setup quality, panic intensity, and compression patterns to surface opportunities before institutional recognition.
-                        </div>
-                    </div>
-                    
-                    <!-- Target Users -->
-                    <div>
-                        <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #a855f7; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Target Users</div>
-                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                            <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 4px; color: #a855f7; font-weight: 600;">PROP TRADERS</span>
-                            <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 4px; color: #3b82f6; font-weight: 600;">HEDGE FUNDS</span>
-                            <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 4px; color: #10b981; font-weight: 600;">QUANT TEAMS</span>
-                            <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 4px; color: #ef4444; font-weight: 600;">RESEARCH DESKS</span>
-                        </div>
+                <!-- Risk Disclosure -->
+                <div>
+                    <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #ef4444; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Risk Disclosure</div>
+                    <div style="font-family: 'Courier New', monospace; font-size: 10px; color: rgba(255, 255, 255, 0.5); line-height: 1.6;">
+                        This analysis is provided for informational purposes only and does not constitute financial advice. AIM micro-cap securities carry significant volatility and liquidity risks. Past performance does not guarantee future results. Always conduct your own due diligence and consult with a qualified financial advisor before making investment decisions.
                     </div>
                 </div>
             </div>
             
-            <!-- Bottom Bar -->
-            <div style="background: rgba(2, 6, 23, 0.6); border-top: 1px solid rgba(59, 130, 246, 0.15); padding: 12px 24px;">
-                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-family: 'Courier New', monospace; font-size: 10px;">
-                    <div style="color: rgba(255, 255, 255, 0.4);">© 2026 APEX Intelligence • All Rights Reserved</div>
-                    <div style="display: flex; align-items: center; gap: 20px; color: rgba(255, 255, 255, 0.5);">
-                        <span>STATUS: <span style="color: #10b981; font-weight: 700;">● OPERATIONAL</span></span>
-                        <span>LATENCY: <span style="color: #06b6d4; font-weight: 700;">12ms</span></span>
-                        <span>BUILD: <span style="color: #a855f7; font-weight: 700;">5.0.2</span></span>
+            <!-- Right Column -->
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <!-- Platform Overview -->
+                <div>
+                    <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #10b981; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Platform Overview</div>
+                    <div style="font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
+                        APEX Intelligence Terminal combines technical analysis, sentiment tracking, and regulatory news monitoring to identify high-probability contrarian setups in distressed micro-cap equities. Our proprietary scoring system evaluates setup quality, panic intensity, and compression patterns to surface opportunities before institutional recognition.
                     </div>
+                </div>
+                
+                <!-- Target Users -->
+                <div>
+                    <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #a855f7; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Target Users</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 4px; color: #a855f7; font-weight: 600;">PROP TRADERS</span>
+                        <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 4px; color: #3b82f6; font-weight: 600;">HEDGE FUNDS</span>
+                        <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 4px; color: #10b981; font-weight: 600;">QUANT TEAMS</span>
+                        <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 4px; color: #ef4444; font-weight: 600;">RESEARCH DESKS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Bar -->
+        <div style="background: rgba(2, 6, 23, 0.6); border-top: 1px solid rgba(59, 130, 246, 0.15); padding: 12px 24px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-family: 'Courier New', monospace; font-size: 10px;">
+                <div style="color: rgba(255, 255, 255, 0.4);">© 2026 APEX Intelligence • All Rights Reserved</div>
+                <div style="display: flex; align-items: center; gap: 20px; color: rgba(255, 255, 255, 0.5);">
+                    <span>STATUS: <span style="color: #10b981; font-weight: 700;">● OPERATIONAL</span></span>
+                    <span>LATENCY: <span style="color: #06b6d4; font-weight: 700;">12ms</span></span>
+                    <span>BUILD: <span style="color: #a855f7; font-weight: 700;">5.0.2</span></span>
                 </div>
             </div>
         </div>
     </div>
-    
-    <script>
-        function toggleFooter() {
-            const content = document.getElementById('footer-content');
-            const icon = document.getElementById('footer-toggle-icon');
-            
-            if (content.style.display === 'none') {
-                content.style.display = 'block';
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                content.style.display = 'none';
-                icon.style.transform = 'rotate(0deg)';
-            }
-        }
-
-        // Mobile-friendly tooltip popover
-        function showTooltipPopover(event, tooltipText) {
-            event.stopPropagation();
-            
-            // Close any existing popover
-            const existing = document.getElementById('tooltip-popover');
-            if (existing) existing.remove();
-            
-            // Create popover
-            const popover = document.createElement('div');
-            popover.id = 'tooltip-popover';
-            popover.style.cssText = 'position:fixed;background:rgba(20,25,40,0.98);color:#e5e7eb;padding:10px 14px;border-radius:6px;font-size:12px;line-height:1.4;max-width:250px;border:1px solid rgba(16,185,129,0.3);z-index:10000;box-shadow:0 4px 12px rgba(0,0,0,0.4);backdrop-filter:blur(8px);word-wrap:break-word';
-            popover.textContent = tooltipText;
-            document.body.appendChild(popover);
-            
-            // Position near clicked element
-            const rect = event.target.getBoundingClientRect();
-            popover.style.left = Math.min(rect.left, window.innerWidth - 270) + 'px';
-            popover.style.top = (rect.bottom + 8) + 'px';
-            
-            // Close on outside click
-            setTimeout(() => {
-                document.addEventListener('click', closeTooltip, { once: true });
-            }, 0);
-        }
-
-        function closeTooltip() {
-            const popover = document.getElementById('tooltip-popover');
-            if (popover) popover.remove();
-        }
-    </script>
   </div>
   
   <!-- Mobile Responsive Styles -->
@@ -390,26 +340,19 @@
     @media(max-width:768px){
         body{padding:10px!important}
         .container{max-width:100%!important}
-        #footer-container{margin-top:20px!important}
         div[style*="grid-template-columns: 1fr 1fr"]{grid-template-columns:1fr!important;gap:12px!important}
         div[style*="grid-template-columns: repeat(4"]{grid-template-columns:repeat(2,1fr)!important;gap:10px!important}
         div[style*="padding: 24px"]{padding:16px!important}
-        div[style*="padding: 12px 16px"]{padding:10px 12px!important}
         div[style*="gap: 20px"]{gap:14px!important}
         div[style*="font-size: 11px"]{font-size:10px!important}
-        div[style*="font-size: 12px"]{font-size:11px!important}
-        div[style*="font-size: 13px"]{font-size:12px!important}
     }
     @media(max-width:480px){
         body{padding:6px!important}
         .container{padding:0!important;margin:0!important}
-        #footer-container{margin-top:16px!important;margin-left:6px!important;margin-right:6px!important}
-        #footer-container > div:first-child{padding:8px 10px!important}
         div[style*="grid-template-columns: 1fr 1fr"]{grid-template-columns:1fr!important;gap:8px!important}
         div[style*="grid-template-columns: repeat(4"]{grid-template-columns:1fr!important;gap:6px!important;padding:8px 10px!important}
         div[style*="grid-template-columns: repeat(2"]{grid-template-columns:1fr!important;gap:6px!important}
         div[style*="padding: 24px"]{padding:10px!important}
-        div[style*="padding: 12px 16px"]{padding:8px 10px!important}
         div[style*="padding: 14px 16px"]{padding:8px 10px!important}
         div[style*="padding: 18px"]{padding:10px!important}
         div[style*="gap: 20px"]{gap:8px!important}
@@ -417,8 +360,6 @@
         div[style*="gap: 24px"]{gap:10px!important}
         div[style*="gap: 16px"]{gap:6px!important}
         div[style*="gap: 12px"]{gap:6px!important}
-        div[style*="gap: 8px"]{gap:4px!important}
-        div[style*="font-size: 9px"]{font-size:8px!important}
         div[style*="font-size: 10px"]{font-size:8px!important}
         div[style*="font-size: 11px"]{font-size:9px!important}
         div[style*="font-size: 12px"]{font-size:10px!important}
@@ -440,7 +381,7 @@
   <script>window.__APEX_PROFILE = {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "VCP.L",
-  "generated_at": "2026-02-11T20:06:29.222783Z",
+  "generated_at": "2026-02-12T10:04:13.573555Z",
   "top_card": {
     "ticker": "VCP.L",
     "company_name": "Victoria PLC",
@@ -954,7 +895,7 @@
       "EXTREME_DRAWDOWN",
       "FREQUENT_CRASHES"
     ],
-    "last_updated": "2026-02-11 17:06:33 UTC",
+    "last_updated": "2026-02-11 20:06:48 UTC",
     "volatility": {
       "atr_normalized": 6.4,
       "stddev_20d": 0.0
@@ -967,7 +908,7 @@
     "why_it_matters": [
       "APEX 34/100 indicates moderate opportunity quality",
       "Timing regime: EARLY_BUILD",
-      "Historical profile: 0 rallies, 0% best run"
+      "Historical profile: 0 rallies, 1% best run"
     ],
     "main_risk": "Confidence 50/100 - full data loaded",
     "watch_next": [
@@ -1027,7 +968,7 @@
     "social": {
       "has_data": true,
       "buzz_level": "HIGH",
-      "post_count": 1415,
+      "post_count": 1494,
       "sentiment_breakdown": {
         "positive": 0.0,
         "neutral": 100.0,
@@ -24560,25 +24501,1323 @@
           "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=5B4B3DAB-AF27-4DA9-91FF-1B1F610B5936"
         },
         "ingested_at": "2026-02-11T17:23:11.937316+00:00"
+      },
+      {
+        "event_id": "SOCIAL-Today1608-Roadhous-34979721",
+        "event_type": "social_post",
+        "date": "2026-02-11T17:23:03.855830",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Roadhouse",
+          "content": "CEO just bought shares, obviously confident !",
+          "sentiment": 0.0,
+          "engagement": "227",
+          "price_at_post": "26.00",
+          "thread_title": "RE: Ex-Director dumps shares",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=DF3AE424-3E45-4E30-86F7-A117FFCBF631"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957064+00:00"
+      },
+      {
+        "event_id": "SOCIAL-27Jan20261553-Platinum-47469037",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:15.323465",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "PlatinumHeights",
+          "content": "wish i could share your optimism but looking at the ****-stew being cooked up lately i\u2019m not that hopeful",
+          "sentiment": 0.0,
+          "engagement": "122",
+          "price_at_post": "29.25",
+          "thread_title": "RE: Ex-Director dumps shares",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=DF3AE424-3E45-4E30-86F7-A117FFCBF631"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957113+00:00"
+      },
+      {
+        "event_id": "SOCIAL-27Jan20261312-Roadhous-51268426",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:15.323986",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Roadhouse",
+          "content": "It\u2019s a good thing. The seller has most likely gone now. We should see a nice rise now",
+          "sentiment": 0.0,
+          "engagement": "223",
+          "price_at_post": "29.25",
+          "thread_title": "RE: Ex-Director dumps shares",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=DF3AE424-3E45-4E30-86F7-A117FFCBF631"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957137+00:00"
+      },
+      {
+        "event_id": "SOCIAL-27Jan20260902-Platinum-11438498",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:15.324688",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "PlatinumHeights",
+          "content": "Https://www.thefurnishingreport.com/index.php/news/40-flooring/17287-ex-underlay-executive-halves-stake-in-flooring-giant-victoria Former Ezi Floor director is dumping his shares at an alarmingly fast rate. There\u2019s clearly something rotten at this company. For people like me waiting for an upturn in fortunes, this is the worst possible news",
+          "sentiment": 0.0,
+          "engagement": "122",
+          "price_at_post": "29.50",
+          "thread_title": "Ex-Director dumps shares",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=DF3AE424-3E45-4E30-86F7-A117FFCBF631"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957156+00:00"
+      },
+      {
+        "event_id": "SOCIAL-17Dec20251443-Glowacki--1554119",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.544370",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Glowacki",
+          "content": "Central..it would have helped to know how much of the \u00a31b is the actual leases and also how much of the debt is near and long term??? As it is presented the debt is unsustainable,however broken up into the above individual parts might reveal a more survival future",
+          "sentiment": 0.0,
+          "engagement": "950",
+          "price_at_post": "31.70",
+          "thread_title": "RE: Broker recommendations",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=5B4B3DAB-AF27-4DA9-91FF-1B1F610B5936"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957174+00:00"
+      },
+      {
+        "event_id": "SOCIAL-17Dec20250731-CentralC--3107541",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.544939",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "CentralCashier",
+          "content": "Debt is now at over \u00a31bn. Operating profit just \u00a311m, with a net loss of \u00a3140m in just 6 months. There is simply no way to pay down this debt now,  Victoria proposed 10% rates on new bonds (and this wasn\u2019t even approved). So 10% of \u00a31bn is \u00a3100m, if you take the net loss of \u00a3140m for 6 months and assume a 12month loss of just \u00a3200m, the the turnover needs to increase exponentially (probably 3x) just to generate enough cash to service the debt, madness.",
+          "sentiment": 0.0,
+          "engagement": "247",
+          "price_at_post": "37.50",
+          "thread_title": "RE: Broker recommendations",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=5B4B3DAB-AF27-4DA9-91FF-1B1F610B5936"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957192+00:00"
+      },
+      {
+        "event_id": "SOCIAL-25Nov20250907-CentralC-91609257",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.545513",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "CentralCashier",
+          "content": "Below 40p again, (all time low was 37p) the market just doesn't take any positives from the RNS's, neither does the bond market. Will we see some significant director buys at this level?",
+          "sentiment": 0.0,
+          "engagement": "247",
+          "price_at_post": "39.70",
+          "thread_title": "RE: Broker recommendations",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=5B4B3DAB-AF27-4DA9-91FF-1B1F610B5936"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957220+00:00"
+      },
+      {
+        "event_id": "SOCIAL-6Nov20251329-Madtom-14064965",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.546050",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Madtom",
+          "content": "I agree William123 !! Berenberg trying to hoodwink potential investor\u2019s. They clearly have their own agenda.",
+          "sentiment": 0.0,
+          "engagement": "234",
+          "price_at_post": "52.50",
+          "thread_title": "RE: Broker recommendations",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=5B4B3DAB-AF27-4DA9-91FF-1B1F610B5936"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957241+00:00"
+      },
+      {
+        "event_id": "SOCIAL-6Nov20251301-William1-16350690",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.546593",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "William123",
+          "content": "Full disclosure i hold vcp and have done all the way up and down over the last decade +. My question is how on earth can Berenberg  have the audacity to still put out market predictions. They score like a blind man playing darts. Worth a look if you need a giggle.",
+          "sentiment": 0.0,
+          "engagement": "108",
+          "price_at_post": "52.50",
+          "thread_title": "Broker recommendations",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=5B4B3DAB-AF27-4DA9-91FF-1B1F610B5936"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957259+00:00"
+      },
+      {
+        "event_id": "SOCIAL-5Nov20250926-Glowacki-14445015",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.547112",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Glowacki",
+          "content": "Another poor trading update from flooring company headlam plc.(5/11/25) No improvement in its business..Does not augur well for victoria plc",
+          "sentiment": 0.0,
+          "engagement": "950",
+          "price_at_post": "52.00",
+          "thread_title": "Sell",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=F7005CC6-91CC-4352-80A3-C7FF96C2BB02"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957277+00:00"
+      },
+      {
+        "event_id": "SOCIAL-4Nov20251354-CentralC-71506906",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.547618",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "CentralCashier",
+          "content": "Just 18c on the ask of the 2028 bonds? https://www.boerse-frankfurt.de/bond/xs2315945829-victoria-plc-3-75-21-28?mic=XFRA",
+          "sentiment": 0.0,
+          "engagement": "247",
+          "price_at_post": "51.00",
+          "thread_title": "RE: Fitch Ratings - 30 October",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=3563414E-C2D0-4F10-AC99-CDF4CA4F4797"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957294+00:00"
+      },
+      {
+        "event_id": "SOCIAL-4Nov20251051-AceofClu-85956099",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.548185",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "AceofClubs",
+          "content": "Fitch Ratings has maintained Victoria PLC's ratings on Rating Watch Negative (RWN). A summary of rating actions is provided below. The action follows Victoria's withdrawal of the tender offer to exchange its 2028 senior secured notes (SSNs) and reflects our expectation that another refinancing proposal is likely in the short term, which could constitute a distressed debt exchange (DDE) under our criteria. The RWN further reflects Victoria's moderate liquidity, high leverage, and projected negative free cash flow (FCF) over FY26-FY29 (year-end March). We expect to resolve the RWN once the company has announced its refinancing proposal. Key Rating Drivers: Continued Refinancing Uncertainty: Fitch views Victoria's withdrawal of the tender offer to exchange its 2028 SSNs for second-priority notes (SPNs) as underscoring its limited refinancing options and heightening the uncertainty around the company's future capital structure. We expect a further proposal to refinance the 2028 notes in the short term, to mitigate the risk associated with the springing maturity clause in the first-priority notes (FPNs). Fitch continues to expect any potential transaction to be treated as a DDE under its criteria, given the likelihood of materially reduced terms for existing creditors. Fitch forecasts continued demand weakness to drive a revenue decline in FY26, followed by a modest recovery with 2.6% growth in FY27. We expect liquidity to remain moderate, with increased use of Victoria's revolving credit facility (RCF) to fund negative FCF and one-off restructuring costs. Limited Financial Flexibility: Fitch forecasts Victoria to generate negative FCF across FY26-FY29, driven by insufficient EBITDA to fund its higher interest costs and forecast annual capex plan. We expect leverage to stay above the sector's 'CCC' midpoint (7.0x) through FY26-FY29 with financial flexibility constrained amid heightened refinancing risk. High Leverage: Fitch forecasts Victoria's leverage to increase to a high 13.0x at FYE26, before falling to 8.0x by FYE29. The initial increase reflects higher debt after its debt restructuring in September 2025, alongside our assumption that its preferred equity would be refinanced with debt in FY26 to avoid triggering the change-of-control clause within the bond documentation, which could arise if the preference equity is converted into equity. Further, continued underperformance in EBITDA remains a risk until its meaningful recovery, which we expect only from FY27-FY28. This implies leverage will sharply increase in FY26-FY27. Senior unsecured debt consists of overdraft facilities and other bank loans, which rank behind senior secured debt. New FPNs issued in September 2025 (2029 maturities) of GBP576 million (GBP528 million plus payment-in kind component of coupon for next 12 months) rank after the RCF. SSNs of GBP8 million maturing in 2031 and GBP143 million maturing in 2028 rank next in the security waterfall after the new FPN. AceofClubs",
+          "sentiment": -0.5,
+          "engagement": "437",
+          "price_at_post": "51.00",
+          "thread_title": "Fitch Ratings - 30 October",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=3563414E-C2D0-4F10-AC99-CDF4CA4F4797"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957312+00:00"
+      },
+      {
+        "event_id": "SOCIAL-21Oct20250814-CentralC--4966816",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.548720",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "CentralCashier",
+          "content": "Well VCP's amazing solution to take on 10% debt for their bonds was rejected by bond holders. I am sure most bond holders would have accepted the new terms, if they believe the debt could be paid in full by the new proposed maturity date, who doesn't love 10% on  a bond? Unless of course the bond is worthless, current ASK on these bonds is 28c, the bid price is in the low 20s. If the ask on 250m EUR bonds is only 27c, the value of the bond in theory only sits at 67m EUR, surely the best option for VCP would be to buy their own bond via a third party financing? (if the majority were keen to sell at this price, which they may not). The board now say more advantageous options are available, guess we will wait and see. But if they are not going to the bond market, 250m EUR is a lot to find via another route at a current market cap of 73m EUR. If the board can address the 2028 bonds with a constructive way I think this could turnaround, but now their first offer is rejected it may slump lower until resolved.",
+          "sentiment": 0.0,
+          "engagement": "247",
+          "price_at_post": "54.70",
+          "thread_title": "RE: Reduction of Debt by \u20ac80m",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=64D65E6C-0B62-4284-8267-6AEB7B6A79D8"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957330+00:00"
+      },
+      {
+        "event_id": "SOCIAL-20Oct20251557-Coldspy-53578002",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.549305",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Coldspy",
+          "content": "Back in today after a long time Is there a turnaround story here",
+          "sentiment": 0.0,
+          "engagement": "5,095",
+          "price_at_post": "55.30",
+          "thread_title": "RE: Reduction of Debt by \u20ac80m",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=64D65E6C-0B62-4284-8267-6AEB7B6A79D8"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957348+00:00"
+      },
+      {
+        "event_id": "SOCIAL-5Oct20251511-Platinum-10218409",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.550007",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "PlatinumHeights",
+          "content": "It\u2019s always good to see CEOs who have guided a company to hitting rock bottom stay on, lurking around like a bad smell. Under his great management we have seen the share price plummet. So if you as an investor think that it is a good idea keeping this specialist in failure on as a consultant a further two years after the debacle that he has presided over then you might have lost your screws somewhere along the way. I used to think you were an optimist but you might simply be deluded. What is Philippe Hamers going to consult the company on? How to successfully achieve bankruptcy? I wouldn\u2019t let this guy advise a child on budgeting skills yet Geoffrey Wilding has him in charge of the entire company. Wilding is probably too busy polishing his yacht to notice that many people\u2019s hard earned money has shrivelled into small piles of nothing",
+          "sentiment": 0.0,
+          "engagement": "122",
+          "price_at_post": "61.90",
+          "thread_title": "RE: CEO retiring middle of next year",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=307CB26E-AA57-4E2D-B4AA-E3FE4C2CB8A5"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957366+00:00"
+      },
+      {
+        "event_id": "SOCIAL-5Oct20251451-Platinum-33409693",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.550663",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "PlatinumHeights",
+          "content": "Can spot him a mile off. I\u2019m invested in this and although performance has been poor I have hope for a turnaround. This aceofclubs clearly has his own agenda",
+          "sentiment": 0.0,
+          "engagement": "122",
+          "price_at_post": "61.90",
+          "thread_title": "RE: Reduction of Debt by \u20ac80m",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=64D65E6C-0B62-4284-8267-6AEB7B6A79D8"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957384+00:00"
+      },
+      {
+        "event_id": "SOCIAL-4Oct20251428-BlackBou-69530401",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.551378",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "BlackBoulder",
+          "content": "I see that the CEO Philippe Hamers is retiring in the middle of next year. He is in his mid 60s so there is nothing unusual about that. He\u2019s given nine months\u2019 notice and has said that he will stay on for another two years as a consultant, so he\u2019s given plenty of time for the board to find the perfect replacement.",
+          "sentiment": 0.5,
+          "engagement": "56",
+          "price_at_post": "61.90",
+          "thread_title": "CEO retiring middle of next year",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=307CB26E-AA57-4E2D-B4AA-E3FE4C2CB8A5"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957402+00:00"
+      },
+      {
+        "event_id": "SOCIAL-23Sep20251834-AceofClu-77806842",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.551814",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "AceofClubs",
+          "content": "Black Boulder - 55 posts, all on VCP, and all tagged \"Strong Buy\" - at all, and any price. Falcon (or should it be Black Pebble?) - 3 posts, all on VCP, and all tagged \"Strong Buy\" - at all, and any price. AceofClubs",
+          "sentiment": -0.5,
+          "engagement": "437",
+          "price_at_post": "67.30",
+          "thread_title": "RE: Reduction of Debt by \u20ac80m",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=64D65E6C-0B62-4284-8267-6AEB7B6A79D8"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957420+00:00"
+      },
+      {
+        "event_id": "SOCIAL-23Sep20251626-BlackBou-38103334",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.552258",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "BlackBoulder",
+          "content": "Well AceofClubs, we will know very shortly if you\u2019re  right or if I\u2019m right about the take up of the 2031 Notes by the 2028 Note Holders. I very much doubt VCP would have launched the offer without having done proper market soundings, so it can be confident of success. Further, the debt market press (9Fin and LevFinInsights, for example) was yesterday very supportive of the offer, so it looks good for VCP shareholders, and not at all good for you shorters.",
+          "sentiment": 0.5,
+          "engagement": "56",
+          "price_at_post": "67.80",
+          "thread_title": "RE: Reduction of Debt by \u20ac80m",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=64D65E6C-0B62-4284-8267-6AEB7B6A79D8"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957438+00:00"
+      },
+      {
+        "event_id": "SOCIAL-23Sep20251557-Fa1con--4344959",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.552673",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Fa1con",
+          "content": "Spot the shorter.",
+          "sentiment": 0.5,
+          "engagement": "3",
+          "price_at_post": "66.00",
+          "thread_title": "RE: Reduction of Debt by \u20ac80m",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=64D65E6C-0B62-4284-8267-6AEB7B6A79D8"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957456+00:00"
+      },
+      {
+        "event_id": "SOCIAL-22Sep20251139-AceofClu--5152746",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.553151",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "AceofClubs",
+          "content": "Black Boulder - 54 posts, all on VCP, and all tagged \"Strong Buy\" - at all, and any price. The reasons why the 2028 Bond Holders would not want to accept the swap - 1.) The 2028 Bonds are redeemable in 2028 at 100c not the 25c they currently trade - a potential 200% gain. 2.) The 2028 Bonds currently pay 15% annually, in cash, if traded at 25c. 3.) The proposed 2031 Bonds pay nothing in cash until 2031. 4.) If this progresses at what price will the 2031 Bonds trade at in an open marketplace? Can any real value be reasonably ascribed to them? 5.) \"During refinancing of the 2026 Notes the company stripped out all of the protective covenants from the 2028 Notes.\" So what value can be ascribed to the \"protective covenants\" on the 2031 Notes? 6.) A \u20ac4.5M reduction in cash outflow is not going to save this sinking business. This \"refinancing\" merely potentially delays the inevitable. There has to be doubt that VCP could stagger on to 2028, it could not afford to redeem the Bonds for cash. 7.) VCP equity is worthless and has been for some years; doubling its value still makes it worthless. 8.) Koch Industries sits waiting to secure the assets at liquidation prices. 9.) Geoff Wilding got his cash out of VCP years ago - is he bothered? AceofClubs",
+          "sentiment": -0.5,
+          "engagement": "437",
+          "price_at_post": "68.00",
+          "thread_title": "RE: Reduction of Debt by \u20ac80m",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=64D65E6C-0B62-4284-8267-6AEB7B6A79D8"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957474+00:00"
+      },
+      {
+        "event_id": "SOCIAL-22Sep20250929-BlackBou-43594078",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.553612",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "BlackBoulder",
+          "content": "Reading the RNS announcement this morning, in summary, the company has offered to swap its existing 3.75% 2028 Notes for new 2031 notes carrying an interest rate of 12%, at the rate of 1,000 2028 Notes for 525 (or 550 for early adopters) 2031 Notes. In doing so the company will immediately reduce its overall debt by around \u20ac80m. There are three main reasons why the 2028 holders will want to do this exchange; 1. The 2028 Notes are currently trading at 25 cents and so at 52.5 cents the company is offering a more than 100% premium for the 2028 holders. 2. \u2060The new notes pay an interest rate of 12%. 3. \u2060 During refinancing of the 2026 Notes the company stripped out all of the protective covenants from the 2028 Notes, which the company was entitled to do under the rules of the 2026 and 2028 Notes as long as the changes were approved by the majority of note holders, which they were. The 2028 Notes therefore have no protective covenants while the 2031 Notes do have protective covenants and are therefore a more secure instrument. There are three significant advantages for shareholders in this exchange; 1. The exchange immediately eliminates around \u20ac80 million of VCP\u2019s debt, which is the same as the current entire market cap of the company, so the value of VCP\u2019s equity should double overnight. 2. \u2060The interest cost is nominally higher but because the amount of debt outstanding is almost halved, the increase in interest expense is less than \u00a34.5 million pa, and even that is Paid In Kind, not cash, improving cashflow for the next six years. 3. \u2060The maturity of the company\u2019s 2028 debt is extended by three more years, ensuring plenty of time for management to execute on the \u00a370 million per annum of identified cost savings, and to enjoy the inevitable recovery in consumer demand.",
+          "sentiment": 0.5,
+          "engagement": "56",
+          "price_at_post": "68.90",
+          "thread_title": "Reduction of Debt by \u20ac80m",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=64D65E6C-0B62-4284-8267-6AEB7B6A79D8"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957492+00:00"
+      },
+      {
+        "event_id": "SOCIAL-19Sep20251440-Davde-76029736",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.554022",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Davde",
+          "content": "There is no doubt that VCP has challenges. Revenue down circa \u00a3120m and gross and net margins down.  On the plus side  saving are coming through  and more identified in the coming year, albeit mitigated by increased interest costs somewhat. When macro economic headwinds ease I can see VCP being very profitable. Having said that, the longer the wait for a upturn in activity the more risk longer term as VCP will need to reduce debt  sooner rather than later.",
+          "sentiment": 0.0,
+          "engagement": "1,348",
+          "price_at_post": "68.60",
+          "thread_title": "RE: Accounts.",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=3CA176F9-4BDB-427D-919B-AE4AC56FD5ED"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957509+00:00"
+      },
+      {
+        "event_id": "SOCIAL-18Sep20250826-Madtom-30777836",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.554467",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Madtom",
+          "content": "Wow .. An incredible set of facts. The flooring/soft furnishing market is certainly facing some challenges right now. I\u2019m sure the market will pick up in the short to mid term as these things tend to be cyclical. It\u2019s just the damage that is done to some of these companies in the meantime.",
+          "sentiment": 0.0,
+          "engagement": "234",
+          "price_at_post": "68.00",
+          "thread_title": "RE: Accounts.",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=3CA176F9-4BDB-427D-919B-AE4AC56FD5ED"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957527+00:00"
+      },
+      {
+        "event_id": "SOCIAL-18Sep20250802-CentralC--4450786",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.554970",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "CentralCashier",
+          "content": "I took a gamble at this at just below 40p last year and made a decent return. So I track this company quite a bit with a view to potentially making more money in the future, my personal view now, is that  of Helikon Investments Limited. The accounts have just been published, and the main stats are: Soft flooring UK and EU down \u00a370m Ceramic tiles down \u00a370m AUS & USA down \u00a316m So net loss in turnover of \u00a3156m Net margin DOWN by 3% Free cash flow down from \u00a335m to (\u00a336.2m) Pre Tax loss \u00a3266.8m, (2024 116,9). Total net debt \u00a31.183bn (a large portion of this now at 10% interest) Also something very strange in the accounts, \"Exception impairment\u00a0charge\" at \u00a3186.4m, basically a markdown of stock values, this is insane. The company has also sold an asset/building in Belgium for \u00a330.4m and leased it back. Directors re-numeration: Geoff Wilding withdrew \u00a31.2m (2024 \u00a369k) Phillipe Hammers \u00a31.65m (2024 \u00a32.863m) Brian Morgan \u00a3746k (2024 \u00a3419k) Why has GW all of a sudden withdrawn \u00a31.2m after 2024 was almost nothing? Especially\u00a0considering the market environment, shareholder loss etc. Also, the report lists the disposal\u00a0of the ceramic\u00a0tile business in the EU, but does not list the disposal of Hannover Flooring Ltd. Victoria ceased holdings on 28th June 2024, but there has been no release about this.Other than a small footnote in the auditor's report \"Hannover Flooring Limited has been disposed of within the current period\". And a \"non cash charge\" of \u00a33.5m, it looks like Victoria made a loss of \u00a33.5m disposing of Hanover Flooring. Didn't the owner or his brother also purchase a load of shares in the company for a TR1? Suspect to say the least. Going into a period with higher debt rates, weak market demand and a net cash position of (\u00a336.2m) and almost 10% interest and a debt level in multiples of the market cap. Agree that this is very much a Wood Group scenario, debt is out of control. no profits,to pay down the bond. Bare in mind 2020-2022 was one of the highest in demand for floor coverings, there was no dent made in paying back the bonds that were at 3%. With now almost 10% interest and weaker demand what is the long term plan to pay these bonds down? Bid price on the 2028 bond is just 23.95 currently. Make of this what you will, DYOR.",
+          "sentiment": 0.0,
+          "engagement": "247",
+          "price_at_post": "68.00",
+          "thread_title": "Accounts.",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=3CA176F9-4BDB-427D-919B-AE4AC56FD5ED"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957544+00:00"
+      },
+      {
+        "event_id": "SOCIAL-16Sep20251142-Glowacki-48564786",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.555405",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Glowacki",
+          "content": "Headlam Flooring plc today 16/09/25 stated there is as yet no recovery in the flooring market place..",
+          "sentiment": 0.0,
+          "engagement": "950",
+          "price_at_post": "69.40",
+          "thread_title": "Sell",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=C03C8617-7892-46D2-908D-9A7C3ACAFC76"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957562+00:00"
+      },
+      {
+        "event_id": "SOCIAL-12Sep20252100-Jxp101-76249189",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.555851",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Jxp101",
+          "content": "This company is a classic Wood Group / Petrofac situation. Early signs. Huge debt and not sustainably profitable. Just how many years would it take to pay off that loan?",
+          "sentiment": 0.0,
+          "engagement": "783",
+          "price_at_post": "68.00",
+          "thread_title": "RE: Dire straits !!",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=8CBFC382-9EE8-402E-84DA-F768F9842782"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957586+00:00"
+      },
+      {
+        "event_id": "SOCIAL-27Aug20251452-Madtom-11326867",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.556288",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Madtom",
+          "content": "This company is effectively mortgaged up to the hilt with an uncompromising interest rate that  will weigh heavily on them. An awful lot of carpet will need to be sold to make repayments let alone return to profit.",
+          "sentiment": 0.0,
+          "engagement": "234",
+          "price_at_post": "68.90",
+          "thread_title": "Dire straits !!",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=8CBFC382-9EE8-402E-84DA-F768F9842782"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957604+00:00"
+      },
+      {
+        "event_id": "SOCIAL-27Aug20251342-Glowacki--2346502",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:18.556754",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Glowacki",
+          "content": "This company is in more dire straits than l first thought.Debt is massive with high interest coupon to pay and trading subdued.. Can't see this going anywhere but slowly down for the SP",
+          "sentiment": 0.0,
+          "engagement": "950",
+          "price_at_post": "68.90",
+          "thread_title": "Sell",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=CBA55CDD-26F8-475A-8353-814DCFDAE4B1"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957622+00:00"
+      },
+      {
+        "event_id": "SOCIAL-27Aug20250952-alfista-49120645",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.470661",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "alfista",
+          "content": "That looks a very stiff interest payable, the cost of which will surely weigh heavily on future earnings. Set against European producers becoming rapidly uncompetitive, proposed \"carbon taxes\" on energy consuming products, and continued consumer squeezing, I can't say I share the Boards confidence. Time will tell",
+          "sentiment": 0.0,
+          "engagement": "17,231",
+          "price_at_post": "70.00",
+          "thread_title": "Interest on finance",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=0E0515C6-E526-4A17-B17D-84F7370022E7"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957640+00:00"
+      },
+      {
+        "event_id": "SOCIAL-20Aug20251206-Madtom--8969967",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.471185",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Madtom",
+          "content": "Well with Helikon keeping gradually to increase their short position and the general momentum of travel, it looks like it could drop a bit further yet before we see a bounce. Happy to press the button when that becomes apparent.",
+          "sentiment": 0.0,
+          "engagement": "234",
+          "price_at_post": "71.80",
+          "thread_title": "RE: Shorts Increasing Daily",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=6CF274DE-946C-4C34-BC4E-CE3C706C000B"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957657+00:00"
+      },
+      {
+        "event_id": "SOCIAL-20Aug20251120-MaryBr19-69469836",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.471711",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "MaryBr190",
+          "content": "37 to 151 to 60 to 100 plenty of fun to be had. 72p again a small nibble perhaps in anticipation of another spike.",
+          "sentiment": 0.0,
+          "engagement": "10,827",
+          "price_at_post": "71.50",
+          "thread_title": "RE: Shorts Increasing Daily",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=6CF274DE-946C-4C34-BC4E-CE3C706C000B"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957675+00:00"
+      },
+      {
+        "event_id": "SOCIAL-14Aug20252042-Madtom--7797874",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.472238",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Madtom",
+          "content": "Well, if it hits the  low points (37) of late last year they will make a fortune !!",
+          "sentiment": 0.0,
+          "engagement": "234",
+          "price_at_post": "80.50",
+          "thread_title": "RE: Shorts Increasing Daily",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=6CF274DE-946C-4C34-BC4E-CE3C706C000B"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957692+00:00"
+      },
+      {
+        "event_id": "SOCIAL-14Aug20251205-DonBroco-46248543",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.472749",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "DonBroco",
+          "content": "Helikon Investments Limited seem to be increasing their short on an almost daily basis!",
+          "sentiment": 0.0,
+          "engagement": "1,053",
+          "price_at_post": "81.20",
+          "thread_title": "Shorts Increasing Daily",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=6CF274DE-946C-4C34-BC4E-CE3C706C000B"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957710+00:00"
+      },
+      {
+        "event_id": "SOCIAL-8Aug20251907-CentralC--5200576",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.473284",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "CentralCashier",
+          "content": "Good DD Ace, so we are around \u00a31.3bn in debt, at the top line, excluding any overdraft or other debts that are mentioned in the accounts. It\u2019s also worth noting that non trading companies in the group are still listed as having lots of stock at list price, although I\u2019m sure this is being used as dumping ground for dead stock for the \u201ccore\u201d businesses to maintain a higher margin. I was tempted to dip back in when it was in the 70s but just seems to risky, I see the 2028 bond has still not had any interest.",
+          "sentiment": 0.0,
+          "engagement": "247",
+          "price_at_post": "90.00",
+          "thread_title": "RE: Have I missed something?",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=1CE1BEA3-8F81-4095-8D7B-C4B177F0EA1C"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957728+00:00"
+      },
+      {
+        "event_id": "SOCIAL-8Aug20251637-AceofClu--3418596",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.473804",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "AceofClubs",
+          "content": "You may have overlooked the Preferred Shares (effectively debt):- \"The preferred equity attracts a dividend of 8.35% if cash settled, or 8.85% if Paid In Kind by way of issue of additional preferred shares (such PIK occurring quarterly). Starting in year three, the dividend moves from a fixed rate to a spread over three-month LIBOR (or SONIA, if it is not possible to ascertain LIBOR). The spread starts at 8.35% and 8.85% (for cash and PIK settlement respectively) and increases by 1% in each subsequent year up to year nine, after which it remains flat.\" Nominal value of preferred shares was \u00a3282.5M at 29 March 2025 - continually rising because of the \"interest\" being paid via PIK (extra shares) rather than cash. I read the PIK option runs to 2031 but every year the snowball of debt grows larger and the interest rate rises. A house of cards - AceofClubs",
+          "sentiment": 0.0,
+          "engagement": "437",
+          "price_at_post": "89.60",
+          "thread_title": "RE: Have I missed something?",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=1CE1BEA3-8F81-4095-8D7B-C4B177F0EA1C"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957746+00:00"
+      },
+      {
+        "event_id": "SOCIAL-8Aug20251412-Jxp101--3055813",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.474317",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Jxp101",
+          "content": "Yes this is correct. I see cash problems a few years from now. The market isn't kind to them and with a small cap floating those numbers financial restructuring will be required at the detriment of shareholders. They are banking on market recovery but may never materialise for VCP",
+          "sentiment": 0.0,
+          "engagement": "783",
+          "price_at_post": "86.00",
+          "thread_title": "RE: Have I missed something?",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=1CE1BEA3-8F81-4095-8D7B-C4B177F0EA1C"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957770+00:00"
+      },
+      {
+        "event_id": "SOCIAL-8Aug20250931-Madtom-53871241",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.474820",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Madtom",
+          "content": "Wow \u2026. A sobering thought !!",
+          "sentiment": 0.0,
+          "engagement": "234",
+          "price_at_post": "88.50",
+          "thread_title": "RE: Have I missed something?",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=1CE1BEA3-8F81-4095-8D7B-C4B177F0EA1C"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957788+00:00"
+      },
+      {
+        "event_id": "SOCIAL-8Aug20250746-CentralC-48625586",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.475369",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "CentralCashier",
+          "content": "So currently VCP paying 18.3m EUR on the 500m debt, that debt they will now pay 47.58M EUR per year, on top of the other bond, which is 7.5m EUR per year, so just on bond debt, they are paying 55m EUR per year, plus the costs of the revolving credit facility, before we even take into account the overdraft fees and other bank charges (check the last accounts). VCP needs to spend well over \u00a350m per year just servicing it's top-line debt, for a company that's never made a material profit?",
+          "sentiment": 0.0,
+          "engagement": "247",
+          "price_at_post": "90.00",
+          "thread_title": "Have I missed something?",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=1CE1BEA3-8F81-4095-8D7B-C4B177F0EA1C"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957806+00:00"
+      },
+      {
+        "event_id": "SOCIAL-4Aug20250934-smkr--5091075",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.476049",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "smkr",
+          "content": "Away she goes..",
+          "sentiment": 0.0,
+          "engagement": "3,244",
+          "price_at_post": "93.20",
+          "thread_title": "RE: Housing Market Recovery",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=71AAE271-90EC-48C5-90C9-094E95AB2014"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957824+00:00"
+      },
+      {
+        "event_id": "SOCIAL-1Aug20251530-msuk.int-30328997",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.476695",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "msuk.int",
+          "content": "Bid needs to close above 90.00 .(200ema) https://invst.ly/1bosdz",
+          "sentiment": 0.0,
+          "engagement": "2,784",
+          "price_at_post": "83.50",
+          "thread_title": "Price",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=6A3C1ACA-3B86-47ED-8A40-3734BD22AE42"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957842+00:00"
+      },
+      {
+        "event_id": "SOCIAL-1Aug20251212-smkr--3911678",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.477399",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "smkr",
+          "content": "Higher we say, higher",
+          "sentiment": 0.0,
+          "engagement": "3,244",
+          "price_at_post": "84.00",
+          "thread_title": "RE: Housing Market Recovery",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=71AAE271-90EC-48C5-90C9-094E95AB2014"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957860+00:00"
+      },
+      {
+        "event_id": "SOCIAL-1Aug20250934-Fa1con--6772096",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.478212",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Fa1con",
+          "content": "Mortgage approvals are increasing, a leading indicator that the UK housing market is starting to recover.",
+          "sentiment": 0.5,
+          "engagement": "3",
+          "price_at_post": "83.90",
+          "thread_title": "Housing Market Recovery",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=71AAE271-90EC-48C5-90C9-094E95AB2014"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957878+00:00"
+      },
+      {
+        "event_id": "SOCIAL-30Jul20250922-Madtom--6168261",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.479006",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Madtom",
+          "content": "The last spike/buy frenzy, was on the back of one particular Director buying heavily and frequently. A lot then jumped in and followed the money. But it quickly fell back once the buying eased. This time there is no momentum in buying to carry it forward on the back of last week\u2019s news. This may be a really long journey to recovery - let\u2019s see !! IMHO - DYOR",
+          "sentiment": 0.0,
+          "engagement": "234",
+          "price_at_post": "79.00",
+          "thread_title": "Lack of Momentum here",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=ACB5C475-F1DB-49B2-90FE-938B8F2B2D33"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957896+00:00"
+      },
+      {
+        "event_id": "SOCIAL-28Jul20250847-smkr--3159650",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.479806",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "smkr",
+          "content": "Heading up again. you\u2019ll see this well over \u00a31.20 soon",
+          "sentiment": 0.0,
+          "engagement": "3,244",
+          "price_at_post": "80.00",
+          "thread_title": "RE: Recovery Coming",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=627185A6-D2F2-4EAC-AC40-561624A54FAE"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957914+00:00"
+      },
+      {
+        "event_id": "SOCIAL-25Jul20250819-27001-41153922",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.480615",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "27001",
+          "content": "Savings more than cover the increased debt repayments. Also: Berenberg Bank has reaffirmed its \"Buy\" recommendation for Victoria (VCP) with a price target of 170.00. This means they believe the stock is a good investment and expect it to reach a price of 170.00. The \"reiterated\" part of their statement indicates that this is not a new rating, but a confirmation of their previous positive outlook. Berenberg Bank's price target of 170.00 suggests they see significant upside potential for Victoria's stock, based on their analysis.",
+          "sentiment": 0.0,
+          "engagement": "18",
+          "price_at_post": "83.50",
+          "thread_title": "RE: Recovery Coming",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=627185A6-D2F2-4EAC-AC40-561624A54FAE"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957937+00:00"
+      },
+      {
+        "event_id": "SOCIAL-25Jul20250434-M1Rob-91911103",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.481397",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "M1Rob",
+          "content": "Yeah \u00a350m savings are very substantial ahead Very good news yesterday",
+          "sentiment": 0.0,
+          "engagement": "2,607",
+          "price_at_post": "80.00",
+          "thread_title": "RE: Recovery Coming",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=627185A6-D2F2-4EAC-AC40-561624A54FAE"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957956+00:00"
+      },
+      {
+        "event_id": "SOCIAL-24Jul20252143-Madtom-57494414",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.482187",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Madtom",
+          "content": "So I guess they\u2019ll just keep \u2018kicking the debt down the road\u2019. I can\u2019t see where in the next 4/5 years they can pay off such a monumental debt. Of course in the meantime there will be opportunities for us investors to make a few quid on the up\u2019s and down\u2019s but some will get occasionally \u2018spiked\u2019 but that\u2019s the gamble of course.",
+          "sentiment": 0.0,
+          "engagement": "234",
+          "price_at_post": "80.00",
+          "thread_title": "Never Ending Debt ?",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=E7B7C847-7972-45C4-945E-C810417DE434"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957974+00:00"
+      },
+      {
+        "event_id": "SOCIAL-24Jul20252138-smkr-17641080",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.482951",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "smkr",
+          "content": "GOING UP.. IT'S TIME>>",
+          "sentiment": 0.0,
+          "engagement": "3,244",
+          "price_at_post": "80.00",
+          "thread_title": "RE: Recovery Coming",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=627185A6-D2F2-4EAC-AC40-561624A54FAE"
+        },
+        "ingested_at": "2026-02-11T22:01:19.957992+00:00"
+      },
+      {
+        "event_id": "SOCIAL-24Jul20252137-smkr--4500403",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.483721",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "smkr",
+          "content": "24-Jul-25\tBerenberg Bank\tBuy\t170.00\t170.00\tReiteration",
+          "sentiment": 0.0,
+          "engagement": "3,244",
+          "price_at_post": "80.00",
+          "thread_title": "RE: Recovery Coming",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=627185A6-D2F2-4EAC-AC40-561624A54FAE"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958009+00:00"
+      },
+      {
+        "event_id": "SOCIAL-24Jul20251732-BlackBou--1399276",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.484501",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "BlackBoulder",
+          "content": "There are a lot of people posting who cannot do maths. Victoria is of course already paying interest on the debt. The additional interest cost is in fact around \u20ac30 million (\u00a326 million), an amount more than covered by the savings already implemented, with an additional \u00a350 million of savings still to come.",
+          "sentiment": 0.5,
+          "engagement": "56",
+          "price_at_post": "80.00",
+          "thread_title": "Additional Interest",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=2C3AD307-0D7C-4A1E-BCE6-1C388CD8BC1E"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958027+00:00"
+      },
+      {
+        "event_id": "SOCIAL-24Jul20251531-AceofClu-81041714",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.485298",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "AceofClubs",
+          "content": "If you don't agree to swap your 2026 Notes for our irresistable 2029 Notes and less than 10% of you hold out, this is how you will be treated. \"The 90% Amendments, include among other things, (i) reducing the interest rate applicable to the 2026 Notes to cash interest of 1.00% per annum and (ii) extending the maturity date of the 2026 Notes to August 24, 2031. Should the 90% Amendments be adopted, the Existing Indenture and the 2026 Notes will be amended to this effect, and the updates will govern all participating and non-participating holders of the 2026 Notes.\" It's not what you signed up for when we relieved you of your ready cash for our 2026 Promissory Notes; but then more fool you. AceofClubs",
+          "sentiment": -0.5,
+          "engagement": "437",
+          "price_at_post": "78.70",
+          "thread_title": "Who Wants To Be Bullied & Threatened?",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=F93E9B8F-5384-4058-A01F-1CE1D5A37542"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958046+00:00"
+      },
+      {
+        "event_id": "SOCIAL-24Jul20251457-alfista-72988091",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.486086",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "alfista",
+          "content": "Beware the rampy ramp lads from Rampshire, Of course, they believe every word written by the company,",
+          "sentiment": 0.0,
+          "engagement": "17,231",
+          "price_at_post": "80.00",
+          "thread_title": "RE: Recovery Coming",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=627185A6-D2F2-4EAC-AC40-561624A54FAE"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958063+00:00"
+      },
+      {
+        "event_id": "SOCIAL-24Jul20251416-Fa1con--2754094",
+        "event_type": "social_post",
+        "date": "2026-01-29T00:32:21.486884",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Fa1con",
+          "content": "I think it is significant that H2 EBITDA was so much higher than H1 EBITDA on virtually flat revenues.  It shows that management are making the cost savings they claim. This morning they advised that another \u00a350m p.a. of cost savings are on the way.",
+          "sentiment": 0.5,
+          "engagement": "3",
+          "price_at_post": "78.70",
+          "thread_title": "RE: Recovery Coming",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&share=VCP&thread=627185A6-D2F2-4EAC-AC40-561624A54FAE"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958081+00:00"
+      },
+      {
+        "event_id": "SOCIAL-Today1553-Platinum-47469037",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.520964",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "PlatinumHeights",
+          "content": "wish i could share your optimism but looking at the ****-stew being cooked up lately i\u2019m not that hopeful",
+          "sentiment": 0.0,
+          "engagement": "122",
+          "price_at_post": "29.25",
+          "thread_title": "RE: Ex-Director dumps shares",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=DF3AE424-3E45-4E30-86F7-A117FFCBF631"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958118+00:00"
+      },
+      {
+        "event_id": "SOCIAL-Today1312-Roadhous-51268426",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.521828",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Roadhouse",
+          "content": "It\u2019s a good thing. The seller has most likely gone now. We should see a nice rise now",
+          "sentiment": 0.0,
+          "engagement": "223",
+          "price_at_post": "29.25",
+          "thread_title": "RE: Ex-Director dumps shares",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=DF3AE424-3E45-4E30-86F7-A117FFCBF631"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958141+00:00"
+      },
+      {
+        "event_id": "SOCIAL-Today0902-Platinum-11438498",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.522692",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "PlatinumHeights",
+          "content": "Https://www.thefurnishingreport.com/index.php/news/40-flooring/17287-ex-underlay-executive-halves-stake-in-flooring-giant-victoria Former Ezi Floor director is dumping his shares at an alarmingly fast rate. There\u2019s clearly something rotten at this company. For people like me waiting for an upturn in fortunes, this is the worst possible news",
+          "sentiment": 0.0,
+          "engagement": "122",
+          "price_at_post": "29.50",
+          "thread_title": "Ex-Director dumps shares",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=DF3AE424-3E45-4E30-86F7-A117FFCBF631"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958160+00:00"
+      },
+      {
+        "event_id": "SOCIAL-22Jan20262303-Platinum--4730762",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.523431",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "PlatinumHeights",
+          "content": "He\u2019s probably realised instead of sitting on a mountain of money, he\u2019s landed on a pile of poop",
+          "sentiment": 0.0,
+          "engagement": "122",
+          "price_at_post": "28.15",
+          "thread_title": "RE: New NED buys shares",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=529B603C-7AC3-44DD-93EE-8784C03D668C"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958178+00:00"
+      },
+      {
+        "event_id": "SOCIAL-22Jan20260918-luxs--1493385",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.523955",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "luxs",
+          "content": "Director buy to steady ship of panic imv",
+          "sentiment": 0.0,
+          "engagement": "422",
+          "price_at_post": "28.15",
+          "thread_title": "Director buy",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=F9D52780-1AD6-4BB3-8075-DC347D2F3CCF"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958196+00:00"
+      },
+      {
+        "event_id": "SOCIAL-20Jan20261644-CentralC-86385167",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.524543",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "CentralCashier",
+          "content": "So when you own a bond, you own 100% of its value, and Victoria pay you interest each year when you own it, this bond is 3.75% from memory. So if you own the bond, when 2028 comes you get 100cents for each bond you own. If you sell it at less than 100% you genuinely believe you may not get full face value. Some people are now taking an 85% haircut as they believe the debt they own to be worthless, so happy to get something for it. Others are buying it at a punt, but this bond has the caveat of preferred equity (I believe). Once a bond trades below 40% of its value, it\u2019s generally considered worthless to the city. The minimum amount of any bond transaction on this bond is 100,000 units AFAIK. DYOR, bond the bond market trading at 15c is quite a worrying signal.",
+          "sentiment": 0.0,
+          "engagement": "247",
+          "price_at_post": "25.70",
+          "thread_title": "RE: What's It Worth?",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=4E6C3345-A9BF-43C2-AB26-7DA18138D9A4"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958214+00:00"
+      },
+      {
+        "event_id": "SOCIAL-20Jan20261447-luxs-64250102",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.525073",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "luxs",
+          "content": "Sorry what is this exactly not experienced in this matter excuse my ignorance",
+          "sentiment": 0.0,
+          "engagement": "422",
+          "price_at_post": "29.00",
+          "thread_title": "RE: What's It Worth?",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=4E6C3345-A9BF-43C2-AB26-7DA18138D9A4"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958232+00:00"
+      },
+      {
+        "event_id": "SOCIAL-20Jan20261427-CentralC--5961194",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.525625",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "CentralCashier",
+          "content": "A bond transaction has taken place at 0.15EUR Crazy https://live.deutsche-boerse.com/bond/xs2315945829-victoria-plc-3-75-21-28?mic=XFRA",
+          "sentiment": 0.0,
+          "engagement": "247",
+          "price_at_post": "28.50",
+          "thread_title": "RE: What's It Worth?",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=4E6C3345-A9BF-43C2-AB26-7DA18138D9A4"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958250+00:00"
+      },
+      {
+        "event_id": "SOCIAL-20Jan20261222-AceofClu--8492234",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.526193",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "AceofClubs",
+          "content": "First posted 2 August 2022: When VCP was trading at 356p. \"Wilding got his cash out years ago. It's a House of Cards and in my opinion a zero sum game for equity holders.\" In subsequent years I have seen nothing to change that view. Wilding got his cash out and VCP picked up the debt for that and a whole series of over valued acquisitions. Goodwill and Sundry Intangibles peaked at \u00a3505M in 2022. When a company is placing outrageous values on \"Customer Lists\" and other bog standard data that comes with any acquisition - you know they have overpaid. The Koch Industries vulture sits patiently for its meal. AceofClubs",
+          "sentiment": 0.0,
+          "engagement": "436",
+          "price_at_post": "29.60",
+          "thread_title": "What's It Worth?",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=4E6C3345-A9BF-43C2-AB26-7DA18138D9A4"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958268+00:00"
+      },
+      {
+        "event_id": "SOCIAL-14Jan20260759-CentralC--1202163",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.526768",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "CentralCashier",
+          "content": "Saqib Karim is also a (long standing) director of VCP, he was buying shares last year at above \u00a31, hes now selling at below 40p.",
+          "sentiment": 0.0,
+          "engagement": "247",
+          "price_at_post": "35.75",
+          "thread_title": "RE: New NED buys shares",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=529B603C-7AC3-44DD-93EE-8784C03D668C"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958286+00:00"
+      },
+      {
+        "event_id": "SOCIAL-14Jan20260515-Vespucci--2228872",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.527221",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Vespucci",
+          "content": "Encouraging to see the purchase of 260,000 shares by the new director (a turnaround legend in the private equity industry) announced this morning. This follows two purchases by the CEO in December. What do these insiders see/know that the market doesn\u2019t (yet)?",
+          "sentiment": 0.0,
+          "engagement": "1",
+          "price_at_post": "35.85",
+          "thread_title": "New NED buys shares",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=529B603C-7AC3-44DD-93EE-8784C03D668C"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958305+00:00"
+      },
+      {
+        "event_id": "SOCIAL-8Jan20261700-f1nesse--2339818",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.527643",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "f1nesse",
+          "content": "Martson Holdings is a debt enforcement agency.  Maybe that is relevenat experience!",
+          "sentiment": 0.0,
+          "engagement": "78",
+          "price_at_post": "38.15",
+          "thread_title": "Interesting Appointment",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=45FAF8B1-A1AC-4898-8D82-3CAE8903EB62"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958331+00:00"
+      },
+      {
+        "event_id": "SOCIAL-8Jan20261455-smkr-50168062",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.528055",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "smkr",
+          "content": "Maybe that or similar is exactly what this new fella comes up with, who knows. He\u2019s the expert in these things..",
+          "sentiment": 0.0,
+          "engagement": "3,240",
+          "price_at_post": "39.70",
+          "thread_title": "RE: Chart",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=B71E833C-F8C3-489A-BC2C-7323164C9A8F"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958350+00:00"
+      },
+      {
+        "event_id": "SOCIAL-8Jan20260847-CentralC--2445386",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.528514",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "CentralCashier",
+          "content": "\"In the public domain he has previously served as CEO of Ceres Power Holdings Plc, CPP Plc and Card Clear Plc. At Ceres he was initially appointed as turnaround CEO, followed by undertaking the role of SID, with the market capitalisation growing from \u00a33 million to over \u00a32 billion in less than four years.\" Look at the long term chart and where it is today. Look at the research from Grizzly and others. Not sure what this appointment could bring to VCP but lets see, I think we need a trading update with some actual profitability before this starts to go anywhere. From all reporting ,the UK side of the operation seems to be doing well, but the rest of the world seems to be letting VCP down, a huge portion of the debt is from financing the acquisition of non UK companies and these are not bringing any profit.  Dispose of these (easier said than done of course), reduce debt and this could recover very well. My 2c, DYOR.",
+          "sentiment": 0.0,
+          "engagement": "247",
+          "price_at_post": "39.25",
+          "thread_title": "RE: Chart",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=B71E833C-F8C3-489A-BC2C-7323164C9A8F"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958368+00:00"
+      },
+      {
+        "event_id": "SOCIAL-8Jan20260804-smkr--6359177",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.528931",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "smkr",
+          "content": "It\u2019s beginning to sound like they\u2019re serious at recovery here. Let\u2019s see how 26 rolls out",
+          "sentiment": 0.0,
+          "engagement": "3,240",
+          "price_at_post": "39.375",
+          "thread_title": "RE: Chart",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=B71E833C-F8C3-489A-BC2C-7323164C9A8F"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958386+00:00"
+      },
+      {
+        "event_id": "SOCIAL-5Jan20261933-2reincar-90007176",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.529543",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "2reincarnated",
+          "content": "POSTI you say \" Director buying has stimulated the SP\" don't you mean \u201dDirector buying has papered over the cracks? \" Single figures this year!",
+          "sentiment": 0.0,
+          "engagement": "5,839",
+          "price_at_post": "38.10",
+          "thread_title": "RE: Broker recommendations",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=5B4B3DAB-AF27-4DA9-91FF-1B1F610B5936"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958404+00:00"
+      },
+      {
+        "event_id": "SOCIAL-3Jan20262107-smkr-44348155",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.530384",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "smkr",
+          "content": "Yes, you could say it looks to be trying a double bottom over last couple weeks. Let\u2019s see from here..",
+          "sentiment": 0.0,
+          "engagement": "3,240",
+          "price_at_post": "40.25",
+          "thread_title": "RE: Chart",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=B71E833C-F8C3-489A-BC2C-7323164C9A8F"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958422+00:00"
+      },
+      {
+        "event_id": "SOCIAL-3Jan20260833-msuk.int--7152959",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.531217",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "msuk.int",
+          "content": "Looking positive ,once break above 44.00 trend line BO",
+          "sentiment": 0.0,
+          "engagement": "2,780",
+          "price_at_post": "40.25",
+          "thread_title": "Chart",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=B71E833C-F8C3-489A-BC2C-7323164C9A8F"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958439+00:00"
+      },
+      {
+        "event_id": "SOCIAL-18Dec20251450-Glowacki--2941265",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.532026",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Glowacki",
+          "content": "His buying was the reason for the abrupt turnaround in SP yesterday afternoon.. Usually the purchases are made off book (hidden) So the person does not buy shares into an escalating SP,but luckily this director did not mind paying more each time due to his buying",
+          "sentiment": 0.0,
+          "engagement": "948",
+          "price_at_post": "40.30",
+          "thread_title": "Hold",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=E4E3770C-9CD9-4BE1-ADD8-E784F631CA48"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958457+00:00"
+      },
+      {
+        "event_id": "SOCIAL-18Dec20251205-smkr--2674933",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.532851",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "smkr",
+          "content": "Certainly has put some oomph in it. Wonder if the other tr1 Saqib Karim adds again?",
+          "sentiment": 0.0,
+          "engagement": "3,240",
+          "price_at_post": "42.05",
+          "thread_title": "RE: Broker recommendations",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=5B4B3DAB-AF27-4DA9-91FF-1B1F610B5936"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958475+00:00"
+      },
+      {
+        "event_id": "SOCIAL-18Dec20250911-POSTI--4260074",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.533483",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "POSTI",
+          "content": "Director buying has stimulated the SP",
+          "sentiment": 0.0,
+          "engagement": "789",
+          "price_at_post": "40.00",
+          "thread_title": "RE: Broker recommendations",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=5B4B3DAB-AF27-4DA9-91FF-1B1F610B5936"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958493+00:00"
+      },
+      {
+        "event_id": "SOCIAL-18Dec20250805-CentralC-48376332",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.533917",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "CentralCashier",
+          "content": "Glowacki, look at the last accounts, its all there, over 700m is basically just debt. Sale and lease back of factories is even worse as you cannot save costs here, its only going one way, up. I see Hammers bought some shares, considering some years his total compensation is close to \u00a33m, picking up \u00a327k at the bottom to try and stimulate the SP when its the lowest its ever been is quite telling.",
+          "sentiment": 0.0,
+          "engagement": "247",
+          "price_at_post": "38.65",
+          "thread_title": "RE: Broker recommendations",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=5B4B3DAB-AF27-4DA9-91FF-1B1F610B5936"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958518+00:00"
+      },
+      {
+        "event_id": "SOCIAL-17Dec20251909-2reincar--6769352",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.534569",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "2reincarnated",
+          "content": "It is SIG Insulations which trades on the main exchange. I can see Victoria going the same way, into single figures!",
+          "sentiment": 0.0,
+          "engagement": "5,839",
+          "price_at_post": "37.50",
+          "thread_title": "This \"basket case\" reminds me of another \" basket\" case in which I ...",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=330115FE-02FC-48EA-B6A1-82515B108669"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958536+00:00"
+      },
+      {
+        "event_id": "SOCIAL-17Dec20251622-luxs-85736222",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.535397",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "luxs",
+          "content": "This is a mad dead dog bounce",
+          "sentiment": 0.0,
+          "engagement": "422",
+          "price_at_post": "36.45",
+          "thread_title": "RE: Broker recommendations",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=5B4B3DAB-AF27-4DA9-91FF-1B1F610B5936"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958554+00:00"
+      },
+      {
+        "event_id": "SOCIAL-17Dec20251526-Coldspy--6953608",
+        "event_type": "social_post",
+        "date": "2026-01-27T22:29:27.536223",
+        "source": "LSE_CHAT",
+        "data": {
+          "author": "Coldspy",
+          "content": "Wow what a crazy swing here today",
+          "sentiment": 0.0,
+          "engagement": "5,095",
+          "price_at_post": "37.70",
+          "thread_title": "RE: Broker recommendations",
+          "thread_url": "https://www.lse.co.uk/ShareChat.html?ShareTicker=VCP&thread=5B4B3DAB-AF27-4DA9-91FF-1B1F610B5936"
+        },
+        "ingested_at": "2026-02-11T22:01:19.958572+00:00"
       }
     ],
     "catalyst_dates": {
-      "proxy_date": "2026-02-11"
+      "proxy_date": "2026-02-12"
     }
   },
   "ai_insights": {
-    "key_insights": [],
-    "hidden_patterns": [],
-    "contrarian_signals": [],
-    "risk_warnings": [],
-    "opportunity_flags": [],
-    "narrative_summary": "VCP.L presents a standard crash recovery setup without unusual patterns detected. Monitor for catalyst developments and trend shifts.",
+    "company_30s": {
+      "what_they_do": "Victoria PLC designs, manufactures and sells flooring products for both residential and commercial markets, supplying builders, retailers and DIY customers across the UK and Europe.",
+      "why_they_matter": "Flooring is a steady\u2011growth sector that supports construction and renovation cycles. The company\u2019s products are used in a wide range of projects, from new builds to refurbishment, giving it a broad customer base.",
+      "current_state": "Victoria is juggling high debt and thin cash flow, but its CEO is buying shares, signalling confidence. The company has issued bonds and is under a Fitch Rating Watch, indicating that the market still sees upside potential if the debt can be managed."
+    },
+    "whats_happening_now": {
+      "rns_narrative": [
+        "The company has been focused on survival moves \u2013 debt restructuring, bond issuances and a CEO share purchase that suggests management believes the business can rebound.",
+        "Regulatory filings show no new product launches, but the bond sale and CEO stake imply a plan to shore up capital.",
+        "The lack of fresh positive news keeps the market in a state of quiet resignation, a classic sign that the bottom may be forming."
+      ],
+      "crowd_tape": {
+        "dominant_theme": "Total abandonment \u2013 the market is largely silent, with only a handful of bearish posts highlighting debt and losses.",
+        "bull_narrative": "No strong bullish voices \u2013 the only bullish note is the CEO\u2019s share purchase, which is a small glimmer of confidence.",
+        "bear_narrative": "Bears point to the high debt load, recent net losses and a negative Fitch rating. They warn that the company may struggle to service its obligations.",
+        "sentiment_shift": "From outright panic in early 2025 to a flat\u2011lined, almost indifferent tone in 2026 \u2013 classic late\u2011stage capitulation."
+      },
+      "attention_check": "Google Trends for the company\u2019s name is flat and silent, meaning any positive headline could trigger a surprise move."
+    },
+    "expect_next": {
+      "near_term_catalysts": [
+        "A successful bond sale that reduces short\u2011term debt pressure.",
+        "A new contract win or a positive earnings preview that shows a turnaround in cash flow.",
+        "Volume spikes on the daily chart that break through the current support level, signalling short covering."
+      ],
+      "watch_for": "Look for a 5\u2011day moving\u2011average breakout, a 1\u2011day volume spike above the 20\u2011day average, and any short\u2011covering activity in the order book.",
+      "timing_regime": "The stock appears to be in the late wash\u2011out phase \u2013 the market has already sold off the majority of weak hands, leaving a compressed spring ready to snap."
+    },
+    "buy_vs_sell": {
+      "lean": "Speculative Long \u2013 the setup is a classic deep\u2011crash scenario with a strong upside potential once the spring releases.",
+      "bull_case": "If the company can successfully refinance its debt or secure a new contract, the price could recover 100% or more. A 70% bounce from the current level would more than double the investment.",
+      "bear_case": "The main risk is that the debt remains unsustainable, leading to further margin calls or a downgrade. Even if the price drops another 20%, the 80% of the original drawdown is already gone.",
+      "risk_reward": "Risk 20% against a potential 100%+ rebound \u2013 a 1:5 asymmetry that favours the long."
+    },
+    "playbook": {
+      "if_bullish": "Enter 25% of the planned position at the current close, add another 25% if the next close confirms the breakout and volume is above the 20\u2011day average. Place a tight stop 5% below the entry to protect against a brief retracement.",
+      "if_watching": "Hold until you see either a bond sale announcement, a positive earnings preview, or a daily close above the 0.5p support level with volume 1.5x the average.",
+      "if_passing": "Skip this one if the debt continues to climb or if a regulatory downgrade occurs, as the company may face liquidity problems."
+    },
+    "bottom_line": "Victoria PLC sits on a deep crash with high debt but a CEO showing confidence \u2013 a contrarian play that could double the stake if mean reversion hits.",
     "_is_real": true,
     "_selected_rns": [
       {
         "title": "Director/PDMR Shareholding",
         "date": "2026-02-11T00:00:00+00:00",
-        "importance_score": 0.9285714285714285,
+        "importance_score": 0.75,
         "time_bucket": "NEAR",
         "rns_number": ""
       },
@@ -24590,7 +25829,35 @@
         "rns_number": ""
       },
       {
+        "title": "Director/PDMR Shareholding",
+        "date": "2026-01-22T00:00:00+00:00",
+        "importance_score": 0.5681818181818182,
+        "time_bucket": "NEAR",
+        "rns_number": ""
+      },
+      {
+        "title": "Holding(s) in Company",
+        "date": "2026-01-21T00:00:00+00:00",
+        "importance_score": 0.5590909090909091,
+        "time_bucket": "NEAR",
+        "rns_number": ""
+      },
+      {
+        "title": "Holding(s) in Company",
+        "date": "2026-01-14T00:00:00+00:00",
+        "importance_score": 0.4954545454545454,
+        "time_bucket": "NEAR",
+        "rns_number": ""
+      },
+      {
         "title": "Issue of Equity and Total Voting Rights",
+        "date": "2026-01-13T00:00:00+00:00",
+        "importance_score": 0.48636363636363633,
+        "time_bucket": "NEAR",
+        "rns_number": ""
+      },
+      {
+        "title": "Director/PDMR Shareholding",
         "date": "2026-01-13T00:00:00+00:00",
         "importance_score": 0.48636363636363633,
         "time_bucket": "NEAR",
@@ -24604,9 +25871,30 @@
         "rns_number": ""
       },
       {
-        "title": "Notice of Interim Results",
-        "date": "2025-12-01T00:00:00+00:00",
-        "importance_score": 0.274025974025974,
+        "title": "Director/PDMR Shareholding",
+        "date": "2025-12-19T00:00:00+00:00",
+        "importance_score": 0.2590909090909091,
+        "time_bucket": "MID",
+        "rns_number": ""
+      },
+      {
+        "title": "Director/PDMR Shareholding",
+        "date": "2025-12-19T00:00:00+00:00",
+        "importance_score": 0.2590909090909091,
+        "time_bucket": "MID",
+        "rns_number": ""
+      },
+      {
+        "title": "Director/PDMR Shareholding",
+        "date": "2025-12-18T00:00:00+00:00",
+        "importance_score": 0.25,
+        "time_bucket": "MID",
+        "rns_number": ""
+      },
+      {
+        "title": "Issue of Equity and Total Voting Rights",
+        "date": "2025-12-17T00:00:00+00:00",
+        "importance_score": 0.2409090909090909,
         "time_bucket": "MID",
         "rns_number": ""
       },
@@ -24614,6 +25902,13 @@
         "title": "Half-year Report",
         "date": "2025-12-17T00:00:00+00:00",
         "importance_score": 0.2409090909090909,
+        "time_bucket": "MID",
+        "rns_number": ""
+      },
+      {
+        "title": "Notice of Interim Results",
+        "date": "2025-12-01T00:00:00+00:00",
+        "importance_score": 0.09545454545454547,
         "time_bucket": "MID",
         "rns_number": ""
       },
@@ -24836,7 +26131,7 @@
       "Drawdown reversion potential: +16 (Drawdown_Pct=80.6%)",
       "Volume confirmation: +6 (Relative_Volume=1.6)",
       "Pattern reliability: +0 (Rally_Count=0.0)",
-      "Upside history: +2 (best_rally_pct=0%)"
+      "Upside history: +2 (best_rally_pct=1%)"
     ],
     "technical_score": {
       "points": 10,
@@ -24860,8 +26155,8 @@
     },
     "upside_score": {
       "points": 2,
-      "best_rally_pct": 0.0,
-      "reason": "Best rally of 0% gives 2/20 points"
+      "best_rally_pct": 0.62,
+      "reason": "Best rally of 1% gives 2/20 points"
     },
     "penalties": {
       "total": 0,
@@ -24875,7 +26170,7 @@
         "tag": "MED",
         "evidence": [
           "timing_regime=EARLY_BUILD",
-          "current_return_pct=0.0%"
+          "current_return_pct=0.6%"
         ]
       }
     ],
@@ -24898,9 +26193,9 @@
   },
   "exhaustion": {
     "regime": "EARLY_BUILD",
-    "run_multiple": 0.0,
-    "current_run_pct": 0.0,
-    "avg_historical_run_pct": 0.0
+    "run_multiple": 0.04,
+    "current_run_pct": 0.62,
+    "avg_historical_run_pct": 0.62
   },
   "history_snapshot": {
     "previous_report_date": null,
@@ -24910,7 +26205,7 @@
     "new_rns_titles": []
   },
   "commentary": {
-    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows EARLY_BUILD timing with 34/100 APEX score. Historical data shows 0 rallies averaging 0% upside. Current position: +0.0%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
+    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows EARLY_BUILD timing with 34/100 APEX score. Historical data shows 0 rallies averaging 1% upside. Current position: +0.6%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
     "bull_case": [
       "Early regime often offers best risk/reward"
     ],
