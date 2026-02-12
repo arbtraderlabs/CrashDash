@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>APEX & Trust Prototype</title>
   <link rel="stylesheet" href="../../apex_trust_panel.css">
   <style>
@@ -119,7 +119,7 @@
             <path d="M6 3 L6 1 M10 3 L10 1 M3 6 L13 6" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
             <circle cx="8" cy="9" r="1.5" fill="#10B981"/>
           </svg>
-          <div class="card-title" style="font-size:16px;font-weight:800;color:#10B981">What They Do <span class="info-icon" data-field="what" data-tooltip="Company business model and core operations" style="cursor:pointer;opacity:0.6;font-size:14px;transition:all 0.2s ease" onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='0.6'" onclick="showTooltipPopover(event, 'Company business model and core operations')">ⓘ</span></div>
+          <div class="card-title" style="font-size:16px;font-weight:800;color:#10B981">What They Do <span style="cursor:help;opacity:0.6;font-size:14px" title="Company business model and core operations">ⓘ</span></div>
         </div>
         <div style="padding:12px">
           <span id="company-what" style="color: #e5e7eb; line-height: 1.6; font-size: 12px;">--</span>
@@ -134,7 +134,7 @@
             <circle cx="8" cy="8" r="2" fill="#10B981"/>
             <path d="M8 2 L8 6 M8 10 L8 14 M2 8 L6 8 M10 8 L14 8" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
-          <div class="card-title" style="font-size:16px;font-weight:800;color:#10B981">Why It Matters <span class="info-icon" data-field="why" data-tooltip="Market significance and investment thesis" style="cursor:pointer;opacity:0.6;font-size:14px;transition:all 0.2s ease" onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='0.6'" onclick="showTooltipPopover(event, 'Market significance and investment thesis')">ⓘ</span></div>
+          <div class="card-title" style="font-size:16px;font-weight:800;color:#10B981">Why It Matters <span style="cursor:help;opacity:0.6;font-size:14px" title="Market significance and investment thesis">ⓘ</span></div>
         </div>
         <div style="padding:12px">
           <span id="company-why" style="color: #e5e7eb; line-height: 1.6; font-size: 12px;">--</span>
@@ -150,7 +150,7 @@
             <circle cx="8" cy="11" r="1.5" fill="#10B981"/>
             <circle cx="14" cy="4" r="1.5" fill="#10B981"/>
           </svg>
-          <div class="card-title" style="font-size:16px;font-weight:800;color:#10B981">Current State <span class="info-icon" data-field="state" data-tooltip="Latest company situation and metrics" style="cursor:pointer;opacity:0.6;font-size:14px;transition:all 0.2s ease" onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='0.6'" onclick="showTooltipPopover(event, 'Latest company situation and metrics')">ⓘ</span></div>
+          <div class="card-title" style="font-size:16px;font-weight:800;color:#10B981">Current State <span style="cursor:help;opacity:0.6;font-size:14px" title="Latest company situation and metrics">ⓘ</span></div>
         </div>
         <div style="padding:12px">
           <span id="company-state" style="color: #e5e7eb; line-height: 1.6; font-size: 12px;">--</span>
@@ -256,133 +256,83 @@
       </div>
     </div>
 
-    <!-- Bloomberg Terminal Footer (Collapsible) -->
-    <div id="footer-container" style="margin-top: 40px; background: linear-gradient(180deg, #0a1628 0%, #020617 100%); border: 1px solid #1e293b; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
-        <!-- Header Bar (Always Visible) -->
-        <div style="background: rgba(59, 130, 246, 0.08); border-bottom: 1px solid rgba(59, 130, 246, 0.2); padding: 12px 16px; cursor: pointer;" onclick="toggleFooter()">
-            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%;">
-                <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; overflow: hidden;">
-                    <div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%; box-shadow: 0 0 12px rgba(59, 130, 246, 0.6); flex-shrink: 0;"></div>
-                    <span style="font-family: 'Courier New', monospace; font-size: 12px; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">APEX Intelligence Terminal</span>
-                    <span id="footer-toggle-icon" style="font-size: 14px; color: #3b82f6; transition: transform 0.3s ease; flex-shrink: 0; margin-left: auto;">▼</span>
+    <!-- Bloomberg Terminal Footer -->
+    <div style="margin-top: 40px; background: linear-gradient(180deg, #0a1628 0%, #020617 100%); border: 1px solid #1e293b; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+        <!-- Header Bar -->
+        <div style="background: rgba(59, 130, 246, 0.08); border-bottom: 1px solid rgba(59, 130, 246, 0.2); padding: 16px 24px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="width: 8px; height: 8px; background: #3b82f6; border-radius: 50%; box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);"></div>
+                    <span style="font-family: 'Courier New', monospace; font-size: 13px; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: 1px;">APEX Intelligence Terminal</span>
                 </div>
-            </div>
-            <div style="font-family: 'Courier New', monospace; font-size: 9px; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.3px; margin-top: 6px; overflow: hidden;">
-                GENERATED: <span style="color: #06b6d4;" id="footerDate"></span> • SESSION: <span style="color: #10b981;">LIVE</span>
+                <div style="font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255, 255, 255, 0.4); letter-spacing: 0.5px;">
+                    GENERATED: <span style="color: #06b6d4;" id="footerDate"></span> • SESSION: <span style="color: #10b981;">LIVE</span>
+                </div>
             </div>
         </div>
         
-        <!-- Collapsible Content Section -->
-        <div id="footer-content" style="display: none;">
-            <!-- Content Grid -->
-            <div style="padding: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
-                <!-- Left Column -->
-                <div style="display: flex; flex-direction: column; gap: 20px;">
-                    <!-- System Information -->
-                    <div>
-                        <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #3b82f6; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">System Information</div>
-                        <div style="font-family: 'Courier New', monospace; font-size: 10px; color: rgba(255, 255, 255, 0.7); display: flex; gap: 16px; flex-wrap: wrap; align-items: center;">
-                            <span><span style="color: rgba(255, 255, 255, 0.4);">VERSION:</span> <span style="color: #06b6d4; font-weight: 700;">APEX v5.0</span></span>
-                            <span style="color: rgba(255, 255, 255, 0.2);">•</span>
-                            <span><span style="color: rgba(255, 255, 255, 0.4);">ENGINE:</span> <span style="color: #10b981;">CrashDash Intelligence</span></span>
-                            <span style="color: rgba(255, 255, 255, 0.2);">•</span>
-                            <span><span style="color: rgba(255, 255, 255, 0.4);">COVERAGE:</span> <span style="color: #a855f7;">LSE AIM Micro-Caps</span></span>
-                            <span style="color: rgba(255, 255, 255, 0.2);">•</span>
-                            <span><span style="color: rgba(255, 255, 255, 0.4);">SOURCES:</span> <span style="color: #ef4444;">RNS • Social • Trends</span></span>
-                        </div>
-                    </div>
-                    
-                    <!-- Risk Disclosure -->
-                    <div>
-                        <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #ef4444; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Risk Disclosure</div>
-                        <div style="font-family: 'Courier New', monospace; font-size: 10px; color: rgba(255, 255, 255, 0.5); line-height: 1.6;">
-                            This analysis is provided for informational purposes only and does not constitute financial advice. AIM micro-cap securities carry significant volatility and liquidity risks. Past performance does not guarantee future results. Always conduct your own due diligence and consult with a qualified financial advisor before making investment decisions.
-                        </div>
+        <!-- Content Grid -->
+        <div style="padding: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+            <!-- Left Column -->
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <!-- System Information -->
+                <div>
+                    <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #3b82f6; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">System Information</div>
+                    <div style="font-family: 'Courier New', monospace; font-size: 10px; color: rgba(255, 255, 255, 0.7); display: flex; gap: 16px; flex-wrap: wrap; align-items: center;">
+                        <span><span style="color: rgba(255, 255, 255, 0.4);">VERSION:</span> <span style="color: #06b6d4; font-weight: 700;">APEX v5.0</span></span>
+                        <span style="color: rgba(255, 255, 255, 0.2);">•</span>
+                        <span><span style="color: rgba(255, 255, 255, 0.4);">ENGINE:</span> <span style="color: #10b981;">CrashDash Intelligence</span></span>
+                        <span style="color: rgba(255, 255, 255, 0.2);">•</span>
+                        <span><span style="color: rgba(255, 255, 255, 0.4);">COVERAGE:</span> <span style="color: #a855f7;">LSE AIM Micro-Caps</span></span>
+                        <span style="color: rgba(255, 255, 255, 0.2);">•</span>
+                        <span><span style="color: rgba(255, 255, 255, 0.4);">SOURCES:</span> <span style="color: #ef4444;">RNS • Social • Trends</span></span>
                     </div>
                 </div>
                 
-                <!-- Right Column -->
-                <div style="display: flex; flex-direction: column; gap: 20px;">
-                    <!-- Platform Overview -->
-                    <div>
-                        <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #10b981; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Platform Overview</div>
-                        <div style="font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
-                            APEX Intelligence Terminal combines technical analysis, sentiment tracking, and regulatory news monitoring to identify high-probability contrarian setups in distressed micro-cap equities. Our proprietary scoring system evaluates setup quality, panic intensity, and compression patterns to surface opportunities before institutional recognition.
-                        </div>
-                    </div>
-                    
-                    <!-- Target Users -->
-                    <div>
-                        <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #a855f7; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Target Users</div>
-                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                            <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 4px; color: #a855f7; font-weight: 600;">PROP TRADERS</span>
-                            <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 4px; color: #3b82f6; font-weight: 600;">HEDGE FUNDS</span>
-                            <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 4px; color: #10b981; font-weight: 600;">QUANT TEAMS</span>
-                            <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 4px; color: #ef4444; font-weight: 600;">RESEARCH DESKS</span>
-                        </div>
+                <!-- Risk Disclosure -->
+                <div>
+                    <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #ef4444; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Risk Disclosure</div>
+                    <div style="font-family: 'Courier New', monospace; font-size: 10px; color: rgba(255, 255, 255, 0.5); line-height: 1.6;">
+                        This analysis is provided for informational purposes only and does not constitute financial advice. AIM micro-cap securities carry significant volatility and liquidity risks. Past performance does not guarantee future results. Always conduct your own due diligence and consult with a qualified financial advisor before making investment decisions.
                     </div>
                 </div>
             </div>
             
-            <!-- Bottom Bar -->
-            <div style="background: rgba(2, 6, 23, 0.6); border-top: 1px solid rgba(59, 130, 246, 0.15); padding: 12px 24px;">
-                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-family: 'Courier New', monospace; font-size: 10px;">
-                    <div style="color: rgba(255, 255, 255, 0.4);">© 2026 APEX Intelligence • All Rights Reserved</div>
-                    <div style="display: flex; align-items: center; gap: 20px; color: rgba(255, 255, 255, 0.5);">
-                        <span>STATUS: <span style="color: #10b981; font-weight: 700;">● OPERATIONAL</span></span>
-                        <span>LATENCY: <span style="color: #06b6d4; font-weight: 700;">12ms</span></span>
-                        <span>BUILD: <span style="color: #a855f7; font-weight: 700;">5.0.2</span></span>
+            <!-- Right Column -->
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <!-- Platform Overview -->
+                <div>
+                    <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #10b981; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Platform Overview</div>
+                    <div style="font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
+                        APEX Intelligence Terminal combines technical analysis, sentiment tracking, and regulatory news monitoring to identify high-probability contrarian setups in distressed micro-cap equities. Our proprietary scoring system evaluates setup quality, panic intensity, and compression patterns to surface opportunities before institutional recognition.
                     </div>
+                </div>
+                
+                <!-- Target Users -->
+                <div>
+                    <div style="font-family: 'Courier New', monospace; font-size: 10px; font-weight: 700; color: #a855f7; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Target Users</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 4px; color: #a855f7; font-weight: 600;">PROP TRADERS</span>
+                        <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 4px; color: #3b82f6; font-weight: 600;">HEDGE FUNDS</span>
+                        <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 4px; color: #10b981; font-weight: 600;">QUANT TEAMS</span>
+                        <span style="font-family: 'Courier New', monospace; font-size: 10px; padding: 6px 12px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 4px; color: #ef4444; font-weight: 600;">RESEARCH DESKS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Bar -->
+        <div style="background: rgba(2, 6, 23, 0.6); border-top: 1px solid rgba(59, 130, 246, 0.15); padding: 12px 24px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-family: 'Courier New', monospace; font-size: 10px;">
+                <div style="color: rgba(255, 255, 255, 0.4);">© 2026 APEX Intelligence • All Rights Reserved</div>
+                <div style="display: flex; align-items: center; gap: 20px; color: rgba(255, 255, 255, 0.5);">
+                    <span>STATUS: <span style="color: #10b981; font-weight: 700;">● OPERATIONAL</span></span>
+                    <span>LATENCY: <span style="color: #06b6d4; font-weight: 700;">12ms</span></span>
+                    <span>BUILD: <span style="color: #a855f7; font-weight: 700;">5.0.2</span></span>
                 </div>
             </div>
         </div>
     </div>
-    
-    <script>
-        function toggleFooter() {
-            const content = document.getElementById('footer-content');
-            const icon = document.getElementById('footer-toggle-icon');
-            
-            if (content.style.display === 'none') {
-                content.style.display = 'block';
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                content.style.display = 'none';
-                icon.style.transform = 'rotate(0deg)';
-            }
-        }
-
-        // Mobile-friendly tooltip popover
-        function showTooltipPopover(event, tooltipText) {
-            event.stopPropagation();
-            
-            // Close any existing popover
-            const existing = document.getElementById('tooltip-popover');
-            if (existing) existing.remove();
-            
-            // Create popover
-            const popover = document.createElement('div');
-            popover.id = 'tooltip-popover';
-            popover.style.cssText = 'position:fixed;background:rgba(20,25,40,0.98);color:#e5e7eb;padding:10px 14px;border-radius:6px;font-size:12px;line-height:1.4;max-width:250px;border:1px solid rgba(16,185,129,0.3);z-index:10000;box-shadow:0 4px 12px rgba(0,0,0,0.4);backdrop-filter:blur(8px);word-wrap:break-word';
-            popover.textContent = tooltipText;
-            document.body.appendChild(popover);
-            
-            // Position near clicked element
-            const rect = event.target.getBoundingClientRect();
-            popover.style.left = Math.min(rect.left, window.innerWidth - 270) + 'px';
-            popover.style.top = (rect.bottom + 8) + 'px';
-            
-            // Close on outside click
-            setTimeout(() => {
-                document.addEventListener('click', closeTooltip, { once: true });
-            }, 0);
-        }
-
-        function closeTooltip() {
-            const popover = document.getElementById('tooltip-popover');
-            if (popover) popover.remove();
-        }
-    </script>
   </div>
   
   <!-- Mobile Responsive Styles -->
@@ -390,26 +340,19 @@
     @media(max-width:768px){
         body{padding:10px!important}
         .container{max-width:100%!important}
-        #footer-container{margin-top:20px!important}
         div[style*="grid-template-columns: 1fr 1fr"]{grid-template-columns:1fr!important;gap:12px!important}
         div[style*="grid-template-columns: repeat(4"]{grid-template-columns:repeat(2,1fr)!important;gap:10px!important}
         div[style*="padding: 24px"]{padding:16px!important}
-        div[style*="padding: 12px 16px"]{padding:10px 12px!important}
         div[style*="gap: 20px"]{gap:14px!important}
         div[style*="font-size: 11px"]{font-size:10px!important}
-        div[style*="font-size: 12px"]{font-size:11px!important}
-        div[style*="font-size: 13px"]{font-size:12px!important}
     }
     @media(max-width:480px){
         body{padding:6px!important}
         .container{padding:0!important;margin:0!important}
-        #footer-container{margin-top:16px!important;margin-left:6px!important;margin-right:6px!important}
-        #footer-container > div:first-child{padding:8px 10px!important}
         div[style*="grid-template-columns: 1fr 1fr"]{grid-template-columns:1fr!important;gap:8px!important}
         div[style*="grid-template-columns: repeat(4"]{grid-template-columns:1fr!important;gap:6px!important;padding:8px 10px!important}
         div[style*="grid-template-columns: repeat(2"]{grid-template-columns:1fr!important;gap:6px!important}
         div[style*="padding: 24px"]{padding:10px!important}
-        div[style*="padding: 12px 16px"]{padding:8px 10px!important}
         div[style*="padding: 14px 16px"]{padding:8px 10px!important}
         div[style*="padding: 18px"]{padding:10px!important}
         div[style*="gap: 20px"]{gap:8px!important}
@@ -417,8 +360,6 @@
         div[style*="gap: 24px"]{gap:10px!important}
         div[style*="gap: 16px"]{gap:6px!important}
         div[style*="gap: 12px"]{gap:6px!important}
-        div[style*="gap: 8px"]{gap:4px!important}
-        div[style*="font-size: 9px"]{font-size:8px!important}
         div[style*="font-size: 10px"]{font-size:8px!important}
         div[style*="font-size: 11px"]{font-size:9px!important}
         div[style*="font-size: 12px"]{font-size:10px!important}
@@ -440,20 +381,20 @@
   <script>window.__APEX_PROFILE = {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "EQT.L",
-  "generated_at": "2026-02-11T23:57:14.997074Z",
+  "generated_at": "2026-02-12T17:04:22.798264Z",
   "top_card": {
     "ticker": "EQT.L",
     "company_name": "EQTEC plc",
     "sector": "Industrials",
     "market_cap_gbp": 473053,
-    "days_active": 34,
-    "apex_score_100": 38,
-    "confidence_score_100": 60,
-    "ai_final_score_25": 13,
-    "ai_strength": "MODERATE",
-    "timing_regime": "TOO_EARLY",
+    "days_active": 35,
+    "apex_score_100": 35,
+    "confidence_score_100": 50,
+    "ai_final_score_25": 18,
+    "ai_strength": "STRONG",
+    "timing_regime": "EARLY_BUILD",
     "action": "WATCH",
-    "thesis_one_liner": "WATCH - TOO_EARLY timing with 38/100 opportunity score"
+    "thesis_one_liner": "WATCH - EARLY_BUILD timing with 35/100 opportunity score"
   },
   "enrichment": {
     "company_info": {
@@ -480,8 +421,8 @@
       "week_52_low_date": "2026-01-09",
       "drawdown_from_ath_pct": 99.86,
       "data_start": "2020-01-02",
-      "data_end": "2026-02-11",
-      "total_bars": 1544
+      "data_end": "2026-02-12",
+      "total_bars": 1545
     },
     "latest_signal": {
       "date": "2026-01-08",
@@ -493,12 +434,12 @@
       "ai_score": 11.0,
       "rsi": 10.9,
       "cycle_position": 0.0229,
-      "holding_period_days": 34,
+      "holding_period_days": 35,
       "current_pnl_pct": -10.0,
       "rally_state": "accumulating",
       "distance_from_high_pct": -70.0,
       "Rally_Count": 1,
-      "days_since_last_high": 23,
+      "days_since_last_high": 24,
       "last_high_date": "2026-01-19",
       "lock_in_reached": true,
       "lock_in_date": "2026-01-19",
@@ -1393,9 +1334,9 @@
         "rally_state": "accumulating",
         "Rally_Count": 1,
         "distance_from_high_pct": -70.0,
-        "days_since_last_high": 23,
+        "days_since_last_high": 24,
         "lock_in_reached": true,
-        "age_days": 55,
+        "age_days": 56,
         "status": "active"
       },
       {
@@ -1411,9 +1352,9 @@
         "rally_state": "accumulating",
         "Rally_Count": 1,
         "distance_from_high_pct": -70.0,
-        "days_since_last_high": 23,
+        "days_since_last_high": 24,
         "lock_in_reached": true,
-        "age_days": 34,
+        "age_days": 35,
         "status": "active"
       }
     ],
@@ -1468,22 +1409,22 @@
       "EXTREME_DRAWDOWN",
       "FREQUENT_CRASHES"
     ],
-    "last_updated": "2026-02-11 20:06:39 UTC",
+    "last_updated": "2026-02-12 14:04:26 UTC",
     "volatility": {
-      "atr_normalized": 8.91,
+      "atr_normalized": 8.81,
       "stddev_20d": 0.0
     },
     "trends": {
-      "intelligence_signal": "ACCUMULATION"
+      "intelligence_signal": "TOPPED_OUT"
     }
   },
   "decision_summary": {
     "why_it_matters": [
-      "APEX 38/100 indicates moderate opportunity quality",
-      "Timing regime: TOO_EARLY",
-      "Historical profile: 1 rallies, 200% best run"
+      "APEX 35/100 indicates moderate opportunity quality",
+      "Timing regime: EARLY_BUILD",
+      "Historical profile: 0 rallies, 0% best run"
     ],
-    "main_risk": "Confidence 60/100 - full data loaded",
+    "main_risk": "Confidence 50/100 - full data loaded",
     "watch_next": [
       "RNS catalysts (funding/operational updates)",
       "Volume expansion confirmation",
@@ -1556,10 +1497,10 @@
       "current_interest": 0,
       "momentum_score": 0,
       "trend_direction": "flat",
-      "intelligence_signal": "ACCUMULATION"
+      "intelligence_signal": "TOPPED_OUT"
     },
     "volatility": {
-      "atr_normalized": 8.91,
+      "atr_normalized": 8.81,
       "stddev_20d": 0.0
     },
     "risk_flags": {
@@ -75676,7 +75617,7 @@
       }
     ],
     "catalyst_dates": {
-      "proxy_date": "2026-01-19"
+      "proxy_date": "2026-02-12"
     }
   },
   "ai_insights": {
@@ -75755,12 +75696,12 @@
       ]
     },
     "panic_analysis": {
-      "panic_score": 62.0,
+      "panic_score": 74.0,
       "signal": "HIGH_PANIC",
       "interpretation": "\ud83d\udfe0 Fear dominant - watch for reversal signs",
       "breakdown": {
         "price_destruction": 40.0,
-        "volume_death": 6,
+        "volume_death": 18,
         "social_silence": 6,
         "news_sentiment": 10
       },
@@ -75769,25 +75710,24 @@
     },
     "fear_vs_facts": {
       "fear_points": [
-        "\ud83d\udc94 Price destruction: 40/40 points"
+        "\ud83d\udc94 Price destruction: 40/40 points",
+        "\ud83d\udcc9 Volume death: 18/20 points"
       ],
-      "facts_points": [
-        "\ud83d\udcc8 Historical upside: 200% proven capacity"
-      ],
-      "verdict": "\u2696\ufe0f Mixed signals - Fear and facts balanced, wait for clarity"
+      "facts_points": [],
+      "verdict": "\ud83c\udfaf CONTRARIAN OPPORTUNITY - Fear dominates but facts support recovery potential"
     },
     "crashhunter_signals": [
       {
         "type": "HIGH_PANIC",
         "icon": "\ud83d\udfe0",
-        "text": "Fear 62/100",
+        "text": "Fear 74/100",
         "color": "#f59e0b"
       },
       {
-        "type": "EARLY",
-        "icon": "\u23f0",
-        "text": "Too Early",
-        "color": "#3b82f6"
+        "type": "BUILDING",
+        "icon": "\ud83d\udcca",
+        "text": "Building",
+        "color": "#10b981"
       }
     ],
     "catalyst_pipeline": [
@@ -75847,25 +75787,25 @@
       "checklist": [
         {
           "criterion": "Panic Score",
-          "value": "62/100",
+          "value": "74/100",
           "pass": true,
           "icon": "\ud83d\udd34"
         },
         {
           "criterion": "Timing Regime",
-          "value": "TOO_EARLY",
+          "value": "EARLY_BUILD",
           "pass": true,
           "icon": "\u2705"
         },
         {
           "criterion": "APEX Quality",
-          "value": "38/100",
+          "value": "35/100",
           "pass": false,
           "icon": "\u26a0\ufe0f"
         },
         {
           "criterion": "Data Confidence",
-          "value": "60/100",
+          "value": "50/100",
           "pass": true,
           "icon": "\ud83c\udfaf"
         },
@@ -75879,50 +75819,50 @@
       "pass_rate": "4/5"
     },
     "contrarian_panic": {
-      "total_score": 48,
-      "band": "\ud83d\udfe1 MODERATE COMPRESSION (Top 30% - GOOD SETUP)",
+      "total_score": 63,
+      "band": "\ud83d\udfe0 HIGH COMPRESSION (Top 15% - STRONG OPPORTUNITY)",
       "components": {
         "compression": {
-          "score": 28,
+          "score": 32,
           "max": 40,
-          "signals_30d": 5,
-          "signals_60d": 12,
-          "signals_90d": 12,
-          "signals_per_week": 0.92,
-          "total_signals": 50,
-          "rsi_extreme_count": 6,
+          "signals_30d": 1,
+          "signals_60d": 3,
+          "signals_90d": 13,
+          "signals_per_week": 1.0,
+          "total_signals": 51,
+          "rsi_extreme_count": 7,
           "rsi_ultra_count": 3,
-          "escalation_count": 3,
-          "density_score": 8,
+          "escalation_count": 4,
+          "density_score": 12,
           "rsi_score": 10,
-          "escalation_score": 7,
-          "description": "0.9 signals/week | 6 RSI<20 | 3 escalations | \u26a1 HIGH COMPRESSION"
+          "escalation_score": 10,
+          "description": "1.0 signals/week | 7 RSI<20 | 4 escalations | \u26a1 HIGH COMPRESSION"
         },
         "intensification": {
-          "score": 5,
+          "score": 8,
           "max": 20,
           "recent_types": [
             "ENHANCED CRASH CRASH-ACCUM COMBO",
-            "ENHANCED CRASH CRASH-ACCUM COMBO",
-            "DEEP CRASH BOTTOM"
+            "DEEP CRASH BOTTOM",
+            "EXTREME CRASH BOTTOM"
           ],
           "escalating": false,
           "sustained": false,
-          "current_intensity": 2,
-          "pattern": "NORMAL CRASH LEVEL"
+          "current_intensity": 3,
+          "pattern": "AT EXTREME LEVEL"
         },
         "volume_death": {
-          "score": 0,
+          "score": 8,
           "max": 15,
-          "relative_volume": 1.47,
-          "description": "Normal volume"
+          "relative_volume": 4.72,
+          "description": "High volume - Panic spike or interest"
         },
         "pop_potential": {
           "score": 15,
           "max": 15,
           "best_historical_rally": 1250.0,
-          "avg_rally": 330.9,
-          "signal_count": 50,
+          "avg_rally": 324.4,
+          "signal_count": 51,
           "description": "MONSTER POPPER - Historical 10x+ (1250%)"
         },
         "accumulation": {
@@ -75934,43 +75874,43 @@
         }
       },
       "ticker": "EQT.L",
-      "signal_date": "2026-01-08",
-      "total_signals_history": 50
+      "signal_date": "2026-02-12",
+      "total_signals_history": 51
     }
   },
   "scoring_breakdown": {
     "apex_factors": [
-      "Technical quality: +14 (AI_Technical_Score=11.0/20)",
-      "Drawdown reversion potential: +19 (Drawdown_Pct=93.8%)",
-      "Volume confirmation: +3 (Relative_Volume=1.5)",
-      "Pattern reliability: +5 (Rally_Count=1.0)",
-      "Upside history: +12 (best_rally_pct=200%)",
+      "Technical quality: +19 (AI_Technical_Score=15.0/20)",
+      "Drawdown reversion potential: +19 (Drawdown_Pct=94.1%)",
+      "Volume confirmation: +10 (Relative_Volume=4.7)",
+      "Pattern reliability: +0 (Rally_Count=0.0)",
+      "Upside history: +2 (best_rally_pct=0%)",
       "Split risk penalty: -15 (HIGH, age_factor=1.00)"
     ],
     "technical_score": {
-      "points": 14,
-      "ai_score": 11.0,
-      "reason": "AI Technical Score 11.0/20 translates to 14/25 points"
+      "points": 19,
+      "ai_score": 15.0,
+      "reason": "AI Technical Score 15.0/20 translates to 19/25 points"
     },
     "drawdown_score": {
       "points": 19,
-      "drawdown_pct": 93.75,
-      "reason": "Drawdown of 93.8% gives 19/20 points"
+      "drawdown_pct": 94.07,
+      "reason": "Drawdown of 94.1% gives 19/20 points"
     },
     "volume_score": {
-      "points": 3,
-      "rel_volume": 1.47,
-      "reason": "Relative volume 1.47x gives 3 points"
+      "points": 10,
+      "rel_volume": 4.72,
+      "reason": "Relative volume 4.72x gives 10 points"
     },
     "pattern_score": {
-      "points": 5,
-      "rally_count": 1.0,
-      "reason": "1.0 historical rallies gives 5/15 points"
+      "points": 0,
+      "rally_count": 0.0,
+      "reason": "0.0 historical rallies gives 0/15 points"
     },
     "upside_score": {
-      "points": 12,
-      "best_rally_pct": 200.0,
-      "reason": "Best rally of 200% gives 12/20 points"
+      "points": 2,
+      "best_rally_pct": 0.0,
+      "reason": "Best rally of 0% gives 2/20 points"
     },
     "penalties": {
       "total": -15,
@@ -75985,15 +75925,8 @@
         "reason": "Early stage positioning offers best R:R if catalysts appear",
         "tag": "MED",
         "evidence": [
-          "timing_regime=TOO_EARLY",
-          "current_return_pct=-10.0%"
-        ]
-      },
-      {
-        "reason": "Proven winner - previously hit lock-in target",
-        "tag": "MED",
-        "evidence": [
-          "lock_in_reached=True"
+          "timing_regime=EARLY_BUILD",
+          "current_return_pct=0.0%"
         ]
       }
     ],
@@ -76015,10 +75948,10 @@
     }
   },
   "exhaustion": {
-    "regime": "TOO_EARLY",
-    "run_multiple": -0.05,
-    "current_run_pct": -10.0,
-    "avg_historical_run_pct": 200.0
+    "regime": "EARLY_BUILD",
+    "run_multiple": 0.0,
+    "current_run_pct": 0.0,
+    "avg_historical_run_pct": 0.0
   },
   "history_snapshot": {
     "previous_report_date": null,
@@ -76028,15 +75961,15 @@
     "new_rns_titles": []
   },
   "commentary": {
-    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows TOO_EARLY timing with 38/100 APEX score. Historical data shows 1 rallies averaging 200% upside. Current position: -10.0%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
+    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows EARLY_BUILD timing with 35/100 APEX score. Historical data shows 0 rallies averaging 0% upside. Current position: +0.0%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
     "bull_case": [
       "Early regime often offers best risk/reward"
     ],
     "bear_case": [
-      "TOO_EARLY means you can get chopped before real move"
+      "Monitor for breakdown signals"
     ],
-    "timing_translation": "It might be starting, but not proven yet. Wait for base + volume + catalysts.",
-    "confidence_explained": "Confidence 60/100 reflects full data quality with triangulation loaded."
+    "timing_translation": "Early accumulation phase. Watch for confirmation before committing size.",
+    "confidence_explained": "Confidence 50/100 reflects full data quality with triangulation loaded."
   },
   "data_quality": {
     "sources_present": {
@@ -76055,30 +75988,30 @@
   },
   "report_version": "5.0",
   "comprehensive_apex": {
-    "score": 38,
+    "score": 35,
     "rating": "LOW QUALITY",
     "color": "#ef4444",
-    "calculation": "APEX Score: 38/100",
+    "calculation": "APEX Score: 35/100",
     "components": {
       "setup": {
-        "score": 52,
+        "score": 72,
         "weight": 0.25
       },
       "trust": {
-        "score": 60,
+        "score": 50,
         "weight": 0.2
       },
       "panic": {
-        "score": 62.0,
+        "score": 74.0,
         "weight": 0.3
       },
       "compression": {
-        "score": 48,
+        "score": 63,
         "weight": 0.25
       }
     },
     "timing": {
-      "regime": "TOO_EARLY",
+      "regime": "EARLY_BUILD",
       "multiplier": 1.0
     }
   }
