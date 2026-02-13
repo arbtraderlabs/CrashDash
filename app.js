@@ -2218,16 +2218,10 @@ async function loadAIReport(ticker) {
     // Create modal overlay with loader
     const modalHTML = `
         <div class="modal" id="aiReportModal" style="
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
             display: flex; 
             align-items: center; 
             justify-content: center;
             animation: fadeIn 0.3s ease;
-            z-index: 10000;
         ">
             <!-- Loader Container (shown first) -->
             <div id="apexLoaderContainer" class="modal-content" style="
@@ -2372,7 +2366,7 @@ async function loadAIReport(ticker) {
                     position: fixed;
                     top: ${isMobile ? '12px' : '20px'};
                     right: ${isMobile ? '12px' : '20px'};
-                    z-index: 10002;
+                    z-index: 10001;
                     background: rgba(0,0,0,0.85);
                     color: white;
                     border: none;
