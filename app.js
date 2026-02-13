@@ -2207,7 +2207,8 @@ function closeOnboardingDrawer() {
 // AI Report Loading Function
 async function loadAIReport(ticker) {
     const isMobile = window.innerWidth < 768;
-    const reportPath = `data/apex_reports/${ticker}_profile.html`;
+    // Use single-template architecture: apex_trust_panel.html?ticker=TICKER
+    const reportPath = `apex_trust_panel.html?ticker=${ticker}`;
     
     // Create modal overlay with loader
     const modalHTML = `
@@ -2589,7 +2590,9 @@ async function loadAIReport(ticker) {
         .catch(error => {
             // JSON not found - just show the icon
             const scoreDisplay = document.getElementById('apexScoreDisplay');
-            scoreDisplay.innerHTML = '<span style="font-size: 1.3rem;">△</span>';
+            if (scoreDisplay) {
+                scoreDisplay.innerHTML = '<span style="font-size: 1.3rem;">△</span>';
+            }
         });
 }
 

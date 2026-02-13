@@ -3,20 +3,38 @@
 // prototype shape and renders the UI.
 
 async function load(){
-	try{
-		if(typeof window.__APEX_PROFILE !== 'undefined'){
-			render(mapProfile(window.__APEX_PROFILE));
-			return;
-		}
-		const r = await fetch('../apex_profiles/EXR.L_apex_profile.json');
-		const raw = await r.json();
-		render(mapProfile(raw));
-	}catch(err){
-		console.error('Load error:',err);
-		try{const s = await fetch('../apex_profiles/EXR.L_apex_profile.json'); const d = await s.json(); render(d)}catch(e){console.error('Fallback error:',e)}
-	}
+try{
+// Check if data is inlined (for backwards compatibility)
+if(typeof window.__APEX_PROFILE !== 'undefined' && Object.keys(window.__APEX_PROFILE).length > 0){
+render(mapProfile(window.__APEX_PROFILE));
+return;
 }
 
+// Get ticker from URL query parameter (?ticker=PXC.L)
+const params = new URLSearchParams(window.location.search);
+const ticker = params.get('ticker');
+
+if(!ticker){
+throw new Error('No ticker specified. Use ?ticker=PXC.L in URL');
+}
+
+// Fetch the ticker's JSON profile from /data/apex_reports/{ticker}_apex_profile.json
+const url = `/data/apex_reports/${ticker}_apex_profile.json`;
+console.log(`Loading profile for ${ticker} from ${url}`);
+const r = await fetch(url);
+
+if(!r.ok){
+throw new Error(`Failed to fetch ${url}: ${r.status} ${r.statusText}`);
+}
+
+const raw = await r.json();
+window.__APEX_PROFILE = raw;  // Set global for populate functions
+render(mapProfile(raw));
+}catch(err){
+console.error('Load error:',err);
+renderError(err);
+}
+}
 function pct(v){return Math.max(0,Math.min(100,Math.round(v)))}
 
 function mapProfile(p){
