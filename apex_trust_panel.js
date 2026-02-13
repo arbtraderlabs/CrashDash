@@ -1277,7 +1277,9 @@ function initCardSwipe(container, navElement, cardNames) {
 		// Only engage swipe if horizontal movement is clearly dominant and exceeds small threshold
 		// This allows vertical scrolling to work naturally on mobile
 		if (Math.abs(deltaX) > 10 && Math.abs(deltaX) > deltaY * 1.5) {
-			e.preventDefault();
+			if (e.cancelable) {
+				e.preventDefault();
+			}
 			const dragPercent = (deltaX / window.innerWidth) * 100;
 			cards[currentIndex].style.transform = `translateX(${dragPercent}%) scale(1)`;
 		}
