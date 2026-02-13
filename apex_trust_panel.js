@@ -1190,16 +1190,16 @@ function renderComponentGrid(data){
 	const riskCard = createRiskAuditCard(data, 4);
 	grid.appendChild(riskCard);
 	
-	// Add navigation controls
-	let nav = grid.querySelector('.stack-nav');
-	if(!nav){
+	// Add navigation controls AFTER the grid (not inside it, so overflow:hidden won't clip)
+	let nav = grid.nextElementSibling;
+	if(!nav || !nav.classList.contains('stack-nav')){
 		nav = document.createElement('div');
 		nav.className = 'stack-nav';
 		nav.innerHTML = `
 			<div class="stack-dots"></div>
 			<div class="stack-label"></div>
 		`;
-		grid.appendChild(nav);
+		grid.parentNode.insertBefore(nav, grid.nextSibling);
 	}
 	
 	// Update dots for 5 cards (4 components + Risk Audit)
@@ -1213,7 +1213,7 @@ function renderComponentGrid(data){
 	nav.querySelector('.stack-label').textContent = cardNames[0];
 	
 	// Initialize swipe behavior with 5 cards
-	initCardSwipe(grid, cardNames);
+	initCardSwipe(grid, nav, cardNames);
 }
 
 // Composite stack renderer removed — contributions panel not needed in prototype
@@ -1222,11 +1222,13 @@ function initializeNarrativeStack() {
 	const narrativeStack = document.getElementById('narrative-stack');
 	if (!narrativeStack) return;
 	
+	// Find the nav that follows the narrative stack
+	const nav = narrativeStack.nextElementSibling;
 	const cardNames = ['What They Do', 'Why It Matters', 'Current State'];
-	initCardSwipe(narrativeStack, cardNames);
+	initCardSwipe(narrativeStack, nav, cardNames);
 }
 
-function initCardSwipe(container, cardNames) {
+function initCardSwipe(container, navElement, cardNames) {
 	let currentIndex = 0;
 	let isDragging = false;
 	let startX = 0;
@@ -1235,8 +1237,8 @@ function initCardSwipe(container, cardNames) {
 	const threshold = 80; // pixels to swipe before committing
 	
 	const cards = Array.from(container.querySelectorAll('.stack-card'));
-	const dots = Array.from(container.querySelectorAll('.stack-dot'));
-	const label = container.querySelector('.stack-label');
+	const dots = navElement ? Array.from(navElement.querySelectorAll('.stack-dot')) : [];
+	const label = navElement ? navElement.querySelector('.stack-label') : null;
 	
 	function updateCardPositions(animated = true) {
 		cards.forEach((card, idx) => {
@@ -1249,7 +1251,7 @@ function initCardSwipe(container, cardNames) {
 		});
 		
 		dots.forEach((dot, idx) => dot.classList.toggle('active', idx === currentIndex));
-		label.textContent = cardNames[currentIndex];
+		if(label) label.textContent = cardNames[currentIndex];
 	}
 	
 	function goToCard(index) {
