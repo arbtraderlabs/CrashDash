@@ -2222,6 +2222,9 @@ async function loadAIReport(ticker) {
             align-items: center; 
             justify-content: center;
             animation: fadeIn 0.3s ease;
+            min-height: 100vh;
+            width: 100%;
+            background: rgba(0,0,0,0.7);
         ">
             <!-- Loader Container (shown first) -->
             <div id="apexLoaderContainer" class="modal-content" style="
@@ -2346,9 +2349,10 @@ async function loadAIReport(ticker) {
             
             <!-- Report Container (shown after loader) -->
             <div id="apexReportContainer" style="
-                max-width: ${isMobile ? '100%' : '95vw'};
+                max-width: ${isMobile ? '100vw' : '95vw'};
                 width: ${isMobile ? '100%' : '95%'};
-                max-height: ${modalHeight}px;
+                height: ${modalHeight}px;
+                max-height: 90vh;
                 background: white;
                 border-radius: ${isMobile ? '0' : '20px'};
                 overflow: auto;
@@ -2360,7 +2364,6 @@ async function loadAIReport(ticker) {
                 pointer-events: none;
                 display: flex;
                 flex-direction: column;
-                padding-top: ${isMobile ? '0' : '0'};
             ">
                 <button onclick="closeAIReportModal()" style="
                     position: fixed;
