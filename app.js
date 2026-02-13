@@ -2210,13 +2210,24 @@ async function loadAIReport(ticker) {
     // Use single-template architecture: apex_trust_panel.html?ticker=TICKER
     const reportPath = `apex_trust_panel.html?ticker=${ticker}`;
     
+    // Calculate dynamic height for modal on actual mobile devices
+    const availableHeight = window.innerHeight;
+    // Use max-height with safe margins to account for browser chrome and safe areas
+    const modalHeight = isMobile ? Math.max(availableHeight * 0.92, 400) : availableHeight * 0.85;
+    
     // Create modal overlay with loader
     const modalHTML = `
         <div class="modal" id="aiReportModal" style="
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             display: flex; 
             align-items: center; 
             justify-content: center;
             animation: fadeIn 0.3s ease;
+            z-index: 10000;
         ">
             <!-- Loader Container (shown first) -->
             <div id="apexLoaderContainer" class="modal-content" style="
@@ -2343,7 +2354,7 @@ async function loadAIReport(ticker) {
             <div id="apexReportContainer" style="
                 max-width: ${isMobile ? '100%' : '95vw'};
                 width: ${isMobile ? '100%' : '95%'};
-                height: ${isMobile ? '95vh' : '80vh'};
+                max-height: ${modalHeight}px;
                 background: white;
                 border-radius: ${isMobile ? '0' : '20px'};
                 overflow: auto;
@@ -2359,24 +2370,25 @@ async function loadAIReport(ticker) {
             ">
                 <button onclick="closeAIReportModal()" style="
                     position: fixed;
-                    top: ${isMobile ? '10px' : '15px'};
-                    right: ${isMobile ? '10px' : '15px'};
-                    z-index: 10001;
-                    background: rgba(0,0,0,0.7);
+                    top: ${isMobile ? '12px' : '20px'};
+                    right: ${isMobile ? '12px' : '20px'};
+                    z-index: 10002;
+                    background: rgba(0,0,0,0.85);
                     color: white;
                     border: none;
                     border-radius: 50%;
-                    width: ${isMobile ? '36px' : '40px'};
-                    height: ${isMobile ? '36px' : '40px'};
+                    width: ${isMobile ? '40px' : '44px'};
+                    height: ${isMobile ? '40px' : '44px'};
                     cursor: pointer;
-                    font-size: ${isMobile ? '18px' : '20px'};
+                    font-size: ${isMobile ? '20px' : '22px'};
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     transition: all 0.2s ease;
-                    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-                " onmouseover="this.style.background='rgba(239,68,68,0.9)'; this.style.transform='scale(1.1)'" 
-                   onmouseout="this.style.background='rgba(0,0,0,0.7)'; this.style.transform='scale(1)'">✕</button>
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+                    font-weight: 700;
+                " onmouseover="this.style.background='rgba(239,68,68,0.95)'; this.style.transform='scale(1.1)'" 
+                   onmouseout="this.style.background='rgba(0,0,0,0.85)'; this.style.transform='scale(1)'">✕</button>
                 <iframe 
                     id="apexReportIframe"
                     src="${reportPath}"
