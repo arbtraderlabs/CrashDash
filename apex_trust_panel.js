@@ -18,9 +18,10 @@ if(!ticker){
 throw new Error('No ticker specified. Use ?ticker=PXC.L in URL');
 }
 
-// Fetch the ticker's JSON profile from /data/apex_reports/{ticker}_apex_profile.json
+// Fetch the ticker's sanitized web profile JSON from /data/apex_reports/{ticker}_apex_profile.json
+// (contains only necessary data, internal full profiles stay in apex_runtime/reports/)
 const url = `/data/apex_reports/${ticker}_apex_profile.json`;
-console.log(`Loading profile for ${ticker} from ${url}`);
+console.log(`Loading web profile for ${ticker} from ${url}`);
 const r = await fetch(url);
 
 if(!r.ok){
@@ -553,8 +554,8 @@ function populateMarketTape(profile) {
 	// Build Crowd Tape from either AI insights or triangulation data
 	let displayCrowdTape = crowdTape;
 	
-	// If AI crowd tape is empty/silent but we have triangulation social data, build from that
-	if ((!crowdTape.dominant_theme || crowdTape.dominant_theme.includes('silent') || crowdTape.dominant_theme.includes('muted')) && social.has_data) {
+	// If AI crowd tape is empty/null but we have triangulation social data, build from that
+	if (!crowdTape.dominant_theme && social.has_data) {
 		const pos = sentiment.positive || 0;
 		const neg = sentiment.negative || 0;
 		const neu = sentiment.neutral || 0;
