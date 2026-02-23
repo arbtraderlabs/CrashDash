@@ -1560,7 +1560,7 @@ async function showSignalTimeline(ticker) {
                     <!-- Entry Price -->
                     <div>
                         <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px;">Entry:</div>
-                        <div style="font-weight: 600; color: white;">${completeLatestSignal.price ? '£' + completeLatestSignal.price.toFixed(4) : completeLatestSignal.entry_price ? '£' + completeLatestSignal.entry_price.toFixed(4) : '-'}</div>
+                        <div style="font-weight: 600; color: white;">${completeLatestSignal.price ? completeLatestSignal.price.toFixed(4) : completeLatestSignal.entry_price ? completeLatestSignal.entry_price.toFixed(4) : '-'}</div>
                     </div>
                     
                     <!-- Current P&L -->
