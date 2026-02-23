@@ -601,12 +601,12 @@ function renderCompressedMode(signals, tbody) {
                 <div style="display: flex; gap: 0.4rem; align-items: baseline; margin-bottom: 2px;">
                     <div>
                         <span style="font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.3px; color: var(--gray); font-weight: 600; display: block;">Entry</span>
-                        <span style="font-size: 0.95rem; color: var(--dark-gray); font-weight: 700;">£${triggerPrice.toFixed(4)}</span>
+                        <span style="font-size: 0.95rem; color: var(--dark-gray); font-weight: 700;">${triggerPrice.toFixed(4)}</span>
                     </div>
                     <span style="color: var(--electric-blue); font-size: 0.75rem;">→</span>
                     <div>
                         <span style="font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.3px; color: var(--gray); font-weight: 500; opacity: 0.8; display: block;">Last</span>
-                        <span style="font-size: 0.65rem; color: rgba(44, 62, 80, 0.7); font-weight: 600;">£${(metadata?.company_info?.current_close_price || currentPrice).toFixed(4)}</span>
+                        <span style="font-size: 0.65rem; color: rgba(44, 62, 80, 0.7); font-weight: 600;">${(metadata?.company_info?.current_close_price || currentPrice).toFixed(4)}</span>
                     </div>
                 </div>
                 <div class="${currentPnl >= 0 ? 'positive' : 'negative'}" style="font-weight: 700; font-size: 0.8rem; line-height: 1.4; display: flex; align-items: baseline;">
