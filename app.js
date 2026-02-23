@@ -2225,8 +2225,6 @@ async function loadAIReport(ticker) {
             min-height: 100vh;
             width: 100%;
             background: rgba(0,0,0,0.7);
-            padding-top: env(safe-area-inset-top, 0px);
-            padding-bottom: env(safe-area-inset-bottom, 0px);
         ">
             <!-- Loader Container (shown first) -->
             <div id="apexLoaderContainer" class="modal-content" style="
@@ -2351,14 +2349,24 @@ async function loadAIReport(ticker) {
             
             <!-- Report Container (shown after loader) -->
             <div id="apexReportContainer" style="
-                max-width: ${isMobile ? '100vw' : '95vw'};
-                width: ${isMobile ? '100%' : '95%'};
+                ${isMobile ? `
+                position: fixed;
+                top: env(safe-area-inset-top, 0px);
+                left: 0;
+                right: 0;
+                bottom: env(safe-area-inset-bottom, 0px);
+                width: 100%;
+                height: auto;
+                max-height: none;
+                ` : `
+                max-width: 95vw;
+                width: 95%;
                 height: ${modalHeight}px;
                 max-height: 90vh;
+                `}
                 background: white;
                 border-radius: ${isMobile ? '0' : '20px'};
                 overflow: auto;
-                position: relative;
                 box-shadow: 0 20px 60px rgba(0,0,0,0.3);
                 opacity: 0;
                 transform: scale(0.9);
