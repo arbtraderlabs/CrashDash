@@ -2225,6 +2225,8 @@ async function loadAIReport(ticker) {
             min-height: 100vh;
             width: 100%;
             background: rgba(0,0,0,0.7);
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px);
         ">
             <!-- Loader Container (shown first) -->
             <div id="apexLoaderContainer" class="modal-content" style="
@@ -2367,7 +2369,7 @@ async function loadAIReport(ticker) {
             ">
                 <button onclick="closeAIReportModal()" style="
                     position: fixed;
-                    top: ${isMobile ? '12px' : '20px'};
+                    top: ${isMobile ? 'calc(12px + env(safe-area-inset-top, 0px))' : 'calc(20px + env(safe-area-inset-top, 0px))'};
                     right: ${isMobile ? '12px' : '20px'};
                     z-index: 10001;
                     background: rgba(0,0,0,0.85);
