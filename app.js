@@ -2354,10 +2354,11 @@ async function loadAIReport(ticker) {
                 top: env(safe-area-inset-top, 0px);
                 left: 0;
                 right: 0;
-                bottom: env(safe-area-inset-bottom, 0px);
+                bottom: 0;
                 width: 100%;
                 height: auto;
                 max-height: none;
+                padding-bottom: env(safe-area-inset-bottom, 34px);
                 ` : `
                 max-width: 95vw;
                 width: 95%;
