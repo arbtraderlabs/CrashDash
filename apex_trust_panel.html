@@ -13,6 +13,34 @@
     @media (max-width: 768px) {
       #scorecard-ticker { animation: ticker 15s linear infinite; }
     }
+    /* Mobile touch tooltip */
+    #apex-touch-tip {
+      display: none;
+      position: fixed;
+      z-index: 99999;
+      max-width: min(320px, 90vw);
+      background: rgba(15,25,45,0.97);
+      color: #e6eef8;
+      font-size: 13px;
+      line-height: 1.55;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(59,130,246,0.4);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+      white-space: pre-wrap;
+      pointer-events: none;
+    }
+    #apex-touch-tip.visible { display: block; }
+    #apex-touch-tip-close {
+      display: block;
+      margin-top: 10px;
+      text-align: center;
+      color: #3B82F6;
+      font-size: 12px;
+      font-weight: 700;
+      pointer-events: auto;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -437,6 +465,63 @@
     }
   </style>
   
+  <!-- Mobile touch tooltip -->
+  <div id="apex-touch-tip"><span id="apex-touch-tip-text"></span><span id="apex-touch-tip-close">✕ tap to close</span></div>
+
+  <script>
+  (function(){
+    var tip = document.getElementById('apex-touch-tip');
+    var tipText = document.getElementById('apex-touch-tip-text');
+    var tipClose = document.getElementById('apex-touch-tip-close');
+
+    function showTip(el, touch) {
+      var text = el.getAttribute('title') || el.getAttribute('data-tip') || '';
+      if (!text) return false;
+      tipText.textContent = text;
+      tip.classList.add('visible');
+
+      // Position: try above the touch point, clamp to viewport
+      var x = touch ? touch.clientX : (el.getBoundingClientRect().left + el.getBoundingClientRect().width / 2);
+      var y = touch ? touch.clientY : el.getBoundingClientRect().top;
+      var tipW = Math.min(320, window.innerWidth * 0.9);
+      var left = Math.min(Math.max(8, x - tipW / 2), window.innerWidth - tipW - 8);
+      tip.style.left = left + 'px';
+      tip.style.top = Math.max(8, y - 16) + 'px';
+      tip.style.width = tipW + 'px';
+
+      // After render, push above if it clips bottom
+      requestAnimationFrame(function(){
+        var rect = tip.getBoundingClientRect();
+        if (rect.bottom > window.innerHeight - 8) {
+          tip.style.top = Math.max(8, window.innerHeight - rect.height - 8) + 'px';
+        }
+      });
+      return true;
+    }
+
+    function hideTip() { tip.classList.remove('visible'); }
+
+    tipClose.addEventListener('touchend', function(e){ e.stopPropagation(); hideTip(); });
+    tipClose.addEventListener('click', function(e){ e.stopPropagation(); hideTip(); });
+
+    // Dismiss on tap anywhere outside tooltip
+    document.addEventListener('touchstart', function(e){
+      if (!tip.classList.contains('visible')) return;
+      if (!tip.contains(e.target)) hideTip();
+    }, true);
+
+    // Show on tap for any element with title or data-tip
+    document.addEventListener('touchend', function(e){
+      var el = e.target.closest('[title],[data-tip]');
+      if (!el) return;
+      var text = el.getAttribute('title') || el.getAttribute('data-tip') || '';
+      if (!text) return;
+      var touch = e.changedTouches && e.changedTouches[0];
+      if (showTip(el, touch)) e.preventDefault();
+    }, { passive: false });
+  })();
+  </script>
+
   <script>window.__APEX_PROFILE = {};</script>
   <script src="/apex_trust_panel.js"></script>
 </body>
