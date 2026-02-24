@@ -601,12 +601,12 @@ function renderCompressedMode(signals, tbody) {
                 <div style="display: flex; gap: 0.4rem; align-items: baseline; margin-bottom: 2px;">
                     <div>
                         <span style="font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.3px; color: var(--gray); font-weight: 600; display: block;">Entry</span>
-                        <span style="font-size: 0.95rem; color: var(--dark-gray); font-weight: 700;">${triggerPrice.toFixed(4)}</span>
+                        <span style="font-size: 0.95rem; color: var(--dark-gray); font-weight: 700;">${triggerPrice.toFixed(2)}</span>
                     </div>
                     <span style="color: var(--electric-blue); font-size: 0.75rem;">→</span>
                     <div>
                         <span style="font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.3px; color: var(--gray); font-weight: 500; opacity: 0.8; display: block;">Last</span>
-                        <span style="font-size: 0.65rem; color: rgba(44, 62, 80, 0.7); font-weight: 600;">${(metadata?.company_info?.current_close_price || currentPrice).toFixed(4)}</span>
+                        <span style="font-size: 0.65rem; color: rgba(44, 62, 80, 0.7); font-weight: 600;">${(metadata?.company_info?.current_close_price || currentPrice).toFixed(2)}</span>
                     </div>
                 </div>
                 <div class="${currentPnl >= 0 ? 'positive' : 'negative'}" style="font-weight: 700; font-size: 0.8rem; line-height: 1.4; display: flex; align-items: baseline;">
@@ -1096,7 +1096,7 @@ async function showCompanyModal(ticker) {
     const marketCapCandidate = getMarketCapCandidate(ticker, metadata, tickerInfo);
     const formattedMarketCap = formatMarketCap(marketCapCandidate);
 
-    const fmtPrice = (v) => (v !== undefined && v !== null && !isNaN(v)) ? Number(v).toFixed(4) : '-';
+    const fmtPrice = (v) => (v !== undefined && v !== null && !isNaN(v)) ? Number(v).toFixed(2) : '-';
     
     // Close loading modal and show full modal
     closeCompanyModal();
@@ -1377,7 +1377,7 @@ async function showSignalTimeline(ticker) {
         
         // Get current price (pence-aware)
         const currentPriceVal = getPriceFieldForTicker(ticker, basics, 'current_price');
-        const fmtCurrentPrice = (currentPriceVal !== undefined && currentPriceVal !== null && !isNaN(currentPriceVal)) ? Number(currentPriceVal).toFixed(4) : '-';
+        const fmtCurrentPrice = (currentPriceVal !== undefined && currentPriceVal !== null && !isNaN(currentPriceVal)) ? Number(currentPriceVal).toFixed(2) : '-';
         
         content.innerHTML = `
         <!-- STICKY COMPANY INFO HEADER -->
@@ -1560,7 +1560,7 @@ async function showSignalTimeline(ticker) {
                     <!-- Entry Price -->
                     <div>
                         <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 3px;">Entry:</div>
-                        <div style="font-weight: 600; color: white;">${completeLatestSignal.price ? completeLatestSignal.price.toFixed(4) : completeLatestSignal.entry_price ? completeLatestSignal.entry_price.toFixed(4) : '-'}</div>
+                        <div style="font-weight: 600; color: white;">${completeLatestSignal.price ? completeLatestSignal.price.toFixed(2) : completeLatestSignal.entry_price ? completeLatestSignal.entry_price.toFixed(2) : '-'}</div>
                     </div>
                     
                     <!-- Current P&L -->
@@ -1634,7 +1634,7 @@ async function showSignalTimeline(ticker) {
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 6px; font-size: 0.75rem;">
                                 <div>
                                     <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 2px;">Entry</div>
-                                    <div style="font-weight: 600; color: white;">${sig.entry_price.toFixed(4)}</div>
+                                    <div style="font-weight: 600; color: white;">${sig.entry_price.toFixed(2)}</div>
                                 </div>
                                 <div>
                                     <div style="color: rgba(255,255,255,0.6); font-size: 0.65rem; margin-bottom: 2px;">Return</div>
@@ -1760,7 +1760,7 @@ function loadMoreSignals(ticker) {
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; font-size: 0.8rem;">
                     <div>
                         <span style="color: rgba(255,255,255,0.6);">Entry:</span>
-                        <span style="font-weight: 600; color: white;">${sig.entry_price.toFixed(4)}</span>
+                        <span style="font-weight: 600; color: white;">${sig.entry_price.toFixed(2)}</span>
                     </div>
                     <div>
                         <span style="color: rgba(255,255,255,0.6);">Return:</span>
@@ -1859,7 +1859,7 @@ async function loadPriceChart(ticker) {
             increasing: { line: { color: '#22c55e' } },
             decreasing: { line: { color: '#ef4444' } },
             hovertext: chartData.dates.map((d, i) => 
-                `Date: ${d}<br>Open: £${chartData.open[i].toFixed(4)}<br>High: £${chartData.high[i].toFixed(4)}<br>Low: £${chartData.low[i].toFixed(4)}<br>Close: £${chartData.close[i].toFixed(4)}`
+                `Date: ${d}<br>Open: ${chartData.open[i].toFixed(2)}<br>High: ${chartData.high[i].toFixed(2)}<br>Low: ${chartData.low[i].toFixed(2)}<br>Close: ${chartData.close[i].toFixed(2)}`
             ),
             hoverinfo: 'text'
         });
