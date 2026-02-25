@@ -1690,6 +1690,21 @@ async function showSignalTimeline(ticker) {
         console.log('Displaying modal...');
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
+
+        // Apply safe-area sizing on mobile (same approach as APEX modal)
+        const isMobileTimeline = window.innerWidth < 768;
+        const modalContent = modal.querySelector('.rally-modal');
+        if (isMobileTimeline && modalContent) {
+            modal.style.padding = '0';
+            modalContent.style.width = '100%';
+            modalContent.style.maxWidth = '100%';
+            modalContent.style.borderRadius = '0';
+            modalContent.style.height = window.innerHeight + 'px';
+            modalContent.style.maxHeight = 'none';
+            modalContent.style.boxSizing = 'border-box';
+            modalContent.style.paddingTop = 'env(safe-area-inset-top, 0px)';
+            modalContent.style.paddingBottom = 'env(safe-area-inset-bottom, 34px)';
+        }
         
         // Load and render price chart
         loadPriceChart(ticker);
@@ -1701,6 +1716,19 @@ async function showSignalTimeline(ticker) {
 
 function closeSignalTimeline() {
     const modal = document.getElementById('signalTimelineModal');
+    const modalContent = modal.querySelector('.rally-modal');
+    // Clear mobile overrides
+    if (modalContent) {
+        modalContent.style.width = '';
+        modalContent.style.maxWidth = '';
+        modalContent.style.borderRadius = '';
+        modalContent.style.height = '';
+        modalContent.style.maxHeight = '';
+        modalContent.style.boxSizing = '';
+        modalContent.style.paddingTop = '';
+        modalContent.style.paddingBottom = '';
+    }
+    modal.style.padding = '';
     modal.style.display = 'none';
     document.body.style.overflow = '';
 }
