@@ -1696,13 +1696,14 @@ async function showSignalTimeline(ticker) {
         const modalContent = modal.querySelector('.rally-modal');
         if (isMobileTimeline && modalContent) {
             modal.style.padding = '0';
+            modal.style.alignItems = 'flex-start';
             modalContent.style.width = '100%';
             modalContent.style.maxWidth = '100%';
             modalContent.style.borderRadius = '0';
             modalContent.style.height = window.innerHeight + 'px';
             modalContent.style.maxHeight = 'none';
             modalContent.style.boxSizing = 'border-box';
-            modalContent.style.paddingTop = 'env(safe-area-inset-top, 0px)';
+            modalContent.style.paddingTop = 'env(safe-area-inset-top, 47px)';
             modalContent.style.paddingBottom = 'env(safe-area-inset-bottom, 34px)';
         }
         
@@ -1729,6 +1730,7 @@ function closeSignalTimeline() {
         modalContent.style.paddingBottom = '';
     }
     modal.style.padding = '';
+    modal.style.alignItems = '';
     modal.style.display = 'none';
     document.body.style.overflow = '';
 }
