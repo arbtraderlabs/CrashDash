@@ -2351,14 +2351,15 @@ async function loadAIReport(ticker) {
             <div id="apexReportContainer" style="
                 ${isMobile ? `
                 position: fixed;
-                top: env(safe-area-inset-top, 0px);
+                top: 0;
                 left: 0;
                 right: 0;
-                bottom: 0;
                 width: 100%;
-                height: auto;
-                max-height: none;
+                height: ${window.innerHeight}px;
+                box-sizing: border-box;
+                padding-top: env(safe-area-inset-top, 0px);
                 padding-bottom: env(safe-area-inset-bottom, 34px);
+                max-height: none;
                 ` : `
                 max-width: 95vw;
                 width: 95%;
@@ -2402,10 +2403,10 @@ async function loadAIReport(ticker) {
                     src="${reportPath}"
                     style="
                         width: 100%; 
-                        height: 100%;
                         border: none;
                         display: block;
                         flex: 1;
+                        min-height: 0;
                     "
                 ></iframe>
             </div>
