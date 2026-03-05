@@ -7,12 +7,12 @@
     "market": "MAIN",
     "currency": "GBP",
     "risk_tier": "Low Risk",
-    "current_market_cap": 53343,
-    "current_close_price": 0.0365
+    "current_market_cap": 4384,
+    "current_close_price": 0.003
   },
   "basics": {
     "ticker": "ALF.L",
-    "current_price": 0.0365,
+    "current_price": 0.003,
     "ath": 0.12,
     "atl": 0.0017,
     "ath_date": "2025-09-25",
@@ -21,14 +21,14 @@
     "week_52_low": 0.002,
     "week_52_high_date": "2025-09-25",
     "week_52_low_date": "2025-11-04",
-    "drawdown_from_ath_pct": 69.58,
+    "drawdown_from_ath_pct": 97.5,
     "data_start": "2020-01-02",
-    "data_end": "2026-03-03",
-    "total_bars": 573
+    "data_end": "2026-03-05",
+    "total_bars": 575
   },
   "latest_signal": {
-    "date": "2026-02-18",
-    "scan_date": "2026-02-18",
+    "date": "2026-03-05",
+    "scan_date": "2026-03-05",
     "signal_type": "ULTRA CRASH BOTTOM",
     "signal_color": "RED",
     "price": 0.003,
@@ -36,16 +36,19 @@
     "ai_score": 15.0,
     "rsi": 0.0,
     "cycle_position": 0.0,
-    "holding_period_days": 13,
-    "current_pnl_pct": 1116.67,
+    "holding_period_days": 0,
+    "current_pnl_pct": 0.0,
     "rally_state": "peaked",
     "distance_from_high_pct": 0.0,
-    "Rally_Count": 1,
-    "days_since_last_high": 13,
-    "last_high_date": "2026-02-19",
-    "lock_in_reached": true,
-    "lock_in_date": "2026-02-19",
-    "best_rally_pct": 1116.67
+    "Rally_Count": 0,
+    "days_since_last_high": 0,
+    "last_high_date": "2026-03-05",
+    "lock_in_reached": false,
+    "lock_in_date": null,
+    "best_rally_pct": 0.0,
+    "split_affected": true,
+    "split_warning": "\u26a0\ufe0f",
+    "warning_message": "Signal near stock split on 2026-03-05 (1:10)"
   },
   "best_historical_signal": {
     "signal_date": "2026-02-18",
@@ -101,38 +104,73 @@
       "signal_type": "ULTRA CRASH BOTTOM",
       "signal_color": "RED",
       "entry_price": 0.003,
-      "current_price": 0.0365,
-      "current_return_pct": 1116.67,
+      "current_price": 0.003,
+      "current_return_pct": 0.0,
       "best_rally_pct": 1116.67,
       "best_rally_date": "2026-02-19",
-      "rally_state": "peaked",
+      "rally_state": "pulling_back",
       "Rally_Count": 1,
-      "distance_from_high_pct": 0.0,
-      "days_since_last_high": 13,
+      "distance_from_high_pct": -91.78,
+      "days_since_last_high": 7,
       "lock_in_reached": true,
-      "age_days": 14,
+      "age_days": 15,
+      "status": "active"
+    },
+    {
+      "signal_id": "ALF.L_2026-03-05",
+      "signal_date": "2026-03-05",
+      "signal_type": "ULTRA CRASH BOTTOM",
+      "signal_color": "RED",
+      "entry_price": 0.003,
+      "current_price": 0.003,
+      "current_return_pct": 0.0,
+      "best_rally_pct": 0.0,
+      "best_rally_date": "2026-03-05",
+      "rally_state": "peaked",
+      "Rally_Count": 0,
+      "distance_from_high_pct": 0.0,
+      "days_since_last_high": 0,
+      "lock_in_reached": false,
+      "age_days": 0,
       "status": "active"
     }
   ],
   "stats": {
-    "total_signals": 3,
+    "total_signals": 4,
     "win_rate_pct": 100.0,
     "avg_rally_pct": 437.44,
     "median_rally_pct": 100.0,
     "best_rally_pct": 1116.67,
     "worst_rally_pct": 95.65
   },
-  "splits": [],
+  "splits": [
+    {
+      "date": "2026-03-05",
+      "ratio": "1:10",
+      "ratio_value": 12.17
+    }
+  ],
   "split_risk": {
-    "split_detected": false,
-    "risk_level": "NONE",
-    "confidence": "HIGH"
+    "split_detected": true,
+    "split_date": "2026-03-05",
+    "split_ratio": "1:10",
+    "days_from_split": 0,
+    "split_type": "REVERSE_SPLIT",
+    "risk_level": "HIGH",
+    "confidence": "LOW",
+    "warning": "Signal occurred near stock split on 2026-03-05 (1:10) - price data may be affected by corporate action",
+    "recommendation": "VERIFY price data independently before trading - P&L calculations may be inaccurate near corporate actions"
   },
   "data_quality": {
-    "price_reliability": "RELIABLE",
-    "pnl_reliability": "RELIABLE",
-    "overall_confidence": "HIGH"
+    "price_reliability": "SUSPECT",
+    "pnl_reliability": "SUSPECT",
+    "overall_confidence": "LOW"
   },
-  "risk_flags": [],
-  "last_updated": "2026-03-04 20:06:39 UTC"
+  "risk_flags": [
+    "SIGNAL_NEAR_SPLIT",
+    "HAS_REVERSE_SPLIT",
+    "EXTREME_DRAWDOWN",
+    "PENNY_STOCK"
+  ],
+  "last_updated": "2026-03-05 10:06:47 UTC"
 }
