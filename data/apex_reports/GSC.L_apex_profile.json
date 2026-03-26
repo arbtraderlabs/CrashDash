@@ -1,20 +1,20 @@
 {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "GSC.L",
-  "generated_at": "2026-03-25T20:07:09.270941Z",
+  "generated_at": "2026-03-26T10:07:10.980271Z",
   "top_card": {
     "ticker": "GSC.L",
     "company_name": "GS Chain plc",
     "sector": "Financial Services",
     "market_cap_gbp": 9999,
-    "days_active": 43,
-    "apex_score_100": 32,
-    "confidence_score_100": 35,
+    "days_active": 44,
+    "apex_score_100": 20,
+    "confidence_score_100": 30,
     "ai_final_score_25": 11,
     "ai_strength": "MODERATE",
     "timing_regime": "BROKEN",
     "action": "AVOID",
-    "thesis_one_liner": "AVOID - BROKEN timing with 32/100 opportunity score"
+    "thesis_one_liner": "AVOID - BROKEN timing with 20/100 opportunity score"
   },
   "enrichment": {
     "company_info": {
@@ -41,8 +41,8 @@
       "week_52_low_date": "2026-02-24",
       "drawdown_from_ath_pct": 99.97,
       "data_start": "2022-05-13",
-      "data_end": "2026-03-24",
-      "total_bars": 799
+      "data_end": "2026-03-25",
+      "total_bars": 800
     },
     "latest_signal": {
       "date": "2026-02-09",
@@ -54,15 +54,15 @@
       "ai_score": 9.0,
       "rsi": 0.0,
       "cycle_position": 0.0625,
-      "holding_period_days": 43,
+      "holding_period_days": 44,
       "current_pnl_pct": -99.23,
       "rally_state": "accumulating",
       "distance_from_high_pct": 0.0,
       "Rally_Count": 0,
       "days_since_last_high": 8,
-      "last_high_date": "2026-03-17",
-      "lock_in_reached": false,
-      "lock_in_date": null,
+      "last_high_date": "2026-03-18",
+      "lock_in_reached": true,
+      "lock_in_date": "2026-03-26",
       "best_rally_pct": -0.0
     },
     "best_historical_signal": {
@@ -416,7 +416,7 @@
         "distance_from_high_pct": 0.0,
         "days_since_last_high": 8,
         "lock_in_reached": true,
-        "age_days": 55,
+        "age_days": 56,
         "status": "active"
       },
       {
@@ -433,8 +433,8 @@
         "Rally_Count": 0,
         "distance_from_high_pct": 0.0,
         "days_since_last_high": 8,
-        "lock_in_reached": false,
-        "age_days": 44,
+        "lock_in_reached": true,
+        "age_days": 45,
         "status": "active"
       }
     ],
@@ -469,7 +469,7 @@
       "PENNY_STOCK",
       "FREQUENT_CRASHES"
     ],
-    "last_updated": "2026-03-25 20:06:41 UTC",
+    "last_updated": "2026-03-26 10:06:43 UTC",
     "volatility": {
       "atr_normalized": 10.0,
       "stddev_20d": 0.0
@@ -480,11 +480,11 @@
   },
   "decision_summary": {
     "why_it_matters": [
-      "APEX 32/100 indicates moderate opportunity quality",
+      "APEX 20/100 indicates weak opportunity quality",
       "Timing regime: BROKEN",
       "Historical profile: 0 rallies, -0% best run"
     ],
-    "main_risk": "Confidence 35/100 - full data loaded",
+    "main_risk": "Confidence 30/100 - full data loaded",
     "watch_next": [
       "RNS catalysts (funding/operational updates)",
       "Volume expansion confirmation",
@@ -545,7 +545,7 @@
     "social": {
       "has_data": true,
       "buzz_level": "HIGH",
-      "post_count": 357,
+      "post_count": 364,
       "sentiment_breakdown": {
         "positive": 0.0,
         "neutral": 100.0,
@@ -740,7 +740,7 @@
       {
         "type": "LOW_DATA",
         "icon": "\u2753",
-        "text": "Conf 35",
+        "text": "Conf 30",
         "color": "#64748b"
       }
     ],
@@ -799,13 +799,13 @@
         },
         {
           "criterion": "APEX Quality",
-          "value": "32/100",
+          "value": "20/100",
           "pass": false,
           "icon": "\u26a0\ufe0f"
         },
         {
           "criterion": "Data Confidence",
-          "value": "35/100",
+          "value": "30/100",
           "pass": false,
           "icon": "\u2753"
         },
@@ -884,7 +884,8 @@
       "Drawdown reversion potential: +16 (Drawdown_Pct=81.8%)",
       "Volume confirmation: +3 (Relative_Volume=1.3)",
       "Pattern reliability: +0 (Rally_Count=0.0)",
-      "Upside history: +2 (best_rally_pct=-0%)"
+      "Upside history: +2 (best_rally_pct=-0%)",
+      "Round-trip collapse: -12 (lock_in_reached=True, current_return=-99.2%)"
     ],
     "technical_score": {
       "points": 11,
@@ -912,12 +913,22 @@
       "reason": "Best rally of -0% gives 2/20 points"
     },
     "penalties": {
-      "total": 0,
-      "items": []
+      "total": -12,
+      "items": [
+        "Round-trip collapse: -12 (lock_in_reached=True, current_return=-99.2%)"
+      ]
     }
   },
   "reasons_buy_sell": {
-    "reasons_to_buy": [],
+    "reasons_to_buy": [
+      {
+        "reason": "Proven winner - previously hit lock-in target",
+        "tag": "MED",
+        "evidence": [
+          "lock_in_reached=True"
+        ]
+      }
+    ],
     "reasons_to_sell": [
       {
         "reason": "Deep drawdown - thesis failing",
@@ -925,6 +936,14 @@
         "evidence": [
           "current_return_pct=-99.2%",
           "timing_regime=BROKEN"
+        ]
+      },
+      {
+        "reason": "Round-trip collapse - pump and dump pattern",
+        "tag": "HIGH",
+        "evidence": [
+          "lock_in_reached=True",
+          "current_return_pct=-99.2%"
         ]
       }
     ]
@@ -958,7 +977,7 @@
     "new_rns_titles": []
   },
   "commentary": {
-    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows BROKEN timing with 32/100 APEX score. Historical data shows 0 rallies averaging -0% upside. Current position: -99.2%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
+    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows BROKEN timing with 20/100 APEX score. Historical data shows 0 rallies averaging -0% upside. Current position: -99.2%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
     "bull_case": [
       "Limited upside case without catalysts"
     ],
@@ -966,7 +985,7 @@
       "Deep drawdown (-99.2%) suggests broken thesis"
     ],
     "timing_translation": "Thesis invalidated. Avoid or exit.",
-    "confidence_explained": "Confidence 35/100 reflects full data quality with triangulation loaded."
+    "confidence_explained": "Confidence 30/100 reflects full data quality with triangulation loaded."
   },
   "data_quality": {
     "sources_present": {
@@ -985,17 +1004,17 @@
   },
   "report_version": "5.0",
   "comprehensive_apex": {
-    "score": 32,
+    "score": 20,
     "rating": "LOW QUALITY",
     "color": "#ef4444",
-    "calculation": "APEX Score: 32/100",
+    "calculation": "APEX Score: 20/100",
     "components": {
       "setup": {
         "score": 44,
         "weight": 0.25
       },
       "trust": {
-        "score": 35,
+        "score": 30,
         "weight": 0.2
       },
       "panic": {
