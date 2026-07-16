@@ -1,20 +1,20 @@
 {
   "analysis_mode": "HISTORICAL_ONLY",
   "symbol": "SAVE.L",
-  "generated_at": "2026-07-15T19:06:57.805730Z",
+  "generated_at": "2026-07-16T09:06:54.261426Z",
   "top_card": {
     "ticker": "SAVE.L",
     "company_name": "Savannah Energy PLC",
     "sector": "Energy",
     "market_cap_gbp": 1150813,
-    "days_active": 43,
-    "apex_score_100": 42,
-    "confidence_score_100": 35,
+    "days_active": 44,
+    "apex_score_100": 30,
+    "confidence_score_100": 30,
     "ai_final_score_25": 10,
     "ai_strength": "MODERATE",
     "timing_regime": "BROKEN",
     "action": "AVOID",
-    "thesis_one_liner": "AVOID - BROKEN timing with 42/100 opportunity score"
+    "thesis_one_liner": "AVOID - BROKEN timing with 30/100 opportunity score"
   },
   "enrichment": {
     "company_info": {
@@ -41,8 +41,8 @@
       "week_52_low_date": "2026-07-10",
       "drawdown_from_ath_pct": 99.98,
       "data_start": "2020-01-02",
-      "data_end": "2026-07-14",
-      "total_bars": 896
+      "data_end": "2026-07-15",
+      "total_bars": 897
     },
     "latest_signal": {
       "date": "2026-06-01",
@@ -54,15 +54,15 @@
       "ai_score": 8.0,
       "rsi": 28.9,
       "cycle_position": 0.1429,
-      "holding_period_days": 43,
+      "holding_period_days": 44,
       "current_pnl_pct": -99.15,
       "rally_state": "accumulating",
       "distance_from_high_pct": -99.22,
       "Rally_Count": 0,
       "days_since_last_high": 8,
-      "last_high_date": "2026-07-07",
-      "lock_in_reached": false,
-      "lock_in_date": null,
+      "last_high_date": "2026-07-08",
+      "lock_in_reached": true,
+      "lock_in_date": "2026-07-16",
       "best_rally_pct": 9.23
     },
     "best_historical_signal": {
@@ -200,7 +200,7 @@
         "distance_from_high_pct": -99.22,
         "days_since_last_high": 8,
         "lock_in_reached": true,
-        "age_days": 47,
+        "age_days": 48,
         "status": "active"
       },
       {
@@ -217,8 +217,8 @@
         "Rally_Count": 0,
         "distance_from_high_pct": -99.22,
         "days_since_last_high": 8,
-        "lock_in_reached": false,
-        "age_days": 44,
+        "lock_in_reached": true,
+        "age_days": 45,
         "status": "active"
       }
     ],
@@ -262,7 +262,7 @@
       "EXTREME_DRAWDOWN",
       "FREQUENT_CRASHES"
     ],
-    "last_updated": "2026-07-15 19:06:37 UTC",
+    "last_updated": "2026-07-16 09:06:34 UTC",
     "volatility": {
       "atr_normalized": 7.11,
       "stddev_20d": 0.0
@@ -273,11 +273,11 @@
   },
   "decision_summary": {
     "why_it_matters": [
-      "APEX 42/100 indicates moderate opportunity quality",
+      "APEX 30/100 indicates moderate opportunity quality",
       "Timing regime: BROKEN",
       "Historical profile: 0 rallies, 9% best run"
     ],
-    "main_risk": "Confidence 35/100 - full data loaded",
+    "main_risk": "Confidence 30/100 - full data loaded",
     "watch_next": [
       "RNS catalysts (funding/operational updates)",
       "Volume expansion confirmation",
@@ -621,7 +621,7 @@
       {
         "type": "LOW_DATA",
         "icon": "\u2753",
-        "text": "Conf 35",
+        "text": "Conf 30",
         "color": "#64748b"
       }
     ],
@@ -680,13 +680,13 @@
         },
         {
           "criterion": "APEX Quality",
-          "value": "42/100",
+          "value": "30/100",
           "pass": false,
           "icon": "\u26a0\ufe0f"
         },
         {
           "criterion": "Data Confidence",
-          "value": "35/100",
+          "value": "30/100",
           "pass": false,
           "icon": "\u2753"
         },
@@ -765,7 +765,8 @@
       "Drawdown reversion potential: +20 (Drawdown_Pct=97.5%)",
       "Volume confirmation: +10 (Relative_Volume=2.6)",
       "Pattern reliability: +0 (Rally_Count=0.0)",
-      "Upside history: +2 (best_rally_pct=9%)"
+      "Upside history: +2 (best_rally_pct=9%)",
+      "Round-trip collapse: -12 (lock_in_reached=True, current_return=-99.2%)"
     ],
     "technical_score": {
       "points": 10,
@@ -793,12 +794,22 @@
       "reason": "Best rally of 9% gives 2/20 points"
     },
     "penalties": {
-      "total": 0,
-      "items": []
+      "total": -12,
+      "items": [
+        "Round-trip collapse: -12 (lock_in_reached=True, current_return=-99.2%)"
+      ]
     }
   },
   "reasons_buy_sell": {
-    "reasons_to_buy": [],
+    "reasons_to_buy": [
+      {
+        "reason": "Proven winner - previously hit lock-in target",
+        "tag": "MED",
+        "evidence": [
+          "lock_in_reached=True"
+        ]
+      }
+    ],
     "reasons_to_sell": [
       {
         "reason": "Deep drawdown - thesis failing",
@@ -806,6 +817,14 @@
         "evidence": [
           "current_return_pct=-99.2%",
           "timing_regime=BROKEN"
+        ]
+      },
+      {
+        "reason": "Round-trip collapse - pump and dump pattern",
+        "tag": "HIGH",
+        "evidence": [
+          "lock_in_reached=True",
+          "current_return_pct=-99.2%"
         ]
       }
     ]
@@ -839,7 +858,7 @@
     "new_rns_titles": []
   },
   "commentary": {
-    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows BROKEN timing with 42/100 APEX score. Historical data shows 0 rallies averaging 9% upside. Current position: -99.2%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
+    "executive_summary": "This report runs in HISTORICAL-ONLY mode: triangulation (RNS/social/trends) not loaded. The setup shows BROKEN timing with 30/100 APEX score. Historical data shows 0 rallies averaging 9% upside. Current position: -99.2%. Your edge comes from waiting for AI Engine confirmation instead of blind entry.",
     "bull_case": [
       "Limited upside case without catalysts"
     ],
@@ -847,7 +866,7 @@
       "Deep drawdown (-99.2%) suggests broken thesis"
     ],
     "timing_translation": "Thesis invalidated. Avoid or exit.",
-    "confidence_explained": "Confidence 35/100 reflects full data quality with triangulation loaded."
+    "confidence_explained": "Confidence 30/100 reflects full data quality with triangulation loaded."
   },
   "data_quality": {
     "sources_present": {
@@ -866,17 +885,17 @@
   },
   "report_version": "5.0",
   "comprehensive_apex": {
-    "score": 42,
+    "score": 30,
     "rating": "LOW QUALITY",
     "color": "#ef4444",
-    "calculation": "APEX Score: 42/100",
+    "calculation": "APEX Score: 30/100",
     "components": {
       "setup": {
         "score": 40,
         "weight": 0.25
       },
       "trust": {
-        "score": 35,
+        "score": 30,
         "weight": 0.2
       },
       "panic": {
