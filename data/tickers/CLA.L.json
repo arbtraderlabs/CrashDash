@@ -8,11 +8,11 @@
     "currency": "GBP",
     "risk_tier": "High Risk",
     "current_market_cap": 9305516,
-    "current_close_price": null
+    "current_close_price": 0.25
   },
   "basics": {
     "ticker": "CLA.L",
-    "current_price": null,
+    "current_price": 0.25,
     "ath": 6.0,
     "atl": 0.25,
     "ath_date": "2026-07-20",
@@ -21,7 +21,7 @@
     "week_52_low": 0.25,
     "week_52_high_date": "2026-07-20",
     "week_52_low_date": "2026-06-11",
-    "drawdown_from_ath_pct": null,
+    "drawdown_from_ath_pct": 95.83,
     "data_start": "2023-01-30",
     "data_end": "2026-07-23",
     "total_bars": 718
@@ -37,15 +37,18 @@
     "rsi": 0.0,
     "cycle_position": 0.1667,
     "holding_period_days": 3,
-    "current_pnl_pct": null,
+    "current_pnl_pct": 0.0,
     "rally_state": "rallying",
-    "distance_from_high_pct": null,
+    "distance_from_high_pct": -95.0,
     "Rally_Count": 1,
     "days_since_last_high": 2,
     "last_high_date": "2026-07-21",
     "lock_in_reached": true,
     "lock_in_date": "2026-07-21",
-    "best_rally_pct": 1900.0
+    "best_rally_pct": 1900.0,
+    "split_affected": true,
+    "split_warning": "\u26a0\ufe0f",
+    "warning_message": "Signal near stock split on 2026-07-23 (1:20)"
   },
   "best_historical_signal": {
     "signal_date": "2026-06-17",
@@ -65,13 +68,13 @@
       "signal_type": "CRASH ZONE BOTTOM",
       "signal_color": "YELLOW",
       "entry_price": 0.2501,
-      "current_price": null,
-      "current_return_pct": null,
+      "current_price": 0.25,
+      "current_return_pct": -0.04,
       "best_rally_pct": 1899.2,
       "best_rally_date": "2026-07-20",
-      "rally_state": "rallying",
+      "rally_state": "accumulating",
       "Rally_Count": 1,
-      "distance_from_high_pct": null,
+      "distance_from_high_pct": -95.0,
       "days_since_last_high": 13,
       "lock_in_reached": true,
       "age_days": 36,
@@ -83,13 +86,13 @@
       "signal_type": "CRASH ZONE BOTTOM",
       "signal_color": "YELLOW",
       "entry_price": 0.25,
-      "current_price": null,
-      "current_return_pct": null,
+      "current_price": 0.25,
+      "current_return_pct": 0.0,
       "best_rally_pct": 1900.0,
       "best_rally_date": "2026-07-21",
       "rally_state": "rallying",
       "Rally_Count": 1,
-      "distance_from_high_pct": null,
+      "distance_from_high_pct": -95.0,
       "days_since_last_high": 2,
       "lock_in_reached": true,
       "age_days": 3,
@@ -104,17 +107,33 @@
     "best_rally_pct": 2299.04,
     "worst_rally_pct": 2220.0
   },
-  "splits": [],
+  "splits": [
+    {
+      "date": "2026-07-23",
+      "ratio": "1:20",
+      "ratio_value": 20.0
+    }
+  ],
   "split_risk": {
-    "split_detected": false,
-    "risk_level": "NONE",
-    "confidence": "HIGH"
+    "split_detected": true,
+    "split_date": "2026-07-23",
+    "split_ratio": "1:20",
+    "days_from_split": 3,
+    "split_type": "REVERSE_SPLIT",
+    "risk_level": "HIGH",
+    "confidence": "LOW",
+    "warning": "Signal occurred near stock split on 2026-07-23 (1:20) - price data may be affected by corporate action",
+    "recommendation": "VERIFY price data independently before trading - P&L calculations may be inaccurate near corporate actions"
   },
   "data_quality": {
-    "price_reliability": "RELIABLE",
-    "pnl_reliability": "RELIABLE",
-    "overall_confidence": "HIGH"
+    "price_reliability": "SUSPECT",
+    "pnl_reliability": "SUSPECT",
+    "overall_confidence": "LOW"
   },
-  "risk_flags": [],
-  "last_updated": "2026-07-23 13:06:45 UTC"
+  "risk_flags": [
+    "SIGNAL_NEAR_SPLIT",
+    "HAS_REVERSE_SPLIT",
+    "EXTREME_DRAWDOWN"
+  ],
+  "last_updated": "2026-07-23 16:06:48 UTC"
 }
