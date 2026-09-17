@@ -20,7 +20,7 @@ throw new Error('No ticker specified. Use ?ticker=PXC.L in URL');
 
 // Fetch the ticker's sanitized web profile JSON from /data/apex_reports/{ticker}_apex_profile.json
 // (contains only necessary data, internal full profiles stay in apex_runtime/reports/)
-const url = `/data/apex_reports/${ticker}_apex_profile.json`;
+const url = `data/apex_reports/${ticker}_apex_profile.json`;
 console.log(`Loading web profile for ${ticker} from ${url}`);
 const r = await fetch(url);
 
